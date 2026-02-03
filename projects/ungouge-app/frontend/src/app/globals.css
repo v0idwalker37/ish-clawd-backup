@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Improve touch targets for mobile */
+  button, a {
+    @apply touch-manipulation;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold 
+           hover:bg-primary-700 transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-4 focus:ring-primary-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-primary-600 border-2 border-primary-600 px-6 py-3 rounded-lg font-semibold 
+           hover:bg-primary-50 transition-all duration-200
+           focus:outline-none focus:ring-4 focus:ring-primary-200;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-2.5 border border-gray-300 rounded-lg 
+           focus:ring-2 focus:ring-primary-500 focus:border-primary-500 
+           outline-none transition-all duration-200
+           text-base;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-md p-6 transition-shadow duration-200;
+  }
+}
+
+@layer utilities {
+  /* Shake animation for errors */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+  }
+  
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  /* Smooth height transitions */
+  .transition-height {
+    transition: height 0.3s ease-in-out;
+  }
+
+  /* Focus visible for accessibility */
+  .focus-visible-ring:focus-visible {
+    @apply outline-none ring-4 ring-primary-300 ring-offset-2;
+  }
+
+  /* Safe area for mobile notches */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Improved mobile touch feedback */
+  .tap-highlight-none {
+    -webkit-tap-highlight-color: transparent;
+  }
+}

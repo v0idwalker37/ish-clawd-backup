@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ungouge.ai — Master Plan</title>
+<style>
+@media print {
+  body { margin: 0; padding: 0.75in; }
+  h1 { page-break-before: always; }
+  h1:first-of-type { page-break-before: avoid; }
+  .no-break { page-break-inside: avoid; }
+  @page { margin: 0.75in; }
+  .cover { page-break-after: always; }
+}
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #222;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+}
+h1 {
+  font-size: 32px;
+  color: #1a3a5c;
+  border-bottom: 4px solid #1a3a5c;
+  padding-bottom: 15px;
+  margin-top: 60px;
+}
+h2 {
+  font-size: 24px;
+  color: #1a3a5c;
+  margin-top: 40px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #ddd;
+}
+h3 {
+  font-size: 20px;
+  color: #2c5aa0;
+  margin-top: 30px;
+}
+h4 {
+  font-size: 17px;
+  color: #3a6db5;
+  margin-top: 20px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 15px;
+}
+th {
+  background: #1a3a5c;
+  color: white;
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+}
+td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  vertical-align: top;
+}
+tr:nth-child(even) { background: #f9f9f9; }
+ul, ol { margin: 20px 0; padding-left: 35px; }
+li { margin: 10px 0; }
+strong { color: #1a3a5c; font-weight: 600; }
+code {
+  background: #f5f5f5;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  border: 1px solid #ddd;
+}
+.metric-box {
+  background: #e8f4f8;
+  border-left: 5px solid #2c5aa0;
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 5px;
+}
+.warning-box {
+  background: #fff9e6;
+  border-left: 5px solid #ffcc00;
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 5px;
+}
+.success-box {
+  background: #e8f8e8;
+  border-left: 5px solid #2ca02c;
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 5px;
+}
+.cover {
+  text-align: center;
+  padding: 120px 0 80px;
+}
+.cover h1 {
+  font-size: 48px;
+  border: none;
+  margin-bottom: 10px;
+  color: #1a3a5c;
+}
+.cover .subtitle {
+  font-size: 22px;
+  color: #555;
+  margin-bottom: 40px;
+}
+.cover .tagline {
+  font-size: 18px;
+  color: #2c5aa0;
+  font-style: italic;
+  margin-bottom: 60px;
+}
+.cover .meta {
+  font-size: 14px;
+  color: #888;
+}
+.toc a {
+  color: #2c5aa0;
+  text-decoration: none;
+}
+.toc a:hover { text-decoration: underline; }
+.toc li { margin: 6px 0; }
+blockquote {
+  border-left: 4px solid #2c5aa0;
+  margin: 20px 0;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  color: #333;
+  font-style: italic;
+}
+.formula {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  border-radius: 5px;
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  margin: 20px 0;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- COVER PAGE -->
+<!-- ============================================================ -->
+<div class="cover">
+  <h1 style="font-size:48px; border:none;">UNGOUGE.AI</h1>
+  <div class="subtitle">Master Plan &amp; Execution Roadmap</div>
+  <div class="tagline">"We make money when you pay us. That's it."</div>
+  <p style="font-size:16px; color:#444; max-width:600px; margin:0 auto 40px;">
+    AI-powered contractor quote verification for homeowners.<br>
+    No lead generation. No data sales. No contractor referrals.<br>
+    A pure consumer utility — aligned with the homeowner, always.
+  </p>
+  <div class="meta">
+    Confidential — Prepared February 2026<br>
+    Version 2.0 — Final Edition
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- EXECUTIVE SUMMARY -->
+<!-- ============================================================ -->
+<h1>1. Executive Summary</h1>
+
+<h2>The Problem</h2>
+<p>U.S. homeowners spend <strong>$500–600 billion annually</strong> on home improvements and repairs. Studies show <strong>40–50% of contractor quotes are overpriced</strong>, with an average overcharge of approximately <strong>$400 per project</strong>. Meanwhile, <strong>74% of homeowners</strong> regret not comparing multiple quotes before hiring a contractor.</p>
+
+<p>The current "solutions" make the problem worse. Sites like Angi, HomeAdvisor, and Thumbtack offer "free quotes" — but they're not free. They sell homeowner contact information to 3–5 contractors at $15–$75 per lead. The homeowner gets bombarded with sales calls. The contractor pays inflated lead costs and passes them to the consumer. The only winner is the middleman.</p>
+
+<h2>The Solution</h2>
+<p><strong>Ungouge.ai</strong> is a paid consumer utility that audits contractor quotes for homeowners. Users upload a quote (PDF, photo, or text), AI extracts line items via optical character recognition, compares them against fair-market benchmarks adjusted for their zip code, and generates a plain-English report flagging overcharges, missing items, vague descriptions, and material quality concerns — plus a negotiation script the homeowner can use verbatim.</p>
+
+<div class="metric-box">
+  <strong>The Anti-Lead-Gen Promise:</strong> We never sell user data. We never refer contractors. We never take insurance kickbacks. Our revenue model is transparent: "We make $19.99 when you pay us. That's our entire business model."
+</div>
+
+<h2>Key Metrics</h2>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Total Addressable Market (TAM)</td><td>$300–500M/year</td></tr>
+  <tr><td>Serviceable Available Market (SAM)</td><td>$30–50M/year</td></tr>
+  <tr><td>Serviceable Obtainable Market (SOM, Year 2)</td><td>$500K–$1M</td></tr>
+  <tr><td>Recommended Price</td><td><strong>$19.99/report</strong></td></tr>
+  <tr><td>Gross Margin per Report</td><td>~93% ($18.61)</td></tr>
+  <tr><td>Monthly Break-Even (operating costs)</td><td>11 paid reports</td></tr>
+  <tr><td>Monthly Fixed Costs (MVP)</td><td>~$150–200</td></tr>
+  <tr><td>Variable Cost per Report</td><td>~$0.50 (API calls)</td></tr>
+  <tr><td>Time to Launch</td><td>12–14 weeks</td></tr>
+  <tr><td>Founder Weekly Commitment</td><td>20 hours</td></tr>
+  <tr><td>Monthly Budget Ceiling</td><td>$500</td></tr>
+</table>
+
+<h2>Competitive Advantage</h2>
+<ol>
+  <li><strong>Anti-lead-gen positioning</strong> — The only quote verification tool that is structurally incapable of conflicts of interest. We work for the homeowner, period.</li>
+  <li><strong>Thick wrapper moat</strong> — Proprietary benchmark data, specialized OCR pipeline, regional cost multipliers, and negotiation intelligence. Not clonable in a weekend.</li>
+  <li><strong>Weather event response marketing</strong> — Pre-built ad campaigns activated within 30 minutes of severe weather events in any U.S. zip code. First-mover advantage when homeowners need us most.</li>
+  <li><strong>Programmatic SEO at national scale</strong> — 41,000+ zip code landing pages capturing long-tail search traffic at near-zero marginal cost.</li>
+  <li><strong>Data flywheel</strong> — Every uploaded quote improves our benchmark database, creating a compounding accuracy advantage.</li>
+</ol>
+
+<h2>The Ask</h2>
+<p>This is a bootstrapped venture targeting profitability, not venture scale. The founder is investing 20 hours/week and up to $500/month. AI builds 90% of the code. No external funding is required for MVP launch. Strategic advisors and domain expertise in construction pricing are welcomed.</p>
+
+<!-- ============================================================ -->
+<!-- THE ANTI-LEAD-GEN MANIFESTO -->
+<!-- ============================================================ -->
+<h1>2. The Anti-Lead-Gen Manifesto</h1>
+
+<h2>Why This Positioning Is Non-Negotiable</h2>
+
+<p>The home services industry runs on a business model that is fundamentally adversarial to consumers. Understanding this is essential to understanding why Ungouge exists.</p>
+
+<h3>How the Lead-Gen Machine Works</h3>
+<p>When a homeowner visits a "free quote" website — Angi, HomeAdvisor, Thumbtack, or dozens of smaller sites — here's what actually happens:</p>
+<ol>
+  <li>The homeowner fills out a form describing their project</li>
+  <li>The site sells that homeowner's contact information to 3–5 contractors at $15–$75 per lead</li>
+  <li>Contractors call the homeowner within minutes — often aggressively, sometimes deceptively</li>
+  <li>The contractor's quote now includes a hidden "lead recovery" surcharge ($50–$225 baked into the price)</li>
+  <li>The homeowner pays more. The contractor's margins shrink. The platform profits.</li>
+</ol>
+
+<p>This model generates <strong>$11+ billion annually</strong> for lead-generation platforms. It is the reason contractor quotes are inflated. It is the reason homeowners don't trust online tools. And it is the reason Ungouge can win by simply refusing to participate.</p>
+
+<h3>The Ungouge Promise</h3>
+<blockquote>
+  <strong>BEFORE YOU UPLOAD</strong><br><br>
+  You might be wondering: "What happens to my data?"<br><br>
+  Here's our answer:<br>
+  • Your quote stays between you and us. Period.<br>
+  • No contractors will call you. We don't sell leads.<br>
+  • We make $19.99 when you pay us. That's our entire business model.<br><br>
+  We're not like the "free quote" sites. We work for you.<br><br>
+  <a href="/promise">See our full promise →</a>
+</blockquote>
+
+<h3>The Full /promise Page</h3>
+<p>The marketing website includes a dedicated <code>/promise</code> page (~800 words) covering:</p>
+<ul>
+  <li><strong>Why we built this</strong> — Tired of lead-gen scams disguised as consumer tools</li>
+  <li><strong>What we actually do</strong> — Analyze your quote against market data, give you a report</li>
+  <li><strong>What we will NEVER do:</strong>
+    <ol>
+      <li>Sell your contact information to contractors or anyone else</li>
+      <li>Accept referral fees, commissions, or kickbacks from contractors</li>
+      <li>Accept advertising from contractors or building supply companies</li>
+      <li>Share your quote data with insurance companies or data brokers</li>
+    </ol>
+  </li>
+  <li><strong>How we make money</strong> — You pay us $19.99. We analyze your quote. That's the transaction. No hidden monetization.</li>
+  <li><strong>What if we screw up</strong> — Accountability and money-back guarantee language</li>
+  <li><strong>Why we're telling you all this</strong> — Because every other site in this space has something to hide. We don't.</li>
+</ul>
+
+<div class="warning-box">
+  <strong>Legal Note:</strong> The /promise page copy should be reviewed by a lawyer before publishing. Budget: $150–$300 for a one-time legal review to ensure no unintended warranties or liability exposure. The copy must be aspirational but defensible.
+</div>
+
+<h3>How Anti-Lead-Gen Drives Product Decisions</h3>
+<p>This isn't just marketing copy. It's an architectural constraint that shapes every product decision:</p>
+<table>
+  <tr><th>Decision Point</th><th>Lead-Gen Companies</th><th>Ungouge</th></tr>
+  <tr><td>What happens after upload?</td><td>User data sold to contractors</td><td>Quote analyzed, report generated. Data stays private.</td></tr>
+  <tr><td>Revenue source</td><td>Contractor lead fees ($15–$75/lead)</td><td>User pays $19.99/report</td></tr>
+  <tr><td>Incentive alignment</td><td>More leads = more revenue (even if user doesn't want calls)</td><td>Better reports = more customers = more revenue</td></tr>
+  <tr><td>"Free" offering</td><td>Free to user, funded by data sale</td><td>One free report to prove value; paid thereafter</td></tr>
+  <tr><td>Contractor relationships</td><td>Contractors are the customer</td><td>No contractor relationships. Homeowner is the only customer.</td></tr>
+  <tr><td>Report objectivity</td><td>Compromised (can't flag contractor if contractor pays the bills)</td><td>Fully independent (no contractor revenue = no conflict)</td></tr>
+</table>
+
+<h3>The Competitive Moat This Creates</h3>
+<p>Anti-lead-gen positioning creates a structural moat that funded competitors cannot credibly replicate:</p>
+<ul>
+  <li><strong>Angi/Thumbtack/HomeAdvisor</strong> — Their entire business model IS lead generation. They could add a "quote check" feature, but they can never credibly claim impartiality because their revenue depends on contractor relationships.</li>
+  <li><strong>BidCompareAI (GreatBuildz)</strong> — Free tool, funded by lead generation. Same conflict.</li>
+  <li><strong>QuoteEvaluator</strong> — Charges per report (like us), but doesn't explicitly position against lead-gen. This is a positioning gap we exploit.</li>
+  <li><strong>ChatGPT/Claude</strong> — Free and general-purpose, but no specialized data, no structured reports, no regional benchmarks, and no trust messaging. Users can get a generic opinion, but not a data-backed analysis.</li>
+</ul>
+
+<p>The anti-lead-gen positioning is not a feature. It is the <em>soul</em> of the product. Every section of this document reflects it.</p>
+
+
+<!-- ============================================================ -->
+<!-- MARKET ANALYSIS -->
+<!-- ============================================================ -->
+<h1>3. Market Analysis</h1>
+
+<h2>Market Sizing</h2>
+
+<h3>Total Addressable Market (TAM): $300–500M/year</h3>
+<p>U.S. homeowners undertake an estimated <strong>30–50 million contractor-driven projects per year</strong> across the six target categories (HVAC, roofing, plumbing, solar, painting, electrical). Total homeowner spending on improvements reached <strong>$485 billion in 2022</strong> (Joint Center for Housing Studies). If even a fraction of these projects used a ~$10–$20 quote verification service, the market is in the hundreds of millions.</p>
+
+<table>
+  <tr><th>Category</th><th>Annual Projects (U.S.)</th><th>Avg. Project Spend</th><th>SAM Volume</th><th>Seasonality</th></tr>
+  <tr><td>HVAC</td><td>~3M replacements + millions of repairs</td><td>$8,000–$15,000</td><td>High</td><td>Summer (cooling), Fall (heating)</td></tr>
+  <tr><td>Roofing</td><td>~5M replacements</td><td>$8,000–$15,000</td><td>Highest</td><td>Spring–Fall; spikes after storms</td></tr>
+  <tr><td>Solar</td><td>~700K installations</td><td>$15,000–$30,000</td><td>Medium</td><td>Year-round; policy-driven</td></tr>
+  <tr><td>Plumbing</td><td>~9M water heater replacements + repairs</td><td>$2,000–$8,000</td><td>High</td><td>Year-round</td></tr>
+  <tr><td>Painting</td><td>Millions (interior + exterior)</td><td>$3,000–$8,000</td><td>Medium</td><td>Spring–Summer (exterior)</td></tr>
+  <tr><td>Electrical</td><td>Panel upgrades, EV chargers, rewiring</td><td>$2,000–$10,000</td><td>Growing</td><td>Year-round; EV adoption driving demand</td></tr>
+</table>
+
+<h3>Serviceable Available Market (SAM): $30–50M/year</h3>
+<p>SAM targets digitally savvy homeowners doing mid-to-large projects (>$1,000) who are actively seeking price validation. This is approximately <strong>10% of TAM</strong> — the subset who research costs online, get multiple quotes, and would pay for a professional second opinion. That yields roughly 3–5 million potential customers at $10–$20 each.</p>
+
+<h3>Serviceable Obtainable Market (SOM): $500K–$1M (Year 2)</h3>
+<p>A realistic 12–24 month goal is capturing <strong>~1% of SAM</strong>: approximately 25,000–50,000 paid reports per year. At $19.99 per report, that's $500K–$1M annual revenue. This requires building awareness in a novel market, so early traction will be slower, ramping through SEO maturity and partnership channels.</p>
+
+<div class="metric-box">
+  <strong>Conservative Year 1 Target:</strong> 2,400 paid reports ($48K revenue). That's 200 paid reports/month by month 12, starting from near-zero and growing as SEO matures and partnerships activate.
+</div>
+
+<h2>Competitive Landscape</h2>
+
+<h3>Direct Competitors</h3>
+<table>
+  <tr><th>Competitor</th><th>Threat Level</th><th>Pricing</th><th>Model</th><th>Key Weakness</th></tr>
+  <tr><td><strong>QuoteEvaluator</strong></td><td>🔴 High</td><td>$4.99/report</td><td>Paid per report</td><td>No explicit anti-lead-gen positioning; limited quality/warranty analysis</td></tr>
+  <tr><td><strong>Savior</strong></td><td>🟡 Medium</td><td>20% of savings</td><td>Contingency</td><td>Targets big projects ($30K+); high-touch, doesn't scale</td></tr>
+  <tr><td><strong>Quotalyze</strong></td><td>🟡 Medium</td><td>Free (data phase)</td><td>Human+AI hybrid</td><td>24–48hr turnaround; unclear monetization</td></tr>
+  <tr><td><strong>BidCompareAI (GreatBuildz)</strong></td><td>🟢 Low</td><td>Free</td><td>Lead-gen funded</td><td>Multi-bid only; lead-gen conflict of interest</td></tr>
+  <tr><td><strong>IsThisQuoteFair</strong></td><td>🟢 Low</td><td>Unknown</td><td>New entrant</td><td>No visible traction</td></tr>
+  <tr><td><strong>QuoteCheck</strong></td><td>🟢 Low</td><td>Unknown</td><td>Minor player</td><td>Requires login; unclear value prop</td></tr>
+  <tr><td><strong>RenovationAssistant</strong></td><td>🟢 Low</td><td>Unknown</td><td>Early stage</td><td>Limited geography, no reviews</td></tr>
+</table>
+
+<h3>Indirect Threats</h3>
+<table>
+  <tr><th>Threat</th><th>Risk</th><th>Notes</th></tr>
+  <tr><td><strong>Homewyse / cost guides</strong></td><td>Medium</td><td>Free public cost data. Many homeowners DIY compare. But no structured analysis, no OCR, no report.</td></tr>
+  <tr><td><strong>Angi / Thumbtack</strong></td><td>Medium-High</td><td>Could add AI quote check as a feature. But lead-gen model creates credibility conflict — can't claim impartiality.</td></tr>
+  <tr><td><strong>ChatGPT / Claude / AI chatbots</strong></td><td>Medium</td><td>Users can paste quotes and ask "is this fair?" Generic answers, no structured data, no regional benchmarks. Free and instant, though.</td></tr>
+  <tr><td><strong>Bill negotiation services</strong></td><td>Low</td><td>BillShark, Trim — different market (recurring bills), but set consumer expectations for "pay only if we save."</td></tr>
+</table>
+
+<div class="warning-box">
+  <strong>The ChatGPT Elephant in the Room:</strong> A homeowner can paste a quote into ChatGPT and get a free, generic assessment. Our advantage: specialized benchmark data, regional cost multipliers, structured PDF reports, red flag detection, "what's missing" checklists, negotiation scripts, and material quality analysis. ChatGPT gives opinions; Ungouge gives data-backed, location-specific analysis. But we must make this difference obvious in our marketing.
+</div>
+
+<h2>User Personas</h2>
+
+<h3>Persona 1: "Anxious Angela" — First-Time Major Project</h3>
+<ul>
+  <li><strong>Demographics:</strong> 35–45, homeowner 3–7 years, household income $75–120K</li>
+  <li><strong>Situation:</strong> First roof replacement or HVAC install. Got one quote, feels high but doesn't know. Googling "is my roofing quote fair?"</li>
+  <li><strong>Pain point:</strong> Fear of being ripped off + inability to evaluate technical terms</li>
+  <li><strong>Willingness to pay:</strong> High — $20 is nothing compared to potential $2,000+ overcharge</li>
+  <li><strong>Channel:</strong> Google search → zip code landing page → upload</li>
+</ul>
+
+<h3>Persona 2: "Diligent Dave" — Multiple Quotes, Needs Clarity</h3>
+<ul>
+  <li><strong>Demographics:</strong> 40–55, detail-oriented, household income $100–150K</li>
+  <li><strong>Situation:</strong> Got 3 quotes for a $15K kitchen remodel. Prices vary wildly. Can't tell if differences are scope, quality, or markup.</li>
+  <li><strong>Pain point:</strong> Information overload — quotes use different terminology and line-item structures</li>
+  <li><strong>Willingness to pay:</strong> Very high — would pay $20/quote to understand all three</li>
+  <li><strong>Channel:</strong> Blog content → "how to compare contractor quotes" → tool</li>
+</ul>
+
+<h3>Persona 3: "Storm Stacy" — Post-Disaster Urgency</h3>
+<ul>
+  <li><strong>Demographics:</strong> 30–60, any income level, in a disaster-affected area</li>
+  <li><strong>Situation:</strong> Hailstorm damaged her roof. Contractor showed up unsolicited with a $18K quote. Insurance adjuster said $12K. Who's right?</li>
+  <li><strong>Pain point:</strong> Extreme time pressure + vulnerability to storm-chasing contractors</li>
+  <li><strong>Willingness to pay:</strong> Very high — $20 is trivial when facing a $6K discrepancy</li>
+  <li><strong>Channel:</strong> Weather event targeted ad → landing page → upload</li>
+</ul>
+
+<h3>Persona 4: "Landlord Larry" — Multi-Property Owner</h3>
+<ul>
+  <li><strong>Demographics:</strong> 35–65, owns 3–10 rental properties, household income $150K+</li>
+  <li><strong>Situation:</strong> Gets multiple quotes per year across properties. Needs quick sanity checks.</li>
+  <li><strong>Pain point:</strong> Time — can't research every quote, but knows contractors quote higher for landlords</li>
+  <li><strong>Willingness to pay:</strong> High for individual reports; strong subscription candidate</li>
+  <li><strong>Channel:</strong> REI forums, BiggerPockets, direct outreach</li>
+</ul>
+
+<h3>Persona 5: "Senior Sam" — Fixed Income, High Vulnerability</h3>
+<ul>
+  <li><strong>Demographics:</strong> 65+, fixed income, homeowner 20+ years</li>
+  <li><strong>Situation:</strong> HVAC died. Got one quote for $12K. Can't afford a mistake but also can't afford to delay.</li>
+  <li><strong>Pain point:</strong> Vulnerability — knows seniors are targeted for overcharging, but doesn't know how to protect himself</li>
+  <li><strong>Willingness to pay:</strong> Moderate — price-sensitive, but $20 is worth it for protection</li>
+  <li><strong>Channel:</strong> Adult children searching on their behalf; AARP-style content partnerships</li>
+</ul>
+
+<h2>Distribution Channels</h2>
+
+<h3>Tier 1: Primary (invest heavily)</h3>
+<ol>
+  <li><strong>Programmatic SEO</strong> — 41,000+ zip code pages + blog content targeting "cost of [project] in [city]" queries. 40K+ monthly searches for "roof replacement cost" alone. Timeline: 3–6 months to see meaningful organic traffic.</li>
+  <li><strong>Weather Event Response Ads</strong> — Pre-built Google Ads campaigns activated within 30 minutes of severe weather. High-intent, low-competition moments. Detailed in Section 8.</li>
+  </ol>
+
+<h3>Tier 2: Secondary (experiment)</h3>
+<ol start="4">
+  <li><strong>Referral Program</strong> — "Give a free report, get a free report." Target K-factor: 0.15–0.20.</li>
+  <li><strong>Product Hunt / Reddit / Hacker News</strong> — One-time launch burst.</li>
+  <li><strong>Google Ads (high-intent only)</strong> — Bid on "is my contractor quote fair" type queries.</li>
+  <li><strong>Real Estate Agent Partnerships</strong> — Post-closing gift to buyers.</li>
+</ol>
+
+<h3>Tier 3: Avoid</h3>
+<ul>
+  <li>Facebook/Instagram ads (too expensive for $20 price point)</li>
+  <li>Nextdoor (uncertain ROI, hard to scale)</li>
+  <li>TikTok/YouTube (high effort, uncertain conversion)</li>
+</ul>
+
+
+<!-- ============================================================ -->
+<!-- PRICING STRATEGY -->
+<!-- ============================================================ -->
+<h1>4. Pricing Strategy &amp; Unit Economics</h1>
+
+<h2>Competitive Pricing Landscape</h2>
+<table>
+  <tr><th>Service</th><th>Price</th><th>Model</th><th>What You Get</th></tr>
+  <tr><td>QuoteEvaluator</td><td>$4.99/report</td><td>Per report</td><td>AI analysis, cost comparison, red flags</td></tr>
+  <tr><td>BidCompareAI</td><td>Free</td><td>Lead-gen funded</td><td>Multi-bid comparison (limited)</td></tr>
+  <tr><td>Savior</td><td>20–50% of savings</td><td>Contingency</td><td>Human negotiation on big projects</td></tr>
+  <tr><td>ProHow</td><td>$59/call</td><td>Per consultation</td><td>Live expert phone call</td></tr>
+  <tr><td>Quotalyze</td><td>Free (beta)</td><td>TBD</td><td>Human+AI hybrid, 24–48hr turnaround</td></tr>
+  <tr><td>ChatGPT</td><td>Free / $20/mo</td><td>General AI</td><td>Generic opinions, no specialized data</td></tr>
+  <tr><td><strong>Ungouge (recommended)</strong></td><td><strong>$19.99</strong></td><td><strong>Per report</strong></td><td><strong>Data-backed analysis, regional benchmarks, negotiation script, quality analysis</strong></td></tr>
+</table>
+
+<h2>Three Pricing Scenarios Modeled</h2>
+
+<h3>Scenario A: $9.99/report (Volume Play)</h3>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Stripe fee per transaction</td><td>$0.59 (2.9% + $0.30)</td></tr>
+  <tr><td>API cost per report (Gemini)</td><td>~$0.50</td></tr>
+  <tr><td>Net revenue per report</td><td><strong>$8.90</strong></td></tr>
+  <tr><td>Gross margin</td><td>89%</td></tr>
+  <tr><td>Monthly fixed costs</td><td>$200</td></tr>
+  <tr><td>Break-even volume</td><td><strong>23 reports/month</strong></td></tr>
+  <tr><td>Max CAC tolerance (50% of net)</td><td>$4.45</td></tr>
+  <tr><td>Competitive position</td><td>2x QuoteEvaluator — justifiable with better features, but may trigger "why not use the cheaper one?" objection</td></tr>
+  <tr><td>Year 1 revenue (200 reports/mo by month 12)</td><td>~$14,000</td></tr>
+</table>
+
+<h3>Scenario B: $19.99/report (Mid-Market) ⭐ RECOMMENDED</h3>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Stripe fee per transaction</td><td>$0.88 (2.9% + $0.30)</td></tr>
+  <tr><td>API cost per report (Gemini)</td><td>~$0.50</td></tr>
+  <tr><td>Net revenue per report</td><td><strong>$18.61</strong></td></tr>
+  <tr><td>Gross margin</td><td>93%</td></tr>
+  <tr><td>Monthly fixed costs</td><td>$200</td></tr>
+  <tr><td>Break-even volume</td><td><strong>11 reports/month</strong></td></tr>
+  <tr><td>Max CAC tolerance (50% of net)</td><td>$9.30</td></tr>
+  <tr><td>Competitive position</td><td>4x QuoteEvaluator, but 1/3 the price of ProHow. Premium positioning justified by anti-lead-gen trust, negotiation scripts, and quality analysis.</td></tr>
+  <tr><td>Year 1 revenue (200 reports/mo by month 12)</td><td>~$28,000</td></tr>
+</table>
+
+<h3>Scenario C: $49/report (Premium)</h3>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Stripe fee per transaction</td><td>$1.72 (2.9% + $0.30)</td></tr>
+  <tr><td>API cost per report (Gemini)</td><td>~$0.50</td></tr>
+  <tr><td>Net revenue per report</td><td><strong>$46.78</strong></td></tr>
+  <tr><td>Gross margin</td><td>95%</td></tr>
+  <tr><td>Monthly fixed costs</td><td>$200</td></tr>
+  <tr><td>Break-even volume</td><td><strong>5 reports/month</strong></td></tr>
+  <tr><td>Max CAC tolerance (50% of net)</td><td>$23.39</td></tr>
+  <tr><td>Competitive position</td><td>10x QuoteEvaluator. Requires exceptional perceived value. May limit volume significantly and trigger "I'll just ask ChatGPT" behavior at this price.</td></tr>
+  <tr><td>Year 1 revenue (100 reports/mo by month 12)</td><td>~$35,000</td></tr>
+</table>
+
+<h2>Recommendation: $19.99/report</h2>
+
+<div class="success-box">
+  <strong>Recommended Price: $19.99 per report</strong><br><br>
+  <strong>Rationale:</strong>
+  <ol>
+    <li><strong>Break-even at 11 reports/month</strong> — achievable within 2–3 months of launch</li>
+    <li><strong>CAC tolerance of $9.30</strong> — enables paid acquisition via Google Ads (where CPCs for "is my quote fair" run $3–$8), unlike $9.99 which would make paid ads unprofitable</li>
+    <li><strong>Still impulse-buy territory</strong> — for someone facing a $5,000–$50,000 project, $20 is trivial. It's less than the cost of a single contractor lead on Angi.</li>
+    <li><strong>Premium positioning matches anti-lead-gen trust</strong> — "We charge more because we work for YOU, not contractors" is a coherent narrative</li>
+    <li><strong>Bundle optionality</strong> — can offer "3 reports for $39.99" ($13.33 each) for multi-quote comparisons without undercutting the anchor</li>
+    <li><strong>Room to discount, not raise</strong> — easier to offer promotional pricing than to raise prices later</li>
+  </ol>
+</div>
+
+<h3>Conversion Rate Assumptions</h3>
+<table>
+  <tr><th>Funnel Stage</th><th>Conservative</th><th>Base</th><th>Optimistic</th></tr>
+  <tr><td>Site visitors → free upload</td><td>3%</td><td>5%</td><td>8%</td></tr>
+  <tr><td>Free upload → view results teaser</td><td>80%</td><td>85%</td><td>90%</td></tr>
+  <tr><td>Results teaser → paid report</td><td>8%</td><td>12%</td><td>18%</td></tr>
+  <tr><td><strong>Overall: visitor → paid</strong></td><td><strong>0.19%</strong></td><td><strong>0.51%</strong></td><td><strong>1.3%</strong></td></tr>
+</table>
+
+<h3>Customer Acquisition Cost Modeling</h3>
+<table>
+  <tr><th>Channel</th><th>Estimated CAC</th><th>Viable at $19.99?</th></tr>
+  <tr><td>Organic SEO</td><td>$0–$2 (content creation cost amortized)</td><td>✅ Excellent</td></tr>
+  <tr><td>Weather event Google Ads</td><td>$5–$10</td><td>✅ Good</td></tr>
+  <tr><td>High-intent Google Ads (steady state)</td><td>$8–$15</td><td>⚠️ Marginal</td></tr>
+    <tr><td>Referral program</td><td>$0 (free report = $0.50 cost)</td><td>✅ Excellent</td></tr>
+  <tr><td>Facebook/Instagram ads</td><td>$15–$30</td><td>❌ Too expensive</td></tr>
+</table>
+
+<h3>Revenue Projections (12 Months at $19.99)</h3>
+<table>
+  <tr><th>Month</th><th>Conservative</th><th>Base</th><th>Optimistic</th></tr>
+  <tr><td>Month 1–2 (soft launch)</td><td>5/mo</td><td>10/mo</td><td>20/mo</td></tr>
+  <tr><td>Month 3–4</td><td>15/mo</td><td>30/mo</td><td>60/mo</td></tr>
+  <tr><td>Month 5–6</td><td>30/mo</td><td>60/mo</td><td>120/mo</td></tr>
+  <tr><td>Month 7–9</td><td>50/mo</td><td>100/mo</td><td>200/mo</td></tr>
+  <tr><td>Month 10–12</td><td>75/mo</td><td>150/mo</td><td>300/mo</td></tr>
+  <tr><td><strong>Year 1 Total Reports</strong></td><td><strong>~500</strong></td><td><strong>~1,200</strong></td><td><strong>~2,700</strong></td></tr>
+  <tr><td><strong>Year 1 Revenue</strong></td><td><strong>$10,000</strong></td><td><strong>$24,000</strong></td><td><strong>$54,000</strong></td></tr>
+  <tr><td><strong>Year 1 Gross Profit</strong></td><td><strong>$7,000</strong></td><td><strong>$19,000</strong></td><td><strong>$47,000</strong></td></tr>
+</table>
+
+<p><em>Note: Revenue ramps slowly in months 1–4 as SEO matures. The primary growth inflection comes from organic search ranking (months 5–8) and weather event campaigns (unpredictable but high-impact).</em></p>
+
+
+<!-- ============================================================ -->
+<!-- PRODUCT SPECIFICATION -->
+<!-- ============================================================ -->
+<h1>5. Product Specification</h1>
+
+<h2>Core Features (MVP)</h2>
+<ol>
+  <li><strong>Quote Upload</strong> — Drag-and-drop or tap-to-upload. Accepts PDF, JPEG, PNG, and pasted text. Mobile-first: prominent "Take Photo" button. Image preprocessing (auto-crop, contrast enhancement) before OCR.</li>
+  <li><strong>AI-Powered OCR &amp; Parsing</strong> — Gemini 1.5 Pro Vision extracts line items, quantities, unit prices, totals, contractor info, and project category from uploaded documents. Handles handwritten, typed, and mixed-format quotes.</li>
+  <li><strong>Price Benchmarking</strong> — Each line item compared against fair-market data adjusted for the user's zip code. Confidence scoring: High / Moderate / Limited Data.</li>
+  <li><strong>Red Flag Detection</strong> — Flags overpriced items (>20% above market), vague descriptions ("miscellaneous materials"), lump-sum charges that should be itemized, and suspiciously round numbers.</li>
+  <li><strong>"What's Missing" Checklists</strong> — Category-specific checklists of items that SHOULD be in a professional quote (e.g., roofing: underlayment, ice/water shield, flashing, drip edge, cleanup/disposal, permits).</li>
+  <li><strong>Material Quality &amp; Warranty Analysis</strong> — For identifiable products, show brand reputation, specs (SEER rating, BTU capacity, etc.), warranty length, and alternatives.</li>
+  <li><strong>Negotiation Script Generator</strong> — AI-generated, homeowner-friendly scripts for each flagged issue. Example: <em>"I've researched the typical cost for a 3-ton AC installation in my area and found it's around $7,500. Your quote of $9,200 seems higher — could you help me understand the difference?"</em></li>
+  <li><strong>Plain-English Report</strong> — One-page summary of key findings + detailed line-by-line breakdown. Color-coded flags: 🟢 Fair, 🟡 Slightly High, 🔴 Significantly Overpriced, ⚪ Unverified (not in database).</li>
+  <li><strong>PDF Export</strong> — Downloadable, printable PDF report to take to the contractor.</li>
+  <li><strong>User Accounts</strong> — Email/password authentication. Save past reports. Manage payment methods.</li>
+  <li><strong>Stripe Payment</strong> — $19.99 per report. Free first report for new users. Bundle: 3 reports for $39.99.</li>
+  <li><strong>Referral Program</strong> — "Give a free report, get a free report" with unique referral links.</li>
+</ol>
+
+<h2>User Flow</h2>
+<ol>
+  <li><strong>Landing</strong> — User arrives via search/ad/referral. Sees headline, trust messaging (anti-lead-gen copy), and upload box.</li>
+  <li><strong>Upload</strong> — Drag/drop or photo. Trust messaging displayed prominently: "Your quote stays between you and us."</li>
+  <li><strong>Processing</strong> — Loading screen (3–8 seconds). "Analyzing your quote..." with progress indicators.</li>
+  <li><strong>Instant Sanity Check (Free)</strong> — Within 5 seconds: "Your [roofing] quote for [$12,500] is [15% above] the typical range for [your zip code]." This teaser hooks emotionally.</li>
+  <li><strong>Paywall</strong> — "Get the full breakdown for $19.99" — line-by-line analysis, negotiation scripts, quality assessment. First report free.</li>
+  <li><strong>Payment</strong> — Stripe checkout. Account creation if new user.</li>
+  <li><strong>Full Report</strong> — Interactive web view + PDF download. Share button (for referrals).</li>
+  <li><strong>Follow-up</strong> — Email with report link, satisfaction survey, referral prompt.</li>
+</ol>
+
+<h2>Data Schema</h2>
+
+<h3>Core Data Types</h3>
+<table>
+  <tr><th>Table</th><th>Key Fields</th><th>Purpose</th></tr>
+  <tr><td><code>users</code></td><td>id, email, password_hash, created_at, stripe_customer_id, referral_code</td><td>Authentication &amp; billing</td></tr>
+  <tr><td><code>quotes</code></td><td>id, user_id, file_url, file_type, raw_text, category, contractor_name, total_amount, zip_code, status, created_at</td><td>Uploaded quote metadata</td></tr>
+  <tr><td><code>extracted_line_items</code></td><td>id, quote_id, description, quantity, unit_price, total_price, trade_category, confidence_score</td><td>OCR-parsed line items</td></tr>
+  <tr><td><code>benchmarks</code></td><td>id, item_name, trade_category, national_low, national_mid, national_high, unit, source, last_updated</td><td>Fair-market reference data</td></tr>
+  <tr><td><code>comparisons</code></td><td>id, line_item_id, benchmark_id, adjusted_benchmark, quoted_price, variance_pct, flag_type, explanation</td><td>Line-item vs. benchmark analysis</td></tr>
+  <tr><td><code>reports</code></td><td>id, quote_id, summary_html, overall_score, total_potential_savings, negotiation_scripts, pdf_url, created_at</td><td>Generated analysis report</td></tr>
+  <tr><td><code>payments</code></td><td>id, user_id, report_id, stripe_payment_id, amount, status, created_at</td><td>Payment records</td></tr>
+</table>
+
+<h3>Localization Data Types</h3>
+<table>
+  <tr><th>Table</th><th>Key Fields</th><th>Purpose</th></tr>
+  <tr><td><code>zip_codes</code></td><td>zip, city, state, region_id, latitude, longitude</td><td>41K+ zip codes for geo pages</td></tr>
+  <tr><td><code>regions</code></td><td>id, name, bls_area_code, cost_multiplier</td><td>Regional cost adjustment</td></tr>
+  <tr><td><code>weather_events</code></td><td>id, event_type, severity, affected_zips, start_date, active, ad_campaign_id</td><td>Weather event marketing</td></tr>
+</table>
+
+<h3>Enum Types</h3>
+<ul>
+  <li><strong>TradeCategory:</strong> roofing, hvac, plumbing, solar, painting, electrical</li>
+  <li><strong>FlagType:</strong> green (fair), yellow (slightly high), red (significantly overpriced), unverified (not in database), lump_sum (needs itemization)</li>
+  <li><strong>EventType:</strong> hail_storm, hurricane, flooding, tornado, wildfire, ice_storm</li>
+  <li><strong>Severity:</strong> minor, moderate, severe, catastrophic</li>
+</ul>
+
+<h2>Top 50 Benchmark Items</h2>
+<p>The MVP launches with the <strong>Top 50 most common line items</strong> across all six categories, sourced from publicly available estimator data (Homewyse, RSMeans summaries, industry publications) and validated against Gemini's training data. These 50 items cover the vast majority of residential quotes:</p>
+
+<h4>Roofing (10 items)</h4>
+<p>Asphalt shingle removal &amp; disposal · Asphalt shingle installation (3-tab) · Architectural shingle installation · Synthetic underlayment · Ice &amp; water shield · Drip edge flashing · Ridge vent installation · Plywood/OSB decking replacement · Flashing (chimney/valley) · Debris cleanup &amp; dump fees</p>
+
+<h4>HVAC (10 items)</h4>
+<p>Central AC unit (by tonnage) · Furnace replacement · Heat pump installation · Ductwork modification · Thermostat installation · Refrigerant charge · Line set installation · Condensate drain · System startup &amp; testing · Permit fees</p>
+
+<h4>Plumbing (8 items)</h4>
+<p>Water heater installation (tank/tankless) · Repiping (per linear foot) · Fixture replacement (faucet/toilet) · Drain line repair · Sump pump installation · Water line replacement · Permit fees · Shutoff valve replacement</p>
+
+<h4>Solar (8 items)</h4>
+<p>Solar panel (per watt) · Inverter (string/micro) · Racking/mounting system · Electrical panel upgrade · Permit &amp; interconnection fees · Monitoring system · Critter guard · Extended roof warranty</p>
+
+<h4>Painting (7 items)</h4>
+<p>Interior wall painting (per sq ft) · Exterior painting (per sq ft) · Trim/molding painting · Ceiling painting · Surface preparation (scraping, priming) · Caulking &amp; patching · Paint materials (per gallon, by grade)</p>
+
+<h4>Electrical (7 items)</h4>
+<p>Panel upgrade (100A to 200A) · EV charger installation (Level 2) · Circuit breaker replacement · Outlet/switch installation · Recessed lighting installation · Whole-house rewiring (per sq ft) · Permit fees</p>
+
+<h2>Regional Multiplier Methodology</h2>
+<div class="formula">
+  Adjusted Fair Price = National Benchmark × Regional Multiplier
+</div>
+
+<p>Regional multipliers are derived from <strong>Bureau of Labor Statistics (BLS) Occupational Employment and Wage Statistics</strong> data, which publishes metro-area wage data for construction trades. The methodology:</p>
+<ol>
+  <li>Pull median hourly wages for relevant occupations (HVAC mechanics, electricians, plumbers, roofers, painters) by BLS Metropolitan Statistical Area (MSA)</li>
+  <li>Calculate each MSA's ratio to the national median</li>
+  <li>Map zip codes to their nearest MSA</li>
+  <li>Apply the multiplier to the labor component of benchmarks (typically 40–60% of total cost)</li>
+  <li>Material costs use a separate, smaller regional adjustment based on shipping/availability</li>
+</ol>
+
+<p><strong>Sample multipliers:</strong></p>
+<table>
+  <tr><th>Region</th><th>Multiplier</th><th>Example: $10,000 national benchmark</th></tr>
+  <tr><td>New York City metro</td><td>1.35x</td><td>$13,500</td></tr>
+  <tr><td>San Francisco metro</td><td>1.40x</td><td>$14,000</td></tr>
+  <tr><td>Chicago metro</td><td>1.15x</td><td>$11,500</td></tr>
+  <tr><td>National average</td><td>1.00x</td><td>$10,000</td></tr>
+  <tr><td>Rural South</td><td>0.80x</td><td>$8,000</td></tr>
+  <tr><td>Rural Midwest</td><td>0.82x</td><td>$8,200</td></tr>
+</table>
+
+<h2>Craftsman Upgrade Trigger</h2>
+<div class="metric-box">
+  <strong>Post-Revenue Data Upgrade:</strong> When Ungouge reaches <strong>50+ paid reports/month</strong> OR when <strong>>40% of analyzed line items are flagged "unverified"</strong> (not in Top 50), license the Craftsman National Estimator database (~$333/month). This provides granular, zip-code-level pricing for thousands of line items, dramatically improving accuracy and coverage.
+</div>
+
+
+<!-- ============================================================ -->
+<!-- TECHNICAL ARCHITECTURE -->
+<!-- ============================================================ -->
+<h1>6. Technical Architecture</h1>
+
+<h2>Stack Overview</h2>
+<table>
+  <tr><th>Component</th><th>Technology</th><th>Cost (MVP)</th><th>Rationale</th></tr>
+  <tr><td>Frontend (App)</td><td>Next.js 14 / React</td><td>Free (Vercel free tier)</td><td>SSR for SEO, React ecosystem, AI can generate 90%+ of code</td></tr>
+  <tr><td>Backend API</td><td>Python FastAPI</td><td>Free (Railway/Render free tier)</td><td>Python ecosystem for AI/ML, FastAPI is fast to build, excellent for AI-generated code</td></tr>
+  <tr><td>Database</td><td>PostgreSQL</td><td>Free (Supabase/Neon free tier)</td><td>Relational data model, PostGIS for geo queries, robust and scalable</td></tr>
+  <tr><td>AI / OCR</td><td>Gemini 1.5 Pro (Vision)</td><td>$50–$150/mo at scale</td><td>Best price/performance for multimodal OCR + analysis. Pay-per-use.</td></tr>
+  <tr><td>Payments</td><td>Stripe</td><td>2.9% + $0.30/txn</td><td>Industry standard, easy integration, handles subscriptions</td></tr>
+  <tr><td>Marketing Site</td><td>Cloudflare Pages</td><td>Free</td><td>Static HTML/CSS/JS, blazing fast, free SSL &amp; CDN</td></tr>
+  <tr><td>Email (Transactional)</td><td>Postmark or Resend</td><td>$15/mo</td><td>Reliable delivery for reports &amp; receipts</td></tr>
+  <tr><td>DNS / CDN</td><td>Cloudflare</td><td>Free</td><td>Already managing domain</td></tr>
+  <tr><td>Analytics</td><td>PostHog + GA4</td><td>Free</td><td>Product analytics + SEO tracking</td></tr>
+  <tr><td>Error Tracking</td><td>Sentry</td><td>Free tier</td><td>Catch production errors automatically</td></tr>
+  <tr><td>File Storage</td><td>Cloudflare R2 or S3</td><td>~$5/mo</td><td>Store uploaded quotes &amp; generated PDFs</td></tr>
+</table>
+
+<div class="metric-box">
+  <strong>Total MVP Infrastructure Cost: $30–$50/month</strong> (before any revenue). At scale with 200+ reports/month: $100–$200/month. Well within the $500/month budget ceiling.
+</div>
+
+<h2>System Architecture</h2>
+
+<h3>High-Level Flow</h3>
+<pre style="background:#f5f5f5; padding:20px; border-radius:5px; font-size:14px; overflow-x:auto;">
+┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
+│   Cloudflare     │     │   Next.js App     │     │   FastAPI        │
+│   Pages          │     │   (Vercel)        │     │   Backend        │
+│                  │     │                   │     │   (Railway)      │
+│  Marketing Site  │     │  App UI           │     │                  │
+│  /promise        │────▶│  Upload flow      │────▶│  /api/upload     │
+│  /blog           │     │  Report viewer    │     │  /api/analyze    │
+│  /[state]/[zip]  │     │  User dashboard   │     │  /api/report     │
+│  41K zip pages   │     │  Payment (Stripe) │     │  /api/payment    │
+└──────────────────┘     └──────────────────┘     └────────┬─────────┘
+                                                           │
+                              ┌─────────────────────────────┤
+                              │                             │
+                    ┌─────────▼────────┐          ┌────────▼─────────┐
+                    │   PostgreSQL     │          │   Gemini 1.5     │
+                    │   (Supabase)     │          │   Pro Vision     │
+                    │                  │          │                  │
+                    │  Users           │          │  OCR extraction  │
+                    │  Quotes          │          │  Price analysis  │
+                    │  Benchmarks      │          │  Red flag detect │
+                    │  Reports         │          │  Script gen      │
+                    │  Zip codes       │          │                  │
+                    └──────────────────┘          └──────────────────┘
+</pre>
+
+<h3>OCR Pipeline (Gemini Vision Implementation)</h3>
+<ol>
+  <li><strong>Upload &amp; Preprocessing</strong>
+    <ul>
+      <li>Accept PDF, JPEG, PNG, or pasted text</li>
+      <li>For images: auto-rotate, enhance contrast, crop whitespace</li>
+      <li>For PDFs: extract text layer if available; fall back to image-based OCR</li>
+      <li>Store original file in Cloudflare R2</li>
+    </ul>
+  </li>
+  <li><strong>Gemini Vision Extraction</strong>
+    <ul>
+      <li>Send document to Gemini 1.5 Pro with structured extraction prompt</li>
+      <li>Extract: contractor name, project category, line items (description, qty, unit price, total), project total, zip code/address if present</li>
+      <li>Return structured JSON</li>
+      <li>Estimated cost: $0.05–$0.20 per extraction (depends on document length)</li>
+    </ul>
+  </li>
+  <li><strong>Validation &amp; Normalization</strong>
+    <ul>
+      <li>Validate extracted totals (do line items sum to total?)</li>
+      <li>Normalize item descriptions to match benchmark categories</li>
+      <li>Flag items that can't be confidently categorized</li>
+    </ul>
+  </li>
+  <li><strong>Benchmark Comparison</strong>
+    <ul>
+      <li>Match each line item to nearest benchmark entry</li>
+      <li>Apply regional multiplier based on user's zip code</li>
+      <li>Calculate variance percentage</li>
+      <li>Assign flag: green (&lt;10% variance), yellow (10–25%), red (&gt;25%), unverified (no match)</li>
+    </ul>
+  </li>
+  <li><strong>Analysis Generation</strong>
+    <ul>
+      <li>Second Gemini call: generate plain-English explanations for each flag</li>
+      <li>Generate negotiation scripts for overpriced items</li>
+      <li>Run "what's missing" checklist for the project category</li>
+      <li>Generate overall assessment and summary</li>
+      <li>Estimated cost: $0.10–$0.30 per analysis</li>
+    </ul>
+  </li>
+  <li><strong>Report Assembly</strong>
+    <ul>
+      <li>Compile HTML report (one-page summary + detailed breakdown)</li>
+      <li>Generate PDF via headless browser (Puppeteer)</li>
+      <li>Store in R2, return URL</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="metric-box">
+  <strong>Total API cost per report: ~$0.15–$0.50</strong> (2 Gemini calls). At $19.99/report, API costs are &lt;3% of revenue.
+</div>
+
+<h3>Comparison Engine Logic</h3>
+<p>The comparison engine is the core value-creation step. Its logic:</p>
+<ol>
+  <li><strong>Fuzzy matching:</strong> Map extracted line items to benchmarks using semantic similarity (not exact string match). "3-ton Carrier AC unit w/ install" → matches benchmark "Central AC unit (3-ton)"</li>
+  <li><strong>Regional adjustment:</strong> <code>adjusted_benchmark = national_mid × regional_multiplier</code></li>
+  <li><strong>Variance calculation:</strong> <code>variance = (quoted_price - adjusted_benchmark) / adjusted_benchmark × 100</code></li>
+  <li><strong>Flag assignment:</strong> Green (&lt;10%), Yellow (10–25%), Red (&gt;25%), Unverified (no benchmark match)</li>
+  <li><strong>Confidence scoring:</strong> High (exact benchmark match + fresh data), Moderate (fuzzy match or older data), Limited (partial match or regional estimate only)</li>
+</ol>
+
+<h3>Security &amp; Data Protection</h3>
+<ul>
+  <li><strong>Encryption:</strong> TLS in transit, AES-256 at rest for stored documents</li>
+  <li><strong>Authentication:</strong> bcrypt password hashing, JWT sessions, rate limiting</li>
+  <li><strong>Data retention:</strong> Uploaded quotes stored for 90 days (user can delete anytime), then auto-purged. Anonymized benchmark data retained indefinitely.</li>
+  <li><strong>PII handling:</strong> Contractor names, addresses, and phone numbers are extracted for analysis but not stored in the benchmark database. Only prices and item descriptions are retained for the data flywheel.</li>
+  <li><strong>Compliance:</strong> CCPA-ready (California users can request data deletion). Privacy policy discloses all data processing.</li>
+</ul>
+
+<h3>Infrastructure Costs (Scaling Projections)</h3>
+<table>
+  <tr><th>Scale</th><th>Reports/Month</th><th>Infrastructure Cost</th><th>Revenue (at $19.99)</th><th>Margin</th></tr>
+  <tr><td>MVP Launch</td><td>10–50</td><td>$30–$50/mo</td><td>$200–$1,000</td><td>75–95%</td></tr>
+  <tr><td>Early Traction</td><td>100–200</td><td>$75–$150/mo</td><td>$2,000–$4,000</td><td>93–96%</td></tr>
+  <tr><td>Growth</td><td>500–1,000</td><td>$200–$400/mo</td><td>$10,000–$20,000</td><td>96–98%</td></tr>
+  <tr><td>Scale</td><td>2,000–5,000</td><td>$500–$1,200/mo</td><td>$40,000–$100,000</td><td>97–99%</td></tr>
+</table>
+
+
+<!-- ============================================================ -->
+<!-- IMPLEMENTATION ROADMAP -->
+<!-- ============================================================ -->
+<h1>7. Implementation Roadmap</h1>
+
+<div class="metric-box">
+  <strong>Total Timeline: 12–14 weeks</strong><br>
+  <strong>Founder Commitment:</strong> 20 hours/week<br>
+  <strong>Total Founder Hours:</strong> ~240–280 hours<br>
+  <strong>AI builds:</strong> ~90% of code (frontend, backend, prompts, content, data)<br>
+  <strong>Jason does:</strong> Account setup, deployment, testing, review, marketing relationships, quality assurance
+</div>
+
+<h2>Phase 0: Foundation (Week 1)</h2>
+<p><strong>Goal:</strong> Legal entity, banking, accounts — everything needed before writing code.</p>
+<table>
+  <tr><th>Day</th><th>Hours</th><th>Jason's Tasks</th><th>AI Tasks (Parallel)</th></tr>
+  <tr><td>Mon</td><td>4</td><td>File LLC online (2hr) · Apply for EIN (30min) · Start Mercury bank application (1hr) · Set up business email (30min)</td><td>Generate database schema SQL · Set up GitHub repo</td></tr>
+  <tr><td>Tue</td><td>4</td><td>Set up Stripe account (1hr) · Get E&amp;O insurance quotes — 3 providers (2hr) · Review database schema (1hr)</td><td>Generate FastAPI project scaffold · Draft Terms of Service</td></tr>
+  <tr><td>Wed</td><td>4</td><td>Write "dream report" sketch (1.5hr) · Post in Facebook groups for sample quotes (1hr) · Set up social media profiles (1.5hr)</td><td>Generate Next.js project scaffold · Draft Privacy Policy</td></tr>
+  <tr><td>Thu</td><td>4</td><td>Collect sample quotes (1hr) · Draft landing page bullet points (1hr) · Review Terms of Service draft (1hr)</td><td>Generate Top 50 benchmark dataset · Generate regional multiplier dataset</td></tr>
+  <tr><td>Fri</td><td>4</td><td>Review Privacy Policy (30min) · Bind E&amp;O insurance (30min) · Organize sample quotes by category (1hr) · Review AI's Week 1 output (2hr)</td><td>Generate 41K zip code dataset · Write Gemini extraction prompts</td></tr>
+</table>
+
+<div class="success-box">
+  <strong>Week 1 Exit Criteria:</strong> LLC filed ✓ EIN obtained ✓ Bank account pending ✓ Stripe live ✓ Insurance bound ✓ 10+ sample quotes collected ✓ Social media set up ✓ Legal docs reviewed ✓ Project scaffolded ✓ Data prepared ✓
+</div>
+
+<h2>Phase 1: Core Backend (Weeks 2–3)</h2>
+<p><strong>Goal:</strong> Database, authentication, payment flow — the plumbing.</p>
+<table>
+  <tr><th>Task</th><th>Builder</th><th>Est. Hours</th><th>Acceptance Criteria</th></tr>
+  <tr><td>Deploy PostgreSQL (Supabase/Neon)</td><td>AI generates, Jason deploys</td><td>2</td><td>Database accessible, schema applied, seed data loaded</td></tr>
+  <tr><td>User auth (register, login, JWT)</td><td>AI generates</td><td>4</td><td>Can register, login, receive JWT, access protected endpoints</td></tr>
+  <tr><td>Stripe integration (checkout, webhooks)</td><td>AI generates, Jason tests</td><td>6</td><td>Can complete $19.99 payment in test mode, webhook confirms payment</td></tr>
+  <tr><td>File upload endpoint (R2/S3)</td><td>AI generates</td><td>3</td><td>PDF/image uploaded, stored, URL returned</td></tr>
+  <tr><td>Email integration (Postmark/Resend)</td><td>AI generates</td><td>2</td><td>Welcome email, report delivery email working</td></tr>
+  <tr><td>Deploy backend to Railway/Render</td><td>AI assists, Jason deploys</td><td>3</td><td>API accessible at production URL, env vars configured</td></tr>
+</table>
+
+<h2>Phase 2: OCR + Comparison Engine (Weeks 3–5)</h2>
+<p><strong>Goal:</strong> The core intelligence — upload a quote, get structured data back with analysis.</p>
+<table>
+  <tr><th>Task</th><th>Builder</th><th>Est. Hours</th><th>Acceptance Criteria</th></tr>
+  <tr><td>Gemini Vision OCR integration</td><td>AI generates</td><td>6</td><td>Upload PDF/image → receive structured JSON with line items, totals, contractor info</td></tr>
+  <tr><td>OCR prompt engineering &amp; testing</td><td>AI generates, Jason tests with real quotes</td><td>8</td><td>≥80% accuracy on 10+ real sample quotes across all 6 categories</td></tr>
+  <tr><td>Benchmark matching engine</td><td>AI generates</td><td>5</td><td>Fuzzy match extracted items to Top 50 benchmarks with confidence score</td></tr>
+  <tr><td>Regional multiplier application</td><td>AI generates</td><td>3</td><td>Benchmarks correctly adjusted for test zip codes (NYC, rural, average)</td></tr>
+  <tr><td>Comparison &amp; flag assignment</td><td>AI generates</td><td>4</td><td>Each line item flagged green/yellow/red/unverified with correct variance %</td></tr>
+  <tr><td>Analysis generation (Gemini)</td><td>AI generates</td><td>5</td><td>Plain-English explanations, negotiation scripts, "what's missing" checklists generated</td></tr>
+  <tr><td>End-to-end pipeline testing</td><td>Jason tests with all sample quotes</td><td>8</td><td>Upload → analysis → report for all 6 categories. Results reviewed for accuracy.</td></tr>
+</table>
+
+<div class="warning-box">
+  <strong>Critical Risk:</strong> OCR accuracy on real-world quotes (handwritten, low-quality photos, inconsistent formats) is the single biggest technical risk. Budget extra time here. Target: ≥80% accuracy. If below 70%, consider adding a "manual correction" step where users can fix extracted data before analysis.
+</div>
+
+<h2>Phase 3: Frontend UI + Report Generation (Weeks 5–7)</h2>
+<table>
+  <tr><th>Task</th><th>Builder</th><th>Est. Hours</th><th>Acceptance Criteria</th></tr>
+  <tr><td>Landing page with upload component</td><td>AI generates</td><td>6</td><td>Mobile-responsive, trust messaging visible, drag-drop + camera upload working</td></tr>
+  <tr><td>Processing/loading screen</td><td>AI generates</td><td>2</td><td>Animated progress while OCR runs</td></tr>
+  <tr><td>Instant sanity check display</td><td>AI generates</td><td>3</td><td>Free teaser shows category, total, and vs-market assessment within 5 seconds</td></tr>
+  <tr><td>Payment wall + Stripe checkout</td><td>AI generates</td><td>4</td><td>Paywall after teaser, Stripe checkout, account creation flow</td></tr>
+  <tr><td>Full report viewer (web)</td><td>AI generates</td><td>8</td><td>Summary + line-by-line breakdown, color-coded flags, negotiation scripts, quality info</td></tr>
+  <tr><td>PDF report generation</td><td>AI generates</td><td>5</td><td>Professional PDF matching web report, downloadable</td></tr>
+  <tr><td>User dashboard (basic)</td><td>AI generates</td><td>4</td><td>Past reports list, account settings, payment history</td></tr>
+  <tr><td>Referral system</td><td>AI generates</td><td>3</td><td>Unique referral links, free report credit on successful referral</td></tr>
+  <tr><td>Deploy frontend to Vercel</td><td>AI assists, Jason deploys</td><td>2</td><td>App accessible at production URL, connected to backend</td></tr>
+</table>
+
+<h2>Phase 4: Marketing Site + Zip Code Pages (Weeks 7–9)</h2>
+<table>
+  <tr><th>Task</th><th>Builder</th><th>Est. Hours</th><th>Acceptance Criteria</th></tr>
+  <tr><td>Marketing site (homepage, /promise, /about, /pricing)</td><td>AI generates HTML/CSS/JS</td><td>6</td><td>Professional, fast, trust messaging prominent, deployed to Cloudflare Pages</td></tr>
+  <tr><td>Blog system (static)</td><td>AI generates</td><td>4</td><td>15 launch articles published (SEO-optimized)</td></tr>
+  <tr><td>Dynamic zip code template</td><td>AI generates</td><td>6</td><td>One template, data-driven. Shows local cost ranges, regional multiplier, CTA to upload</td></tr>
+  <tr><td>Generate 41K zip code pages</td><td>AI generates data, Next.js ISR renders</td><td>4</td><td>All zip codes accessible at /[state]/[zip], correct local data displayed</td></tr>
+  <tr><td>SEO optimization (meta tags, schema markup, sitemaps)</td><td>AI generates</td><td>4</td><td>All pages have unique meta titles/descriptions, JSON-LD schema, sitemap submitted to GSC</td></tr>
+  <tr><td>Google Search Console + Analytics setup</td><td>Jason</td><td>2</td><td>GSC verified, sitemap submitted, GA4 + PostHog tracking</td></tr>
+</table>
+
+<h2>Phase 5: Testing, Polish, Content (Weeks 9–11)</h2>
+<table>
+  <tr><th>Task</th><th>Builder</th><th>Est. Hours</th><th>Acceptance Criteria</th></tr>
+  <tr><td>End-to-end testing (all 6 categories)</td><td>Jason</td><td>10</td><td>20+ real quotes tested, results reviewed for accuracy and clarity</td></tr>
+  <tr><td>Mobile testing (iOS Safari, Android Chrome)</td><td>Jason</td><td>4</td><td>Photo upload, payment, report viewing all work on mobile</td></tr>
+  <tr><td>Error handling &amp; edge cases</td><td>AI fixes, Jason reports</td><td>6</td><td>Graceful failures for unreadable files, API timeouts, payment failures</td></tr>
+  <tr><td>Copy polish (all user-facing text)</td><td>AI drafts, Jason reviews</td><td>4</td><td>No typos, consistent tone, trust messaging on every page</td></tr>
+  <tr><td>Write 15 blog articles</td><td>AI generates, Jason reviews</td><td>8</td><td>Published, SEO-optimized, covering all 6 categories + general advice</td></tr>
+  <tr><td>Legal review of /promise page</td><td>Jason (hires lawyer)</td><td>2 + $150–$300</td><td>Lawyer-approved copy, no unintended warranties</td></tr>
+  <tr><td>Security audit (basic)</td><td>AI reviews code</td><td>3</td><td>No exposed API keys, rate limiting in place, input validation, HTTPS enforced</td></tr>
+</table>
+
+<h2>Phase 6: Soft Launch + Weather Prep (Weeks 11–12)</h2>
+<table>
+  <tr><th>Task</th><th>Builder</th><th>Est. Hours</th><th>Acceptance Criteria</th></tr>
+  <tr><td>Soft launch (friends/family, Reddit, Product Hunt draft)</td><td>Jason</td><td>4</td><td>10–20 real users complete the flow. Feedback collected.</td></tr>
+  <tr><td>Fix critical issues from soft launch</td><td>AI fixes</td><td>6</td><td>All blocking bugs resolved</td></tr>
+  <tr><td>Set up Google Alerts for severe weather</td><td>Jason</td><td>1</td><td>Alerts configured for hurricanes, hail, floods, tornadoes by region</td></tr>
+  <tr><td>Pre-build weather event ad campaigns</td><td>AI generates copy, Jason sets up in Google Ads</td><td>6</td><td>3–5 campaign templates ready, paused, activatable in 30 minutes</td></tr>
+    <tr><td>Prepare Product Hunt launch</td><td>AI writes copy, Jason prepares</td><td>3</td><td>Listing drafted with screenshots, tagline, description</td></tr>
+</table>
+
+<h2>Phase 7: Public Launch + Monitoring (Weeks 12–14)</h2>
+<table>
+  <tr><th>Task</th><th>Builder</th><th>Est. Hours</th><th>Acceptance Criteria</th></tr>
+  <tr><td>Product Hunt launch</td><td>Jason</td><td>4</td><td>Listed, actively responding to comments</td></tr>
+  <tr><td>Reddit/HN posts</td><td>Jason</td><td>2</td><td>Authentic posts in r/homeimprovement, r/homeowners, relevant subs</td></tr>
+  <tr><td>Monitor first 50 real reports</td><td>Jason (with DB queries)</td><td>8</td><td>Manually QA each report for accuracy. Fix issues immediately.</td></tr>
+  <tr><td>Activate first weather event campaign (if applicable)</td><td>Jason</td><td>2</td><td>Campaign live within 30 minutes of qualifying weather event</td></tr>
+  <tr><td>Collect user feedback</td><td>Jason</td><td>4</td><td>Feedback mechanism in app. "Was this analysis helpful? Was it accurate?"</td></tr>
+  <tr><td>Iterate based on feedback</td><td>AI fixes, Jason prioritizes</td><td>10</td><td>Top 5 user complaints addressed</td></tr>
+</table>
+
+<h2>Labor Breakdown</h2>
+<table>
+  <tr><th>Work Type</th><th>Hours</th><th>% of Total</th><th>Who</th></tr>
+  <tr><td>Code generation (frontend + backend)</td><td>~100</td><td>38%</td><td>AI (100%)</td></tr>
+  <tr><td>Testing &amp; QA</td><td>~50</td><td>19%</td><td>Jason (90%), AI assists</td></tr>
+  <tr><td>Business setup (legal, banking, accounts)</td><td>~25</td><td>9%</td><td>Jason (100%)</td></tr>
+  <tr><td>Content creation (blog, copy, ads)</td><td>~30</td><td>11%</td><td>AI generates (90%), Jason reviews</td></tr>
+  <tr><td>Deployment &amp; DevOps</td><td>~20</td><td>8%</td><td>AI assists, Jason deploys</td></tr>
+  <tr><td>Marketing &amp; partnerships</td><td>~25</td><td>9%</td><td>Jason (100%)</td></tr>
+  <tr><td>Data preparation (benchmarks, zip codes)</td><td>~15</td><td>6%</td><td>AI (100%)</td></tr>
+  <tr><td><strong>Total</strong></td><td><strong>~265</strong></td><td><strong>100%</strong></td><td></td></tr>
+</table>
+
+<h2>Critical Path &amp; Dependencies</h2>
+<ol>
+  <li><strong>LLC + banking</strong> (Week 1) → blocks Stripe setup → blocks payment testing</li>
+  <li><strong>OCR pipeline accuracy</strong> (Weeks 3–5) → blocks all downstream features. If OCR is poor, nothing else matters.</li>
+  <li><strong>Benchmark data quality</strong> (Week 1 prep) → blocks comparison engine accuracy</li>
+  <li><strong>Stripe integration</strong> (Week 2–3) → blocks payment flow → blocks revenue</li>
+  <li><strong>SEO deployment</strong> (Weeks 7–9) → starts the 3–6 month clock for organic traffic maturity</li>
+</ol>
+
+<div class="warning-box">
+  <strong>The OCR bottleneck:</strong> If Gemini Vision accuracy on real-world quotes is below 70%, add 2 weeks for: (a) prompt engineering iteration, (b) adding a "user correction" step, or (c) evaluating GPT-4o as alternative. This is the highest-risk item on the timeline.
+</div>
+
+
+<!-- ============================================================ -->
+<!-- MARKETING STRATEGY -->
+<!-- ============================================================ -->
+<h1>8. Marketing Strategy</h1>
+
+<h2>Weather Event Response System</h2>
+<p>This is Ungouge's secret weapon. After severe weather, homeowners face urgent, high-dollar repair decisions under extreme pressure — exactly when they're most vulnerable to price gouging. We position Ungouge as the voice of reason.</p>
+
+<h3>How It Works</h3>
+<ol>
+  <li><strong>Detection</strong> — Google Alerts configured for: "hail damage [state]", "hurricane damage repair", "storm damage contractor", "flooding repair cost", "tornado damage", "roof damage hail" across all 50 states</li>
+  <li><strong>Assessment</strong> — When alert fires, Jason evaluates: Is this a real event affecting 1,000+ homes? (Skip isolated incidents.)</li>
+  <li><strong>Activation (within 30 minutes)</strong>
+    <ul>
+      <li>Activate pre-built Google Ads campaign targeting affected zip codes</li>
+      <li>Publish weather event banner on affected zip code pages</li>
+      <li>Queue social media posts for affected areas</li>
+    </ul>
+  </li>
+  <li><strong>Deactivation</strong> — Wind down campaign after 2–4 weeks (as immediate urgency fades)</li>
+</ol>
+
+<h3>Pre-Built Ad Copy Templates</h3>
+
+<h4>Template 1: Hail/Wind Damage</h4>
+<blockquote>
+  <strong>Got a Roof Repair Quote After the Storm?</strong><br>
+  Before you sign, know if it's fair. Upload your contractor's quote — get an instant, unbiased analysis. No contractors will call you. We work for homeowners, not lead-gen companies.<br>
+  <em>$19.99 | First report free</em>
+</blockquote>
+
+<h4>Template 2: Flooding</h4>
+<blockquote>
+  <strong>Dealing with Flood Repair Quotes?</strong><br>
+  Flood damage contractors often charge 30–50% more in disaster zones. Ungouge.ai analyzes your quote against fair-market rates for your zip code. No lead generation. No data sales. Just honest analysis.<br>
+  <em>$19.99 | First report free</em>
+</blockquote>
+
+<h4>Template 3: General Post-Disaster</h4>
+<blockquote>
+  <strong>Don't Let Disaster Pricing Hit You Twice</strong><br>
+  Storm chasers inflate quotes by 20–40% after weather events. Get a second opinion on your contractor's bid — powered by AI, backed by market data.<br>
+  <em>$19.99 | First report free</em>
+</blockquote>
+
+<h3>Legal Guardrails for Weather Marketing</h3>
+
+<div class="warning-box">
+  <strong>NEVER do any of the following in weather event marketing:</strong>
+  <ul>
+    <li>❌ Promise insurance payouts or claim amounts</li>
+    <li>❌ Use language implying "you deserve more from insurance"</li>
+    <li>❌ Reference specific insurance policies or companies</li>
+    <li>❌ Position as a public adjuster or insurance advocate</li>
+    <li>❌ Use fear-mongering language about contractors</li>
+    <li>❌ Target individuals (only geographic areas)</li>
+  </ul>
+  <strong>ALWAYS:</strong>
+  <ul>
+    <li>✅ Position as a "market research tool" — comparing against fair-market rates</li>
+    <li>✅ Use language like "know if your quote is fair" not "fight your insurance company"</li>
+    <li>✅ Include disclaimer: "For informational purposes only. Not a public adjuster."</li>
+    <li>✅ Scrub the word "insurance" from all ad copy</li>
+    <li>✅ Wait at least 24 hours after a disaster before activating (avoid ambulance-chaser optics)</li>
+  </ul>
+</div>
+
+<h3>Zip Code Targeting Strategy</h3>
+<ul>
+  <li>Use NOAA/NWS storm reports to identify affected counties/zip codes</li>
+  <li>Google Ads geo-targeting: 15-mile radius around affected areas</li>
+  <li>Affected zip code pages show event-specific banner: "Recent storm damage in [City]? Check your repair quote before signing."</li>
+  <li>Budget: $10–$50/day per event (CPC expected $2–$5 for storm-specific queries, lower competition than steady-state)</li>
+</ul>
+
+<h2>SEO Strategy</h2>
+
+<h3>Programmatic SEO: 41,000+ Zip Code Pages</h3>
+<p>Every U.S. zip code gets a dynamically generated landing page at <code>ungouge.ai/[state-abbr]/[zip]</code> (e.g., <code>/ca/90210</code>, <code>/ny/10001</code>). Each page contains:</p>
+<ul>
+  <li>Local cost ranges for all 6 categories (adjusted by regional multiplier)</li>
+  <li>Top contractors in the area (from public data — NOT referrals, just informational)</li>
+  <li>State-specific permit requirements</li>
+  <li>Local weather risk profile</li>
+  <li>CTA: "Got a quote? Check it for free."</li>
+  <li>Unique meta title: "Contractor Quote Check — [City], [State] [ZIP] | Ungouge.ai"</li>
+</ul>
+
+<h3>Content Marketing: Blog</h3>
+<p>15 launch articles targeting high-intent keywords:</p>
+<table>
+  <tr><th>#</th><th>Topic</th><th>Target Keyword</th><th>Monthly Search Volume</th></tr>
+  <tr><td>1</td><td>How Much Does a Roof Replacement Cost in 2025?</td><td>roof replacement cost</td><td>40,000</td></tr>
+  <tr><td>2</td><td>HVAC Installation Cost Guide</td><td>hvac installation cost</td><td>18,000</td></tr>
+  <tr><td>3</td><td>How to Tell If Your Contractor Quote Is Too High</td><td>is my contractor quote fair</td><td>2,400</td></tr>
+  <tr><td>4</td><td>Solar Panel Installation Cost by State</td><td>solar panel cost</td><td>22,000</td></tr>
+  <tr><td>5</td><td>How to Compare Contractor Quotes</td><td>compare contractor quotes</td><td>1,900</td></tr>
+  <tr><td>6</td><td>What Should a Plumbing Repair Cost?</td><td>plumbing repair cost</td><td>8,100</td></tr>
+  <tr><td>7</td><td>Red Flags in Contractor Quotes</td><td>contractor red flags</td><td>1,600</td></tr>
+  <tr><td>8</td><td>House Painting Cost Guide (Interior + Exterior)</td><td>house painting cost</td><td>14,000</td></tr>
+  <tr><td>9</td><td>Electrical Panel Upgrade Cost</td><td>electrical panel upgrade cost</td><td>6,600</td></tr>
+  <tr><td>10</td><td>What to Do After Hail Damage</td><td>hail damage roof repair cost</td><td>3,200</td></tr>
+  <tr><td>11</td><td>How to Negotiate With a Contractor</td><td>negotiate contractor price</td><td>2,100</td></tr>
+  <tr><td>12</td><td>Water Heater Replacement Cost</td><td>water heater replacement cost</td><td>12,000</td></tr>
+  <tr><td>13</td><td>EV Charger Installation Cost</td><td>ev charger installation cost</td><td>9,900</td></tr>
+  <tr><td>14</td><td>Why "Free Quote" Sites Aren't Really Free</td><td>free contractor quotes scam</td><td>800</td></tr>
+  <tr><td>15</td><td>Storm Damage Repair: How to Avoid Getting Gouged</td><td>storm damage contractor scam</td><td>1,100</td></tr>
+</table>
+
+<h2>Partnership Channels</h2>
+
+<h3>Real Estate Agent Partnerships</h3>
+<ul>
+  <li><strong>Model:</strong> Agent gives new homebuyers a free Ungouge report as a closing gift. We provide co-branded gift cards.</li>
+  <li><strong>Why:</strong> New homeowners are the #1 demo for major renovation projects. Agent looks helpful; we get a qualified lead.</li>
+  <li><strong>Anti-lead-gen alignment:</strong> Agent pays for the gift (or we provide free reports up to a cap). No homeowner data shared with agent.</li>
+</ul>
+
+<h2>Launch Sequence</h2>
+<ol>
+  <li><strong>Week 11:</strong> Soft launch (friends/family, 10–20 users). Fix critical bugs.</li>
+  <li><strong>Week 12:</strong> Product Hunt launch + Reddit posts (r/homeimprovement, r/homeowners, r/realestateinvesting).</li>
+  <li><strong>Week 12–13:</strong> Hacker News "Show HN" post.</li>
+  <li><strong>Week 13–14:</strong> Activate Google Ads for high-intent keywords. Begin weather event monitoring.</li>
+  <li><strong>Month 4+:</strong> SEO traffic begins materializing. Double down on content.</li>
+</ol>
+
+
+<!-- ============================================================ -->
+<!-- LEGAL & REGULATORY -->
+<!-- ============================================================ -->
+<h1>9. Legal &amp; Regulatory</h1>
+
+<h2>Entity Formation</h2>
+
+<h3>Recommendation: Single-Member LLC (Home State or Wyoming)</h3>
+<table>
+  <tr><th>Option</th><th>Pros</th><th>Cons</th><th>Verdict</th></tr>
+  <tr><td><strong>Home State LLC</strong></td><td>Simplest. Low fees. Pass-through taxation. No foreign registration needed.</td><td>Some states have higher fees or less privacy.</td><td>✅ Best for bootstrapped solo founder</td></tr>
+  <tr><td>Wyoming LLC</td><td>Best privacy (anonymous ownership). Low fees. Strong asset protection.</td><td>Need registered agent. May need foreign registration in home state anyway.</td><td>Good alternative if privacy is priority</td></tr>
+  <tr><td>Delaware C-Corp</td><td>VC-standard. QSBS tax benefits on exit.</td><td>Double taxation. $400+ annual franchise tax. Overkill for $30K–$100K/yr business.</td><td>❌ Wrong for this stage</td></tr>
+</table>
+
+<p><strong>Action items:</strong></p>
+<ul>
+  <li>File Articles of Organization (~$125 registration fee)</li>
+  <li>Draft Single-Member Operating Agreement (AI generates, lawyer reviews)</li>
+  <li>Obtain EIN from IRS (free, online, immediate)</li>
+  <li>Appoint registered agent (~$50–$100/year)</li>
+  <li>Open business bank account (Mercury recommended — free, API access)</li>
+</ul>
+
+<h2>Insurance Requirements</h2>
+<table>
+  <tr><th>Policy</th><th>Coverage</th><th>Est. Cost</th><th>Why Needed</th></tr>
+  <tr><td><strong>Technology E&amp;O</strong></td><td>$1M</td><td>~$90/month</td><td>Covers claims that inaccurate data caused financial loss. Core risk for a quote verification tool.</td></tr>
+  <tr><td><strong>Cyber Liability</strong></td><td>$1M (often bundled with E&amp;O)</td><td>Bundled</td><td>Covers data breaches if uploaded quotes with PII are compromised.</td></tr>
+  <tr><td><strong>General Liability</strong></td><td>$1M</td><td>~$30/month</td><td>Standard business coverage. May be required by some partnerships.</td></tr>
+</table>
+
+<div class="metric-box">
+  <strong>Total Insurance Cost: ~$120/month.</strong> This is non-negotiable for a tool that influences financial decisions. Factor into fixed costs.
+</div>
+
+<h2>The UPPA Kill Zone</h2>
+<p>This is the <strong>single greatest existential legal threat</strong> to Ungouge. Multiple states (Florida, Texas, Illinois, and others) define "Public Adjusting" broadly. If the app analyzes a storm-damage quote and advises "insurance should pay more," the founder commits a <strong>felony</strong> in some jurisdictions.</p>
+
+<h3>The Red Line</h3>
+<ul>
+  <li>The app must <strong>never</strong> use language implying advocacy or negotiation advice regarding an insurance claim</li>
+  <li>The word "insurance" should be <strong>scrubbed from the UI entirely</strong></li>
+  <li>Reports must never reference insurance coverage, deductibles, or claim amounts</li>
+  <li>All output must be framed as <strong>"Standard Market Rate vs. Contractor Bid"</strong> — comparing to market data, not to insurance estimates</li>
+</ul>
+
+<h3>The Safe Harbor</h3>
+<ul>
+  <li>Position strictly as a <strong>Market Research Tool</strong></li>
+  <li>Provide informational benchmarks based on local averages, unrelated to any specific insurance policy</li>
+  <li>Include prominent disclaimer: <strong>"For informational purposes only. Ungouge is not a public adjuster and does not provide advice regarding insurance claims."</strong></li>
+  <li>This disclaimer must appear: on every report, in Terms of Service, on the /promise page, and in the upload flow</li>
+</ul>
+
+<h3>States With Strictest UPPA Laws</h3>
+<table>
+  <tr><th>State</th><th>Risk Level</th><th>Notes</th></tr>
+  <tr><td>Florida</td><td>🔴 Highest</td><td>Broadest definition of public adjusting. Strict licensing. Major storm-chasing market.</td></tr>
+  <tr><td>Texas</td><td>🔴 High</td><td>Licensed public adjusters only. Active enforcement.</td></tr>
+  <tr><td>Illinois</td><td>🟡 Medium</td><td>Licensing required for claim negotiation.</td></tr>
+  <tr><td>California</td><td>🟡 Medium</td><td>Licensed public adjusters. But "informational" tools generally safe.</td></tr>
+  <tr><td>New York</td><td>🟡 Medium</td><td>Licensed adjusters required for claim work.</td></tr>
+</table>
+
+<h2>Terms of Service Requirements</h2>
+<ul>
+  <li><strong>"AS IS" Warranty Disclaimer</strong> in ALL CAPS — standard software practice</li>
+  <li><strong>Limitation of Liability</strong> capped at amount paid ($19.99) or one month of subscription</li>
+  <li><strong>No Professional Advice</strong> clause — "Ungouge provides informational data, not professional estimates, appraisals, or insurance advice"</li>
+  <li><strong>Data Usage</strong> — Clear disclosure that anonymized pricing data may be retained for benchmark improvement (but never user PII)</li>
+  <li><strong>Dispute Resolution</strong> — Binding arbitration clause (reduces litigation risk)</li>
+</ul>
+
+<h2>Privacy Policy Requirements</h2>
+<ul>
+  <li>CCPA compliance (California users can request data deletion)</li>
+  <li>Disclosure of all data processing: what's collected, how it's used, how long it's retained</li>
+  <li>Third-party disclosures: Stripe (payment), Gemini (OCR processing), Postmark (email)</li>
+  <li>Cookie policy (PostHog, GA4)</li>
+  <li><strong>Anti-lead-gen statement in privacy policy:</strong> "We do not sell, rent, or share your personal information with contractors, lead generation companies, insurance companies, or data brokers. Ever."</li>
+</ul>
+
+<h2>Legal Budget Summary</h2>
+<table>
+  <tr><th>Item</th><th>Cost</th><th>When</th></tr>
+  <tr><td>LLC formation</td><td>$125–$200</td><td>Week 1</td></tr>
+  <tr><td>Registered agent</td><td>$50–$100/year</td><td>Week 1</td></tr>
+  <tr><td>Lawyer review of /promise page + ToS</td><td>$150–$300 (one-time)</td><td>Week 10</td></tr>
+  <tr><td>E&amp;O + Cyber insurance</td><td>~$120/month</td><td>Week 1 (ongoing)</td></tr>
+  <tr><td><strong>Total Year 1</strong></td><td><strong>~$2,000–$2,500</strong></td><td></td></tr>
+</table>
+
+
+<!-- ============================================================ -->
+<!-- FINANCIAL PROJECTIONS -->
+<!-- ============================================================ -->
+<h1>10. Financial Projections</h1>
+
+<h2>Cost Structure</h2>
+
+<h3>Fixed Monthly Costs</h3>
+<table>
+  <tr><th>Item</th><th>Monthly Cost</th><th>Notes</th></tr>
+  <tr><td>E&amp;O + Cyber Insurance</td><td>$120</td><td>Non-negotiable</td></tr>
+  <tr><td>Email service (Postmark/Resend)</td><td>$15</td><td>Transactional email</td></tr>
+  <tr><td>Hosting (Vercel + Railway + Supabase)</td><td>$0–$30</td><td>Free tiers initially, scaling to paid</td></tr>
+  <tr><td>File storage (R2/S3)</td><td>$5</td><td>Uploaded quotes &amp; PDFs</td></tr>
+  <tr><td>Domain + DNS</td><td>$1</td><td>Annual cost amortized</td></tr>
+  <tr><td>Error tracking (Sentry)</td><td>$0</td><td>Free tier</td></tr>
+  <tr><td>Analytics (PostHog + GA4)</td><td>$0</td><td>Free tier</td></tr>
+  <tr><td><strong>Total Fixed</strong></td><td><strong>$141–$171</strong></td><td></td></tr>
+</table>
+
+<h3>Variable Costs (Per Report)</h3>
+<table>
+  <tr><th>Item</th><th>Cost per Report</th><th>Notes</th></tr>
+  <tr><td>Gemini API (2 calls: OCR + analysis)</td><td>$0.15–$0.50</td><td>Depends on document size</td></tr>
+  <tr><td>Stripe transaction fee</td><td>$0.88</td><td>2.9% + $0.30 on $19.99</td></tr>
+  <tr><td><strong>Total Variable</strong></td><td><strong>$1.03–$1.38</strong></td><td></td></tr>
+</table>
+
+<div class="metric-box">
+  <strong>Unit Economics at $19.99:</strong><br>
+  Revenue: $19.99<br>
+  Variable costs: ~$1.20 (avg)<br>
+  <strong>Gross profit per report: $18.79 (94% margin)</strong><br><br>
+  Monthly break-even (fixed costs): $171 ÷ $18.79 = <strong>10 paid reports/month</strong>
+</div>
+
+<h2>12-Month P&amp;L Projection</h2>
+
+<h3>Conservative Scenario</h3>
+<table>
+  <tr><th>Month</th><th>Paid Reports</th><th>Revenue</th><th>Variable Costs</th><th>Fixed Costs</th><th>Net Profit</th></tr>
+  <tr><td>1</td><td>3</td><td>$60</td><td>$4</td><td>$171</td><td>($115)</td></tr>
+  <tr><td>2</td><td>5</td><td>$100</td><td>$6</td><td>$171</td><td>($77)</td></tr>
+  <tr><td>3</td><td>10</td><td>$200</td><td>$12</td><td>$171</td><td>$17</td></tr>
+  <tr><td>4</td><td>15</td><td>$300</td><td>$18</td><td>$171</td><td>$111</td></tr>
+  <tr><td>5</td><td>25</td><td>$500</td><td>$30</td><td>$171</td><td>$299</td></tr>
+  <tr><td>6</td><td>35</td><td>$700</td><td>$42</td><td>$171</td><td>$487</td></tr>
+  <tr><td>7</td><td>45</td><td>$900</td><td>$54</td><td>$171</td><td>$675</td></tr>
+  <tr><td>8</td><td>55</td><td>$1,100</td><td>$66</td><td>$171</td><td>$863</td></tr>
+  <tr><td>9</td><td>60</td><td>$1,200</td><td>$72</td><td>$171</td><td>$957</td></tr>
+  <tr><td>10</td><td>65</td><td>$1,300</td><td>$78</td><td>$171</td><td>$1,051</td></tr>
+  <tr><td>11</td><td>70</td><td>$1,400</td><td>$84</td><td>$171</td><td>$1,145</td></tr>
+  <tr><td>12</td><td>75</td><td>$1,500</td><td>$90</td><td>$171</td><td>$1,239</td></tr>
+  <tr><td><strong>TOTAL</strong></td><td><strong>463</strong></td><td><strong>$9,260</strong></td><td><strong>$556</strong></td><td><strong>$2,052</strong></td><td><strong>$6,652</strong></td></tr>
+</table>
+
+<h3>Base Scenario</h3>
+<table>
+  <tr><th>Month</th><th>Paid Reports</th><th>Revenue</th><th>Variable Costs</th><th>Fixed Costs</th><th>Net Profit</th></tr>
+  <tr><td>1</td><td>8</td><td>$160</td><td>$10</td><td>$171</td><td>($21)</td></tr>
+  <tr><td>2</td><td>15</td><td>$300</td><td>$18</td><td>$171</td><td>$111</td></tr>
+  <tr><td>3</td><td>25</td><td>$500</td><td>$30</td><td>$171</td><td>$299</td></tr>
+  <tr><td>4</td><td>40</td><td>$800</td><td>$48</td><td>$171</td><td>$581</td></tr>
+  <tr><td>5</td><td>55</td><td>$1,100</td><td>$66</td><td>$171</td><td>$863</td></tr>
+  <tr><td>6</td><td>70</td><td>$1,400</td><td>$84</td><td>$171</td><td>$1,145</td></tr>
+  <tr><td>7</td><td>90</td><td>$1,800</td><td>$108</td><td>$171</td><td>$1,521</td></tr>
+  <tr><td>8</td><td>110</td><td>$2,199</td><td>$132</td><td>$171</td><td>$1,896</td></tr>
+  <tr><td>9</td><td>130</td><td>$2,599</td><td>$156</td><td>$171</td><td>$2,272</td></tr>
+  <tr><td>10</td><td>145</td><td>$2,899</td><td>$174</td><td>$171</td><td>$2,554</td></tr>
+  <tr><td>11</td><td>155</td><td>$3,098</td><td>$186</td><td>$171</td><td>$2,741</td></tr>
+  <tr><td>12</td><td>170</td><td>$3,398</td><td>$204</td><td>$171</td><td>$3,023</td></tr>
+  <tr><td><strong>TOTAL</strong></td><td><strong>1,013</strong></td><td><strong>$20,253</strong></td><td><strong>$1,216</strong></td><td><strong>$2,052</strong></td><td><strong>$16,985</strong></td></tr>
+</table>
+
+<h3>Optimistic Scenario</h3>
+<table>
+  <tr><th>Month</th><th>Paid Reports</th><th>Revenue</th><th>Variable Costs</th><th>Fixed Costs</th><th>Net Profit</th></tr>
+  <tr><td>1</td><td>15</td><td>$300</td><td>$18</td><td>$171</td><td>$111</td></tr>
+  <tr><td>2</td><td>30</td><td>$600</td><td>$36</td><td>$171</td><td>$393</td></tr>
+  <tr><td>3</td><td>50</td><td>$1,000</td><td>$60</td><td>$171</td><td>$769</td></tr>
+  <tr><td>4</td><td>80</td><td>$1,599</td><td>$96</td><td>$171</td><td>$1,332</td></tr>
+  <tr><td>5</td><td>110</td><td>$2,199</td><td>$132</td><td>$171</td><td>$1,896</td></tr>
+  <tr><td>6</td><td>150</td><td>$2,999</td><td>$180</td><td>$200</td><td>$2,619</td></tr>
+  <tr><td>7</td><td>190</td><td>$3,798</td><td>$228</td><td>$200</td><td>$3,370</td></tr>
+  <tr><td>8</td><td>230</td><td>$4,598</td><td>$276</td><td>$200</td><td>$4,122</td></tr>
+  <tr><td>9</td><td>270</td><td>$5,397</td><td>$324</td><td>$200</td><td>$4,873</td></tr>
+  <tr><td>10</td><td>300</td><td>$5,997</td><td>$360</td><td>$200</td><td>$5,437</td></tr>
+  <tr><td>11</td><td>320</td><td>$6,397</td><td>$384</td><td>$200</td><td>$5,813</td></tr>
+  <tr><td>12</td><td>340</td><td>$6,797</td><td>$408</td><td>$200</td><td>$6,189</td></tr>
+  <tr><td><strong>TOTAL</strong></td><td><strong>2,085</strong></td><td><strong>$41,681</strong></td><td><strong>$2,502</strong></td><td><strong>$2,255</strong></td><td><strong>$36,924</strong></td></tr>
+</table>
+
+<h2>Cash Flow Timeline</h2>
+<table>
+  <tr><th>Period</th><th>Conservative</th><th>Base</th><th>Optimistic</th></tr>
+  <tr><td>Pre-launch investment (Weeks 1–14)</td><td>-$1,500</td><td>-$1,500</td><td>-$1,500</td></tr>
+  <tr><td>Month of first net-positive month</td><td>Month 3</td><td>Month 2</td><td>Month 1</td></tr>
+  <tr><td>Cumulative break-even (recoup investment)</td><td>Month 5</td><td>Month 3</td><td>Month 2</td></tr>
+  <tr><td>Year 1 net profit</td><td>$6,652</td><td>$16,985</td><td>$36,924</td></tr>
+</table>
+
+<h2>Funding Needs</h2>
+<div class="success-box">
+  <strong>No external funding required.</strong> Total pre-launch investment: ~$1,500 (LLC formation, insurance, lawyer review, misc). Monthly burn during development: ~$170/month. All within Jason's $500/month budget ceiling. The business is designed to be profitable from month 2–3, funded entirely by revenue.
+</div>
+
+<h2>Revenue Expansion Opportunities (Post-MVP)</h2>
+<table>
+  <tr><th>Opportunity</th><th>Revenue Potential</th><th>Timing</th></tr>
+  <tr><td><strong>Expert Review Upsell</strong> ($29.99) — Human review after AI report</td><td>$500–$2,000/mo</td><td>Month 6+</td></tr>
+    <tr><td><strong>Bundle Pricing</strong> (3 reports for $39.99)</td><td>Incremental</td><td>Launch</td></tr>
+    </table>
+
+<div class="warning-box">
+  <strong>Affiliate Revenue Note:</strong> Including affiliate links (e.g., "Get competing quotes on EnergySage") could be perceived as conflicting with the anti-lead-gen positioning. If implemented, it must be clearly labeled, opt-in, and never influence the analysis. Consider carefully whether the revenue justifies the trust risk.
+</div>
+
+
+<!-- ============================================================ -->
+<!-- RISK REGISTER -->
+<!-- ============================================================ -->
+<h1>11. Risk Register</h1>
+
+<table>
+  <tr><th>#</th><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th><th>Contingency</th></tr>
+  <tr>
+    <td>1</td>
+    <td><strong>OCR accuracy below 70%</strong> — Gemini can't reliably parse real-world quotes (handwritten, low-quality photos, inconsistent formats)</td>
+    <td>Medium</td>
+    <td>🔴 Critical</td>
+    <td>Extensive prompt engineering. Test with 30+ real quotes before launch. Budget 2 extra weeks.</td>
+    <td>Add manual correction step where users can fix extracted data. Try GPT-4o as alternative. Worst case: text-paste input only for MVP.</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Low conversion rate (&lt;3% free→paid)</strong> — Users see teaser but won't pay $19.99</td>
+    <td>Medium</td>
+    <td>🟡 High</td>
+    <td>A/B test pricing ($14.99 vs $19.99). Make free teaser compelling but incomplete. Add money-back guarantee.</td>
+    <td>Drop to $9.99. Add bundle pricing. Introduce contingency model (% of savings) for high-value quotes.</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>CAC too high (&gt;$15)</strong> — Paid acquisition unprofitable</td>
+    <td>Medium</td>
+    <td>🟡 High</td>
+    <td>Prioritize SEO (zero CAC). Focus Google Ads on weather events only (lower CPC). Invest in referral program.</td>
+    <td>Go 100% organic. Double content output.</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>UPPA legal challenge</strong> — State regulator claims Ungouge is acting as unlicensed public adjuster</td>
+    <td>Low</td>
+    <td>🔴 Critical</td>
+    <td>Scrub "insurance" from all copy. Position strictly as market research. Prominent disclaimers. Lawyer review.</td>
+    <td>Geo-block high-risk states (FL, TX). Modify reports to remove any insurance-adjacent language. Hire specialized attorney.</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>ChatGPT launches competing feature</strong> — OpenAI or Google adds "quote check" to their AI</td>
+    <td>Medium</td>
+    <td>🟡 High</td>
+    <td>Build data moat (proprietary benchmarks, user-contributed data). Emphasize structured reports + regional accuracy that generic AI can't match.</td>
+    <td>Double down on niche (weather events). Add human expert upsell.</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>QuoteEvaluator undercuts on price</strong> — Drops to free or adds features</td>
+    <td>Medium</td>
+    <td>🟡 Medium</td>
+    <td>Differentiate on trust (anti-lead-gen), quality (negotiation scripts, material analysis), and accuracy (regional data).</td>
+    <td>Match pricing if necessary. Add features they don't have (what's missing checklists, contractor license verification).</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Benchmark data inaccuracy</strong> — Top 50 items are wrong for some regions/projects</td>
+    <td>Medium</td>
+    <td>🟡 High</td>
+    <td>Use confidence scoring aggressively. Flag "Limited Data" honestly. QA first 100 reports manually.</td>
+    <td>Accelerate Craftsman license trigger. Add user feedback: "Was this accurate?" Correct rapidly.</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>"Fair quote" user dissatisfaction</strong> — User pays $19.99, report says quote is fair. Feels ripped off.</td>
+    <td>High</td>
+    <td>🟡 Medium</td>
+    <td>Frame as "peace of mind." Even fair quotes get: material quality analysis, warranty info, "questions to ask," what's-missing checklist.</td>
+    <td>Offer "If we find no savings, your next report is 50% off." Or money-back guarantee within 24 hours.</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>Contractor backlash</strong> — Contractors bad-mouth service, refuse to work with Ungouge users</td>
+    <td>Low</td>
+    <td>🟢 Low</td>
+    <td>Position as "helping homeowners understand quotes" not "catching dishonest contractors." Never name-and-shame.</td>
+    <td>Offer future "Contractor Verified" badge where honest contractors can opt in.</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><strong>Weather event marketing backfires</strong> — Perceived as ambulance-chasing or exploitative</td>
+    <td>Low-Medium</td>
+    <td>🟡 High</td>
+    <td>Wait 24+ hours after disaster. Use empathetic tone. Never fear-monger. Strict legal guardrails.</td>
+    <td>Pull campaign immediately if negative press. Issue public apology if needed. Pivot to organic-only distribution.</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td><strong>Seasonal revenue swings</strong> — Winter months see minimal home improvement activity</td>
+    <td>High</td>
+    <td>🟢 Low</td>
+    <td>Build cash reserves during peak months. Focus winter on content creation, SEO, partnerships.</td>
+    <td>Add winter-relevant categories (heating system checks, insulation). Target emergency repairs.</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td><strong>Founder burnout</strong> — 20 hrs/week on top of other commitments becomes unsustainable</td>
+    <td>Medium</td>
+    <td>🟡 High</td>
+    <td>Automate everything possible. AI handles code, content, and data. Jason focuses on high-leverage activities only.</td>
+    <td>Reduce to 10 hrs/week (maintenance mode). Hire VA for customer support ($500/mo). Pause marketing spend.</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td><strong>Content liability</strong> — Report says "overpriced" but quote was actually fair, causing homeowner to lose contractor</td>
+    <td>Low</td>
+    <td>🟡 Medium</td>
+    <td>Always present ranges, never absolutes. Use confidence scores. Prominent "informational only" disclaimers. E&amp;O insurance.</td>
+    <td>E&amp;O insurance covers claims. Adjust language to be more hedged. Add: "We recommend getting 2–3 quotes regardless."</td>
+  </tr>
+</table>
+
+<h2>Go/No-Go Decision Criteria (Month 6 Checkpoint)</h2>
+<div class="metric-box">
+  <strong>Continue if 3+ of these are met:</strong>
+  <ul>
+    <li>☐ OCR parsing accuracy ≥80%</li>
+    <li>☐ Free-to-paid conversion ≥5%</li>
+    <li>☐ ≥30 paid reports/month</li>
+    <li>☐ CAC ≤$10 from at least one channel</li>
+    <li>☐ No legal issues or cease-and-desist letters</li>
+  </ul>
+  <strong>If &lt;2 are met:</strong> Pivot (change pricing, target B2B, or different product) or stop.
+</div>
+
+
+<!-- ============================================================ -->
+<!-- APPENDICES -->
+<!-- ============================================================ -->
+<h1>12. Appendices</h1>
+
+<h2>Appendix A: Full Data Schema</h2>
+
+<h3>users</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+  <tr><td>id</td><td>UUID (PK)</td><td>Auto-generated</td></tr>
+  <tr><td>email</td><td>VARCHAR(255) UNIQUE</td><td>Login identifier</td></tr>
+  <tr><td>password_hash</td><td>VARCHAR(255)</td><td>bcrypt hashed</td></tr>
+  <tr><td>stripe_customer_id</td><td>VARCHAR(255)</td><td>Stripe customer reference</td></tr>
+  <tr><td>referral_code</td><td>VARCHAR(20) UNIQUE</td><td>For referral program</td></tr>
+  <tr><td>referred_by</td><td>UUID (FK → users)</td><td>Who referred this user</td></tr>
+  <tr><td>free_reports_remaining</td><td>INT DEFAULT 1</td><td>Free report credits</td></tr>
+  <tr><td>created_at</td><td>TIMESTAMP</td><td></td></tr>
+</table>
+
+<h3>quotes</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+  <tr><td>id</td><td>UUID (PK)</td><td></td></tr>
+  <tr><td>user_id</td><td>UUID (FK → users)</td><td></td></tr>
+  <tr><td>file_url</td><td>TEXT</td><td>R2/S3 URL</td></tr>
+  <tr><td>file_type</td><td>ENUM(pdf, jpeg, png, text)</td><td></td></tr>
+  <tr><td>raw_text</td><td>TEXT</td><td>OCR extracted full text</td></tr>
+  <tr><td>category</td><td>ENUM(roofing, hvac, plumbing, solar, painting, electrical)</td><td>Auto-detected or user-specified</td></tr>
+  <tr><td>contractor_name</td><td>VARCHAR(255)</td><td>Extracted, nullable</td></tr>
+  <tr><td>total_amount</td><td>DECIMAL(10,2)</td><td>Quote total</td></tr>
+  <tr><td>zip_code</td><td>VARCHAR(10)</td><td>User-provided or extracted</td></tr>
+  <tr><td>status</td><td>ENUM(uploaded, processing, analyzed, failed)</td><td></td></tr>
+  <tr><td>created_at</td><td>TIMESTAMP</td><td></td></tr>
+</table>
+
+<h3>extracted_line_items</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+  <tr><td>id</td><td>UUID (PK)</td><td></td></tr>
+  <tr><td>quote_id</td><td>UUID (FK → quotes)</td><td></td></tr>
+  <tr><td>description</td><td>TEXT</td><td>As extracted from quote</td></tr>
+  <tr><td>normalized_description</td><td>TEXT</td><td>Standardized for matching</td></tr>
+  <tr><td>quantity</td><td>DECIMAL(10,2)</td><td>Nullable</td></tr>
+  <tr><td>unit</td><td>VARCHAR(50)</td><td>sq ft, each, linear ft, etc.</td></tr>
+  <tr><td>unit_price</td><td>DECIMAL(10,2)</td><td>Nullable (lump sum items)</td></tr>
+  <tr><td>total_price</td><td>DECIMAL(10,2)</td><td></td></tr>
+  <tr><td>trade_category</td><td>ENUM</td><td>Matched trade category</td></tr>
+  <tr><td>confidence_score</td><td>DECIMAL(3,2)</td><td>0.00–1.00 OCR confidence</td></tr>
+</table>
+
+<h3>benchmarks</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+  <tr><td>id</td><td>UUID (PK)</td><td></td></tr>
+  <tr><td>item_name</td><td>VARCHAR(255)</td><td>Standardized name</td></tr>
+  <tr><td>trade_category</td><td>ENUM</td><td></td></tr>
+  <tr><td>national_low</td><td>DECIMAL(10,2)</td><td>Low end of range</td></tr>
+  <tr><td>national_mid</td><td>DECIMAL(10,2)</td><td>Median/typical</td></tr>
+  <tr><td>national_high</td><td>DECIMAL(10,2)</td><td>High end of range</td></tr>
+  <tr><td>unit</td><td>VARCHAR(50)</td><td>per sq ft, per unit, etc.</td></tr>
+  <tr><td>source</td><td>VARCHAR(100)</td><td>Homewyse, RSMeans, Craftsman, etc.</td></tr>
+  <tr><td>last_updated</td><td>TIMESTAMP</td><td></td></tr>
+</table>
+
+<h3>comparisons</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+  <tr><td>id</td><td>UUID (PK)</td><td></td></tr>
+  <tr><td>line_item_id</td><td>UUID (FK → extracted_line_items)</td><td></td></tr>
+  <tr><td>benchmark_id</td><td>UUID (FK → benchmarks), nullable</td><td>Null if unverified</td></tr>
+  <tr><td>regional_multiplier</td><td>DECIMAL(4,2)</td><td>Applied multiplier</td></tr>
+  <tr><td>adjusted_benchmark_low</td><td>DECIMAL(10,2)</td><td>national_low × multiplier</td></tr>
+  <tr><td>adjusted_benchmark_mid</td><td>DECIMAL(10,2)</td><td>national_mid × multiplier</td></tr>
+  <tr><td>adjusted_benchmark_high</td><td>DECIMAL(10,2)</td><td>national_high × multiplier</td></tr>
+  <tr><td>quoted_price</td><td>DECIMAL(10,2)</td><td>From extracted line item</td></tr>
+  <tr><td>variance_pct</td><td>DECIMAL(5,2)</td><td>% above/below mid benchmark</td></tr>
+  <tr><td>flag_type</td><td>ENUM(green, yellow, red, unverified, lump_sum)</td><td></td></tr>
+  <tr><td>explanation</td><td>TEXT</td><td>AI-generated plain-English explanation</td></tr>
+  <tr><td>confidence</td><td>ENUM(high, moderate, limited)</td><td></td></tr>
+</table>
+
+<h3>reports</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+  <tr><td>id</td><td>UUID (PK)</td><td></td></tr>
+  <tr><td>quote_id</td><td>UUID (FK → quotes)</td><td></td></tr>
+  <tr><td>summary_html</td><td>TEXT</td><td>One-page summary</td></tr>
+  <tr><td>detailed_html</td><td>TEXT</td><td>Full line-by-line breakdown</td></tr>
+  <tr><td>overall_score</td><td>ENUM(fair, slightly_high, significantly_overpriced, mixed)</td><td></td></tr>
+  <tr><td>total_potential_savings</td><td>DECIMAL(10,2)</td><td>Sum of overpriced variances</td></tr>
+  <tr><td>negotiation_scripts</td><td>JSONB</td><td>Array of scripts per flagged item</td></tr>
+  <tr><td>missing_items</td><td>JSONB</td><td>Category-specific missing items</td></tr>
+  <tr><td>pdf_url</td><td>TEXT</td><td>Generated PDF in R2/S3</td></tr>
+  <tr><td>created_at</td><td>TIMESTAMP</td><td></td></tr>
+</table>
+
+<h3>zip_codes</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+  <tr><td>zip</td><td>VARCHAR(10) (PK)</td><td></td></tr>
+  <tr><td>city</td><td>VARCHAR(100)</td><td></td></tr>
+  <tr><td>state</td><td>VARCHAR(2)</td><td></td></tr>
+  <tr><td>county</td><td>VARCHAR(100)</td><td></td></tr>
+  <tr><td>region_id</td><td>UUID (FK → regions)</td><td></td></tr>
+  <tr><td>latitude</td><td>DECIMAL(9,6)</td><td></td></tr>
+  <tr><td>longitude</td><td>DECIMAL(9,6)</td><td></td></tr>
+  <tr><td>population</td><td>INT</td><td>For prioritizing high-pop zip pages</td></tr>
+</table>
+
+<h2>Appendix B: Sample Quote Analysis Walkthrough</h2>
+
+<h3>Input: Roofing Quote from Denver, CO (ZIP 80202)</h3>
+<p><em>Uploaded by user as a phone photo of a paper quote.</em></p>
+
+<h4>Extracted Line Items (via Gemini OCR)</h4>
+<table>
+  <tr><th>#</th><th>Description</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr>
+  <tr><td>1</td><td>Remove existing shingles &amp; dispose</td><td>28 sq</td><td>$85/sq</td><td>$2,380</td></tr>
+  <tr><td>2</td><td>Install GAF Timberline HDZ shingles</td><td>28 sq</td><td>$350/sq</td><td>$9,800</td></tr>
+  <tr><td>3</td><td>Synthetic underlayment</td><td>28 sq</td><td>$45/sq</td><td>$1,260</td></tr>
+  <tr><td>4</td><td>Ice &amp; water shield (eaves)</td><td>6 sq</td><td>$95/sq</td><td>$570</td></tr>
+  <tr><td>5</td><td>Ridge vent</td><td>40 lf</td><td>$12/lf</td><td>$480</td></tr>
+  <tr><td>6</td><td>Miscellaneous materials</td><td>1</td><td>$1,500</td><td>$1,500</td></tr>
+  <tr><td></td><td><strong>TOTAL</strong></td><td></td><td></td><td><strong>$15,990</strong></td></tr>
+</table>
+
+<h4>Analysis Output</h4>
+<table>
+  <tr><th>Item</th><th>Quoted</th><th>Fair Range (Denver)</th><th>Flag</th><th>Notes</th></tr>
+  <tr><td>Shingle removal</td><td>$85/sq</td><td>$60–$90/sq</td><td>🟢 Fair</td><td>Within range. Denver multiplier: 1.08x</td></tr>
+  <tr><td>Shingle install (architectural)</td><td>$350/sq</td><td>$280–$380/sq</td><td>🟢 Fair</td><td>GAF Timberline HDZ is a quality product. Mid-to-high range pricing.</td></tr>
+  <tr><td>Synthetic underlayment</td><td>$45/sq</td><td>$30–$50/sq</td><td>🟢 Fair</td><td>Within range.</td></tr>
+  <tr><td>Ice &amp; water shield</td><td>$95/sq</td><td>$65–$100/sq</td><td>🟡 Slightly High</td><td>High end of range. Ask about brand/thickness.</td></tr>
+  <tr><td>Ridge vent</td><td>$12/lf</td><td>$8–$14/lf</td><td>🟢 Fair</td><td>Within range.</td></tr>
+  <tr><td>Miscellaneous materials</td><td>$1,500</td><td>N/A</td><td>🔴 Lump Sum</td><td><strong>This should be itemized.</strong> Ask for breakdown: flashing, drip edge, nails, caulk, pipe boots, etc. Typical misc for 28 sq: $600–$900.</td></tr>
+</table>
+
+<h4>Missing Items Alert</h4>
+<ul>
+  <li>⚠️ <strong>Drip edge</strong> — Not listed. Required by code in most jurisdictions. Typical cost: $3–$5/lf</li>
+  <li>⚠️ <strong>Plywood/decking inspection &amp; replacement</strong> — No mention of what happens if decking is damaged. Get a per-sheet price upfront.</li>
+  <li>⚠️ <strong>Permits</strong> — Not listed. Denver requires roofing permits (~$200–$400). Clarify who pulls the permit.</li>
+</ul>
+
+<h4>Negotiation Script</h4>
+<blockquote>
+  "Thanks for the quote. I have a couple questions:<br><br>
+  1. The 'Miscellaneous materials' line for $1,500 — could you break that down for me? I'd like to understand what's included.<br><br>
+  2. I didn't see drip edge or permits listed. Are those included in the price, or would they be additional?<br><br>
+  3. What happens if you find damaged decking underneath? Can we agree on a per-sheet price now so there are no surprises?"
+</blockquote>
+
+<h4>Overall Assessment</h4>
+<div class="metric-box">
+  <strong>Overall: Mostly Fair with One Red Flag</strong><br>
+  Your total of $15,990 is within the typical range for a 28-square architectural shingle roof in Denver ($14,000–$18,000). However, the $1,500 "miscellaneous materials" charge should be itemized — it may contain $500–$600 in padding. Additionally, drip edge and permits appear to be missing. <strong>Potential savings if addressed: $500–$800.</strong>
+</div>
+
+<h2>Appendix C: Trust Messaging — Full /promise Page Copy</h2>
+
+<h3>Our Promise to You</h3>
+
+<h4>Why We Built This</h4>
+<p>We built Ungouge because we were tired of the scam.</p>
+<p>You know the one. You need a new roof, or your AC dies in July, or your water heater starts leaking. So you Google "roof replacement cost" and end up on a site that promises free quotes. You fill out a form. And within minutes, your phone starts ringing. Three contractors. Then five. Then a text from someone you never heard of.</p>
+<p>Those "free quote" sites sold your name, phone number, and project details to contractors for $15–$75 each. That's their business model. Not helping you — selling you.</p>
+<p>We think that's garbage.</p>
+
+<h4>What We Actually Do</h4>
+<p>You upload your contractor's quote. Our AI reads it, compares every line item against fair-market prices for your specific zip code, and generates a plain-English report telling you exactly what's fair, what's high, what's missing, and what to say to your contractor.</p>
+<p>That's it. There's no step two where we sell your info. There's no "partner network" of contractors waiting to call you.</p>
+
+<h4>What We Will Never Do</h4>
+<ol>
+  <li><strong>We will never sell your contact information</strong> to contractors, lead generation companies, data brokers, or anyone else. Your email stays with us for account purposes only.</li>
+  <li><strong>We will never accept referral fees or commissions</strong> from contractors. The moment we take money from a contractor, we can't objectively evaluate their quotes. So we don't.</li>
+  <li><strong>We will never accept advertising</strong> from contractors or building supply companies. You'll never see a contractor ad on Ungouge.</li>
+  <li><strong>We will never share your quote data</strong> with insurance companies, marketing firms, or data aggregators. Your quote is your business.</li>
+</ol>
+
+<h4>How We Make Money</h4>
+<p>You pay us $19.99. We analyze your quote. That's the transaction. That's our entire business model.</p>
+<p>We don't need to monetize your data because we monetize our analysis. We don't need contractor partnerships because you are our customer. Simple.</p>
+
+<h4>What If We Screw Up?</h4>
+<p>Our analysis is based on market data and AI — it's informational, not a professional appraisal. We could be wrong. If you feel our report didn't provide value, contact us within 7 days for a full refund. No questions asked.</p>
+
+<h4>Why We're Telling You All This</h4>
+<p>Because every other site in this space has something to hide. Lead-gen companies hide behind "free." Contractor marketplaces hide behind "convenience." Insurance-backed tools hide behind "savings."</p>
+<p>We have nothing to hide because we have nothing to sell except the analysis you asked for.</p>
+<p>That's our promise. It's not going to change.</p>
+
+<h2>Appendix D: Top 50 Benchmark Items List</h2>
+<table>
+  <tr><th>#</th><th>Category</th><th>Item</th><th>Unit</th><th>National Low</th><th>National Mid</th><th>National High</th></tr>
+  <tr><td>1</td><td>Roofing</td><td>Asphalt shingle removal &amp; disposal</td><td>per sq (100 sf)</td><td>$55</td><td>$75</td><td>$95</td></tr>
+  <tr><td>2</td><td>Roofing</td><td>3-tab shingle installation</td><td>per sq</td><td>$200</td><td>$275</td><td>$350</td></tr>
+  <tr><td>3</td><td>Roofing</td><td>Architectural shingle installation</td><td>per sq</td><td>$275</td><td>$350</td><td>$450</td></tr>
+  <tr><td>4</td><td>Roofing</td><td>Synthetic underlayment</td><td>per sq</td><td>$25</td><td>$40</td><td>$55</td></tr>
+  <tr><td>5</td><td>Roofing</td><td>Ice &amp; water shield</td><td>per sq</td><td>$55</td><td>$80</td><td>$105</td></tr>
+  <tr><td>6</td><td>Roofing</td><td>Drip edge flashing</td><td>per lf</td><td>$2</td><td>$4</td><td>$6</td></tr>
+  <tr><td>7</td><td>Roofing</td><td>Ridge vent</td><td>per lf</td><td>$7</td><td>$11</td><td>$15</td></tr>
+  <tr><td>8</td><td>Roofing</td><td>Plywood/OSB decking replacement</td><td>per sheet</td><td>$65</td><td>$90</td><td>$120</td></tr>
+  <tr><td>9</td><td>Roofing</td><td>Chimney/valley flashing</td><td>per unit</td><td>$200</td><td>$400</td><td>$650</td></tr>
+  <tr><td>10</td><td>Roofing</td><td>Debris cleanup &amp; dump fees</td><td>per job</td><td>$150</td><td>$300</td><td>$500</td></tr>
+  <tr><td>11</td><td>HVAC</td><td>Central AC unit (2.5–3 ton)</td><td>per unit</td><td>$3,500</td><td>$5,500</td><td>$8,000</td></tr>
+  <tr><td>12</td><td>HVAC</td><td>Gas furnace replacement</td><td>per unit</td><td>$2,500</td><td>$4,000</td><td>$6,000</td></tr>
+  <tr><td>13</td><td>HVAC</td><td>Heat pump installation</td><td>per unit</td><td>$4,000</td><td>$6,500</td><td>$10,000</td></tr>
+  <tr><td>14</td><td>HVAC</td><td>Ductwork modification</td><td>per job</td><td>$500</td><td>$1,200</td><td>$2,500</td></tr>
+  <tr><td>15</td><td>HVAC</td><td>Thermostat installation</td><td>per unit</td><td>$150</td><td>$300</td><td>$500</td></tr>
+  <tr><td>16</td><td>HVAC</td><td>Refrigerant charge (R-410A)</td><td>per lb</td><td>$40</td><td>$75</td><td>$120</td></tr>
+  <tr><td>17</td><td>HVAC</td><td>Line set installation</td><td>per set</td><td>$200</td><td>$500</td><td>$800</td></tr>
+  <tr><td>18</td><td>HVAC</td><td>Condensate drain line</td><td>per job</td><td>$100</td><td>$200</td><td>$350</td></tr>
+  <tr><td>19</td><td>HVAC</td><td>System startup &amp; testing</td><td>per job</td><td>$100</td><td>$200</td><td>$300</td></tr>
+  <tr><td>20</td><td>HVAC</td><td>Permit fees</td><td>per job</td><td>$75</td><td>$200</td><td>$400</td></tr>
+  <tr><td>21</td><td>Plumbing</td><td>Tank water heater installation (50 gal)</td><td>per unit</td><td>$1,200</td><td>$1,800</td><td>$2,500</td></tr>
+  <tr><td>22</td><td>Plumbing</td><td>Tankless water heater installation</td><td>per unit</td><td>$2,500</td><td>$4,000</td><td>$6,000</td></tr>
+  <tr><td>23</td><td>Plumbing</td><td>Whole-house repiping (copper)</td><td>per lf</td><td>$8</td><td>$15</td><td>$25</td></tr>
+  <tr><td>24</td><td>Plumbing</td><td>Whole-house repiping (PEX)</td><td>per lf</td><td>$4</td><td>$8</td><td>$15</td></tr>
+  <tr><td>25</td><td>Plumbing</td><td>Toilet replacement</td><td>per unit</td><td>$250</td><td>$450</td><td>$700</td></tr>
+  <tr><td>26</td><td>Plumbing</td><td>Faucet replacement</td><td>per unit</td><td>$150</td><td>$300</td><td>$500</td></tr>
+  <tr><td>27</td><td>Plumbing</td><td>Sump pump installation</td><td>per unit</td><td>$800</td><td>$1,200</td><td>$2,000</td></tr>
+  <tr><td>28</td><td>Plumbing</td><td>Main water line replacement</td><td>per job</td><td>$1,500</td><td>$3,000</td><td>$5,000</td></tr>
+  <tr><td>29</td><td>Solar</td><td>Solar panels (installed)</td><td>per watt</td><td>$2.50</td><td>$3.00</td><td>$3.75</td></tr>
+  <tr><td>30</td><td>Solar</td><td>String inverter</td><td>per unit</td><td>$1,000</td><td>$1,800</td><td>$2,500</td></tr>
+  <tr><td>31</td><td>Solar</td><td>Microinverters</td><td>per panel</td><td>$150</td><td>$200</td><td>$300</td></tr>
+  <tr><td>32</td><td>Solar</td><td>Racking/mounting system</td><td>per kW</td><td>$200</td><td>$350</td><td>$500</td></tr>
+  <tr><td>33</td><td>Solar</td><td>Electrical panel upgrade (for solar)</td><td>per job</td><td>$1,500</td><td>$2,500</td><td>$4,000</td></tr>
+  <tr><td>34</td><td>Solar</td><td>Permit &amp; interconnection</td><td>per job</td><td>$500</td><td>$1,000</td><td>$2,000</td></tr>
+  <tr><td>35</td><td>Solar</td><td>Monitoring system</td><td>per unit</td><td>$100</td><td>$250</td><td>$500</td></tr>
+  <tr><td>36</td><td>Solar</td><td>Critter guard</td><td>per lf</td><td>$5</td><td>$10</td><td>$18</td></tr>
+  <tr><td>37</td><td>Painting</td><td>Interior wall painting</td><td>per sq ft</td><td>$2.00</td><td>$3.50</td><td>$5.00</td></tr>
+  <tr><td>38</td><td>Painting</td><td>Exterior painting</td><td>per sq ft</td><td>$2.50</td><td>$4.00</td><td>$6.00</td></tr>
+  <tr><td>39</td><td>Painting</td><td>Trim/molding painting</td><td>per lf</td><td>$1.50</td><td>$3.00</td><td>$5.00</td></tr>
+  <tr><td>40</td><td>Painting</td><td>Ceiling painting</td><td>per sq ft</td><td>$1.50</td><td>$2.50</td><td>$4.00</td></tr>
+  <tr><td>41</td><td>Painting</td><td>Surface prep (scraping, priming)</td><td>per sq ft</td><td>$1.00</td><td>$2.00</td><td>$3.50</td></tr>
+  <tr><td>42</td><td>Painting</td><td>Caulking &amp; patching</td><td>per job</td><td>$200</td><td>$500</td><td>$900</td></tr>
+  <tr><td>43</td><td>Painting</td><td>Paint (premium grade)</td><td>per gallon</td><td>$40</td><td>$60</td><td>$85</td></tr>
+  <tr><td>44</td><td>Electrical</td><td>Panel upgrade (100A→200A)</td><td>per job</td><td>$1,800</td><td>$2,800</td><td>$4,500</td></tr>
+  <tr><td>45</td><td>Electrical</td><td>EV charger installation (Level 2)</td><td>per unit</td><td>$800</td><td>$1,500</td><td>$2,500</td></tr>
+  <tr><td>46</td><td>Electrical</td><td>Circuit breaker replacement</td><td>per unit</td><td>$150</td><td>$250</td><td>$400</td></tr>
+  <tr><td>47</td><td>Electrical</td><td>Outlet/switch installation</td><td>per unit</td><td>$100</td><td>$175</td><td>$300</td></tr>
+  <tr><td>48</td><td>Electrical</td><td>Recessed lighting (per can)</td><td>per unit</td><td>$150</td><td>$250</td><td>$400</td></tr>
+  <tr><td>49</td><td>Electrical</td><td>Whole-house rewiring</td><td>per sq ft</td><td>$6</td><td>$10</td><td>$16</td></tr>
+  <tr><td>50</td><td>Electrical</td><td>Permit fees (electrical)</td><td>per job</td><td>$75</td><td>$200</td><td>$400</td></tr>
+</table>
+
+<p><em>Sources: Homewyse 2024–2025 national averages, RSMeans residential data, industry publications, and cross-validated with Gemini training data. All prices represent installed cost including labor and materials unless otherwise noted. Updated quarterly.</em></p>
+
+<h2>Appendix E: Regional Multiplier Table (Sample)</h2>
+<table>
+  <tr><th>Metro Area / Region</th><th>BLS Area Code</th><th>Labor Multiplier</th><th>Material Multiplier</th><th>Blended Multiplier</th></tr>
+  <tr><td>San Francisco-Oakland, CA</td><td>41860</td><td>1.52</td><td>1.12</td><td>1.40</td></tr>
+  <tr><td>New York-Newark, NY-NJ</td><td>35620</td><td>1.45</td><td>1.10</td><td>1.35</td></tr>
+  <tr><td>Seattle-Tacoma, WA</td><td>42660</td><td>1.35</td><td>1.08</td><td>1.27</td></tr>
+  <tr><td>Boston-Cambridge, MA</td><td>14460</td><td>1.38</td><td>1.10</td><td>1.30</td></tr>
+  <tr><td>Washington-Arlington, DC-VA</td><td>47900</td><td>1.30</td><td>1.08</td><td>1.24</td></tr>
+  <tr><td>Los Angeles-Long Beach, CA</td><td>31080</td><td>1.35</td><td>1.10</td><td>1.28</td></tr>
+  <tr><td>Denver-Aurora, CO</td><td>19740</td><td>1.12</td><td>1.05</td><td>1.08</td></tr>
+  <tr><td>Chicago-Naperville, IL</td><td>16980</td><td>1.20</td><td>1.05</td><td>1.15</td></tr>
+  <tr><td>Dallas-Fort Worth, TX</td><td>19100</td><td>1.00</td><td>1.00</td><td>1.00</td></tr>
+  <tr><td>Atlanta-Sandy Springs, GA</td><td>12060</td><td>0.98</td><td>1.00</td><td>0.99</td></tr>
+  <tr><td>Phoenix-Mesa, AZ</td><td>38060</td><td>0.95</td><td>1.02</td><td>0.97</td></tr>
+  <tr><td>Nashville-Davidson, TN</td><td>34980</td><td>0.92</td><td>0.98</td><td>0.94</td></tr>
+  <tr><td>Rural Midwest (non-metro)</td><td>—</td><td>0.80</td><td>0.95</td><td>0.85</td></tr>
+  <tr><td>Rural South (non-metro)</td><td>—</td><td>0.75</td><td>0.95</td><td>0.82</td></tr>
+  <tr><td>Rural Northeast (non-metro)</td><td>—</td><td>0.85</td><td>1.00</td><td>0.90</td></tr>
+</table>
+<p><em>Blended multiplier assumes 55% labor / 45% materials cost split. Derived from BLS Occupational Employment and Wage Statistics, May 2024 release. Non-metro areas estimated from state-level data.</em></p>
+
+<h2>Appendix F: Tech Stack Decision Matrix</h2>
+<table>
+  
+
+<hr style="margin:60px 0; border:none; border-top:4px solid #1a3a5c;">
+
+<div style="text-align:center; padding:40px 0;">
+  <h2 style="border:none; color:#1a3a5c;">End of Document</h2>
+  <p style="color:#666; font-size:14px;">
+    Ungouge.ai Master Plan — Version 2.0<br>
+    Prepared February 2026<br>
+    Confidential
+  </p>
+  <p style="color:#888; font-size:13px; margin-top:30px;">
+    <em>"We make money when you pay us. That's it."</em>
+  </p>
+</div>
+
+</body>
+</html>

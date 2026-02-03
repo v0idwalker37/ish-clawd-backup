@@ -1,0 +1,331 @@
+{
+  "metadata": {
+    "description": "BLS (Bureau of Labor Statistics) hourly wage rates for construction trades",
+    "source": "Based on BLS Occupational Employment Statistics (OES) Survey 2024-2025",
+    "last_updated": "2024-12-15",
+    "notes": "All rates are fully-loaded (including benefits, taxes, insurance). Regional multipliers adjust for cost of living and market conditions."
+  },
+  "national_rates": {
+    "47-2031": {
+      "occupation": "Carpenters",
+      "hourly_median": 28.50,
+      "hourly_25th_percentile": 22.40,
+      "hourly_75th_percentile": 37.20,
+      "notes": "Rough and finish carpentry, framing, trim work"
+    },
+    "47-2111": {
+      "occupation": "Electricians",
+      "hourly_median": 32.40,
+      "hourly_25th_percentile": 24.80,
+      "hourly_75th_percentile": 42.50,
+      "notes": "Licensed electricians, residential and commercial"
+    },
+    "47-2152": {
+      "occupation": "Plumbers, Pipefitters, and Steamfitters",
+      "hourly_median": 31.20,
+      "hourly_25th_percentile": 23.50,
+      "hourly_75th_percentile": 41.80,
+      "notes": "Licensed plumbers, includes apprentices in lower percentile"
+    },
+    "49-9021": {
+      "occupation": "Heating, Air Conditioning, and Refrigeration Mechanics and Installers",
+      "hourly_median": 29.80,
+      "hourly_25th_percentile": 22.10,
+      "hourly_75th_percentile": 39.40,
+      "notes": "HVAC technicians, EPA certified"
+    },
+    "47-2141": {
+      "occupation": "Painters, Construction and Maintenance",
+      "hourly_median": 23.60,
+      "hourly_25th_percentile": 18.40,
+      "hourly_75th_percentile": 30.50,
+      "notes": "Interior and exterior painting, surface preparation"
+    },
+    "47-2181": {
+      "occupation": "Roofers",
+      "hourly_median": 25.90,
+      "hourly_25th_percentile": 19.80,
+      "hourly_75th_percentile": 34.20,
+      "notes": "All types of roofing installation and repair"
+    },
+    "47-2042": {
+      "occupation": "Floor Layers, Except Carpet, Wood, and Hard Tiles",
+      "hourly_median": 24.70,
+      "hourly_25th_percentile": 19.20,
+      "hourly_75th_percentile": 32.40,
+      "notes": "Vinyl, laminate, and other resilient flooring"
+    },
+    "47-2044": {
+      "occupation": "Tile and Stone Setters",
+      "hourly_median": 26.30,
+      "hourly_25th_percentile": 20.10,
+      "hourly_75th_percentile": 35.60,
+      "notes": "Ceramic, porcelain, stone tile installation"
+    },
+    "47-2081": {
+      "occupation": "Drywall and Ceiling Tile Installers",
+      "hourly_median": 27.10,
+      "hourly_25th_percentile": 20.60,
+      "hourly_75th_percentile": 36.50,
+      "notes": "Hanging and finishing drywall"
+    },
+    "47-2022": {
+      "occupation": "Stonemasons",
+      "hourly_median": 28.90,
+      "hourly_25th_percentile": 21.80,
+      "hourly_75th_percentile": 38.70,
+      "notes": "Brick, block, and stone work"
+    },
+    "47-1011": {
+      "occupation": "First-Line Supervisors of Construction Trades",
+      "hourly_median": 38.50,
+      "hourly_25th_percentile": 29.20,
+      "hourly_75th_percentile": 51.40,
+      "notes": "Foremen, project supervisors, lead carpenters"
+    },
+    "47-2061": {
+      "occupation": "Construction Laborers",
+      "hourly_median": 21.50,
+      "hourly_25th_percentile": 16.80,
+      "hourly_75th_percentile": 28.90,
+      "notes": "General labor, site cleanup, material handling"
+    },
+    "47-2051": {
+      "occupation": "Cement Masons and Concrete Finishers",
+      "hourly_median": 26.80,
+      "hourly_25th_percentile": 20.40,
+      "hourly_75th_percentile": 36.20,
+      "notes": "Concrete flatwork, foundations, finishing"
+    },
+    "47-2131": {
+      "occupation": "Insulation Workers",
+      "hourly_median": 24.40,
+      "hourly_25th_percentile": 18.90,
+      "hourly_75th_percentile": 32.80,
+      "notes": "Mechanical and floor/ceiling/wall insulation"
+    },
+    "47-2211": {
+      "occupation": "Sheet Metal Workers",
+      "hourly_median": 29.60,
+      "hourly_25th_percentile": 22.40,
+      "hourly_75th_percentile": 39.80,
+      "notes": "HVAC ductwork, flashing, metal fabrication"
+    },
+    "49-9098": {
+      "occupation": "Helpers--Installation, Maintenance, and Repair Workers",
+      "hourly_median": 18.20,
+      "hourly_25th_percentile": 14.50,
+      "hourly_75th_percentile": 23.60,
+      "notes": "Apprentices and helpers across trades"
+    },
+    "47-2043": {
+      "occupation": "Floor Sanders and Finishers",
+      "hourly_median": 25.40,
+      "hourly_25th_percentile": 19.50,
+      "hourly_75th_percentile": 33.80,
+      "notes": "Hardwood floor installation and refinishing"
+    },
+    "47-2151": {
+      "occupation": "Pipelayers",
+      "hourly_median": 24.90,
+      "hourly_25th_percentile": 19.20,
+      "hourly_75th_percentile": 33.40,
+      "notes": "Sewer, water, gas line installation"
+    },
+    "47-4011": {
+      "occupation": "Construction and Building Inspectors",
+      "hourly_median": 34.20,
+      "hourly_25th_percentile": 26.10,
+      "hourly_75th_percentile": 44.80,
+      "notes": "Municipal and private building inspectors"
+    },
+    "47-2132": {
+      "occupation": "Insulation Workers, Mechanical",
+      "hourly_median": 25.60,
+      "hourly_25th_percentile": 19.80,
+      "hourly_75th_percentile": 34.50,
+      "notes": "HVAC and pipe insulation specialists"
+    }
+  },
+  "regional_adjustments": {
+    "northeast": {
+      "region_name": "Northeast (New England & Mid-Atlantic)",
+      "states": ["ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA"],
+      "multiplier": 1.25,
+      "notes": "High cost of living, strong union presence, strict codes",
+      "major_metros": {
+        "new_york_city": 1.45,
+        "boston": 1.40,
+        "philadelphia": 1.22,
+        "pittsburgh": 1.10
+      }
+    },
+    "mid_atlantic": {
+      "region_name": "Mid-Atlantic South",
+      "states": ["MD", "DE", "DC", "VA", "WV"],
+      "multiplier": 1.12,
+      "notes": "Moderate costs, DC area drives up average",
+      "major_metros": {
+        "washington_dc": 1.35,
+        "baltimore": 1.15,
+        "richmond": 1.08
+      }
+    },
+    "southeast": {
+      "region_name": "Southeast",
+      "states": ["NC", "SC", "GA", "FL", "AL", "MS", "TN", "KY", "LA", "AR"],
+      "multiplier": 0.88,
+      "notes": "Lower labor costs, less union presence, right-to-work states",
+      "major_metros": {
+        "miami": 1.05,
+        "atlanta": 0.95,
+        "nashville": 0.98,
+        "charlotte": 0.92,
+        "orlando": 0.90
+      }
+    },
+    "midwest": {
+      "region_name": "Midwest",
+      "states": ["OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO", "ND", "SD", "NE", "KS"],
+      "multiplier": 0.95,
+      "notes": "Moderate costs, union presence in major cities",
+      "major_metros": {
+        "chicago": 1.20,
+        "minneapolis": 1.10,
+        "detroit": 1.05,
+        "st_louis": 0.92,
+        "indianapolis": 0.90
+      }
+    },
+    "south_central": {
+      "region_name": "South Central",
+      "states": ["OK", "TX"],
+      "multiplier": 0.92,
+      "notes": "Lower costs except boom metros",
+      "major_metros": {
+        "austin": 1.15,
+        "dallas": 1.05,
+        "houston": 1.00,
+        "san_antonio": 0.90
+      }
+    },
+    "mountain": {
+      "region_name": "Mountain West",
+      "states": ["MT", "ID", "WY", "NV", "UT", "CO", "AZ", "NM"],
+      "multiplier": 1.05,
+      "notes": "Variable by location, resort and tech boom areas much higher",
+      "major_metros": {
+        "denver": 1.25,
+        "las_vegas": 1.10,
+        "phoenix": 1.05,
+        "salt_lake_city": 1.08,
+        "boise": 1.12,
+        "albuquerque": 0.95
+      }
+    },
+    "pacific_northwest": {
+      "region_name": "Pacific Northwest",
+      "states": ["WA", "OR"],
+      "multiplier": 1.28,
+      "notes": "High costs, union presence, tech boom impact",
+      "major_metros": {
+        "seattle": 1.45,
+        "portland": 1.25,
+        "spokane": 1.05
+      }
+    },
+    "california": {
+      "region_name": "California",
+      "states": ["CA"],
+      "multiplier": 1.38,
+      "notes": "Highest in nation, strict regulations, strong unions",
+      "major_metros": {
+        "san_francisco_bay_area": 1.65,
+        "los_angeles": 1.45,
+        "san_diego": 1.40,
+        "sacramento": 1.25,
+        "fresno": 1.15
+      }
+    },
+    "alaska_hawaii": {
+      "region_name": "Alaska & Hawaii",
+      "states": ["AK", "HI"],
+      "multiplier": 1.50,
+      "notes": "Extreme costs due to remoteness, shipping, limited competition",
+      "major_metros": {
+        "honolulu": 1.60,
+        "anchorage": 1.45
+      }
+    }
+  },
+  "trade_aliases": {
+    "carpenter": "47-2031",
+    "electrician": "47-2111",
+    "plumber": "47-2152",
+    "hvac": "49-9021",
+    "hvac_tech": "49-9021",
+    "painter": "47-2141",
+    "roofer": "47-2181",
+    "flooring": "47-2042",
+    "tile_setter": "47-2044",
+    "drywall": "47-2081",
+    "mason": "47-2022",
+    "general_contractor": "47-1011",
+    "gc": "47-1011",
+    "supervisor": "47-1011",
+    "laborer": "47-2061",
+    "concrete": "47-2051",
+    "insulation": "47-2131",
+    "sheet_metal": "47-2211",
+    "helper": "49-9098",
+    "apprentice": "49-9098",
+    "floor_sander": "47-2043",
+    "hardwood": "47-2043",
+    "pipelayer": "47-2151",
+    "sewer": "47-2151",
+    "inspector": "47-4011"
+  },
+  "contractor_markup_standards": {
+    "overhead_and_profit": {
+      "minimum": 1.20,
+      "typical": 1.35,
+      "high_end": 1.50,
+      "notes": "Industry standard markup over direct costs (labor + materials)"
+    },
+    "overhead_breakdown": {
+      "insurance": "General liability, workers comp, vehicle insurance: 8-12%",
+      "tools_and_equipment": "Purchase, maintenance, depreciation: 3-5%",
+      "office_and_admin": "Office, accounting, phone, software: 5-8%",
+      "vehicle_costs": "Trucks, fuel, maintenance: 4-6%",
+      "licenses_and_permits": "Business licenses, trade licenses: 1-2%",
+      "marketing": "Advertising, website, lead generation: 3-5%",
+      "contingency": "Warranty work, callbacks, unforeseen issues: 3-5%"
+    },
+    "profit_target": {
+      "small_jobs_under_5k": "15-25% (higher risk, administrative burden)",
+      "medium_jobs_5k_to_25k": "10-15% (standard residential work)",
+      "large_jobs_over_25k": "8-12% (lower risk per dollar, economies of scale)"
+    }
+  },
+  "overtime_and_premium_rates": {
+    "overtime": {
+      "multiplier": 1.5,
+      "triggers": "Over 40 hours/week, over 8 hours/day in some states"
+    },
+    "weekend_work": {
+      "saturday_multiplier": 1.25,
+      "sunday_multiplier": 1.5
+    },
+    "emergency_after_hours": {
+      "evening_6pm_to_10pm": 1.5,
+      "late_night_10pm_to_6am": 2.0,
+      "holiday": 2.5
+    },
+    "notes": "Emergency premiums only justified for true emergencies (burst pipe, power outage, active leak). Many contractors abuse 'emergency' rates."
+  },
+  "prevailing_wage_notes": {
+    "davis_bacon_act": "Federal construction projects require prevailing wages (typically union scale), 30-50% higher than market rates",
+    "state_prevailing_wage": "Some states (NY, CA, IL, etc.) require prevailing wages on public projects",
+    "impact": "Government work rates do not reflect private residential market"
+  }
+}

@@ -1,0 +1,149 @@
+UNGOUGE.AI PROJECT SUMMARY — Full Context for Continuation
+What We're Building
+Ungouge.ai is a paid consumer utility ($49/report) that audits contractor quotes for homeowners. Users upload a quote (PDF/image), AI extracts line items via Gemini Vision, compares them against fair-market benchmarks adjusted for their location, and generates a report flagging overcharges.
+Key differentiator: Anti-lead-gen positioning. We never sell user data. No contractor referrals. Pure consumer utility. "We make $49 when you pay us. That's it."
+
+Final Decisions Made
+DecisionOutcomeLaunch scopeNational from day one (not Vermont-first)Pricing data (MVP)Top 50 manual benchmarks + regional multipliers ($0 cost)Craftsman license ($4k/yr)Post-revenue upgrade — trigger at ~50-75 reports/monthTech stackBubble ($32/mo) + Gemini 1.5 Pro + Stripe + Postmark + CloudflareWebsite buildClaude generates code, user deploys to Cloudflare PagesZip code pages41,000+ pages auto-generated from ONE Bubble template + data importTrust messagingTwo-layer approach — short copy on main page (near upload), full "/promise" pageTimeline22 weeks total, ~253 hours, ~$150-200/month burn
+
+Tech Stack
+
+Marketing Site: Claude-generated HTML/CSS/JS → Cloudflare Pages (free)
+App Platform: Bubble Starter ($32/mo)
+AI/Vision: Gemini 1.5 Pro (pay-as-you-go, ~$50-150/mo)
+Payments: Stripe (2.9% + $0.30/txn)
+Email: Postmark ($15/mo)
+DNS/CDN: Cloudflare (free)
+Analytics: PostHog (free)
+Errors: Sentry (free)
+Benchmark Data (MVP): Manual Top 50 items from Renovation Estimator book + BLS regional multipliers
+Benchmark Data (Scale): Craftsman National Estimator license (~$333/mo post-revenue)
+
+
+Hybrid Pricing Strategy (Key Innovation)
+Instead of requiring $4k/year Craftsman license at launch:
+
+Extract Top 50 most common items (roofing, HVAC, painting, etc.) from estimator book — national averages
+Apply regional multipliers by zip code (NYC = 1.35x, Rural South = 0.80x, etc.) using free BLS data
+Items not in Top 50 get flagged as "unverified" — honest about limitations
+Upgrade to Craftsman when revenue supports it (~50+ reports/month)
+
+Formula: Adjusted Fair Price = National Benchmark × Regional Multiplier
+
+Phased Roadmap (22 Weeks)
+Phase 0-7 (Weeks 1-14): Core MVP
+
+Foundation, data layer, payment flow, upload/OCR, comparison engine, report generation, user accounts, polish, soft launch
+
+Phase 8 (Weeks 15-16): Marketing Website
+
+Claude generates production-ready code
+User deploys to Cloudflare Pages
+Includes /promise page with trust content
+
+Phase 9 (Weeks 17-19): Zip Code Pages (National)
+
+ONE dynamic Bubble template
+Import 41,000+ zip codes (Claude provides dataset)
+Import regional multipliers (Claude provides)
+Pages auto-generate via URL routing (/ca/90210, /ny/10001, etc.)
+
+Phase 10 (Weeks 20-22): Weather Event Response System
+
+Google Alerts for severe weather
+Admin panel to activate events
+Alert banners on affected zip pages
+Pre-built ad campaigns ready to launch in 30 minutes
+
+Phase 11 (Post-revenue): Craftsman Upgrade
+
+Trigger: 50+ reports/month or >40% items "unverified"
+Full item coverage, native zip-code pricing
+
+
+Trust Messaging (Approved Copy)
+Main page (near upload box) — Version 2:
+BEFORE YOU UPLOAD
+
+You might be wondering: "What happens to my data?"
+
+Here's our answer:
+- Your quote stays between you and us. Period.
+- No contractors will call you. We don't sell leads.
+- We make $49 when you pay us. That's our entire business model.
+
+We're not like the "free quote" sites. We work for you.
+
+[See our full promise →]
+Full /promise page: ~800 words covering:
+
+Why we built this (tired of lead-gen scams)
+What we actually do
+What we will NEVER do (4 specific commitments)
+How we make money (transparent)
+What if we screw up (accountability)
+Why we're telling you all this
+
+Note: Lawyer should review /promise page before publishing (~$150-300)
+
+Data Schema (Bubble)
+Core types: User, Quote, ExtractedLineItem, Benchmark, Comparison, Report, Payment
+Localization types: ZipCode, Region, WeatherEvent
+Option sets: TradeCategory (Roofing, Siding, Painting, etc.), FlagType (green, yellow, red, unverified, lump_sum), EventType (hail_storm, flooding, etc.), Severity (minor, moderate, severe)
+Key field: Regional multiplier applied during comparison: adjusted_benchmark = national_mid × multiplier
+
+Who Builds What
+ComponentBuilderNotesMarketing site codeClaudeProduction-ready HTML/CSS/JSAll copy/contentClaudeUser approvesBubble appUser (guided by Claude)No-code, but manual clickingZip code dataClaude providesUser importsRegional multipliersClaude providesUser importsAd copyClaudeReady to pasteLegal pagesClaude draftsLawyer reviews
+
+Moltbot Potential (Recent Discussion)
+User asked about using Moltbot (formerly Clawdbot, renamed Jan 27 2026) to automate the "clicking in Bubble" work.
+Assessment: ~60-70% of user's manual work could theoretically be pushed to Moltbot, especially:
+
+Bubble UI building (40+ hours) — its sweet spot
+Data imports
+Testing flows
+Configuration clicking
+
+Caveats:
+
+500+ open security issues on GitHub
+No guardrails — must run in sandboxed environment
+Learning curve to teach it workflows
+Not recommended on main machine
+
+
+Documents Created
+
+Ungouge-Master-Roadmap-v3-Final.docx — Complete 60-page roadmap with:
+
+All phases (0-11)
+Data schemas
+AI prompts
+Workflows
+Cost projections
+Risk register
+Launch checklists
+Full trust messaging copy
+Improved table spacing for readability
+
+
+
+
+Where We Left Off
+
+Master roadmap v3 delivered and approved
+Trust copy (Version 2 + full /promise page) written and approved
+Ready to begin Phase 0 (account setup) or generate marketing website code
+User exploring whether Moltbot could help automate Bubble building tasks
+
+
+User Context
+
+Lives off-grid (power/tech considerations)
+Has family
+Owns ungouge.ai domain already
+Budget ceiling: $500/month
+Prefers national launch over regional pilot
+Values honest, authentic communication
+Concerned about AI's societal impact
+Working on this project solo

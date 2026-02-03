@@ -1,0 +1,508 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useForm, useFieldArray } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import axios from 'axios';
+import { Plus, Trash2, ArrowRight, ArrowLeft, FileText, AlertCircle } from 'lucide-react';
+import FileUpload, { ParsedQuoteData } from './FileUpload';
+
+const lineItemSchema = z.object({
+  item_name: z.string().min(1, 'Item name is required'),
+  description: z.string().optional(),
+  quoted_price: z.number().min(0, 'Price must be positive'),
+  quantity: z.number().min(1, 'Quantity must be at least 1').default(1),
+  unit: z.string().default('item'),
+});
+
+const quoteFormSchema = z.object({
+  project_type: z.string().min(1, 'Project type is required'),
+  location: z.string().min(1, 'Location is required'),
+  contractor_name: z.string().optional(),
+  line_items: z.array(lineItemSchema).min(1, 'Add at least one line item'),
+});
+
+type QuoteFormData = z.infer<typeof quoteFormSchema>;
+
+const projectTypes = [
+  'Kitchen Remodel',
+  'Bathroom Remodel',
+  'Roof Replacement',
+  'HVAC Installation',
+  'Plumbing Work',
+  'Electrical Work',
+  'Flooring Installation',
+  'Painting (Interior)',
+  'Painting (Exterior)',
+  'Deck Construction',
+  'Basement Finishing',
+  'Other',
+];
+
+export default function QuoteForm() {
+  const [step, setStep] = useState(0); // Start at 0 (upload step)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+    watch,
+    reset,
+    setValue,
+  } = useForm<QuoteFormData>({
+    resolver: zodResolver(quoteFormSchema),
+    defaultValues: {
+      line_items: [{ item_name: '', description: '', quoted_price: 0, quantity: 1, unit: 'item' }],
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'line_items',
+  });
+
+  const handleFileProcessed = (data: ParsedQuoteData) => {
+    // Pre-fill form with parsed data
+    if (data.project_type) {
+      setValue('project_type', data.project_type);
+    }
+    if (data.location) {
+      setValue('location', data.location);
+    }
+    if (data.contractor_name) {
+      setValue('contractor_name', data.contractor_name);
+    }
+    if (data.line_items && data.line_items.length > 0) {
+      setValue('line_items', data.line_items);
+    }
+    
+    // Move to next step
+    setStep(1);
+    setUploadError(null);
+  };
+
+  const handleUploadError = (error: string) => {
+    setUploadError(error);
+  };
+
+  const skipUpload = () => {
+    setStep(1);
+  };
+
+  const onSubmit = async (data: QuoteFormData) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      
+      // In production, this would redirect to Stripe payment first
+      // For now, we'll directly submit to the API
+      const response = await axios.post(`${apiUrl}/api/quotes`, data);
+      
+      // Redirect to report page
+      router.push(`/report/${response.data.id}`);
+    } catch (err: any) {
+      console.error('Error submitting quote:', err);
+      setError(err.response?.data?.detail || 'Failed to analyze quote. Please try again.');
+      setLoading(false);
+    }
+  };
+
+  const projectType = watch('project_type');
+  const lineItems = watch('line_items');
+  const totalQuoted = lineItems.reduce((sum, item) => sum + (item.quoted_price || 0), 0);
+
+  return (
+    <div className="card">
+      {/* Progress Indicator */}
+      <div className="mb-8">
+        <div className="flex justify-between items-center mb-2">
+          <span className={`text-sm font-medium ${step >= 0 ? 'text-primary-600' : 'text-gray-400'}`}>
+            0. Upload Quote
+          </span>
+          <span className={`text-sm font-medium ${step >= 1 ? 'text-primary-600' : 'text-gray-400'}`}>
+            1. Project Info
+          </span>
+          <span className={`text-sm font-medium ${step >= 2 ? 'text-primary-600' : 'text-gray-400'}`}>
+            2. Quote Details
+          </span>
+          <span className={`text-sm font-medium ${step >= 3 ? 'text-primary-600' : 'text-gray-400'}`}>
+            3. Review & Pay
+          </span>
+        </div>
+        <div className="h-2 bg-gray-200 rounded-full">
+          <div
+            className="h-2 bg-primary-600 rounded-full transition-all duration-300"
+            style={{ width: `${(step / 4) * 100}%` }}
+          />
+        </div>
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* Step 0: Upload Quote */}
+        {step === 0 && (
+          <div className="space-y-6">
+            <div className="text-center mb-8">
+              <FileText className="w-16 h-16 mx-auto mb-4 text-blue-600" />
+              <h2 className="text-2xl font-bold mb-2">Upload Your Quote</h2>
+              <p className="text-gray-600">
+                Skip the manual entry! Upload your contractor quote and we'll extract all the details automatically.
+              </p>
+            </div>
+
+            {uploadError && (
+              <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-4 mb-6 animate-shake">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-red-900 mb-1">Upload Failed</h4>
+                    <p className="text-red-700 text-sm">{uploadError}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <FileUpload 
+              onFileProcessed={handleFileProcessed}
+              onError={handleUploadError}
+            />
+
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <div className="text-center">
+                <p className="text-gray-600 mb-4">
+                  Don't have a digital quote? No problem!
+                </p>
+                <button
+                  type="button"
+                  onClick={skipUpload}
+                  className="btn-secondary hover:shadow-lg active:scale-95 transition-all"
+                >
+                  Enter Details Manually
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Step 1: Project Information */}
+        {step === 1 && (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold mb-6">Project Information</h2>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Project Type *
+              </label>
+              <select
+                {...register('project_type')}
+                className={`input-field ${errors.project_type ? 'border-red-500 ring-2 ring-red-200' : ''}`}
+              >
+                <option value="">Select project type...</option>
+                {projectTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+              {errors.project_type && (
+                <div className="flex items-center gap-2 mt-2 text-red-600">
+                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                  <p className="text-sm">{errors.project_type.message}</p>
+                </div>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Location (City, State) *
+              </label>
+              <input
+                type="text"
+                {...register('location')}
+                placeholder="e.g., Denver, CO"
+                className={`input-field ${errors.location ? 'border-red-500 ring-2 ring-red-200' : ''}`}
+              />
+              {errors.location && (
+                <div className="flex items-center gap-2 mt-2 text-red-600">
+                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                  <p className="text-sm">{errors.location.message}</p>
+                </div>
+              )}
+              <p className="text-gray-500 text-sm mt-1">
+                We use this to match regional labor rates and material costs
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Contractor Name (Optional)
+              </label>
+              <input
+                type="text"
+                {...register('contractor_name')}
+                placeholder="ABC Contracting"
+                className="input-field"
+              />
+              <p className="text-gray-500 text-sm mt-1">
+                For your records only — never shared
+              </p>
+            </div>
+
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={() => setStep(2)}
+                disabled={!projectType || !watch('location')}
+                className="btn-primary flex items-center disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:shadow-lg active:scale-95"
+              >
+                Next: Quote Details
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 2: Line Items */}
+        {step === 2 && (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold mb-6">Quote Line Items</h2>
+            <p className="text-gray-600 mb-4">
+              Break down your contractor's quote into individual line items for detailed analysis.
+            </p>
+
+            {fields.map((field, index) => (
+              <div key={field.id} className="p-4 border border-gray-200 rounded-lg">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="font-semibold text-gray-700">Item {index + 1}</h3>
+                  {fields.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => remove(index)}
+                      className="p-2 rounded-lg text-red-500 hover:text-red-700 hover:bg-red-50 active:scale-95 transition-all"
+                      aria-label="Remove line item"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Item Name *
+                    </label>
+                    <input
+                      type="text"
+                      {...register(`line_items.${index}.item_name`)}
+                      placeholder="e.g., Cabinet Installation"
+                      className={`input-field ${errors.line_items?.[index]?.item_name ? 'border-red-500 ring-2 ring-red-200' : ''}`}
+                    />
+                    {errors.line_items?.[index]?.item_name && (
+                      <div className="flex items-center gap-2 mt-2 text-red-600">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                        <p className="text-sm">
+                          {errors.line_items[index]?.item_name?.message}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Description
+                    </label>
+                    <input
+                      type="text"
+                      {...register(`line_items.${index}.description`)}
+                      placeholder="Optional details..."
+                      className="input-field"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Quoted Price *
+                    </label>
+                    <div className="relative">
+                      <span className="absolute left-3 top-2 text-gray-500">$</span>
+                      <input
+                        type="number"
+                        step="0.01"
+                        {...register(`line_items.${index}.quoted_price`, {
+                          valueAsNumber: true,
+                        })}
+                        placeholder="0.00"
+                        className={`input-field pl-7 ${errors.line_items?.[index]?.quoted_price ? 'border-red-500 ring-2 ring-red-200' : ''}`}
+                      />
+                    </div>
+                    {errors.line_items?.[index]?.quoted_price && (
+                      <div className="flex items-center gap-2 mt-2 text-red-600">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                        <p className="text-sm">
+                          {errors.line_items[index]?.quoted_price?.message}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Quantity
+                    </label>
+                    <input
+                      type="number"
+                      {...register(`line_items.${index}.quantity`, {
+                        valueAsNumber: true,
+                      })}
+                      placeholder="1"
+                      className="input-field"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              onClick={() => append({ item_name: '', description: '', quoted_price: 0, quantity: 1, unit: 'item' })}
+              className="btn-secondary flex items-center w-full justify-center hover:shadow-lg active:scale-[0.98] transition-all"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Add Another Line Item
+            </button>
+
+            {totalQuoted > 0 && (
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="flex justify-between items-center">
+                  <span className="font-semibold">Total Quoted:</span>
+                  <span className="text-2xl font-bold text-primary-600">
+                    ${totalQuoted.toLocaleString()}
+                  </span>
+                </div>
+              </div>
+            )}
+
+            <div className="flex justify-between gap-4">
+              <button
+                type="button"
+                onClick={() => setStep(1)}
+                className="btn-secondary flex items-center hover:shadow-lg active:scale-95 transition-all"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back
+              </button>
+              <button
+                type="button"
+                onClick={() => setStep(3)}
+                disabled={fields.length === 0}
+                className="btn-primary flex items-center disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg active:scale-95 transition-all"
+              >
+                Review & Pay
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 3: Review & Payment */}
+        {step === 3 && (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold mb-6">Review & Pay</h2>
+
+            <div className="bg-gray-50 p-6 rounded-lg space-y-4">
+              <div>
+                <p className="text-sm text-gray-600">Project Type</p>
+                <p className="font-semibold">{projectType}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">Location</p>
+                <p className="font-semibold">{watch('location')}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">Line Items</p>
+                <p className="font-semibold">{fields.length} items</p>
+              </div>
+              <div className="pt-4 border-t border-gray-300">
+                <p className="text-sm text-gray-600">Total Quoted</p>
+                <p className="text-3xl font-bold text-primary-600">
+                  ${totalQuoted.toLocaleString()}
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-primary-50 border border-primary-200 p-6 rounded-lg">
+              <div className="flex justify-between items-center mb-4">
+                <div>
+                  <h3 className="text-xl font-bold">Analysis Report</h3>
+                  <p className="text-sm text-gray-600">One-time payment</p>
+                </div>
+                <div className="text-3xl font-bold text-primary-600">$19.99</div>
+              </div>
+              <ul className="text-sm space-y-2 text-gray-700">
+                <li>✓ Complete line-item analysis</li>
+                <li>✓ BLS labor rate verification</li>
+                <li>✓ Regional material cost comparison</li>
+                <li>✓ Instant PDF report</li>
+              </ul>
+            </div>
+
+            {error && (
+              <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-4 animate-shake">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-red-900 mb-1">Something went wrong</h4>
+                    <p className="text-red-700 text-sm">{error}</p>
+                    <p className="text-red-600 text-xs mt-2">Please try again or contact support if the problem persists.</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="flex flex-col sm:flex-row justify-between gap-4">
+              <button
+                type="button"
+                onClick={() => setStep(2)}
+                disabled={loading}
+                className="btn-secondary flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg active:scale-95 transition-all"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back
+              </button>
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn-primary flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed hover:shadow-xl active:scale-95 transition-all"
+              >
+                {loading ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    Pay $19.99 & Get Report
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </>
+                )}
+              </button>
+            </div>
+
+            <p className="text-xs text-gray-500 text-center">
+              By submitting, you agree to our Terms of Service and Privacy Policy.
+              Payment processing is secured by Stripe.
+            </p>
+          </div>
+        )}
+      </form>
+    </div>
+  );
+}

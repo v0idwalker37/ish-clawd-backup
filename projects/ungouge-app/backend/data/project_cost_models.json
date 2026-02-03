@@ -1,0 +1,3675 @@
+{
+  "metadata": {
+    "version": "1.1",
+    "last_updated": "2024-12-15",
+    "base_region": "national_average",
+    "currency": "USD",
+    "notes": "All prices are national averages for 2024-2025. Labor costs reflect crew-level pricing with loaded rates (workers comp, insurance, overhead). Apply regional multipliers for accuracy."
+  },
+  "regional_multipliers": {
+    "northeast": {
+      "states": [
+        "ME",
+        "NH",
+        "VT",
+        "MA",
+        "RI",
+        "CT",
+        "NY",
+        "NJ",
+        "PA"
+      ],
+      "zip_prefixes": [
+        "0",
+        "1"
+      ],
+      "multiplier": 1.2,
+      "notes": "High labor costs, union presence, strict building codes"
+    },
+    "mid_atlantic": {
+      "states": [
+        "MD",
+        "DE",
+        "DC",
+        "VA",
+        "WV"
+      ],
+      "zip_prefixes": [
+        "2"
+      ],
+      "multiplier": 1.1,
+      "notes": "Moderate costs, mixed union/non-union"
+    },
+    "southeast": {
+      "states": [
+        "NC",
+        "SC",
+        "GA",
+        "FL",
+        "AL",
+        "MS",
+        "TN",
+        "KY"
+      ],
+      "zip_prefixes": [
+        "3"
+      ],
+      "multiplier": 0.9,
+      "notes": "Lower labor costs, less union presence"
+    },
+    "midwest": {
+      "states": [
+        "OH",
+        "IN",
+        "IL",
+        "MI",
+        "WI",
+        "MN",
+        "IA",
+        "MO"
+      ],
+      "zip_prefixes": [
+        "4",
+        "5",
+        "6"
+      ],
+      "multiplier": 0.95,
+      "notes": "Moderate costs, variable by metro area"
+    },
+    "south_central": {
+      "states": [
+        "AR",
+        "LA",
+        "OK",
+        "TX"
+      ],
+      "zip_prefixes": [
+        "7"
+      ],
+      "multiplier": 0.92,
+      "notes": "Lower costs except major metros like Austin, Dallas"
+    },
+    "mountain": {
+      "states": [
+        "MT",
+        "ID",
+        "WY",
+        "NV",
+        "UT",
+        "CO",
+        "AZ",
+        "NM"
+      ],
+      "zip_prefixes": [
+        "8"
+      ],
+      "multiplier": 1.05,
+      "notes": "Variable, higher in resort/boom towns"
+    },
+    "pacific": {
+      "states": [
+        "WA",
+        "OR",
+        "CA",
+        "AK",
+        "HI"
+      ],
+      "zip_prefixes": [
+        "9"
+      ],
+      "multiplier": 1.3,
+      "notes": "High costs, strict regulations, union presence, especially CA metros"
+    }
+  },
+  "project_types": {
+    "roof_replacement": {
+      "unit": "square",
+      "unit_description": "100 square feet",
+      "typical_project_sizes": {
+        "small": {
+          "squares": 15,
+          "description": "1,500 sq ft - small ranch or cape"
+        },
+        "medium": {
+          "squares": 20,
+          "description": "2,000 sq ft - average single family"
+        },
+        "large": {
+          "squares": 30,
+          "description": "3,000 sq ft - large colonial or two-story"
+        }
+      },
+      "materials": {
+        "asphalt_shingles_architectural": {
+          "cost_per_square": 120,
+          "range_low": 100,
+          "range_high": 180,
+          "notes": "30-year architectural shingles, most common"
+        },
+        "asphalt_shingles_3tab": {
+          "cost_per_square": 85,
+          "range_low": 70,
+          "range_high": 110,
+          "notes": "Basic 3-tab, lower quality"
+        },
+        "underlayment": {
+          "cost_per_square": 15,
+          "range_low": 10,
+          "range_high": 25,
+          "notes": "Synthetic or felt underlayment"
+        },
+        "ice_and_water_shield": {
+          "cost_per_square": 35,
+          "range_low": 25,
+          "range_high": 50,
+          "notes": "For eaves and valleys, typically 3-5 squares per roof"
+        },
+        "ridge_caps": {
+          "cost_per_linear_foot": 4,
+          "range_low": 3,
+          "range_high": 6,
+          "notes": "Typical roof needs 30-50 linear feet"
+        },
+        "flashing": {
+          "cost_per_piece": 25,
+          "range_low": 15,
+          "range_high": 45,
+          "notes": "Pipe boots, step flashing, valleys"
+        },
+        "drip_edge": {
+          "cost_per_linear_foot": 2.5,
+          "range_low": 2,
+          "range_high": 4,
+          "notes": "Perimeter protection"
+        },
+        "nails_and_misc": {
+          "cost_per_square": 10,
+          "range_low": 8,
+          "range_high": 15
+        }
+      },
+      "labor": {
+        "crew_composition": {
+          "crew_size": "3-5 workers",
+          "typical_crew": "1 foreman + 2-4 roofers",
+          "notes": "Crew pricing reflects loaded labor rates with workers comp, insurance, and overhead"
+        },
+        "tear_off_and_prep": {
+          "crew_hours_per_square": 0.4,
+          "loaded_crew_rate_per_hour": 180,
+          "cost_per_square": 72,
+          "range_low": 50,
+          "range_high": 100,
+          "notes": "3-4 worker crew, removal and disposal of old shingles, deck inspection"
+        },
+        "installation": {
+          "crew_hours_per_square": 0.8,
+          "loaded_crew_rate_per_hour": 200,
+          "cost_per_square": 160,
+          "range_low": 120,
+          "range_high": 220,
+          "notes": "4-5 worker crew, includes underlayment, shingles, flashing, ridge caps"
+        },
+        "cleanup_and_disposal": {
+          "cost_per_square": 20,
+          "range_low": 15,
+          "range_high": 30,
+          "notes": "Dumpster, magnet sweep, debris removal"
+        },
+        "total_labor_per_square": {
+          "low": 185,
+          "mid": 250,
+          "high": 350
+        }
+      },
+      "typical_total_per_square": {
+        "low": 350,
+        "mid": 450,
+        "high": 650,
+        "notes": "All-in cost including materials, labor, disposal"
+      },
+      "typical_total_project_cost": {
+        "small_15_squares": {
+          "materials": 2400,
+          "labor": 3750,
+          "disposal": 300,
+          "total_low": 5250,
+          "total_mid": 6750,
+          "total_high": 9750,
+          "description": "1,500 sq ft roof, architectural shingles"
+        },
+        "medium_20_squares": {
+          "materials": 3200,
+          "labor": 5000,
+          "disposal": 400,
+          "total_low": 7000,
+          "total_mid": 9000,
+          "total_high": 13000,
+          "description": "2,000 sq ft roof, architectural shingles"
+        },
+        "large_30_squares": {
+          "materials": 4800,
+          "labor": 7500,
+          "disposal": 600,
+          "total_low": 10500,
+          "total_mid": 13500,
+          "total_high": 19500,
+          "description": "3,000 sq ft roof, architectural shingles"
+        }
+      },
+      "common_upsells": [
+        "Upgrading to premium shingles (50-year vs 30-year)",
+        "Additional ice & water shield beyond code minimum",
+        "Replacing perfectly good plywood deck boards",
+        "Chimney flashing that doesn't need replacement",
+        "Gutter replacement when repair would suffice"
+      ],
+      "red_flags": [
+        "Tear-off charged at >$100/square (crew pricing should be $50-100)",
+        "Shingle cost >$200/square for standard architectural",
+        "Total labor >$350/square for standard roof",
+        "'Emergency' premium charges without actual emergency",
+        "Deck replacement without inspection showing need",
+        "Total cost >$650/square for basic architectural shingles"
+      ]
+    },
+    "kitchen_remodel": {
+      "unit": "project",
+      "size_categories": {
+        "small": {
+          "size_sq_ft": 80,
+          "description": "Small galley or L-shaped, 8x10",
+          "typical_base_cost_low": 15000,
+          "typical_base_cost_mid": 25000,
+          "typical_base_cost_high": 40000
+        },
+        "medium": {
+          "size_sq_ft": 150,
+          "description": "Medium U-shaped or L with island, 10x15",
+          "typical_base_cost_low": 25000,
+          "typical_base_cost_mid": 45000,
+          "typical_base_cost_high": 75000
+        },
+        "large": {
+          "size_sq_ft": 250,
+          "description": "Large open concept with island, 15x17+",
+          "typical_base_cost_low": 40000,
+          "typical_base_cost_mid": 70000,
+          "typical_base_cost_high": 120000
+        }
+      },
+      "components": {
+        "cabinets": {
+          "stock_per_linear_foot": {
+            "low": 150,
+            "mid": 250,
+            "high": 400
+          },
+          "semi_custom_per_linear_foot": {
+            "low": 300,
+            "mid": 500,
+            "high": 800
+          },
+          "custom_per_linear_foot": {
+            "low": 800,
+            "mid": 1200,
+            "high": 2000
+          },
+          "typical_kitchen_linear_feet": {
+            "small": 15,
+            "medium": 25,
+            "large": 35
+          },
+          "installation_per_linear_foot": 50,
+          "notes": "Stock cabinets are off-the-shelf; semi-custom offers more options; custom is built to spec"
+        },
+        "countertops": {
+          "laminate_per_sq_ft": {
+            "low": 20,
+            "mid": 30,
+            "high": 45
+          },
+          "granite_per_sq_ft": {
+            "low": 50,
+            "mid": 75,
+            "high": 120
+          },
+          "quartz_per_sq_ft": {
+            "low": 60,
+            "mid": 85,
+            "high": 150
+          },
+          "marble_per_sq_ft": {
+            "low": 75,
+            "mid": 120,
+            "high": 200
+          },
+          "typical_counter_sq_ft": {
+            "small": 30,
+            "medium": 50,
+            "large": 75
+          },
+          "fabrication_and_install_per_sq_ft": 35,
+          "notes": "Includes template, fabrication, edge profile, install, sealing"
+        },
+        "backsplash": {
+          "ceramic_tile_per_sq_ft": {
+            "low": 8,
+            "mid": 15,
+            "high": 25
+          },
+          "glass_tile_per_sq_ft": {
+            "low": 20,
+            "mid": 35,
+            "high": 60
+          },
+          "natural_stone_per_sq_ft": {
+            "low": 25,
+            "mid": 45,
+            "high": 80
+          },
+          "installation_per_sq_ft": 12,
+          "typical_backsplash_sq_ft": {
+            "small": 25,
+            "medium": 40,
+            "large": 60
+          }
+        },
+        "flooring": {
+          "vinyl_per_sq_ft": {
+            "low": 3,
+            "mid": 6,
+            "high": 10
+          },
+          "laminate_per_sq_ft": {
+            "low": 4,
+            "mid": 7,
+            "high": 12
+          },
+          "hardwood_per_sq_ft": {
+            "low": 8,
+            "mid": 12,
+            "high": 20
+          },
+          "tile_per_sq_ft": {
+            "low": 6,
+            "mid": 12,
+            "high": 25
+          },
+          "installation_per_sq_ft": 5,
+          "removal_old_floor_per_sq_ft": 3
+        },
+        "appliances": {
+          "budget_package": {
+            "range": 600,
+            "refrigerator": 800,
+            "dishwasher": 400,
+            "microwave": 200,
+            "total": 2000
+          },
+          "mid_range_package": {
+            "range": 1200,
+            "refrigerator": 1800,
+            "dishwasher": 700,
+            "microwave": 350,
+            "total": 4050
+          },
+          "high_end_package": {
+            "range": 3000,
+            "refrigerator": 4500,
+            "dishwasher": 1500,
+            "microwave": 800,
+            "total": 9800
+          }
+        },
+        "plumbing": {
+          "sink_and_faucet_install": {
+            "labor_hours": 4,
+            "rate_per_hour": 95,
+            "total": 380
+          },
+          "dishwasher_hookup": {
+            "labor_hours": 2,
+            "rate_per_hour": 95,
+            "total": 190
+          },
+          "gas_line_for_range": {
+            "labor_hours": 3,
+            "rate_per_hour": 95,
+            "materials": 150,
+            "total": 435
+          },
+          "water_line_relocation": {
+            "per_linear_foot": 45,
+            "typical_job": 350
+          }
+        },
+        "electrical": {
+          "outlets_and_switches": {
+            "per_outlet": 125,
+            "typical_kitchen": 8,
+            "total": 1000
+          },
+          "under_cabinet_lighting": {
+            "per_linear_foot": 35,
+            "typical_kitchen": 15,
+            "total": 525
+          },
+          "pendant_lights": {
+            "per_fixture_installed": 200,
+            "typical_count": 3,
+            "total": 600
+          },
+          "appliance_circuits": {
+            "per_circuit": 275,
+            "typical_count": 3,
+            "total": 825
+          }
+        },
+        "permits_and_fees": {
+          "building_permit": {
+            "low": 200,
+            "mid": 500,
+            "high": 1200,
+            "notes": "Varies widely by municipality"
+          },
+          "inspection_fees": {
+            "low": 100,
+            "mid": 250,
+            "high": 500
+          }
+        }
+      },
+      "labor_general": {
+        "crew_composition": {
+          "typical_crew": "2-3 workers (lead carpenter + helpers)",
+          "notes": "Crew pricing reflects loaded labor rates with workers comp, insurance, overhead"
+        },
+        "demolition": {
+          "small_kitchen_crew_hours": 8,
+          "medium_kitchen_crew_hours": 14,
+          "large_kitchen_crew_hours": 20,
+          "loaded_crew_rate_per_hour": 140,
+          "small_kitchen_total": 1120,
+          "medium_kitchen_total": 1960,
+          "large_kitchen_total": 2800,
+          "notes": "2-3 worker crew, includes demo, hauling, disposal"
+        },
+        "carpentry_and_installation": {
+          "small_kitchen_crew_hours": 35,
+          "medium_kitchen_crew_hours": 70,
+          "large_kitchen_crew_hours": 110,
+          "loaded_crew_rate_per_hour": 160,
+          "small_kitchen_total": 5600,
+          "medium_kitchen_total": 11200,
+          "large_kitchen_total": 17600,
+          "notes": "2-3 worker crew, cabinet install, trim, finish work, coordination"
+        },
+        "total_labor_estimates": {
+          "small_kitchen": {
+            "low": 5000,
+            "mid": 7000,
+            "high": 10000
+          },
+          "medium_kitchen": {
+            "low": 10000,
+            "mid": 13500,
+            "high": 18000
+          },
+          "large_kitchen": {
+            "low": 16000,
+            "mid": 21000,
+            "high": 28000
+          }
+        }
+      },
+      "typical_total_project_cost": {
+        "small_budget": {
+          "cabinets": 3750,
+          "countertops": 1950,
+          "appliances": 2000,
+          "flooring": 720,
+          "labor": 7000,
+          "total": 17420,
+          "description": "80 sq ft, stock cabinets, laminate counters, budget appliances"
+        },
+        "medium_mid_range": {
+          "cabinets": 12500,
+          "countertops": 6000,
+          "appliances": 4050,
+          "flooring": 1800,
+          "backsplash": 1080,
+          "labor": 13500,
+          "total": 38930,
+          "description": "150 sq ft, semi-custom cabinets, quartz counters, mid-range appliances"
+        },
+        "large_high_end": {
+          "cabinets": 42000,
+          "countertops": 15000,
+          "appliances": 9800,
+          "flooring": 5000,
+          "backsplash": 3900,
+          "labor": 21000,
+          "total": 96700,
+          "description": "250 sq ft, custom cabinets, marble counters, high-end appliances"
+        }
+      },
+      "common_upsells": [
+        "Premium cabinet hardware ($15-50 per pull vs $3-8)",
+        "Unnecessary structural work claims",
+        "Top-tier appliances when mid-range fits budget",
+        "Full cabinet replacement when refinishing would work",
+        "Designer fees for standard layouts",
+        "Exotic materials that don't add functional value"
+      ],
+      "red_flags": [
+        "Cabinet install >$75/linear foot for stock cabinets",
+        "Quartz counters >$120/sq ft for standard colors",
+        "Tile install >$20/sq ft for standard ceramic",
+        "Electrical outlets >$200 each",
+        "Total labor >$30,000 for medium kitchen",
+        "Materials markup >50% over retail",
+        "Project management >15% of total"
+      ]
+    },
+    "bathroom_remodel": {
+      "unit": "project",
+      "size_categories": {
+        "half_bath": {
+          "size_sq_ft": 25,
+          "description": "Powder room: toilet and sink only",
+          "typical_cost_low": 3000,
+          "typical_cost_mid": 6000,
+          "typical_cost_high": 12000
+        },
+        "full_bath_small": {
+          "size_sq_ft": 50,
+          "description": "5x10 full bath: tub/shower, toilet, vanity",
+          "typical_cost_low": 8000,
+          "typical_cost_mid": 15000,
+          "typical_cost_high": 30000
+        },
+        "full_bath_medium": {
+          "size_sq_ft": 75,
+          "description": "Standard 8x9 full bath",
+          "typical_cost_low": 12000,
+          "typical_cost_mid": 22000,
+          "typical_cost_high": 45000
+        },
+        "master_bath": {
+          "size_sq_ft": 120,
+          "description": "Large master: separate shower and tub, double vanity",
+          "typical_cost_low": 18000,
+          "typical_cost_mid": 35000,
+          "typical_cost_high": 75000
+        }
+      },
+      "components": {
+        "tile_work": {
+          "floor_tile_material_per_sq_ft": {
+            "ceramic_low": 3,
+            "ceramic_mid": 7,
+            "ceramic_high": 15,
+            "porcelain_low": 6,
+            "porcelain_mid": 12,
+            "porcelain_high": 25,
+            "natural_stone_low": 10,
+            "natural_stone_mid": 20,
+            "natural_stone_high": 40
+          },
+          "wall_tile_material_per_sq_ft": {
+            "ceramic_low": 2,
+            "ceramic_mid": 5,
+            "ceramic_high": 12,
+            "glass_low": 15,
+            "glass_mid": 25,
+            "glass_high": 50
+          },
+          "installation_per_sq_ft": {
+            "floor": 8,
+            "wall": 10,
+            "shower_floor": 15,
+            "shower_walls": 12
+          },
+          "typical_tile_sq_ft": {
+            "half_bath_floor": 25,
+            "small_bath_floor": 50,
+            "small_bath_walls": 120,
+            "medium_bath_floor": 75,
+            "medium_bath_walls": 180,
+            "master_floor": 120,
+            "master_walls": 300
+          }
+        },
+        "fixtures": {
+          "vanity": {
+            "budget_24_inch": 250,
+            "budget_36_inch": 400,
+            "mid_range_24_inch": 600,
+            "mid_range_36_inch": 1000,
+            "mid_range_60_inch_double": 1800,
+            "high_end_36_inch": 2000,
+            "high_end_60_inch_double": 4500,
+            "installation_labor_hours": 4,
+            "installation_rate_per_hour": 85
+          },
+          "toilet": {
+            "budget": 150,
+            "mid_range": 350,
+            "comfort_height": 450,
+            "high_end": 800,
+            "installation_labor_hours": 3,
+            "installation_rate_per_hour": 95
+          },
+          "bathtub": {
+            "fiberglass_alcove": 400,
+            "acrylic_alcove": 650,
+            "cast_iron": 1200,
+            "freestanding_acrylic": 1500,
+            "freestanding_cast_iron": 3000,
+            "installation_labor_hours": 8,
+            "installation_rate_per_hour": 95,
+            "plumbing_rough_in": 600
+          },
+          "shower": {
+            "prefab_stall": 600,
+            "custom_tile_base": 400,
+            "custom_tile_walls_material": 800,
+            "glass_door_basic": 500,
+            "glass_door_frameless": 1200,
+            "installation_labor_hours": 16,
+            "installation_rate_per_hour": 95
+          },
+          "faucets_and_hardware": {
+            "budget_vanity_faucet": 75,
+            "mid_range_vanity_faucet": 200,
+            "high_end_vanity_faucet": 500,
+            "budget_shower_valve": 150,
+            "mid_range_shower_valve": 350,
+            "high_end_shower_valve": 800,
+            "installation_per_fixture_hours": 2,
+            "installation_rate_per_hour": 95
+          }
+        },
+        "plumbing": {
+          "rough_in_new_location": {
+            "toilet": 450,
+            "vanity": 400,
+            "shower": 750,
+            "tub": 600
+          },
+          "basic_fixture_replacement": {
+            "toilet": 285,
+            "vanity_faucet": 190,
+            "shower_valve": 380
+          },
+          "vent_stack_work_per_linear_foot": 45,
+          "drain_line_per_linear_foot": 35,
+          "water_supply_per_linear_foot": 25
+        },
+        "electrical": {
+          "gfci_outlet": 150,
+          "vanity_light_fixture_install": 225,
+          "exhaust_fan_standard": 350,
+          "exhaust_fan_with_heater": 550,
+          "recessed_lighting_per_fixture": 200
+        },
+        "ventilation": {
+          "basic_exhaust_fan": 100,
+          "quiet_exhaust_fan": 200,
+          "fan_with_light": 180,
+          "fan_with_heater": 300,
+          "installation_labor_hours": 3,
+          "installation_rate_per_hour": 85,
+          "ductwork_per_linear_foot": 25
+        },
+        "miscellaneous": {
+          "drywall_repair_per_sq_ft": 8,
+          "waterproofing_membrane_shower": 350,
+          "backerboard_per_sq_ft": 4,
+          "paint_per_sq_ft": 3
+        }
+      },
+      "labor_general": {
+        "crew_composition": {
+          "typical_crew": "2-3 workers (lead + helpers) plus specialized trades",
+          "notes": "Crew pricing reflects loaded labor rates; plumbers/electricians priced separately"
+        },
+        "demolition": {
+          "half_bath_crew_hours": 4,
+          "small_bath_crew_hours": 8,
+          "medium_bath_crew_hours": 12,
+          "master_bath_crew_hours": 18,
+          "loaded_crew_rate_per_hour": 140,
+          "half_bath_total": 560,
+          "small_bath_total": 1120,
+          "medium_bath_total": 1680,
+          "master_bath_total": 2520,
+          "notes": "2-3 worker crew, demo and disposal"
+        },
+        "tile_installation": {
+          "crew_rate_per_hour": 120,
+          "notes": "2-worker tile crew, specialized work"
+        },
+        "general_carpentry": {
+          "crew_rate_per_hour": 140,
+          "notes": "2-worker carpentry crew, framing, drywall, trim"
+        },
+        "total_labor_estimates": {
+          "half_bath": {
+            "low": 1500,
+            "mid": 2500,
+            "high": 4000
+          },
+          "small_bath": {
+            "low": 3500,
+            "mid": 5500,
+            "high": 8500
+          },
+          "medium_bath": {
+            "low": 5000,
+            "mid": 8000,
+            "high": 12000
+          },
+          "master_bath": {
+            "low": 8000,
+            "mid": 13000,
+            "high": 20000
+          }
+        }
+      },
+      "typical_total_project_cost": {
+        "half_bath_budget": {
+          "vanity": 400,
+          "toilet": 150,
+          "flooring": 200,
+          "paint": 150,
+          "labor": 2500,
+          "total": 3400,
+          "description": "25 sq ft powder room, budget fixtures"
+        },
+        "small_bath_mid": {
+          "vanity": 1000,
+          "toilet": 350,
+          "tub_shower": 1500,
+          "tile": 2100,
+          "fixtures": 600,
+          "labor": 5500,
+          "total": 11050,
+          "description": "50 sq ft full bath, mid-range finishes"
+        },
+        "medium_bath_mid": {
+          "vanity": 1000,
+          "toilet": 350,
+          "tub_shower": 2200,
+          "tile": 3600,
+          "fixtures": 900,
+          "labor": 8000,
+          "total": 16050,
+          "description": "75 sq ft full bath, mid-range finishes"
+        },
+        "master_bath_high": {
+          "double_vanity": 4500,
+          "toilet": 800,
+          "separate_shower": 4000,
+          "separate_tub": 3000,
+          "tile": 9000,
+          "fixtures": 2500,
+          "labor": 13000,
+          "total": 36800,
+          "description": "120 sq ft master bath, high-end finishes"
+        }
+      },
+      "common_upsells": [
+        "Heated floors ($12-20/sq ft - luxury, not necessity)",
+        "Premium fixtures when mid-range performs identically",
+        "Full gut when partial update would suffice",
+        "Unnecessary waterproofing beyond shower area",
+        "Designer tile patterns that triple install time",
+        "Exotic materials in low-visibility areas"
+      ],
+      "red_flags": [
+        "Tile installation >$20/sq ft for standard ceramic",
+        "Toilet install >$400 (should be $250-350 all-in)",
+        "Vanity install >$500 for standard size",
+        "Shower valve replacement >$600",
+        "Total labor >$20,000 for master bath",
+        "Materials marked up >40% over retail",
+        "Unnecessary 'structural concerns' without evidence"
+      ]
+    },
+    "hvac_replacement": {
+      "unit": "project",
+      "system_types": {
+        "central_ac_only": {
+          "description": "Air conditioning only, existing heating",
+          "tonnage_by_home_size": {
+            "1000_sq_ft": 2.0,
+            "1500_sq_ft": 2.5,
+            "2000_sq_ft": 3.0,
+            "2500_sq_ft": 3.5,
+            "3000_sq_ft": 4.0,
+            "3500_sq_ft": 5.0
+          },
+          "cost_by_tonnage_seer_14_16": {
+            "2_ton": {
+              "equipment": 2200,
+              "installation": 1800,
+              "total_low": 3500,
+              "total_high": 5000
+            },
+            "2.5_ton": {
+              "equipment": 2600,
+              "installation": 2000,
+              "total_low": 4000,
+              "total_high": 5800
+            },
+            "3_ton": {
+              "equipment": 3000,
+              "installation": 2200,
+              "total_low": 4500,
+              "total_high": 6500
+            },
+            "3.5_ton": {
+              "equipment": 3400,
+              "installation": 2400,
+              "total_low": 5200,
+              "total_high": 7500
+            },
+            "4_ton": {
+              "equipment": 3800,
+              "installation": 2600,
+              "total_low": 5800,
+              "total_high": 8500
+            },
+            "5_ton": {
+              "equipment": 4500,
+              "installation": 3000,
+              "total_low": 6800,
+              "total_high": 10000
+            }
+          },
+          "high_efficiency_seer_18_21_premium": 1500
+        },
+        "furnace_only": {
+          "description": "Gas furnace replacement",
+          "cost_by_btu_80_afue": {
+            "60k_btu": {
+              "equipment": 1200,
+              "installation": 1500,
+              "total_low": 2200,
+              "total_high": 3500
+            },
+            "80k_btu": {
+              "equipment": 1500,
+              "installation": 1800,
+              "total_low": 2800,
+              "total_high": 4200
+            },
+            "100k_btu": {
+              "equipment": 1800,
+              "installation": 2000,
+              "total_low": 3300,
+              "total_high": 5000
+            },
+            "120k_btu": {
+              "equipment": 2200,
+              "installation": 2200,
+              "total_low": 3900,
+              "total_high": 5800
+            }
+          },
+          "high_efficiency_95_afue_premium": 1200
+        },
+        "complete_system": {
+          "description": "AC + furnace package",
+          "typical_costs_by_home_size": {
+            "1500_sq_ft": {
+              "tonnage": "2.5 ton",
+              "btu": "80k",
+              "equipment_total": 5200,
+              "installation": 4000,
+              "total_low": 8000,
+              "total_mid": 10500,
+              "total_high": 14000
+            },
+            "2000_sq_ft": {
+              "tonnage": "3 ton",
+              "btu": "100k",
+              "equipment_total": 6000,
+              "installation": 4500,
+              "total_low": 9500,
+              "total_mid": 12000,
+              "total_high": 16000
+            },
+            "2500_sq_ft": {
+              "tonnage": "3.5 ton",
+              "btu": "100k",
+              "equipment_total": 7000,
+              "installation": 5000,
+              "total_low": 11000,
+              "total_mid": 14000,
+              "total_high": 18500
+            },
+            "3000_sq_ft": {
+              "tonnage": "4 ton",
+              "btu": "120k",
+              "equipment_total": 8200,
+              "installation": 5500,
+              "total_low": 12500,
+              "total_mid": 16000,
+              "total_high": 21000
+            }
+          }
+        }
+      },
+      "additional_components": {
+        "ductwork": {
+          "minor_repair_per_run": 200,
+          "seal_and_insulate_existing": 800,
+          "new_duct_run_per_linear_foot": 35,
+          "complete_duct_replacement_1500_sq_ft": 4500,
+          "complete_duct_replacement_2500_sq_ft": 7000,
+          "notes": "Most systems don't need full duct replacement"
+        },
+        "thermostat": {
+          "basic_programmable": 150,
+          "wifi_smart": 350,
+          "high_end_smart": 600,
+          "installation_hours": 1.5,
+          "installation_rate": 95
+        },
+        "air_handler": {
+          "variable_speed_upgrade": 1200,
+          "standard": 800
+        },
+        "humidifier": {
+          "whole_house_bypass": 400,
+          "whole_house_powered": 700,
+          "installation_hours": 3,
+          "installation_rate": 95
+        },
+        "air_purification": {
+          "uv_light": 600,
+          "electronic_air_cleaner": 1200,
+          "hepa_system": 2000
+        },
+        "permits_and_fees": {
+          "hvac_permit": 150,
+          "gas_line_inspection": 75,
+          "electrical_permit": 100
+        }
+      },
+      "labor_details": {
+        "crew_composition": {
+          "typical_crew": "2-3 HVAC technicians",
+          "notes": "Crew pricing reflects loaded rates for licensed HVAC techs"
+        },
+        "installation_crew_hours": {
+          "ac_only": 6,
+          "furnace_only": 7,
+          "complete_system": 12
+        },
+        "loaded_crew_rate_per_hour": 250,
+        "total_labor_by_system": {
+          "ac_only": 1500,
+          "furnace_only": 1750,
+          "complete_system": 3000
+        },
+        "crane_or_difficult_access": 500,
+        "weekend_emergency_multiplier": 1.5,
+        "notes": "Standard install, straightforward equipment swap"
+      },
+      "typical_total_project_cost": {
+        "ac_only_3_ton": {
+          "equipment": 3000,
+          "labor": 2200,
+          "permit": 150,
+          "total_low": 4500,
+          "total_mid": 5800,
+          "total_high": 7500,
+          "description": "3-ton AC, SEER 14-16, 2000 sq ft home"
+        },
+        "furnace_only_80k_btu": {
+          "equipment": 1500,
+          "labor": 1800,
+          "permit": 150,
+          "total_low": 2800,
+          "total_mid": 3800,
+          "total_high": 5000,
+          "description": "80k BTU gas furnace, 80% AFUE"
+        },
+        "complete_system_2000_sq_ft": {
+          "equipment": 6000,
+          "labor": 4500,
+          "permits": 325,
+          "total_low": 9500,
+          "total_mid": 12000,
+          "total_high": 16000,
+          "description": "3-ton AC + 100k BTU furnace, standard efficiency"
+        }
+      },
+      "common_upsells": [
+        "SEER 20+ systems when SEER 16 is perfectly adequate",
+        "Complete duct replacement when sealing would work",
+        "Oversized equipment ('bigger is better' myth)",
+        "Unnecessary zoning systems",
+        "Premium air purification for standard homes",
+        "Extended warranties at high markup"
+      ],
+      "red_flags": [
+        "Installation >$5000 for straightforward AC swap",
+        "Equipment costs >50% above retail",
+        "Claiming 'full duct replacement required' without inspection",
+        "Oversizing equipment (>1.2x calculated load)",
+        "Ductwork >$50/linear foot for standard runs",
+        "Pushing highest SEER without ROI calculation",
+        "Emergency premium >2x standard rate without true emergency"
+      ]
+    },
+    "plumbing_repair": {
+      "unit": "service_call",
+      "common_repairs": {
+        "water_heater": {
+          "tank_replacement_40_gal": {
+            "equipment": 600,
+            "installation_hours": 4,
+            "installation_rate": 95,
+            "total_low": 950,
+            "total_mid": 1200,
+            "total_high": 1600
+          },
+          "tank_replacement_50_gal": {
+            "equipment": 750,
+            "installation_hours": 4,
+            "installation_rate": 95,
+            "total_low": 1100,
+            "total_mid": 1400,
+            "total_high": 1800
+          },
+          "tankless_gas": {
+            "equipment": 1500,
+            "installation_hours": 8,
+            "installation_rate": 95,
+            "gas_line_work": 400,
+            "total_low": 2500,
+            "total_mid": 3200,
+            "total_high": 4500
+          },
+          "heating_element_replacement": {
+            "parts": 35,
+            "labor_hours": 1.5,
+            "labor_rate": 95,
+            "total": 180
+          },
+          "thermostat_replacement": {
+            "parts": 25,
+            "labor_hours": 1,
+            "labor_rate": 95,
+            "total": 140
+          },
+          "anode_rod_replacement": {
+            "parts": 40,
+            "labor_hours": 1.5,
+            "labor_rate": 95,
+            "total": 185
+          }
+        },
+        "pipe_repair": {
+          "minor_leak_solder_repair": {
+            "materials": 20,
+            "labor_hours": 1.5,
+            "labor_rate": 95,
+            "total": 165
+          },
+          "pipe_section_replacement_copper": {
+            "materials_per_linear_foot": 15,
+            "labor_per_linear_foot": 45,
+            "typical_5_foot_section": 300
+          },
+          "pipe_section_replacement_pex": {
+            "materials_per_linear_foot": 8,
+            "labor_per_linear_foot": 35,
+            "typical_5_foot_section": 215
+          },
+          "emergency_burst_pipe": {
+            "base_repair": 300,
+            "after_hours_premium": 150,
+            "typical_total": 450
+          },
+          "shutoff_valve_replacement": {
+            "parts": 40,
+            "labor_hours": 1.5,
+            "labor_rate": 95,
+            "total": 185
+          }
+        },
+        "drain_cleaning": {
+          "basic_snake_single_drain": {
+            "equipment": 0,
+            "labor_hours": 1,
+            "labor_rate": 95,
+            "total_low": 125,
+            "total_high": 250
+          },
+          "main_line_snake": {
+            "equipment": 0,
+            "labor_hours": 2,
+            "labor_rate": 95,
+            "total_low": 250,
+            "total_high": 450
+          },
+          "hydro_jetting": {
+            "equipment": 100,
+            "labor_hours": 2,
+            "labor_rate": 95,
+            "total_low": 400,
+            "total_high": 750
+          },
+          "camera_inspection": {
+            "flat_fee": 350,
+            "notes": "Often unnecessary unless persistent issues"
+          }
+        },
+        "sewer_line": {
+          "spot_repair_traditional": {
+            "excavation_per_linear_foot": 100,
+            "pipe_per_linear_foot": 75,
+            "typical_10_foot_section": 1750
+          },
+          "trenchless_pipe_lining": {
+            "per_linear_foot": 180,
+            "minimum_charge": 3500,
+            "typical_cost_range_low": 4000,
+            "typical_cost_range_high": 8000
+          },
+          "full_sewer_replacement_traditional": {
+            "per_linear_foot": 150,
+            "typical_50_foot_line": 7500,
+            "typical_range_low": 6000,
+            "typical_range_high": 12000
+          },
+          "trenchless_pipe_bursting": {
+            "per_linear_foot": 200,
+            "typical_50_foot_line": 10000,
+            "typical_range_low": 8000,
+            "typical_range_high": 15000
+          }
+        },
+        "fixture_repair": {
+          "faucet_cartridge_replacement": {
+            "parts": 45,
+            "labor_hours": 1,
+            "labor_rate": 95,
+            "total": 160
+          },
+          "toilet_flapper_wax_ring": {
+            "parts": 20,
+            "labor_hours": 1,
+            "labor_rate": 95,
+            "total": 135
+          },
+          "toilet_fill_valve": {
+            "parts": 30,
+            "labor_hours": 0.75,
+            "labor_rate": 95,
+            "total": 110
+          },
+          "garbage_disposal_replacement": {
+            "equipment_budget": 120,
+            "equipment_mid": 200,
+            "labor_hours": 2,
+            "labor_rate": 95,
+            "total_mid": 390
+          }
+        }
+      },
+      "service_call_fees": {
+        "diagnostic_trip_charge": {
+          "low": 75,
+          "mid": 125,
+          "high": 200,
+          "notes": "Usually waived if repair is performed"
+        },
+        "after_hours_premium": {
+          "multiplier": 1.5,
+          "notes": "Evenings, weekends, holidays"
+        },
+        "emergency_premium": {
+          "multiplier": 2.0,
+          "notes": "True emergencies only - active flooding"
+        }
+      },
+      "typical_total_project_cost": {
+        "water_heater_50_gal": {
+          "equipment": 750,
+          "labor": 380,
+          "permit": 50,
+          "total_low": 1100,
+          "total_mid": 1400,
+          "total_high": 1800,
+          "description": "Standard 50-gallon gas water heater replacement"
+        },
+        "main_drain_cleaning": {
+          "labor": 190,
+          "trip_charge": 100,
+          "total_low": 250,
+          "total_mid": 350,
+          "total_high": 450,
+          "description": "Snake main sewer line, standard service call"
+        },
+        "sewer_line_spot_repair": {
+          "excavation": 1000,
+          "pipe_materials": 750,
+          "total_low": 1500,
+          "total_mid": 1750,
+          "total_high": 2500,
+          "description": "Traditional dig and replace 10-foot section"
+        }
+      },
+      "common_upsells": [
+        "Whole-house repiping when spot repair would work",
+        "Trenchless sewer repair when traditional is cheaper and appropriate",
+        "Camera inspection for simple clogs",
+        "Water heater replacement when repair is viable",
+        "Premium fixtures when standard works fine",
+        "Unnecessary preventive replacements"
+      ],
+      "red_flags": [
+        "Simple drain snake >$300",
+        "Trip charges >$200 if not credited to work",
+        "Water heater install >$2000 for standard 50-gal tank",
+        "Emergency rates without actual emergency",
+        "Sewer work >$250/linear foot for traditional dig",
+        "Requiring full replacement without attempting repair",
+        "Material markups >100% (2x retail)"
+      ]
+    },
+    "electrical_work": {
+      "unit": "service_call",
+      "common_jobs": {
+        "panel_upgrade": {
+          "100_amp_to_200_amp": {
+            "panel_and_materials": 1200,
+            "labor_hours": 12,
+            "labor_rate": 85,
+            "permit": 200,
+            "inspection": 100,
+            "total_low": 2500,
+            "total_mid": 3500,
+            "total_high": 5000
+          },
+          "subpanel_installation": {
+            "panel_and_materials": 400,
+            "labor_hours": 6,
+            "labor_rate": 85,
+            "total_low": 900,
+            "total_mid": 1200,
+            "total_high": 1800
+          }
+        },
+        "rewiring": {
+          "single_room": {
+            "materials_per_sq_ft": 1.5,
+            "labor_per_sq_ft": 3,
+            "typical_200_sq_ft_room": 900
+          },
+          "whole_house_1500_sq_ft": {
+            "materials": 3500,
+            "labor_hours": 120,
+            "labor_rate": 85,
+            "permit": 300,
+            "total_low": 12000,
+            "total_mid": 16000,
+            "total_high": 22000
+          },
+          "whole_house_2500_sq_ft": {
+            "materials": 5500,
+            "labor_hours": 180,
+            "labor_rate": 85,
+            "permit": 400,
+            "total_low": 18000,
+            "total_mid": 24000,
+            "total_high": 32000
+          }
+        },
+        "outlets_and_switches": {
+          "standard_outlet_replacement": {
+            "materials": 8,
+            "labor_hours": 0.5,
+            "labor_rate": 85,
+            "total": 90
+          },
+          "gfci_outlet": {
+            "materials": 25,
+            "labor_hours": 0.75,
+            "labor_rate": 85,
+            "total": 110
+          },
+          "new_outlet_existing_circuit": {
+            "materials": 15,
+            "labor_hours": 1.5,
+            "labor_rate": 85,
+            "total": 145
+          },
+          "new_outlet_new_circuit": {
+            "materials": 45,
+            "labor_hours": 3,
+            "labor_rate": 85,
+            "total": 300
+          },
+          "dimmer_switch": {
+            "materials": 35,
+            "labor_hours": 0.5,
+            "labor_rate": 85,
+            "total": 85
+          },
+          "smart_switch": {
+            "materials": 60,
+            "labor_hours": 1,
+            "labor_rate": 85,
+            "total": 145
+          }
+        },
+        "lighting": {
+          "ceiling_fan_with_light": {
+            "fixture_budget": 150,
+            "fixture_mid": 300,
+            "labor_hours": 2,
+            "labor_rate": 85,
+            "total_mid": 470
+          },
+          "recessed_lighting_per_fixture": {
+            "fixture": 30,
+            "labor_hours": 1.5,
+            "labor_rate": 85,
+            "total": 160
+          },
+          "chandelier_basic_install": {
+            "labor_hours": 2,
+            "labor_rate": 85,
+            "total": 170
+          },
+          "under_cabinet_lighting_per_linear_foot": {
+            "materials": 20,
+            "labor": 15,
+            "total": 35
+          }
+        },
+        "major_appliance_circuits": {
+          "dryer_circuit_240v": {
+            "materials": 120,
+            "labor_hours": 3,
+            "labor_rate": 85,
+            "total": 375
+          },
+          "range_circuit_240v": {
+            "materials": 150,
+            "labor_hours": 4,
+            "labor_rate": 85,
+            "total": 490
+          },
+          "ev_charger_circuit": {
+            "materials_50_amp": 250,
+            "labor_hours": 5,
+            "labor_rate": 85,
+            "permit": 100,
+            "total": 775
+          }
+        },
+        "outdoor": {
+          "exterior_outlet": {
+            "materials": 45,
+            "labor_hours": 2,
+            "labor_rate": 85,
+            "total": 215
+          },
+          "landscape_lighting_per_fixture": {
+            "fixture_low_voltage": 50,
+            "labor": 40,
+            "total": 90
+          },
+          "security_lighting": {
+            "fixture": 80,
+            "labor_hours": 2,
+            "labor_rate": 85,
+            "total": 250
+          }
+        }
+      },
+      "service_call_fees": {
+        "diagnostic_trip_charge": {
+          "low": 75,
+          "mid": 100,
+          "high": 150,
+          "notes": "Often waived if work is performed"
+        },
+        "minimum_service_call": 150
+      },
+      "typical_total_project_cost": {
+        "panel_upgrade_200_amp": {
+          "panel": 1200,
+          "labor": 1020,
+          "permit": 200,
+          "inspection": 100,
+          "total_low": 2500,
+          "total_mid": 3500,
+          "total_high": 5000,
+          "description": "Upgrade from 100-amp to 200-amp main panel"
+        },
+        "recessed_lights_6_fixtures": {
+          "fixtures": 180,
+          "labor": 765,
+          "total_low": 850,
+          "total_mid": 960,
+          "total_high": 1200,
+          "description": "Install 6 recessed lights in living room"
+        },
+        "ev_charger_install": {
+          "materials": 250,
+          "labor": 425,
+          "permit": 100,
+          "total_low": 650,
+          "total_mid": 775,
+          "total_high": 1000,
+          "description": "50-amp circuit for level 2 EV charger"
+        }
+      },
+      "common_upsells": [
+        "Whole panel replacement when a few breakers would suffice",
+        "Arc-fault breakers for entire house when code doesn't require",
+        "Premium fixtures with unnecessary features",
+        "Surge protection at high markup",
+        "Aluminum wiring replacement when pigtailing is safe",
+        "Smart home features that add cost without value"
+      ],
+      "red_flags": [
+        "Simple outlet replacement >$150",
+        "GFCI outlet >$175",
+        "New circuit outlets >$400 each",
+        "Recessed lights >$250 per fixture installed",
+        "Panel upgrade >$6000 for standard 200-amp",
+        "Trip charges >$150 if not credited",
+        "Claiming 'dangerous aluminum wiring' to sell whole-house rewire",
+        "Material markup >75% over retail"
+      ]
+    },
+    "deck_building": {
+      "unit": "square_foot",
+      "typical_deck_sizes": {
+        "small": {
+          "size_sq_ft": 200,
+          "description": "10x20 basic deck",
+          "total_cost_low": 6000,
+          "total_cost_mid": 9000,
+          "total_cost_high": 14000
+        },
+        "medium": {
+          "size_sq_ft": 350,
+          "description": "14x25 deck with stairs",
+          "total_cost_low": 11000,
+          "total_cost_mid": 16000,
+          "total_cost_high": 25000
+        },
+        "large": {
+          "size_sq_ft": 500,
+          "description": "20x25 multi-level deck",
+          "total_cost_low": 17000,
+          "total_cost_mid": 25000,
+          "total_cost_high": 40000
+        }
+      },
+      "materials": {
+        "pressure_treated_pine": {
+          "decking_per_sq_ft": 4.5,
+          "framing_per_sq_ft": 3,
+          "railings_per_linear_foot": 25,
+          "stairs_per_step": 50,
+          "total_materials_per_sq_ft": 12,
+          "notes": "Most economical, requires annual maintenance"
+        },
+        "cedar": {
+          "decking_per_sq_ft": 8,
+          "framing_per_sq_ft": 3,
+          "railings_per_linear_foot": 40,
+          "stairs_per_step": 75,
+          "total_materials_per_sq_ft": 18,
+          "notes": "Natural beauty, moderate maintenance"
+        },
+        "composite_basic": {
+          "decking_per_sq_ft": 10,
+          "framing_per_sq_ft": 3,
+          "railings_per_linear_foot": 60,
+          "stairs_per_step": 90,
+          "total_materials_per_sq_ft": 22,
+          "notes": "Low maintenance, 25-year warranty"
+        },
+        "composite_premium": {
+          "decking_per_sq_ft": 15,
+          "framing_per_sq_ft": 3,
+          "railings_per_linear_foot": 85,
+          "stairs_per_step": 120,
+          "total_materials_per_sq_ft": 30,
+          "notes": "Premium brands like Trex Transcend, 50-year warranty"
+        },
+        "pvc_decking": {
+          "decking_per_sq_ft": 18,
+          "framing_per_sq_ft": 3,
+          "railings_per_linear_foot": 95,
+          "total_materials_per_sq_ft": 35,
+          "notes": "Highest durability, lifetime warranty"
+        }
+      },
+      "labor": {
+        "crew_composition": {
+          "typical_crew": "2-3 carpenters",
+          "notes": "Crew pricing reflects loaded labor rates for experienced deck builders"
+        },
+        "installation_crew_hours_per_sq_ft": {
+          "simple_ground_level": 0.12,
+          "elevated_single_level": 0.16,
+          "multi_level_complex": 0.25
+        },
+        "loaded_crew_rate_per_hour": 150,
+        "labor_cost_per_sq_ft": {
+          "simple": 18,
+          "standard": 24,
+          "complex": 37.5
+        },
+        "notes": "2-3 worker crew, includes footings, framing, decking, railings, stairs"
+      },
+      "additional_components": {
+        "footings_and_foundation": {
+          "concrete_pier_each": 40,
+          "typical_deck_pier_count_200_sq_ft": 12,
+          "typical_deck_pier_count_350_sq_ft": 18,
+          "typical_deck_pier_count_500_sq_ft": 25,
+          "labor_included_in_build": true
+        },
+        "hardware_and_fasteners": {
+          "per_sq_ft": 2,
+          "notes": "Joist hangers, bolts, hidden fasteners for composite"
+        },
+        "permits": {
+          "typical_deck_permit": 200,
+          "range_low": 100,
+          "range_high": 500
+        },
+        "stairs": {
+          "material_per_tread": 50,
+          "labor_per_tread": 40,
+          "typical_3_step_landing": 270
+        }
+      },
+      "typical_total_costs_per_sq_ft": {
+        "pressure_treated": {
+          "low": 25,
+          "mid": 35,
+          "high": 50
+        },
+        "cedar": {
+          "low": 35,
+          "mid": 45,
+          "high": 60
+        },
+        "composite_basic": {
+          "low": 40,
+          "mid": 55,
+          "high": 75
+        },
+        "composite_premium": {
+          "low": 55,
+          "mid": 70,
+          "high": 95
+        }
+      },
+      "typical_total_project_cost": {
+        "small_pressure_treated": {
+          "materials": 2400,
+          "labor": 3600,
+          "permit": 200,
+          "total_low": 5000,
+          "total_mid": 7000,
+          "total_high": 10000,
+          "description": "200 sq ft pressure-treated deck, ground level"
+        },
+        "medium_composite_basic": {
+          "materials": 7700,
+          "labor": 8400,
+          "permit": 300,
+          "total_low": 14000,
+          "total_mid": 19250,
+          "total_high": 26250,
+          "description": "350 sq ft composite deck with stairs, elevated"
+        },
+        "large_composite_premium": {
+          "materials": 15000,
+          "labor": 18750,
+          "permit": 400,
+          "total_low": 27500,
+          "total_mid": 35000,
+          "total_high": 47500,
+          "description": "500 sq ft premium composite, multi-level"
+        }
+      },
+      "common_upsells": [
+        "Premium composite when basic composite fits budget",
+        "Unnecessary structural upgrades",
+        "Exotic hardwoods for main decking",
+        "Built-in features that inflate cost",
+        "Underground drainage systems",
+        "Lighting packages with huge markup"
+      ],
+      "red_flags": [
+        "Pressure-treated deck >$50/sq ft",
+        "Basic composite >$75/sq ft",
+        "Labor >$40/sq ft for simple deck",
+        "Permit fees >$500",
+        "Material markup >40%",
+        "Claiming need for extensive foundation work without inspection",
+        "Stairs >$150/tread installed"
+      ]
+    },
+    "painting_interior": {
+      "unit": "square_foot_or_room",
+      "labor_rates": {
+        "crew_composition": {
+          "typical_crew": "2 painters",
+          "notes": "Crew pricing reflects loaded labor rates for professional painters"
+        },
+        "loaded_crew_rate_per_hour": 110,
+        "single_painter_loaded_rate": 60
+      },
+      "by_room": {
+        "small_bedroom_10x12": {
+          "wall_area_sq_ft": 400,
+          "crew_hours": 5,
+          "materials": 80,
+          "labor": 300,
+          "total_low": 350,
+          "total_mid": 500,
+          "total_high": 750
+        },
+        "large_bedroom_14x16": {
+          "wall_area_sq_ft": 600,
+          "crew_hours": 7,
+          "materials": 120,
+          "labor": 420,
+          "total_low": 500,
+          "total_mid": 700,
+          "total_high": 1000
+        },
+        "living_room_15x20": {
+          "wall_area_sq_ft": 800,
+          "crew_hours": 10,
+          "materials": 160,
+          "labor": 600,
+          "total_low": 700,
+          "total_mid": 950,
+          "total_high": 1400
+        },
+        "kitchen_12x14": {
+          "wall_area_sq_ft": 500,
+          "crew_hours": 7,
+          "materials": 100,
+          "labor": 420,
+          "total_low": 500,
+          "total_mid": 700,
+          "total_high": 1000,
+          "notes": "More prep due to grease, cabinet work"
+        },
+        "bathroom_8x10": {
+          "wall_area_sq_ft": 300,
+          "crew_hours": 4,
+          "materials": 60,
+          "labor": 240,
+          "total_low": 300,
+          "total_mid": 450,
+          "total_high": 650,
+          "notes": "Higher moisture requires proper paint"
+        }
+      },
+      "by_square_foot": {
+        "walls_only": {
+          "materials_per_sq_ft": 0.2,
+          "labor_per_sq_ft": 1.5,
+          "total_per_sq_ft_low": 1.5,
+          "total_per_sq_ft_mid": 2.0,
+          "total_per_sq_ft_high": 3.0
+        },
+        "walls_and_ceiling": {
+          "materials_per_sq_ft": 0.3,
+          "labor_per_sq_ft": 2.0,
+          "total_per_sq_ft_low": 2.0,
+          "total_per_sq_ft_mid": 2.75,
+          "total_per_sq_ft_high": 4.0
+        },
+        "walls_ceiling_trim": {
+          "materials_per_sq_ft": 0.35,
+          "labor_per_sq_ft": 2.5,
+          "total_per_sq_ft_low": 2.5,
+          "total_per_sq_ft_mid": 3.5,
+          "total_per_sq_ft_high": 5.0
+        }
+      },
+      "materials": {
+        "paint_per_gallon": {
+          "budget_interior": 25,
+          "mid_range_sherwin_williams": 45,
+          "premium_benjamin_moore": 65
+        },
+        "coverage_per_gallon_sq_ft": 400,
+        "primer_per_gallon": 30,
+        "supplies_per_room": {
+          "drop_cloths": 15,
+          "tape_sandpaper_putty": 20,
+          "brushes_rollers": 25,
+          "total": 60
+        }
+      },
+      "additional_services": {
+        "trim_painting": {
+          "per_linear_foot": 2,
+          "typical_room_50_linear_feet": 100
+        },
+        "door_painting": {
+          "per_side": 75,
+          "both_sides": 150
+        },
+        "cabinet_painting": {
+          "per_cabinet_door": 50,
+          "per_drawer_front": 30,
+          "typical_kitchen_20_doors": 1400,
+          "notes": "Labor intensive, requires sprayer"
+        },
+        "wallpaper_removal": {
+          "per_sq_ft": 1.5,
+          "typical_room_400_sq_ft": 600
+        },
+        "drywall_repair": {
+          "small_patch": 75,
+          "medium_patch": 150,
+          "large_patch_or_texture": 300
+        },
+        "popcorn_ceiling_removal": {
+          "per_sq_ft": 2.5,
+          "typical_room_150_sq_ft_ceiling": 375,
+          "notes": "Messy, may contain asbestos in old homes"
+        }
+      },
+      "whole_house_painting": {
+        "1500_sq_ft_interior": {
+          "wall_area_estimate": 4500,
+          "materials": 800,
+          "crew_hours": 55,
+          "labor": 3300,
+          "total_low": 4500,
+          "total_mid": 6500,
+          "total_high": 9000
+        },
+        "2500_sq_ft_interior": {
+          "wall_area_estimate": 7500,
+          "materials": 1300,
+          "crew_hours": 90,
+          "labor": 5400,
+          "total_low": 7500,
+          "total_mid": 10500,
+          "total_high": 14000
+        }
+      },
+      "typical_total_project_cost": {
+        "small_bedroom": {
+          "materials": 80,
+          "labor": 300,
+          "total_low": 350,
+          "total_mid": 500,
+          "total_high": 750,
+          "description": "10x12 bedroom, walls and ceiling, one color"
+        },
+        "living_room": {
+          "materials": 160,
+          "labor": 600,
+          "total_low": 700,
+          "total_mid": 950,
+          "total_high": 1400,
+          "description": "15x20 living room, walls and ceiling"
+        },
+        "whole_house_1500_sq_ft": {
+          "materials": 800,
+          "labor": 3300,
+          "total_low": 4500,
+          "total_mid": 6500,
+          "total_high": 9000,
+          "description": "1,500 sq ft interior, walls and ceilings, standard prep"
+        }
+      },
+      "common_upsells": [
+        "Premium paint when mid-grade performs well",
+        "Multiple coats when one would suffice",
+        "Unnecessary primer on previously painted walls",
+        "Trim painting when only walls needed",
+        "Texture matching at high rates",
+        "Designer color consultations"
+      ],
+      "red_flags": [
+        "Per sq ft >$4 for basic walls and ceiling",
+        "Single room >$1000 for standard bedroom",
+        "Material markup >50%",
+        "Charging for primer on every job",
+        "Prep time exceeding paint time significantly",
+        "Crew rates >$150/hour for standard painting",
+        "Cabinet painting >$75/door"
+      ]
+    },
+    "siding_replacement": {
+      "unit": "square_foot",
+      "typical_home_sizes": {
+        "small_1000_sq_ft": {
+          "siding_area_sq_ft": 1400,
+          "description": "Small ranch, 1 story"
+        },
+        "medium_2000_sq_ft": {
+          "siding_area_sq_ft": 2400,
+          "description": "Average 2-story or large ranch"
+        },
+        "large_3000_sq_ft": {
+          "siding_area_sq_ft": 3400,
+          "description": "Large 2-story or colonial"
+        }
+      },
+      "materials": {
+        "vinyl": {
+          "material_per_sq_ft": 3.5,
+          "range_low": 2.5,
+          "range_high": 6.0,
+          "labor_per_sq_ft": 3.0,
+          "total_per_sq_ft_low": 6.0,
+          "total_per_sq_ft_mid": 7.5,
+          "total_per_sq_ft_high": 10.0,
+          "lifespan_years": 25,
+          "notes": "Most economical, low maintenance"
+        },
+        "fiber_cement": {
+          "material_per_sq_ft": 6.0,
+          "range_low": 5.0,
+          "range_high": 9.0,
+          "labor_per_sq_ft": 5.0,
+          "total_per_sq_ft_low": 10.0,
+          "total_per_sq_ft_mid": 12.5,
+          "total_per_sq_ft_high": 16.0,
+          "lifespan_years": 50,
+          "notes": "James Hardie, durable, fire resistant"
+        },
+        "wood_cedar": {
+          "material_per_sq_ft": 8.0,
+          "range_low": 6.0,
+          "range_high": 12.0,
+          "labor_per_sq_ft": 5.5,
+          "total_per_sq_ft_low": 12.0,
+          "total_per_sq_ft_mid": 15.0,
+          "total_per_sq_ft_high": 20.0,
+          "lifespan_years": 30,
+          "notes": "Natural beauty, high maintenance, paint/stain every 5-7 years"
+        },
+        "engineered_wood": {
+          "material_per_sq_ft": 4.5,
+          "range_low": 3.5,
+          "range_high": 7.0,
+          "labor_per_sq_ft": 4.0,
+          "total_per_sq_ft_low": 7.5,
+          "total_per_sq_ft_mid": 9.5,
+          "total_per_sq_ft_high": 12.0,
+          "lifespan_years": 30,
+          "notes": "LP SmartSide, wood look with better durability"
+        },
+        "brick_veneer": {
+          "material_per_sq_ft": 12.0,
+          "range_low": 10.0,
+          "range_high": 18.0,
+          "labor_per_sq_ft": 10.0,
+          "total_per_sq_ft_low": 20.0,
+          "total_per_sq_ft_mid": 25.0,
+          "total_per_sq_ft_high": 35.0,
+          "lifespan_years": 100,
+          "notes": "Premium, excellent durability"
+        }
+      },
+      "labor": {
+        "crew_composition": {
+          "typical_crew": "3-4 workers (lead + helpers)",
+          "notes": "Crew pricing reflects loaded labor rates for siding crews"
+        },
+        "installation_crew_hours_per_sq_ft": {
+          "vinyl": 0.02,
+          "fiber_cement": 0.033,
+          "wood_cedar": 0.037
+        },
+        "loaded_crew_rate_per_hour": 180,
+        "labor_cost_per_sq_ft": {
+          "vinyl": 3.6,
+          "fiber_cement": 5.94,
+          "wood_cedar": 6.66
+        },
+        "notes": "3-4 worker crew, includes removal, house wrap, installation, trim"
+      },
+      "additional_components": {
+        "house_wrap_vapor_barrier": {
+          "per_sq_ft": 0.5,
+          "notes": "Tyvek or similar"
+        },
+        "insulation_foam_board": {
+          "per_sq_ft": 1.5,
+          "notes": "Optional energy upgrade"
+        },
+        "trim_and_corners": {
+          "per_linear_foot": 8,
+          "typical_home_200_linear_feet": 1600
+        },
+        "removal_of_old_siding": {
+          "per_sq_ft": 1.5,
+          "typical_2000_sq_ft_home": 3000,
+          "disposal_fee": 500
+        },
+        "sheathing_repair": {
+          "per_sq_ft": 4,
+          "notes": "Only if rot found during removal"
+        }
+      },
+      "typical_total_costs": {
+        "vinyl_1400_sq_ft_home": {
+          "low": 8400,
+          "mid": 10500,
+          "high": 14000
+        },
+        "vinyl_2400_sq_ft_home": {
+          "low": 14400,
+          "mid": 18000,
+          "high": 24000
+        },
+        "fiber_cement_1400_sq_ft_home": {
+          "low": 14000,
+          "mid": 17500,
+          "high": 22400
+        },
+        "fiber_cement_2400_sq_ft_home": {
+          "low": 24000,
+          "mid": 30000,
+          "high": 38400
+        }
+      },
+      "typical_total_project_cost": {
+        "small_vinyl": {
+          "materials": 4900,
+          "labor": 5040,
+          "removal": 2100,
+          "trim": 1600,
+          "total_low": 8400,
+          "total_mid": 10500,
+          "total_high": 14000,
+          "description": "1,400 sq ft vinyl siding, includes removal and trim"
+        },
+        "medium_vinyl": {
+          "materials": 8400,
+          "labor": 8640,
+          "removal": 3600,
+          "trim": 1600,
+          "total_low": 14400,
+          "total_mid": 18000,
+          "total_high": 24000,
+          "description": "2,400 sq ft vinyl siding, includes removal and trim"
+        },
+        "medium_fiber_cement": {
+          "materials": 14400,
+          "labor": 14256,
+          "removal": 3600,
+          "trim": 1600,
+          "total_low": 24000,
+          "total_mid": 30000,
+          "total_high": 38400,
+          "description": "2,400 sq ft fiber cement (James Hardie), includes removal and trim"
+        }
+      },
+      "common_upsells": [
+        "Premium vinyl when standard performs equally",
+        "Unnecessary insulation upgrades",
+        "Full sheathing replacement without evidence of damage",
+        "Decorative elements with high markup",
+        "Color upgrades at premium pricing",
+        "Trim replacement when repair would work"
+      ],
+      "red_flags": [
+        "Vinyl siding >$12/sq ft installed",
+        "Fiber cement >$18/sq ft installed",
+        "Removal >$3/sq ft",
+        "Materials marked up >60% over wholesale",
+        "Claiming entire sheathing needs replacement without inspection",
+        "Pushing most expensive materials without cost/benefit analysis",
+        "Trim work >$15/linear foot"
+      ]
+    },
+    "window_replacement": {
+      "unit": "per_window",
+      "window_types": {
+        "double_hung": {
+          "size_typical": "36x60 inches",
+          "vinyl_budget": {
+            "window": 250,
+            "installation": 200,
+            "total": 450
+          },
+          "vinyl_mid_range": {
+            "window": 400,
+            "installation": 200,
+            "total": 600
+          },
+          "vinyl_premium": {
+            "window": 600,
+            "installation": 200,
+            "total": 800
+          },
+          "wood_clad": {
+            "window": 800,
+            "installation": 250,
+            "total": 1050
+          },
+          "fiberglass": {
+            "window": 900,
+            "installation": 250,
+            "total": 1150
+          }
+        },
+        "casement": {
+          "size_typical": "30x60 inches",
+          "vinyl_budget": {
+            "window": 300,
+            "installation": 225,
+            "total": 525
+          },
+          "vinyl_mid_range": {
+            "window": 500,
+            "installation": 225,
+            "total": 725
+          },
+          "vinyl_premium": {
+            "window": 750,
+            "installation": 225,
+            "total": 975
+          },
+          "wood_clad": {
+            "window": 950,
+            "installation": 275,
+            "total": 1225
+          }
+        },
+        "picture_window": {
+          "size_typical": "72x48 inches",
+          "vinyl_budget": {
+            "window": 350,
+            "installation": 175,
+            "total": 525
+          },
+          "vinyl_mid_range": {
+            "window": 550,
+            "installation": 175,
+            "total": 725
+          },
+          "vinyl_premium": {
+            "window": 800,
+            "installation": 175,
+            "total": 975
+          }
+        },
+        "sliding": {
+          "size_typical": "60x48 inches",
+          "vinyl_budget": {
+            "window": 280,
+            "installation": 200,
+            "total": 480
+          },
+          "vinyl_mid_range": {
+            "window": 450,
+            "installation": 200,
+            "total": 650
+          }
+        },
+        "bay_or_bow": {
+          "size_typical": "8-10 feet wide",
+          "vinyl_mid_range": {
+            "window": 1500,
+            "installation": 800,
+            "total": 2300
+          },
+          "wood_clad": {
+            "window": 2500,
+            "installation": 1000,
+            "total": 3500
+          }
+        }
+      },
+      "labor": {
+        "crew_composition": {
+          "typical_crew": "2 window installers",
+          "notes": "Crew pricing reflects loaded labor rates for window installation specialists"
+        },
+        "installation_crew_hours_per_window": {
+          "standard_replacement": 1.5,
+          "full_frame": 3,
+          "bay_bow": 8
+        },
+        "loaded_crew_rate_per_hour": 130,
+        "labor_cost_per_window": {
+          "standard": 195,
+          "full_frame": 390,
+          "bay_bow": 1040
+        }
+      },
+      "additional_costs": {
+        "trim_and_casing_interior": {
+          "per_window": 75,
+          "notes": "Pine or MDF casing"
+        },
+        "trim_exterior": {
+          "per_window": 50,
+          "notes": "Aluminum or vinyl brick mold"
+        },
+        "sill_replacement": {
+          "per_window": 100,
+          "notes": "If rotted"
+        },
+        "frame_repair": {
+          "minor": 75,
+          "moderate": 200,
+          "extensive": 500
+        },
+        "insulation_and_sealing": {
+          "per_window": 35,
+          "notes": "Spray foam, weatherstripping"
+        }
+      },
+      "whole_house_packages": {
+        "10_window_home_vinyl_mid": {
+          "windows": 4000,
+          "installation": 2000,
+          "trim": 750,
+          "total_low": 6000,
+          "total_mid": 7500,
+          "total_high": 9500
+        },
+        "15_window_home_vinyl_mid": {
+          "windows": 6000,
+          "installation": 3000,
+          "trim": 1125,
+          "total_low": 9000,
+          "total_mid": 11250,
+          "total_high": 14000
+        },
+        "20_window_home_vinyl_mid": {
+          "windows": 8000,
+          "installation": 4000,
+          "trim": 1500,
+          "total_low": 12000,
+          "total_mid": 15000,
+          "total_high": 19000
+        }
+      },
+      "typical_total_project_cost": {
+        "single_window_vinyl_mid": {
+          "window": 400,
+          "installation": 195,
+          "trim": 125,
+          "total_low": 550,
+          "total_mid": 720,
+          "total_high": 900,
+          "description": "Single double-hung vinyl window, mid-range quality"
+        },
+        "10_window_package_vinyl_mid": {
+          "windows": 4000,
+          "installation": 1950,
+          "trim": 1250,
+          "total_low": 6000,
+          "total_mid": 7500,
+          "total_high": 9500,
+          "description": "10 double-hung vinyl windows, mid-range quality"
+        },
+        "15_window_package_vinyl_mid": {
+          "windows": 6000,
+          "installation": 2925,
+          "trim": 1875,
+          "total_low": 9000,
+          "total_mid": 11250,
+          "total_high": 14000,
+          "description": "15 double-hung vinyl windows, mid-range quality"
+        }
+      },
+      "energy_efficiency": {
+        "single_pane_upgrade_note": "Replacing single-pane saves $200-400/year on heating/cooling",
+        "double_pane_to_triple_pane_premium": 200,
+        "low_e_coating_premium": 50,
+        "argon_gas_fill_premium": 40,
+        "notes": "Low-E and argon are standard in mid-range+ windows"
+      },
+      "common_upsells": [
+        "Premium brands when mid-range has same warranty",
+        "Triple-pane in moderate climates (overkill)",
+        "Full-frame replacement when insert would work",
+        "Unnecessary trim replacement",
+        "Extended warranties with high markup",
+        "Exotic colors at 20-30% premium"
+      ],
+      "red_flags": [
+        "Standard double-hung vinyl >$900 per window installed",
+        "Installation labor >$300 per standard window",
+        "Materials marked up >100% over wholesale",
+        "Pressure to replace all windows when some are fine",
+        "Financing with >10% interest disguised as 'payment plan'",
+        "Claims that windows will 'pay for themselves' in energy savings",
+        "Per-window costs >$1200 for vinyl, >$1500 for wood-clad standard sizes"
+      ]
+    },
+    "flooring_installation": {
+      "unit": "square_foot",
+      "unit_description": "per square foot of floor area",
+      "typical_project_sizes": {
+        "small_room": {
+          "square_feet": 150,
+          "description": "150 sq ft - small bedroom or bathroom"
+        },
+        "medium_room": {
+          "square_feet": 300,
+          "description": "300 sq ft - master bedroom or living room"
+        },
+        "large_area": {
+          "square_feet": 1000,
+          "description": "1,000 sq ft - whole floor or open concept space"
+        },
+        "full_house": {
+          "square_feet": 2000,
+          "description": "2,000 sq ft - average single family home"
+        }
+      },
+      "materials": {
+        "carpet_budget": {
+          "material_cost_per_sq_ft": 2.5,
+          "range_low": 1.5,
+          "range_high": 4.0,
+          "notes": "Basic polyester carpet, includes padding",
+          "quality_level": "budget",
+          "lifespan": "5-7 years"
+        },
+        "carpet_mid_grade": {
+          "material_cost_per_sq_ft": 4.5,
+          "range_low": 3.5,
+          "range_high": 6.5,
+          "notes": "Nylon carpet with good padding, stain resistant",
+          "quality_level": "standard",
+          "lifespan": "10-15 years"
+        },
+        "carpet_premium": {
+          "material_cost_per_sq_ft": 7.5,
+          "range_low": 6.0,
+          "range_high": 12.0,
+          "notes": "High-end wool or premium nylon, thick padding",
+          "quality_level": "premium",
+          "lifespan": "15-20 years"
+        },
+        "vinyl_plank_basic": {
+          "material_cost_per_sq_ft": 2.0,
+          "range_low": 1.5,
+          "range_high": 3.5,
+          "notes": "Basic vinyl plank flooring (LVP), thin wear layer",
+          "quality_level": "budget",
+          "lifespan": "5-10 years"
+        },
+        "vinyl_plank_mid": {
+          "material_cost_per_sq_ft": 3.5,
+          "range_low": 2.5,
+          "range_high": 5.0,
+          "notes": "Mid-grade LVP with 12-20 mil wear layer, waterproof",
+          "quality_level": "standard",
+          "lifespan": "15-20 years"
+        },
+        "vinyl_plank_premium": {
+          "material_cost_per_sq_ft": 5.5,
+          "range_low": 4.5,
+          "range_high": 8.0,
+          "notes": "Premium LVP, 20+ mil wear layer, realistic wood grain",
+          "quality_level": "premium",
+          "lifespan": "20-25 years"
+        },
+        "laminate_basic": {
+          "material_cost_per_sq_ft": 1.75,
+          "range_low": 1.0,
+          "range_high": 3.0,
+          "notes": "Basic laminate, AC3 rating, click-lock",
+          "quality_level": "budget",
+          "lifespan": "10-15 years"
+        },
+        "laminate_premium": {
+          "material_cost_per_sq_ft": 3.5,
+          "range_low": 2.5,
+          "range_high": 5.0,
+          "notes": "High-quality laminate, AC4-AC5 rating, moisture resistant",
+          "quality_level": "standard",
+          "lifespan": "15-25 years"
+        },
+        "hardwood_oak_prefinished": {
+          "material_cost_per_sq_ft": 6.5,
+          "range_low": 4.5,
+          "range_high": 9.0,
+          "notes": "3/4 inch solid red oak, prefinished, standard grade",
+          "quality_level": "standard",
+          "lifespan": "50+ years with refinishing"
+        },
+        "hardwood_oak_unfinished": {
+          "material_cost_per_sq_ft": 4.5,
+          "range_low": 3.5,
+          "range_high": 6.5,
+          "notes": "3/4 inch solid oak, unfinished, requires site finishing",
+          "quality_level": "standard",
+          "lifespan": "50+ years"
+        },
+        "hardwood_exotic": {
+          "material_cost_per_sq_ft": 12.0,
+          "range_low": 8.0,
+          "range_high": 18.0,
+          "notes": "Brazilian cherry, teak, or other exotic species",
+          "quality_level": "premium",
+          "lifespan": "50+ years"
+        },
+        "engineered_hardwood_basic": {
+          "material_cost_per_sq_ft": 4.0,
+          "range_low": 3.0,
+          "range_high": 6.0,
+          "notes": "Thin veneer engineered wood, 3mm wear layer",
+          "quality_level": "budget",
+          "lifespan": "20-30 years"
+        },
+        "engineered_hardwood_premium": {
+          "material_cost_per_sq_ft": 7.0,
+          "range_low": 5.5,
+          "range_high": 10.0,
+          "notes": "Thick veneer engineered wood, 5-6mm wear layer, can be refinished",
+          "quality_level": "premium",
+          "lifespan": "40-50 years"
+        },
+        "tile_ceramic": {
+          "material_cost_per_sq_ft": 3.0,
+          "range_low": 1.5,
+          "range_high": 5.0,
+          "notes": "Standard ceramic tile, 12x12 or 12x24",
+          "quality_level": "standard",
+          "lifespan": "50+ years"
+        },
+        "tile_porcelain": {
+          "material_cost_per_sq_ft": 5.0,
+          "range_low": 3.5,
+          "range_high": 8.0,
+          "notes": "Porcelain tile, more durable than ceramic",
+          "quality_level": "standard",
+          "lifespan": "75+ years"
+        },
+        "tile_natural_stone": {
+          "material_cost_per_sq_ft": 10.0,
+          "range_low": 6.0,
+          "range_high": 20.0,
+          "notes": "Marble, granite, travertine, or slate",
+          "quality_level": "premium",
+          "lifespan": "100+ years"
+        },
+        "underlayment_foam": {
+          "cost_per_sq_ft": 0.3,
+          "range_low": 0.2,
+          "range_high": 0.5,
+          "notes": "Basic foam underlayment for laminate/LVP"
+        },
+        "underlayment_cork": {
+          "cost_per_sq_ft": 0.75,
+          "range_low": 0.5,
+          "range_high": 1.25,
+          "notes": "Cork underlayment, better sound/moisture control"
+        },
+        "tile_mortar_and_grout": {
+          "cost_per_sq_ft": 1.5,
+          "range_low": 1.0,
+          "range_high": 2.5,
+          "notes": "Thinset mortar, grout, sealer for tile installation"
+        }
+      },
+      "labor": {
+        "flooring_installer_rate": {
+          "bls_code": "47-2042",
+          "occupation": "Floor Layers (except Carpet, Wood, Hard Tiles)",
+          "median_hourly_rate": 23.4,
+          "loaded_rate": 35.0,
+          "notes": "BLS 2024 data, loaded rate includes overhead and insurance"
+        },
+        "carpet_installation": {
+          "labor_per_sq_ft": 1.5,
+          "range_low": 1.0,
+          "range_high": 2.5,
+          "typical_time_per_room": "4-6 hours for 300 sq ft",
+          "notes": "Includes stretching, seaming, trimming. Does not include removal."
+        },
+        "vinyl_plank_installation": {
+          "labor_per_sq_ft": 2.5,
+          "range_low": 1.75,
+          "range_high": 3.5,
+          "typical_time_per_room": "6-8 hours for 300 sq ft",
+          "notes": "Floating floor installation, includes underlayment"
+        },
+        "laminate_installation": {
+          "labor_per_sq_ft": 2.25,
+          "range_low": 1.5,
+          "range_high": 3.25,
+          "typical_time_per_room": "6-8 hours for 300 sq ft",
+          "notes": "Click-lock installation with underlayment"
+        },
+        "hardwood_installation_nail_down": {
+          "labor_per_sq_ft": 4.5,
+          "range_low": 3.5,
+          "range_high": 6.5,
+          "typical_time_per_room": "12-16 hours for 300 sq ft",
+          "notes": "Nail down installation for 3/4 inch solid hardwood"
+        },
+        "hardwood_installation_glue_down": {
+          "labor_per_sq_ft": 5.0,
+          "range_low": 4.0,
+          "range_high": 7.0,
+          "typical_time_per_room": "14-18 hours for 300 sq ft",
+          "notes": "Glue down for engineered hardwood or parquet"
+        },
+        "hardwood_sanding_and_finishing": {
+          "labor_per_sq_ft": 3.5,
+          "range_low": 2.5,
+          "range_high": 5.0,
+          "typical_time": "2-4 days for 300 sq ft (including drying time)",
+          "notes": "For unfinished hardwood: sanding, staining (optional), 3 coats polyurethane"
+        },
+        "tile_installation": {
+          "labor_per_sq_ft": 8.0,
+          "range_low": 5.0,
+          "range_high": 12.0,
+          "typical_time_per_room": "16-24 hours for 150 sq ft bathroom",
+          "notes": "Includes layout, cutting, mortar, grouting, sealing. Complex patterns cost more."
+        },
+        "old_flooring_removal": {
+          "labor_per_sq_ft": 1.5,
+          "range_low": 0.75,
+          "range_high": 3.0,
+          "notes": "Removal and disposal. Tile removal is on the high end, carpet on low end."
+        },
+        "subfloor_repair": {
+          "labor_per_sq_ft": 3.0,
+          "range_low": 2.0,
+          "range_high": 5.0,
+          "notes": "Replacing damaged plywood subflooring"
+        },
+        "floor_leveling": {
+          "cost_per_sq_ft": 4.0,
+          "range_low": 2.5,
+          "range_high": 6.0,
+          "notes": "Self-leveling compound for uneven concrete slabs"
+        }
+      },
+      "common_jobs": {
+        "master_bedroom_carpet": {
+          "square_feet": 350,
+          "material": "carpet_mid_grade",
+          "material_cost": 1575,
+          "labor_cost": 700,
+          "total_low": 1925,
+          "total_high": 2975,
+          "notes": "350 sq ft mid-grade carpet installed over existing subfloor"
+        },
+        "living_room_hardwood": {
+          "square_feet": 400,
+          "material": "hardwood_oak_prefinished",
+          "material_cost": 2600,
+          "labor_cost": 1800,
+          "total_low": 3700,
+          "total_high": 5400,
+          "notes": "400 sq ft prefinished oak hardwood, nail down installation"
+        },
+        "kitchen_tile": {
+          "square_feet": 200,
+          "material": "tile_porcelain",
+          "material_cost": 1000,
+          "labor_cost": 1600,
+          "total_low": 2200,
+          "total_high": 3400,
+          "notes": "200 sq ft porcelain tile with standard pattern"
+        },
+        "whole_house_vinyl_plank": {
+          "square_feet": 1500,
+          "material": "vinyl_plank_mid",
+          "material_cost": 5250,
+          "labor_cost": 3750,
+          "removal_cost": 1125,
+          "total_low": 8500,
+          "total_high": 12500,
+          "notes": "1500 sq ft mid-grade LVP, includes removal of old carpet"
+        },
+        "bathroom_tile_floor": {
+          "square_feet": 60,
+          "material": "tile_ceramic",
+          "material_cost": 180,
+          "labor_cost": 480,
+          "total_low": 550,
+          "total_high": 850,
+          "notes": "Small bathroom (60 sq ft) ceramic tile"
+        }
+      },
+      "red_flags": [
+        "Charging >$5/sq ft for basic carpet installation labor (should be $1-2.50/sq ft)",
+        "Requiring 'premium underlayment' for basic laminate when standard foam works fine",
+        "Pushing exotic hardwood when domestic oak would work equally well",
+        "Charging tile installation rates ($8-12/sq ft labor) for simple vinyl plank ($1.75-3.50/sq ft)",
+        "Claiming subfloor damage without showing you the actual damage",
+        "Requiring full subfloor replacement when only spot repairs needed",
+        "Charging >$4/sq ft for old flooring removal (should be $0.75-3/sq ft depending on type)",
+        "Bundling 'required' supplies at marked-up prices (transition strips, quarter round)",
+        "Pushing glue-down installation for engineered hardwood when floating is acceptable and cheaper",
+        "Insisting all existing baseboards must be replaced (usually can reuse)",
+        "Adding 20%+ 'waste factor' - standard is 5-10% for most flooring types",
+        "Charging separately for 'measuring' or 'consultation' that should be included in quote"
+      ],
+      "common_upsells": [
+        "Premium moisture barrier when standard vapor barrier sufficient",
+        "Exotic wood species when domestic hardwood would look similar",
+        "Glue-down installation when floating floor would work",
+        "Complete baseboard replacement when removal and reinstall possible",
+        "Sound-deadening underlayment when standard sufficient",
+        "Decorative tile patterns or borders that significantly increase labor cost"
+      ],
+      "cost_factors": {
+        "room_shape": "Irregular shapes, angles, closets increase labor 15-30%",
+        "furniture_moving": "Typically $50-150 per room if contractor moves furniture",
+        "stairs": "Stair installation costs 2-3x more per sq ft than flat surfaces",
+        "pattern_matching": "Tile patterns, hardwood borders, carpet seams increase labor 20-40%",
+        "moisture_issues": "Concrete moisture mitigation adds $2-4/sq ft"
+      },
+      "regional_notes": {
+        "high_cost_areas": "Expect labor rates 25-40% higher in NYC, SF, Boston",
+        "low_cost_areas": "Southern and rural areas typically 10-20% below national average",
+        "seasonal": "Flooring contractors may discount 10-15% in winter slow season"
+      }
+    },
+    "fence_installation": {
+      "unit": "linear_foot",
+      "unit_description": "per linear foot of fence",
+      "typical_project_sizes": {
+        "small_yard": {
+          "linear_feet": 100,
+          "description": "100 LF - small backyard section or side yard"
+        },
+        "medium_yard": {
+          "linear_feet": 200,
+          "description": "200 LF - full backyard perimeter"
+        },
+        "large_property": {
+          "linear_feet": 400,
+          "description": "400 LF - full property perimeter"
+        },
+        "acreage": {
+          "linear_feet": 1000,
+          "description": "1,000 LF - multi-acre property or commercial"
+        }
+      },
+      "materials": {
+        "wood_fence_pine_treated_6ft": {
+          "material_cost_per_lf": 15.0,
+          "range_low": 12.0,
+          "range_high": 20.0,
+          "notes": "Pressure-treated pine, 6ft privacy fence, includes posts, rails, pickets",
+          "quality_level": "budget",
+          "lifespan": "15-20 years with maintenance"
+        },
+        "wood_fence_cedar_6ft": {
+          "material_cost_per_lf": 28.0,
+          "range_low": 22.0,
+          "range_high": 35.0,
+          "notes": "Western red cedar, 6ft privacy fence, naturally rot-resistant",
+          "quality_level": "premium",
+          "lifespan": "25-30 years"
+        },
+        "wood_fence_redwood_6ft": {
+          "material_cost_per_lf": 32.0,
+          "range_low": 28.0,
+          "range_high": 40.0,
+          "notes": "Redwood, 6ft privacy fence, premium appearance",
+          "quality_level": "premium",
+          "lifespan": "25-30 years"
+        },
+        "wood_picket_fence_4ft": {
+          "material_cost_per_lf": 12.0,
+          "range_low": 10.0,
+          "range_high": 18.0,
+          "notes": "4ft picket fence, decorative front yard style",
+          "quality_level": "standard",
+          "lifespan": "15-20 years"
+        },
+        "vinyl_fence_privacy_6ft": {
+          "material_cost_per_lf": 28.0,
+          "range_low": 22.0,
+          "range_high": 38.0,
+          "notes": "PVC privacy fence, no maintenance, white or tan",
+          "quality_level": "premium",
+          "lifespan": "30-50 years"
+        },
+        "vinyl_fence_picket_4ft": {
+          "material_cost_per_lf": 20.0,
+          "range_low": 15.0,
+          "range_high": 28.0,
+          "notes": "PVC picket fence, decorative, maintenance-free",
+          "quality_level": "premium",
+          "lifespan": "30-50 years"
+        },
+        "chain_link_4ft_residential": {
+          "material_cost_per_lf": 8.0,
+          "range_low": 6.0,
+          "range_high": 12.0,
+          "notes": "Galvanized chain link, 4ft height, residential grade",
+          "quality_level": "budget",
+          "lifespan": "20-30 years"
+        },
+        "chain_link_6ft_residential": {
+          "material_cost_per_lf": 12.0,
+          "range_low": 10.0,
+          "range_high": 16.0,
+          "notes": "Galvanized chain link, 6ft height with privacy slats option",
+          "quality_level": "budget",
+          "lifespan": "20-30 years"
+        },
+        "chain_link_commercial_grade": {
+          "material_cost_per_lf": 18.0,
+          "range_low": 15.0,
+          "range_high": 25.0,
+          "notes": "Heavy-duty commercial grade, thicker gauge wire",
+          "quality_level": "commercial",
+          "lifespan": "30-40 years"
+        },
+        "aluminum_fence_ornamental_4ft": {
+          "material_cost_per_lf": 30.0,
+          "range_low": 25.0,
+          "range_high": 40.0,
+          "notes": "Powder-coated aluminum, ornamental style, no rust",
+          "quality_level": "premium",
+          "lifespan": "30-50 years"
+        },
+        "aluminum_fence_ornamental_6ft": {
+          "material_cost_per_lf": 40.0,
+          "range_low": 35.0,
+          "range_high": 55.0,
+          "notes": "Powder-coated aluminum, 6ft ornamental, pool-code compliant",
+          "quality_level": "premium",
+          "lifespan": "30-50 years"
+        },
+        "wrought_iron_custom": {
+          "material_cost_per_lf": 100.0,
+          "range_low": 80.0,
+          "range_high": 150.0,
+          "notes": "True wrought iron, custom fabrication, requires ongoing rust prevention",
+          "quality_level": "luxury",
+          "lifespan": "50+ years with maintenance"
+        },
+        "split_rail_2_rail": {
+          "material_cost_per_lf": 8.0,
+          "range_low": 6.0,
+          "range_high": 12.0,
+          "notes": "2-rail split rail, rustic style, cedar or treated pine",
+          "quality_level": "budget",
+          "lifespan": "15-25 years"
+        },
+        "split_rail_3_rail": {
+          "material_cost_per_lf": 10.0,
+          "range_low": 8.0,
+          "range_high": 14.0,
+          "notes": "3-rail split rail, more substantial appearance",
+          "quality_level": "standard",
+          "lifespan": "15-25 years"
+        },
+        "composite_fence_6ft": {
+          "material_cost_per_lf": 45.0,
+          "range_low": 38.0,
+          "range_high": 60.0,
+          "notes": "Wood-plastic composite, Trex-style, very low maintenance",
+          "quality_level": "premium",
+          "lifespan": "25-35 years"
+        },
+        "privacy_slats_chain_link": {
+          "cost_per_lf": 3.0,
+          "range_low": 2.0,
+          "range_high": 5.0,
+          "notes": "Privacy slats for existing chain link fence"
+        },
+        "fence_posts_wood_4x4": {
+          "cost_per_post": 15.0,
+          "typical_spacing": "8 feet",
+          "notes": "Pressure-treated 4x4 posts, includes concrete setting"
+        },
+        "fence_posts_steel_terminal": {
+          "cost_per_post": 45.0,
+          "notes": "Heavy-duty steel posts for gates and corners (chain link)"
+        },
+        "concrete_for_posts": {
+          "cost_per_post": 8.0,
+          "range_low": 5.0,
+          "range_high": 12.0,
+          "notes": "60lb bags concrete per post, includes labor to mix and set"
+        }
+      },
+      "labor": {
+        "fence_installer_rate": {
+          "bls_code": "47-4031",
+          "occupation": "Fence Erectors",
+          "median_hourly_rate": 22.1,
+          "loaded_rate": 33.0,
+          "notes": "BLS 2024 data, loaded rate includes overhead"
+        },
+        "wood_fence_installation": {
+          "labor_per_lf": 8.0,
+          "range_low": 6.0,
+          "range_high": 12.0,
+          "typical_crew": "2 workers",
+          "typical_speed": "50-80 linear feet per day",
+          "notes": "Includes post holes (auger or manual), setting posts in concrete, attaching rails and pickets"
+        },
+        "vinyl_fence_installation": {
+          "labor_per_lf": 10.0,
+          "range_low": 8.0,
+          "range_high": 14.0,
+          "typical_crew": "2 workers",
+          "typical_speed": "40-60 linear feet per day",
+          "notes": "More precise installation required, posts must be perfectly level"
+        },
+        "chain_link_installation": {
+          "labor_per_lf": 5.0,
+          "range_low": 3.5,
+          "range_high": 7.0,
+          "typical_crew": "2 workers",
+          "typical_speed": "100-150 linear feet per day",
+          "notes": "Faster installation, includes stretching fabric and attaching to posts"
+        },
+        "aluminum_fence_installation": {
+          "labor_per_lf": 12.0,
+          "range_low": 10.0,
+          "range_high": 16.0,
+          "typical_crew": "2 workers",
+          "typical_speed": "40-60 linear feet per day",
+          "notes": "Precision required, heavier panels than vinyl"
+        },
+        "wrought_iron_installation": {
+          "labor_per_lf": 25.0,
+          "range_low": 20.0,
+          "range_high": 35.0,
+          "typical_crew": "2-3 workers",
+          "typical_speed": "20-40 linear feet per day",
+          "notes": "Requires welding skills, heavy material, custom fitting"
+        },
+        "split_rail_installation": {
+          "labor_per_lf": 4.0,
+          "range_low": 3.0,
+          "range_high": 6.0,
+          "typical_crew": "2 workers",
+          "typical_speed": "80-120 linear feet per day",
+          "notes": "Simpler installation, posts set in gravel or concrete"
+        },
+        "old_fence_removal": {
+          "labor_per_lf": 3.0,
+          "range_low": 2.0,
+          "range_high": 5.0,
+          "notes": "Remove and dispose of existing fence, includes pulling posts"
+        },
+        "grading_and_prep": {
+          "cost_per_lf": 2.0,
+          "range_low": 1.0,
+          "range_high": 4.0,
+          "notes": "Minor grading, clearing vegetation, marking property lines"
+        },
+        "rock_drilling_surcharge": {
+          "cost_per_post": 25.0,
+          "range_low": 15.0,
+          "range_high": 40.0,
+          "notes": "Additional cost when hitting rock or hardpan during post hole digging"
+        },
+        "staining_sealing": {
+          "labor_per_lf": 2.5,
+          "range_low": 1.5,
+          "range_high": 4.0,
+          "notes": "Stain and seal wood fence (materials separate)"
+        }
+      },
+      "gates": {
+        "single_walk_gate_wood_4ft": {
+          "total_cost": 300,
+          "range_low": 200,
+          "range_high": 450,
+          "notes": "4ft wide walk gate with hardware, matches wood fence"
+        },
+        "single_walk_gate_vinyl_4ft": {
+          "total_cost": 400,
+          "range_low": 300,
+          "range_high": 600,
+          "notes": "4ft wide vinyl walk gate with hardware"
+        },
+        "double_drive_gate_wood_12ft": {
+          "total_cost": 1200,
+          "range_low": 900,
+          "range_high": 1800,
+          "notes": "12ft wide double drive gate, heavy-duty hardware"
+        },
+        "chain_link_gate_4ft": {
+          "total_cost": 150,
+          "range_low": 100,
+          "range_high": 250,
+          "notes": "Standard chain link walk gate with frame"
+        },
+        "aluminum_gate_ornamental_4ft": {
+          "total_cost": 500,
+          "range_low": 400,
+          "range_high": 700,
+          "notes": "Ornamental aluminum gate, self-closing hinge"
+        },
+        "automatic_gate_opener": {
+          "total_cost": 1500,
+          "range_low": 1000,
+          "range_high": 2500,
+          "notes": "Electric gate opener for driveway gate, includes installation"
+        },
+        "gate_hardware_premium": {
+          "cost_per_gate": 100,
+          "range_low": 75,
+          "range_high": 200,
+          "notes": "Heavy-duty hinges, latch, self-closer"
+        }
+      },
+      "common_jobs": {
+        "backyard_wood_privacy_200ft": {
+          "linear_feet": 200,
+          "material": "wood_fence_pine_treated_6ft",
+          "gates": 1,
+          "material_cost": 3000,
+          "labor_cost": 1600,
+          "gates_cost": 300,
+          "total_low": 4200,
+          "total_high": 6400,
+          "notes": "200 LF treated pine privacy fence with one walk gate"
+        },
+        "backyard_cedar_privacy_150ft": {
+          "linear_feet": 150,
+          "material": "wood_fence_cedar_6ft",
+          "gates": 1,
+          "material_cost": 4200,
+          "labor_cost": 1200,
+          "gates_cost": 300,
+          "total_low": 5100,
+          "total_high": 7200,
+          "notes": "150 LF cedar privacy fence, premium appearance"
+        },
+        "chain_link_dog_run_100ft": {
+          "linear_feet": 100,
+          "material": "chain_link_4ft_residential",
+          "gates": 1,
+          "material_cost": 800,
+          "labor_cost": 500,
+          "gates_cost": 150,
+          "total_low": 1200,
+          "total_high": 1800,
+          "notes": "100 LF chain link dog enclosure, 4ft height"
+        },
+        "vinyl_privacy_perimeter_300ft": {
+          "linear_feet": 300,
+          "material": "vinyl_fence_privacy_6ft",
+          "gates": 2,
+          "material_cost": 8400,
+          "labor_cost": 3000,
+          "gates_cost": 800,
+          "total_low": 11000,
+          "total_high": 15600,
+          "notes": "300 LF vinyl privacy fence with two walk gates, maintenance-free"
+        },
+        "split_rail_decorative_200ft": {
+          "linear_feet": 200,
+          "material": "split_rail_3_rail",
+          "gates": 0,
+          "material_cost": 2000,
+          "labor_cost": 800,
+          "total_low": 2500,
+          "total_high": 3600,
+          "notes": "200 LF 3-rail split rail fence, no gates"
+        },
+        "aluminum_pool_fence_120ft": {
+          "linear_feet": 120,
+          "material": "aluminum_fence_ornamental_4ft",
+          "gates": 1,
+          "material_cost": 3600,
+          "labor_cost": 1440,
+          "gates_cost": 500,
+          "total_low": 4800,
+          "total_high": 6600,
+          "notes": "120 LF aluminum pool fence, code-compliant with self-closing gate"
+        }
+      },
+      "red_flags": [
+        "Charging >$15/LF labor for chain link (should be $3.50-7/LF)",
+        "Charging >$15/LF labor for basic wood fence (should be $6-12/LF)",
+        "Requiring 'special' concrete mix when standard 60lb bags work fine",
+        "Claiming all posts need steel reinforcement (rarely necessary for residential)",
+        "Pushing premium cedar when treated pine would work equally well",
+        "Charging separately for 'measuring' or 'site visit' (should be included)",
+        "Adding 15%+ 'waste factor' (standard is 5-10%)",
+        "Requiring full fence replacement when partial repair would work",
+        "Claiming you need building permits for standard residential fence (check local codes - usually <6ft doesn't need permit)",
+        "Charging >$50/post for concrete setting (should be $5-12/post)",
+        "Insisting on 3ft deep post holes when 2ft sufficient in most areas",
+        "Adding 'mobilization fee' >$200 for standard residential job",
+        "Charging >$500 for basic walk gate (should be $200-450 for wood)",
+        "Claiming soil conditions require drilling when standard auger works",
+        "Bundling staining/sealing at inflated prices (easy DIY or separate quote)"
+      ],
+      "common_upsells": {
+        "premium_posts": "Steel posts when wood posts sufficient",
+        "deeper_holes": "3ft+ holes when 24-30 inches is standard",
+        "premium_concrete": "Special concrete mix vs. standard 60lb bags",
+        "unnecessary_gates": "Adding extra gates you don't need",
+        "immediate_staining": "Staining at install when fence should dry 6-12 months first",
+        "cedar_upgrade": "Cedar fence when treated pine would work",
+        "vinyl_upgrade": "Vinyl when you're on a budget and wood would work",
+        "decorative_elements": "Post caps, lattice tops, fancy finials that add cost",
+        "privacy_slats": "Chain link privacy slats when privacy fence would be similar cost"
+      },
+      "cost_factors": {
+        "terrain": "Sloped or uneven terrain increases labor 20-40%",
+        "access": "Poor access requiring hand-digging increases cost 30-50%",
+        "soil_conditions": "Rocky soil or hardpan adds $15-40/post for drilling",
+        "property_line_survey": "May need $300-800 survey to locate exact boundaries",
+        "hoa_approval": "Some HOAs restrict materials/colors, factor in approval time",
+        "local_codes": "Height restrictions, setback requirements vary by municipality",
+        "seasonal": "Winter installation may cost 10-20% more in cold climates",
+        "removal": "Old fence removal adds $2-5/LF"
+      },
+      "regional_notes": {
+        "frost_line": "Northern climates require deeper post holes (below frost line, typically 36-48 inches)",
+        "hurricane_zones": "Coastal areas may require additional bracing and deeper posts",
+        "hoa_common": "Planned communities often have strict fence regulations",
+        "material_availability": "Cedar more expensive in areas where it's not regionally sourced",
+        "labor_rates": "Urban areas 20-40% higher labor than rural"
+      },
+      "maintenance_guidance": {
+        "wood_fence": "Restain/reseal every 2-3 years, inspect for rot annually, expect repairs after 10-15 years",
+        "vinyl_fence": "Minimal maintenance, wash annually, check posts for stability",
+        "chain_link": "Inspect for rust spots, tighten fabric if sagging, lubricate gates",
+        "aluminum_fence": "Very low maintenance, occasional washing, check hardware",
+        "wrought_iron": "Requires regular rust prevention, repainting every 5-10 years"
+      }
+    },
+    "concrete_work": {
+      "unit": "square_foot",
+      "unit_description": "per square foot for slabs, per linear foot for footings, per cubic yard for pours",
+      "typical_project_sizes": {
+        "small_patio": {
+          "square_feet": 200,
+          "description": "200 sq ft - 10x20 patio"
+        },
+        "single_car_driveway": {
+          "square_feet": 400,
+          "description": "400 sq ft - 12x33 single car driveway"
+        },
+        "two_car_driveway": {
+          "square_feet": 640,
+          "description": "640 sq ft - 20x32 two car driveway"
+        },
+        "large_driveway": {
+          "square_feet": 1000,
+          "description": "1,000 sq ft - extended driveway with parking area"
+        },
+        "sidewalk_100ft": {
+          "square_feet": 400,
+          "description": "400 sq ft - 4ft wide x 100ft long sidewalk"
+        }
+      },
+      "materials": {
+        "concrete_3000psi": {
+          "cost_per_cubic_yard": 125,
+          "range_low": 110,
+          "range_high": 145,
+          "notes": "Standard 3000 PSI concrete mix, suitable for most residential slabs",
+          "typical_use": "patios, walkways, garage floors"
+        },
+        "concrete_4000psi": {
+          "cost_per_cubic_yard": 140,
+          "range_low": 125,
+          "range_high": 160,
+          "notes": "4000 PSI concrete, more durable for driveways and high-traffic",
+          "typical_use": "driveways, commercial slabs"
+        },
+        "concrete_5000psi": {
+          "cost_per_cubic_yard": 160,
+          "range_low": 145,
+          "range_high": 185,
+          "notes": "High-strength 5000 PSI, for heavy loads or freeze-thaw climates",
+          "typical_use": "heavy equipment areas, northern climates"
+        },
+        "fiber_reinforced_concrete": {
+          "cost_per_cubic_yard": 155,
+          "range_low": 140,
+          "range_high": 180,
+          "notes": "Concrete with synthetic fibers, reduces cracking",
+          "typical_use": "driveways, patios where cracking is concern"
+        },
+        "colored_concrete": {
+          "additional_cost_per_sq_ft": 1.5,
+          "range_low": 1.0,
+          "range_high": 3.0,
+          "notes": "Integral color mixed into concrete"
+        },
+        "rebar_reinforcement": {
+          "cost_per_sq_ft": 0.75,
+          "range_low": 0.5,
+          "range_high": 1.25,
+          "notes": "Steel rebar grid, typically #4 bar @ 18 inch centers"
+        },
+        "wire_mesh_reinforcement": {
+          "cost_per_sq_ft": 0.4,
+          "range_low": 0.3,
+          "range_high": 0.6,
+          "notes": "6x6 10/10 welded wire mesh, lighter than rebar"
+        },
+        "vapor_barrier": {
+          "cost_per_sq_ft": 0.25,
+          "range_low": 0.15,
+          "range_high": 0.4,
+          "notes": "6mil plastic sheeting under slab to prevent moisture"
+        },
+        "expansion_joints": {
+          "cost_per_linear_foot": 1.5,
+          "range_low": 1.0,
+          "range_high": 2.5,
+          "notes": "Expansion joint material between sections"
+        },
+        "gravel_base_4_inch": {
+          "cost_per_sq_ft": 0.8,
+          "range_low": 0.5,
+          "range_high": 1.2,
+          "notes": "4 inch compacted gravel base, crushed stone"
+        },
+        "gravel_base_6_inch": {
+          "cost_per_sq_ft": 1.2,
+          "range_low": 0.85,
+          "range_high": 1.75,
+          "notes": "6 inch compacted gravel base for driveways"
+        }
+      },
+      "labor": {
+        "concrete_finisher_rate": {
+          "bls_code": "47-2051",
+          "occupation": "Cement Masons and Concrete Finishers",
+          "median_hourly_rate": 25.7,
+          "loaded_rate": 38.0,
+          "notes": "BLS 2024 data, skilled trade with overhead"
+        },
+        "basic_slab_pour_finish": {
+          "labor_per_sq_ft": 4.0,
+          "range_low": 3.0,
+          "range_high": 6.0,
+          "typical_crew": "3-4 workers",
+          "notes": "Includes forming, pouring, screeding, floating, troweling, basic broom finish",
+          "typical_thickness": "4 inches"
+        },
+        "driveway_pour_finish": {
+          "labor_per_sq_ft": 4.5,
+          "range_low": 3.5,
+          "range_high": 6.5,
+          "typical_crew": "4-5 workers",
+          "notes": "Driveway-specific: thicker slab (6in), control joints, proper slope for drainage",
+          "typical_thickness": "6 inches"
+        },
+        "stamped_concrete": {
+          "labor_per_sq_ft": 8.0,
+          "range_low": 6.0,
+          "range_high": 12.0,
+          "typical_crew": "3-4 skilled workers",
+          "notes": "Decorative stamped pattern (stone, brick, slate patterns), requires special skills and timing"
+        },
+        "stained_concrete": {
+          "labor_per_sq_ft": 3.0,
+          "range_low": 2.0,
+          "range_high": 5.0,
+          "notes": "Acid stain or water-based stain after curing, includes sealer"
+        },
+        "polished_concrete": {
+          "labor_per_sq_ft": 6.0,
+          "range_low": 4.0,
+          "range_high": 10.0,
+          "notes": "Grinding and polishing existing slab, multiple passes with progressively finer grits"
+        },
+        "exposed_aggregate": {
+          "labor_per_sq_ft": 6.0,
+          "range_low": 4.5,
+          "range_high": 8.5,
+          "notes": "Surface retarder and washing to expose aggregate, decorative finish"
+        },
+        "epoxy_coating": {
+          "labor_per_sq_ft": 4.0,
+          "range_low": 2.5,
+          "range_high": 6.0,
+          "notes": "Garage floor epoxy coating, includes surface prep, primer, epoxy, and flake broadcast"
+        },
+        "concrete_sealing": {
+          "labor_per_sq_ft": 0.75,
+          "range_low": 0.5,
+          "range_high": 1.25,
+          "notes": "Penetrating sealer or acrylic sealer application"
+        },
+        "excavation_and_grading": {
+          "labor_per_sq_ft": 1.5,
+          "range_low": 1.0,
+          "range_high": 2.5,
+          "notes": "Excavate to proper depth, grade for drainage, compact subgrade"
+        },
+        "formwork_setup": {
+          "labor_per_linear_foot": 3.0,
+          "range_low": 2.0,
+          "range_high": 5.0,
+          "notes": "Build and stake forms, includes materials (2x4 or 2x6 lumber, stakes)"
+        },
+        "demolition_existing_concrete": {
+          "labor_per_sq_ft": 3.0,
+          "range_low": 2.0,
+          "range_high": 5.0,
+          "notes": "Break up existing concrete, includes labor only (disposal separate)"
+        },
+        "concrete_disposal": {
+          "cost_per_cubic_yard": 80,
+          "range_low": 60,
+          "range_high": 120,
+          "notes": "Haul away and dump fee for broken concrete"
+        },
+        "hand_finishing_edges": {
+          "labor_per_linear_foot": 2.0,
+          "range_low": 1.5,
+          "range_high": 3.0,
+          "notes": "Edging tool for clean borders, hand troweling"
+        }
+      },
+      "common_jobs": {
+        "basic_patio_12x16": {
+          "square_feet": 192,
+          "concrete_cubic_yards": 2.4,
+          "thickness_inches": 4,
+          "concrete_cost": 300,
+          "labor_cost": 768,
+          "base_prep_cost": 154,
+          "total_low": 1100,
+          "total_high": 1650,
+          "notes": "192 sq ft patio, 4 inch thick, broom finish, includes 4in gravel base"
+        },
+        "stamped_patio_12x16": {
+          "square_feet": 192,
+          "concrete_cubic_yards": 2.4,
+          "thickness_inches": 4,
+          "concrete_cost": 300,
+          "labor_cost": 1536,
+          "color_cost": 288,
+          "total_low": 2000,
+          "total_high": 3200,
+          "notes": "192 sq ft stamped concrete patio with color, decorative pattern"
+        },
+        "single_car_driveway_12x30": {
+          "square_feet": 360,
+          "concrete_cubic_yards": 6.7,
+          "thickness_inches": 6,
+          "concrete_cost": 938,
+          "labor_cost": 1620,
+          "base_prep_cost": 432,
+          "rebar_cost": 270,
+          "total_low": 3000,
+          "total_high": 4500,
+          "notes": "360 sq ft driveway, 6in thick with rebar, control joints, proper slope"
+        },
+        "two_car_driveway_20x30": {
+          "square_feet": 600,
+          "concrete_cubic_yards": 11.1,
+          "thickness_inches": 6,
+          "concrete_cost": 1554,
+          "labor_cost": 2700,
+          "base_prep_cost": 720,
+          "rebar_cost": 450,
+          "total_low": 5000,
+          "total_high": 7500,
+          "notes": "600 sq ft two-car driveway, 6in thick, rebar, broom finish"
+        },
+        "sidewalk_4ft_x_50ft": {
+          "square_feet": 200,
+          "concrete_cubic_yards": 2.5,
+          "thickness_inches": 4,
+          "concrete_cost": 313,
+          "labor_cost": 800,
+          "total_low": 950,
+          "total_high": 1500,
+          "notes": "200 sq ft sidewalk, 4in thick, broom finish"
+        },
+        "garage_floor_20x20": {
+          "square_feet": 400,
+          "concrete_cubic_yards": 5.0,
+          "thickness_inches": 4,
+          "concrete_cost": 625,
+          "labor_cost": 1600,
+          "vapor_barrier_cost": 100,
+          "total_low": 2100,
+          "total_high": 3200,
+          "notes": "400 sq ft garage floor, 4in thick, vapor barrier, smooth steel trowel finish"
+        },
+        "garage_floor_epoxy_coating": {
+          "square_feet": 400,
+          "epoxy_materials": 600,
+          "labor_cost": 1600,
+          "surface_prep": 400,
+          "total_low": 2300,
+          "total_high": 3400,
+          "notes": "400 sq ft garage floor epoxy coating (existing slab), includes surface prep and two-part epoxy"
+        }
+      },
+      "red_flags": [
+        "Charging >$8/sq ft for basic broom-finish slab labor (should be $3-6/sq ft)",
+        "Claiming you need 8+ inches thick for residential driveway (6 inches is standard, 4 inches for light use)",
+        "Requiring 5000 PSI concrete for basic patio (3000 PSI is fine for most residential)",
+        "Pushing stamped concrete when you asked for basic finish (huge markup)",
+        "Charging separately for control joints (should be included in labor)",
+        "Adding 20%+ waste factor (concrete is ordered to exact amount, 5-10% waste typical)",
+        "Claiming rebar required for patio (wire mesh usually sufficient)",
+        "Requiring 8+ inch gravel base (4-6 inches standard for most applications)",
+        "Charging >$150/CY for standard concrete delivered (should be $110-145/CY)",
+        "Insisting on fiber-reinforced concrete for everything (standard concrete fine for most jobs)",
+        "Claiming soil conditions require special foundation work without testing",
+        "Charging >$5/sq ft for concrete demolition (should be $2-5/sq ft)",
+        "Adding 'mobilization fee' >$300 for standard residential job",
+        "Bundling unnecessary drainage systems into quote",
+        "Charging per hour instead of per square foot (allows padding)"
+      ],
+      "common_upsells": {
+        "unnecessary_thickness": "8 inch slab when 4-6 inches sufficient",
+        "premium_psi": "5000 PSI when 3000-4000 PSI adequate",
+        "rebar_everywhere": "Rebar when wire mesh would work",
+        "decorative_finishes": "Stamped/stained when you wanted basic",
+        "fiber_reinforcement": "Fiber concrete when standard is fine",
+        "excessive_base": "8+ inch gravel base when 4-6 inches works",
+        "vapor_barrier_always": "Vapor barrier when not needed (not under outdoor slabs)",
+        "sealer_immediately": "Sealer before concrete fully cured (wait 28+ days)",
+        "unnecessary_saw_cuts": "Excessive control joints beyond what's needed"
+      },
+      "cost_factors": {
+        "access": "Poor access requiring wheelbarrow transport adds 30-50% labor",
+        "sloped_site": "Significant slope requires more excavation/forming, adds 20-40%",
+        "soil_conditions": "Poor soil may require deeper base or soil stabilization",
+        "weather": "Cold weather pours require blankets and heaters, adds 15-25%",
+        "hot_weather": "Hot weather requires accelerators and extra care, adds 10-15%",
+        "pump_truck": "If concrete truck can't reach, pump truck adds $400-800",
+        "thickness": "Each additional inch adds ~25% to concrete cost",
+        "finishing": "Decorative finishes (stamped, stained, exposed) add 50-150% to labor"
+      },
+      "technical_specs": {
+        "typical_thickness": {
+          "patio": "4 inches",
+          "sidewalk": "4 inches",
+          "driveway_residential": "4-6 inches (6 preferred)",
+          "garage_floor": "4-6 inches",
+          "commercial": "6-8 inches"
+        },
+        "concrete_per_sq_ft": {
+          "4_inch": "0.0123 cubic yards per sq ft",
+          "5_inch": "0.0154 cubic yards per sq ft",
+          "6_inch": "0.0185 cubic yards per sq ft"
+        },
+        "control_joints": "Should be spaced at 2x thickness in feet (4 inch slab = 8ft spacing)",
+        "curing_time": "Allow 7 days before light use, 28 days for full cure",
+        "slope_for_drainage": "Minimum 1/4 inch per foot for proper water runoff"
+      },
+      "regional_notes": {
+        "cold_climates": "Requires 4000+ PSI concrete, air entrainment for freeze-thaw resistance",
+        "hot_climates": "May need retarders in summer to slow curing, shade during finishing",
+        "high_water_table": "May require drainage system or elevated base",
+        "expansive_soils": "Some soils expand/contract, may need engineered base or post-tension",
+        "seismic_zones": "May require additional reinforcement per local codes"
+      }
+    },
+    "gutter_installation": {
+      "unit": "linear_foot",
+      "unit_description": "per linear foot of gutter (downspouts priced separately)",
+      "typical_project_sizes": {
+        "small_home": {
+          "linear_feet": 120,
+          "description": "120 LF - small ranch, 2-3 downspouts"
+        },
+        "medium_home": {
+          "linear_feet": 180,
+          "description": "180 LF - average single family, 4-5 downspouts"
+        },
+        "large_home": {
+          "linear_feet": 250,
+          "description": "250 LF - large two-story, 6-8 downspouts"
+        }
+      },
+      "materials": {
+        "aluminum_5inch_sectional": {
+          "material_cost_per_lf": 3.0,
+          "range_low": 2.5,
+          "range_high": 4.5,
+          "notes": "Standard 5 inch K-style aluminum, sectional (10ft lengths)",
+          "quality_level": "budget",
+          "lifespan": "15-20 years"
+        },
+        "aluminum_5inch_seamless": {
+          "material_cost_per_lf": 4.5,
+          "range_low": 3.5,
+          "range_high": 6.0,
+          "notes": "5 inch K-style seamless aluminum, custom-formed onsite, most popular",
+          "quality_level": "standard",
+          "lifespan": "20-30 years"
+        },
+        "aluminum_6inch_seamless": {
+          "material_cost_per_lf": 5.5,
+          "range_low": 4.5,
+          "range_high": 7.5,
+          "notes": "6 inch K-style seamless, handles more water volume",
+          "quality_level": "premium",
+          "lifespan": "20-30 years"
+        },
+        "aluminum_half_round_seamless": {
+          "material_cost_per_lf": 6.0,
+          "range_low": 5.0,
+          "range_high": 8.0,
+          "notes": "Half-round profile, decorative, less capacity than K-style",
+          "quality_level": "premium",
+          "lifespan": "20-30 years"
+        },
+        "copper_5inch": {
+          "material_cost_per_lf": 25.0,
+          "range_low": 20.0,
+          "range_high": 35.0,
+          "notes": "Copper gutters, develops natural patina, premium appearance",
+          "quality_level": "luxury",
+          "lifespan": "50+ years"
+        },
+        "copper_half_round": {
+          "material_cost_per_lf": 28.0,
+          "range_low": 22.0,
+          "range_high": 38.0,
+          "notes": "Copper half-round, high-end decorative",
+          "quality_level": "luxury",
+          "lifespan": "50+ years"
+        },
+        "vinyl_5inch": {
+          "material_cost_per_lf": 2.0,
+          "range_low": 1.5,
+          "range_high": 3.0,
+          "notes": "PVC vinyl gutters, DIY-friendly but less durable",
+          "quality_level": "budget",
+          "lifespan": "10-20 years"
+        },
+        "steel_galvanized_5inch": {
+          "material_cost_per_lf": 5.0,
+          "range_low": 4.0,
+          "range_high": 7.0,
+          "notes": "Galvanized steel, more durable than aluminum, heavier",
+          "quality_level": "standard",
+          "lifespan": "20-25 years"
+        },
+        "downspout_aluminum_3x4": {
+          "cost_per_linear_foot": 4.0,
+          "range_low": 3.0,
+          "range_high": 6.0,
+          "notes": "Standard 3x4 inch aluminum downspout"
+        },
+        "downspout_copper": {
+          "cost_per_linear_foot": 18.0,
+          "range_low": 15.0,
+          "range_high": 25.0,
+          "notes": "Copper downspout to match copper gutters"
+        },
+        "downspout_extensions": {
+          "cost_each": 15.0,
+          "range_low": 10.0,
+          "range_high": 25.0,
+          "notes": "Plastic or metal extension to direct water away from foundation"
+        },
+        "elbows_and_fittings": {
+          "cost_per_downspout": 20.0,
+          "range_low": 15.0,
+          "range_high": 30.0,
+          "notes": "Elbows, adapters, and fittings per downspout"
+        },
+        "hangers_hidden": {
+          "cost_per_lf": 1.0,
+          "range_low": 0.75,
+          "range_high": 1.5,
+          "notes": "Hidden hangers every 2-3 feet, strongest mounting"
+        },
+        "end_caps": {
+          "cost_each": 3.0,
+          "notes": "End caps for gutter runs"
+        },
+        "inside_outside_corners": {
+          "cost_each": 8.0,
+          "range_low": 6.0,
+          "range_high": 12.0,
+          "notes": "Corner pieces for seamless gutters (mitered or box)"
+        }
+      },
+      "labor": {
+        "gutter_installer_rate": {
+          "occupation": "Gutter Installer (specialized roofer)",
+          "median_hourly_rate": 24.0,
+          "loaded_rate": 36.0,
+          "notes": "Specialized trade, often part of roofing crews"
+        },
+        "aluminum_seamless_installation": {
+          "labor_per_lf": 4.0,
+          "range_low": 3.0,
+          "range_high": 6.0,
+          "typical_crew": "2 workers",
+          "typical_speed": "100-150 linear feet per day",
+          "notes": "Includes measuring, forming, cutting, hanging, sealing joints, installing hangers"
+        },
+        "copper_gutter_installation": {
+          "labor_per_lf": 12.0,
+          "range_low": 10.0,
+          "range_high": 16.0,
+          "typical_crew": "2 skilled workers",
+          "notes": "Requires soldering skills, more precise work, heavier material"
+        },
+        "vinyl_gutter_installation": {
+          "labor_per_lf": 2.5,
+          "range_low": 2.0,
+          "range_high": 4.0,
+          "notes": "Faster installation, snap-together system"
+        },
+        "downspout_installation": {
+          "labor_per_downspout": 75.0,
+          "range_low": 50.0,
+          "range_high": 125.0,
+          "notes": "Per downspout including mounting straps, elbows, connection to gutter"
+        },
+        "old_gutter_removal": {
+          "labor_per_lf": 1.5,
+          "range_low": 1.0,
+          "range_high": 2.5,
+          "notes": "Remove and dispose of existing gutters and downspouts"
+        },
+        "fascia_repair": {
+          "cost_per_linear_foot": 6.0,
+          "range_low": 4.0,
+          "range_high": 10.0,
+          "notes": "Replace rotted fascia boards before gutter installation"
+        },
+        "soffit_repair": {
+          "cost_per_linear_foot": 8.0,
+          "range_low": 6.0,
+          "range_high": 12.0,
+          "notes": "Soffit board repair or replacement"
+        },
+        "gutter_cleaning": {
+          "cost_per_linear_foot": 1.0,
+          "range_low": 0.75,
+          "range_high": 2.0,
+          "typical_whole_house": "150-350",
+          "notes": "Clean out debris, flush downspouts, basic service"
+        },
+        "gutter_sealing_repair": {
+          "cost_per_section": 45.0,
+          "range_low": 30.0,
+          "range_high": 75.0,
+          "notes": "Re-seal leaking joints, small repairs"
+        }
+      },
+      "gutter_guards": {
+        "screen_guards_basic": {
+          "cost_per_lf": 2.0,
+          "range_low": 1.5,
+          "range_high": 3.5,
+          "notes": "Basic metal or plastic mesh screens, snap-on",
+          "effectiveness": "Moderate - blocks large debris, small stuff gets through"
+        },
+        "screen_guards_premium": {
+          "cost_per_lf": 4.0,
+          "range_low": 3.0,
+          "range_high": 6.0,
+          "notes": "Heavy-duty micro-mesh screens, better filtration",
+          "effectiveness": "Good - blocks most debris except pine needles"
+        },
+        "reverse_curve_guards": {
+          "cost_per_lf": 8.0,
+          "range_low": 6.0,
+          "range_high": 12.0,
+          "notes": "Curved surface, water flows over edge into gutter",
+          "effectiveness": "Good - handles leaves well, expensive"
+        },
+        "foam_inserts": {
+          "cost_per_lf": 2.0,
+          "range_low": 1.5,
+          "range_high": 3.0,
+          "notes": "Foam that fills gutter, water flows through",
+          "effectiveness": "Fair - degrades over time, needs replacement every 2-5 years"
+        },
+        "brush_guards": {
+          "cost_per_lf": 3.0,
+          "range_low": 2.0,
+          "range_high": 4.5,
+          "notes": "Bristle brush that sits in gutter",
+          "effectiveness": "Fair - easy to install, moderate effectiveness"
+        },
+        "leaffilter_leafguard": {
+          "cost_per_lf": 15.0,
+          "range_low": 12.0,
+          "range_high": 25.0,
+          "notes": "Premium micro-mesh systems (LeafFilter, LeafGuard brands), professional install only",
+          "effectiveness": "Excellent - best filtration, most expensive"
+        }
+      },
+      "common_jobs": {
+        "small_home_150ft_aluminum": {
+          "linear_feet": 150,
+          "downspouts": 4,
+          "material": "aluminum_5inch_seamless",
+          "gutter_material_cost": 675,
+          "gutter_labor_cost": 600,
+          "downspout_cost": 416,
+          "total_low": 1500,
+          "total_high": 2400,
+          "notes": "150 LF 5in seamless aluminum with 4 downspouts, standard install"
+        },
+        "medium_home_200ft_aluminum": {
+          "linear_feet": 200,
+          "downspouts": 5,
+          "material": "aluminum_5inch_seamless",
+          "gutter_material_cost": 900,
+          "gutter_labor_cost": 800,
+          "downspout_cost": 520,
+          "total_low": 2000,
+          "total_high": 3200,
+          "notes": "200 LF standard residential gutter system"
+        },
+        "large_home_250ft_6inch": {
+          "linear_feet": 250,
+          "downspouts": 7,
+          "material": "aluminum_6inch_seamless",
+          "gutter_material_cost": 1375,
+          "gutter_labor_cost": 1000,
+          "downspout_cost": 728,
+          "total_low": 2800,
+          "total_high": 4500,
+          "notes": "250 LF 6in seamless for large home or heavy rain area"
+        },
+        "copper_gutters_150ft": {
+          "linear_feet": 150,
+          "downspouts": 4,
+          "material": "copper_5inch",
+          "gutter_material_cost": 3750,
+          "gutter_labor_cost": 1800,
+          "downspout_cost": 1080,
+          "total_low": 6000,
+          "total_high": 8500,
+          "notes": "150 LF copper gutters, high-end installation"
+        },
+        "gutter_guards_whole_house_200ft": {
+          "linear_feet": 200,
+          "guard_type": "screen_guards_premium",
+          "material_cost": 800,
+          "labor_cost": 400,
+          "total_low": 1000,
+          "total_high": 1600,
+          "notes": "Add premium gutter guards to existing gutters, 200 LF"
+        }
+      },
+      "red_flags": [
+        "Charging >$8/LF for standard aluminum seamless labor (should be $3-6/LF)",
+        "Pushing 6 inch gutters when 5 inch would be adequate (unless very heavy rain area)",
+        "Requiring complete fascia replacement when only minor repairs needed",
+        "Charging >$150 per downspout for basic aluminum (should be $50-125)",
+        "Bundling gutter guards without giving option to decline (many homeowners don't need them)",
+        "Claiming you need premium LeafGuard system when basic guards work fine",
+        "Charging separately for 'disposal' when removal includes it",
+        "Insisting on copper gutters for 'durability' when aluminum lasts 20-30 years",
+        "Adding 'mobilization fee' for standard residential job",
+        "Charging per hour instead of per linear foot",
+        "Requiring downspout burial/underground drains when simple extensions work",
+        "Pushing oversized downspouts (3x4 is standard, rarely need larger)",
+        "Claiming all hangers need replacing (often can reuse)",
+        "High-pressure sales tactics for LeafFilter/LeafGuard (very expensive, commission-based sales)"
+      ],
+      "common_upsells": {
+        "gutter_guards": "Especially LeafFilter/LeafGuard at $15-25/LF (basic guards work fine)",
+        "6inch_gutters": "Upselling to 6 inch when 5 inch adequate",
+        "copper_upgrade": "Copper when aluminum would work",
+        "downspout_burial": "Underground drainage systems when extensions sufficient",
+        "fascia_soffit_replacement": "Full replacement when repairs sufficient",
+        "premium_colors": "Custom colors at higher cost vs. standard white/brown",
+        "heat_cables": "Heated gutter cables (rarely necessary except extreme climates)"
+      },
+      "cost_factors": {
+        "roof_height": "Two-story homes 20-30% more labor than single-story",
+        "roof_complexity": "Multiple valleys, complex rooflines add 15-25%",
+        "access": "Difficult access, steep slopes, landscaping obstacles add 20-40%",
+        "fascia_condition": "Rotted fascia must be repaired first, adds $4-10/LF",
+        "removal": "Old gutter removal adds $1-2.50/LF",
+        "geography": "Heavy snow/rain areas may need 6 inch gutters or extra downspouts",
+        "regional_labor": "Urban areas and high COL regions 20-40% higher labor"
+      },
+      "sizing_guidelines": {
+        "5_inch_gutters": "Adequate for most homes, roofs up to 1,500 sq ft per downspout",
+        "6_inch_gutters": "Large homes, steep roofs, heavy rainfall areas (>60 inches/year)",
+        "downspout_spacing": "Typically every 30-40 feet, more in heavy rain areas",
+        "downspout_size": "3x4 inch standard, 4x5 inch for 6 inch gutters",
+        "pitch": "Gutters should slope 1/4 inch per 10 feet toward downspout"
+      },
+      "maintenance_advice": {
+        "cleaning_frequency": "Clean 1-2 times per year (spring and fall)",
+        "inspection": "Check for leaks, loose hangers, proper slope annually",
+        "downspout_check": "Ensure downspouts aren't clogged, water flows freely",
+        "extensions": "Keep downspout extensions 4-6 feet from foundation",
+        "gutter_guards": "If many trees, guards can reduce cleaning but not eliminate it",
+        "winter": "Remove ice dams carefully, don't use salt on roof"
+      }
+    }
+  }
+}

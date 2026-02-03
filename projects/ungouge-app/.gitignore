@@ -1,0 +1,55 @@
+# Environment variables
+.env
+.env.local
+.env*.local
+
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/dist/
+
+# Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Testing
+coverage/
+.pytest_cache/
+
+# Production
+.vercel
+.railway
+
+# Temporary files
+*.tmp
+temp/

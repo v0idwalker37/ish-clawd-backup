@@ -1,0 +1,71 @@
+🚨 YOUR QUOTE ANALYSIS IS READY
+=============================================
+
+Hi Emily Rodriguez,
+
+We analyzed your Bathroom Renovation quote from Luxury Bath Solutions. Here's the breakdown:
+
+---
+
+VERDICT: Significantly Overpriced
+Quoted Price: $31,500
+
+This quote is 45% above fair market value for this project. Multiple red flags suggest potential price gouging.
+
+---
+
+KEY FINDINGS
+------------
+
+
+⚖️ Market Comparison
+Similar bathroom renovations in your area average $18,000-22,000. This quote is 45% above that range.
+
+
+🧮 Math Check
+We reverse-engineered the pricing. Even with premium materials, we can't justify costs above $24,000.
+
+
+📝 Contract Terms
+Payment structure heavily favors contractor. Legitimate contractors tie payments to completion milestones.
+
+
+
+
+🚩 RED FLAGS
+-----------
+
+{{#red_flags}}
+• {{red_flag_text}}
+{{/red_flags}}
+
+
+
+💡 WHAT TO DO NEXT
+------------------
+
+
+1. Do NOT sign this quote or make any payments
+
+2. Get quotes from at least 3 other contractors — expect to see $18k-22k range
+
+3. Check reviews and Better Business Bureau rating for this contractor
+
+
+---
+
+View your full report here:
+https://ungouge.ai/reports/123458
+
+Questions about your report? Just reply to this email — we're here to help.
+
+---
+
+Dashboard: https://ungouge.ai/dashboard
+Settings: https://ungouge.ai/settings
+
+© 2026 Ungouge.ai · Fair pricing for everyone
+
+---
+
+This analysis was personalized for your specific quote. All data sources and methodology details are available in your full report.

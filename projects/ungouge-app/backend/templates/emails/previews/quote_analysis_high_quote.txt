@@ -1,0 +1,71 @@
+⚠️ YOUR QUOTE ANALYSIS IS READY
+=============================================
+
+Hi Michael Chen,
+
+We analyzed your Kitchen Remodel quote from Premier Home Designs. Here's the breakdown:
+
+---
+
+VERDICT: Above Market Rate
+Quoted Price: $48,900
+
+This quote is 22% higher than the typical range for kitchen remodels of this scope in your area. Some line items appear inflated.
+
+---
+
+KEY FINDINGS
+------------
+
+
+💰 Price Comparison
+Average kitchen remodel of this size in your area: $38,000-42,000. This quote sits at $48,900.
+
+
+📋 Scope Clarity
+Several line items lack detail. Good quotes specify brands, models, and quantities for major components.
+
+
+🎯 Labor Breakdown
+Labor is 58% of total cost (industry standard: 40-50%). Might indicate inefficiency or padding.
+
+
+
+
+🚩 RED FLAGS
+-----------
+
+{{#red_flags}}
+• {{red_flag_text}}
+{{/red_flags}}
+
+
+
+💡 WHAT TO DO NEXT
+------------------
+
+
+1. Request a detailed, itemized breakdown of all materials and labor costs
+
+2. Get 2-3 additional quotes from contractors with verified reviews
+
+3. Ask this contractor to justify the higher costs — they may have a good reason
+
+
+---
+
+View your full report here:
+https://ungouge.ai/reports/123457
+
+Questions about your report? Just reply to this email — we're here to help.
+
+---
+
+Dashboard: https://ungouge.ai/dashboard
+Settings: https://ungouge.ai/settings
+
+© 2026 Ungouge.ai · Fair pricing for everyone
+
+---
+
+This analysis was personalized for your specific quote. All data sources and methodology details are available in your full report.

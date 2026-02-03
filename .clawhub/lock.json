@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "skills": {
+    "moltbook-registry": {
+      "version": "1.0.2",
+      "installedAt": 1769871430795
+    },
+    "moltbook-interact": {
+      "version": "1.0.1",
+      "installedAt": 1769871435819
+    },
+    "email": {
+      "version": "1.1.0",
+      "installedAt": 1769873576619
+    },
+    "apple-calendar": {
+      "version": "1.0.0",
+      "installedAt": 1769873579298
+    },
+    "weather": {
+      "version": "1.0.0",
+      "installedAt": 1769873585426
+    },
+    "git-essentials": {
+      "version": "1.0.0",
+      "installedAt": 1769973023212
+    },
+    "deep-research": {
+      "version": "1.0.1",
+      "installedAt": 1769973025657
+    },
+    "reddit-insights": {
+      "version": "1.2.0",
+      "installedAt": 1769973035914
+    },
+    "todo": {
+      "version": "1.1.0",
+      "installedAt": 1769973038558
+    },
+    "google-gemini-media": {
+      "version": "1.0.1",
+      "installedAt": 1770120146449
+    }
+  }
+}

@@ -1,0 +1,411 @@
+{
+  "fence_installation": {
+    "unit": "linear_foot",
+    "unit_description": "per linear foot of fence",
+    "typical_project_sizes": {
+      "small_yard": {
+        "linear_feet": 100,
+        "description": "100 LF - small backyard section or side yard"
+      },
+      "medium_yard": {
+        "linear_feet": 200,
+        "description": "200 LF - full backyard perimeter"
+      },
+      "large_property": {
+        "linear_feet": 400,
+        "description": "400 LF - full property perimeter"
+      },
+      "acreage": {
+        "linear_feet": 1000,
+        "description": "1,000 LF - multi-acre property or commercial"
+      }
+    },
+    "materials": {
+      "wood_fence_pine_treated_6ft": {
+        "material_cost_per_lf": 15.00,
+        "range_low": 12.00,
+        "range_high": 20.00,
+        "notes": "Pressure-treated pine, 6ft privacy fence, includes posts, rails, pickets",
+        "quality_level": "budget",
+        "lifespan": "15-20 years with maintenance"
+      },
+      "wood_fence_cedar_6ft": {
+        "material_cost_per_lf": 28.00,
+        "range_low": 22.00,
+        "range_high": 35.00,
+        "notes": "Western red cedar, 6ft privacy fence, naturally rot-resistant",
+        "quality_level": "premium",
+        "lifespan": "25-30 years"
+      },
+      "wood_fence_redwood_6ft": {
+        "material_cost_per_lf": 32.00,
+        "range_low": 28.00,
+        "range_high": 40.00,
+        "notes": "Redwood, 6ft privacy fence, premium appearance",
+        "quality_level": "premium",
+        "lifespan": "25-30 years"
+      },
+      "wood_picket_fence_4ft": {
+        "material_cost_per_lf": 12.00,
+        "range_low": 10.00,
+        "range_high": 18.00,
+        "notes": "4ft picket fence, decorative front yard style",
+        "quality_level": "standard",
+        "lifespan": "15-20 years"
+      },
+      "vinyl_fence_privacy_6ft": {
+        "material_cost_per_lf": 28.00,
+        "range_low": 22.00,
+        "range_high": 38.00,
+        "notes": "PVC privacy fence, no maintenance, white or tan",
+        "quality_level": "premium",
+        "lifespan": "30-50 years"
+      },
+      "vinyl_fence_picket_4ft": {
+        "material_cost_per_lf": 20.00,
+        "range_low": 15.00,
+        "range_high": 28.00,
+        "notes": "PVC picket fence, decorative, maintenance-free",
+        "quality_level": "premium",
+        "lifespan": "30-50 years"
+      },
+      "chain_link_4ft_residential": {
+        "material_cost_per_lf": 8.00,
+        "range_low": 6.00,
+        "range_high": 12.00,
+        "notes": "Galvanized chain link, 4ft height, residential grade",
+        "quality_level": "budget",
+        "lifespan": "20-30 years"
+      },
+      "chain_link_6ft_residential": {
+        "material_cost_per_lf": 12.00,
+        "range_low": 10.00,
+        "range_high": 16.00,
+        "notes": "Galvanized chain link, 6ft height with privacy slats option",
+        "quality_level": "budget",
+        "lifespan": "20-30 years"
+      },
+      "chain_link_commercial_grade": {
+        "material_cost_per_lf": 18.00,
+        "range_low": 15.00,
+        "range_high": 25.00,
+        "notes": "Heavy-duty commercial grade, thicker gauge wire",
+        "quality_level": "commercial",
+        "lifespan": "30-40 years"
+      },
+      "aluminum_fence_ornamental_4ft": {
+        "material_cost_per_lf": 30.00,
+        "range_low": 25.00,
+        "range_high": 40.00,
+        "notes": "Powder-coated aluminum, ornamental style, no rust",
+        "quality_level": "premium",
+        "lifespan": "30-50 years"
+      },
+      "aluminum_fence_ornamental_6ft": {
+        "material_cost_per_lf": 40.00,
+        "range_low": 35.00,
+        "range_high": 55.00,
+        "notes": "Powder-coated aluminum, 6ft ornamental, pool-code compliant",
+        "quality_level": "premium",
+        "lifespan": "30-50 years"
+      },
+      "wrought_iron_custom": {
+        "material_cost_per_lf": 100.00,
+        "range_low": 80.00,
+        "range_high": 150.00,
+        "notes": "True wrought iron, custom fabrication, requires ongoing rust prevention",
+        "quality_level": "luxury",
+        "lifespan": "50+ years with maintenance"
+      },
+      "split_rail_2_rail": {
+        "material_cost_per_lf": 8.00,
+        "range_low": 6.00,
+        "range_high": 12.00,
+        "notes": "2-rail split rail, rustic style, cedar or treated pine",
+        "quality_level": "budget",
+        "lifespan": "15-25 years"
+      },
+      "split_rail_3_rail": {
+        "material_cost_per_lf": 10.00,
+        "range_low": 8.00,
+        "range_high": 14.00,
+        "notes": "3-rail split rail, more substantial appearance",
+        "quality_level": "standard",
+        "lifespan": "15-25 years"
+      },
+      "composite_fence_6ft": {
+        "material_cost_per_lf": 45.00,
+        "range_low": 38.00,
+        "range_high": 60.00,
+        "notes": "Wood-plastic composite, Trex-style, very low maintenance",
+        "quality_level": "premium",
+        "lifespan": "25-35 years"
+      },
+      "privacy_slats_chain_link": {
+        "cost_per_lf": 3.00,
+        "range_low": 2.00,
+        "range_high": 5.00,
+        "notes": "Privacy slats for existing chain link fence"
+      },
+      "fence_posts_wood_4x4": {
+        "cost_per_post": 15.00,
+        "typical_spacing": "8 feet",
+        "notes": "Pressure-treated 4x4 posts, includes concrete setting"
+      },
+      "fence_posts_steel_terminal": {
+        "cost_per_post": 45.00,
+        "notes": "Heavy-duty steel posts for gates and corners (chain link)"
+      },
+      "concrete_for_posts": {
+        "cost_per_post": 8.00,
+        "range_low": 5.00,
+        "range_high": 12.00,
+        "notes": "60lb bags concrete per post, includes labor to mix and set"
+      }
+    },
+    "labor": {
+      "fence_installer_rate": {
+        "bls_code": "47-4031",
+        "occupation": "Fence Erectors",
+        "median_hourly_rate": 22.10,
+        "loaded_rate": 33.00,
+        "notes": "BLS 2024 data, loaded rate includes overhead"
+      },
+      "wood_fence_installation": {
+        "labor_per_lf": 8.00,
+        "range_low": 6.00,
+        "range_high": 12.00,
+        "typical_crew": "2 workers",
+        "typical_speed": "50-80 linear feet per day",
+        "notes": "Includes post holes (auger or manual), setting posts in concrete, attaching rails and pickets"
+      },
+      "vinyl_fence_installation": {
+        "labor_per_lf": 10.00,
+        "range_low": 8.00,
+        "range_high": 14.00,
+        "typical_crew": "2 workers",
+        "typical_speed": "40-60 linear feet per day",
+        "notes": "More precise installation required, posts must be perfectly level"
+      },
+      "chain_link_installation": {
+        "labor_per_lf": 5.00,
+        "range_low": 3.50,
+        "range_high": 7.00,
+        "typical_crew": "2 workers",
+        "typical_speed": "100-150 linear feet per day",
+        "notes": "Faster installation, includes stretching fabric and attaching to posts"
+      },
+      "aluminum_fence_installation": {
+        "labor_per_lf": 12.00,
+        "range_low": 10.00,
+        "range_high": 16.00,
+        "typical_crew": "2 workers",
+        "typical_speed": "40-60 linear feet per day",
+        "notes": "Precision required, heavier panels than vinyl"
+      },
+      "wrought_iron_installation": {
+        "labor_per_lf": 25.00,
+        "range_low": 20.00,
+        "range_high": 35.00,
+        "typical_crew": "2-3 workers",
+        "typical_speed": "20-40 linear feet per day",
+        "notes": "Requires welding skills, heavy material, custom fitting"
+      },
+      "split_rail_installation": {
+        "labor_per_lf": 4.00,
+        "range_low": 3.00,
+        "range_high": 6.00,
+        "typical_crew": "2 workers",
+        "typical_speed": "80-120 linear feet per day",
+        "notes": "Simpler installation, posts set in gravel or concrete"
+      },
+      "old_fence_removal": {
+        "labor_per_lf": 3.00,
+        "range_low": 2.00,
+        "range_high": 5.00,
+        "notes": "Remove and dispose of existing fence, includes pulling posts"
+      },
+      "grading_and_prep": {
+        "cost_per_lf": 2.00,
+        "range_low": 1.00,
+        "range_high": 4.00,
+        "notes": "Minor grading, clearing vegetation, marking property lines"
+      },
+      "rock_drilling_surcharge": {
+        "cost_per_post": 25.00,
+        "range_low": 15.00,
+        "range_high": 40.00,
+        "notes": "Additional cost when hitting rock or hardpan during post hole digging"
+      },
+      "staining_sealing": {
+        "labor_per_lf": 2.50,
+        "range_low": 1.50,
+        "range_high": 4.00,
+        "notes": "Stain and seal wood fence (materials separate)"
+      }
+    },
+    "gates": {
+      "single_walk_gate_wood_4ft": {
+        "total_cost": 300,
+        "range_low": 200,
+        "range_high": 450,
+        "notes": "4ft wide walk gate with hardware, matches wood fence"
+      },
+      "single_walk_gate_vinyl_4ft": {
+        "total_cost": 400,
+        "range_low": 300,
+        "range_high": 600,
+        "notes": "4ft wide vinyl walk gate with hardware"
+      },
+      "double_drive_gate_wood_12ft": {
+        "total_cost": 1200,
+        "range_low": 900,
+        "range_high": 1800,
+        "notes": "12ft wide double drive gate, heavy-duty hardware"
+      },
+      "chain_link_gate_4ft": {
+        "total_cost": 150,
+        "range_low": 100,
+        "range_high": 250,
+        "notes": "Standard chain link walk gate with frame"
+      },
+      "aluminum_gate_ornamental_4ft": {
+        "total_cost": 500,
+        "range_low": 400,
+        "range_high": 700,
+        "notes": "Ornamental aluminum gate, self-closing hinge"
+      },
+      "automatic_gate_opener": {
+        "total_cost": 1500,
+        "range_low": 1000,
+        "range_high": 2500,
+        "notes": "Electric gate opener for driveway gate, includes installation"
+      },
+      "gate_hardware_premium": {
+        "cost_per_gate": 100,
+        "range_low": 75,
+        "range_high": 200,
+        "notes": "Heavy-duty hinges, latch, self-closer"
+      }
+    },
+    "common_jobs": {
+      "backyard_wood_privacy_200ft": {
+        "linear_feet": 200,
+        "material": "wood_fence_pine_treated_6ft",
+        "gates": 1,
+        "material_cost": 3000,
+        "labor_cost": 1600,
+        "gates_cost": 300,
+        "total_low": 4200,
+        "total_high": 6400,
+        "notes": "200 LF treated pine privacy fence with one walk gate"
+      },
+      "backyard_cedar_privacy_150ft": {
+        "linear_feet": 150,
+        "material": "wood_fence_cedar_6ft",
+        "gates": 1,
+        "material_cost": 4200,
+        "labor_cost": 1200,
+        "gates_cost": 300,
+        "total_low": 5100,
+        "total_high": 7200,
+        "notes": "150 LF cedar privacy fence, premium appearance"
+      },
+      "chain_link_dog_run_100ft": {
+        "linear_feet": 100,
+        "material": "chain_link_4ft_residential",
+        "gates": 1,
+        "material_cost": 800,
+        "labor_cost": 500,
+        "gates_cost": 150,
+        "total_low": 1200,
+        "total_high": 1800,
+        "notes": "100 LF chain link dog enclosure, 4ft height"
+      },
+      "vinyl_privacy_perimeter_300ft": {
+        "linear_feet": 300,
+        "material": "vinyl_fence_privacy_6ft",
+        "gates": 2,
+        "material_cost": 8400,
+        "labor_cost": 3000,
+        "gates_cost": 800,
+        "total_low": 11000,
+        "total_high": 15600,
+        "notes": "300 LF vinyl privacy fence with two walk gates, maintenance-free"
+      },
+      "split_rail_decorative_200ft": {
+        "linear_feet": 200,
+        "material": "split_rail_3_rail",
+        "gates": 0,
+        "material_cost": 2000,
+        "labor_cost": 800,
+        "total_low": 2500,
+        "total_high": 3600,
+        "notes": "200 LF 3-rail split rail fence, no gates"
+      },
+      "aluminum_pool_fence_120ft": {
+        "linear_feet": 120,
+        "material": "aluminum_fence_ornamental_4ft",
+        "gates": 1,
+        "material_cost": 3600,
+        "labor_cost": 1440,
+        "gates_cost": 500,
+        "total_low": 4800,
+        "total_high": 6600,
+        "notes": "120 LF aluminum pool fence, code-compliant with self-closing gate"
+      }
+    },
+    "red_flags": [
+      "Charging >$15/LF labor for chain link (should be $3.50-7/LF)",
+      "Charging >$15/LF labor for basic wood fence (should be $6-12/LF)",
+      "Requiring 'special' concrete mix when standard 60lb bags work fine",
+      "Claiming all posts need steel reinforcement (rarely necessary for residential)",
+      "Pushing premium cedar when treated pine would work equally well",
+      "Charging separately for 'measuring' or 'site visit' (should be included)",
+      "Adding 15%+ 'waste factor' (standard is 5-10%)",
+      "Requiring full fence replacement when partial repair would work",
+      "Claiming you need building permits for standard residential fence (check local codes - usually <6ft doesn't need permit)",
+      "Charging >$50/post for concrete setting (should be $5-12/post)",
+      "Insisting on 3ft deep post holes when 2ft sufficient in most areas",
+      "Adding 'mobilization fee' >$200 for standard residential job",
+      "Charging >$500 for basic walk gate (should be $200-450 for wood)",
+      "Claiming soil conditions require drilling when standard auger works",
+      "Bundling staining/sealing at inflated prices (easy DIY or separate quote)"
+    ],
+    "common_upsells": {
+      "premium_posts": "Steel posts when wood posts sufficient",
+      "deeper_holes": "3ft+ holes when 24-30 inches is standard",
+      "premium_concrete": "Special concrete mix vs. standard 60lb bags",
+      "unnecessary_gates": "Adding extra gates you don't need",
+      "immediate_staining": "Staining at install when fence should dry 6-12 months first",
+      "cedar_upgrade": "Cedar fence when treated pine would work",
+      "vinyl_upgrade": "Vinyl when you're on a budget and wood would work",
+      "decorative_elements": "Post caps, lattice tops, fancy finials that add cost",
+      "privacy_slats": "Chain link privacy slats when privacy fence would be similar cost"
+    },
+    "cost_factors": {
+      "terrain": "Sloped or uneven terrain increases labor 20-40%",
+      "access": "Poor access requiring hand-digging increases cost 30-50%",
+      "soil_conditions": "Rocky soil or hardpan adds $15-40/post for drilling",
+      "property_line_survey": "May need $300-800 survey to locate exact boundaries",
+      "hoa_approval": "Some HOAs restrict materials/colors, factor in approval time",
+      "local_codes": "Height restrictions, setback requirements vary by municipality",
+      "seasonal": "Winter installation may cost 10-20% more in cold climates",
+      "removal": "Old fence removal adds $2-5/LF"
+    },
+    "regional_notes": {
+      "frost_line": "Northern climates require deeper post holes (below frost line, typically 36-48 inches)",
+      "hurricane_zones": "Coastal areas may require additional bracing and deeper posts",
+      "hoa_common": "Planned communities often have strict fence regulations",
+      "material_availability": "Cedar more expensive in areas where it's not regionally sourced",
+      "labor_rates": "Urban areas 20-40% higher labor than rural"
+    },
+    "maintenance_guidance": {
+      "wood_fence": "Restain/reseal every 2-3 years, inspect for rot annually, expect repairs after 10-15 years",
+      "vinyl_fence": "Minimal maintenance, wash annually, check posts for stability",
+      "chain_link": "Inspect for rust spots, tighten fabric if sagging, lubricate gates",
+      "aluminum_fence": "Very low maintenance, occasional washing, check hardware",
+      "wrought_iron": "Requires regular rust prevention, repainting every 5-10 years"
+    }
+  }
+}

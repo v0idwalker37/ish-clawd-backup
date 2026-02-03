@@ -1,0 +1,114 @@
+{
+  "description": "Sample material cost database for common home renovation projects. In production, these would be fetched from real-time pricing APIs and adjusted for region.",
+  "last_updated": "2024-01-01",
+  "materials": {
+    "kitchen": {
+      "standard_cabinets_per_linear_foot": 150,
+      "premium_cabinets_per_linear_foot": 350,
+      "granite_countertop_per_sqft": 65,
+      "quartz_countertop_per_sqft": 75,
+      "laminate_countertop_per_sqft": 25,
+      "tile_backsplash_per_sqft": 15,
+      "sink_standard": 200,
+      "sink_premium": 500,
+      "faucet_standard": 150,
+      "faucet_premium": 400,
+      "appliance_package_standard": 2500,
+      "appliance_package_premium": 8000
+    },
+    "bathroom": {
+      "vanity_24_inch": 300,
+      "vanity_36_inch": 500,
+      "vanity_48_inch": 800,
+      "toilet_standard": 250,
+      "toilet_premium": 600,
+      "shower_pan": 400,
+      "tile_per_sqft": 8,
+      "bathtub_standard": 500,
+      "bathtub_premium": 2000,
+      "faucet_set": 200,
+      "medicine_cabinet": 150
+    },
+    "roofing": {
+      "asphalt_shingles_per_square": 110,
+      "architectural_shingles_per_square": 150,
+      "metal_roofing_per_square": 350,
+      "underlayment_per_square": 30,
+      "ice_water_shield_per_roll": 75,
+      "ridge_vent_per_foot": 8,
+      "flashing": 100,
+      "tear_off_disposal_per_square": 50
+    },
+    "hvac": {
+      "furnace_80_percent_efficiency": 1200,
+      "furnace_95_percent_efficiency": 2500,
+      "air_conditioner_2_ton": 2000,
+      "air_conditioner_3_ton": 2800,
+      "air_conditioner_4_ton": 3500,
+      "heat_pump_2_ton": 3000,
+      "heat_pump_3_ton": 4200,
+      "ductwork_per_linear_foot": 15,
+      "thermostat_standard": 100,
+      "thermostat_smart": 250
+    },
+    "plumbing": {
+      "copper_pipe_per_foot": 8,
+      "pex_pipe_per_foot": 2,
+      "water_heater_40_gallon": 500,
+      "water_heater_50_gallon": 650,
+      "tankless_water_heater": 1200,
+      "garbage_disposal": 150,
+      "shut_off_valve": 25,
+      "pipe_fittings_per_job": 100
+    },
+    "flooring": {
+      "hardwood_oak_per_sqft": 8,
+      "hardwood_exotic_per_sqft": 15,
+      "laminate_per_sqft": 3,
+      "vinyl_plank_per_sqft": 4,
+      "tile_ceramic_per_sqft": 5,
+      "tile_porcelain_per_sqft": 8,
+      "carpet_standard_per_sqft": 3,
+      "carpet_premium_per_sqft": 7,
+      "underlayment_per_sqft": 1
+    },
+    "painting": {
+      "interior_paint_per_gallon": 35,
+      "premium_paint_per_gallon": 60,
+      "exterior_paint_per_gallon": 45,
+      "primer_per_gallon": 25,
+      "painter_tape": 8,
+      "drop_cloths": 30,
+      "brushes_rollers_per_job": 50
+    },
+    "electrical": {
+      "outlet_standard": 3,
+      "outlet_gfci": 15,
+      "outlet_usb": 25,
+      "light_switch_standard": 2,
+      "light_switch_dimmer": 20,
+      "light_fixture_standard": 50,
+      "light_fixture_premium": 300,
+      "ceiling_fan": 150,
+      "breaker_15_amp": 8,
+      "breaker_20_amp": 12,
+      "electrical_panel_100_amp": 400,
+      "electrical_panel_200_amp": 800,
+      "wire_romex_per_foot": 1
+    },
+    "drywall": {
+      "drywall_sheet_4x8": 15,
+      "joint_compound_per_bucket": 18,
+      "drywall_tape": 5,
+      "corner_bead_per_piece": 3,
+      "primer": 25,
+      "texture_materials": 30
+    }
+  },
+  "notes": {
+    "regional_variation": "Material costs vary by region. Urban areas typically 10-20% higher. Remote areas may have additional delivery fees.",
+    "bulk_discounts": "Contractors typically receive 10-20% discounts on materials through trade accounts.",
+    "seasonal_pricing": "Some materials (especially lumber) have significant seasonal price variations.",
+    "warranty_markup": "Extended warranties on materials may add 5-15% to cost."
+  }
+}

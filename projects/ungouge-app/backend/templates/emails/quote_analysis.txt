@@ -1,0 +1,59 @@
+{{verdict_emoji}} YOUR QUOTE ANALYSIS IS READY
+=============================================
+
+Hi {{user_name}},
+
+We analyzed your {{project_type}} quote from {{contractor_name}}. Here's the breakdown:
+
+---
+
+VERDICT: {{verdict_title}}
+Quoted Price: {{quoted_price}}
+
+{{verdict_summary}}
+
+---
+
+KEY FINDINGS
+------------
+
+{{#findings}}
+{{finding_icon}} {{finding_title}}
+{{finding_description}}
+
+{{/findings}}
+
+{{#has_red_flags}}
+🚩 RED FLAGS
+-----------
+
+{{#red_flags}}
+• {{red_flag_text}}
+{{/red_flags}}
+
+{{/has_red_flags}}
+
+💡 WHAT TO DO NEXT
+------------------
+
+{{#next_steps}}
+{{step_number}}. {{step_text}}
+{{/next_steps}}
+
+---
+
+View your full report here:
+{{report_url}}
+
+Questions about your report? Just reply to this email — we're here to help.
+
+---
+
+Dashboard: {{dashboard_url}}
+Settings: {{settings_url}}
+
+© {{current_year}} Ungouge.ai · Fair pricing for everyone
+
+---
+
+This analysis was personalized for your specific quote. All data sources and methodology details are available in your full report.

@@ -1,0 +1,330 @@
+{
+  "flooring_installation": {
+    "unit": "square_foot",
+    "unit_description": "per square foot of floor area",
+    "typical_project_sizes": {
+      "small_room": {
+        "square_feet": 150,
+        "description": "150 sq ft - small bedroom or bathroom"
+      },
+      "medium_room": {
+        "square_feet": 300,
+        "description": "300 sq ft - master bedroom or living room"
+      },
+      "large_area": {
+        "square_feet": 1000,
+        "description": "1,000 sq ft - whole floor or open concept space"
+      },
+      "full_house": {
+        "square_feet": 2000,
+        "description": "2,000 sq ft - average single family home"
+      }
+    },
+    "materials": {
+      "carpet_budget": {
+        "material_cost_per_sq_ft": 2.50,
+        "range_low": 1.50,
+        "range_high": 4.00,
+        "notes": "Basic polyester carpet, includes padding",
+        "quality_level": "budget",
+        "lifespan": "5-7 years"
+      },
+      "carpet_mid_grade": {
+        "material_cost_per_sq_ft": 4.50,
+        "range_low": 3.50,
+        "range_high": 6.50,
+        "notes": "Nylon carpet with good padding, stain resistant",
+        "quality_level": "standard",
+        "lifespan": "10-15 years"
+      },
+      "carpet_premium": {
+        "material_cost_per_sq_ft": 7.50,
+        "range_low": 6.00,
+        "range_high": 12.00,
+        "notes": "High-end wool or premium nylon, thick padding",
+        "quality_level": "premium",
+        "lifespan": "15-20 years"
+      },
+      "vinyl_plank_basic": {
+        "material_cost_per_sq_ft": 2.00,
+        "range_low": 1.50,
+        "range_high": 3.50,
+        "notes": "Basic vinyl plank flooring (LVP), thin wear layer",
+        "quality_level": "budget",
+        "lifespan": "5-10 years"
+      },
+      "vinyl_plank_mid": {
+        "material_cost_per_sq_ft": 3.50,
+        "range_low": 2.50,
+        "range_high": 5.00,
+        "notes": "Mid-grade LVP with 12-20 mil wear layer, waterproof",
+        "quality_level": "standard",
+        "lifespan": "15-20 years"
+      },
+      "vinyl_plank_premium": {
+        "material_cost_per_sq_ft": 5.50,
+        "range_low": 4.50,
+        "range_high": 8.00,
+        "notes": "Premium LVP, 20+ mil wear layer, realistic wood grain",
+        "quality_level": "premium",
+        "lifespan": "20-25 years"
+      },
+      "laminate_basic": {
+        "material_cost_per_sq_ft": 1.75,
+        "range_low": 1.00,
+        "range_high": 3.00,
+        "notes": "Basic laminate, AC3 rating, click-lock",
+        "quality_level": "budget",
+        "lifespan": "10-15 years"
+      },
+      "laminate_premium": {
+        "material_cost_per_sq_ft": 3.50,
+        "range_low": 2.50,
+        "range_high": 5.00,
+        "notes": "High-quality laminate, AC4-AC5 rating, moisture resistant",
+        "quality_level": "standard",
+        "lifespan": "15-25 years"
+      },
+      "hardwood_oak_prefinished": {
+        "material_cost_per_sq_ft": 6.50,
+        "range_low": 4.50,
+        "range_high": 9.00,
+        "notes": "3/4 inch solid red oak, prefinished, standard grade",
+        "quality_level": "standard",
+        "lifespan": "50+ years with refinishing"
+      },
+      "hardwood_oak_unfinished": {
+        "material_cost_per_sq_ft": 4.50,
+        "range_low": 3.50,
+        "range_high": 6.50,
+        "notes": "3/4 inch solid oak, unfinished, requires site finishing",
+        "quality_level": "standard",
+        "lifespan": "50+ years"
+      },
+      "hardwood_exotic": {
+        "material_cost_per_sq_ft": 12.00,
+        "range_low": 8.00,
+        "range_high": 18.00,
+        "notes": "Brazilian cherry, teak, or other exotic species",
+        "quality_level": "premium",
+        "lifespan": "50+ years"
+      },
+      "engineered_hardwood_basic": {
+        "material_cost_per_sq_ft": 4.00,
+        "range_low": 3.00,
+        "range_high": 6.00,
+        "notes": "Thin veneer engineered wood, 3mm wear layer",
+        "quality_level": "budget",
+        "lifespan": "20-30 years"
+      },
+      "engineered_hardwood_premium": {
+        "material_cost_per_sq_ft": 7.00,
+        "range_low": 5.50,
+        "range_high": 10.00,
+        "notes": "Thick veneer engineered wood, 5-6mm wear layer, can be refinished",
+        "quality_level": "premium",
+        "lifespan": "40-50 years"
+      },
+      "tile_ceramic": {
+        "material_cost_per_sq_ft": 3.00,
+        "range_low": 1.50,
+        "range_high": 5.00,
+        "notes": "Standard ceramic tile, 12x12 or 12x24",
+        "quality_level": "standard",
+        "lifespan": "50+ years"
+      },
+      "tile_porcelain": {
+        "material_cost_per_sq_ft": 5.00,
+        "range_low": 3.50,
+        "range_high": 8.00,
+        "notes": "Porcelain tile, more durable than ceramic",
+        "quality_level": "standard",
+        "lifespan": "75+ years"
+      },
+      "tile_natural_stone": {
+        "material_cost_per_sq_ft": 10.00,
+        "range_low": 6.00,
+        "range_high": 20.00,
+        "notes": "Marble, granite, travertine, or slate",
+        "quality_level": "premium",
+        "lifespan": "100+ years"
+      },
+      "underlayment_foam": {
+        "cost_per_sq_ft": 0.30,
+        "range_low": 0.20,
+        "range_high": 0.50,
+        "notes": "Basic foam underlayment for laminate/LVP"
+      },
+      "underlayment_cork": {
+        "cost_per_sq_ft": 0.75,
+        "range_low": 0.50,
+        "range_high": 1.25,
+        "notes": "Cork underlayment, better sound/moisture control"
+      },
+      "tile_mortar_and_grout": {
+        "cost_per_sq_ft": 1.50,
+        "range_low": 1.00,
+        "range_high": 2.50,
+        "notes": "Thinset mortar, grout, sealer for tile installation"
+      }
+    },
+    "labor": {
+      "flooring_installer_rate": {
+        "bls_code": "47-2042",
+        "occupation": "Floor Layers (except Carpet, Wood, Hard Tiles)",
+        "median_hourly_rate": 23.40,
+        "loaded_rate": 35.00,
+        "notes": "BLS 2024 data, loaded rate includes overhead and insurance"
+      },
+      "carpet_installation": {
+        "labor_per_sq_ft": 1.50,
+        "range_low": 1.00,
+        "range_high": 2.50,
+        "typical_time_per_room": "4-6 hours for 300 sq ft",
+        "notes": "Includes stretching, seaming, trimming. Does not include removal."
+      },
+      "vinyl_plank_installation": {
+        "labor_per_sq_ft": 2.50,
+        "range_low": 1.75,
+        "range_high": 3.50,
+        "typical_time_per_room": "6-8 hours for 300 sq ft",
+        "notes": "Floating floor installation, includes underlayment"
+      },
+      "laminate_installation": {
+        "labor_per_sq_ft": 2.25,
+        "range_low": 1.50,
+        "range_high": 3.25,
+        "typical_time_per_room": "6-8 hours for 300 sq ft",
+        "notes": "Click-lock installation with underlayment"
+      },
+      "hardwood_installation_nail_down": {
+        "labor_per_sq_ft": 4.50,
+        "range_low": 3.50,
+        "range_high": 6.50,
+        "typical_time_per_room": "12-16 hours for 300 sq ft",
+        "notes": "Nail down installation for 3/4 inch solid hardwood"
+      },
+      "hardwood_installation_glue_down": {
+        "labor_per_sq_ft": 5.00,
+        "range_low": 4.00,
+        "range_high": 7.00,
+        "typical_time_per_room": "14-18 hours for 300 sq ft",
+        "notes": "Glue down for engineered hardwood or parquet"
+      },
+      "hardwood_sanding_and_finishing": {
+        "labor_per_sq_ft": 3.50,
+        "range_low": 2.50,
+        "range_high": 5.00,
+        "typical_time": "2-4 days for 300 sq ft (including drying time)",
+        "notes": "For unfinished hardwood: sanding, staining (optional), 3 coats polyurethane"
+      },
+      "tile_installation": {
+        "labor_per_sq_ft": 8.00,
+        "range_low": 5.00,
+        "range_high": 12.00,
+        "typical_time_per_room": "16-24 hours for 150 sq ft bathroom",
+        "notes": "Includes layout, cutting, mortar, grouting, sealing. Complex patterns cost more."
+      },
+      "old_flooring_removal": {
+        "labor_per_sq_ft": 1.50,
+        "range_low": 0.75,
+        "range_high": 3.00,
+        "notes": "Removal and disposal. Tile removal is on the high end, carpet on low end."
+      },
+      "subfloor_repair": {
+        "labor_per_sq_ft": 3.00,
+        "range_low": 2.00,
+        "range_high": 5.00,
+        "notes": "Replacing damaged plywood subflooring"
+      },
+      "floor_leveling": {
+        "cost_per_sq_ft": 4.00,
+        "range_low": 2.50,
+        "range_high": 6.00,
+        "notes": "Self-leveling compound for uneven concrete slabs"
+      }
+    },
+    "common_jobs": {
+      "master_bedroom_carpet": {
+        "square_feet": 350,
+        "material": "carpet_mid_grade",
+        "material_cost": 1575,
+        "labor_cost": 700,
+        "total_low": 1925,
+        "total_high": 2975,
+        "notes": "350 sq ft mid-grade carpet installed over existing subfloor"
+      },
+      "living_room_hardwood": {
+        "square_feet": 400,
+        "material": "hardwood_oak_prefinished",
+        "material_cost": 2600,
+        "labor_cost": 1800,
+        "total_low": 3700,
+        "total_high": 5400,
+        "notes": "400 sq ft prefinished oak hardwood, nail down installation"
+      },
+      "kitchen_tile": {
+        "square_feet": 200,
+        "material": "tile_porcelain",
+        "material_cost": 1000,
+        "labor_cost": 1600,
+        "total_low": 2200,
+        "total_high": 3400,
+        "notes": "200 sq ft porcelain tile with standard pattern"
+      },
+      "whole_house_vinyl_plank": {
+        "square_feet": 1500,
+        "material": "vinyl_plank_mid",
+        "material_cost": 5250,
+        "labor_cost": 3750,
+        "removal_cost": 1125,
+        "total_low": 8500,
+        "total_high": 12500,
+        "notes": "1500 sq ft mid-grade LVP, includes removal of old carpet"
+      },
+      "bathroom_tile_floor": {
+        "square_feet": 60,
+        "material": "tile_ceramic",
+        "material_cost": 180,
+        "labor_cost": 480,
+        "total_low": 550,
+        "total_high": 850,
+        "notes": "Small bathroom (60 sq ft) ceramic tile"
+      }
+    },
+    "red_flags": [
+      "Charging >$5/sq ft for basic carpet installation labor (should be $1-2.50/sq ft)",
+      "Requiring 'premium underlayment' for basic laminate when standard foam works fine",
+      "Pushing exotic hardwood when domestic oak would work equally well",
+      "Charging tile installation rates ($8-12/sq ft labor) for simple vinyl plank ($1.75-3.50/sq ft)",
+      "Claiming subfloor damage without showing you the actual damage",
+      "Requiring full subfloor replacement when only spot repairs needed",
+      "Charging >$4/sq ft for old flooring removal (should be $0.75-3/sq ft depending on type)",
+      "Bundling 'required' supplies at marked-up prices (transition strips, quarter round)",
+      "Pushing glue-down installation for engineered hardwood when floating is acceptable and cheaper",
+      "Insisting all existing baseboards must be replaced (usually can reuse)",
+      "Adding 20%+ 'waste factor' - standard is 5-10% for most flooring types",
+      "Charging separately for 'measuring' or 'consultation' that should be included in quote"
+    ],
+    "common_upsells": [
+      "Premium moisture barrier when standard vapor barrier sufficient",
+      "Exotic wood species when domestic hardwood would look similar",
+      "Glue-down installation when floating floor would work",
+      "Complete baseboard replacement when removal and reinstall possible",
+      "Sound-deadening underlayment when standard sufficient",
+      "Decorative tile patterns or borders that significantly increase labor cost"
+    ],
+    "cost_factors": {
+      "room_shape": "Irregular shapes, angles, closets increase labor 15-30%",
+      "furniture_moving": "Typically $50-150 per room if contractor moves furniture",
+      "stairs": "Stair installation costs 2-3x more per sq ft than flat surfaces",
+      "pattern_matching": "Tile patterns, hardwood borders, carpet seams increase labor 20-40%",
+      "moisture_issues": "Concrete moisture mitigation adds $2-4/sq ft"
+    },
+    "regional_notes": {
+      "high_cost_areas": "Expect labor rates 25-40% higher in NYC, SF, Boston",
+      "low_cost_areas": "Southern and rural areas typically 10-20% below national average",
+      "seasonal": "Flooring contractors may discount 10-15% in winter slow season"
+    }
+  }
+}

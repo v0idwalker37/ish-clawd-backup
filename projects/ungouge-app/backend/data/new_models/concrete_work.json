@@ -1,0 +1,332 @@
+{
+  "concrete_work": {
+    "unit": "square_foot",
+    "unit_description": "per square foot for slabs, per linear foot for footings, per cubic yard for pours",
+    "typical_project_sizes": {
+      "small_patio": {
+        "square_feet": 200,
+        "description": "200 sq ft - 10x20 patio"
+      },
+      "single_car_driveway": {
+        "square_feet": 400,
+        "description": "400 sq ft - 12x33 single car driveway"
+      },
+      "two_car_driveway": {
+        "square_feet": 640,
+        "description": "640 sq ft - 20x32 two car driveway"
+      },
+      "large_driveway": {
+        "square_feet": 1000,
+        "description": "1,000 sq ft - extended driveway with parking area"
+      },
+      "sidewalk_100ft": {
+        "square_feet": 400,
+        "description": "400 sq ft - 4ft wide x 100ft long sidewalk"
+      }
+    },
+    "materials": {
+      "concrete_3000psi": {
+        "cost_per_cubic_yard": 125,
+        "range_low": 110,
+        "range_high": 145,
+        "notes": "Standard 3000 PSI concrete mix, suitable for most residential slabs",
+        "typical_use": "patios, walkways, garage floors"
+      },
+      "concrete_4000psi": {
+        "cost_per_cubic_yard": 140,
+        "range_low": 125,
+        "range_high": 160,
+        "notes": "4000 PSI concrete, more durable for driveways and high-traffic",
+        "typical_use": "driveways, commercial slabs"
+      },
+      "concrete_5000psi": {
+        "cost_per_cubic_yard": 160,
+        "range_low": 145,
+        "range_high": 185,
+        "notes": "High-strength 5000 PSI, for heavy loads or freeze-thaw climates",
+        "typical_use": "heavy equipment areas, northern climates"
+      },
+      "fiber_reinforced_concrete": {
+        "cost_per_cubic_yard": 155,
+        "range_low": 140,
+        "range_high": 180,
+        "notes": "Concrete with synthetic fibers, reduces cracking",
+        "typical_use": "driveways, patios where cracking is concern"
+      },
+      "colored_concrete": {
+        "additional_cost_per_sq_ft": 1.50,
+        "range_low": 1.00,
+        "range_high": 3.00,
+        "notes": "Integral color mixed into concrete"
+      },
+      "rebar_reinforcement": {
+        "cost_per_sq_ft": 0.75,
+        "range_low": 0.50,
+        "range_high": 1.25,
+        "notes": "Steel rebar grid, typically #4 bar @ 18 inch centers"
+      },
+      "wire_mesh_reinforcement": {
+        "cost_per_sq_ft": 0.40,
+        "range_low": 0.30,
+        "range_high": 0.60,
+        "notes": "6x6 10/10 welded wire mesh, lighter than rebar"
+      },
+      "vapor_barrier": {
+        "cost_per_sq_ft": 0.25,
+        "range_low": 0.15,
+        "range_high": 0.40,
+        "notes": "6mil plastic sheeting under slab to prevent moisture"
+      },
+      "expansion_joints": {
+        "cost_per_linear_foot": 1.50,
+        "range_low": 1.00,
+        "range_high": 2.50,
+        "notes": "Expansion joint material between sections"
+      },
+      "gravel_base_4_inch": {
+        "cost_per_sq_ft": 0.80,
+        "range_low": 0.50,
+        "range_high": 1.20,
+        "notes": "4 inch compacted gravel base, crushed stone"
+      },
+      "gravel_base_6_inch": {
+        "cost_per_sq_ft": 1.20,
+        "range_low": 0.85,
+        "range_high": 1.75,
+        "notes": "6 inch compacted gravel base for driveways"
+      }
+    },
+    "labor": {
+      "concrete_finisher_rate": {
+        "bls_code": "47-2051",
+        "occupation": "Cement Masons and Concrete Finishers",
+        "median_hourly_rate": 25.70,
+        "loaded_rate": 38.00,
+        "notes": "BLS 2024 data, skilled trade with overhead"
+      },
+      "basic_slab_pour_finish": {
+        "labor_per_sq_ft": 4.00,
+        "range_low": 3.00,
+        "range_high": 6.00,
+        "typical_crew": "3-4 workers",
+        "notes": "Includes forming, pouring, screeding, floating, troweling, basic broom finish",
+        "typical_thickness": "4 inches"
+      },
+      "driveway_pour_finish": {
+        "labor_per_sq_ft": 4.50,
+        "range_low": 3.50,
+        "range_high": 6.50,
+        "typical_crew": "4-5 workers",
+        "notes": "Driveway-specific: thicker slab (6in), control joints, proper slope for drainage",
+        "typical_thickness": "6 inches"
+      },
+      "stamped_concrete": {
+        "labor_per_sq_ft": 8.00,
+        "range_low": 6.00,
+        "range_high": 12.00,
+        "typical_crew": "3-4 skilled workers",
+        "notes": "Decorative stamped pattern (stone, brick, slate patterns), requires special skills and timing"
+      },
+      "stained_concrete": {
+        "labor_per_sq_ft": 3.00,
+        "range_low": 2.00,
+        "range_high": 5.00,
+        "notes": "Acid stain or water-based stain after curing, includes sealer"
+      },
+      "polished_concrete": {
+        "labor_per_sq_ft": 6.00,
+        "range_low": 4.00,
+        "range_high": 10.00,
+        "notes": "Grinding and polishing existing slab, multiple passes with progressively finer grits"
+      },
+      "exposed_aggregate": {
+        "labor_per_sq_ft": 6.00,
+        "range_low": 4.50,
+        "range_high": 8.50,
+        "notes": "Surface retarder and washing to expose aggregate, decorative finish"
+      },
+      "epoxy_coating": {
+        "labor_per_sq_ft": 4.00,
+        "range_low": 2.50,
+        "range_high": 6.00,
+        "notes": "Garage floor epoxy coating, includes surface prep, primer, epoxy, and flake broadcast"
+      },
+      "concrete_sealing": {
+        "labor_per_sq_ft": 0.75,
+        "range_low": 0.50,
+        "range_high": 1.25,
+        "notes": "Penetrating sealer or acrylic sealer application"
+      },
+      "excavation_and_grading": {
+        "labor_per_sq_ft": 1.50,
+        "range_low": 1.00,
+        "range_high": 2.50,
+        "notes": "Excavate to proper depth, grade for drainage, compact subgrade"
+      },
+      "formwork_setup": {
+        "labor_per_linear_foot": 3.00,
+        "range_low": 2.00,
+        "range_high": 5.00,
+        "notes": "Build and stake forms, includes materials (2x4 or 2x6 lumber, stakes)"
+      },
+      "demolition_existing_concrete": {
+        "labor_per_sq_ft": 3.00,
+        "range_low": 2.00,
+        "range_high": 5.00,
+        "notes": "Break up existing concrete, includes labor only (disposal separate)"
+      },
+      "concrete_disposal": {
+        "cost_per_cubic_yard": 80,
+        "range_low": 60,
+        "range_high": 120,
+        "notes": "Haul away and dump fee for broken concrete"
+      },
+      "hand_finishing_edges": {
+        "labor_per_linear_foot": 2.00,
+        "range_low": 1.50,
+        "range_high": 3.00,
+        "notes": "Edging tool for clean borders, hand troweling"
+      }
+    },
+    "common_jobs": {
+      "basic_patio_12x16": {
+        "square_feet": 192,
+        "concrete_cubic_yards": 2.4,
+        "thickness_inches": 4,
+        "concrete_cost": 300,
+        "labor_cost": 768,
+        "base_prep_cost": 154,
+        "total_low": 1100,
+        "total_high": 1650,
+        "notes": "192 sq ft patio, 4 inch thick, broom finish, includes 4in gravel base"
+      },
+      "stamped_patio_12x16": {
+        "square_feet": 192,
+        "concrete_cubic_yards": 2.4,
+        "thickness_inches": 4,
+        "concrete_cost": 300,
+        "labor_cost": 1536,
+        "color_cost": 288,
+        "total_low": 2000,
+        "total_high": 3200,
+        "notes": "192 sq ft stamped concrete patio with color, decorative pattern"
+      },
+      "single_car_driveway_12x30": {
+        "square_feet": 360,
+        "concrete_cubic_yards": 6.7,
+        "thickness_inches": 6,
+        "concrete_cost": 938,
+        "labor_cost": 1620,
+        "base_prep_cost": 432,
+        "rebar_cost": 270,
+        "total_low": 3000,
+        "total_high": 4500,
+        "notes": "360 sq ft driveway, 6in thick with rebar, control joints, proper slope"
+      },
+      "two_car_driveway_20x30": {
+        "square_feet": 600,
+        "concrete_cubic_yards": 11.1,
+        "thickness_inches": 6,
+        "concrete_cost": 1554,
+        "labor_cost": 2700,
+        "base_prep_cost": 720,
+        "rebar_cost": 450,
+        "total_low": 5000,
+        "total_high": 7500,
+        "notes": "600 sq ft two-car driveway, 6in thick, rebar, broom finish"
+      },
+      "sidewalk_4ft_x_50ft": {
+        "square_feet": 200,
+        "concrete_cubic_yards": 2.5,
+        "thickness_inches": 4,
+        "concrete_cost": 313,
+        "labor_cost": 800,
+        "total_low": 950,
+        "total_high": 1500,
+        "notes": "200 sq ft sidewalk, 4in thick, broom finish"
+      },
+      "garage_floor_20x20": {
+        "square_feet": 400,
+        "concrete_cubic_yards": 5.0,
+        "thickness_inches": 4,
+        "concrete_cost": 625,
+        "labor_cost": 1600,
+        "vapor_barrier_cost": 100,
+        "total_low": 2100,
+        "total_high": 3200,
+        "notes": "400 sq ft garage floor, 4in thick, vapor barrier, smooth steel trowel finish"
+      },
+      "garage_floor_epoxy_coating": {
+        "square_feet": 400,
+        "epoxy_materials": 600,
+        "labor_cost": 1600,
+        "surface_prep": 400,
+        "total_low": 2300,
+        "total_high": 3400,
+        "notes": "400 sq ft garage floor epoxy coating (existing slab), includes surface prep and two-part epoxy"
+      }
+    },
+    "red_flags": [
+      "Charging >$8/sq ft for basic broom-finish slab labor (should be $3-6/sq ft)",
+      "Claiming you need 8+ inches thick for residential driveway (6 inches is standard, 4 inches for light use)",
+      "Requiring 5000 PSI concrete for basic patio (3000 PSI is fine for most residential)",
+      "Pushing stamped concrete when you asked for basic finish (huge markup)",
+      "Charging separately for control joints (should be included in labor)",
+      "Adding 20%+ waste factor (concrete is ordered to exact amount, 5-10% waste typical)",
+      "Claiming rebar required for patio (wire mesh usually sufficient)",
+      "Requiring 8+ inch gravel base (4-6 inches standard for most applications)",
+      "Charging >$150/CY for standard concrete delivered (should be $110-145/CY)",
+      "Insisting on fiber-reinforced concrete for everything (standard concrete fine for most jobs)",
+      "Claiming soil conditions require special foundation work without testing",
+      "Charging >$5/sq ft for concrete demolition (should be $2-5/sq ft)",
+      "Adding 'mobilization fee' >$300 for standard residential job",
+      "Bundling unnecessary drainage systems into quote",
+      "Charging per hour instead of per square foot (allows padding)"
+    ],
+    "common_upsells": {
+      "unnecessary_thickness": "8 inch slab when 4-6 inches sufficient",
+      "premium_psi": "5000 PSI when 3000-4000 PSI adequate",
+      "rebar_everywhere": "Rebar when wire mesh would work",
+      "decorative_finishes": "Stamped/stained when you wanted basic",
+      "fiber_reinforcement": "Fiber concrete when standard is fine",
+      "excessive_base": "8+ inch gravel base when 4-6 inches works",
+      "vapor_barrier_always": "Vapor barrier when not needed (not under outdoor slabs)",
+      "sealer_immediately": "Sealer before concrete fully cured (wait 28+ days)",
+      "unnecessary_saw_cuts": "Excessive control joints beyond what's needed"
+    },
+    "cost_factors": {
+      "access": "Poor access requiring wheelbarrow transport adds 30-50% labor",
+      "sloped_site": "Significant slope requires more excavation/forming, adds 20-40%",
+      "soil_conditions": "Poor soil may require deeper base or soil stabilization",
+      "weather": "Cold weather pours require blankets and heaters, adds 15-25%",
+      "hot_weather": "Hot weather requires accelerators and extra care, adds 10-15%",
+      "pump_truck": "If concrete truck can't reach, pump truck adds $400-800",
+      "thickness": "Each additional inch adds ~25% to concrete cost",
+      "finishing": "Decorative finishes (stamped, stained, exposed) add 50-150% to labor"
+    },
+    "technical_specs": {
+      "typical_thickness": {
+        "patio": "4 inches",
+        "sidewalk": "4 inches",
+        "driveway_residential": "4-6 inches (6 preferred)",
+        "garage_floor": "4-6 inches",
+        "commercial": "6-8 inches"
+      },
+      "concrete_per_sq_ft": {
+        "4_inch": "0.0123 cubic yards per sq ft",
+        "5_inch": "0.0154 cubic yards per sq ft",
+        "6_inch": "0.0185 cubic yards per sq ft"
+      },
+      "control_joints": "Should be spaced at 2x thickness in feet (4 inch slab = 8ft spacing)",
+      "curing_time": "Allow 7 days before light use, 28 days for full cure",
+      "slope_for_drainage": "Minimum 1/4 inch per foot for proper water runoff"
+    },
+    "regional_notes": {
+      "cold_climates": "Requires 4000+ PSI concrete, air entrainment for freeze-thaw resistance",
+      "hot_climates": "May need retarders in summer to slow curing, shade during finishing",
+      "high_water_table": "May require drainage system or elevated base",
+      "expansive_soils": "Some soils expand/contract, may need engineered base or post-tension",
+      "seismic_zones": "May require additional reinforcement per local codes"
+    }
+  }
+}

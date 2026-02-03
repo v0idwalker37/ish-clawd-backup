@@ -1,0 +1,340 @@
+{
+  "gutter_installation": {
+    "unit": "linear_foot",
+    "unit_description": "per linear foot of gutter (downspouts priced separately)",
+    "typical_project_sizes": {
+      "small_home": {
+        "linear_feet": 120,
+        "description": "120 LF - small ranch, 2-3 downspouts"
+      },
+      "medium_home": {
+        "linear_feet": 180,
+        "description": "180 LF - average single family, 4-5 downspouts"
+      },
+      "large_home": {
+        "linear_feet": 250,
+        "description": "250 LF - large two-story, 6-8 downspouts"
+      }
+    },
+    "materials": {
+      "aluminum_5inch_sectional": {
+        "material_cost_per_lf": 3.00,
+        "range_low": 2.50,
+        "range_high": 4.50,
+        "notes": "Standard 5 inch K-style aluminum, sectional (10ft lengths)",
+        "quality_level": "budget",
+        "lifespan": "15-20 years"
+      },
+      "aluminum_5inch_seamless": {
+        "material_cost_per_lf": 4.50,
+        "range_low": 3.50,
+        "range_high": 6.00,
+        "notes": "5 inch K-style seamless aluminum, custom-formed onsite, most popular",
+        "quality_level": "standard",
+        "lifespan": "20-30 years"
+      },
+      "aluminum_6inch_seamless": {
+        "material_cost_per_lf": 5.50,
+        "range_low": 4.50,
+        "range_high": 7.50,
+        "notes": "6 inch K-style seamless, handles more water volume",
+        "quality_level": "premium",
+        "lifespan": "20-30 years"
+      },
+      "aluminum_half_round_seamless": {
+        "material_cost_per_lf": 6.00,
+        "range_low": 5.00,
+        "range_high": 8.00,
+        "notes": "Half-round profile, decorative, less capacity than K-style",
+        "quality_level": "premium",
+        "lifespan": "20-30 years"
+      },
+      "copper_5inch": {
+        "material_cost_per_lf": 25.00,
+        "range_low": 20.00,
+        "range_high": 35.00,
+        "notes": "Copper gutters, develops natural patina, premium appearance",
+        "quality_level": "luxury",
+        "lifespan": "50+ years"
+      },
+      "copper_half_round": {
+        "material_cost_per_lf": 28.00,
+        "range_low": 22.00,
+        "range_high": 38.00,
+        "notes": "Copper half-round, high-end decorative",
+        "quality_level": "luxury",
+        "lifespan": "50+ years"
+      },
+      "vinyl_5inch": {
+        "material_cost_per_lf": 2.00,
+        "range_low": 1.50,
+        "range_high": 3.00,
+        "notes": "PVC vinyl gutters, DIY-friendly but less durable",
+        "quality_level": "budget",
+        "lifespan": "10-20 years"
+      },
+      "steel_galvanized_5inch": {
+        "material_cost_per_lf": 5.00,
+        "range_low": 4.00,
+        "range_high": 7.00,
+        "notes": "Galvanized steel, more durable than aluminum, heavier",
+        "quality_level": "standard",
+        "lifespan": "20-25 years"
+      },
+      "downspout_aluminum_3x4": {
+        "cost_per_linear_foot": 4.00,
+        "range_low": 3.00,
+        "range_high": 6.00,
+        "notes": "Standard 3x4 inch aluminum downspout"
+      },
+      "downspout_copper": {
+        "cost_per_linear_foot": 18.00,
+        "range_low": 15.00,
+        "range_high": 25.00,
+        "notes": "Copper downspout to match copper gutters"
+      },
+      "downspout_extensions": {
+        "cost_each": 15.00,
+        "range_low": 10.00,
+        "range_high": 25.00,
+        "notes": "Plastic or metal extension to direct water away from foundation"
+      },
+      "elbows_and_fittings": {
+        "cost_per_downspout": 20.00,
+        "range_low": 15.00,
+        "range_high": 30.00,
+        "notes": "Elbows, adapters, and fittings per downspout"
+      },
+      "hangers_hidden": {
+        "cost_per_lf": 1.00,
+        "range_low": 0.75,
+        "range_high": 1.50,
+        "notes": "Hidden hangers every 2-3 feet, strongest mounting"
+      },
+      "end_caps": {
+        "cost_each": 3.00,
+        "notes": "End caps for gutter runs"
+      },
+      "inside_outside_corners": {
+        "cost_each": 8.00,
+        "range_low": 6.00,
+        "range_high": 12.00,
+        "notes": "Corner pieces for seamless gutters (mitered or box)"
+      }
+    },
+    "labor": {
+      "gutter_installer_rate": {
+        "occupation": "Gutter Installer (specialized roofer)",
+        "median_hourly_rate": 24.00,
+        "loaded_rate": 36.00,
+        "notes": "Specialized trade, often part of roofing crews"
+      },
+      "aluminum_seamless_installation": {
+        "labor_per_lf": 4.00,
+        "range_low": 3.00,
+        "range_high": 6.00,
+        "typical_crew": "2 workers",
+        "typical_speed": "100-150 linear feet per day",
+        "notes": "Includes measuring, forming, cutting, hanging, sealing joints, installing hangers"
+      },
+      "copper_gutter_installation": {
+        "labor_per_lf": 12.00,
+        "range_low": 10.00,
+        "range_high": 16.00,
+        "typical_crew": "2 skilled workers",
+        "notes": "Requires soldering skills, more precise work, heavier material"
+      },
+      "vinyl_gutter_installation": {
+        "labor_per_lf": 2.50,
+        "range_low": 2.00,
+        "range_high": 4.00,
+        "notes": "Faster installation, snap-together system"
+      },
+      "downspout_installation": {
+        "labor_per_downspout": 75.00,
+        "range_low": 50.00,
+        "range_high": 125.00,
+        "notes": "Per downspout including mounting straps, elbows, connection to gutter"
+      },
+      "old_gutter_removal": {
+        "labor_per_lf": 1.50,
+        "range_low": 1.00,
+        "range_high": 2.50,
+        "notes": "Remove and dispose of existing gutters and downspouts"
+      },
+      "fascia_repair": {
+        "cost_per_linear_foot": 6.00,
+        "range_low": 4.00,
+        "range_high": 10.00,
+        "notes": "Replace rotted fascia boards before gutter installation"
+      },
+      "soffit_repair": {
+        "cost_per_linear_foot": 8.00,
+        "range_low": 6.00,
+        "range_high": 12.00,
+        "notes": "Soffit board repair or replacement"
+      },
+      "gutter_cleaning": {
+        "cost_per_linear_foot": 1.00,
+        "range_low": 0.75,
+        "range_high": 2.00,
+        "typical_whole_house": "150-350",
+        "notes": "Clean out debris, flush downspouts, basic service"
+      },
+      "gutter_sealing_repair": {
+        "cost_per_section": 45.00,
+        "range_low": 30.00,
+        "range_high": 75.00,
+        "notes": "Re-seal leaking joints, small repairs"
+      }
+    },
+    "gutter_guards": {
+      "screen_guards_basic": {
+        "cost_per_lf": 2.00,
+        "range_low": 1.50,
+        "range_high": 3.50,
+        "notes": "Basic metal or plastic mesh screens, snap-on",
+        "effectiveness": "Moderate - blocks large debris, small stuff gets through"
+      },
+      "screen_guards_premium": {
+        "cost_per_lf": 4.00,
+        "range_low": 3.00,
+        "range_high": 6.00,
+        "notes": "Heavy-duty micro-mesh screens, better filtration",
+        "effectiveness": "Good - blocks most debris except pine needles"
+      },
+      "reverse_curve_guards": {
+        "cost_per_lf": 8.00,
+        "range_low": 6.00,
+        "range_high": 12.00,
+        "notes": "Curved surface, water flows over edge into gutter",
+        "effectiveness": "Good - handles leaves well, expensive"
+      },
+      "foam_inserts": {
+        "cost_per_lf": 2.00,
+        "range_low": 1.50,
+        "range_high": 3.00,
+        "notes": "Foam that fills gutter, water flows through",
+        "effectiveness": "Fair - degrades over time, needs replacement every 2-5 years"
+      },
+      "brush_guards": {
+        "cost_per_lf": 3.00,
+        "range_low": 2.00,
+        "range_high": 4.50,
+        "notes": "Bristle brush that sits in gutter",
+        "effectiveness": "Fair - easy to install, moderate effectiveness"
+      },
+      "leaffilter_leafguard": {
+        "cost_per_lf": 15.00,
+        "range_low": 12.00,
+        "range_high": 25.00,
+        "notes": "Premium micro-mesh systems (LeafFilter, LeafGuard brands), professional install only",
+        "effectiveness": "Excellent - best filtration, most expensive"
+      }
+    },
+    "common_jobs": {
+      "small_home_150ft_aluminum": {
+        "linear_feet": 150,
+        "downspouts": 4,
+        "material": "aluminum_5inch_seamless",
+        "gutter_material_cost": 675,
+        "gutter_labor_cost": 600,
+        "downspout_cost": 416,
+        "total_low": 1500,
+        "total_high": 2400,
+        "notes": "150 LF 5in seamless aluminum with 4 downspouts, standard install"
+      },
+      "medium_home_200ft_aluminum": {
+        "linear_feet": 200,
+        "downspouts": 5,
+        "material": "aluminum_5inch_seamless",
+        "gutter_material_cost": 900,
+        "gutter_labor_cost": 800,
+        "downspout_cost": 520,
+        "total_low": 2000,
+        "total_high": 3200,
+        "notes": "200 LF standard residential gutter system"
+      },
+      "large_home_250ft_6inch": {
+        "linear_feet": 250,
+        "downspouts": 7,
+        "material": "aluminum_6inch_seamless",
+        "gutter_material_cost": 1375,
+        "gutter_labor_cost": 1000,
+        "downspout_cost": 728,
+        "total_low": 2800,
+        "total_high": 4500,
+        "notes": "250 LF 6in seamless for large home or heavy rain area"
+      },
+      "copper_gutters_150ft": {
+        "linear_feet": 150,
+        "downspouts": 4,
+        "material": "copper_5inch",
+        "gutter_material_cost": 3750,
+        "gutter_labor_cost": 1800,
+        "downspout_cost": 1080,
+        "total_low": 6000,
+        "total_high": 8500,
+        "notes": "150 LF copper gutters, high-end installation"
+      },
+      "gutter_guards_whole_house_200ft": {
+        "linear_feet": 200,
+        "guard_type": "screen_guards_premium",
+        "material_cost": 800,
+        "labor_cost": 400,
+        "total_low": 1000,
+        "total_high": 1600,
+        "notes": "Add premium gutter guards to existing gutters, 200 LF"
+      }
+    },
+    "red_flags": [
+      "Charging >$8/LF for standard aluminum seamless labor (should be $3-6/LF)",
+      "Pushing 6 inch gutters when 5 inch would be adequate (unless very heavy rain area)",
+      "Requiring complete fascia replacement when only minor repairs needed",
+      "Charging >$150 per downspout for basic aluminum (should be $50-125)",
+      "Bundling gutter guards without giving option to decline (many homeowners don't need them)",
+      "Claiming you need premium LeafGuard system when basic guards work fine",
+      "Charging separately for 'disposal' when removal includes it",
+      "Insisting on copper gutters for 'durability' when aluminum lasts 20-30 years",
+      "Adding 'mobilization fee' for standard residential job",
+      "Charging per hour instead of per linear foot",
+      "Requiring downspout burial/underground drains when simple extensions work",
+      "Pushing oversized downspouts (3x4 is standard, rarely need larger)",
+      "Claiming all hangers need replacing (often can reuse)",
+      "High-pressure sales tactics for LeafFilter/LeafGuard (very expensive, commission-based sales)"
+    ],
+    "common_upsells": {
+      "gutter_guards": "Especially LeafFilter/LeafGuard at $15-25/LF (basic guards work fine)",
+      "6inch_gutters": "Upselling to 6 inch when 5 inch adequate",
+      "copper_upgrade": "Copper when aluminum would work",
+      "downspout_burial": "Underground drainage systems when extensions sufficient",
+      "fascia_soffit_replacement": "Full replacement when repairs sufficient",
+      "premium_colors": "Custom colors at higher cost vs. standard white/brown",
+      "heat_cables": "Heated gutter cables (rarely necessary except extreme climates)"
+    },
+    "cost_factors": {
+      "roof_height": "Two-story homes 20-30% more labor than single-story",
+      "roof_complexity": "Multiple valleys, complex rooflines add 15-25%",
+      "access": "Difficult access, steep slopes, landscaping obstacles add 20-40%",
+      "fascia_condition": "Rotted fascia must be repaired first, adds $4-10/LF",
+      "removal": "Old gutter removal adds $1-2.50/LF",
+      "geography": "Heavy snow/rain areas may need 6 inch gutters or extra downspouts",
+      "regional_labor": "Urban areas and high COL regions 20-40% higher labor"
+    },
+    "sizing_guidelines": {
+      "5_inch_gutters": "Adequate for most homes, roofs up to 1,500 sq ft per downspout",
+      "6_inch_gutters": "Large homes, steep roofs, heavy rainfall areas (>60 inches/year)",
+      "downspout_spacing": "Typically every 30-40 feet, more in heavy rain areas",
+      "downspout_size": "3x4 inch standard, 4x5 inch for 6 inch gutters",
+      "pitch": "Gutters should slope 1/4 inch per 10 feet toward downspout"
+    },
+    "maintenance_advice": {
+      "cleaning_frequency": "Clean 1-2 times per year (spring and fall)",
+      "inspection": "Check for leaks, loose hangers, proper slope annually",
+      "downspout_check": "Ensure downspouts aren't clogged, water flows freely",
+      "extensions": "Keep downspout extensions 4-6 feet from foundation",
+      "gutter_guards": "If many trees, guards can reduce cleaning but not eliminate it",
+      "winter": "Remove ice dams carefully, don't use salt on roof"
+    }
+  }
+}
