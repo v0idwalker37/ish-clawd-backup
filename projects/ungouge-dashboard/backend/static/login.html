@@ -233,19 +233,8 @@
                 }
             );
 
-            // Check if already authenticated
-            fetch('/auth/status', {
-                credentials: 'include'
-            })
-            .then(res => {
-                if (res.ok) {
-                    // Already authenticated, redirect to dashboard
-                    window.location.href = '/';
-                }
-            })
-            .catch(() => {
-                // Not authenticated, stay on login page
-            });
+            // Don't auto-redirect - let user click Sign In
+            // This prevents redirect loops if session is stale
         };
     </script>
 </body>
