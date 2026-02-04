@@ -485,7 +485,7 @@
                     </div>
                     <div class="alert-box ${totalTasks > 10 ? 'warning' : 'good'}">
                         <div class="number">${totalTasks}</div>
-                        <div class="label">Open Tasks</div>
+                        <div class="label">Open Tasks</div></div><script>document.querySelectorAll(".alert-box").forEach(box => { if(box.textContent.includes("Open Tasks")) box.onclick = () => window.location.href="/tasks.html"; box.style.cursor="pointer"; });</script>
                     </div>
                     <div class="alert-box ${revenueProgress >= 75 ? 'good' : 'warning'}">
                         <div class="number">${revenueProgress}%</div>
@@ -842,3 +842,41 @@
     </script>
 </body>
 </html>
+
+<script>
+// Make alert boxes clickable
+document.addEventListener('DOMContentLoaded', () => {
+    const alertBoxes = document.querySelectorAll('.alert-box');
+    alertBoxes.forEach((box, index) => {
+        box.style.cursor = 'pointer';
+        box.style.transition = 'transform 0.2s';
+        box.addEventListener('mouseover', () => box.style.transform = 'scale(1.05)');
+        box.addEventListener('mouseout', () => box.style.transform = 'scale(1)');
+        
+        // Navigate based on which alert box
+        if (box.textContent.includes('Open Tasks')) {
+            box.onclick = () => window.location.href = '/tasks.html';
+        }
+    });
+    
+    // Make "View Details" buttons work
+    const viewDetailsButtons = document.querySelectorAll('button');
+    viewDetailsButtons.forEach(btn => {
+        if (btn.textContent.includes('View Details')) {
+            const card = btn.closest('.project-card, .module-card, .revenue-card');
+            if (card) {
+                const projectName = card.querySelector('h2')?.textContent;
+                btn.onclick = () => {
+                    if (projectName?.includes('YOUTUBE')) {
+                        window.location.href = '/tasks.html?project=youtube';
+                    } else if (projectName?.includes('UNGOUGE')) {
+                        window.location.href = '/tasks.html?project=ungouge';
+                    } else {
+                        window.location.href = '/tasks.html';
+                    }
+                };
+            }
+        }
+    });
+});
+</script>

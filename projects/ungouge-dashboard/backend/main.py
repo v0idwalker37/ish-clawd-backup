@@ -382,6 +382,59 @@ def get_tasks(
     return {"tasks": tasks}
 
 
+@app.put("/tasks/{task_id}")
+def update_task(task_id: int, task_data: dict, user_info: dict = Depends(require_auth)):
+    """Update a task"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    # Build update query dynamically based on provided fields
+    allowed_fields = ['title', 'description', 'status', 'priority', 'due_date', 'estimated_hours']
+    updates = []
+    values = []
+    
+    for field in allowed_fields:
+        if field in task_data:
+            updates.append(f"{field} = ?")
+            values.append(task_data[field])
+    
+    if 'status' in task_data and task_data['status'] == 'done' and 'completed_at' not in task_data:
+        updates.append("completed_at = ?")
+        values.append(datetime.now().isoformat())
+    
+    if not updates:
+        raise HTTPException(status_code=400, detail="No valid fields to update")
+    
+    updates.append("updated_at = ?")
+    values.append(datetime.now().isoformat())
+    values.append(task_id)
+    
+    cursor.execute(f"""
+        UPDATE tasks 
+        SET {', '.join(updates)}
+        WHERE id = ?
+    """, values)
+    
+    conn.commit()
+    conn.close()
+    
+    return {"success": True, "updated": cursor.rowcount}
+
+
+@app.delete("/tasks/{task_id}")
+def delete_task(task_id: int, user_info: dict = Depends(require_auth)):
+    """Delete a task"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("DELETE FROM tasks WHERE id = ?", (task_id,))
+    
+    conn.commit()
+    conn.close()
+    
+    return {"success": True, "deleted": cursor.rowcount}
+
+
 @app.get("/expenses")
 def get_expenses(user_info: dict = Depends(require_auth)):
     """Get all expenses"""
