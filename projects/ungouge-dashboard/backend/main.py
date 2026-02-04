@@ -503,6 +503,38 @@ def get_expenses(user_info: dict = Depends(require_auth)):
     return {"expenses": expenses}
 
 
+@app.post("/expenses")
+def create_expense(expense_data: dict, user_info: dict = Depends(require_auth)):
+    """Create a new expense"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    # Required fields
+    description = expense_data.get('description')
+    amount = expense_data.get('amount')
+    
+    if not description or amount is None:
+        raise HTTPException(status_code=400, detail="description and amount are required")
+    
+    # Optional fields
+    project_id = expense_data.get('project_id')
+    category = expense_data.get('category', 'other')
+    date = expense_data.get('date', datetime.now().strftime('%Y-%m-%d'))
+    vendor = expense_data.get('vendor', '')
+    recurring = expense_data.get('recurring', False)
+    
+    cursor.execute("""
+        INSERT INTO expenses (project_id, amount, description, category, date, vendor, recurring, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    """, (project_id, amount, description, category, date, vendor, 1 if recurring else 0, datetime.now().isoformat()))
+    
+    expense_id = cursor.lastrowid
+    conn.commit()
+    conn.close()
+    
+    return {"success": True, "expense_id": expense_id}
+
+
 @app.get("/dashboard/summary")
 def get_dashboard_summary(user_info: dict = Depends(require_auth)):
     """Get dashboard summary statistics"""

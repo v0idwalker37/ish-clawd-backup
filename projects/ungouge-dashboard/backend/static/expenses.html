@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses - UnGouge Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 { font-size: 28px; color: #fff; }
+
+        .header-actions { display: flex; gap: 12px; }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-primary { background: #3b82f6; color: white; }
+        .btn-primary:hover { background: #2563eb; }
+        .btn-secondary { background: #334155; color: #e2e8f0; text-decoration: none; display: inline-flex; align-items: center; }
+        .btn-secondary:hover { background: #475569; }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .summary-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .summary-value.expense { color: #ef4444; }
+        .summary-value.income { color: #10b981; }
+
+        .summary-label {
+            font-size: 12px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .expenses-table {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #0f172a;
+            padding: 16px;
+            text-align: left;
+            font-size: 12px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #334155;
+            font-size: 14px;
+        }
+
+        tr:hover { background: #2d3748; }
+
+        .category-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .category-badge.software { background: #1e40af; color: #93c5fd; }
+        .category-badge.hosting { background: #166534; color: #86efac; }
+        .category-badge.marketing { background: #7c2d12; color: #fdba74; }
+        .category-badge.tools { background: #713f12; color: #fde047; }
+        .category-badge.domain { background: #581c87; color: #d8b4fe; }
+        .category-badge.other { background: #374151; color: #9ca3af; }
+
+        .recurring-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            background: #3b82f6;
+            color: white;
+        }
+
+        .amount { font-weight: 600; color: #ef4444; }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: #94a3b8;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            padding: 24px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .modal h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>💰 Expenses</h1>
+        <div class="header-actions">
+            <button class="btn btn-primary" onclick="showAddModal()">+ Add Expense</button>
+            <a href="/" class="btn btn-secondary">← Dashboard</a>
+        </div>
+    </div>
+
+    <div class="summary-cards">
+        <div class="summary-card">
+            <div class="summary-value expense" id="totalMTD">$0.00</div>
+            <div class="summary-label">This Month</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-value expense" id="totalYTD">$0.00</div>
+            <div class="summary-label">Year to Date</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-value" id="recurringTotal">$0.00</div>
+            <div class="summary-label">Monthly Recurring</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-value" id="expenseCount">0</div>
+            <div class="summary-label">Total Expenses</div>
+        </div>
+    </div>
+
+    <div class="expenses-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Vendor</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody id="expensesBody">
+                <tr><td colspan="6" class="empty-state">Loading expenses...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add Expense Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <h2>Add Expense</h2>
+            <form id="addExpenseForm">
+                <div class="form-group">
+                    <label>Description *</label>
+                    <input type="text" id="expenseDesc" required>
+                </div>
+                <div class="form-group">
+                    <label>Amount *</label>
+                    <input type="number" id="expenseAmount" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="expenseCategory">
+                        <option value="software">Software</option>
+                        <option value="hosting">Hosting</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="tools">Tools</option>
+                        <option value="domain">Domain</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Vendor</label>
+                    <input type="text" id="expenseVendor">
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="expenseDate">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="expenseRecurring"> Recurring (monthly)
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="hideAddModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Expense</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let expenses = [];
+
+        async function loadExpenses() {
+            try {
+                const response = await fetch('/expenses');
+                const data = await response.json();
+                expenses = data.expenses || [];
+                renderExpenses();
+                updateSummary();
+            } catch (error) {
+                console.error('Error loading expenses:', error);
+                document.getElementById('expensesBody').innerHTML = 
+                    '<tr><td colspan="6" class="empty-state">Error loading expenses</td></tr>';
+            }
+        }
+
+        function renderExpenses() {
+            const tbody = document.getElementById('expensesBody');
+            
+            if (expenses.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No expenses recorded yet</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = expenses.map(expense => `
+                <tr>
+                    <td>${new Date(expense.date).toLocaleDateString()}</td>
+                    <td>${expense.description}</td>
+                    <td><span class="category-badge ${expense.category || 'other'}">${expense.category || 'Other'}</span></td>
+                    <td>${expense.vendor || '-'}</td>
+                    <td class="amount">$${parseFloat(expense.amount).toFixed(2)}</td>
+                    <td>${expense.recurring ? '<span class="recurring-badge">RECURRING</span>' : 'One-time'}</td>
+                </tr>
+            `).join('');
+        }
+
+        function updateSummary() {
+            const now = new Date();
+            const thisMonth = now.getMonth();
+            const thisYear = now.getFullYear();
+
+            const mtd = expenses
+                .filter(e => {
+                    const d = new Date(e.date);
+                    return d.getMonth() === thisMonth && d.getFullYear() === thisYear;
+                })
+                .reduce((sum, e) => sum + parseFloat(e.amount), 0);
+
+            const ytd = expenses
+                .filter(e => new Date(e.date).getFullYear() === thisYear)
+                .reduce((sum, e) => sum + parseFloat(e.amount), 0);
+
+            const recurring = expenses
+                .filter(e => e.recurring)
+                .reduce((sum, e) => sum + parseFloat(e.amount), 0);
+
+            document.getElementById('totalMTD').textContent = '$' + mtd.toFixed(2);
+            document.getElementById('totalYTD').textContent = '$' + ytd.toFixed(2);
+            document.getElementById('recurringTotal').textContent = '$' + recurring.toFixed(2) + '/mo';
+            document.getElementById('expenseCount').textContent = expenses.length;
+        }
+
+        function showAddModal() {
+            document.getElementById('expenseDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('addModal').style.display = 'flex';
+        }
+
+        function hideAddModal() {
+            document.getElementById('addModal').style.display = 'none';
+            document.getElementById('addExpenseForm').reset();
+        }
+
+        document.getElementById('addExpenseForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const expenseData = {
+                description: document.getElementById('expenseDesc').value,
+                amount: parseFloat(document.getElementById('expenseAmount').value),
+                category: document.getElementById('expenseCategory').value,
+                vendor: document.getElementById('expenseVendor').value,
+                date: document.getElementById('expenseDate').value || new Date().toISOString().split('T')[0],
+                recurring: document.getElementById('expenseRecurring').checked
+            };
+
+            try {
+                const response = await fetch('/expenses', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(expenseData)
+                });
+
+                if (response.ok) {
+                    hideAddModal();
+                    loadExpenses();
+                } else {
+                    alert('Failed to add expense');
+                }
+            } catch (error) {
+                console.error('Error adding expense:', error);
+                alert('Error adding expense');
+            }
+        });
+
+        document.getElementById('addModal').addEventListener('click', (e) => {
+            if (e.target.id === 'addModal') hideAddModal();
+        });
+
+        loadExpenses();
+    </script>
+</body>
+</html>
