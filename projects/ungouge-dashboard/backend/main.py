@@ -209,9 +209,10 @@ async def auth_verify(response: Response, token: dict):
         value=session_token,
         httponly=True,
         secure=True,  # HTTPS only
-        samesite="lax",
+        samesite="none",  # Required for OAuth popup/iframe flow
         max_age=86400,  # 24 hours
-        path="/"
+        path="/",
+        domain="ungouge.ai"  # Explicit domain to work across subdomains
     )
     
     return {
