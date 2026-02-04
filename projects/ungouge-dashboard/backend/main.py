@@ -387,6 +387,40 @@ def get_tasks(
     return {"tasks": tasks}
 
 
+@app.post("/tasks")
+def create_task(task_data: dict, user_info: dict = Depends(require_auth)):
+    """Create a new task"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    # Required fields
+    project_id = task_data.get('project_id')
+    title = task_data.get('title')
+    
+    if not project_id or not title:
+        raise HTTPException(status_code=400, detail="project_id and title are required")
+    
+    # Optional fields
+    description = task_data.get('description', '')
+    status = task_data.get('status', 'todo')
+    priority = task_data.get('priority', 'medium')
+    due_date = task_data.get('due_date')
+    task_type = task_data.get('task_type', 'feature')
+    estimated_hours = task_data.get('estimated_hours')
+    
+    cursor.execute("""
+        INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (project_id, title, description, status, priority, due_date, task_type, estimated_hours, 
+          datetime.now().isoformat(), datetime.now().isoformat()))
+    
+    task_id = cursor.lastrowid
+    conn.commit()
+    conn.close()
+    
+    return {"success": True, "task_id": task_id}
+
+
 @app.put("/tasks/{task_id}")
 def update_task(task_id: int, task_data: dict, user_info: dict = Depends(require_auth)):
     """Update a task"""
