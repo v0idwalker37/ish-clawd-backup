@@ -38,6 +38,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Startup event - initialize database
+@app.on_event("startup")
+def startup_event():
+    """Initialize database on startup"""
+    print("🚀 Initializing database...")
+    init_db()
+    print("✅ Database initialized")
+
 # Static files
 static_dir = os.path.join(os.path.dirname(__file__), "static")
 
