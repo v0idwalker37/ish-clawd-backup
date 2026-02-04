@@ -126,7 +126,7 @@ def read_root(
         if user_info:
             print(f"✅ Valid auth token for {user_info.get('email')}, serving dashboard")
             # Set cookie and serve dashboard DIRECTLY (no redirect - avoids cookie timing issue)
-            dashboard_path = os.path.join(static_dir_path, "dashboard.html")
+            dashboard_path = os.path.join(static_dir_path, "dashboard-v2.html")
             if os.path.exists(dashboard_path):
                 dashboard_response = FileResponse(dashboard_path)
                 dashboard_response.set_cookie(
@@ -151,7 +151,7 @@ def read_root(
         user_info = verify_session(session_token)
         if user_info:
             print(f"✅ Authenticated user: {user_info.get('email')}")
-            dashboard_path = os.path.join(static_dir_path, "dashboard.html")
+            dashboard_path = os.path.join(static_dir_path, "dashboard-v2.html")
             if os.path.exists(dashboard_path):
                 return FileResponse(dashboard_path)
         else:
