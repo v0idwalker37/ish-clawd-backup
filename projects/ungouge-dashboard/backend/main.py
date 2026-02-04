@@ -45,6 +45,11 @@ def startup_event():
     print("🚀 Initializing database...")
     init_db()
     print("✅ Database initialized")
+    
+    # Seed with launch plan data if empty
+    from database import seed_sample_data
+    seed_sample_data()
+    print("✅ Launch plan data seeded")
 
 # Static files
 static_dir = os.path.join(os.path.dirname(__file__), "static")
