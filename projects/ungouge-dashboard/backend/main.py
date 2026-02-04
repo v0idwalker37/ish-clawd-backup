@@ -5,7 +5,7 @@ Server-side OAuth 2.0 redirect flow (no popups!)
 
 from fastapi import FastAPI, HTTPException, Cookie, Response, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, RedirectResponse
+from fastapi.responses import FileResponse, RedirectResponse, HTMLResponse
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime
@@ -210,11 +210,25 @@ async def auth_callback(
         # Create session
         session_token = create_session(user_info)
         
-        # Set cookie and redirect to dashboard
-        response = RedirectResponse(url="/", status_code=302)
+        # Use HTML redirect to ensure cookie is set before navigation
+        html_content = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Redirecting...</title>
+            <meta http-equiv="refresh" content="0;url=/">
+        </head>
+        <body>
+            <p>Authentication successful. Redirecting...</p>
+            <script>window.location.href = '/';</script>
+        </body>
+        </html>
+        """
+        response = HTMLResponse(content=html_content, status_code=200)
         response.set_cookie(
             key="session_token",
             value=session_token,
+            domain=".ungouge.ai",  # Explicit domain for cookie
             httponly=True,
             secure=True,
             samesite="lax",
