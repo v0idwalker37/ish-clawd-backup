@@ -713,7 +713,7 @@
             const healthStatus = project.progress >= 75 ? 'healthy' : project.progress >= 50 ? 'warning' : 'critical';
 
             return `
-                <div class="widget">
+                <div class="widget" onclick="window.location.href='/project-detail.html?id=${project.id}'">
                     <div class="widget-header">
                         <div class="widget-title">
                             <span class="widget-icon">${getProjectIcon(project.name)}</span>

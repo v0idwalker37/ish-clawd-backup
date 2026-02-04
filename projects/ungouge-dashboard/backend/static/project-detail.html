@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - UnGouge Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-btn {
+            background: #334155;
+            color: #e2e8f0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: #475569;
+        }
+
+        .project-header {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid #334155;
+        }
+
+        .project-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .project-description {
+            color: #94a3b8;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .stat-card {
+            background: #0f172a;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .stat-value.success { color: #10b981; }
+        .stat-value.warning { color: #f59e0b; }
+        .stat-value.danger { color: #ef4444; }
+
+        .stat-label {
+            font-size: 12px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .progress-section {
+            margin-top: 20px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: #334155;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+            transition: width 0.3s;
+        }
+
+        .progress-fill.success { background: linear-gradient(90deg, #10b981 0%, #14b8a6 100%); }
+        .progress-fill.warning { background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%); }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            margin: 32px 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tasks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .task-card {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 16px;
+            border-left: 4px solid;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .task-card:hover {
+            background: #2d3748;
+            transform: translateX(4px);
+        }
+
+        .task-card.urgent { border-left-color: #ef4444; }
+        .task-card.high { border-left-color: #f59e0b; }
+        .task-card.medium { border-left-color: #3b82f6; }
+        .task-card.low { border-left-color: #6b7280; }
+
+        .task-info {
+            flex: 1;
+        }
+
+        .task-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .task-meta {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-complete {
+            background: #166534;
+            color: #86efac;
+        }
+
+        .btn-complete:hover {
+            background: #14532d;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-badge.todo { background: #334155; color: #94a3b8; }
+        .status-badge.in_progress { background: #1e40af; color: #93c5fd; }
+        .status-badge.done { background: #166534; color: #86efac; }
+        .status-badge.blocked { background: #991b1b; color: #fca5a5; }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #94a3b8;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #94a3b8;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: #334155;
+            border: none;
+            border-radius: 8px;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            background: #3b82f6;
+            color: #fff;
+        }
+
+        .tab:hover:not(.active) {
+            background: #475569;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="back-btn">← Back to Dashboard</a>
+    </div>
+
+    <div id="content">
+        <div class="loading">Loading project details...</div>
+    </div>
+
+    <script>
+        let projectId = null;
+        let projectData = null;
+        let projectTasks = [];
+
+        // Get project ID from URL
+        function getProjectIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        // Fetch project and tasks
+        async function loadProjectData() {
+            projectId = getProjectIdFromUrl();
+            if (!projectId) {
+                document.getElementById('content').innerHTML = '<div class="empty-state"><h2>No project selected</h2><p>Please select a project from the dashboard.</p></div>';
+                return;
+            }
+
+            try {
+                const [projectsRes, tasksRes] = await Promise.all([
+                    fetch('/projects'),
+                    fetch('/tasks')
+                ]);
+
+                const projectsData = await projectsRes.json();
+                const tasksData = await tasksRes.json();
+
+                const projects = projectsData.projects || [];
+                projectData = projects.find(p => p.id == projectId);
+
+                if (!projectData) {
+                    document.getElementById('content').innerHTML = '<div class="empty-state"><h2>Project not found</h2></div>';
+                    return;
+                }
+
+                projectTasks = (tasksData.tasks || []).filter(t => t.project_id == projectId);
+                renderProject();
+            } catch (error) {
+                console.error('Error loading project:', error);
+                document.getElementById('content').innerHTML = '<div class="empty-state"><h2>Error loading project</h2></div>';
+            }
+        }
+
+        function renderProject() {
+            const completedTasks = projectTasks.filter(t => t.status === 'done').length;
+            const inProgressTasks = projectTasks.filter(t => t.status === 'in_progress').length;
+            const blockedTasks = projectTasks.filter(t => t.status === 'blocked').length;
+            const todoTasks = projectTasks.filter(t => t.status === 'todo').length;
+            const progress = projectTasks.length > 0 ? Math.round((completedTasks / projectTasks.length) * 100) : 0;
+
+            const now = new Date();
+            const overdueTasks = projectTasks.filter(t => {
+                if (!t.due_date || t.status === 'done') return false;
+                return new Date(t.due_date) < now;
+            }).length;
+
+            document.getElementById('content').innerHTML = `
+                <div class="project-header">
+                    <div class="project-title">${getProjectIcon(projectData.name)} ${projectData.name}</div>
+                    <div class="project-description">${projectData.description || 'No description'}</div>
+                    
+                    <div class="project-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">${projectTasks.length}</div>
+                            <div class="stat-label">Total Tasks</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value success">${completedTasks}</div>
+                            <div class="stat-label">Completed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${inProgressTasks}</div>
+                            <div class="stat-label">In Progress</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value ${blockedTasks > 0 ? 'danger' : ''}">${blockedTasks}</div>
+                            <div class="stat-label">Blocked</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value ${overdueTasks > 0 ? 'warning' : ''}">${overdueTasks}</div>
+                            <div class="stat-label">Overdue</div>
+                        </div>
+                    </div>
+
+                    <div class="progress-section">
+                        <div class="progress-header">
+                            <span>Overall Progress</span>
+                            <span>${progress}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill ${progress >= 75 ? 'success' : progress >= 50 ? 'warning' : ''}" style="width: ${progress}%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">📋 Tasks</div>
+                
+                <div class="tabs">
+                    <button class="tab active" onclick="filterTasks('all')">All (${projectTasks.length})</button>
+                    <button class="tab" onclick="filterTasks('todo')">To Do (${todoTasks})</button>
+                    <button class="tab" onclick="filterTasks('in_progress')">In Progress (${inProgressTasks})</button>
+                    <button class="tab" onclick="filterTasks('blocked')">Blocked (${blockedTasks})</button>
+                    <button class="tab" onclick="filterTasks('done')">Done (${completedTasks})</button>
+                </div>
+
+                <div id="tasksContainer" class="tasks-container">
+                    ${renderTasks(projectTasks)}
+                </div>
+            `;
+        }
+
+        function renderTasks(tasks) {
+            if (tasks.length === 0) {
+                return '<div class="empty-state">No tasks found</div>';
+            }
+
+            return tasks.map(task => `
+                <div class="task-card ${task.priority}">
+                    <div class="task-info">
+                        <div class="task-title">${task.title}</div>
+                        <div class="task-meta">
+                            Priority: ${task.priority} • 
+                            ${task.due_date ? `Due: ${new Date(task.due_date).toLocaleDateString()}` : 'No due date'}
+                            ${task.estimated_hours ? ` • Est: ${task.estimated_hours}h` : ''}
+                        </div>
+                    </div>
+                    <div class="task-actions">
+                        <span class="status-badge ${task.status}">${task.status.replace('_', ' ')}</span>
+                        ${task.status !== 'done' ? `
+                            <button class="btn btn-complete" onclick="markComplete(${task.id}, event)">✓ Complete</button>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterTasks(status) {
+            // Update active tab
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter tasks
+            let filtered = projectTasks;
+            if (status !== 'all') {
+                filtered = projectTasks.filter(t => t.status === status);
+            }
+
+            document.getElementById('tasksContainer').innerHTML = renderTasks(filtered);
+        }
+
+        async function markComplete(taskId, event) {
+            event.stopPropagation();
+            
+            try {
+                const response = await fetch(`/tasks/${taskId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: 'done' })
+                });
+
+                if (response.ok) {
+                    // Reload project data
+                    loadProjectData();
+                } else {
+                    alert('Failed to update task');
+                }
+            } catch (error) {
+                console.error('Error updating task:', error);
+                alert('Error updating task');
+            }
+        }
+
+        function getProjectIcon(name) {
+            const lowerName = name.toLowerCase();
+            if (lowerName.includes('youtube')) return '📹';
+            if (lowerName.includes('ungouge')) return '🏠';
+            if (lowerName.includes('content')) return '📝';
+            if (lowerName.includes('podcast')) return '🎙️';
+            if (lowerName.includes('dashboard')) return '📊';
+            if (lowerName.includes('operations')) return '⚙️';
+            return '📁';
+        }
+
+        // Load on page load
+        loadProjectData();
+    </script>
+</body>
+</html>
