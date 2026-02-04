@@ -188,8 +188,10 @@
             })
             .then(data => {
                 console.log("✅ Backend verification successful:", data);
-                // Redirect to dashboard
-                window.location.href = '/';
+                // Small delay to ensure cookie is set before redirect
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 500);
             })
             .catch(error => {
                 console.error("❌ Authentication error:", error);
