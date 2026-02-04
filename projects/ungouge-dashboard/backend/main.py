@@ -111,19 +111,21 @@ def read_root(
         print(f"🔍 Received auth_token in URL")
         user_info = verify_session(auth_token)
         if user_info:
-            print(f"✅ Valid auth token, setting cookie for {user_info.get('email')}")
-            # Set cookie and redirect to clean URL (remove token from URL)
-            redirect_response = RedirectResponse(url="/", status_code=302)
-            redirect_response.set_cookie(
-                key="session_token",
-                value=auth_token,
-                httponly=True,
-                secure=True,
-                samesite="lax",
-                max_age=86400,  # 24 hours
-                path="/"
-            )
-            return redirect_response
+            print(f"✅ Valid auth token for {user_info.get('email')}, serving dashboard")
+            # Set cookie and serve dashboard DIRECTLY (no redirect - avoids cookie timing issue)
+            dashboard_path = os.path.join(static_dir_path, "dashboard.html")
+            if os.path.exists(dashboard_path):
+                dashboard_response = FileResponse(dashboard_path)
+                dashboard_response.set_cookie(
+                    key="session_token",
+                    value=auth_token,
+                    httponly=True,
+                    secure=True,
+                    samesite="lax",
+                    max_age=86400,  # 24 hours
+                    path="/"
+                )
+                return dashboard_response
         else:
             print(f"❌ Invalid auth token")
     
