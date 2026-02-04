@@ -14,6 +14,7 @@ import os
 import secrets
 
 from database import get_connection, init_db
+from api_integrations import initialize_apis, get_all_external_metrics
 from auth import (
     verify_google_token, 
     create_session, 
@@ -44,6 +45,10 @@ def startup_event():
     """Initialize database on startup"""
     print("🚀 Initializing database...")
     init_db()
+    
+    print("🔌 Initializing API integrations...")
+    initialize_apis()
+    print("✅ API integrations ready")
     print("✅ Database initialized")
     
     # Seed with launch plan data if empty
@@ -504,6 +509,21 @@ def get_dashboard_summary(user_info: dict = Depends(require_auth)):
     conn.close()
     
     return {
+
+
+@app.get("/external/metrics")
+async def get_external_metrics(user_info: dict = Depends(require_auth)):
+    """Get metrics from external APIs (YouTube, Stripe, Google Analytics)"""
+    try:
+        metrics = await get_all_external_metrics()
+        return metrics
+    except Exception as e:
+        print(f"Error fetching external metrics: {e}")
+        return {
+            "youtube": {"error": "Not configured"},
+            "stripe": {"error": "Not configured"},
+            "analytics": {"error": "Not configured"}
+        }
         "projects": {"active": active_projects},
         "tasks": task_stats,
         "monthly_expenses": monthly_expenses,
