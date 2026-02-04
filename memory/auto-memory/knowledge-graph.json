@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "facts": [],
+  "schema": {
+    "fact": {
+      "id": "unique_id",
+      "subject": "who/what this is about",
+      "predicate": "the relationship/property",
+      "object": "the value",
+      "timestamp": "YYYY-MM-DD",
+      "confidence": 1.0,
+      "supersedes": "id_of_old_fact or null",
+      "tags": ["tag1", "tag2"]
+    }
+  },
+  "examples": [
+    {
+      "id": "jason_icloud_email",
+      "subject": "Jason",
+      "predicate": "icloud_email",
+      "object": "jasontrask@icloud.com",
+      "timestamp": "2026-02-04",
+      "confidence": 1.0,
+      "supersedes": null,
+      "tags": ["credential", "email", "icloud"]
+    },
+    {
+      "id": "jason_daughter_name",
+      "subject": "Jason",
+      "predicate": "daughter_name",
+      "object": "Inara Moon",
+      "timestamp": "2026-02-04",
+      "confidence": 1.0,
+      "supersedes": null,
+      "tags": ["personal", "family"]
+    }
+  ]
+}
