@@ -78,6 +78,23 @@ Quality engagement, value-first approach.
 
 ---
 
+## 🆕 OpenClaw Update Available
+
+**Version:** v2026.2.2 (released ~8 hours ago)
+
+**Key Features:**
+- 🎛️ **Web UI Agents Dashboard** - Manage agent files, tools, skills, models, channels, and cron jobs
+- 🧠 **QMD Memory Backend** - Opt-in workspace memory system (better semantic search)
+- 🔒 **Security Hardening** - Multiple SSRF checks, skill installer guardrails, voice call security
+- 🌐 **Feishu/Lark Plugin** - New messaging platform support
+- ⚙️ **Subagent Config** - Set default thinking levels for spawned agents
+
+**Update Command:** `openclaw update` (when convenient)
+
+**Priority:** Medium - No critical fixes, but Web UI dashboard looks useful
+
+---
+
 ## ⏰ What's Next
 
 **Immediate:**
