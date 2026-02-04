@@ -1,0 +1,383 @@
+/* Project Detail Page Styles */
+
+.overview-section {
+    margin-bottom: 40px;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.overview-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.overview-card h3 {
+    font-size: 13px;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.big-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #58a6ff;
+    margin-bottom: 8px;
+}
+
+.small-text {
+    font-size: 13px;
+    color: #8b949e;
+}
+
+.project-status-badge {
+    padding: 8px 16px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.description-section {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 40px;
+}
+
+.description-section h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #e1e4e8;
+}
+
+.description-section p {
+    color: #8b949e;
+    line-height: 1.6;
+}
+
+.section-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 30px;
+}
+
+.section-card h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #e1e4e8;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    margin-bottom: 0;
+}
+
+/* Buttons */
+.btn-primary {
+    background: #238636;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #2ea043;
+}
+
+.btn-secondary {
+    background: #21262d;
+    color: #e1e4e8;
+    border: 1px solid #30363d;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    border-color: #58a6ff;
+}
+
+/* Tasks Grid */
+.tasks-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-detail-item {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.task-detail-item:hover {
+    border-color: #58a6ff;
+}
+
+.task-left {
+    flex: 1;
+}
+
+.task-title-large {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e1e4e8;
+    margin-bottom: 8px;
+}
+
+.task-description {
+    font-size: 14px;
+    color: #8b949e;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.task-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Milestones */
+.milestones-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.milestone-item {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-left: 4px solid #58a6ff;
+    border-radius: 6px;
+    padding: 16px;
+}
+
+.milestone-item.completed {
+    border-left-color: #238636;
+    opacity: 0.7;
+}
+
+.milestone-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.milestone-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e1e4e8;
+}
+
+.milestone-date {
+    font-size: 13px;
+    color: #8b949e;
+}
+
+.milestone-description {
+    font-size: 14px;
+    color: #8b949e;
+    line-height: 1.5;
+}
+
+/* Expenses Table */
+.expenses-table {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: #30363d;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.expense-row {
+    background: #0d1117;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
+    gap: 16px;
+    align-items: center;
+}
+
+.expense-row:hover {
+    background: #161b22;
+}
+
+.expense-total {
+    margin-top: 16px;
+    padding: 16px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    text-align: right;
+    font-size: 18px;
+    font-weight: 600;
+    color: #e1e4e8;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    margin: 5% auto;
+    padding: 0;
+    max-width: 600px;
+    animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    color: #e1e4e8;
+}
+
+.close {
+    color: #8b949e;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close:hover {
+    color: #e1e4e8;
+}
+
+/* Forms */
+form {
+    padding: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #e1e4e8;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: #e1e4e8;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #58a6ff;
+}
+
+.form-group input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .overview-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .expense-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

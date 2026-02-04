@@ -1,0 +1,9 @@
+# Similar to .dockerignore for gcloud builds
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.gitignore
+README.md
+.env
+*.db-journal

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnGouge Dashboard - Login</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a0e17 0%, #13182b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: #13182b;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 48px;
+            max-width: 440px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 8px;
+        }
+
+        .logo p {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .login-content {
+            text-align: center;
+        }
+
+        .login-content h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: #f1f5f9;
+        }
+
+        .login-content p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 32px;
+        }
+
+        #google-signin-button {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .security-notice {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 32px;
+            text-align: left;
+        }
+
+        .security-notice h3 {
+            font-size: 14px;
+            color: #60a5fa;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .security-notice p {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .lock-icon {
+            font-size: 16px;
+        }
+
+        .error {
+            background: #7f1d1d;
+            border: 1px solid #991b1b;
+            color: #fca5a5;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+            display: none;
+        }
+
+        .spinner {
+            border: 2px solid #1e293b;
+            border-top: 2px solid #60a5fa;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <h1>UnGouge</h1>
+            <p>Executive Dashboard</p>
+        </div>
+
+        <div class="login-content">
+            <h2>Welcome Back</h2>
+            <p>Sign in with your authorized Google account</p>
+
+            <div id="error-message" class="error"></div>
+            
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Verifying credentials...</p>
+            </div>
+
+            <div id="google-signin-button"></div>
+
+            <div class="security-notice">
+                <h3><span class="lock-icon">🔒</span> Secure Access</h3>
+                <p>This dashboard is restricted to authorized UnGouge administrators. All access is logged and monitored.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Google Sign-In callback
+        function handleCredentialResponse(response) {
+            console.log("✅ Google Sign-In successful");
+            showLoading();
+
+            // Send credential to backend for verification
+            fetch('/auth/verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    credential: response.credential
+                }),
+                credentials: 'include'  // Important: include cookies
+            })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(err => {
+                        throw new Error(err.detail || 'Authentication failed');
+                    });
+                }
+                return res.json();
+            })
+            .then(data => {
+                console.log("✅ Backend verification successful:", data);
+                // Redirect to dashboard
+                window.location.href = '/';
+            })
+            .catch(error => {
+                console.error("❌ Authentication error:", error);
+                showError(error.message || 'Authentication failed. Please ensure you are using an authorized account.');
+                hideLoading();
+            });
+        }
+
+        function showError(message) {
+            const errorEl = document.getElementById('error-message');
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('google-signin-button').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('google-signin-button').style.display = 'flex';
+        }
+
+        // Initialize Google Sign-In
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: '1093157467231-3pgo81mrq5rjdvhvaa1uf81pk2ifhka2.apps.googleusercontent.com',
+                callback: handleCredentialResponse,
+                auto_select: false
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById('google-signin-button'),
+                { 
+                    theme: 'filled_blue', 
+                    size: 'large',
+                    width: 300,
+                    text: 'signin_with',
+                    shape: 'rectangular'
+                }
+            );
+
+            // Check if already authenticated
+            fetch('/auth/status', {
+                credentials: 'include'
+            })
+            .then(res => {
+                if (res.ok) {
+                    // Already authenticated, redirect to dashboard
+                    window.location.href = '/';
+                }
+            })
+            .catch(() => {
+                // Not authenticated, stay on login page
+            });
+        };
+    </script>
+</body>
+</html>

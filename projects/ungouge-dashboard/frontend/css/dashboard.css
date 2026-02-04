@@ -1,0 +1,338 @@
+/* UnGouge Executive Dashboard - ConnectWise Style */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #1a1d2e;
+    color: #e1e4e8;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.dashboard-header {
+    background: #0d1117;
+    border-bottom: 2px solid #30363d;
+    padding: 20px 0;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 24px;
+    color: #58a6ff;
+    margin-bottom: 5px;
+}
+
+.date-time {
+    font-size: 14px;
+    color: #8b949e;
+}
+
+/* Summary Cards */
+.summary-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.summary-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+    border-color: #58a6ff;
+}
+
+.summary-card h3 {
+    font-size: 14px;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.summary-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #58a6ff;
+}
+
+/* Projects Grid */
+.projects-section {
+    margin-bottom: 40px;
+}
+
+.projects-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #e1e4e8;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.project-card:hover {
+    border-color: #58a6ff;
+    transform: translateY(-2px);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 15px;
+}
+
+.project-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #e1e4e8;
+}
+
+.project-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-active { background: #238636; color: #fff; }
+.status-paused { background: #9e6a03; color: #fff; }
+.status-completed { background: #1f6feb; color: #fff; }
+
+.project-description {
+    font-size: 14px;
+    color: #8b949e;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.project-metrics {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.metric {
+    flex: 1;
+}
+
+.metric-label {
+    font-size: 11px;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
+
+.metric-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e1e4e8;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #21262d;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #238636, #2ea043);
+    transition: width 0.3s;
+}
+
+.progress-fill.warning { background: linear-gradient(90deg, #9e6a03, #bb7f00); }
+.progress-fill.danger { background: linear-gradient(90deg, #da3633, #f85149); }
+
+/* Tasks List */
+.tasks-section {
+    margin-bottom: 40px;
+}
+
+.tasks-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #e1e4e8;
+}
+
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-item {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-item:hover {
+    border-color: #58a6ff;
+}
+
+.task-info {
+    flex: 1;
+}
+
+.task-title {
+    font-size: 15px;
+    color: #e1e4e8;
+    margin-bottom: 5px;
+}
+
+.task-meta {
+    font-size: 13px;
+    color: #8b949e;
+}
+
+.task-priority {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.priority-urgent { background: #da3633; color: #fff; }
+.priority-high { background: #f85149; color: #fff; }
+.priority-medium { background: #bb7f00; color: #fff; }
+.priority-low { background: #6e7681; color: #fff; }
+
+.task-status-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.status-todo { background: #30363d; color: #e1e4e8; }
+.status-in_progress { background: #1f6feb; color: #fff; }
+.status-done { background: #238636; color: #fff; }
+
+/* Expenses List */
+.expenses-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #e1e4e8;
+}
+
+.expenses-list {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.expense-item {
+    padding: 16px;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.expense-item:last-child {
+    border-bottom: none;
+}
+
+.expense-info {
+    flex: 1;
+}
+
+.expense-description {
+    font-size: 15px;
+    color: #e1e4e8;
+    margin-bottom: 5px;
+}
+
+.expense-meta {
+    font-size: 13px;
+    color: #8b949e;
+}
+
+.expense-amount {
+    font-size: 18px;
+    font-weight: 600;
+    color: #f85149;
+}
+
+/* Health Score Indicator */
+.health-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.health-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.health-excellent { background: #2ea043; }
+.health-good { background: #58a6ff; }
+.health-warning { background: #bb7f00; }
+.health-poor { background: #da3633; }
+
+/* Loading State */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #8b949e;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .summary-section {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .project-metrics {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

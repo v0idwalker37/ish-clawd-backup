@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - UnGouge Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/project-detail.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <a href="index.html" style="color: #58a6ff; text-decoration: none; font-size: 14px;">← Back to Dashboard</a>
+                    <h1 id="projectName">Loading...</h1>
+                </div>
+                <div class="project-status-badge" id="projectStatus"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            
+            <!-- Project Overview -->
+            <section class="overview-section">
+                <div class="overview-grid">
+                    <div class="overview-card">
+                        <h3>Progress</h3>
+                        <div class="big-number" id="projectProgress">-</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressBar"></div>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <h3>Revenue</h3>
+                        <div class="big-number" id="projectRevenue">-</div>
+                        <div class="small-text" id="revenueGoal">Goal: -</div>
+                    </div>
+                    <div class="overview-card">
+                        <h3>Health Score</h3>
+                        <div class="big-number" id="healthScore">-</div>
+                        <div class="small-text">Overall project health</div>
+                    </div>
+                    <div class="overview-card">
+                        <h3>Active Tasks</h3>
+                        <div class="big-number" id="activeTaskCount">-</div>
+                        <div class="small-text" id="overdueCount">-</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Description -->
+            <section class="description-section">
+                <h2>About</h2>
+                <p id="projectDescription">-</p>
+            </section>
+
+            <!-- Tasks -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h2>Tasks</h2>
+                    <button class="btn-primary" onclick="showAddTaskModal()">+ Add Task</button>
+                </div>
+                <div class="tasks-grid" id="tasksGrid">
+                    <!-- Loaded via JS -->
+                </div>
+            </section>
+
+            <!-- Milestones -->
+            <section class="section-card">
+                <h2>Milestones</h2>
+                <div class="milestones-list" id="milestonesList">
+                    <!-- Loaded via JS -->
+                </div>
+            </section>
+
+            <!-- Expenses -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h2>Expenses</h2>
+                    <button class="btn-primary" onclick="showAddExpenseModal()">+ Log Expense</button>
+                </div>
+                <div class="expenses-table" id="expensesTable">
+                    <!-- Loaded via JS -->
+                </div>
+                <div class="expense-total" id="expenseTotal"></div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Add Task Modal -->
+    <div id="addTaskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Task</h3>
+                <span class="close" onclick="closeModal('addTaskModal')">&times;</span>
+            </div>
+            <form id="addTaskForm" onsubmit="handleAddTask(event)">
+                <div class="form-group">
+                    <label>Task Title *</label>
+                    <input type="text" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Priority</label>
+                        <select name="priority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <input type="date" name="due_date">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <select name="task_type">
+                        <option value="action" selected>Action</option>
+                        <option value="milestone">Milestone</option>
+                        <option value="blocker">Blocker</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('addTaskModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Expense Modal -->
+    <div id="addExpenseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Log Expense</h3>
+                <span class="close" onclick="closeModal('addExpenseModal')">&times;</span>
+            </div>
+            <form id="addExpenseForm" onsubmit="handleAddExpense(event)">
+                <div class="form-group">
+                    <label>Description *</label>
+                    <input type="text" name="description" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Amount *</label>
+                        <input type="number" name="amount" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date *</label>
+                        <input type="date" name="date" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select name="category" required>
+                            <option value="hosting">Hosting</option>
+                            <option value="api">API</option>
+                            <option value="software">Software</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="tools">Tools</option>
+                            <option value="design">Design</option>
+                            <option value="legal">Legal</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Vendor</label>
+                        <input type="text" name="vendor">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="recurring">
+                        Recurring expense
+                    </label>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('addExpenseModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Log Expense</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/project-detail.js"></script>
+</body>
+</html>
