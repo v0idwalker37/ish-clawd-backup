@@ -3,7 +3,7 @@ UnGouge Executive Dashboard - FastAPI Backend
 Server-side OAuth 2.0 redirect flow (no popups!)
 """
 
-from fastapi import FastAPI, HTTPException, Cookie, Response, Request
+from fastapi import FastAPI, HTTPException, Cookie, Response, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse
 from pydantic import BaseModel
@@ -233,7 +233,7 @@ async def auth_callback(
 
 
 @app.get("/auth/status")
-async def auth_status(user_info: dict = require_auth):
+async def auth_status(user_info: dict = Depends(require_auth)):
     """Check authentication status"""
     return {
         "authenticated": True,
@@ -266,7 +266,7 @@ def health_check():
 # ===== PROJECTS =====
 
 @app.get("/projects")
-def get_projects(user_info: dict = require_auth):
+def get_projects(user_info: dict = Depends(require_auth)):
     """Get all projects"""
     conn = get_connection()
     cursor = conn.cursor()
@@ -302,7 +302,7 @@ def get_projects(user_info: dict = require_auth):
 @app.get("/tasks")
 def get_tasks(
     status: Optional[str] = None,
-    user_info: dict = require_auth
+    user_info: dict = Depends(require_auth)
 ):
     """Get tasks with optional status filter"""
     conn = get_connection()
@@ -345,7 +345,7 @@ def get_tasks(
 
 
 @app.get("/expenses")
-def get_expenses(user_info: dict = require_auth):
+def get_expenses(user_info: dict = Depends(require_auth)):
     """Get all expenses"""
     conn = get_connection()
     cursor = conn.cursor()
@@ -374,7 +374,7 @@ def get_expenses(user_info: dict = require_auth):
 
 
 @app.get("/dashboard/summary")
-def get_dashboard_summary(user_info: dict = require_auth):
+def get_dashboard_summary(user_info: dict = Depends(require_auth)):
     """Get dashboard summary statistics"""
     conn = get_connection()
     cursor = conn.cursor()
