@@ -18,8 +18,8 @@ AUTHORIZED_EMAILS = ["void@ungouge.ai"]  # Only these emails can access
 # Session expiration (24 hours)
 SESSION_DURATION = timedelta(hours=24)
 
-# Database path
-DB_PATH = os.environ.get("DB_PATH", "/tmp/dashboard.db")
+# Database path - must match database.py
+DB_PATH = os.environ.get("DATABASE_PATH", "/tmp/dashboard.db")
 
 
 def get_db_connection():
