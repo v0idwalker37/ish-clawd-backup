@@ -200,7 +200,8 @@ async def auth_verify(response: Response, token: dict):
         httponly=True,
         secure=True,  # HTTPS only
         samesite="lax",
-        max_age=86400  # 24 hours
+        max_age=86400,  # 24 hours
+        path="/"
     )
     
     return {
