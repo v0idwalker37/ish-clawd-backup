@@ -165,7 +165,7 @@ def init_db():
 
 
 def seed_sample_data():
-    """Insert sample data for UnGouge business"""
+    """Insert real launch plan data for UnGouge business"""
     conn = get_connection()
     cursor = conn.cursor()
     
@@ -176,87 +176,149 @@ def seed_sample_data():
         conn.close()
         return
     
-    # Insert UnGouge projects
+    from datetime import timedelta
+    today = datetime.now()
+    week_1 = today
+    week_2 = today + timedelta(weeks=1)
+    week_3 = today + timedelta(weeks=2)
+    
+    # WEEK 1: Platform Accounts & Content Setup
     cursor.execute("""
-        INSERT INTO projects (name, description, status, progress, category, priority, revenue_current, revenue_goal, health_score)
+        INSERT INTO projects (name, description, status, progress, category, priority, health_score)
         VALUES 
-            ('Quote Analysis Platform', 'UnGouge.ai core product - contractor quote verification', 'active', 78, 'product', 'critical', 3891, 5000, 87),
-            ('YouTube Channel', 'UnGouge Digest - homeowner advocacy content', 'active', 60, 'marketing', 'high', 0, 1000, 72)
+            ('YouTube Channel', 'UnGouge Digest - Homeowner advocacy channel with data-driven content', 'active', 20, 'content', 'high', 70),
+            ('Content Library', 'Scripts, blog posts, and marketing materials ready for publication', 'active', 60, 'content', 'high', 75),
+            ('Podcast Distribution', 'Multi-platform podcast presence (Spotify, Apple Podcasts, YouTube)', 'active', 0, 'content', 'medium', 65),
+            ('Ungouge.ai Platform', 'Quote analysis web app - main revenue driver ($19.99/report)', 'active', 85, 'product', 'critical', 90),
+            ('Executive Dashboard', 'Business metrics command center - real-time tracking of all operations', 'active', 70, 'operations', 'high', 80),
+            ('Business Operations', 'Accounts, credentials, and operational setup tasks', 'active', 30, 'operations', 'high', 70)
     """)
     
-    project_ids = {
-        'platform': cursor.lastrowid - 1,
-        'youtube': cursor.lastrowid
-    }
+    # Get project IDs
+    cursor.execute("SELECT id, name FROM projects ORDER BY id")
+    projects = {row[1]: row[0] for row in cursor.fetchall()}
     
-    # Insert tasks
+    yt = projects['YouTube Channel']
+    content = projects['Content Library']
+    podcast = projects['Podcast Distribution']
+    ungouge = projects['Ungouge.ai Platform']
+    dashboard = projects['Executive Dashboard']
+    ops = projects['Business Operations']
+    
+    # YouTube Channel tasks
     cursor.execute("""
-        INSERT INTO tasks (project_id, title, status, priority, due_date, task_type, description)
+        INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
         VALUES 
-            (?, 'Blog post #3 - Draft by EOD', 'in_progress', 'high', '2026-02-03', 'action', 'Complete third blog post for content marketing'),
-            (?, 'YouTube video rendering', 'in_progress', 'medium', '2026-02-04', 'action', 'Currently 87% complete'),
-            (?, 'Cost model v2 - Add 5 project types', 'todo', 'medium', '2026-02-15', 'milestone', 'Expand from 14 to 20 project types'),
-            (?, 'Record voice samples', 'todo', 'high', '2026-02-10', 'action', 'Voice recording for ElevenLabs clone'),
-            (?, 'Episode 1-3 upload', 'todo', 'urgent', '2026-02-12', 'milestone', 'Launch YouTube channel')
+            (?, 'Create YouTube Channel', 'Create UnGouge Digest channel, configure branding, set up channel art', 'todo', 'high', ?, 'action', 0.5),
+            (?, 'Set Up Channel Branding', 'Upload logo, banner, write description, configure channel settings', 'todo', 'medium', ?, 'action', 0.5),
+            (?, 'Connect YouTube Analytics to Dashboard', 'Set up YouTube Data API v3, configure dashboard integration', 'todo', 'medium', ?, 'action', 2),
+            (?, 'Record Episode 1 Voiceover', 'Use ElevenLabs voice clone to record How Contractors Are Ripping You Off', 'todo', 'high', ?, 'action', 2),
+            (?, 'Edit & Upload Episode 1', 'Edit video, add graphics, upload with optimized title/description/tags', 'todo', 'high', ?, 'action', 3)
     """, (
-        project_ids['platform'], project_ids['platform'], project_ids['platform'],
-        project_ids['youtube'], project_ids['youtube']
+        yt, (week_1 + timedelta(days=1)).strftime('%Y-%m-%d'),
+        yt, (week_1 + timedelta(days=1)).strftime('%Y-%m-%d'),
+        yt, (week_3 + timedelta(days=3)).strftime('%Y-%m-%d'),
+        yt, week_3.strftime('%Y-%m-%d'),
+        yt, (week_3 + timedelta(days=2)).strftime('%Y-%m-%d')
     ))
     
-    # Insert expenses
-    today = datetime.now().strftime('%Y-%m-%d')
+    # Content Library tasks
+    cursor.execute("""
+        INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+        VALUES 
+            (?, 'Organize YouTube Scripts in Dashboard', 'Move 3 episode scripts to dashboard for easy access and production tracking', 'todo', 'medium', ?, 'action', 1),
+            (?, 'Create Content Calendar', 'Set up upload schedule tracker in dashboard (weekly YouTube, 2-3 blog posts/month)', 'todo', 'medium', ?, 'action', 1),
+            (?, 'Publish First Blog Post', 'Publish Why Free Contractor Quote Sites Are Expensive with SEO optimization', 'todo', 'medium', ?, 'action', 1)
+    """, (
+        content, (week_1 + timedelta(days=2)).strftime('%Y-%m-%d'),
+        content, (week_1 + timedelta(days=2)).strftime('%Y-%m-%d'),
+        content, (week_3 + timedelta(days=4)).strftime('%Y-%m-%d')
+    ))
+    
+    # Podcast tasks
+    cursor.execute("""
+        INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+        VALUES 
+            (?, 'Create Spotify for Podcasters Account', 'Set up Spotify hosting (free) with RSS feed for distribution', 'todo', 'medium', ?, 'action', 1),
+            (?, 'Submit to Apple Podcasts', 'Submit RSS feed to Apple Podcasts Connect', 'todo', 'medium', ?, 'action', 0.5),
+            (?, 'Configure YouTube as Podcast', 'Enable podcast features on YouTube channel', 'todo', 'low', ?, 'action', 0.5)
+    """, (
+        podcast, (week_1 + timedelta(days=3)).strftime('%Y-%m-%d'),
+        podcast, (week_1 + timedelta(days=4)).strftime('%Y-%m-%d'),
+        podcast, week_2.strftime('%Y-%m-%d')
+    ))
+    
+    # Ungouge.ai tasks
+    cursor.execute("""
+        INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+        VALUES 
+            (?, 'Review Codebase Status', 'Audit current state of Next.js frontend + FastAPI backend, identify any gaps', 'todo', 'high', ?, 'action', 2),
+            (?, 'Deploy Frontend to Vercel', 'Deploy Next.js app with environment variables configured', 'todo', 'critical', ?, 'milestone', 2),
+            (?, 'Deploy Backend to Cloud Run', 'Deploy FastAPI backend with PostgreSQL, configure domain', 'todo', 'critical', ?, 'milestone', 2),
+            (?, 'Set Up Stripe Payment Processing', 'Create Stripe account, integrate payment flow, configure $19.99 pricing', 'todo', 'critical', ?, 'action', 2),
+            (?, 'Configure Email Notifications', 'Set up SendGrid/Gmail API for quote submission confirmations', 'todo', 'high', ?, 'action', 1),
+            (?, 'End-to-End Testing', 'Test full flow: submit quote → AI analysis → payment → email → PDF report', 'todo', 'critical', ?, 'milestone', 2),
+            (?, 'Install Google Analytics 4', 'Add GA4 tracking code to frontend, configure goals/conversions', 'todo', 'medium', ?, 'action', 0.5)
+    """, (
+        ungouge, week_2.strftime('%Y-%m-%d'),
+        ungouge, (week_2 + timedelta(days=2)).strftime('%Y-%m-%d'),
+        ungouge, (week_2 + timedelta(days=2)).strftime('%Y-%m-%d'),
+        ungouge, (week_2 + timedelta(days=3)).strftime('%Y-%m-%d'),
+        ungouge, (week_2 + timedelta(days=4)).strftime('%Y-%m-%d'),
+        ungouge, (week_2 + timedelta(days=4)).strftime('%Y-%m-%d'),
+        ungouge, (week_2 + timedelta(days=3)).strftime('%Y-%m-%d')
+    ))
+    
+    # Dashboard tasks
+    cursor.execute("""
+        INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+        VALUES 
+            (?, 'Connect YouTube Analytics API', 'Integrate real subscriber count, views, watch time into dashboard', 'todo', 'high', ?, 'action', 2),
+            (?, 'Connect Google Analytics API', 'Pull website traffic, conversion rate into dashboard', 'todo', 'high', ?, 'action', 2),
+            (?, 'Connect Stripe Revenue API', 'Real-time revenue tracking, MRR calculations', 'todo', 'high', ?, 'action', 1),
+            (?, 'Set Up Email Monitoring', 'Monitor *@ungouge.ai inbox, alert on customer inquiries', 'todo', 'medium', ?, 'action', 2),
+            (?, 'Add Real Expense Tracking', 'Seed dashboard with current expenses, add entry form', 'todo', 'medium', ?, 'action', 1)
+    """, (
+        dashboard, (week_3 + timedelta(days=3)).strftime('%Y-%m-%d'),
+        dashboard, (week_3 + timedelta(days=3)).strftime('%Y-%m-%d'),
+        dashboard, (week_3 + timedelta(days=4)).strftime('%Y-%m-%d'),
+        dashboard, (week_3 + timedelta(days=4)).strftime('%Y-%m-%d'),
+        dashboard, (week_1 + timedelta(days=5)).strftime('%Y-%m-%d')
+    ))
+    
+    # Operations tasks
+    cursor.execute("""
+        INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+        VALUES 
+            (?, 'Obtain Gemini API Key', 'Get Google Gemini API key for AI quote analysis (required for ungouge.ai)', 'todo', 'critical', ?, 'action', 0.5),
+            (?, 'Create Stripe Account', 'Sign up for Stripe, complete verification, get API keys', 'todo', 'critical', ?, 'action', 1),
+            (?, 'Set Up ElevenLabs Voice', 'Verify ElevenLabs subscription active, test voice clone quality', 'todo', 'high', ?, 'action', 0.5)
+    """, (
+        ops, (week_2 - timedelta(days=1)).strftime('%Y-%m-%d'),
+        ops, week_2.strftime('%Y-%m-%d'),
+        ops, (week_2 + timedelta(days=6)).strftime('%Y-%m-%d')
+    ))
+    
+    # Insert current expenses
+    today_str = today.strftime('%Y-%m-%d')
     cursor.execute("""
         INSERT INTO expenses (project_id, amount, description, category, date, vendor, recurring)
         VALUES 
-            (?, 47.23, 'Google Cloud hosting', 'hosting', ?, 'Google Cloud', 1),
-            (?, 22.00, 'ElevenLabs Pro subscription', 'software', ?, 'ElevenLabs', 1),
-            (?, 0.12, 'Gemini API usage', 'api', ?, 'Google', 0)
+            (?, 22.00, 'Voice cloning subscription', 'software', ?, 'ElevenLabs', 1),
+            (?, 5.00, 'Dashboard hosting (estimated)', 'hosting', ?, 'Google Cloud Run', 1),
+            (?, 0.10, 'Memory system (OpenAI + Gemini)', 'api', ?, 'OpenAI/Google', 1),
+            (NULL, 1.00, 'Domain registration (annual)', 'hosting', ?, 'Google Domains', 0)
     """, (
-        project_ids['platform'], today,
-        project_ids['youtube'], today,
-        project_ids['platform'], today
-    ))
-    
-    # Insert milestones
-    cursor.execute("""
-        INSERT INTO milestones (project_id, title, target_date, description)
-        VALUES 
-            (?, 'YouTube Channel Launch', '2026-02-12', '3 episodes published, channel live'),
-            (?, 'Q1 Revenue Goal', '2026-03-31', 'Reach $5,000 in quote analysis revenue'),
-            (?, 'Cost Model v2', '2026-02-15', 'Expand to 20 project types')
-    """, (
-        project_ids['youtube'],
-        project_ids['platform'],
-        project_ids['platform']
-    ))
-    
-    # Insert revenue tracking
-    cursor.execute("""
-        INSERT INTO revenue (project_id, amount, date, source, description)
-        VALUES 
-            (?, 247, '2026-02-02', 'quote_reports', '12 reports sold'),
-            (?, 398, '2026-02-01', 'quote_reports', '20 reports sold')
-    """, (project_ids['platform'], project_ids['platform']))
-    
-    # Insert metrics
-    cursor.execute("""
-        INSERT INTO metrics (project_id, metric_name, metric_value, date)
-        VALUES 
-            (?, 'youtube_subscribers', 1247, ?),
-            (?, 'email_subscribers', 423, ?),
-            (?, 'reddit_karma', 2891, ?),
-            (?, 'twitter_followers', 892, ?)
-    """, (
-        project_ids['youtube'], today,
-        project_ids['platform'], today,
-        project_ids['platform'], today,
-        project_ids['youtube'], today
+        yt, today_str,
+        dashboard, today_str,
+        dashboard, today_str,
+        today_str
     ))
     
     conn.commit()
     conn.close()
     
-    print("✅ Sample data inserted")
+    print("✅ Launch plan tasks and projects inserted")
 
 
 if __name__ == "__main__":
