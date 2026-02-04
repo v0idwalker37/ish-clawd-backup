@@ -97,15 +97,41 @@ async def require_auth(session_token: Optional[str] = Cookie(None, alias="sessio
 
 
 @app.get("/")
-def read_root(request: Request, session_token: Optional[str] = Cookie(None, alias="session_token")):
+def read_root(
+    request: Request,
+    response: Response,
+    auth_token: Optional[str] = None,
+    session_token: Optional[str] = Cookie(None, alias="session_token")
+):
     """Root route - serve login page or dashboard based on auth"""
     static_dir_path = os.path.join(os.path.dirname(__file__), "static")
+    
+    # If auth_token in URL (from OAuth callback), validate and set cookie
+    if auth_token:
+        print(f"🔍 Received auth_token in URL")
+        user_info = verify_session(auth_token)
+        if user_info:
+            print(f"✅ Valid auth token, setting cookie for {user_info.get('email')}")
+            # Set cookie and redirect to clean URL (remove token from URL)
+            redirect_response = RedirectResponse(url="/", status_code=302)
+            redirect_response.set_cookie(
+                key="session_token",
+                value=auth_token,
+                httponly=True,
+                secure=True,
+                samesite="lax",
+                max_age=86400,  # 24 hours
+                path="/"
+            )
+            return redirect_response
+        else:
+            print(f"❌ Invalid auth token")
     
     # Debug: print all cookies
     print(f"🔍 All cookies: {request.cookies}")
     print(f"🔍 Session token from Cookie param: {session_token}")
     
-    # Check if authenticated
+    # Check if authenticated via cookie
     if session_token:
         user_info = verify_session(session_token)
         if user_info:
@@ -214,35 +240,14 @@ async def auth_callback(
         # Create session
         session_token = create_session(user_info)
         
-        # Use HTML redirect to ensure cookie is set before navigation
-        html_content = """
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Redirecting...</title>
-            <meta http-equiv="refresh" content="0;url=/">
-        </head>
-        <body>
-            <p>Authentication successful. Redirecting...</p>
-            <script>window.location.href = '/';</script>
-        </body>
-        </html>
-        """
-        response = HTMLResponse(content=html_content, status_code=200)
-        response.set_cookie(
-            key="session_token",
-            value=session_token,
-            # Let browser set domain automatically (dashboard.ungouge.ai)
-            httponly=True,
-            secure=True,
-            samesite="lax",
-            max_age=86400,  # 24 hours
-            path="/"
-        )
+        # Redirect with token in URL, then set cookie on next page load
+        # This avoids SameSite cookie issues with redirects
+        response = RedirectResponse(url=f"/?auth_token={session_token}", status_code=302)
+        
         # Clear state cookie
         response.delete_cookie(key="oauth_state")
         
-        print(f"✅ Session created and cookie set for {user_info['email']}")
+        print(f"✅ Session created for {user_info['email']}, redirecting with token")
         return response
         
     except Exception as e:
