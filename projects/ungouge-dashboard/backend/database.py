@@ -253,11 +253,11 @@ def seed_sample_data():
         INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
         VALUES 
             (?, 'Review Codebase Status', 'Audit current state of Next.js frontend + FastAPI backend, identify any gaps', 'todo', 'high', ?, 'action', 2),
-            (?, 'Deploy Frontend to Vercel', 'Deploy Next.js app with environment variables configured', 'todo', 'critical', ?, 'milestone', 2),
-            (?, 'Deploy Backend to Cloud Run', 'Deploy FastAPI backend with PostgreSQL, configure domain', 'todo', 'critical', ?, 'milestone', 2),
-            (?, 'Set Up Stripe Payment Processing', 'Create Stripe account, integrate payment flow, configure $19.99 pricing', 'todo', 'critical', ?, 'action', 2),
+            (?, 'Deploy Frontend to Vercel', 'Deploy Next.js app with environment variables configured', 'todo', 'urgent', ?, 'milestone', 2),
+            (?, 'Deploy Backend to Cloud Run', 'Deploy FastAPI backend with PostgreSQL, configure domain', 'todo', 'urgent', ?, 'milestone', 2),
+            (?, 'Set Up Stripe Payment Processing', 'Create Stripe account, integrate payment flow, configure $19.99 pricing', 'todo', 'urgent', ?, 'action', 2),
             (?, 'Configure Email Notifications', 'Set up SendGrid/Gmail API for quote submission confirmations', 'todo', 'high', ?, 'action', 1),
-            (?, 'End-to-End Testing', 'Test full flow: submit quote → AI analysis → payment → email → PDF report', 'todo', 'critical', ?, 'milestone', 2),
+            (?, 'End-to-End Testing', 'Test full flow: submit quote → AI analysis → payment → email → PDF report', 'todo', 'urgent', ?, 'milestone', 2),
             (?, 'Install Google Analytics 4', 'Add GA4 tracking code to frontend, configure goals/conversions', 'todo', 'medium', ?, 'action', 0.5)
     """, (
         ungouge, week_2.strftime('%Y-%m-%d'),
@@ -290,8 +290,8 @@ def seed_sample_data():
     cursor.execute("""
         INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
         VALUES 
-            (?, 'Obtain Gemini API Key', 'Get Google Gemini API key for AI quote analysis (required for ungouge.ai)', 'todo', 'critical', ?, 'action', 0.5),
-            (?, 'Create Stripe Account', 'Sign up for Stripe, complete verification, get API keys', 'todo', 'critical', ?, 'action', 1),
+            (?, 'Obtain Gemini API Key', 'Get Google Gemini API key for AI quote analysis (required for ungouge.ai)', 'todo', 'urgent', ?, 'action', 0.5),
+            (?, 'Create Stripe Account', 'Sign up for Stripe, complete verification, get API keys', 'todo', 'urgent', ?, 'action', 1),
             (?, 'Set Up ElevenLabs Voice', 'Verify ElevenLabs subscription active, test voice clone quality', 'todo', 'high', ?, 'action', 0.5)
     """, (
         ops, (week_2 - timedelta(days=1)).strftime('%Y-%m-%d'),
