@@ -1,17 +1,17 @@
 """
 UnGouge Executive Dashboard - FastAPI Backend
-RESTful API for business metrics, projects, tasks, and expenses
+Server-side OAuth 2.0 redirect flow (no popups!)
 """
 
-from fastapi import FastAPI, HTTPException, Cookie, Response, Depends
+from fastapi import FastAPI, HTTPException, Cookie, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, RedirectResponse, JSONResponse
+from fastapi.responses import FileResponse, RedirectResponse
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime
 import sqlite3
 import os
+import secrets
 
 from database import get_connection, init_db
 from auth import (
@@ -29,22 +29,24 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS middleware (allow frontend to access)
+# CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # TODO: Restrict to specific domains in production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Mount static files directory
+# Static files
 static_dir = os.path.join(os.path.dirname(__file__), "static")
-if os.path.exists(static_dir):
-    app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
+# Google OAuth 2.0 configuration
+GOOGLE_CLIENT_ID = "1093157467231-3pgo81mrq5rjdvhvaa1uf81pk2ifhka2.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", "")  # Set via env
+REDIRECT_URI = "https://dashboard.ungouge.ai/auth/callback"
 
-# Pydantic models for request/response
+# Pydantic models
 class Project(BaseModel):
     id: Optional[int] = None
     name: str
@@ -81,154 +83,158 @@ class Expense(BaseModel):
     recurring: bool = False
 
 
-class Milestone(BaseModel):
-    id: Optional[int] = None
-    project_id: int
-    title: str
-    description: Optional[str] = None
-    target_date: str
-    completed: bool = False
-
-
 # Session verification dependency
 async def require_auth(session_token: Optional[str] = Cookie(None, alias="session_token")):
-    """
-    Dependency for protected routes - verifies session token
-    Raises 401 if not authenticated
-    """
+    """Verify session token from cookie"""
     if not session_token:
         raise HTTPException(status_code=401, detail="Not authenticated")
     
     user_info = verify_session(session_token)
     if not user_info:
-        raise HTTPException(status_code=401, detail="Invalid or expired session")
+        raise HTTPException(status_code=401, detail="Invalid session")
     
     return user_info
 
 
-# Initialize database on startup
-@app.on_event("startup")
-async def startup():
-    try:
-        init_db()
-        print("Database initialized successfully")
-    except Exception as e:
-        print(f"Database initialization warning: {e}")
-
-
-# Periodic cleanup task
-@app.on_event("startup")
-async def start_cleanup_task():
-    """Run session cleanup periodically"""
-    import asyncio
-    
-    async def cleanup_loop():
-        while True:
-            await asyncio.sleep(3600)  # Every hour
-            cleanup_expired_sessions()
-    
-    asyncio.create_task(cleanup_loop())
-
-
-# Serve login or dashboard based on auth status
 @app.get("/")
 def read_root(session_token: Optional[str] = Cookie(None, alias="session_token")):
     """Root route - serve login page or dashboard based on auth"""
-    static_dir = os.path.join(os.path.dirname(__file__), "static")
-    
-    # Debug logging
-    print(f"🔍 Root request - Cookie present: {session_token is not None}")
+    static_dir_path = os.path.join(os.path.dirname(__file__), "static")
     
     # Check if authenticated
     if session_token:
         user_info = verify_session(session_token)
         if user_info:
             print(f"✅ Authenticated user: {user_info.get('email')}")
-            # Serve dashboard
-            dashboard_path = os.path.join(static_dir, "dashboard.html")
+            dashboard_path = os.path.join(static_dir_path, "dashboard.html")
             if os.path.exists(dashboard_path):
                 return FileResponse(dashboard_path)
-            # Fallback to index.html if dashboard.html doesn't exist
-            index_path = os.path.join(static_dir, "index.html")
-            if os.path.exists(index_path):
-                return FileResponse(index_path)
         else:
             print(f"❌ Invalid or expired session token")
     else:
         print(f"❌ No session cookie present")
     
     # Not authenticated - serve login page
-    login_path = os.path.join(static_dir, "login.html")
+    login_path = os.path.join(static_dir_path, "login.html")
     if os.path.exists(login_path):
         return FileResponse(login_path)
     
-    # Fallback response if no static files exist
-    return {
-        "status": "healthy",
-        "service": "UnGouge Executive Dashboard API",
-        "version": "1.0.0",
-        "message": "Please authenticate"
-    }
+    return {"status": "healthy", "message": "Please authenticate"}
 
 
-# API Health check (public endpoint, no auth required)
-@app.get("/api/health")
-def health_check():
-    return {
-        "status": "healthy",
-        "service": "UnGouge Executive Dashboard API",
-        "version": "1.0.0"
-    }
-
-
-# ===== AUTHENTICATION ENDPOINTS =====
-
-@app.post("/auth/verify")
-async def auth_verify(response: Response, token: dict):
+@app.get("/auth/login")
+def auth_login():
     """
-    Verify Google ID token and create session
-    Called by frontend after Google Sign-In
-    
-    Request body: {"credential": "google_id_token"}
+    Step 1: Redirect user to Google OAuth consent page
+    Server-side redirect flow (no popup!)
     """
-    google_token = token.get("credential")
-    if not google_token:
-        raise HTTPException(status_code=400, detail="Missing credential")
+    # Generate random state for CSRF protection
+    state = secrets.token_urlsafe(32)
     
-    # Verify token with Google
-    user_info = verify_google_token(google_token)
-    if not user_info:
-        raise HTTPException(status_code=401, detail="Unauthorized")
+    # Build Google OAuth URL
+    params = {
+        "client_id": GOOGLE_CLIENT_ID,
+        "response_type": "code",
+        "scope": "openid email profile",
+        "redirect_uri": REDIRECT_URI,
+        "state": state,
+        "access_type": "offline",
+        "prompt": "select_account"
+    }
     
-    # Create session
-    session_token = create_session(user_info)
+    # Build query string
+    query = "&".join([f"{k}={v}" for k, v in params.items()])
+    auth_url = f"https://accounts.google.com/o/oauth2/v2/auth?{query}"
     
-    # Set secure cookie (not httpOnly due to OAuth popup issues)
+    # Redirect to Google
+    response = RedirectResponse(url=auth_url)
+    # Store state in cookie for verification
     response.set_cookie(
-        key="session_token",
-        value=session_token,
-        httponly=False,  # Can't use httpOnly with OAuth popups + SameSite=none
-        secure=True,  # HTTPS only
-        samesite="none",  # Required for OAuth popup/iframe flow
-        max_age=86400,  # 24 hours
-        path="/"
+        key="oauth_state",
+        value=state,
+        httponly=True,
+        secure=True,
+        max_age=600,  # 10 minutes
+        samesite="lax"
     )
+    return response
+
+
+@app.get("/auth/callback")
+async def auth_callback(
+    request: Request,
+    code: Optional[str] = None,
+    state: Optional[str] = None,
+    error: Optional[str] = None,
+    oauth_state: Optional[str] = Cookie(None)
+):
+    """
+    Step 2: Handle OAuth callback from Google
+    Exchange authorization code for tokens
+    """
+    if error:
+        return RedirectResponse(url=f"/?error={error}")
     
-    return {
-        "success": True,
-        "user": {
-            "email": user_info["email"],
-            "name": user_info["name"]
-        }
+    if not code:
+        return RedirectResponse(url="/?error=no_code")
+    
+    # Verify state (CSRF protection)
+    if not state or not oauth_state or state != oauth_state:
+        return RedirectResponse(url="/?error=state_mismatch")
+    
+    # Exchange authorization code for access token
+    import requests
+    token_url = "https://oauth2.googleapis.com/token"
+    token_data = {
+        "code": code,
+        "client_id": GOOGLE_CLIENT_ID,
+        "client_secret": GOOGLE_CLIENT_SECRET,
+        "redirect_uri": REDIRECT_URI,
+        "grant_type": "authorization_code"
     }
+    
+    try:
+        token_response = requests.post(token_url, data=token_data)
+        token_response.raise_for_status()
+        tokens = token_response.json()
+        
+        # Verify ID token
+        id_token = tokens.get("id_token")
+        if not id_token:
+            return RedirectResponse(url="/?error=no_id_token")
+        
+        user_info = verify_google_token(id_token)
+        if not user_info:
+            return RedirectResponse(url="/?error=unauthorized")
+        
+        # Create session
+        session_token = create_session(user_info)
+        
+        # Set cookie and redirect to dashboard
+        response = RedirectResponse(url="/", status_code=302)
+        response.set_cookie(
+            key="session_token",
+            value=session_token,
+            httponly=True,
+            secure=True,
+            samesite="lax",
+            max_age=86400,  # 24 hours
+            path="/"
+        )
+        # Clear state cookie
+        response.delete_cookie(key="oauth_state")
+        
+        print(f"✅ Session created and cookie set for {user_info['email']}")
+        return response
+        
+    except Exception as e:
+        print(f"❌ OAuth callback error: {e}")
+        return RedirectResponse(url=f"/?error=token_exchange_failed")
 
 
 @app.get("/auth/status")
-async def auth_status(user_info: dict = Depends(require_auth)):
-    """
-    Check authentication status
-    Returns user info if authenticated, 401 if not
-    """
+async def auth_status(user_info: dict = require_auth):
+    """Check authentication status"""
     return {
         "authenticated": True,
         "user": {
@@ -243,22 +249,24 @@ async def auth_logout(
     response: Response,
     session_token: Optional[str] = Cookie(None, alias="session_token")
 ):
-    """
-    Logout - invalidate session and clear cookie
-    """
+    """Logout - invalidate session"""
     if session_token:
         delete_session(session_token)
     
-    # Clear cookie
     response.delete_cookie(key="session_token")
-    
-    return {"success": True, "message": "Logged out"}
+    return {"success": True}
+
+
+# API Health check
+@app.get("/api/health")
+def health_check():
+    return {"status": "healthy", "version": "2.0.0"}
 
 
 # ===== PROJECTS =====
 
 @app.get("/projects")
-def get_projects(user_info: dict = Depends(require_auth)):
+def get_projects(user_info: dict = require_auth):
     """Get all projects"""
     conn = get_connection()
     cursor = conn.cursor()
@@ -269,263 +277,143 @@ def get_projects(user_info: dict = Depends(require_auth)):
         WHERE status != 'archived'
         ORDER BY priority DESC, name
     """)
-    projects = [dict(row) for row in cursor.fetchall()]
+    
+    projects = []
+    for row in cursor.fetchall():
+        projects.append({
+            "id": row[0],
+            "name": row[1],
+            "description": row[2],
+            "status": row[3],
+            "progress": row[4],
+            "category": row[5],
+            "priority": row[6],
+            "revenue_current": row[7],
+            "revenue_goal": row[8],
+            "health_score": row[9],
+            "created_at": row[10],
+            "updated_at": row[11]
+        })
+    
     conn.close()
     return {"projects": projects}
 
 
-@app.get("/projects/{project_id}")
-def get_project(project_id: int, user_info: dict = Depends(require_auth)):
-    """Get single project with details"""
-    conn = get_connection()
-    cursor = conn.cursor()
-    
-    # Get project
-    cursor.execute("SELECT * FROM projects WHERE id = ?", (project_id,))
-    project = cursor.fetchone()
-    if not project:
-        raise HTTPException(status_code=404, detail="Project not found")
-    
-    # Get project tasks
-    cursor.execute("""
-        SELECT * FROM tasks 
-        WHERE project_id = ? AND status != 'cancelled'
-        ORDER BY priority DESC, due_date
-    """, (project_id,))
-    tasks = [dict(row) for row in cursor.fetchall()]
-    
-    # Get project expenses
-    cursor.execute("""
-        SELECT * FROM expenses 
-        WHERE project_id = ?
-        ORDER BY date DESC
-        LIMIT 10
-    """, (project_id,))
-    expenses = [dict(row) for row in cursor.fetchall()]
-    
-    # Get project milestones
-    cursor.execute("""
-        SELECT * FROM milestones 
-        WHERE project_id = ?
-        ORDER BY target_date
-    """, (project_id,))
-    milestones = [dict(row) for row in cursor.fetchall()]
-    
-    conn.close()
-    
-    return {
-        "project": dict(project),
-        "tasks": tasks,
-        "expenses": expenses,
-        "milestones": milestones
-    }
-
-
-@app.post("/projects")
-def create_project(project: Project, user_info: dict = Depends(require_auth)):
-    """Create new project"""
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-        INSERT INTO projects (name, description, status, progress, category, priority, revenue_current, revenue_goal, health_score)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (
-        project.name, project.description, project.status, project.progress,
-        project.category, project.priority, project.revenue_current,
-        project.revenue_goal, project.health_score
-    ))
-    project_id = cursor.lastrowid
-    conn.commit()
-    conn.close()
-    return {"id": project_id, "message": "Project created"}
-
-
-@app.put("/projects/{project_id}")
-def update_project(project_id: int, project: Project, user_info: dict = Depends(require_auth)):
-    """Update project"""
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-        UPDATE projects 
-        SET name=?, description=?, status=?, progress=?, category=?, priority=?,
-            revenue_current=?, revenue_goal=?, health_score=?, updated_at=CURRENT_TIMESTAMP
-        WHERE id=?
-    """, (
-        project.name, project.description, project.status, project.progress,
-        project.category, project.priority, project.revenue_current,
-        project.revenue_goal, project.health_score, project_id
-    ))
-    conn.commit()
-    conn.close()
-    return {"message": "Project updated"}
-
-
-# ===== TASKS =====
-
 @app.get("/tasks")
-def get_tasks(project_id: Optional[int] = None, status: Optional[str] = None, user_info: dict = Depends(require_auth)):
-    """Get tasks with optional filters"""
+def get_tasks(
+    status: Optional[str] = None,
+    user_info: dict = require_auth
+):
+    """Get tasks with optional status filter"""
     conn = get_connection()
     cursor = conn.cursor()
     
-    query = "SELECT * FROM tasks WHERE 1=1"
-    params = []
-    
-    if project_id:
-        query += " AND project_id = ?"
-        params.append(project_id)
     if status:
-        query += " AND status = ?"
-        params.append(status)
+        cursor.execute("""
+            SELECT id, project_id, title, description, status, priority,
+                   due_date, task_type, estimated_hours, created_at, updated_at
+            FROM tasks
+            WHERE status = ?
+            ORDER BY priority DESC, due_date ASC
+        """, (status,))
+    else:
+        cursor.execute("""
+            SELECT id, project_id, title, description, status, priority,
+                   due_date, task_type, estimated_hours, created_at, updated_at
+            FROM tasks
+            ORDER BY priority DESC, due_date ASC
+        """)
     
-    query += " ORDER BY priority DESC, due_date"
+    tasks = []
+    for row in cursor.fetchall():
+        tasks.append({
+            "id": row[0],
+            "project_id": row[1],
+            "title": row[2],
+            "description": row[3],
+            "status": row[4],
+            "priority": row[5],
+            "due_date": row[6],
+            "task_type": row[7],
+            "estimated_hours": row[8],
+            "created_at": row[9],
+            "updated_at": row[10]
+        })
     
-    cursor.execute(query, params)
-    tasks = [dict(row) for row in cursor.fetchall()]
     conn.close()
     return {"tasks": tasks}
 
 
-@app.post("/tasks")
-def create_task(task: Task, user_info: dict = Depends(require_auth)):
-    """Create new task"""
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-        INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    """, (
-        task.project_id, task.title, task.description, task.status,
-        task.priority, task.due_date, task.task_type, task.estimated_hours
-    ))
-    task_id = cursor.lastrowid
-    conn.commit()
-    conn.close()
-    return {"id": task_id, "message": "Task created"}
-
-
-@app.put("/tasks/{task_id}")
-def update_task(task_id: int, task: Task, user_info: dict = Depends(require_auth)):
-    """Update task"""
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-        UPDATE tasks 
-        SET title=?, description=?, status=?, priority=?, due_date=?, task_type=?, estimated_hours=?, updated_at=CURRENT_TIMESTAMP
-        WHERE id=?
-    """, (
-        task.title, task.description, task.status, task.priority,
-        task.due_date, task.task_type, task.estimated_hours, task_id
-    ))
-    conn.commit()
-    conn.close()
-    return {"message": "Task updated"}
-
-
-@app.delete("/tasks/{task_id}")
-def delete_task(task_id: int, user_info: dict = Depends(require_auth)):
-    """Delete task"""
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM tasks WHERE id=?", (task_id,))
-    conn.commit()
-    conn.close()
-    return {"message": "Task deleted"}
-
-
-# ===== EXPENSES =====
-
 @app.get("/expenses")
-def get_expenses(project_id: Optional[int] = None, user_info: dict = Depends(require_auth)):
-    """Get expenses with optional project filter"""
+def get_expenses(user_info: dict = require_auth):
+    """Get all expenses"""
     conn = get_connection()
     cursor = conn.cursor()
+    cursor.execute("""
+        SELECT id, project_id, amount, description, category, date, vendor, recurring
+        FROM expenses
+        ORDER BY date DESC
+        LIMIT 100
+    """)
     
-    if project_id:
-        cursor.execute("""
-            SELECT * FROM expenses 
-            WHERE project_id = ?
-            ORDER BY date DESC
-        """, (project_id,))
-    else:
-        cursor.execute("SELECT * FROM expenses ORDER BY date DESC")
+    expenses = []
+    for row in cursor.fetchall():
+        expenses.append({
+            "id": row[0],
+            "project_id": row[1],
+            "amount": row[2],
+            "description": row[3],
+            "category": row[4],
+            "date": row[5],
+            "vendor": row[6],
+            "recurring": bool(row[7])
+        })
     
-    expenses = [dict(row) for row in cursor.fetchall()]
     conn.close()
     return {"expenses": expenses}
 
 
-@app.post("/expenses")
-def create_expense(expense: Expense, user_info: dict = Depends(require_auth)):
-    """Create new expense"""
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-        INSERT INTO expenses (project_id, amount, description, category, date, vendor, recurring)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, (
-        expense.project_id, expense.amount, expense.description,
-        expense.category, expense.date, expense.vendor, expense.recurring
-    ))
-    expense_id = cursor.lastrowid
-    conn.commit()
-    conn.close()
-    return {"id": expense_id, "message": "Expense logged"}
-
-
-# ===== DASHBOARD SUMMARY =====
-
 @app.get("/dashboard/summary")
-def get_dashboard_summary(user_info: dict = Depends(require_auth)):
-    """Get high-level dashboard overview"""
+def get_dashboard_summary(user_info: dict = require_auth):
+    """Get dashboard summary statistics"""
     conn = get_connection()
     cursor = conn.cursor()
     
-    # Project counts by status
-    cursor.execute("""
-        SELECT status, COUNT(*) as count 
-        FROM projects 
-        GROUP BY status
-    """)
-    project_stats = {row["status"]: row["count"] for row in cursor.fetchall()}
+    # Project counts
+    cursor.execute("SELECT COUNT(*) FROM projects WHERE status = 'active'")
+    active_projects = cursor.fetchone()[0]
     
-    # Task counts by status
-    cursor.execute("""
-        SELECT status, COUNT(*) as count 
-        FROM tasks 
-        WHERE status != 'cancelled'
-        GROUP BY status
-    """)
-    task_stats = {row["status"]: row["count"] for row in cursor.fetchall()}
+    # Task stats
+    cursor.execute("SELECT status, COUNT(*) FROM tasks GROUP BY status")
+    task_stats = {}
+    for status, count in cursor.fetchall():
+        task_stats[status] = count
     
-    # Total expenses this month
+    # Monthly expenses
     cursor.execute("""
-        SELECT SUM(amount) as total 
-        FROM expenses 
+        SELECT SUM(amount) FROM expenses 
         WHERE date >= date('now', 'start of month')
     """)
-    monthly_expenses = cursor.fetchone()["total"] or 0
+    monthly_expenses = cursor.fetchone()[0] or 0
     
-    # Total revenue this quarter
+    # Quarterly revenue
     cursor.execute("""
-        SELECT SUM(amount) as total 
-        FROM revenue 
-        WHERE date >= date('now', 'start of month', '-2 months')
+        SELECT SUM(revenue_current) FROM projects
     """)
-    quarterly_revenue = cursor.fetchone()["total"] or 0
+    quarterly_revenue = cursor.fetchone()[0] or 0
     
     # Overdue tasks
     cursor.execute("""
-        SELECT COUNT(*) as count 
-        FROM tasks 
-        WHERE due_date < date('now') AND status NOT IN ('done', 'cancelled')
+        SELECT COUNT(*) FROM tasks 
+        WHERE status != 'done' 
+        AND due_date < date('now')
     """)
-    overdue_tasks = cursor.fetchone()["count"]
+    overdue_tasks = cursor.fetchone()[0]
     
     conn.close()
     
     return {
-        "projects": project_stats,
+        "projects": {"active": active_projects},
         "tasks": task_stats,
         "monthly_expenses": monthly_expenses,
         "quarterly_revenue": quarterly_revenue,
@@ -536,4 +424,5 @@ def get_dashboard_summary(user_info: dict = Depends(require_auth)):
 if __name__ == "__main__":
     import uvicorn
     print("🚀 Starting UnGouge Dashboard API on http://localhost:8000")
+    init_db()
     uvicorn.run(app, host="0.0.0.0", port=8000)
