@@ -203,16 +203,15 @@ async def auth_verify(response: Response, token: dict):
     # Create session
     session_token = create_session(user_info)
     
-    # Set secure HTTP-only cookie
+    # Set secure cookie (not httpOnly due to OAuth popup issues)
     response.set_cookie(
         key="session_token",
         value=session_token,
-        httponly=True,
+        httponly=False,  # Can't use httpOnly with OAuth popups + SameSite=none
         secure=True,  # HTTPS only
         samesite="none",  # Required for OAuth popup/iframe flow
         max_age=86400,  # 24 hours
         path="/"
-        # No explicit domain - use current domain (dashboard.ungouge.ai)
     )
     
     return {
