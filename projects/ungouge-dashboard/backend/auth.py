@@ -4,21 +4,51 @@ Verifies Google ID tokens and manages user sessions
 """
 
 from google.oauth2 import id_token
-from google.auth.transport import requests
+from google.auth.transport import requests as google_requests
 import secrets
 from datetime import datetime, timedelta
-from typing import Optional, Dict
+from typing import Optional
+import sqlite3
+import os
 
 # OAuth Configuration
 GOOGLE_CLIENT_ID = "1093157467231-3pgo81mrq5rjdvhvaa1uf81pk2ifhka2.apps.googleusercontent.com"
 AUTHORIZED_EMAILS = ["void@ungouge.ai"]  # Only these emails can access
 
-# In-memory session store (sufficient for single-instance MVP)
-# Format: {session_token: {"email": str, "expires": datetime, "user_info": dict}}
-sessions: Dict[str, dict] = {}
-
 # Session expiration (24 hours)
 SESSION_DURATION = timedelta(hours=24)
+
+# Database path
+DB_PATH = os.environ.get("DB_PATH", "/tmp/dashboard.db")
+
+
+def get_db_connection():
+    """Get database connection"""
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+def init_sessions_table():
+    """Initialize sessions table if it doesn't exist"""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS sessions (
+            token TEXT PRIMARY KEY,
+            email TEXT NOT NULL,
+            name TEXT,
+            picture TEXT,
+            created_at TEXT NOT NULL,
+            expires_at TEXT NOT NULL
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+
+# Initialize table on module load
+init_sessions_table()
 
 
 def verify_google_token(token: str) -> Optional[dict]:
@@ -35,7 +65,7 @@ def verify_google_token(token: str) -> Optional[dict]:
         # Verify token with Google
         idinfo = id_token.verify_oauth2_token(
             token, 
-            requests.Request(), 
+            google_requests.Request(), 
             GOOGLE_CLIENT_ID
         )
         
@@ -72,13 +102,26 @@ def create_session(user_info: dict) -> str:
     # Generate secure random session token
     session_token = secrets.token_urlsafe(32)
     
-    # Store session with expiration
-    sessions[session_token] = {
-        "email": user_info["email"],
-        "user_info": user_info,
-        "created": datetime.now(),
-        "expires": datetime.now() + SESSION_DURATION
-    }
+    # Calculate expiration
+    created_at = datetime.now()
+    expires_at = created_at + SESSION_DURATION
+    
+    # Store in database
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO sessions (token, email, name, picture, created_at, expires_at)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (
+        session_token,
+        user_info["email"],
+        user_info.get("name"),
+        user_info.get("picture"),
+        created_at.isoformat(),
+        expires_at.isoformat()
+    ))
+    conn.commit()
+    conn.close()
     
     print(f"✅ Session created for {user_info['email']}")
     return session_token
@@ -94,18 +137,33 @@ def verify_session(session_token: str) -> Optional[dict]:
     Returns:
         dict with user info if session valid and not expired, None otherwise
     """
-    session = sessions.get(session_token)
+    conn = get_db_connection()
+    cursor = conn.cursor()
     
-    if not session:
+    cursor.execute("""
+        SELECT email, name, picture, expires_at
+        FROM sessions
+        WHERE token = ?
+    """, (session_token,))
+    
+    row = cursor.fetchone()
+    conn.close()
+    
+    if not row:
         return None
     
     # Check expiration
-    if datetime.now() > session["expires"]:
-        # Session expired, remove it
-        del sessions[session_token]
+    expires_at = datetime.fromisoformat(row["expires_at"])
+    if datetime.now() > expires_at:
+        # Session expired, delete it
+        delete_session(session_token)
         return None
     
-    return session["user_info"]
+    return {
+        "email": row["email"],
+        "name": row["name"],
+        "picture": row["picture"]
+    }
 
 
 def delete_session(session_token: str) -> bool:
@@ -118,24 +176,37 @@ def delete_session(session_token: str) -> bool:
     Returns:
         True if session existed and was deleted, False otherwise
     """
-    if session_token in sessions:
-        email = sessions[session_token]["email"]
-        del sessions[session_token]
-        print(f"✅ Session deleted for {email}")
-        return True
-    return False
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("DELETE FROM sessions WHERE token = ?", (session_token,))
+    deleted = cursor.rowcount > 0
+    
+    conn.commit()
+    conn.close()
+    
+    if deleted:
+        print(f"✅ Session deleted")
+    
+    return deleted
 
 
 def cleanup_expired_sessions():
     """
-    Remove expired sessions from memory
-    Call periodically to prevent memory bloat
+    Remove expired sessions from database
+    Call periodically to prevent bloat
     """
-    now = datetime.now()
-    expired = [token for token, session in sessions.items() if now > session["expires"]]
+    conn = get_db_connection()
+    cursor = conn.cursor()
     
-    for token in expired:
-        del sessions[token]
+    cursor.execute("""
+        DELETE FROM sessions
+        WHERE expires_at < ?
+    """, (datetime.now().isoformat(),))
     
-    if expired:
-        print(f"🧹 Cleaned up {len(expired)} expired sessions")
+    deleted = cursor.rowcount
+    conn.commit()
+    conn.close()
+    
+    if deleted > 0:
+        print(f"🧹 Cleaned up {deleted} expired sessions")
