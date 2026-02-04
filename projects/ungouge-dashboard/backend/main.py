@@ -509,6 +509,12 @@ def get_dashboard_summary(user_info: dict = Depends(require_auth)):
     conn.close()
     
     return {
+        "projects": {"active": active_projects},
+        "tasks": task_stats,
+        "monthly_expenses": monthly_expenses,
+        "quarterly_revenue": quarterly_revenue,
+        "overdue_tasks": overdue_tasks
+    }
 
 
 @app.get("/external/metrics")
@@ -524,12 +530,6 @@ async def get_external_metrics(user_info: dict = Depends(require_auth)):
             "stripe": {"error": "Not configured"},
             "analytics": {"error": "Not configured"}
         }
-        "projects": {"active": active_projects},
-        "tasks": task_stats,
-        "monthly_expenses": monthly_expenses,
-        "quarterly_revenue": quarterly_revenue,
-        "overdue_tasks": overdue_tasks
-    }
 
 
 if __name__ == "__main__":

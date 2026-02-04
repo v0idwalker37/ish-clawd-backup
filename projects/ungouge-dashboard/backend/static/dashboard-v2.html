@@ -448,16 +448,20 @@
         // Fetch all dashboard data
         async function fetchDashboardData() {
             try {
-                const [projects, tasks, expenses] = await Promise.all([
+                const [projects, tasks, expenses, external] = await Promise.all([
                     fetch('/projects').then(r => r.json()),
                     fetch('/tasks').then(r => r.json()),
-                    fetch('/expenses').then(r => r.json())
+                    fetch('/expenses').then(r => r.json()),
+                    fetch('/external/metrics').then(r => r.json()).catch(() => ({
+                        youtube: {}, stripe: {}, analytics: {}
+                    }))
                 ]);
 
                 return {
                     projects: projects.projects || [],
                     tasks: tasks.tasks || [],
-                    expenses: expenses.expenses || []
+                    expenses: expenses.expenses || [],
+                    external: external || {}
                 };
             } catch (error) {
                 console.error('Failed to fetch dashboard data:', error);
@@ -557,6 +561,7 @@
         // Render dashboard
         function renderDashboard(data, metrics) {
             const container = document.getElementById('dashboardContent');
+            const external = data.external || {};
             
             container.innerHTML = `
                 <!-- Executive Summary Row -->
@@ -564,6 +569,14 @@
                     ${renderExecutiveSummaryPod(metrics)}
                     ${renderTaskSummaryPod(metrics)}
                     ${renderProjectSummaryPod(metrics)}
+                </div>
+
+                <!-- External Metrics Row -->
+                <h2 style="margin: 32px 0 16px; font-size: 20px; color: #fff;">🌐 External Metrics</h2>
+                <div class="dashboard-grid three-col">
+                    ${renderYouTubePod(external.youtube || {})}
+                    ${renderStripePod(external.stripe || {})}
+                    ${renderAnalyticsPod(external.analytics || {})}
                 </div>
 
                 <!-- Project Health Row -->
@@ -782,6 +795,130 @@
                                 </div>
                             </div>
                         `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+
+        // YouTube Pod
+        function renderYouTubePod(youtube) {
+            const subscribers = youtube.subscribers || 0;
+            const views = youtube.total_views || 0;
+            const videos = youtube.total_videos || 0;
+            const isConfigured = !youtube.error;
+
+            return `
+                <div class="widget" onclick="window.open('https://youtube.com', '_blank')">
+                    <div class="widget-header">
+                        <div class="widget-title">
+                            <span class="widget-icon">📹</span>
+                            <span>YouTube Channel</span>
+                        </div>
+                        <span class="status-badge ${isConfigured ? (subscribers > 0 ? 'healthy' : 'inactive') : 'critical'}">
+                            ${isConfigured ? (subscribers > 0 ? 'ACTIVE' : 'NO DATA') : 'NOT CONFIGURED'}
+                        </span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="metric">
+                            <span class="metric-label">Subscribers</span>
+                            <span class="metric-value">${subscribers.toLocaleString()}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Total Views</span>
+                            <span class="metric-value">${views.toLocaleString()}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Videos Published</span>
+                            <span class="metric-value">${videos}</span>
+                        </div>
+                        ${youtube.channel_title ? `
+                            <div style="margin-top: 12px; font-size: 12px; color: #94a3b8; text-align: center;">
+                                ${youtube.channel_title}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Stripe Pod
+        function renderStripePod(stripe) {
+            const revenue30d = stripe.total_revenue_30d || 0;
+            const revenueMTD = stripe.total_revenue_mtd || 0;
+            const charges = stripe.successful_charges || 0;
+            const customers = stripe.total_customers || 0;
+            const isConfigured = !stripe.error;
+
+            return `
+                <div class="widget" onclick="window.open('https://dashboard.stripe.com', '_blank')">
+                    <div class="widget-header">
+                        <div class="widget-title">
+                            <span class="widget-icon">💳</span>
+                            <span>Stripe Revenue</span>
+                        </div>
+                        <span class="status-badge ${isConfigured ? (revenue30d > 0 ? 'healthy' : 'warning') : 'critical'}">
+                            ${isConfigured ? (revenue30d > 0 ? 'ACTIVE' : 'NO SALES') : 'NOT CONFIGURED'}
+                        </span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="metric">
+                            <span class="metric-label">Revenue (MTD)</span>
+                            <span class="metric-value success">$${revenueMTD.toFixed(2)}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Revenue (30d)</span>
+                            <span class="metric-value">$${revenue30d.toFixed(2)}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Successful Charges</span>
+                            <span class="metric-value">${charges}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Total Customers</span>
+                            <span class="metric-value">${customers}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Google Analytics Pod
+        function renderAnalyticsPod(analytics) {
+            const sessions = analytics.sessions_7d || 0;
+            const pageviews = analytics.pageviews_7d || 0;
+            const users = analytics.users_7d || 0;
+            const conversions = analytics.conversions_7d || 0;
+            const isConfigured = analytics.status !== 'not_configured' && !analytics.error;
+
+            return `
+                <div class="widget" onclick="window.open('https://analytics.google.com', '_blank')">
+                    <div class="widget-header">
+                        <div class="widget-title">
+                            <span class="widget-icon">📊</span>
+                            <span>Website Analytics</span>
+                        </div>
+                        <span class="status-badge ${isConfigured ? (sessions > 0 ? 'healthy' : 'warning') : 'critical'}">
+                            ${isConfigured ? (sessions > 0 ? 'ACTIVE' : 'NO TRAFFIC') : 'NOT CONFIGURED'}
+                        </span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="metric">
+                            <span class="metric-label">Sessions (7d)</span>
+                            <span class="metric-value">${sessions.toLocaleString()}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Page Views (7d)</span>
+                            <span class="metric-value">${pageviews.toLocaleString()}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Users (7d)</span>
+                            <span class="metric-value">${users.toLocaleString()}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Conversions (7d)</span>
+                            <span class="metric-value success">${conversions}</span>
+                        </div>
                     </div>
                 </div>
             `;
