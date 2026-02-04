@@ -97,9 +97,13 @@ async def require_auth(session_token: Optional[str] = Cookie(None, alias="sessio
 
 
 @app.get("/")
-def read_root(session_token: Optional[str] = Cookie(None, alias="session_token")):
+def read_root(request: Request, session_token: Optional[str] = Cookie(None, alias="session_token")):
     """Root route - serve login page or dashboard based on auth"""
     static_dir_path = os.path.join(os.path.dirname(__file__), "static")
+    
+    # Debug: print all cookies
+    print(f"🔍 All cookies: {request.cookies}")
+    print(f"🔍 Session token from Cookie param: {session_token}")
     
     # Check if authenticated
     if session_token:
@@ -110,7 +114,7 @@ def read_root(session_token: Optional[str] = Cookie(None, alias="session_token")
             if os.path.exists(dashboard_path):
                 return FileResponse(dashboard_path)
         else:
-            print(f"❌ Invalid or expired session token")
+            print(f"❌ Invalid or expired session token: {session_token[:20]}...")
     else:
         print(f"❌ No session cookie present")
     
@@ -228,7 +232,7 @@ async def auth_callback(
         response.set_cookie(
             key="session_token",
             value=session_token,
-            domain=".ungouge.ai",  # Explicit domain for cookie
+            # Let browser set domain automatically (dashboard.ungouge.ai)
             httponly=True,
             secure=True,
             samesite="lax",
