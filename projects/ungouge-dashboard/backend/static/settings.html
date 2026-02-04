@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - UnGouge Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 { font-size: 28px; color: #fff; }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-secondary { background: #334155; color: #e2e8f0; }
+        .btn-secondary:hover { background: #475569; }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+        }
+
+        .settings-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #334155;
+        }
+
+        .settings-card h2 {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .setting-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .setting-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .setting-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 4px;
+        }
+
+        .setting-description {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .setting-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .status-indicator.connected { background: #10b981; }
+        .status-indicator.disconnected { background: #ef4444; }
+        .status-indicator.pending { background: #f59e0b; }
+
+        .status-text {
+            font-size: 13px;
+        }
+
+        .status-text.connected { color: #10b981; }
+        .status-text.disconnected { color: #ef4444; }
+        .status-text.pending { color: #f59e0b; }
+
+        .info-box {
+            background: #0f172a;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+
+        .info-box h3 {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .info-box code {
+            background: #334155;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #10b981;
+        }
+
+        .api-key-display {
+            font-family: monospace;
+            font-size: 12px;
+            color: #94a3b8;
+            background: #0f172a;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+
+        .checklist {
+            margin-top: 16px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            font-size: 13px;
+        }
+
+        .checklist-item.done { color: #10b981; }
+        .checklist-item.pending { color: #94a3b8; }
+
+        .version-info {
+            margin-top: 40px;
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚙️ Settings</h1>
+        <a href="/" class="btn btn-secondary">← Dashboard</a>
+    </div>
+
+    <div class="settings-grid">
+        <!-- API Integrations -->
+        <div class="settings-card">
+            <h2>🔌 API Integrations</h2>
+            
+            <div class="setting-item">
+                <div class="setting-label">YouTube Data API</div>
+                <div class="setting-description">Connect your YouTube channel for analytics</div>
+                <div class="setting-status">
+                    <div class="status-indicator disconnected"></div>
+                    <span class="status-text disconnected">Not configured</span>
+                </div>
+                <div class="api-key-display">YOUTUBE_API_KEY: Not set</div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-label">Stripe API</div>
+                <div class="setting-description">Connect Stripe for revenue tracking</div>
+                <div class="setting-status">
+                    <div class="status-indicator disconnected"></div>
+                    <span class="status-text disconnected">Not configured</span>
+                </div>
+                <div class="api-key-display">STRIPE_API_KEY: Not set</div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-label">Google Analytics 4</div>
+                <div class="setting-description">Connect GA4 for website analytics</div>
+                <div class="setting-status">
+                    <div class="status-indicator disconnected"></div>
+                    <span class="status-text disconnected">Not configured</span>
+                </div>
+                <div class="api-key-display">GA4_PROPERTY_ID: Not set</div>
+            </div>
+
+            <div class="info-box">
+                <h3>📘 How to Connect APIs</h3>
+                <p>API keys are configured via Cloud Run environment variables. See the <code>API_SETUP_GUIDE.md</code> file for detailed instructions on connecting each service.</p>
+            </div>
+        </div>
+
+        <!-- Launch Checklist -->
+        <div class="settings-card">
+            <h2>🚀 Launch Checklist</h2>
+            
+            <div class="checklist">
+                <div class="checklist-item done">✅ Dashboard deployed</div>
+                <div class="checklist-item done">✅ Authentication working</div>
+                <div class="checklist-item done">✅ Task management</div>
+                <div class="checklist-item done">✅ Expense tracking</div>
+                <div class="checklist-item done">✅ Project drill-through</div>
+                <div class="checklist-item pending">⏳ Create YouTube channel</div>
+                <div class="checklist-item pending">⏳ Connect YouTube API</div>
+                <div class="checklist-item pending">⏳ Create Stripe account</div>
+                <div class="checklist-item pending">⏳ Connect Stripe API</div>
+                <div class="checklist-item pending">⏳ Set up GA4 on ungouge.ai</div>
+                <div class="checklist-item pending">⏳ Deploy ungouge.ai website</div>
+                <div class="checklist-item pending">⏳ First video published</div>
+                <div class="checklist-item pending">⏳ First sale!</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Info -->
+        <div class="settings-card">
+            <h2>📊 Dashboard Info</h2>
+            
+            <div class="setting-item">
+                <div class="setting-label">Database</div>
+                <div class="setting-description">SQLite (ephemeral on Cloud Run)</div>
+                <div class="api-key-display">/tmp/dashboard_v4.db</div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-label">Auto-Refresh</div>
+                <div class="setting-description">Dashboard refreshes every 5 minutes</div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-label">API Cache</div>
+                <div class="setting-description">External APIs cached for 1 hour</div>
+            </div>
+
+            <div class="info-box">
+                <h3>⚠️ Data Persistence</h3>
+                <p>The database resets when Cloud Run spins down (after ~15 min of inactivity). For persistent data, consider upgrading to Cloud SQL or Firebase.</p>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="settings-card">
+            <h2>🔗 Quick Links</h2>
+            
+            <div style="display: grid; gap: 12px;">
+                <a href="https://console.cloud.google.com/run?project=ungouge-dashboard" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 12px; background: #0f172a; border-radius: 8px; color: #e2e8f0; text-decoration: none;">
+                    <span>☁️</span> Google Cloud Console
+                </a>
+                <a href="https://github.com" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 12px; background: #0f172a; border-radius: 8px; color: #e2e8f0; text-decoration: none;">
+                    <span>📦</span> GitHub Repository
+                </a>
+                <a href="https://dashboard.stripe.com" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 12px; background: #0f172a; border-radius: 8px; color: #e2e8f0; text-decoration: none;">
+                    <span>💳</span> Stripe Dashboard
+                </a>
+                <a href="https://studio.youtube.com" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 12px; background: #0f172a; border-radius: 8px; color: #e2e8f0; text-decoration: none;">
+                    <span>📹</span> YouTube Studio
+                </a>
+                <a href="https://analytics.google.com" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 12px; background: #0f172a; border-radius: 8px; color: #e2e8f0; text-decoration: none;">
+                    <span>📊</span> Google Analytics
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="version-info">
+        <p>UnGouge Executive Dashboard v1.0</p>
+        <p>Built with ❤️ by Ish | Feb 4, 2026</p>
+        <p>Revision: 00030+ | 30+ deployments today</p>
+    </div>
+</body>
+</html>
