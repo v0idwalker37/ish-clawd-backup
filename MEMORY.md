@@ -1,6 +1,6 @@
 # MEMORY.md — Long-Term Memory
 
-*Last updated: 2026-02-01*
+*Last updated: 2026-02-04*
 
 ## About Jason
 - Off-grid Vermont homesteader, IT background, building Ungouge.ai
@@ -40,6 +40,18 @@
 - **Status:** Scripts written, branding done, 24-episode content calendar, production workflow documented
 - **Waiting on Jason:** Voice recording, haircut, lav mic (~$20)
 
+### UnGouge Executive Dashboard
+- **What:** Business metrics dashboard for tracking UnGouge progress (projects, tasks, revenue, expenses)
+- **Live URL:** https://dashboard.ungouge.ai
+- **Tech Stack:** FastAPI backend on Google Cloud Run, SQLite database, Google OAuth 2.0
+- **Authentication:** Server-side OAuth redirect flow (proper pattern, no popups)
+- **Status as of Feb 4:** ✅ FULLY OPERATIONAL
+  - Authenticated with void@ungouge.ai
+  - Displaying project cards, task tracking, expense monitoring
+  - YouTube channel metrics (1,247 subscribers, 3 videos, 4,892 views)
+  - Auto-initializes database on startup
+- **Deployment:** 16 Cloud Run revisions to solve OAuth cookie issues (Feb 4, 2:30-3:12 PM)
+
 ## Lessons Learned
 
 ### Working Style
@@ -55,6 +67,14 @@
 - Fuzzy matching threshold of 0.6 works but key naming matters
 - `cost_per_square` and `crew_hours_per_square` need different calculation paths
 - Always test backend with fresh DB after code changes
+
+### OAuth Authentication (Learned Feb 4)
+- **Popup OAuth + httpOnly cookies = fundamentally incompatible** (browser cross-origin security)
+- Server-side redirect flow is the proper OAuth 2.0 pattern for web apps
+- URL token handoff (callback → `/?auth_token=XXX`) avoids SameSite cookie timing issues
+- Serve HTML directly with Set-Cookie header (200 OK), don't redirect again
+- `init_db()` must be in `@app.on_event("startup")`, not `if __name__ == "__main__"`
+- FastAPI dependencies MUST use `Depends()` wrapper: `user_info: dict = Depends(require_auth)`
 
 ### Communication
 - Jason likes being kept in the loop but also values being left alone to relax
@@ -83,3 +103,29 @@
 - Git config: Ish <ish@ungouge.ai>
 - Model: Sonnet for routine, Opus for complex work
 - Heartbeat: 45m (sprint mode, was 15m)
+
+## Memory System (Deployed Feb 4)
+
+**3-tier implementation - Never asks for repeated information!**
+
+### Tier 1: File Organization
+- NOW.md for active work context
+- MEMORY.md for long-term curated memories
+- memory/YYYY-MM-DD.md for daily logs
+- memory/jason/, memory/projects/ for organized topics
+
+### Tier 2: Semantic Search (Gemini)
+- Provider: text-embedding-004
+- Searches MEMORY.md + memory/*.md + session transcripts
+- Cost: ~$0.01-0.02/month
+- Database: ~/.openclaw/memory/main.sqlite (5.9MB)
+
+### Tier 3: Auto-Memory (LanceDB + OpenAI)
+- Provider: text-embedding-3-small
+- Auto-capture: Silently saves facts during conversation
+- Auto-recall: Injects memories automatically when needed
+- Cost: ~$0.03-0.08/month
+- Database: ~/.openclaw/memory/lancedb/
+
+**Total Cost:** ~$0.04-0.10/month  
+**Result:** Rock solid memory, never asks Jason to repeat information
