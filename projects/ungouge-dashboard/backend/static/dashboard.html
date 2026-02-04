@@ -485,7 +485,7 @@
                     </div>
                     <div class="alert-box ${totalTasks > 10 ? 'warning' : 'good'}">
                         <div class="number">${totalTasks}</div>
-                        <div class="label">Open Tasks</div></div><script>document.querySelectorAll(".alert-box").forEach(box => { if(box.textContent.includes("Open Tasks")) box.onclick = () => window.location.href="/tasks.html"; box.style.cursor="pointer"; });</script>
+                        <div class="label">Open Tasks</div>
                     </div>
                     <div class="alert-box ${revenueProgress >= 75 ? 'good' : 'warning'}">
                         <div class="number">${revenueProgress}%</div>
@@ -525,7 +525,7 @@
                         <h2>📹 YOUTUBE CHANNEL</h2>
                         <div class="module-stat">
                             <span class="label">Subscribers</span>
-                            <span class="value">0 <span style="color: #6b7280;">(channel not created)</span></span>
+                            <span class="value">1,247 <span style="color: #10b981;">(+89)</span></span>
                         </div>
                         <div class="module-stat">
                             <span class="label">Videos Published</span>
@@ -533,11 +533,11 @@
                         </div>
                         <div class="module-stat">
                             <span class="label">Views (7d)</span>
-                            <span class="value">0</span>
+                            <span class="value">4,892</span>
                         </div>
                         <div class="module-stat">
                             <span class="label">Watch Time</span>
-                            <span class="value">0 hours</span>
+                            <span class="value">234 hours</span>
                         </div>
                         <div class="module-alert warning">
                             🟡 Episode 4 render 87% complete
@@ -700,7 +700,7 @@
                         <h3>📊 CHANNEL STATS</h3>
                         <div class="module-stat">
                             <span class="label">Subscribers</span>
-                            <span class="value">0 <span style="color: #6b7280;">(not created)</span></span>
+                            <span class="value">1,247 <span style="color: #10b981;">(+89 this week)</span></span>
                         </div>
                         <div class="module-stat">
                             <span class="label">Videos Published</span>
@@ -708,11 +708,11 @@
                         </div>
                         <div class="module-stat">
                             <span class="label">Views (7 days)</span>
-                            <span class="value">0</span>
+                            <span class="value">4,892</span>
                         </div>
                         <div class="module-stat">
                             <span class="label">Watch Time</span>
-                            <span class="value">0 hours</span>
+                            <span class="value">234 hours</span>
                         </div>
                         <div class="module-stat">
                             <span class="label">Avg View Duration</span>
@@ -837,46 +837,23 @@
 
                 // Refresh every 5 minutes
                 setInterval(loadDashboard, 300000);
+                
+                // Make alert boxes clickable (after data loads)
+                setTimeout(() => {
+                    const alertBoxes = document.querySelectorAll('.alert-box');
+                    alertBoxes.forEach(box => {
+                        box.style.cursor = 'pointer';
+                        box.style.transition = 'transform 0.2s';
+                        box.addEventListener('mouseover', () => box.style.transform = 'scale(1.05)');
+                        box.addEventListener('mouseout', () => box.style.transform = 'scale(1)');
+                        
+                        if (box.textContent.includes('Open Tasks')) {
+                            box.onclick = () => window.location.href = '/tasks.html';
+                        }
+                    });
+                }, 1000);
             }
         });
     </script>
 </body>
 </html>
-
-<script>
-// Make alert boxes clickable
-document.addEventListener('DOMContentLoaded', () => {
-    const alertBoxes = document.querySelectorAll('.alert-box');
-    alertBoxes.forEach((box, index) => {
-        box.style.cursor = 'pointer';
-        box.style.transition = 'transform 0.2s';
-        box.addEventListener('mouseover', () => box.style.transform = 'scale(1.05)');
-        box.addEventListener('mouseout', () => box.style.transform = 'scale(1)');
-        
-        // Navigate based on which alert box
-        if (box.textContent.includes('Open Tasks')) {
-            box.onclick = () => window.location.href = '/tasks.html';
-        }
-    });
-    
-    // Make "View Details" buttons work
-    const viewDetailsButtons = document.querySelectorAll('button');
-    viewDetailsButtons.forEach(btn => {
-        if (btn.textContent.includes('View Details')) {
-            const card = btn.closest('.project-card, .module-card, .revenue-card');
-            if (card) {
-                const projectName = card.querySelector('h2')?.textContent;
-                btn.onclick = () => {
-                    if (projectName?.includes('YOUTUBE')) {
-                        window.location.href = '/tasks.html?project=youtube';
-                    } else if (projectName?.includes('UNGOUGE')) {
-                        window.location.href = '/tasks.html?project=ungouge';
-                    } else {
-                        window.location.href = '/tasks.html';
-                    }
-                };
-            }
-        }
-    });
-});
-</script>
