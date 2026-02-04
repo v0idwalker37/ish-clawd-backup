@@ -136,16 +136,26 @@ def read_root(session_token: Optional[str] = Cookie(None, alias="session_token")
     """Root route - serve login page or dashboard based on auth"""
     static_dir = os.path.join(os.path.dirname(__file__), "static")
     
+    # Debug logging
+    print(f"🔍 Root request - Cookie present: {session_token is not None}")
+    
     # Check if authenticated
-    if session_token and verify_session(session_token):
-        # Serve dashboard
-        dashboard_path = os.path.join(static_dir, "dashboard.html")
-        if os.path.exists(dashboard_path):
-            return FileResponse(dashboard_path)
-        # Fallback to index.html if dashboard.html doesn't exist
-        index_path = os.path.join(static_dir, "index.html")
-        if os.path.exists(index_path):
-            return FileResponse(index_path)
+    if session_token:
+        user_info = verify_session(session_token)
+        if user_info:
+            print(f"✅ Authenticated user: {user_info.get('email')}")
+            # Serve dashboard
+            dashboard_path = os.path.join(static_dir, "dashboard.html")
+            if os.path.exists(dashboard_path):
+                return FileResponse(dashboard_path)
+            # Fallback to index.html if dashboard.html doesn't exist
+            index_path = os.path.join(static_dir, "index.html")
+            if os.path.exists(index_path):
+                return FileResponse(index_path)
+        else:
+            print(f"❌ Invalid or expired session token")
+    else:
+        print(f"❌ No session cookie present")
     
     # Not authenticated - serve login page
     login_path = os.path.join(static_dir, "login.html")
