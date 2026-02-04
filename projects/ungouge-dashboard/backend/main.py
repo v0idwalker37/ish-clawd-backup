@@ -211,8 +211,8 @@ async def auth_verify(response: Response, token: dict):
         secure=True,  # HTTPS only
         samesite="none",  # Required for OAuth popup/iframe flow
         max_age=86400,  # 24 hours
-        path="/",
-        domain="ungouge.ai"  # Explicit domain to work across subdomains
+        path="/"
+        # No explicit domain - use current domain (dashboard.ungouge.ai)
     )
     
     return {
