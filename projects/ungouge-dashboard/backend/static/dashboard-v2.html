@@ -1167,6 +1167,41 @@
             }
         });
 
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Don't trigger if typing in an input
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                // Escape closes search
+                if (e.key === 'Escape') {
+                    document.getElementById('searchResults').style.display = 'none';
+                    document.getElementById('globalSearch').blur();
+                }
+                return;
+            }
+            
+            switch(e.key) {
+                case '/':
+                    e.preventDefault();
+                    document.getElementById('globalSearch').focus();
+                    break;
+                case 't':
+                    window.location.href = '/tasks.html';
+                    break;
+                case 'e':
+                    window.location.href = '/expenses.html';
+                    break;
+                case 's':
+                    window.location.href = '/settings.html';
+                    break;
+                case 'r':
+                    refreshDashboard();
+                    break;
+                case '?':
+                    alert('Keyboard Shortcuts:\\n\\n/ - Search\\nt - Tasks\\ne - Expenses\\ns - Settings\\nr - Refresh\\n? - Help');
+                    break;
+            }
+        });
+
         // Initialize
         checkAuth().then(authenticated => {
             if (authenticated) {
