@@ -6,6 +6,7 @@ Server-side OAuth 2.0 redirect flow (no popups!)
 from fastapi import FastAPI, HTTPException, Cookie, Response, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime
@@ -596,6 +597,12 @@ async def get_external_metrics(user_info: dict = Depends(require_auth)):
             "stripe": {"error": "Not configured"},
             "analytics": {"error": "Not configured"}
         }
+
+
+# Mount static files AFTER all API routes (so API routes take precedence)
+# This serves HTML files like /tasks.html, /expenses.html, etc.
+static_dir = os.path.join(os.path.dirname(__file__), "static")
+app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
 
 
 if __name__ == "__main__":
