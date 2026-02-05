@@ -618,6 +618,10 @@ def serve_project_detail_page():
 def serve_settings_page():
     return FileResponse(os.path.join(static_dir, "settings.html"))
 
+@app.get("/login.html")
+def serve_login_page():
+    return FileResponse(os.path.join(static_dir, "login.html"))
+
 
 if __name__ == "__main__":
     import uvicorn
