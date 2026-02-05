@@ -599,10 +599,24 @@ async def get_external_metrics(user_info: dict = Depends(require_auth)):
         }
 
 
-# Mount static files AFTER all API routes (so API routes take precedence)
-# This serves HTML files like /tasks.html, /expenses.html, etc.
+# Serve HTML pages explicitly (more reliable than StaticFiles mount)
 static_dir = os.path.join(os.path.dirname(__file__), "static")
-app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
+
+@app.get("/tasks.html")
+def serve_tasks_page():
+    return FileResponse(os.path.join(static_dir, "tasks.html"))
+
+@app.get("/expenses.html")
+def serve_expenses_page():
+    return FileResponse(os.path.join(static_dir, "expenses.html"))
+
+@app.get("/project-detail.html")
+def serve_project_detail_page():
+    return FileResponse(os.path.join(static_dir, "project-detail.html"))
+
+@app.get("/settings.html")
+def serve_settings_page():
+    return FileResponse(os.path.join(static_dir, "settings.html"))
 
 
 if __name__ == "__main__":
