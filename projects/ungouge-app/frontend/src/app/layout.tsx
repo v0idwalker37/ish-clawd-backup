@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatWidget from '@/components/ChatWidget';
+import ErrorBoundary from '@/components/ErrorBoundary';
 import {
   DEFAULT_METADATA,
   SITE_CONFIG,
@@ -25,14 +26,14 @@ export const metadata: Metadata = {
   },
   description: DEFAULT_METADATA.description,
   keywords: [
-    'product research',
-    'honest reviews',
-    'no affiliate links',
-    'unbiased recommendations',
-    'buying guide',
-    'product comparison',
-    'consumer research',
-    'anti lead gen',
+    'contractor quote analysis',
+    'fair contractor pricing',
+    'quote verification',
+    'contractor overcharge',
+    'home improvement quotes',
+    'BLS labor data',
+    'no lead gen',
+    'homeowner protection',
   ],
   authors: [{ name: 'Ungouge.ai Team' }],
   creator: 'Ungouge.ai',
@@ -107,7 +108,9 @@ export default function RootLayout({
       <body className={inter.variable}>
         <div className="flex flex-col min-h-screen">
           <Header />
-          <main className="flex-grow">{children}</main>
+          <ErrorBoundary>
+            <main className="flex-grow">{children}</main>
+          </ErrorBoundary>
           <Footer />
           <ChatWidget />
         </div>

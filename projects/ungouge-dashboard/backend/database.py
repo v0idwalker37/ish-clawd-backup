@@ -148,6 +148,18 @@ def init_db():
         )
     """)
     
+    # Time clock table (employee time tracking)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS timeclock (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_email TEXT NOT NULL,
+            clock_in TIMESTAMP NOT NULL,
+            clock_out TIMESTAMP,
+            duration_minutes REAL,
+            created_at TEXT DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+    
     # Create indexes for performance
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_tasks_project ON tasks(project_id)")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_tasks_status ON tasks(status)")
@@ -157,6 +169,8 @@ def init_db():
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_milestones_project ON milestones(project_id)")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_revenue_project ON revenue(project_id)")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_metrics_project_name ON metrics(project_id, metric_name)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_timeclock_user ON timeclock(user_email)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_timeclock_clock_in ON timeclock(clock_in)")
     
     conn.commit()
     conn.close()
@@ -186,12 +200,18 @@ def seed_sample_data():
     cursor.execute("""
         INSERT INTO projects (name, description, status, progress, category, priority, health_score)
         VALUES 
-            ('YouTube Channel', 'UnGouge Digest - Homeowner advocacy channel with data-driven content', 'active', 20, 'content', 'high', 70),
-            ('Content Library', 'Scripts, blog posts, and marketing materials ready for publication', 'active', 60, 'content', 'high', 75),
-            ('Podcast Distribution', 'Multi-platform podcast presence (Spotify, Apple Podcasts, YouTube)', 'active', 0, 'content', 'medium', 65),
-            ('Ungouge.ai Platform', 'Quote analysis web app - main revenue driver ($19.99/report)', 'active', 85, 'product', 'critical', 90),
-            ('Executive Dashboard', 'Business metrics command center - real-time tracking of all operations', 'active', 70, 'operations', 'high', 80),
-            ('Business Operations', 'Accounts, credentials, and operational setup tasks', 'active', 30, 'operations', 'high', 70)
+            ('YouTube Channel', 'UnGouge Digest - Homeowner advocacy channel with data-driven content', 'active', 20, 'youtube', 'high', 70),
+            ('Content Library', 'Scripts, blog posts, and marketing materials ready for publication', 'active', 60, 'youtube', 'high', 75),
+            ('Podcast Distribution', 'Multi-platform podcast presence (Spotify, Apple Podcasts, YouTube)', 'active', 0, 'youtube', 'medium', 65),
+            ('Ungouge.ai Platform', 'Quote analysis web app - main revenue driver ($19.99/report)', 'active', 85, 'ungouge', 'critical', 90),
+            ('Executive Dashboard', 'Business metrics command center - real-time tracking of all operations', 'active', 70, 'ungouge', 'high', 80),
+            ('Business Operations', 'Accounts, credentials, and operational setup tasks', 'active', 30, 'ungouge', 'high', 70),
+            ('Coming Soon Page', 'Landing page at ungouge.ai with email capture - deployed on Cloudflare Pages', 'active', 90, 'ungouge', 'high', 85),
+            ('UnGouge GPT Kit', 'Custom GPT for ChatGPT Store - system prompt + 4 knowledge files ready', 'active', 95, 'ungouge', 'medium', 90),
+            ('SEO & Blog Content', '16+ blog posts covering home improvement costs - SEO keyword targeting', 'active', 70, 'ungouge', 'high', 80),
+            ('Disaster Response System', '3-agent automation (Sentinel/Strategist/Executor) for disaster pricing', 'active', 15, 'ungouge', 'medium', 60),
+            ('Data Partnerships', '1build.com API inquiry (68M data points) - waiting for response', 'active', 10, 'ungouge', 'medium', 50),
+            ('Social Media Presence', 'YouTube @ungouge, Instagram @ungouge.ai, TikTok @ungouge.ai, X @Ungouge', 'active', 40, 'youtube', 'medium', 65)
     """)
     
     # Get project IDs
@@ -204,6 +224,12 @@ def seed_sample_data():
     ungouge = projects['Ungouge.ai Platform']
     dashboard = projects['Executive Dashboard']
     ops = projects['Business Operations']
+    coming_soon = projects.get('Coming Soon Page')
+    gpt_kit = projects.get('UnGouge GPT Kit')
+    seo_blog = projects.get('SEO & Blog Content')
+    disaster = projects.get('Disaster Response System')
+    data_partner = projects.get('Data Partnerships')
+    social = projects.get('Social Media Presence')
     
     # YouTube Channel tasks
     cursor.execute("""
@@ -299,6 +325,105 @@ def seed_sample_data():
         ops, (week_2 + timedelta(days=6)).strftime('%Y-%m-%d')
     ))
     
+    # New project tasks (added Feb 9, 2026)
+    if coming_soon:
+        cursor.execute("""
+            INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+            VALUES
+                (?, 'Deploy coming soon page', 'Single-page HTML on Cloudflare Pages with email capture', 'done', 'high', ?, 'milestone', 2),
+                (?, 'Connect all domain variants', 'ungouge.com, ungoug.app, ungoug.com → Cloudflare Pages', 'done', 'medium', ?, 'action', 1),
+                (?, 'Add OG image for social previews', '1200x630 preview image for link sharing', 'done', 'medium', ?, 'action', 1),
+                (?, 'Add email signup form', 'Collect early interest emails before full launch', 'todo', 'high', ?, 'action', 2)
+        """, (
+            coming_soon, today.strftime('%Y-%m-%d'),
+            coming_soon, today.strftime('%Y-%m-%d'),
+            coming_soon, today.strftime('%Y-%m-%d'),
+            coming_soon, (week_2).strftime('%Y-%m-%d')
+        ))
+
+    if gpt_kit:
+        cursor.execute("""
+            INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+            VALUES
+                (?, 'Create system prompt', '~5.8KB system prompt for GPT Store listing', 'done', 'high', ?, 'action', 3),
+                (?, 'Build knowledge files', '4 files (~28KB): pricing guidelines, red flags, negotiation tips', 'done', 'high', ?, 'action', 4),
+                (?, 'Write GPT Store metadata', 'Name, description, conversation starters', 'done', 'medium', ?, 'action', 1),
+                (?, 'Publish to GPT Store', 'Submit for review and publish when site launches', 'todo', 'high', ?, 'milestone', 1)
+        """, (
+            gpt_kit, today.strftime('%Y-%m-%d'),
+            gpt_kit, today.strftime('%Y-%m-%d'),
+            gpt_kit, today.strftime('%Y-%m-%d'),
+            gpt_kit, (week_2).strftime('%Y-%m-%d')
+        ))
+
+    if seo_blog:
+        cursor.execute("""
+            INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+            VALUES
+                (?, 'Write 16 blog posts', 'Covering major home improvement categories with cost breakdowns', 'done', 'high', ?, 'action', 20),
+                (?, 'SEO keyword research', 'Target low-difficulty, high-volume keywords per category', 'done', 'high', ?, 'action', 3),
+                (?, 'Create regional guides', 'Central Vermont specific pricing for bathroom, roof, kitchen', 'done', 'medium', ?, 'action', 6),
+                (?, 'Deploy blog to website', 'Integrate blog posts into Next.js app with proper routing', 'todo', 'high', ?, 'milestone', 4),
+                (?, 'Write fence cost guide', 'Missing from current blog portfolio', 'todo', 'medium', ?, 'action', 2),
+                (?, 'Write flooring cost guide', 'Missing from current blog portfolio', 'todo', 'medium', ?, 'action', 2)
+        """, (
+            seo_blog, today.strftime('%Y-%m-%d'),
+            seo_blog, today.strftime('%Y-%m-%d'),
+            seo_blog, today.strftime('%Y-%m-%d'),
+            seo_blog, (week_2).strftime('%Y-%m-%d'),
+            seo_blog, (week_2 + timedelta(days=3)).strftime('%Y-%m-%d'),
+            seo_blog, (week_2 + timedelta(days=5)).strftime('%Y-%m-%d')
+        ))
+
+    if disaster:
+        cursor.execute("""
+            INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+            VALUES
+                (?, 'Design 3-agent architecture', 'Sentinel (detect) → Strategist (plan) → Executor (deploy)', 'done', 'high', ?, 'milestone', 8),
+                (?, 'Build Sentinel agent', 'NOAA/FEMA/News monitoring with daily cron', 'todo', 'medium', ?, 'action', 6),
+                (?, 'Build Strategist agent', 'Generate response packages (press, social, pricing)', 'todo', 'medium', ?, 'action', 6),
+                (?, 'Build Executor agent', 'One-click activation after human approval', 'todo', 'medium', ?, 'action', 4),
+                (?, 'Build dashboard monitoring panel', 'Active disasters, pricing zones, impact metrics', 'todo', 'low', ?, 'action', 4)
+        """, (
+            disaster, today.strftime('%Y-%m-%d'),
+            disaster, (week_3).strftime('%Y-%m-%d'),
+            disaster, (week_3 + timedelta(days=3)).strftime('%Y-%m-%d'),
+            disaster, (week_3 + timedelta(days=5)).strftime('%Y-%m-%d'),
+            disaster, (week_3 + timedelta(days=7)).strftime('%Y-%m-%d')
+        ))
+
+    if data_partner:
+        cursor.execute("""
+            INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+            VALUES
+                (?, 'Research 1build.com API', '68M data points, 3000+ US counties, GraphQL API', 'done', 'high', ?, 'action', 2),
+                (?, 'Send API inquiry email', 'Request pricing and partnership info', 'done', 'high', ?, 'action', 0.5),
+                (?, 'Evaluate API response', 'Compare pricing vs Craftsman data, assess integration effort', 'todo', 'high', ?, 'action', 2),
+                (?, 'Build API integration', 'GraphQL client for real-time county-level pricing', 'todo', 'medium', ?, 'action', 8)
+        """, (
+            data_partner, today.strftime('%Y-%m-%d'),
+            data_partner, today.strftime('%Y-%m-%d'),
+            data_partner, (week_2).strftime('%Y-%m-%d'),
+            data_partner, (week_3).strftime('%Y-%m-%d')
+        ))
+
+    if social:
+        cursor.execute("""
+            INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+            VALUES
+                (?, 'Secure @Ungouge on X/Twitter', 'Handle secured for brand consistency', 'done', 'high', ?, 'action', 0.5),
+                (?, 'Create Instagram @ungouge.ai', 'Set up business profile with brand assets', 'done', 'medium', ?, 'action', 0.5),
+                (?, 'Create TikTok @ungouge.ai', 'Set up creator account', 'done', 'medium', ?, 'action', 0.5),
+                (?, 'Create YouTube @ungouge', 'Channel created and configured', 'done', 'high', ?, 'action', 1),
+                (?, 'Post first YouTube video', 'Record, edit, upload Episode 1', 'todo', 'high', ?, 'milestone', 6)
+        """, (
+            social, today.strftime('%Y-%m-%d'),
+            social, today.strftime('%Y-%m-%d'),
+            social, today.strftime('%Y-%m-%d'),
+            social, today.strftime('%Y-%m-%d'),
+            social, (week_3).strftime('%Y-%m-%d')
+        ))
+
     # Insert current expenses
     today_str = today.strftime('%Y-%m-%d')
     cursor.execute("""

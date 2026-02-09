@@ -274,7 +274,7 @@
       ]
     },
     "kitchen_remodel": {
-      "unit": "project",
+      "unit": "sqft",
       "size_categories": {
         "small": {
           "size_sq_ft": 80,
@@ -524,34 +524,20 @@
         }
       },
       "typical_total_project_cost": {
-        "small_budget": {
-          "cabinets": 3750,
-          "countertops": 1950,
-          "appliances": 2000,
-          "flooring": 720,
-          "labor": 7000,
-          "total": 17420,
-          "description": "80 sq ft, stock cabinets, laminate counters, budget appliances"
+        "small_80sqft": {
+          "budget": "6000-16000",
+          "midrange": "12000-28000",
+          "high_end": "28000-64000"
         },
-        "medium_mid_range": {
-          "cabinets": 12500,
-          "countertops": 6000,
-          "appliances": 4050,
-          "flooring": 1800,
-          "backsplash": 1080,
-          "labor": 13500,
-          "total": 38930,
-          "description": "150 sq ft, semi-custom cabinets, quartz counters, mid-range appliances"
+        "medium_120sqft": {
+          "budget": "9000-24000",
+          "midrange": "18000-42000",
+          "high_end": "42000-96000"
         },
-        "large_high_end": {
-          "cabinets": 42000,
-          "countertops": 15000,
-          "appliances": 9800,
-          "flooring": 5000,
-          "backsplash": 3900,
-          "labor": 21000,
-          "total": 96700,
-          "description": "250 sq ft, custom cabinets, marble counters, high-end appliances"
+        "large_200sqft": {
+          "budget": "15000-40000",
+          "midrange": "30000-70000",
+          "high_end": "70000-160000"
         }
       },
       "common_upsells": [
@@ -570,10 +556,203 @@
         "Total labor >$30,000 for medium kitchen",
         "Materials markup >50% over retail",
         "Project management >15% of total"
-      ]
+      ],
+      "materials": [
+        {
+          "name": "stock_cabinets",
+          "unit": "linear_foot",
+          "cost_low": 75,
+          "cost_mid": 150,
+          "cost_high": 300,
+          "notes": "Stock cabinets from big box stores"
+        },
+        {
+          "name": "semi_custom_cabinets",
+          "unit": "linear_foot",
+          "cost_low": 150,
+          "cost_mid": 350,
+          "cost_high": 650,
+          "notes": "Semi-custom with more finish and hardware options"
+        },
+        {
+          "name": "custom_cabinets",
+          "unit": "linear_foot",
+          "cost_low": 500,
+          "cost_mid": 800,
+          "cost_high": 1500,
+          "notes": "Fully custom built to spec"
+        },
+        {
+          "name": "countertop_laminate",
+          "unit": "sqft",
+          "cost_low": 10,
+          "cost_mid": 25,
+          "cost_high": 45,
+          "notes": "Laminate countertops installed"
+        },
+        {
+          "name": "countertop_granite",
+          "unit": "sqft",
+          "cost_low": 40,
+          "cost_mid": 60,
+          "cost_high": 100,
+          "notes": "Granite countertops installed"
+        },
+        {
+          "name": "countertop_quartz",
+          "unit": "sqft",
+          "cost_low": 50,
+          "cost_mid": 75,
+          "cost_high": 120,
+          "notes": "Quartz countertops installed"
+        },
+        {
+          "name": "backsplash_tile",
+          "unit": "sqft",
+          "cost_low": 10,
+          "cost_mid": 25,
+          "cost_high": 50,
+          "notes": "Tile backsplash materials and install"
+        },
+        {
+          "name": "flooring_tile",
+          "unit": "sqft",
+          "cost_low": 5,
+          "cost_mid": 12,
+          "cost_high": 25,
+          "notes": "Kitchen floor tile installed"
+        },
+        {
+          "name": "flooring_hardwood",
+          "unit": "sqft",
+          "cost_low": 8,
+          "cost_mid": 15,
+          "cost_high": 25,
+          "notes": "Hardwood kitchen flooring installed"
+        },
+        {
+          "name": "sink_and_faucet",
+          "unit": "each",
+          "cost_low": 200,
+          "cost_mid": 500,
+          "cost_high": 1200,
+          "notes": "Kitchen sink with faucet"
+        },
+        {
+          "name": "appliance_package_budget",
+          "unit": "set",
+          "cost_low": 2000,
+          "cost_mid": 3500,
+          "cost_high": 5000,
+          "notes": "Basic appliance package (fridge, range, dishwasher, microwave)"
+        },
+        {
+          "name": "appliance_package_midrange",
+          "unit": "set",
+          "cost_low": 4000,
+          "cost_mid": 6500,
+          "cost_high": 10000,
+          "notes": "Mid-range appliance package"
+        },
+        {
+          "name": "lighting",
+          "unit": "kitchen",
+          "cost_low": 500,
+          "cost_mid": 1500,
+          "cost_high": 3000,
+          "notes": "Recessed, under-cabinet, and pendant lighting"
+        }
+      ],
+      "labor": [
+        {
+          "name": "demolition",
+          "unit": "kitchen",
+          "cost_low": 500,
+          "cost_mid": 1500,
+          "cost_high": 3000,
+          "notes": "Demo of existing cabinets, counters, flooring"
+        },
+        {
+          "name": "plumbing",
+          "unit": "kitchen",
+          "cost_low": 1000,
+          "cost_mid": 2500,
+          "cost_high": 5000,
+          "notes": "Plumbing rough-in and connections; higher if moving fixtures"
+        },
+        {
+          "name": "electrical",
+          "unit": "kitchen",
+          "cost_low": 800,
+          "cost_mid": 2000,
+          "cost_high": 4000,
+          "notes": "Wiring, outlets, code compliance; GFCI required"
+        },
+        {
+          "name": "cabinet_installation",
+          "unit": "linear_foot",
+          "cost_low": 50,
+          "cost_mid": 100,
+          "cost_high": 200,
+          "notes": "Professional cabinet install"
+        },
+        {
+          "name": "countertop_installation",
+          "unit": "sqft",
+          "cost_low": 10,
+          "cost_mid": 25,
+          "cost_high": 50,
+          "notes": "Template, fabrication, and install labor"
+        },
+        {
+          "name": "tile_work",
+          "unit": "sqft",
+          "cost_low": 8,
+          "cost_mid": 15,
+          "cost_high": 25,
+          "notes": "Floor and backsplash tile installation"
+        },
+        {
+          "name": "painting",
+          "unit": "kitchen",
+          "cost_low": 500,
+          "cost_mid": 1500,
+          "cost_high": 3500,
+          "notes": "Walls and ceiling painting with prep"
+        },
+        {
+          "name": "general_contractor_fee",
+          "unit": "percent",
+          "cost_low": 10,
+          "cost_mid": 15,
+          "cost_high": 20,
+          "notes": "GC overhead and profit margin on total project"
+        }
+      ],
+      "unit_description": "per square foot of kitchen space",
+      "typical_total_per_sqft": {
+        "budget": {
+          "low": 75,
+          "mid": 150,
+          "high": 200,
+          "notes": "Cosmetic updates, same layout"
+        },
+        "midrange": {
+          "low": 150,
+          "mid": 250,
+          "high": 350,
+          "notes": "New cabinets, counters, appliances"
+        },
+        "high_end": {
+          "low": 350,
+          "mid": 500,
+          "high": 800,
+          "notes": "Gut reno, custom everything"
+        }
+      }
     },
     "bathroom_remodel": {
-      "unit": "project",
+      "unit": "sqft",
       "size_categories": {
         "half_bath": {
           "size_sq_ft": 25,
@@ -779,45 +958,20 @@
         }
       },
       "typical_total_project_cost": {
-        "half_bath_budget": {
-          "vanity": 400,
-          "toilet": 150,
-          "flooring": 200,
-          "paint": 150,
-          "labor": 2500,
-          "total": 3400,
-          "description": "25 sq ft powder room, budget fixtures"
+        "half_bath_25sqft": {
+          "budget": "2500-7500",
+          "midrange": "5000-15000",
+          "high_end": "12500-30000"
         },
-        "small_bath_mid": {
-          "vanity": 1000,
-          "toilet": 350,
-          "tub_shower": 1500,
-          "tile": 2100,
-          "fixtures": 600,
-          "labor": 5500,
-          "total": 11050,
-          "description": "50 sq ft full bath, mid-range finishes"
+        "standard_40sqft": {
+          "budget": "4000-12000",
+          "midrange": "8000-24000",
+          "high_end": "20000-48000"
         },
-        "medium_bath_mid": {
-          "vanity": 1000,
-          "toilet": 350,
-          "tub_shower": 2200,
-          "tile": 3600,
-          "fixtures": 900,
-          "labor": 8000,
-          "total": 16050,
-          "description": "75 sq ft full bath, mid-range finishes"
-        },
-        "master_bath_high": {
-          "double_vanity": 4500,
-          "toilet": 800,
-          "separate_shower": 4000,
-          "separate_tub": 3000,
-          "tile": 9000,
-          "fixtures": 2500,
-          "labor": 13000,
-          "total": 36800,
-          "description": "120 sq ft master bath, high-end finishes"
+        "master_bath_80sqft": {
+          "budget": "8000-24000",
+          "midrange": "16000-48000",
+          "high_end": "40000-96000"
         }
       },
       "common_upsells": [
@@ -836,10 +990,203 @@
         "Total labor >$20,000 for master bath",
         "Materials marked up >40% over retail",
         "Unnecessary 'structural concerns' without evidence"
-      ]
+      ],
+      "materials": [
+        {
+          "name": "vanity_budget",
+          "unit": "each",
+          "cost_low": 200,
+          "cost_mid": 500,
+          "cost_high": 800,
+          "notes": "Stock vanity with top"
+        },
+        {
+          "name": "vanity_midrange",
+          "unit": "each",
+          "cost_low": 800,
+          "cost_mid": 1500,
+          "cost_high": 2500,
+          "notes": "Semi-custom vanity"
+        },
+        {
+          "name": "vanity_custom",
+          "unit": "each",
+          "cost_low": 2000,
+          "cost_mid": 4000,
+          "cost_high": 8000,
+          "notes": "Custom built vanity"
+        },
+        {
+          "name": "toilet",
+          "unit": "each",
+          "cost_low": 150,
+          "cost_mid": 350,
+          "cost_high": 800,
+          "notes": "Standard toilet installed"
+        },
+        {
+          "name": "bathtub_standard",
+          "unit": "each",
+          "cost_low": 300,
+          "cost_mid": 800,
+          "cost_high": 2000,
+          "notes": "Standard alcove tub"
+        },
+        {
+          "name": "bathtub_freestanding",
+          "unit": "each",
+          "cost_low": 1000,
+          "cost_mid": 2500,
+          "cost_high": 5000,
+          "notes": "Freestanding soaking tub"
+        },
+        {
+          "name": "shower_insert",
+          "unit": "each",
+          "cost_low": 300,
+          "cost_mid": 800,
+          "cost_high": 1500,
+          "notes": "Prefab shower insert/surround"
+        },
+        {
+          "name": "shower_tile_custom",
+          "unit": "each",
+          "cost_low": 2000,
+          "cost_mid": 5000,
+          "cost_high": 10000,
+          "notes": "Custom tile shower with pan, walls, niche"
+        },
+        {
+          "name": "tile_floor",
+          "unit": "sqft",
+          "cost_low": 5,
+          "cost_mid": 12,
+          "cost_high": 25,
+          "notes": "Bathroom floor tile"
+        },
+        {
+          "name": "tile_wall",
+          "unit": "sqft",
+          "cost_low": 8,
+          "cost_mid": 15,
+          "cost_high": 30,
+          "notes": "Wall tile for shower/tub surround"
+        },
+        {
+          "name": "faucets_and_fixtures",
+          "unit": "set",
+          "cost_low": 200,
+          "cost_mid": 600,
+          "cost_high": 1500,
+          "notes": "Faucets, showerhead, accessories"
+        },
+        {
+          "name": "lighting_and_exhaust",
+          "unit": "bathroom",
+          "cost_low": 200,
+          "cost_mid": 500,
+          "cost_high": 1200,
+          "notes": "Vanity lights, recessed, exhaust fan"
+        },
+        {
+          "name": "mirror_medicine_cabinet",
+          "unit": "each",
+          "cost_low": 50,
+          "cost_mid": 200,
+          "cost_high": 600,
+          "notes": "Mirror or medicine cabinet"
+        }
+      ],
+      "labor": [
+        {
+          "name": "demolition",
+          "unit": "bathroom",
+          "cost_low": 500,
+          "cost_mid": 1200,
+          "cost_high": 2500,
+          "notes": "Demo of existing fixtures, tile, drywall"
+        },
+        {
+          "name": "plumbing",
+          "unit": "bathroom",
+          "cost_low": 1000,
+          "cost_mid": 2500,
+          "cost_high": 5000,
+          "notes": "40-60% of labor; higher if relocating fixtures"
+        },
+        {
+          "name": "electrical",
+          "unit": "bathroom",
+          "cost_low": 500,
+          "cost_mid": 1200,
+          "cost_high": 2500,
+          "notes": "GFCI outlets, lighting, exhaust fan wiring"
+        },
+        {
+          "name": "tile_installation",
+          "unit": "sqft",
+          "cost_low": 8,
+          "cost_mid": 15,
+          "cost_high": 25,
+          "notes": "Floor and wall tile work"
+        },
+        {
+          "name": "waterproofing",
+          "unit": "bathroom",
+          "cost_low": 300,
+          "cost_mid": 800,
+          "cost_high": 1500,
+          "notes": "Shower pan, membrane, Kerdi or similar"
+        },
+        {
+          "name": "drywall_and_painting",
+          "unit": "bathroom",
+          "cost_low": 400,
+          "cost_mid": 1000,
+          "cost_high": 2000,
+          "notes": "Moisture-resistant drywall, paint"
+        },
+        {
+          "name": "fixture_installation",
+          "unit": "bathroom",
+          "cost_low": 500,
+          "cost_mid": 1200,
+          "cost_high": 2500,
+          "notes": "Install vanity, toilet, tub/shower, accessories"
+        },
+        {
+          "name": "general_contractor_fee",
+          "unit": "percent",
+          "cost_low": 10,
+          "cost_mid": 15,
+          "cost_high": 20,
+          "notes": "GC overhead and profit margin"
+        }
+      ],
+      "unit_description": "per square foot of bathroom space",
+      "typical_total_per_sqft": {
+        "budget": {
+          "low": 100,
+          "mid": 200,
+          "high": 300,
+          "notes": "Cosmetic updates, same layout"
+        },
+        "midrange": {
+          "low": 200,
+          "mid": 400,
+          "high": 600,
+          "notes": "New fixtures, tile, vanity"
+        },
+        "high_end": {
+          "low": 500,
+          "mid": 800,
+          "high": 1200,
+          "notes": "Full gut, custom everything"
+        }
+      }
     },
     "hvac_replacement": {
-      "unit": "project",
+      "unit": "system",
       "system_types": {
         "central_ac_only": {
           "description": "Air conditioning only, existing heating",
@@ -1021,32 +1368,25 @@
         "notes": "Standard install, straightforward equipment swap"
       },
       "typical_total_project_cost": {
-        "ac_only_3_ton": {
-          "equipment": 3000,
-          "labor": 2200,
-          "permit": 150,
-          "total_low": 4500,
-          "total_mid": 5800,
-          "total_high": 7500,
-          "description": "3-ton AC, SEER 14-16, 2000 sq ft home"
+        "ac_only": {
+          "budget": "3000-5000",
+          "midrange": "5000-8000",
+          "high_end": "8000-15000"
         },
-        "furnace_only_80k_btu": {
-          "equipment": 1500,
-          "labor": 1800,
-          "permit": 150,
-          "total_low": 2800,
-          "total_mid": 3800,
-          "total_high": 5000,
-          "description": "80k BTU gas furnace, 80% AFUE"
+        "furnace_only": {
+          "budget": "2500-4500",
+          "midrange": "4500-7000",
+          "high_end": "7000-12000"
         },
-        "complete_system_2000_sq_ft": {
-          "equipment": 6000,
-          "labor": 4500,
-          "permits": 325,
-          "total_low": 9500,
-          "total_mid": 12000,
-          "total_high": 16000,
-          "description": "3-ton AC + 100k BTU furnace, standard efficiency"
+        "full_system_ac_furnace": {
+          "budget": "5000-8000",
+          "midrange": "8000-14000",
+          "high_end": "14000-25000"
+        },
+        "heat_pump_system": {
+          "budget": "5000-8000",
+          "midrange": "8000-15000",
+          "high_end": "15000-25000"
         }
       },
       "common_upsells": [
@@ -1065,10 +1405,135 @@
         "Ductwork >$50/linear foot for standard runs",
         "Pushing highest SEER without ROI calculation",
         "Emergency premium >2x standard rate without true emergency"
-      ]
+      ],
+      "materials": [
+        {
+          "name": "central_ac_unit",
+          "unit": "ton",
+          "cost_low": 1500,
+          "cost_mid": 2500,
+          "cost_high": 4000,
+          "notes": "Central AC condenser unit; typical home 2-5 tons"
+        },
+        {
+          "name": "furnace_gas",
+          "unit": "each",
+          "cost_low": 1500,
+          "cost_mid": 2500,
+          "cost_high": 4500,
+          "notes": "Gas furnace 80-98% AFUE"
+        },
+        {
+          "name": "furnace_electric",
+          "unit": "each",
+          "cost_low": 1000,
+          "cost_mid": 1800,
+          "cost_high": 3000,
+          "notes": "Electric furnace"
+        },
+        {
+          "name": "heat_pump",
+          "unit": "each",
+          "cost_low": 2500,
+          "cost_mid": 5000,
+          "cost_high": 8000,
+          "notes": "Air-source heat pump system"
+        },
+        {
+          "name": "mini_split",
+          "unit": "zone",
+          "cost_low": 1500,
+          "cost_mid": 3000,
+          "cost_high": 5000,
+          "notes": "Ductless mini-split per zone/head"
+        },
+        {
+          "name": "ductwork",
+          "unit": "linear_foot",
+          "cost_low": 10,
+          "cost_mid": 20,
+          "cost_high": 35,
+          "notes": "New or replacement ductwork"
+        },
+        {
+          "name": "thermostat",
+          "unit": "each",
+          "cost_low": 25,
+          "cost_mid": 150,
+          "cost_high": 400,
+          "notes": "Basic to smart thermostat"
+        },
+        {
+          "name": "refrigerant_lines",
+          "unit": "set",
+          "cost_low": 200,
+          "cost_mid": 500,
+          "cost_high": 1000,
+          "notes": "New copper refrigerant line set"
+        }
+      ],
+      "labor": [
+        {
+          "name": "removal_old_system",
+          "unit": "system",
+          "cost_low": 300,
+          "cost_mid": 800,
+          "cost_high": 1500,
+          "notes": "Remove and dispose old equipment"
+        },
+        {
+          "name": "ac_installation",
+          "unit": "system",
+          "cost_low": 1500,
+          "cost_mid": 3000,
+          "cost_high": 5000,
+          "notes": "Install condenser, coil, refrigerant charge"
+        },
+        {
+          "name": "furnace_installation",
+          "unit": "system",
+          "cost_low": 1000,
+          "cost_mid": 2000,
+          "cost_high": 3500,
+          "notes": "Install furnace, connect gas/electric, vent"
+        },
+        {
+          "name": "heat_pump_installation",
+          "unit": "system",
+          "cost_low": 2000,
+          "cost_mid": 4000,
+          "cost_high": 7000,
+          "notes": "Install heat pump system"
+        },
+        {
+          "name": "ductwork_installation",
+          "unit": "system",
+          "cost_low": 1500,
+          "cost_mid": 3500,
+          "cost_high": 7000,
+          "notes": "New ductwork for full home"
+        },
+        {
+          "name": "electrical_hookup",
+          "unit": "system",
+          "cost_low": 200,
+          "cost_mid": 500,
+          "cost_high": 1200,
+          "notes": "Electrical connections, disconnect, breaker"
+        },
+        {
+          "name": "permit_and_inspection",
+          "unit": "each",
+          "cost_low": 100,
+          "cost_mid": 300,
+          "cost_high": 500,
+          "notes": "Required HVAC permits and inspection"
+        }
+      ],
+      "unit_description": "per complete HVAC system"
     },
     "plumbing_repair": {
-      "unit": "service_call",
+      "unit": "job",
       "common_repairs": {
         "water_heater": {
           "tank_replacement_40_gal": {
@@ -1283,10 +1748,159 @@
         "Sewer work >$250/linear foot for traditional dig",
         "Requiring full replacement without attempting repair",
         "Material markups >100% (2x retail)"
-      ]
+      ],
+      "materials": [
+        {
+          "name": "water_heater_tank_40gal",
+          "unit": "each",
+          "cost_low": 400,
+          "cost_mid": 800,
+          "cost_high": 1500,
+          "notes": "40-gallon tank water heater"
+        },
+        {
+          "name": "water_heater_tank_50gal",
+          "unit": "each",
+          "cost_low": 500,
+          "cost_mid": 1000,
+          "cost_high": 2000,
+          "notes": "50-gallon tank water heater"
+        },
+        {
+          "name": "water_heater_tankless",
+          "unit": "each",
+          "cost_low": 800,
+          "cost_mid": 2000,
+          "cost_high": 4000,
+          "notes": "Tankless/on-demand water heater"
+        },
+        {
+          "name": "pipe_copper",
+          "unit": "linear_foot",
+          "cost_low": 3,
+          "cost_mid": 8,
+          "cost_high": 15,
+          "notes": "Copper supply pipe"
+        },
+        {
+          "name": "pipe_pex",
+          "unit": "linear_foot",
+          "cost_low": 1,
+          "cost_mid": 3,
+          "cost_high": 6,
+          "notes": "PEX flexible supply pipe"
+        },
+        {
+          "name": "drain_pipe_pvc",
+          "unit": "linear_foot",
+          "cost_low": 2,
+          "cost_mid": 5,
+          "cost_high": 10,
+          "notes": "PVC drain/waste pipe"
+        },
+        {
+          "name": "sump_pump",
+          "unit": "each",
+          "cost_low": 150,
+          "cost_mid": 350,
+          "cost_high": 800,
+          "notes": "Sump pump unit"
+        },
+        {
+          "name": "garbage_disposal",
+          "unit": "each",
+          "cost_low": 80,
+          "cost_mid": 200,
+          "cost_high": 500,
+          "notes": "Kitchen garbage disposal unit"
+        },
+        {
+          "name": "faucet",
+          "unit": "each",
+          "cost_low": 50,
+          "cost_mid": 200,
+          "cost_high": 600,
+          "notes": "Kitchen or bath faucet"
+        },
+        {
+          "name": "toilet",
+          "unit": "each",
+          "cost_low": 100,
+          "cost_mid": 300,
+          "cost_high": 800,
+          "notes": "Toilet unit"
+        }
+      ],
+      "labor": [
+        {
+          "name": "service_call",
+          "unit": "visit",
+          "cost_low": 75,
+          "cost_mid": 150,
+          "cost_high": 300,
+          "notes": "Base service/diagnostic fee"
+        },
+        {
+          "name": "hourly_rate",
+          "unit": "hour",
+          "cost_low": 75,
+          "cost_mid": 125,
+          "cost_high": 200,
+          "notes": "Licensed plumber hourly rate"
+        },
+        {
+          "name": "water_heater_install",
+          "unit": "each",
+          "cost_low": 500,
+          "cost_mid": 1200,
+          "cost_high": 2500,
+          "notes": "Water heater removal and install labor"
+        },
+        {
+          "name": "pipe_repair",
+          "unit": "repair",
+          "cost_low": 150,
+          "cost_mid": 400,
+          "cost_high": 1000,
+          "notes": "Fix a leak or burst pipe section"
+        },
+        {
+          "name": "repipe_whole_house",
+          "unit": "house",
+          "cost_low": 3000,
+          "cost_mid": 7000,
+          "cost_high": 15000,
+          "notes": "Full home repipe (copper or PEX)"
+        },
+        {
+          "name": "drain_cleaning",
+          "unit": "drain",
+          "cost_low": 100,
+          "cost_mid": 250,
+          "cost_high": 500,
+          "notes": "Snake or hydro-jet a clogged drain"
+        },
+        {
+          "name": "sewer_line_repair",
+          "unit": "repair",
+          "cost_low": 1000,
+          "cost_mid": 3500,
+          "cost_high": 8000,
+          "notes": "Main sewer line repair or replacement"
+        },
+        {
+          "name": "fixture_install",
+          "unit": "each",
+          "cost_low": 100,
+          "cost_mid": 250,
+          "cost_high": 500,
+          "notes": "Install faucet, toilet, disposal"
+        }
+      ],
+      "unit_description": "per plumbing job"
     },
     "electrical_work": {
-      "unit": "service_call",
+      "unit": "job",
       "common_jobs": {
         "panel_upgrade": {
           "100_amp_to_200_amp": {
@@ -1492,7 +2106,172 @@
         "Trip charges >$150 if not credited",
         "Claiming 'dangerous aluminum wiring' to sell whole-house rewire",
         "Material markup >75% over retail"
-      ]
+      ],
+      "materials": [
+        {
+          "name": "electrical_panel_100amp",
+          "unit": "each",
+          "cost_low": 500,
+          "cost_mid": 1000,
+          "cost_high": 1500,
+          "notes": "100-amp main panel"
+        },
+        {
+          "name": "electrical_panel_200amp",
+          "unit": "each",
+          "cost_low": 800,
+          "cost_mid": 1500,
+          "cost_high": 2500,
+          "notes": "200-amp main panel upgrade"
+        },
+        {
+          "name": "circuit_breaker",
+          "unit": "each",
+          "cost_low": 5,
+          "cost_mid": 15,
+          "cost_high": 50,
+          "notes": "Individual circuit breaker"
+        },
+        {
+          "name": "outlet_standard",
+          "unit": "each",
+          "cost_low": 2,
+          "cost_mid": 5,
+          "cost_high": 10,
+          "notes": "Standard 15/20A outlet"
+        },
+        {
+          "name": "outlet_gfci",
+          "unit": "each",
+          "cost_low": 10,
+          "cost_mid": 20,
+          "cost_high": 30,
+          "notes": "GFCI outlet (required in wet areas)"
+        },
+        {
+          "name": "wire_romex_12_2",
+          "unit": "foot",
+          "cost_low": 0.5,
+          "cost_mid": 1.0,
+          "cost_high": 2.0,
+          "notes": "12/2 NM-B Romex wire"
+        },
+        {
+          "name": "light_fixture",
+          "unit": "each",
+          "cost_low": 20,
+          "cost_mid": 100,
+          "cost_high": 500,
+          "notes": "Light fixture (basic to decorative)"
+        },
+        {
+          "name": "recessed_light",
+          "unit": "each",
+          "cost_low": 15,
+          "cost_mid": 40,
+          "cost_high": 80,
+          "notes": "Recessed/can light fixture"
+        },
+        {
+          "name": "ceiling_fan",
+          "unit": "each",
+          "cost_low": 50,
+          "cost_mid": 200,
+          "cost_high": 500,
+          "notes": "Ceiling fan with light kit"
+        },
+        {
+          "name": "ev_charger_level2",
+          "unit": "each",
+          "cost_low": 400,
+          "cost_mid": 800,
+          "cost_high": 1500,
+          "notes": "Level 2 EV charger unit"
+        }
+      ],
+      "labor": [
+        {
+          "name": "service_call",
+          "unit": "visit",
+          "cost_low": 75,
+          "cost_mid": 150,
+          "cost_high": 250,
+          "notes": "Base diagnostic/service fee"
+        },
+        {
+          "name": "hourly_rate",
+          "unit": "hour",
+          "cost_low": 75,
+          "cost_mid": 120,
+          "cost_high": 200,
+          "notes": "Licensed electrician hourly rate"
+        },
+        {
+          "name": "panel_upgrade",
+          "unit": "each",
+          "cost_low": 1500,
+          "cost_mid": 2500,
+          "cost_high": 4500,
+          "notes": "Full panel upgrade labor including utility coordination"
+        },
+        {
+          "name": "outlet_install_new",
+          "unit": "each",
+          "cost_low": 100,
+          "cost_mid": 200,
+          "cost_high": 350,
+          "notes": "Run new circuit and install outlet"
+        },
+        {
+          "name": "outlet_replace",
+          "unit": "each",
+          "cost_low": 50,
+          "cost_mid": 100,
+          "cost_high": 175,
+          "notes": "Replace existing outlet"
+        },
+        {
+          "name": "light_fixture_install",
+          "unit": "each",
+          "cost_low": 75,
+          "cost_mid": 175,
+          "cost_high": 350,
+          "notes": "Install light fixture (existing box)"
+        },
+        {
+          "name": "recessed_light_install",
+          "unit": "each",
+          "cost_low": 100,
+          "cost_mid": 200,
+          "cost_high": 350,
+          "notes": "New recessed light with wiring"
+        },
+        {
+          "name": "whole_house_rewire",
+          "unit": "house",
+          "cost_low": 5000,
+          "cost_mid": 10000,
+          "cost_high": 20000,
+          "notes": "Full rewire (older homes)"
+        },
+        {
+          "name": "ev_charger_install",
+          "unit": "each",
+          "cost_low": 300,
+          "cost_mid": 800,
+          "cost_high": 2000,
+          "notes": "Level 2 EV charger install with dedicated circuit"
+        },
+        {
+          "name": "permit_and_inspection",
+          "unit": "each",
+          "cost_low": 50,
+          "cost_mid": 200,
+          "cost_high": 400,
+          "notes": "Electrical permit and inspection"
+        }
+      ],
+      "unit_description": "per electrical job"
     },
     "deck_building": {
       "unit": "square_foot",
@@ -1859,6 +2638,64 @@
         "Prep time exceeding paint time significantly",
         "Crew rates >$150/hour for standard painting",
         "Cabinet painting >$75/door"
+      ],
+      "labor": [
+        {
+          "name": "prep_work",
+          "unit": "sqft_wall",
+          "cost_low": 0.25,
+          "cost_mid": 0.5,
+          "cost_high": 1.0,
+          "notes": "Patching, sanding, taping, masking"
+        },
+        {
+          "name": "primer_coat",
+          "unit": "sqft_wall",
+          "cost_low": 0.25,
+          "cost_mid": 0.5,
+          "cost_high": 0.75,
+          "notes": "Primer application"
+        },
+        {
+          "name": "paint_two_coats",
+          "unit": "sqft_wall",
+          "cost_low": 0.75,
+          "cost_mid": 1.25,
+          "cost_high": 2.0,
+          "notes": "Two coats of paint on walls"
+        },
+        {
+          "name": "ceiling_painting",
+          "unit": "sqft_ceiling",
+          "cost_low": 1.0,
+          "cost_mid": 1.75,
+          "cost_high": 3.0,
+          "notes": "Ceiling paint application"
+        },
+        {
+          "name": "trim_painting",
+          "unit": "linear_foot",
+          "cost_low": 1.0,
+          "cost_mid": 2.0,
+          "cost_high": 4.0,
+          "notes": "Baseboard, crown, door/window trim"
+        },
+        {
+          "name": "per_room_rate",
+          "unit": "room",
+          "cost_low": 200,
+          "cost_mid": 450,
+          "cost_high": 800,
+          "notes": "Average per-room rate (walls + ceiling)"
+        },
+        {
+          "name": "whole_house_interior",
+          "unit": "house",
+          "cost_low": 2000,
+          "cost_mid": 4500,
+          "cost_high": 8000,
+          "notes": "Full interior paint (average 3-bed home)"
+        }
       ]
     },
     "siding_replacement": {
@@ -2264,6 +3101,88 @@
         "Financing with >10% interest disguised as 'payment plan'",
         "Claims that windows will 'pay for themselves' in energy savings",
         "Per-window costs >$1200 for vinyl, >$1500 for wood-clad standard sizes"
+      ],
+      "materials": [
+        {
+          "name": "vinyl_single_hung",
+          "unit": "window",
+          "cost_low": 150,
+          "cost_mid": 300,
+          "cost_high": 500,
+          "notes": "Vinyl single-hung window"
+        },
+        {
+          "name": "vinyl_double_hung",
+          "unit": "window",
+          "cost_low": 200,
+          "cost_mid": 400,
+          "cost_high": 650,
+          "notes": "Vinyl double-hung window"
+        },
+        {
+          "name": "wood_double_hung",
+          "unit": "window",
+          "cost_low": 400,
+          "cost_mid": 700,
+          "cost_high": 1200,
+          "notes": "Wood double-hung window"
+        },
+        {
+          "name": "fiberglass_window",
+          "unit": "window",
+          "cost_low": 500,
+          "cost_mid": 800,
+          "cost_high": 1300,
+          "notes": "Fiberglass frame window"
+        },
+        {
+          "name": "casement_window",
+          "unit": "window",
+          "cost_low": 250,
+          "cost_mid": 500,
+          "cost_high": 900,
+          "notes": "Casement (crank-out) window"
+        },
+        {
+          "name": "bay_window",
+          "unit": "window",
+          "cost_low": 1000,
+          "cost_mid": 2000,
+          "cost_high": 4000,
+          "notes": "Bay or bow window"
+        },
+        {
+          "name": "picture_window",
+          "unit": "window",
+          "cost_low": 300,
+          "cost_mid": 600,
+          "cost_high": 1200,
+          "notes": "Fixed picture window"
+        },
+        {
+          "name": "egress_window",
+          "unit": "window",
+          "cost_low": 1000,
+          "cost_mid": 2500,
+          "cost_high": 5000,
+          "notes": "Egress window with well (basement)"
+        },
+        {
+          "name": "low_e_upgrade",
+          "unit": "window",
+          "cost_low": 25,
+          "cost_mid": 50,
+          "cost_high": 100,
+          "notes": "Low-E glass coating upgrade"
+        },
+        {
+          "name": "triple_pane_upgrade",
+          "unit": "window",
+          "cost_low": 50,
+          "cost_mid": 100,
+          "cost_high": 200,
+          "notes": "Triple pane glass upgrade"
+        }
       ]
     },
     "flooring_installation": {

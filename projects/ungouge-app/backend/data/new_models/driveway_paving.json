@@ -1,0 +1,240 @@
+{
+  "project_type": "driveway_paving",
+  "display_name": "Driveway Paving & Repair",
+  "description": "Asphalt or concrete driveway installation, resurfacing, and repair",
+  "unit": "square_foot",
+  "unit_description": "square feet of driveway area",
+  "typical_project_sizes": {
+    "small": {
+      "square_feet": 400,
+      "description": "Single car, 10x40 ft"
+    },
+    "medium": {
+      "square_feet": 600,
+      "description": "Double wide, 12x50 ft"
+    },
+    "large": {
+      "square_feet": 1000,
+      "description": "Large or circular driveway"
+    }
+  },
+  "variants": {
+    "asphalt_new": {
+      "display_name": "New Asphalt Driveway",
+      "materials": {
+        "gravel_base": {
+          "cost_per_sqft": 0.75,
+          "range_low": 0.50,
+          "range_high": 1.25,
+          "notes": "4-6 inches compacted gravel, required for new installs"
+        },
+        "asphalt_binder": {
+          "cost_per_sqft": 1.50,
+          "range_low": 1.00,
+          "range_high": 2.00,
+          "notes": "2-3 inch base layer"
+        },
+        "asphalt_top": {
+          "cost_per_sqft": 1.25,
+          "range_low": 1.00,
+          "range_high": 1.75,
+          "notes": "1-1.5 inch finish layer"
+        }
+      },
+      "labor": {
+        "site_prep": {
+          "cost_per_sqft": 1.50,
+          "range_low": 1.00,
+          "range_high": 2.50,
+          "notes": "Excavation, grading, base compaction"
+        },
+        "paving": {
+          "cost_per_sqft": 1.75,
+          "range_low": 1.25,
+          "range_high": 2.50,
+          "notes": "Laying and compacting asphalt"
+        }
+      },
+      "total_per_sqft": {
+        "low": 5.00,
+        "mid": 7.00,
+        "high": 10.00
+      }
+    },
+    "asphalt_resurface": {
+      "display_name": "Asphalt Resurfacing (Overlay)",
+      "materials": {
+        "asphalt_overlay": {
+          "cost_per_sqft": 1.50,
+          "range_low": 1.00,
+          "range_high": 2.00,
+          "notes": "1.5-2 inch new layer over existing"
+        },
+        "tack_coat": {
+          "cost_per_sqft": 0.25,
+          "range_low": 0.15,
+          "range_high": 0.40,
+          "notes": "Adhesive between old and new layers"
+        }
+      },
+      "labor": {
+        "cleaning_prep": {
+          "cost_per_sqft": 0.50,
+          "range_low": 0.25,
+          "range_high": 0.75,
+          "notes": "Cleaning, crack filling, leveling"
+        },
+        "paving": {
+          "cost_per_sqft": 1.25,
+          "range_low": 1.00,
+          "range_high": 1.75,
+          "notes": "Laying and compacting overlay"
+        }
+      },
+      "total_per_sqft": {
+        "low": 3.00,
+        "mid": 4.00,
+        "high": 5.50
+      }
+    },
+    "concrete_new": {
+      "display_name": "New Concrete Driveway",
+      "materials": {
+        "gravel_base": {
+          "cost_per_sqft": 0.75,
+          "range_low": 0.50,
+          "range_high": 1.25,
+          "notes": "4 inches compacted gravel"
+        },
+        "concrete_4inch": {
+          "cost_per_sqft": 3.50,
+          "range_low": 2.75,
+          "range_high": 4.50,
+          "notes": "4 inch reinforced concrete slab"
+        },
+        "rebar_mesh": {
+          "cost_per_sqft": 0.50,
+          "range_low": 0.35,
+          "range_high": 0.75,
+          "notes": "Reinforcement mesh or rebar"
+        },
+        "forms": {
+          "cost_per_linear_foot": 2.50,
+          "range_low": 1.50,
+          "range_high": 3.50,
+          "notes": "Edge forms, typically 50-80 linear feet"
+        }
+      },
+      "labor": {
+        "site_prep": {
+          "cost_per_sqft": 2.00,
+          "range_low": 1.50,
+          "range_high": 3.00,
+          "notes": "Excavation, grading, form setting"
+        },
+        "pour_and_finish": {
+          "cost_per_sqft": 3.00,
+          "range_low": 2.25,
+          "range_high": 4.00,
+          "notes": "Pouring, leveling, finishing, curing"
+        }
+      },
+      "total_per_sqft": {
+        "low": 8.00,
+        "mid": 12.00,
+        "high": 16.00
+      }
+    },
+    "sealcoating": {
+      "display_name": "Asphalt Sealcoating",
+      "materials": {
+        "sealer": {
+          "cost_per_sqft": 0.20,
+          "range_low": 0.12,
+          "range_high": 0.30,
+          "notes": "Coal tar or asphalt-based sealer"
+        }
+      },
+      "labor": {
+        "cleaning_and_application": {
+          "cost_per_sqft": 0.25,
+          "range_low": 0.15,
+          "range_high": 0.40,
+          "notes": "Cleaning, crack filling, two-coat application"
+        }
+      },
+      "total_per_sqft": {
+        "low": 0.30,
+        "mid": 0.50,
+        "high": 0.75
+      },
+      "minimum_charge": 200,
+      "notes": "Most contractors have minimum charge of $200-400"
+    }
+  },
+  "typical_project_costs": {
+    "small_400sqft": {
+      "asphalt_new": {
+        "low": 2000,
+        "mid": 2800,
+        "high": 4000
+      },
+      "concrete_new": {
+        "low": 3200,
+        "mid": 4800,
+        "high": 6400
+      },
+      "sealcoating": {
+        "low": 200,
+        "mid": 250,
+        "high": 350
+      }
+    },
+    "medium_600sqft": {
+      "asphalt_new": {
+        "low": 3000,
+        "mid": 4200,
+        "high": 6000
+      },
+      "concrete_new": {
+        "low": 4800,
+        "mid": 7200,
+        "high": 9600
+      },
+      "sealcoating": {
+        "low": 200,
+        "mid": 300,
+        "high": 450
+      }
+    },
+    "large_1000sqft": {
+      "asphalt_new": {
+        "low": 5000,
+        "mid": 7000,
+        "high": 10000
+      },
+      "concrete_new": {
+        "low": 8000,
+        "mid": 12000,
+        "high": 16000
+      },
+      "sealcoating": {
+        "low": 300,
+        "mid": 500,
+        "high": 750
+      }
+    }
+  },
+  "red_flags": {
+    "asphalt_too_cheap": "Asphalt under $4/sqft for new work may indicate thin layers or poor base prep",
+    "no_base_work": "New driveways MUST have proper base - if they're paving over dirt, reject immediately",
+    "pressure_tactics": "Door-to-door contractors claiming 'leftover material' are a common scam",
+    "cash_only": "Reputable paving companies accept checks and cards",
+    "no_contract": "Always get written scope with layer thicknesses specified"
+  },
+  "regional_notes": {
+    "cold_climate": "Freeze-thaw cycles require thicker base (6+ inches) and proper drainage",
+    "hot_climate": "Consider heat-resistant asphalt formulations",
+    "high_water_table": "May need French drain or additional grading"
+  }
+}

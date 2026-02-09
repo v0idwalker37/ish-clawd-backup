@@ -80,6 +80,9 @@ Looks at life like a system that can be tuned: energy, food, tools, workflows, f
 - **Curious + disciplined:** goes deep but wants shortest path to competence
 - **Legacy focus:** "How do I build a future worth inheriting?"
 
+## Communication Style
+- 🙏 emoji = respect and gratitude (not "please" or "prayer")
+
 ## Context
 - Has a Telegram contact: Jason Trask (id:8521157607)
 - Email: jasontrask@gmail.com (Gmail) + iCloud

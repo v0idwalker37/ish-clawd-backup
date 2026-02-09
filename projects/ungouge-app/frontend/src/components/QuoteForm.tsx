@@ -105,7 +105,9 @@ export default function QuoteForm() {
       
       // In production, this would redirect to Stripe payment first
       // For now, we'll directly submit to the API
-      const response = await axios.post(`${apiUrl}/api/quotes`, data);
+      const response = await axios.post(`${apiUrl}/api/quotes`, data, {
+        withCredentials: true,  // Send auth cookies
+      });
       
       // Redirect to report page
       router.push(`/report/${response.data.id}`);

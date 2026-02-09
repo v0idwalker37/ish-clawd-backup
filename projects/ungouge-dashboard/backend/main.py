@@ -1,6 +1,7 @@
 """
 UnGouge Executive Dashboard - FastAPI Backend
 Server-side OAuth 2.0 redirect flow (no popups!)
+Build: 2026-02-09-1439 - Forces cache bust
 """
 
 from fastapi import FastAPI, HTTPException, Cookie, Response, Request, Depends
@@ -9,7 +10,7 @@ from fastapi.responses import FileResponse, RedirectResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional, List
-from datetime import datetime
+from datetime import datetime, timedelta
 import sqlite3
 import os
 import secrets
@@ -34,11 +35,33 @@ app = FastAPI(
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://dashboard.ungouge.ai"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# Security headers middleware
+@app.middleware("http")
+async def add_security_headers(request, call_next):
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    # CSP: Allow inline scripts (needed for current architecture) but restrict sources
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline' https://accounts.google.com; "
+        "style-src 'self' 'unsafe-inline'; "
+        "img-src 'self' data: https:; "
+        "connect-src 'self' https://accounts.google.com https://oauth2.googleapis.com; "
+        "frame-ancestors 'none'; "
+        "form-action 'self' https://accounts.google.com;"
+    )
+    return response
 
 # Startup event - initialize database
 @app.on_event("startup")
@@ -56,6 +79,10 @@ def startup_event():
     from database import seed_sample_data
     seed_sample_data()
     print("✅ Launch plan data seeded")
+    
+    # Clean up expired sessions on startup
+    cleanup_expired_sessions()
+    print("✅ Expired sessions cleaned up")
 
 # Static files
 static_dir = os.path.join(os.path.dirname(__file__), "static")
@@ -102,9 +129,22 @@ class Expense(BaseModel):
     recurring: bool = False
 
 
+# Track last cleanup time for periodic session cleanup
+_last_cleanup_time = None
+
 # Session verification dependency
-async def require_auth(session_token: Optional[str] = Cookie(None, alias="session_token")):
+# TODO [HIGH-01]: Add rate limiting to auth endpoints using slowapi
+# e.g. @limiter.limit("5/minute") on /auth/login, /auth/callback
+async def require_auth(request: Request):
     """Verify session token from cookie"""
+    # Periodically clean up expired sessions (at most once per hour)
+    global _last_cleanup_time
+    now = datetime.now()
+    if _last_cleanup_time is None or (now - _last_cleanup_time) > timedelta(hours=1):
+        _last_cleanup_time = now
+        cleanup_expired_sessions()
+
+    session_token = request.cookies.get("session_token")
     if not session_token:
         raise HTTPException(status_code=401, detail="Not authenticated")
     
@@ -119,8 +159,7 @@ async def require_auth(session_token: Optional[str] = Cookie(None, alias="sessio
 def read_root(
     request: Request,
     response: Response,
-    auth_token: Optional[str] = None,
-    session_token: Optional[str] = Cookie(None, alias="session_token")
+    auth_token: Optional[str] = None
 ):
     """Root route - serve login page or dashboard based on auth"""
     static_dir_path = os.path.join(os.path.dirname(__file__), "static")
@@ -148,9 +187,8 @@ def read_root(
         else:
             print(f"❌ Invalid auth token")
     
-    # Debug: print all cookies
-    print(f"🔍 All cookies: {request.cookies}")
-    print(f"🔍 Session token from Cookie param: {session_token}")
+    # Read cookie directly from request (more reliable than Cookie parameter)
+    session_token = request.cookies.get("session_token")
     
     # Check if authenticated via cookie
     if session_token:
@@ -161,7 +199,13 @@ def read_root(
             if os.path.exists(dashboard_path):
                 return FileResponse(dashboard_path)
         else:
-            print(f"❌ Invalid or expired session token: {session_token[:20]}...")
+            # Session invalid/expired - clear the stale cookie to prevent loops
+            print(f"❌ Invalid or expired session token - clearing cookie")
+            login_path = os.path.join(static_dir_path, "login.html")
+            if os.path.exists(login_path):
+                login_response = FileResponse(login_path)
+                login_response.delete_cookie(key="session_token", path="/")
+                return login_response
     else:
         print(f"❌ No session cookie present")
     
@@ -261,14 +305,23 @@ async def auth_callback(
         # Create session
         session_token = create_session(user_info)
         
-        # Redirect with token in URL, then set cookie on next page load
-        # This avoids SameSite cookie issues with redirects
-        response = RedirectResponse(url=f"/?auth_token={session_token}", status_code=302)
+        # Set session cookie directly on the redirect response
+        # This avoids exposing the token in the URL (HIGH-09)
+        response = RedirectResponse(url="/", status_code=302)
+        response.set_cookie(
+            key="session_token",
+            value=session_token,
+            httponly=True,
+            secure=True,
+            samesite="lax",
+            max_age=86400,  # 24 hours
+            path="/"
+        )
         
         # Clear state cookie
         response.delete_cookie(key="oauth_state")
         
-        print(f"✅ Session created for {user_info['email']}, redirecting with token")
+        print(f"✅ Session created for {user_info['email']}, redirecting to dashboard")
         return response
         
     except Exception as e:
@@ -301,10 +354,43 @@ async def auth_logout(
     return {"success": True}
 
 
+# Debug: list static files (protected — requires auth)
+@app.get("/api/debug/static")
+def debug_static(user_info: dict = Depends(require_auth)):
+    """List files in static directory"""
+    import glob
+    files = glob.glob(os.path.join(static_dir, "*.html"))
+    return {
+        "static_dir": static_dir,
+        "files": [os.path.basename(f) for f in files],
+        "exists": os.path.exists(static_dir)
+    }
+
 # API Health check
 @app.get("/api/health")
 def health_check():
-    return {"status": "healthy", "version": "2.0.0"}
+    """Health check with database stats"""
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM tasks")
+        task_count = cursor.fetchone()[0]
+        cursor.execute("SELECT COUNT(*) FROM projects")
+        # Debug marker - if you see this in /api/health, new code is deployed
+        BUILD_VERSION = "2026-02-09-1530"
+        project_count = cursor.fetchone()[0]
+        conn.close()
+        return {
+            "status": "healthy", 
+            "version": "2.0.0",
+            "build": BUILD_VERSION,
+            "db": {
+                "tasks": task_count,
+                "projects": project_count
+            }
+        }
+    except Exception as e:
+        return {"status": "error", "version": "2.0.0", "error": str(e)}
 
 
 # ===== PROJECTS =====
@@ -599,24 +685,217 @@ async def get_external_metrics(user_info: dict = Depends(require_auth)):
         }
 
 
+# ===== TIME CLOCK =====
+
+@app.post("/api/timeclock/in")
+def clock_in(user_info: dict = Depends(require_auth)):
+    """Clock in - create new time entry"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    user_email = user_info.get('email')
+    
+    # Check if already clocked in
+    cursor.execute("""
+        SELECT id FROM timeclock 
+        WHERE user_email = ? AND clock_out IS NULL
+        ORDER BY clock_in DESC LIMIT 1
+    """, (user_email,))
+    
+    if cursor.fetchone():
+        conn.close()
+        raise HTTPException(status_code=400, detail="Already clocked in")
+    
+    # Create new clock-in entry
+    clock_in_time = datetime.now().isoformat()
+    cursor.execute("""
+        INSERT INTO timeclock (user_email, clock_in, created_at)
+        VALUES (?, ?, ?)
+    """, (user_email, clock_in_time, datetime.now().isoformat()))
+    
+    entry_id = cursor.lastrowid
+    conn.commit()
+    conn.close()
+    
+    return {
+        "success": True,
+        "id": entry_id,
+        "clock_in": clock_in_time
+    }
+
+
+@app.post("/api/timeclock/out")
+def clock_out(user_info: dict = Depends(require_auth)):
+    """Clock out - close current time entry"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    user_email = user_info.get('email')
+    
+    # Find active clock-in entry
+    cursor.execute("""
+        SELECT id, clock_in FROM timeclock 
+        WHERE user_email = ? AND clock_out IS NULL
+        ORDER BY clock_in DESC LIMIT 1
+    """, (user_email,))
+    
+    row = cursor.fetchone()
+    if not row:
+        conn.close()
+        raise HTTPException(status_code=400, detail="Not clocked in")
+    
+    entry_id = row[0]
+    clock_in_time = datetime.fromisoformat(row[1])
+    clock_out_time = datetime.now()
+    
+    # Calculate duration in minutes
+    duration = (clock_out_time - clock_in_time).total_seconds() / 60
+    
+    # Update entry
+    cursor.execute("""
+        UPDATE timeclock 
+        SET clock_out = ?, duration_minutes = ?
+        WHERE id = ?
+    """, (clock_out_time.isoformat(), duration, entry_id))
+    
+    conn.commit()
+    conn.close()
+    
+    return {
+        "success": True,
+        "id": entry_id,
+        "clock_out": clock_out_time.isoformat(),
+        "duration_minutes": duration
+    }
+
+
+@app.get("/api/timeclock/stats")
+def get_timeclock_stats(user_info: dict = Depends(require_auth)):
+    """Get aggregated time clock statistics"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    user_email = user_info.get('email')
+    now = datetime.now()
+    
+    # Check if currently clocked in
+    cursor.execute("""
+        SELECT id, clock_in FROM timeclock 
+        WHERE user_email = ? AND clock_out IS NULL
+        ORDER BY clock_in DESC LIMIT 1
+    """, (user_email,))
+    
+    active_entry = cursor.fetchone()
+    is_clocked_in = active_entry is not None
+    current_session_start = active_entry[1] if active_entry else None
+    
+    # Today's hours (completed + current session)
+    today_start = now.replace(hour=0, minute=0, second=0, microsecond=0).isoformat()
+    cursor.execute("""
+        SELECT COALESCE(SUM(duration_minutes), 0) FROM timeclock
+        WHERE user_email = ? AND clock_in >= ?
+    """, (user_email, today_start))
+    today_minutes = cursor.fetchone()[0]
+    
+    # Add current session if clocked in
+    if is_clocked_in:
+        current_duration = (now - datetime.fromisoformat(current_session_start)).total_seconds() / 60
+        today_minutes += current_duration
+    
+    # This week's hours
+    week_start = (now - timedelta(days=now.weekday())).replace(
+        hour=0, minute=0, second=0, microsecond=0
+    ).isoformat()
+    cursor.execute("""
+        SELECT COALESCE(SUM(duration_minutes), 0) FROM timeclock
+        WHERE user_email = ? AND clock_in >= ?
+    """, (user_email, week_start))
+    week_minutes = cursor.fetchone()[0]
+    
+    if is_clocked_in:
+        week_minutes += current_duration
+    
+    # This month's hours
+    month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0).isoformat()
+    cursor.execute("""
+        SELECT COALESCE(SUM(duration_minutes), 0) FROM timeclock
+        WHERE user_email = ? AND clock_in >= ?
+    """, (user_email, month_start))
+    month_minutes = cursor.fetchone()[0]
+    
+    if is_clocked_in:
+        month_minutes += current_duration
+    
+    conn.close()
+    
+    return {
+        "is_clocked_in": is_clocked_in,
+        "current_session_start": current_session_start,
+        "today_hours": round(today_minutes / 60, 2),
+        "week_hours": round(week_minutes / 60, 2),
+        "month_hours": round(month_minutes / 60, 2)
+    }
+
+
 # Serve HTML pages explicitly (more reliable than StaticFiles mount)
 static_dir = os.path.join(os.path.dirname(__file__), "static")
 
+def _require_session_or_redirect(request: Request):
+    """Helper: check session cookie, redirect to login if invalid."""
+    session_token = request.cookies.get("session_token")
+    if not session_token or not verify_session(session_token):
+        return RedirectResponse(url="/login.html")
+    return None
+
+
 @app.get("/tasks.html")
-def serve_tasks_page():
+def serve_tasks_page(request: Request):
+    redirect = _require_session_or_redirect(request)
+    if redirect:
+        return redirect
     return FileResponse(os.path.join(static_dir, "tasks.html"))
 
 @app.get("/expenses.html")
-def serve_expenses_page():
+def serve_expenses_page(request: Request):
+    redirect = _require_session_or_redirect(request)
+    if redirect:
+        return redirect
     return FileResponse(os.path.join(static_dir, "expenses.html"))
 
 @app.get("/project-detail.html")
-def serve_project_detail_page():
+def serve_project_detail_page(request: Request):
+    redirect = _require_session_or_redirect(request)
+    if redirect:
+        return redirect
     return FileResponse(os.path.join(static_dir, "project-detail.html"))
 
 @app.get("/settings.html")
-def serve_settings_page():
+def serve_settings_page(request: Request):
+    redirect = _require_session_or_redirect(request)
+    if redirect:
+        return redirect
     return FileResponse(os.path.join(static_dir, "settings.html"))
+
+@app.get("/projects.html")
+def serve_projects_page(request: Request):
+    redirect = _require_session_or_redirect(request)
+    if redirect:
+        return redirect
+    return FileResponse(os.path.join(static_dir, "projects.html"))
+
+@app.get("/projects-ungouge.html")
+def serve_projects_ungouge_page(request: Request):
+    redirect = _require_session_or_redirect(request)
+    if redirect:
+        return redirect
+    return FileResponse(os.path.join(static_dir, "projects-ungouge.html"))
+
+@app.get("/projects-youtube.html")
+def serve_projects_youtube_page(request: Request):
+    redirect = _require_session_or_redirect(request)
+    if redirect:
+        return redirect
+    return FileResponse(os.path.join(static_dir, "projects-youtube.html"))
 
 @app.get("/login.html")
 def serve_login_page():

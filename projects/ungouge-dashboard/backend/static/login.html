@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sign In - UnGouge Executive Dashboard</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     <style>
         * {
             margin: 0;
@@ -179,8 +180,33 @@
     </div>
 
     <script>
-        // Check for error parameter in URL
+        // Check if already authenticated - redirect to dashboard
+        // But don't create redirect loops
         const urlParams = new URLSearchParams(window.location.search);
+        const hasError = urlParams.has('error');
+        
+        if (!hasError) {
+            fetch('/auth/status', { credentials: 'include' })
+                .then(r => {
+                    if (!r.ok) {
+                        console.log('Auth status check returned non-200, staying on login');
+                        return { authenticated: false };
+                    }
+                    return r.json();
+                })
+                .then(data => {
+                    console.log('Auth status:', data);
+                    if (data.authenticated) {
+                        console.log('Already authenticated, redirecting to dashboard');
+                        window.location.href = '/';
+                    }
+                })
+                .catch((err) => {
+                    console.log('Auth check error, staying on login:', err);
+                }); // Ignore errors, stay on login page
+        }
+        
+        // Check for error parameter in URL (reuse urlParams from above)
         const error = urlParams.get('error');
         
         if (error) {

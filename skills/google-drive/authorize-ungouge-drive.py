@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+"""Authorize Google Drive API for Ungouge project"""
+from google_auth_oauthlib.flow import Flow
+import json
+
+# Load Ungouge credentials
+with open('/Users/moltbot/clawd/skills/google-drive/ungouge-oauth-credentials.json', 'r') as f:
+    CLIENT_CONFIG = json.load(f)
+
+SCOPES = ['https://www.googleapis.com/auth/drive.file']
+
+# Create flow
+flow = Flow.from_client_config(CLIENT_CONFIG, scopes=SCOPES)
+flow.redirect_uri = 'http://localhost:8080/'
+
+# Generate authorization URL
+auth_url, state = flow.authorization_url(
+    access_type='offline',
+    include_granted_scopes='true',
+    prompt='consent'
+)
+
+print("\n" + "="*80)
+print("🔐 UNGOUGE DRIVE API AUTHORIZATION")
+print("="*80)
+print("\n📋 Click this link to authorize Drive API access:")
+print(f"\n{auth_url}\n")
+print("⚠️  Select: void@ungouge.ai")
+print("="*80 + "\n")
+print(f"State: {state}")

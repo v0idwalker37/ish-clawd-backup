@@ -3,12 +3,31 @@ Payment Service (Stripe Integration)
 
 Handles payment processing for quote analysis reports.
 
-TODO: Full Stripe integration
-1. Create payment intents
-2. Handle webhooks for payment confirmation
-3. Implement refund logic
-4. Add payment method saving for bundles
-5. Implement subscription handling if needed
+STATUS: Partially scaffolded — the basic Stripe API calls are wired up,
+but critical production pieces are still missing.
+
+## What's IMPLEMENTED (scaffolded):
+  - create_payment_intent() — creates a Stripe PaymentIntent with error handling ✅
+  - verify_payment() — retrieves intent and checks status ✅
+  - handle_webhook() — constructs event from signature, basic event routing ✅
+  - create_refund() — calls Stripe Refund API ✅
+  - create_bundle_purchase() — maps bundle type → amount, calls create_payment_intent ✅
+  - BUNDLE_PRICES constant ✅
+
+## What's MISSING (must implement before launch):
+  1. Database persistence — none of these functions write to the Payment model.
+     After each successful create/verify/refund, persist to the `payments` table.
+  2. Webhook → report generation — handle_webhook logs but doesn't trigger
+     the analysis pipeline. Wire `payment_intent.succeeded` to kick off
+     report generation via the analysis service.
+  3. Bundle credit system — create_bundle_purchase doesn't credit the user.
+     Need a `user_credits` table (user_id, credits_remaining, bundle_id).
+  4. Idempotency — create_payment_intent should accept an idempotency_key
+     (Stripe supports this via `stripe_idempotency_key` header) to prevent
+     duplicate charges on retries.
+  5. Webhook signature validation — STRIPE_WEBHOOK_SECRET env var must be set
+     in production. Add a startup check similar to JWT_SECRET_KEY.
+  6. Logging — replace remaining `print()` calls with structured logger.
 """
 
 import os
@@ -138,10 +157,18 @@ async def verify_payment(payment_intent_id: str) -> bool:
     Returns:
         True if payment successful, False otherwise
     """
+    # TODO: Implementation steps:
+    #   1. Retrieve payment intent from Stripe (done below)
+    #   2. Verify status is 'succeeded'
+    #   3. Update the Payment record in the database (status, verified_at timestamp)
+    #   4. If succeeded, trigger report generation via analysis service
+    #   5. Replace print() with structured logger (log_error / log_info)
     try:
         payment_intent = stripe.PaymentIntent.retrieve(payment_intent_id)
+        # TODO: Update Payment model in DB: UPDATE payments SET status = payment_intent.status WHERE stripe_payment_intent_id = ...
         return payment_intent.status == "succeeded"
     except stripe.error.StripeError as e:
+        # TODO: Replace with: log_error("stripe_verify_error", str(e), {"payment_intent_id": payment_intent_id})
         print(f"Stripe error verifying payment: {str(e)}")
         return False
 
@@ -176,14 +203,22 @@ async def handle_webhook(payload: bytes, sig_header: str) -> dict:
         raise Exception("Invalid signature")
     
     # Handle the event
+    # TODO: Implementation steps for each event type:
+    #   - Persist event to DB for audit trail (event_id, type, payload, received_at)
+    #   - Use idempotency: check if event_id already processed before acting
     if event.type == "payment_intent.succeeded":
         payment_intent = event.data.object
-        # TODO: Trigger report generation
+        # TODO: 1. Update Payment record status to 'succeeded'
+        #       2. Call analysis_service.generate_report(quote_id) to kick off report
+        #       3. Send email notification via email_service.send_report_ready()
+        #       4. Replace print() with structured logger
         print(f"Payment succeeded for: {payment_intent.metadata.get('quote_id')}")
     
     elif event.type == "payment_intent.payment_failed":
         payment_intent = event.data.object
-        # TODO: Notify user of payment failure
+        # TODO: 1. Update Payment record status to 'failed'
+        #       2. Send failure notification email to user
+        #       3. Replace print() with structured logger
         print(f"Payment failed for: {payment_intent.metadata.get('quote_id')}")
     
     return {"status": "success", "event_type": event.type}
@@ -256,6 +291,11 @@ async def create_bundle_purchase(
         quote_id=f"bundle_{user_id}_{bundle_type}",
     )
     
-    # TODO: Create credit record in database
+    # TODO: Implementation steps for bundle credits:
+    #   1. Create a `user_credits` table: (id, user_id, credits_remaining, bundle_type, purchased_at)
+    #   2. After payment succeeds, INSERT credit record with correct number of credits
+    #      - single: 1 credit, three_pack: 3, five_pack: 5
+    #   3. When user requests a report, decrement credits_remaining
+    #   4. Add a GET /api/user/credits endpoint for frontend to display balance
     
     return payment_intent

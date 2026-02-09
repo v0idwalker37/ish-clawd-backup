@@ -2,6 +2,10 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import os
+
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -12,12 +16,17 @@ from pydantic import BaseModel
 from routers import quotes, health, auth
 from models.database import engine, Base
 
+# HIGH-08: Conditional HTTPS redirect for production deployments
+ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
+if ENVIRONMENT == "production":
+    from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
+
 # Initialize rate limiter
 limiter = Limiter(key_func=get_remote_address, default_limits=["100/minute"])
 
 # CSRF Protection Configuration
 class CsrfSettings(BaseModel):
-    secret_key: str = os.getenv("JWT_SECRET_KEY", "your-secret-key-change-in-production")
+    secret_key: str = os.environ["CSRF_SECRET_KEY"] if "CSRF_SECRET_KEY" in os.environ else os.environ["JWT_SECRET_KEY"]  # Fail if not set
     cookie_samesite: str = "strict"
     cookie_secure: bool = os.getenv("ENVIRONMENT") == "production"
     cookie_httponly: bool = True
@@ -29,6 +38,9 @@ def get_csrf_config():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Startup and shutdown events"""
+    # Ensure all models are imported so create_all picks up their tables
+    from services.token_blacklist import BlacklistedToken  # noqa: F401 — registers token_blacklist table
+
     # Create database tables on startup
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
@@ -42,6 +54,10 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan,
 )
+
+# HIGH-08: Add HTTPS redirect middleware in production (must be added before other middleware)
+if ENVIRONMENT == "production":
+    app.add_middleware(HTTPSRedirectMiddleware)
 
 # Configure rate limiter
 app.state.limiter = limiter

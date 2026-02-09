@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tasks - UnGouge Dashboard</title>
     <style>
         * {
@@ -11,12 +11,51 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: #e2e8f0;
             min-height: 100vh;
             padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+
+            .filter-group select,
+            .filter-group input {
+                width: 100%;
+            }
+
+            .task-card {
+                padding: 14px;
+            }
         }
 
         .header {
@@ -216,6 +255,14 @@
                     <input type="text" id="newTaskTitle" required style="width: 100%; padding: 10px; background: #0f172a; border: 1px solid #334155; border-radius: 6px; color: #fff; font-size: 14px;">
                 </div>
                 <div style="margin-bottom: 16px;">
+                    <label style="display: block; margin-bottom: 6px; color: #94a3b8; font-size: 13px;">Category *</label>
+                    <select id="newTaskCategory" required style="width: 100%; padding: 10px; background: #0f172a; border: 1px solid #334155; border-radius: 6px; color: #fff; font-size: 14px;">
+                        <option value="">Select category...</option>
+                        <option value="ungouge">Ungouge.ai</option>
+                        <option value="yt">YouTube / Content</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 16px;">
                     <label style="display: block; margin-bottom: 6px; color: #94a3b8; font-size: 13px;">Project *</label>
                     <select id="newTaskProject" required style="width: 100%; padding: 10px; background: #0f172a; border: 1px solid #334155; border-radius: 6px; color: #fff; font-size: 14px;">
                         <option value="">Select project...</option>
@@ -283,6 +330,13 @@
                 <option value="">All Projects</option>
             </select>
         </div>
+        <div class="filter-group" style="justify-content: center;">
+            <label>&nbsp;</label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 8px 12px; background: #0f172a; border: 1px solid #334155; border-radius: 6px;">
+                <input type="checkbox" id="hideCompleted" style="width: 16px; height: 16px; cursor: pointer;">
+                <span style="font-size: 14px; text-transform: none;">Hide Completed</span>
+            </label>
+        </div>
     </div>
 
     <div id="tasksContainer">
@@ -290,6 +344,14 @@
     </div>
 
     <script>
+        // XSS Protection: escape user-supplied text before rendering in HTML
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
         let allTasks = [];
         let projects = {};
 
@@ -297,12 +359,22 @@
         async function loadData() {
             try {
                 const [tasksRes, projectsRes] = await Promise.all([
-                    fetch('/tasks'),
-                    fetch('/projects')
+                    fetch('/tasks', { credentials: 'include' }),
+                    fetch('/projects', { credentials: 'include' })
                 ]);
+                
+                // Check for auth errors
+                if (tasksRes.status === 401) {
+                    console.error('Auth failed for /tasks');
+                    window.location.href = '/login.html';
+                    return;
+                }
                 
                 const tasksData = await tasksRes.json();
                 const projectsData = await projectsRes.json();
+                
+                console.log('Tasks loaded:', tasksData);
+                console.log('Projects loaded:', projectsData);
                 
                 allTasks = tasksData.tasks || [];
                 projects = Object.fromEntries(
@@ -322,7 +394,7 @@
             } catch (error) {
                 console.error('Error loading data:', error);
                 document.getElementById('tasksContainer').innerHTML = 
-                    '<div class="empty-state"><h2>Error loading tasks</h2><p>Please refresh the page</p></div>';
+                    '<div class="empty-state"><h2>Error loading tasks</h2><p>Please refresh the page. Error: ' + error.message + '</p></div>';
             }
         }
 
@@ -331,12 +403,19 @@
             const statusFilter = document.getElementById('statusFilter').value;
             const priorityFilter = document.getElementById('priorityFilter').value;
             const projectFilter = document.getElementById('projectFilter').value;
+            const hideCompleted = document.getElementById('hideCompleted').checked;
 
             let filtered = allTasks.filter(task => {
+                // Hide completed checkbox
+                if (hideCompleted && task.status === 'done') return false;
+                // Search filter
                 if (searchTerm && !task.title.toLowerCase().includes(searchTerm)) return false;
+                // Status filter (normalize both values for comparison)
                 if (statusFilter && task.status !== statusFilter) return false;
+                // Priority filter
                 if (priorityFilter && task.priority !== priorityFilter) return false;
-                if (projectFilter && task.project_id != projectFilter) return false;
+                // Project filter (use == for type coercion since one might be string)
+                if (projectFilter && String(task.project_id) !== String(projectFilter)) return false;
                 return true;
             });
 
@@ -347,18 +426,20 @@
                 return;
             }
 
-            container.innerHTML = '<div class="tasks-grid">' + filtered.map(task => `
-                <div class="task-card ${task.priority}" data-task-id="${task.id}">
+            // Show count header
+            const countText = `Showing ${filtered.length} of ${allTasks.length} tasks`;
+            container.innerHTML = `<div style="margin-bottom: 16px; color: #94a3b8; font-size: 14px;">${countText}</div>` + '<div class="tasks-grid">' + filtered.map(task => `
+                <div class="task-card ${escapeHtml(task.priority)}" data-task-id="${task.id}">
                     <div class="task-header">
                         <div>
-                            <div class="task-title">${task.title}</div>
-                            <div class="task-project">${projects[task.project_id] || 'Unknown Project'}</div>
+                            <div class="task-title">${escapeHtml(task.title)}</div>
+                            <div class="task-project">${escapeHtml(projects[task.project_id] || 'Unknown Project')}</div>
                         </div>
                         <div>
-                            <span class="status-badge ${task.status}">${task.status.replace('_', ' ')}</span>
+                            <span class="status-badge ${escapeHtml(task.status)}">${escapeHtml(task.status.replace('_', ' '))}</span>
                         </div>
                     </div>
-                    ${task.description ? `<p style="color: #94a3b8; font-size: 14px; margin-top: 10px;">${task.description}</p>` : ''}
+                    ${task.description ? `<p style="color: #94a3b8; font-size: 14px; margin-top: 10px;">${escapeHtml(task.description)}</p>` : ''}
                     <div class="task-meta">
                         <span class="priority-badge ${task.priority}">Priority: ${task.priority}</span>
                         ${task.due_date ? `<span>📅 Due: ${new Date(task.due_date).toLocaleDateString()}</span>` : ''}
@@ -382,6 +463,7 @@
                 const response = await fetch(`/tasks/${taskId}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
                     body: JSON.stringify({ status: 'done', completed_at: new Date().toISOString() })
                 });
 
@@ -403,18 +485,44 @@
         document.getElementById('statusFilter').addEventListener('change', renderTasks);
         document.getElementById('priorityFilter').addEventListener('change', renderTasks);
         document.getElementById('projectFilter').addEventListener('change', renderTasks);
+        document.getElementById('hideCompleted').addEventListener('change', renderTasks);
+
+        // Project category mappings
+        const categoryProjects = {
+            'ungouge': ['Ungouge.ai Platform', 'Executive Dashboard', 'Business Operations'],
+            'yt': ['YouTube Channel', 'Content Library', 'Podcast Distribution']
+        };
+
+        // Filter projects by category
+        function updateProjectsForCategory() {
+            const category = document.getElementById('newTaskCategory').value;
+            const projectSelect = document.getElementById('newTaskProject');
+            projectSelect.innerHTML = '<option value="">Select project...</option>';
+            
+            if (!category) return;
+            
+            const allowedNames = categoryProjects[category] || [];
+            Object.entries(projects).forEach(([id, name]) => {
+                if (allowedNames.includes(name)) {
+                    const option = document.createElement('option');
+                    option.value = id;
+                    option.textContent = name;
+                    projectSelect.appendChild(option);
+                }
+            });
+            
+            // Auto-select if only one project
+            if (projectSelect.options.length === 2) {
+                projectSelect.selectedIndex = 1;
+            }
+        }
 
         // Modal functions
         function showCreateModal() {
-            // Populate project dropdown in modal
+            // Reset category and project dropdowns
+            document.getElementById('newTaskCategory').value = '';
             const projectSelect = document.getElementById('newTaskProject');
             projectSelect.innerHTML = '<option value="">Select project...</option>';
-            Object.entries(projects).forEach(([id, name]) => {
-                const option = document.createElement('option');
-                option.value = id;
-                option.textContent = name;
-                projectSelect.appendChild(option);
-            });
             
             document.getElementById('createModal').style.display = 'flex';
         }
@@ -441,6 +549,7 @@
                 const response = await fetch('/tasks', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
                     body: JSON.stringify(taskData)
                 });
 
@@ -463,6 +572,9 @@
                 hideCreateModal();
             }
         });
+
+        // Update projects when category changes
+        document.getElementById('newTaskCategory').addEventListener('change', updateProjectsForCategory);
 
         // Load data on page load
         loadData();

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ungouge.ai — Know Before You Sign</title>
+    <meta name="description" content="Stop overpaying for home improvements. Ungouge analyzes your contractor quotes with real market data. Launching soon.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ungouge.ai — Know Before You Sign">
+    <meta property="og:description" content="Stop overpaying for home improvements. Data-driven quote verification, coming soon.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ungouge.ai">
+    <meta property="og:image" content="https://ungouge.ai/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ungouge.ai — Know Before You Sign">
+    <meta name="twitter:description" content="Stop overpaying for home improvements. Data-driven quote verification.">
+    <meta name="twitter:image" content="https://ungouge.ai/og-image.png">
+    
+    <!-- Favicon (simple inline SVG) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: #f8fafc;
+        }
+        
+        .container {
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tagline {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlight {
+            color: #10b981;
+        }
+        
+        .description {
+            font-size: 1.125rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+        
+        .cta-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+        }
+        
+        .email-form {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .email-input {
+            padding: 0.875rem 1.25rem;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: #f8fafc;
+            min-width: 280px;
+        }
+        
+        .email-input::placeholder {
+            color: #64748b;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            border-color: #10b981;
+        }
+        
+        .submit-btn {
+            padding: 0.875rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        .promise {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            color: #475569;
+            font-size: 0.85rem;
+        }
+        
+        .footer a {
+            color: #64748b;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            color: #10b981;
+        }
+        
+        .success-message {
+            display: none;
+            padding: 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 0.5rem;
+            color: #10b981;
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.875rem;
+            }
+            .email-input {
+                min-width: 100%;
+            }
+            .submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Ungouge.ai</div>
+        <p class="tagline">Know Before You Sign</p>
+        
+        <h1>Stop overpaying for <span class="highlight">home improvements</span></h1>
+        
+        <p class="description">
+            Submit your contractor quote. Get instant analysis powered by real market data. 
+            Know if you're getting a fair deal — before you sign.
+        </p>
+        
+        <div class="features">
+            <span class="feature">📊 Data-Driven Analysis</span>
+            <span class="feature">🛡️ No Lead Generation</span>
+            <span class="feature">🔒 Your Data Stays Yours</span>
+            <span class="feature">🇺🇸 Nationwide Coverage</span>
+        </div>
+        
+        <div class="cta-section">
+            <p class="cta-title">Get notified when we launch</p>
+            <form class="email-form" id="signup-form" action="https://formspree.io/f/placeholder" method="POST">
+                <input 
+                    type="email" 
+                    name="email" 
+                    class="email-input" 
+                    placeholder="your@email.com" 
+                    required
+                >
+                <button type="submit" class="submit-btn">Notify Me</button>
+            </form>
+            <p class="promise">🔒 No spam, ever. We hate that too.</p>
+            <div class="success-message" id="success">
+                ✅ You're on the list! We'll be in touch soon.
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <p>© 2026 Ungouge.ai · <a href="mailto:hello@ungouge.ai">hello@ungouge.ai</a></p>
+        </footer>
+    </div>
+    
+    <script>
+        // Simple form handling - replace formspree URL with real one
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            // For now, just show success message (no backend)
+            e.preventDefault();
+            document.querySelector('.email-form').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+            
+            // Uncomment when you have a real form endpoint:
+            // this.submit();
+        });
+    </script>
+</body>
+</html>

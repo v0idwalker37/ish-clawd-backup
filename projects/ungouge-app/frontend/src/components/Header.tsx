@@ -1,28 +1,48 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { Menu, X, User, FileText, Settings, LogOut, ChevronDown } from 'lucide-react';
 
 export default function Header() {
   const router = useRouter();
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [user, setUser] = useState<{ name: string; email: string } | null>(null);
+  const [authChecked, setAuthChecked] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  
+  // Check if we're on a dashboard page (must be AFTER all hooks, BEFORE early return)
+  const isDashboard = pathname?.startsWith('/dashboard');
 
   useEffect(() => {
-    // Check if user is logged in
-    const token = localStorage.getItem('token');
-    if (token) {
-      // In a real app, fetch user data from API
-      // For now, use mock data
-      setUser({
-        name: 'John Doe',
-        email: 'john@example.com',
-      });
-    }
+    // Check if user is logged in by calling API
+    const checkAuth = async () => {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+        const response = await fetch(`${apiUrl}/api/auth/me`, {
+          credentials: 'include',
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          setUser({
+            name: data.name,
+            email: data.email,
+          });
+        } else {
+          setUser(null);
+        }
+      } catch {
+        // Not logged in or error - just don't show user menu
+        setUser(null);
+      }
+    };
+    
+    checkAuth();
   }, []);
 
   useEffect(() => {
@@ -37,8 +57,26 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
+  // Don't render header on dashboard pages (dashboard has its own nav)
+  // This MUST be after all hooks to avoid "rendered fewer hooks" error
+  if (isDashboard) {
+    return null;
+  }
+
+  const handleLogout = async () => {
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      await fetch(`${apiUrl}/api/auth/logout`, {
+        method: 'POST',
+        credentials: 'include',
+      });
+    } catch {
+      // Even if logout API fails, clear local state
+    }
+    
+    // Clear any local state
+    localStorage.clear();
+    sessionStorage.clear();
     setUser(null);
     setUserMenuOpen(false);
     router.push('/');
@@ -50,9 +88,13 @@ export default function Header() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="text-2xl font-bold text-primary-600">
-              Ungouge<span className="text-gray-900">.ai</span>
-            </div>
+            <Image
+              src="/images/logo-small.png"
+              alt="Ungouge.ai"
+              width={150}
+              height={47}
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

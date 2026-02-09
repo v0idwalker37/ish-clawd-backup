@@ -56,10 +56,10 @@ export default function FileUpload({ onFileProcessed, onError }: FileUploadProps
   }
 
   const handleFile = (file: File) => {
-    // Validate file type
-    const validTypes = ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg', 'image/heic']
+    // Validate file type (must match backend validators.py ALLOWED_CONTENT_TYPES)
+    const validTypes = ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg']
     if (!validTypes.includes(file.type)) {
-      onError('Please upload a PDF or image file (PNG, JPG, HEIC)')
+      onError('Please upload a PDF or image file (PNG, JPG)')
       return
     }
 
@@ -84,8 +84,10 @@ export default function FileUpload({ onFileProcessed, onError }: FileUploadProps
       formData.append('file', file)
 
       // Upload to backend
-      const response = await fetch('/api/quotes/parse-upload', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+      const response = await fetch(`${apiUrl}/api/quotes/parse-upload`, {
         method: 'POST',
+        credentials: 'include',  // Send auth cookies
         body: formData,
       })
 
@@ -154,7 +156,7 @@ export default function FileUpload({ onFileProcessed, onError }: FileUploadProps
             type="file"
             id="file-upload"
             className="hidden"
-            accept=".pdf,.png,.jpg,.jpeg,.heic"
+            accept=".pdf,.png,.jpg,.jpeg"
             onChange={handleFileInput}
           />
           
@@ -173,7 +175,7 @@ export default function FileUpload({ onFileProcessed, onError }: FileUploadProps
               or <span className="text-blue-600 font-semibold">click to browse</span>
             </p>
             <p className="text-xs sm:text-sm text-gray-500">
-              Supports PDF, PNG, JPG, HEIC • Max 10MB
+              Supports PDF, PNG, JPG • Max 10MB
             </p>
           </label>
         </div>

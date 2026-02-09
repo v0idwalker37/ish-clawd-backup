@@ -44,6 +44,11 @@ class User(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)  # Indexed: for sorting user lists
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
+    # MFA (Email OTP) fields
+    mfa_enabled: Mapped[bool] = mapped_column(default=False)
+    mfa_code: Mapped[Optional[str]] = mapped_column(String(6), nullable=True)  # 6-digit OTP
+    mfa_code_expires: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    
     # Relationships
     quotes: Mapped[List["Quote"]] = relationship(back_populates="user")
 

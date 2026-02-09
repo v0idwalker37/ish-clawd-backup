@@ -4,16 +4,19 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 
 ## Model Usage Preference
 
-**Auto-escalate to Opus when:**
+**ALWAYS use Opus 4.6 for:**
+- ALL coding tasks (no exceptions)
+- ALL sub-agents that write code
 - Complex reasoning/architecture decisions
 - Multi-step research or deep analysis
 - High-stakes tasks (financial, business decisions)
-- Code involving multiple files or system design
 - Anything ambiguous that needs careful judgment
 
-**Always announce the switch:** "Switching to Opus for this — [reason]" so Jason learns the pattern.
+**Jason's explicit instruction (Feb 6):** "YES! :)" — Switch to 4.6 for all coding work
 
-**Default:** Sonnet 4.5 for routine chat, quick questions, file ops, automation
+**Sonnet 4.5 only for:** Routine chat, quick questions, simple file reads, heartbeat checks
+
+**Always announce the switch:** "Switching to Opus 4.6 for this — [reason]" so Jason learns the pattern.
 
 ## Apple Calendar
 
@@ -32,10 +35,11 @@ Things like:
 
 ## Weather
 
-- **Location:** Northfield, Vermont (more accurate than state-wide)
+- **Location:** Jason's exact coordinates: 44.0566°N, -72.6525°W (Northfield, Vermont)
 - **Format:** Fahrenheit primary, Celsius in parentheses
-- **Query:** `curl -s "wttr.in/Northfield+Vermont?u&format=..."`
-  - `?u` flag forces USCS/imperial units (Fahrenheit)
+- **Source:** Open-Meteo (more accurate than wttr.in)
+- **Query:** `curl -s "https://api.open-meteo.com/v1/forecast?latitude=44.0566&longitude=-72.6525&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&timezone=America/New_York"`
+- **Backup:** `curl -s "wttr.in/Northfield+Vermont?u&format=..."` (less accurate)
 
 ## Examples
 

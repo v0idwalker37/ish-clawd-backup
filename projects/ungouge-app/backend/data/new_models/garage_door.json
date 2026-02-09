@@ -1,0 +1,242 @@
+{
+  "project_type": "garage_door_replacement",
+  "display_name": "Garage Door Replacement",
+  "description": "Garage door replacement including door, hardware, and opener",
+  "unit": "door",
+  "unit_description": "per garage door",
+  "typical_project_sizes": {
+    "single": {
+      "width": "8-9 feet",
+      "description": "Single car garage door"
+    },
+    "double": {
+      "width": "16-18 feet",
+      "description": "Double car garage door"
+    }
+  },
+  "door_types": {
+    "steel_non_insulated": {
+      "display_name": "Basic Steel (Non-Insulated)",
+      "single_door": {
+        "cost": 450,
+        "range_low": 350,
+        "range_high": 600
+      },
+      "double_door": {
+        "cost": 700,
+        "range_low": 550,
+        "range_high": 900
+      },
+      "notes": "Entry-level, no insulation, limited styles"
+    },
+    "steel_insulated": {
+      "display_name": "Insulated Steel",
+      "single_door": {
+        "cost": 800,
+        "range_low": 600,
+        "range_high": 1100
+      },
+      "double_door": {
+        "cost": 1200,
+        "range_low": 900,
+        "range_high": 1600
+      },
+      "notes": "R-value 6-12, most popular choice, variety of styles"
+    },
+    "steel_premium_insulated": {
+      "display_name": "Premium Insulated Steel",
+      "single_door": {
+        "cost": 1400,
+        "range_low": 1100,
+        "range_high": 1800
+      },
+      "double_door": {
+        "cost": 2200,
+        "range_low": 1700,
+        "range_high": 2800
+      },
+      "notes": "R-value 12-18, carriage house styles, decorative hardware"
+    },
+    "wood": {
+      "display_name": "Wood (Cedar/Redwood)",
+      "single_door": {
+        "cost": 2000,
+        "range_low": 1500,
+        "range_high": 3000
+      },
+      "double_door": {
+        "cost": 3500,
+        "range_low": 2500,
+        "range_high": 5000
+      },
+      "notes": "Requires maintenance, beautiful but high-maintenance"
+    },
+    "fiberglass": {
+      "display_name": "Fiberglass",
+      "single_door": {
+        "cost": 1200,
+        "range_low": 900,
+        "range_high": 1700
+      },
+      "double_door": {
+        "cost": 1800,
+        "range_low": 1400,
+        "range_high": 2500
+      },
+      "notes": "Good for salt air/coastal, dent-resistant"
+    },
+    "aluminum_glass": {
+      "display_name": "Aluminum & Glass (Contemporary)",
+      "single_door": {
+        "cost": 2500,
+        "range_low": 1800,
+        "range_high": 4000
+      },
+      "double_door": {
+        "cost": 4000,
+        "range_low": 3000,
+        "range_high": 6000
+      },
+      "notes": "Modern style, frosted or clear glass panels"
+    }
+  },
+  "openers": {
+    "chain_drive": {
+      "display_name": "Chain Drive Opener",
+      "cost": 250,
+      "range_low": 180,
+      "range_high": 350,
+      "notes": "Reliable but loud, best value"
+    },
+    "belt_drive": {
+      "display_name": "Belt Drive Opener",
+      "cost": 350,
+      "range_low": 280,
+      "range_high": 450,
+      "notes": "Quiet operation, recommended for attached garages"
+    },
+    "screw_drive": {
+      "display_name": "Screw Drive Opener",
+      "cost": 300,
+      "range_low": 230,
+      "range_high": 400,
+      "notes": "Fewer moving parts, moderate noise"
+    },
+    "wall_mount": {
+      "display_name": "Wall-Mount (Jackshaft)",
+      "cost": 500,
+      "range_low": 400,
+      "range_high": 650,
+      "notes": "Frees ceiling space, quiet, premium option"
+    },
+    "smart_features": {
+      "wifi_enabled": {
+        "additional_cost": 50,
+        "range": "30-100",
+        "notes": "Smartphone control, most new units include"
+      },
+      "battery_backup": {
+        "additional_cost": 75,
+        "range": "50-125",
+        "notes": "Operates during power outages"
+      },
+      "camera_integration": {
+        "additional_cost": 100,
+        "range": "75-150",
+        "notes": "Built-in camera for security"
+      }
+    }
+  },
+  "labor": {
+    "door_removal": {
+      "cost_per_door": 75,
+      "range_low": 50,
+      "range_high": 125,
+      "notes": "Includes disposal of old door"
+    },
+    "door_installation": {
+      "single_door": {
+        "cost": 300,
+        "range_low": 200,
+        "range_high": 450
+      },
+      "double_door": {
+        "cost": 400,
+        "range_low": 300,
+        "range_high": 600
+      },
+      "notes": "Includes tracks, springs, hardware, balancing"
+    },
+    "opener_installation": {
+      "cost": 175,
+      "range_low": 125,
+      "range_high": 250,
+      "notes": "Mounting, wiring, programming remotes"
+    },
+    "disposal_fee": {
+      "cost": 50,
+      "range_low": 25,
+      "range_high": 100,
+      "notes": "Hauling away old door and opener"
+    }
+  },
+  "typical_project_costs": {
+    "single_basic": {
+      "description": "Single door, basic steel, chain opener",
+      "door": 450,
+      "opener": 250,
+      "labor": 550,
+      "total_low": 1000,
+      "total_mid": 1250,
+      "total_high": 1600
+    },
+    "single_midrange": {
+      "description": "Single door, insulated steel, belt opener",
+      "door": 800,
+      "opener": 350,
+      "labor": 550,
+      "total_low": 1400,
+      "total_mid": 1700,
+      "total_high": 2200
+    },
+    "double_basic": {
+      "description": "Double door, basic steel, chain opener",
+      "door": 700,
+      "opener": 250,
+      "labor": 650,
+      "total_low": 1300,
+      "total_mid": 1600,
+      "total_high": 2100
+    },
+    "double_midrange": {
+      "description": "Double door, insulated steel, belt opener",
+      "door": 1200,
+      "opener": 350,
+      "labor": 650,
+      "total_low": 1800,
+      "total_mid": 2200,
+      "total_high": 2900
+    },
+    "double_premium": {
+      "description": "Double door, premium insulated, wall-mount opener",
+      "door": 2200,
+      "opener": 500,
+      "labor": 700,
+      "total_low": 2800,
+      "total_mid": 3400,
+      "total_high": 4500
+    }
+  },
+  "red_flags": {
+    "spring_replacement_upcharge": "Springs should be included in door install - separate $300+ spring charge is padding",
+    "track_replacement_unnecessary": "Tracks rarely need replacing unless damaged - verify before agreeing",
+    "insulation_upsell": "If you don't heat your garage, non-insulated is fine - don't pay for R-18 you don't need",
+    "same_day_pressure": "Reputable companies give written quotes without pressure tactics",
+    "no_warranty": "Door should have manufacturer warranty (often 10-25 years on steel)"
+  },
+  "diy_considerations": {
+    "door_only": "Possible with two people, save $300-400 on labor",
+    "opener_only": "Straightforward DIY, 2-3 hours, save $125-250",
+    "spring_warning": "NEVER attempt spring replacement yourself - high tension = serious injury risk"
+  }
+}

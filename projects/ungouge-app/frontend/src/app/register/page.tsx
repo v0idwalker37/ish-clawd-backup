@@ -43,10 +43,13 @@ export default function RegisterPage() {
 
     setLoading(true);
 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
     try {
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch(`${apiUrl}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',  // SECURITY: Send/receive cookies
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
@@ -57,11 +60,11 @@ export default function RegisterPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Registration failed');
+        throw new Error(data.error || data.detail?.error || data.detail?.suggestion || 'Registration failed');
       }
 
-      // Store token and redirect to dashboard
-      localStorage.setItem('token', data.token);
+      // Cookies are set automatically by the browser (httpOnly)
+      // No more localStorage token storage - more secure!
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.message || 'An error occurred during registration');

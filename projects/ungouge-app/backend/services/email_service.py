@@ -16,6 +16,13 @@ logger = logging.getLogger(__name__)
 # Dev mode toggle - set to False to enable real SMTP
 DEV_MODE = os.getenv("EMAIL_DEV_MODE", "true").lower() == "true"
 
+# HIGH-05: Warn loudly at startup when emails are not being sent
+if DEV_MODE:
+    logger.warning(
+        "⚠️  EMAIL_DEV_MODE is ON — emails will be logged to console, NOT sent via SMTP. "
+        "Set EMAIL_DEV_MODE=false and configure SMTP_* env vars for production."
+    )
+
 # SMTP Configuration (for production)
 SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
@@ -187,6 +194,72 @@ def send_password_reset(
         expiry_hours=expiry_hours,
         current_year=2024
     )
+    
+    return _send_email(to_email, subject, html_body)
+
+
+def send_mfa_code(
+    to_email: str,
+    user_name: str,
+    code: str,
+    expiry_minutes: int = 10
+) -> bool:
+    """
+    Send MFA verification code
+    
+    Security-focused: Just the code, clear instructions, no marketing.
+    
+    Args:
+        to_email: User's email address
+        user_name: User's display name
+        code: 6-digit verification code
+        expiry_minutes: How many minutes until code expires
+        
+    Returns:
+        bool: True if sent successfully
+    """
+    subject = f"Your Ungouge.ai verification code: {code}"
+    
+    # Simple inline template for MFA (doesn't need fancy formatting)
+    html_body = f'''
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px;">
+        <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="color: #2563eb; font-size: 24px; margin: 0;">Ungouge.ai</h1>
+            </div>
+            
+            <p style="color: #374151; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
+                Hi {user_name},
+            </p>
+            
+            <p style="color: #374151; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
+                Your verification code is:
+            </p>
+            
+            <div style="background: #f0f9ff; border: 2px solid #2563eb; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 24px;">
+                <span style="font-size: 36px; font-weight: bold; letter-spacing: 8px; color: #1e40af;">{code}</span>
+            </div>
+            
+            <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin-bottom: 24px;">
+                This code expires in {expiry_minutes} minutes. If you didn't request this code, you can safely ignore this email.
+            </p>
+            
+            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+            
+            <p style="color: #9ca3af; font-size: 12px; text-align: center; margin: 0;">
+                This is an automated security email from Ungouge.ai<br>
+                We never sell your data. Ever.
+            </p>
+        </div>
+    </body>
+    </html>
+    '''
     
     return _send_email(to_email, subject, html_body)
 

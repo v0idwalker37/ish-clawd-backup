@@ -260,6 +260,10 @@ async def get_my_quotes(
     
     Returns list of quotes submitted by the authenticated user
     """
+    # Enforce pagination limits to prevent DoS
+    limit = min(limit, 100)  # Max 100 per page
+    skip = max(skip, 0)
+    
     result = await db.execute(
         select(Quote)
         .where(Quote.user_id == current_user.id)
@@ -289,13 +293,15 @@ async def get_my_quotes(
 async def get_quote_full_report(
     quote_id: str,
     db: AsyncSession = Depends(get_db),
+    current_user: Optional[User] = Depends(get_current_user_optional),
 ):
     """
     Get full analysis report for a specific quote
     
     This is an alias for GET /quotes/{quote_id} for clearer API semantics
+    Requires authentication for user-owned quotes.
     """
-    return await get_quote_report(quote_id, db)
+    return await get_quote_report(quote_id, db, current_user)
 
 
 @router.get("/quotes")
@@ -303,12 +309,25 @@ async def list_quotes(
     skip: int = 0,
     limit: int = 10,
     db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),  # SECURITY: Require auth
 ):
     """
-    List all quotes (for admin/debugging)
+    List quotes for current authenticated user
+    
+    Returns only quotes owned by the authenticated user.
     """
+    from fastapi import Query
+    
+    # Enforce pagination limits
+    limit = min(limit, 100)  # Max 100 per page
+    skip = max(skip, 0)
+    
     result = await db.execute(
-        select(Quote).offset(skip).limit(limit)
+        select(Quote)
+        .where(Quote.user_id == current_user.id)  # SECURITY: Only user's quotes
+        .offset(skip)
+        .limit(limit)
+        .order_by(Quote.created_at.desc())
     )
     quotes = result.scalars().all()
     
@@ -318,7 +337,9 @@ async def list_quotes(
                 "id": quote.id,
                 "project_type": quote.project_type,
                 "location": quote.location,
+                "contractor_name": quote.contractor_name,
                 "created_at": quote.created_at.isoformat(),
+                "report_url": f"/api/quotes/{quote.id}/report",
             }
             for quote in quotes
         ],

@@ -42,10 +42,18 @@ export default function ReportPage() {
     const fetchReport = async () => {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-        const response = await axios.get(`${apiUrl}/api/quotes/${reportId}`);
+        const response = await axios.get(`${apiUrl}/api/quotes/${reportId}`, {
+          withCredentials: true,  // Send auth cookies
+        });
         setReport(response.data);
-      } catch (err) {
-        setError('Failed to load report. Please check your report ID.');
+      } catch (err: any) {
+        if (err.response?.status === 401) {
+          setError('Please log in to view this report.');
+        } else if (err.response?.status === 403) {
+          setError('You do not have permission to view this report.');
+        } else {
+          setError('Failed to load report. Please check your report ID.');
+        }
         console.error(err);
       } finally {
         setLoading(false);

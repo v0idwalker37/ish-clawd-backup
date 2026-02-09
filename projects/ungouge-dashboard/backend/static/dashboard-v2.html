@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>UnGouge Executive Dashboard</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
 
         body {
@@ -100,6 +107,124 @@
         .logout-btn:hover {
             background: #ef4444;
             color: #fff;
+        }
+
+        /* QUICK LINKS DROPDOWN */
+        .quick-links-wrapper {
+            position: relative;
+        }
+
+        .quick-links-btn {
+            background: #334155;
+            color: #e2e8f0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .quick-links-btn:hover {
+            background: #475569;
+        }
+
+        .quick-links-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            left: auto;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            min-width: 220px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            overflow: hidden;
+        }
+
+        .quick-links-dropdown.show {
+            display: block;
+        }
+
+        .quick-links-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+            border-bottom: 1px solid #334155;
+        }
+
+        .quick-links-item:last-child {
+            border-bottom: none;
+        }
+
+        .quick-links-item:hover {
+            background: #334155;
+        }
+
+        .quick-links-icon {
+            font-size: 18px;
+        }
+
+        /* TIME CLOCK WIDGET */
+        .clock-btn {
+            width: 100%;
+            padding: 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 12px 0;
+        }
+
+        .clock-btn.clock-out {
+            background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+            color: white;
+        }
+
+        .clock-btn.clock-out:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+
+        .clock-btn.clock-in {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: white;
+        }
+
+        .clock-btn.clock-in:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        }
+
+        .clock-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .clock-timer {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            margin: 16px 0;
+            font-family: 'Courier New', monospace;
         }
 
         /* MAIN CONTAINER */
@@ -374,11 +499,77 @@
             }
 
             .container {
-                padding: 16px;
+                padding: 12px;
             }
 
             .header {
-                padding: 12px 16px;
+                padding: 10px 12px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .header-left {
+                flex: 1;
+                min-width: 100%;
+            }
+
+            .header-center {
+                display: none !important;
+            }
+
+            .header-right {
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: flex-start;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .logo span {
+                display: none;
+            }
+
+            .logo::after {
+                content: 'UnGouge';
+                font-size: 18px;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            .refresh-btn {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            .cat-nav {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 10px 12px;
+            }
+
+            .cat-nav::-webkit-scrollbar {
+                display: none;
+            }
+
+            .cat-btn {
+                padding: 8px 12px !important;
+                font-size: 12px !important;
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-left {
+                justify-content: center;
+            }
+
+            .logout-btn {
+                padding: 4px 10px;
+                font-size: 11px;
             }
         }
     </style>
@@ -400,6 +591,55 @@
             </div>
         </div>
         <div class="header-right">
+            <div class="quick-links-wrapper">
+                <button class="quick-links-btn" id="quickLinksBtn" onclick="toggleQuickLinks()">
+                    <span>🔗</span>
+                    <span>Quick Links</span>
+                    <span>▼</span>
+                </button>
+                <div class="quick-links-dropdown" id="quickLinksDropdown">
+                    <!-- Project Dashboards (Internal) -->
+                    <div style="padding: 8px 16px; font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #334155;">Project Dashboards</div>
+                    <a href="/projects-ungouge.html" class="quick-links-item">
+                        <span class="quick-links-icon">🏠</span>
+                        <span>Ungouge.ai Projects</span>
+                    </a>
+                    <a href="/projects-youtube.html" class="quick-links-item">
+                        <span class="quick-links-icon">📹</span>
+                        <span>YouTube Projects</span>
+                    </a>
+                    
+                    <!-- External Tools -->
+                    <div style="padding: 8px 16px; font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #334155; margin-top: 8px;">External Tools</div>
+                    <a href="https://dashboard.stripe.com" target="_blank" class="quick-links-item">
+                        <span class="quick-links-icon">💳</span>
+                        <span>Stripe Dashboard</span>
+                    </a>
+                    <a href="https://analytics.google.com" target="_blank" class="quick-links-item">
+                        <span class="quick-links-icon">📈</span>
+                        <span>Google Analytics</span>
+                    </a>
+                    <a href="https://studio.youtube.com" target="_blank" class="quick-links-item">
+                        <span class="quick-links-icon">🎬</span>
+                        <span>YouTube Studio</span>
+                    </a>
+                    <a href="https://github.com/ungouge" target="_blank" class="quick-links-item">
+                        <span class="quick-links-icon">💻</span>
+                        <span>GitHub</span>
+                    </a>
+                    
+                    <!-- Dashboard Features -->
+                    <div style="padding: 8px 16px; font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #334155; margin-top: 8px;">Dashboard</div>
+                    <a href="#" onclick="event.preventDefault(); document.querySelector('#timeClockWidget')?.scrollIntoView({behavior:'smooth'}) || alert('Time Clock not loaded yet')" class="quick-links-item">
+                        <span class="quick-links-icon">⏱️</span>
+                        <span>Time Clock</span>
+                    </a>
+                    <a href="https://ungouge.ai" target="_blank" class="quick-links-item">
+                        <span class="quick-links-icon">🌐</span>
+                        <span>UnGouge.ai Website</span>
+                    </a>
+                </div>
+            </div>
             <button class="refresh-btn" onclick="refreshDashboard()">
                 <span>🔄</span>
                 <span>Refresh</span>
@@ -408,6 +648,20 @@
             <a href="/settings.html" class="refresh-btn" style="text-decoration: none;">⚙️ Settings</a>
             <button class="logout-btn" onclick="logout()">Logout</button>
         </div>
+    </div>
+
+    <!-- Category Navigation Bar -->
+    <div class="cat-nav" style="background: #0f172a; padding: 12px 24px; border-bottom: 1px solid #334155; display: flex; gap: 12px; align-items: center; overflow-x: auto;">
+        <span style="color: #94a3b8; font-size: 14px; margin-right: 8px; white-space: nowrap;">View:</span>
+        <button onclick="setCategory('all')" id="cat-all" class="cat-btn active" style="background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+            📊 All
+        </button>
+        <button onclick="setCategory('ungouge')" id="cat-ungouge" class="cat-btn" style="background: #334155; color: #e2e8f0; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+            🏠 Ungouge.ai
+        </button>
+        <button onclick="setCategory('youtube')" id="cat-youtube" class="cat-btn" style="background: #334155; color: #e2e8f0; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+            📹 YouTube
+        </button>
     </div>
 
     <div class="container">
@@ -420,13 +674,75 @@
     </div>
 
     <script>
+        // XSS Protection: escape user-supplied text before rendering in HTML
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
         // Global state
         let dashboardData = null;
+        let currentCategory = 'all';
+        let timeClockInterval = null;
+        let timeClockData = null;
+
+        // Category filter mappings (by project.category field, not hardcoded names)
+        const categoryMap = {
+            'ungouge': ['product', 'operations', 'ungouge'],
+            'youtube': ['content', 'youtube']
+        };
+
+        // Set category filter
+        function setCategory(category) {
+            currentCategory = category;
+            
+            // Update button styles
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.style.background = '#334155';
+                btn.style.color = '#e2e8f0';
+            });
+            const activeBtn = document.getElementById('cat-' + category);
+            if (activeBtn) {
+                activeBtn.style.background = '#3b82f6';
+                activeBtn.style.color = 'white';
+            }
+            
+            // Re-render dashboard with filter
+            if (dashboardData) {
+                const filteredData = filterDataByCategory(dashboardData.data);
+                const metrics = calculateMetrics(filteredData);
+                renderDashboard(filteredData, metrics);
+            }
+        }
+
+        // Filter data by category (uses project.category field)
+        function filterDataByCategory(data) {
+            if (currentCategory === 'all') {
+                return data;
+            }
+            
+            const allowedCategories = categoryMap[currentCategory] || [];
+            const filteredProjects = data.projects.filter(p =>
+                allowedCategories.includes(p.category?.toLowerCase())
+            );
+            const filteredProjectIds = filteredProjects.map(p => p.id);
+            const filteredTasks = data.tasks.filter(t => filteredProjectIds.includes(t.project_id));
+            const filteredExpenses = data.expenses.filter(e => !e.project_id || filteredProjectIds.includes(e.project_id));
+            
+            return {
+                projects: filteredProjects,
+                tasks: filteredTasks,
+                expenses: filteredExpenses,
+                external: data.external
+            };
+        }
 
         // Check authentication
         async function checkAuth() {
             try {
-                const response = await fetch('/auth/status');
+                const response = await fetch('/auth/status', { credentials: 'include' });
                 const data = await response.json();
                 
                 if (data.authenticated && data.user) {
@@ -446,7 +762,7 @@
         // Logout
         async function logout() {
             try {
-                await fetch('/auth/logout', { method: 'POST' });
+                await fetch('/auth/logout', { method: 'POST', credentials: 'include' });
                 window.location.href = '/login.html';
             } catch (error) {
                 console.error('Logout failed:', error);
@@ -458,10 +774,10 @@
         async function fetchDashboardData() {
             try {
                 const [projects, tasks, expenses, external] = await Promise.all([
-                    fetch('/projects').then(r => r.json()),
-                    fetch('/tasks').then(r => r.json()),
-                    fetch('/expenses').then(r => r.json()),
-                    fetch('/external/metrics').then(r => r.json()).catch(() => ({
+                    fetch('/projects', { credentials: 'include' }).then(r => r.json()),
+                    fetch('/tasks', { credentials: 'include' }).then(r => r.json()),
+                    fetch('/expenses', { credentials: 'include' }).then(r => r.json()),
+                    fetch('/external/metrics', { credentials: 'include' }).then(r => r.json()).catch(() => ({
                         youtube: {}, stripe: {}, analytics: {}
                     }))
                 ]);
@@ -568,30 +884,66 @@
         }
 
         // Render dashboard
-        function renderDashboard(data, metrics) {
+        async function renderDashboard(data, metrics) {
             const container = document.getElementById('dashboardContent');
             const external = data.external || {};
             
+            // Fetch time clock stats
+            const timeClockStats = await fetchTimeClockStats();
+            
+            // Category-specific header
+            const categoryHeaders = {
+                'all': '',
+                'ungouge': '<div style="background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%); padding: 16px 24px; border-radius: 12px; margin-bottom: 24px;"><h1 style="color: white; font-size: 24px; margin: 0;">🏠 Ungouge.ai Dashboard</h1><p style="color: rgba(255,255,255,0.8); margin: 4px 0 0;">Quote verification platform • $19.99/report</p></div>',
+                'youtube': '<div style="background: linear-gradient(90deg, #ef4444 0%, #f97316 100%); padding: 16px 24px; border-radius: 12px; margin-bottom: 24px;"><h1 style="color: white; font-size: 24px; margin: 0;">📹 YouTube Dashboard</h1><p style="color: rgba(255,255,255,0.8); margin: 4px 0 0;">UnGouge Digest • Homeowner advocacy content</p></div>'
+            };
+            
+            // Category-specific external metrics
+            let externalMetricsHtml = '';
+            if (currentCategory === 'all') {
+                externalMetricsHtml = `
+                    <h2 style="margin: 32px 0 16px; font-size: 20px; color: #fff;">🌐 External Metrics</h2>
+                    <div class="dashboard-grid three-col">
+                        ${renderYouTubePod(external.youtube || {})}
+                        ${renderStripePod(external.stripe || {})}
+                        ${renderAnalyticsPod(external.analytics || {})}
+                    </div>
+                `;
+            } else if (currentCategory === 'youtube') {
+                externalMetricsHtml = `
+                    <h2 style="margin: 32px 0 16px; font-size: 20px; color: #fff;">📹 YouTube Metrics</h2>
+                    <div class="dashboard-grid three-col">
+                        ${renderYouTubePod(external.youtube || {})}
+                        ${renderYouTubeDetailPod(external.youtube || {})}
+                        ${renderContentPipelinePod(data.tasks)}
+                    </div>
+                `;
+            } else if (currentCategory === 'ungouge') {
+                externalMetricsHtml = `
+                    <h2 style="margin: 32px 0 16px; font-size: 20px; color: #fff;">💰 Business Metrics</h2>
+                    <div class="dashboard-grid three-col">
+                        ${renderStripePod(external.stripe || {})}
+                        ${renderAnalyticsPod(external.analytics || {})}
+                        ${renderConversionPod(external.stripe || {}, external.analytics || {})}
+                    </div>
+                `;
+            }
+            
             container.innerHTML = `
+                ${categoryHeaders[currentCategory] || ''}
+                
                 <!-- Executive Summary Row -->
-                <div class="dashboard-grid three-col">
+                <div class="dashboard-grid two-col">
                     ${renderExecutiveSummaryPod(metrics)}
                     ${renderTaskSummaryPod(metrics)}
-                    ${renderProjectSummaryPod(metrics)}
                 </div>
 
-                <!-- External Metrics Row -->
-                <h2 style="margin: 32px 0 16px; font-size: 20px; color: #fff;">🌐 External Metrics</h2>
-                <div class="dashboard-grid three-col">
-                    ${renderYouTubePod(external.youtube || {})}
-                    ${renderStripePod(external.stripe || {})}
-                    ${renderAnalyticsPod(external.analytics || {})}
-                </div>
+                ${externalMetricsHtml}
 
-                <!-- Project Health Row -->
-                <h2 style="margin: 32px 0 16px; font-size: 20px; color: #fff;">📊 Project Health</h2>
+                <!-- Time Clock & Operations -->
+                <h2 style="margin: 32px 0 16px; font-size: 20px; color: #fff;">⏱️ Time Tracking</h2>
                 <div class="dashboard-grid three-col">
-                    ${metrics.projects.stats.map(project => renderProjectPod(project, data.tasks)).join('')}
+                    ${timeClockStats ? renderTimeClockPod(timeClockStats) : '<div class="widget no-hover"><div class="loading">Loading time clock...</div></div>'}
                 </div>
 
                 <!-- Goals & Quick Actions Row -->
@@ -605,6 +957,108 @@
                 <h2 style="margin: 32px 0 16px; font-size: 20px; color: #fff;">✅ Active Tasks</h2>
                 <div class="dashboard-grid full-width">
                     ${renderTaskListPod(data.tasks, metrics)}
+                </div>
+            `;
+            
+            // Start timer if clocked in
+            if (timeClockStats && timeClockStats.is_clocked_in) {
+                startTimeClockTimer();
+            }
+        }
+        
+        // YouTube Detail Pod (for YouTube category view)
+        function renderYouTubeDetailPod(youtube) {
+            return `
+                <div class="widget" onclick="window.open('https://studio.youtube.com', '_blank')">
+                    <div class="widget-header">
+                        <div class="widget-title">
+                            <span class="widget-icon">📈</span>
+                            <span>Channel Growth</span>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <div class="metric">
+                            <span class="metric-label">Views (30d)</span>
+                            <span class="metric-value">${(youtube.views_30d || 0).toLocaleString()}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Watch Time (hrs)</span>
+                            <span class="metric-value">${(youtube.watch_time_hours || 0).toLocaleString()}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Avg View Duration</span>
+                            <span class="metric-value">${youtube.avg_view_duration || '0:00'}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">CTR</span>
+                            <span class="metric-value">${(youtube.ctr || 0).toFixed(1)}%</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Content Pipeline Pod (for YouTube category view)
+        function renderContentPipelinePod(tasks) {
+            const contentTasks = tasks.filter(t => 
+                t.title.toLowerCase().includes('video') || 
+                t.title.toLowerCase().includes('episode') ||
+                t.title.toLowerCase().includes('script') ||
+                t.title.toLowerCase().includes('upload')
+            ).slice(0, 4);
+            
+            return `
+                <div class="widget" onclick="window.location.href='/tasks.html'">
+                    <div class="widget-header">
+                        <div class="widget-title">
+                            <span class="widget-icon">🎬</span>
+                            <span>Content Pipeline</span>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        ${contentTasks.length > 0 ? contentTasks.map(task => `
+                            <div style="padding: 8px; background: #0f172a; border-radius: 6px; margin-bottom: 8px;">
+                                <div style="font-size: 13px; color: #e2e8f0;">${escapeHtml(task.title.substring(0, 35))}${task.title.length > 35 ? '...' : ''}</div>
+                                <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">${escapeHtml(task.status.replace('_', ' '))}</div>
+                            </div>
+                        `).join('') : '<div style="color: #94a3b8; text-align: center; padding: 20px;">No content tasks</div>'}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Conversion Pod (for Ungouge category view)
+        function renderConversionPod(stripe, analytics) {
+            const sessions = analytics.sessions_7d || 0;
+            const purchases = stripe.successful_charges || 0;
+            const conversionRate = sessions > 0 ? ((purchases / sessions) * 100).toFixed(2) : '0.00';
+            
+            return `
+                <div class="widget no-hover">
+                    <div class="widget-header">
+                        <div class="widget-title">
+                            <span class="widget-icon">🎯</span>
+                            <span>Conversion Funnel</span>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <div class="metric">
+                            <span class="metric-label">Visitors (7d)</span>
+                            <span class="metric-value">${sessions.toLocaleString()}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Purchases (7d)</span>
+                            <span class="metric-value success">${purchases}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Conversion Rate</span>
+                            <span class="metric-value ${parseFloat(conversionRate) > 2 ? 'success' : ''}">${conversionRate}%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Avg Order Value</span>
+                            <span class="metric-value">$19.99</span>
+                        </div>
+                    </div>
                 </div>
             `;
         }
@@ -697,12 +1151,13 @@
             const { projects } = metrics;
 
             return `
-                <div class="widget no-hover">
+                <div class="widget" onclick="window.location.href='/projects.html'">
                     <div class="widget-header">
                         <div class="widget-title">
                             <span class="widget-icon">🎯</span>
                             <span>Projects</span>
                         </div>
+                        <span class="widget-action">View All →</span>
                     </div>
                     <div class="widget-body">
                         <div class="stat-grid">
@@ -733,7 +1188,7 @@
                     <div class="widget-header">
                         <div class="widget-title">
                             <span class="widget-icon">${getProjectIcon(project.name)}</span>
-                            <span>${project.name}</span>
+                            <span>${escapeHtml(project.name)}</span>
                         </div>
                         <span class="status-badge ${healthStatus}">
                             ${healthStatus.toUpperCase()}
@@ -798,7 +1253,7 @@
                                 <div style="display: flex; justify-content: space-between; align-items: start;">
                                     <div style="flex: 1;">
                                         <div style="font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px;">
-                                            ${task.title}
+                                            ${escapeHtml(task.title)}
                                         </div>
                                         <div style="font-size: 12px; color: #94a3b8;">
                                             Due: ${new Date(task.due_date).toLocaleDateString()} • 
@@ -850,7 +1305,7 @@
                         </div>
                         ${youtube.channel_title ? `
                             <div style="margin-top: 12px; font-size: 12px; color: #94a3b8; text-align: center;">
-                                ${youtube.channel_title}
+                                ${escapeHtml(youtube.channel_title)}
                             </div>
                         ` : ''}
                     </div>
@@ -964,10 +1419,10 @@
 
             // Q1 2026 goals (hardcoded for now - can be made dynamic later)
             const q1Goals = [
-                { name: 'Launch YouTube Channel', progress: 30, target: '100%' },
-                { name: 'Deploy Ungouge.ai', progress: 85, target: '100%' },
-                { name: 'First Revenue', progress: 0, target: '$19.99' },
-                { name: 'First 100 Subscribers', progress: 0, target: '100' }
+                { name: 'Launch YouTube Channel', progress: 30, target: '100%', link: 'https://studio.youtube.com' },
+                { name: 'Deploy Ungouge.ai', progress: 85, target: '100%', link: 'https://ungouge.ai' },
+                { name: 'First Revenue', progress: 0, target: '$19.99', link: 'https://dashboard.stripe.com' },
+                { name: 'First 100 Subscribers', progress: 0, target: '100', link: 'https://studio.youtube.com' }
             ];
 
             return `
@@ -980,9 +1435,9 @@
                     </div>
                     <div class="widget-body">
                         ${q1Goals.map(goal => `
-                            <div style="margin-bottom: 12px;">
+                            <div style="margin-bottom: 12px; ${goal.link ? 'cursor: pointer;' : ''}" ${goal.link ? `onclick="window.open('${goal.link}', '_blank')"` : ''}>
                                 <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
-                                    <span style="color: #e2e8f0;">${goal.name}</span>
+                                    <span style="color: #e2e8f0;${goal.link ? ' text-decoration: underline; text-decoration-style: dotted;' : ''}">${goal.name}${goal.link ? ' ↗' : ''}</span>
                                     <span style="color: ${goal.progress >= 75 ? '#10b981' : goal.progress >= 50 ? '#f59e0b' : '#94a3b8'};">${goal.progress}%</span>
                                 </div>
                                 <div class="progress-bar" style="height: 6px;">
@@ -996,7 +1451,7 @@
                                 <div style="font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 12px;">📅 Upcoming Deadlines</div>
                                 ${upcomingDeadlines.map(task => `
                                     <div style="display: flex; justify-content: space-between; font-size: 12px; padding: 6px 0; border-bottom: 1px solid #1e293b;">
-                                        <span style="color: #e2e8f0;">${task.title.substring(0, 30)}${task.title.length > 30 ? '...' : ''}</span>
+                                        <span style="color: #e2e8f0;">${escapeHtml(task.title.substring(0, 30))}${task.title.length > 30 ? '...' : ''}</span>
                                         <span style="color: #f59e0b;">${new Date(task.due_date).toLocaleDateString()}</span>
                                     </div>
                                 `).join('')}
@@ -1083,9 +1538,12 @@
         async function loadDashboard() {
             try {
                 const data = await fetchDashboardData();
-                const metrics = calculateMetrics(data);
-                dashboardData = { data, metrics };
-                renderDashboard(data, metrics);
+                dashboardData = { data };  // Store original unfiltered data
+                
+                // Apply category filter
+                const filteredData = filterDataByCategory(data);
+                const metrics = calculateMetrics(filteredData);
+                await renderDashboard(filteredData, metrics);
             } catch (error) {
                 console.error('Failed to load dashboard:', error);
                 document.getElementById('dashboardContent').innerHTML = `
@@ -1149,8 +1607,8 @@
                         <a href="${r.url}" style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #e2e8f0; text-decoration: none; border-bottom: 1px solid #334155;">
                             <span style="font-size: 18px;">${r.icon}</span>
                             <div>
-                                <div style="font-size: 14px; font-weight: 500;">${r.title}</div>
-                                <div style="font-size: 12px; color: #94a3b8;">${r.subtitle}</div>
+                                <div style="font-size: 14px; font-weight: 500;">${escapeHtml(r.title)}</div>
+                                <div style="font-size: 12px; color: #94a3b8;">${escapeHtml(r.subtitle)}</div>
                             </div>
                         </a>
                     `).join('');
@@ -1166,6 +1624,176 @@
                 document.getElementById('searchResults').style.display = 'none';
             }
         });
+
+        // Quick Links Dropdown
+        function toggleQuickLinks() {
+            const dropdown = document.getElementById('quickLinksDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const wrapper = e.target.closest('.quick-links-wrapper');
+            if (!wrapper) {
+                document.getElementById('quickLinksDropdown').classList.remove('show');
+            }
+        });
+
+        // Time Clock Functions
+        async function fetchTimeClockStats() {
+            try {
+                const response = await fetch('/api/timeclock/stats', { credentials: 'include' });
+                const data = await response.json();
+                timeClockData = data;
+                return data;
+            } catch (error) {
+                console.error('Failed to fetch time clock stats:', error);
+                return null;
+            }
+        }
+
+        async function clockIn() {
+            try {
+                const response = await fetch('/api/timeclock/in', {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    await updateTimeClock();
+                    startTimeClockTimer();
+                } else {
+                    const error = await response.json();
+                    alert(error.detail || 'Failed to clock in');
+                }
+            } catch (error) {
+                console.error('Clock in failed:', error);
+                alert('Failed to clock in');
+            }
+        }
+
+        async function clockOut() {
+            try {
+                const response = await fetch('/api/timeclock/out', {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    await updateTimeClock();
+                    stopTimeClockTimer();
+                } else {
+                    const error = await response.json();
+                    alert(error.detail || 'Failed to clock out');
+                }
+            } catch (error) {
+                console.error('Clock out failed:', error);
+                alert('Failed to clock out');
+            }
+        }
+
+        async function updateTimeClock() {
+            const stats = await fetchTimeClockStats();
+            if (stats && document.getElementById('timeClockWidget')) {
+                // Re-render the time clock pod
+                const pod = renderTimeClockPod(stats);
+                document.getElementById('timeClockWidget').outerHTML = pod;
+            }
+        }
+
+        function startTimeClockTimer() {
+            // Update timer every second
+            if (timeClockInterval) clearInterval(timeClockInterval);
+            
+            timeClockInterval = setInterval(() => {
+                if (!timeClockData || !timeClockData.is_clocked_in) {
+                    stopTimeClockTimer();
+                    return;
+                }
+                
+                const timerEl = document.getElementById('clockTimer');
+                if (timerEl && timeClockData.current_session_start) {
+                    const start = new Date(timeClockData.current_session_start);
+                    const now = new Date();
+                    const diff = now - start;
+                    
+                    const hours = Math.floor(diff / 3600000);
+                    const minutes = Math.floor((diff % 3600000) / 60000);
+                    const seconds = Math.floor((diff % 60000) / 1000);
+                    
+                    timerEl.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                }
+            }, 1000);
+        }
+
+        function stopTimeClockTimer() {
+            if (timeClockInterval) {
+                clearInterval(timeClockInterval);
+                timeClockInterval = null;
+            }
+        }
+
+        // Render Time Clock Pod
+        function renderTimeClockPod(stats) {
+            const isClockedIn = stats.is_clocked_in;
+            const statusText = isClockedIn ? '● Clocked In' : '○ Clocked Out';
+            const buttonText = isClockedIn ? 'Clock Out' : 'Clock In';
+            const buttonClass = isClockedIn ? 'clock-in' : 'clock-out';
+            const buttonAction = isClockedIn ? 'clockOut()' : 'clockIn()';
+            
+            // Calculate current timer if clocked in
+            let timerDisplay = '00:00:00';
+            if (isClockedIn && stats.current_session_start) {
+                const start = new Date(stats.current_session_start);
+                const now = new Date();
+                const diff = now - start;
+                
+                const hours = Math.floor(diff / 3600000);
+                const minutes = Math.floor((diff % 3600000) / 60000);
+                const seconds = Math.floor((diff % 60000) / 1000);
+                
+                timerDisplay = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }
+            
+            return `
+                <div class="widget no-hover" id="timeClockWidget">
+                    <div class="widget-header">
+                        <div class="widget-title">
+                            <span class="widget-icon">⏱️</span>
+                            <span>Time Clock</span>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <div class="clock-status">
+                            <span style="color: ${isClockedIn ? '#10b981' : '#94a3b8'};">${statusText}</span>
+                        </div>
+                        
+                        ${isClockedIn ? `
+                            <div class="clock-timer" id="clockTimer">${timerDisplay}</div>
+                        ` : ''}
+                        
+                        <button class="clock-btn ${buttonClass}" onclick="${buttonAction}">
+                            ${buttonText}
+                        </button>
+                        
+                        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #334155;">
+                            <div class="metric">
+                                <span class="metric-label">Today</span>
+                                <span class="metric-value">${stats.today_hours.toFixed(2)} hrs</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">This Week</span>
+                                <span class="metric-value">${stats.week_hours.toFixed(2)} hrs</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">This Month</span>
+                                <span class="metric-value">${stats.month_hours.toFixed(2)} hrs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
 
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {

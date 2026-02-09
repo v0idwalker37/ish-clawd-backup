@@ -1,0 +1,142 @@
+<!-- Quote Type Breakdown Pod - Ready to integrate into dashboard-v2.html -->
+
+<!--
+PURPOSE:
+Shows distribution of quote types being analyzed
+- Which project types are most common (roofing, HVAC, kitchen, etc.)
+- Helps understand market demand
+- Guides content/marketing priorities
+
+DATA SOURCE:
+- Will come from quote submissions once app is live
+- For now, show placeholder/sample data
+- When API ready: GET /api/quotes/analytics
+
+INTEGRATION:
+1. Add this render function to dashboard-v2.html
+2. Call from renderDashboard() when category = 'ungouge'
+-->
+
+<script>
+// Quote Type Breakdown Pod
+function renderQuoteBreakdownPod(quoteAnalytics) {
+    // Sample data for pre-launch (replace with real data from API)
+    const sampleData = {
+        total_quotes: 0,
+        by_type: [
+            { type: 'roof_replacement', display: 'Roof Replacement', count: 0, percentage: 0 },
+            { type: 'hvac_replacement', display: 'HVAC', count: 0, percentage: 0 },
+            { type: 'kitchen_remodel', display: 'Kitchen Remodel', count: 0, percentage: 0 },
+            { type: 'bathroom_remodel', display: 'Bathroom Remodel', count: 0, percentage: 0 },
+            { type: 'flooring', display: 'Flooring', count: 0, percentage: 0 },
+            { type: 'other', display: 'Other', count: 0, percentage: 0 }
+        ],
+        avg_quote_value: 0,
+        verdicts: {
+            fair: 0,
+            high: 0,
+            very_high: 0
+        }
+    };
+    
+    // Use real data if available, otherwise sample
+    const data = quoteAnalytics && quoteAnalytics.total_quotes > 0 
+        ? quoteAnalytics 
+        : sampleData;
+    
+    const hasData = data.total_quotes > 0;
+    
+    // Calculate verdict percentages
+    const totalVerdicts = data.verdicts.fair + data.verdicts.high + data.verdicts.very_high;
+    const fairPct = totalVerdicts > 0 ? ((data.verdicts.fair / totalVerdicts) * 100).toFixed(0) : 0;
+    const highPct = totalVerdicts > 0 ? ((data.verdicts.high / totalVerdicts) * 100).toFixed(0) : 0;
+    const veryHighPct = totalVerdicts > 0 ? ((data.verdicts.very_high / totalVerdicts) * 100).toFixed(0) : 0;
+    
+    // Color helper for bar
+    function getBarColor(index) {
+        const colors = ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#6b7280'];
+        return colors[index % colors.length];
+    }
+    
+    return `
+        <div class="widget no-hover">
+            <div class="widget-header">
+                <div class="widget-title">
+                    <span class="widget-icon">📊</span>
+                    <span>Quote Type Breakdown</span>
+                </div>
+                <span class="status-badge ${hasData ? 'healthy' : 'inactive'}">${hasData ? 'ACTIVE' : 'AWAITING DATA'}</span>
+            </div>
+            <div class="widget-body">
+                ${!hasData ? `
+                    <div style="text-align: center; padding: 20px; color: #94a3b8;">
+                        <div style="font-size: 32px; margin-bottom: 12px;">📋</div>
+                        <div>No quotes analyzed yet</div>
+                        <div style="font-size: 12px; margin-top: 8px;">Data will appear once ungouge.ai is live</div>
+                    </div>
+                ` : `
+                    <div class="metric" style="margin-bottom: 16px;">
+                        <span class="metric-label">Total Quotes Analyzed</span>
+                        <span class="metric-value large">${data.total_quotes}</span>
+                    </div>
+                    
+                    <div style="margin-bottom: 16px;">
+                        <div style="font-size: 13px; color: #94a3b8; margin-bottom: 8px;">By Project Type</div>
+                        ${data.by_type.filter(t => t.count > 0).map((type, i) => `
+                            <div style="margin-bottom: 8px;">
+                                <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 2px;">
+                                    <span style="color: #e2e8f0;">${type.display}</span>
+                                    <span style="color: #94a3b8;">${type.count} (${type.percentage}%)</span>
+                                </div>
+                                <div style="height: 6px; background: #334155; border-radius: 3px; overflow: hidden;">
+                                    <div style="height: 100%; width: ${type.percentage}%; background: ${getBarColor(i)}; transition: width 0.3s;"></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div style="padding-top: 12px; border-top: 1px solid #334155;">
+                        <div style="font-size: 13px; color: #94a3b8; margin-bottom: 8px;">Verdict Distribution</div>
+                        <div style="display: flex; gap: 16px;">
+                            <div style="text-align: center; flex: 1;">
+                                <div style="font-size: 20px; font-weight: 700; color: #10b981;">${fairPct}%</div>
+                                <div style="font-size: 11px; color: #94a3b8;">Fair</div>
+                            </div>
+                            <div style="text-align: center; flex: 1;">
+                                <div style="font-size: 20px; font-weight: 700; color: #f59e0b;">${highPct}%</div>
+                                <div style="font-size: 11px; color: #94a3b8;">High</div>
+                            </div>
+                            <div style="text-align: center; flex: 1;">
+                                <div style="font-size: 20px; font-weight: 700; color: #ef4444;">${veryHighPct}%</div>
+                                <div style="font-size: 11px; color: #94a3b8;">Very High</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric" style="margin-top: 12px;">
+                        <span class="metric-label">Avg Quote Value</span>
+                        <span class="metric-value">$${data.avg_quote_value.toLocaleString()}</span>
+                    </div>
+                `}
+            </div>
+        </div>
+    `;
+}
+
+// When quote analytics API is ready, add endpoint:
+// GET /api/quotes/analytics
+// Returns: { total_quotes, by_type[], avg_quote_value, verdicts: {fair, high, very_high} }
+</script>
+
+<!--
+PRODUCT INSIGHT:
+This pod will reveal market demand patterns:
+- If 60% are roofing quotes, create more roofing content
+- If HVAC spikes in winter, time marketing accordingly
+- Verdict distribution shows if contractors are generally gouging (validates our thesis)
+
+ACTION ITEMS once live:
+- Set up quote analytics endpoint in backend
+- Add project_type tracking to quote submission
+- Consider adding geographic breakdown
+-->

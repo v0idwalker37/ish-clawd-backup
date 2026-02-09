@@ -5,17 +5,24 @@ from datetime import datetime, timedelta
 from typing import Optional
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, HTTPException, status, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from typing import Optional
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 import os
 
-from models.database import User, get_db
-from services.token_blacklist import TokenBlacklist
+# Load environment variables (in case this module is imported before main.py)
+from dotenv import load_dotenv
+load_dotenv()
 
-# Configuration
-SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key-change-in-production")
+from models.database import User, get_db
+from services.token_blacklist import TokenBlacklist, TokenBlacklistSync
+
+# Configuration - SECURITY: Fail fast if JWT secret not set
+if "JWT_SECRET_KEY" not in os.environ:
+    raise RuntimeError("CRITICAL: JWT_SECRET_KEY environment variable must be set!")
+SECRET_KEY = os.environ["JWT_SECRET_KEY"]
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 REFRESH_TOKEN_EXPIRE_DAYS = 7
@@ -79,7 +86,8 @@ def verify_token(token: str, token_type: str = "access") -> dict:
         HTTPException: If token is invalid, blacklisted, or wrong type
     """
     # SECURITY: Check if token is blacklisted (logged out)
-    if TokenBlacklist.is_blacklisted(token):
+    # Uses sync shim because verify_token is a synchronous function
+    if TokenBlacklistSync.is_blacklisted(token):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token has been revoked",
@@ -106,18 +114,40 @@ def verify_token(token: str, token_type: str = "access") -> dict:
 
 
 async def get_current_user(
-    credentials: HTTPAuthorizationCredentials = Depends(security),
+    request: Request = None,
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(HTTPBearer(auto_error=False)),
     db: AsyncSession = Depends(get_db),
 ) -> User:
     """
     Dependency to get current authenticated user from JWT token
+    
+    Supports both:
+    - httpOnly cookies (preferred, more secure)
+    - Bearer token in Authorization header (for API clients)
     
     Usage:
         @router.get("/protected")
         async def protected_route(current_user: User = Depends(get_current_user)):
             return {"user_id": current_user.id}
     """
-    token = credentials.credentials
+    token = None
+    
+    # Priority 1: Check for httpOnly cookie
+    if request and hasattr(request, 'cookies'):
+        token = request.cookies.get("access_token")
+    
+    # Priority 2: Fall back to Bearer token header
+    if not token and credentials:
+        token = credentials.credentials
+    
+    # No token found
+    if not token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Not authenticated",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
     payload = verify_token(token, token_type="access")
     
     user_id: str = payload.get("sub")
@@ -147,11 +177,14 @@ async def get_current_user(
 
 
 async def get_current_user_optional(
+    request: Request = None,
     credentials: Optional[HTTPAuthorizationCredentials] = Depends(HTTPBearer(auto_error=False)),
     db: AsyncSession = Depends(get_db),
 ) -> Optional[User]:
     """
     Optional authentication dependency - returns User if authenticated, None otherwise
+    
+    Supports both cookies and Bearer tokens.
     
     Usage:
         @router.get("/optional-auth")
@@ -160,10 +193,14 @@ async def get_current_user_optional(
                 return {"user_id": current_user.id}
             return {"user_id": None}
     """
-    if credentials is None:
+    # Check if we have any auth (cookie or header)
+    has_cookie = request and hasattr(request, 'cookies') and request.cookies.get("access_token")
+    has_bearer = credentials is not None
+    
+    if not has_cookie and not has_bearer:
         return None
     
     try:
-        return await get_current_user(credentials, db)
+        return await get_current_user(request, credentials, db)
     except HTTPException:
         return None

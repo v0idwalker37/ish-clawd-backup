@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Home, FileText, User, Settings, LogOut, Menu, X } from 'lucide-react';
+import api from '@/lib/api';
 
 export default function DashboardLayout({
   children,
@@ -14,25 +16,41 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const [user, setUser] = useState<{ name: string; email: string } | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check authentication
-    const token = localStorage.getItem('token');
-    if (!token) {
-      router.push('/login');
-      return;
-    }
-
-    // Fetch user data (in a real app, this would be an API call)
-    // For now, we'll use mock data
-    setUser({
-      name: 'John Doe',
-      email: 'john@example.com',
-    });
+    // Verify authentication by calling the API
+    const checkAuth = async () => {
+      try {
+        const userData = await api.get('/api/auth/me');
+        setUser({
+          name: userData.name,
+          email: userData.email,
+        });
+      } catch (error) {
+        // api.get already handles 401 redirect
+        console.error('Auth check failed:', error);
+        router.push('/login');
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    checkAuth();
   }, [router]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
+  const handleLogout = async () => {
+    try {
+      // Call backend to logout (clears cookies)
+      await api.post('/api/auth/logout');
+    } catch (error) {
+      // Even if logout API fails, redirect to home
+      console.error('Logout error:', error);
+    }
+    
+    // Clear any local state and redirect
+    localStorage.clear();
+    sessionStorage.clear();
     router.push('/');
   };
 
@@ -43,7 +61,7 @@ export default function DashboardLayout({
     { href: '/dashboard/settings', icon: Settings, label: 'Settings' },
   ];
 
-  if (!user) {
+  if (loading || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -74,9 +92,12 @@ export default function DashboardLayout({
           {/* Logo & Close Button */}
           <div className="flex items-center justify-between p-6 border-b">
             <Link href="/" className="flex items-center">
-              <div className="text-xl font-bold text-primary-600">
-                Ungouge<span className="text-gray-900">.ai</span>
-              </div>
+              <Image
+                src="/images/logo-small.png"
+                alt="Ungouge.ai"
+                width={130}
+                height={41}
+              />
             </Link>
             <button
               onClick={() => setSidebarOpen(false)}
@@ -150,9 +171,12 @@ export default function DashboardLayout({
           >
             <Menu className="w-6 h-6 text-gray-700" />
           </button>
-          <div className="text-lg font-bold text-primary-600">
-            Ungouge<span className="text-gray-900">.ai</span>
-          </div>
+          <Image
+            src="/images/logo-small.png"
+            alt="Ungouge.ai"
+            width={120}
+            height={38}
+          />
           <div className="w-10" /> {/* Spacer for centering */}
         </div>
 

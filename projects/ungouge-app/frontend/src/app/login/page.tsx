@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Mail, Lock, AlertCircle } from 'lucide-react';
+import { Mail, Lock, AlertCircle, Shield, ArrowLeft, RefreshCw } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -11,6 +11,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  
+  // MFA State
+  const [mfaRequired, setMfaRequired] = useState(false);
+  const [mfaEmail, setMfaEmail] = useState('');
+  const [mfaCode, setMfaCode] = useState('');
+  const [resending, setResending] = useState(false);
+
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,20 +26,27 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(`${apiUrl}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Login failed');
+        throw new Error(data.error || data.detail?.error || data.detail || 'Login failed');
       }
 
-      // Store token and redirect to dashboard
-      localStorage.setItem('token', data.token);
+      // Check if MFA is required
+      if (data.mfa_required) {
+        setMfaRequired(true);
+        setMfaEmail(data.email || email);
+        return;
+      }
+
+      // Success - cookies are set automatically
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.message || 'An error occurred during login');
@@ -40,6 +55,151 @@ export default function LoginPage() {
     }
   };
 
+  const handleMFAVerify = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      const response = await fetch(`${apiUrl}/api/auth/mfa/verify-login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, code: mfaCode }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || 'Invalid verification code');
+      }
+
+      // Success - cookies are set automatically
+      router.push('/dashboard');
+    } catch (err: any) {
+      setError(err.message || 'An error occurred during verification');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResendCode = async () => {
+    setError('');
+    setResending(true);
+
+    try {
+      const response = await fetch(`${apiUrl}/api/auth/mfa/resend`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, code: '000000' }), // Code not needed for resend
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || 'Failed to resend code');
+      }
+
+      setError(''); // Clear any previous error
+      // Show success briefly
+      setMfaEmail(data.email || mfaEmail);
+    } catch (err: any) {
+      setError(err.message || 'Failed to resend code');
+    } finally {
+      setResending(false);
+    }
+  };
+
+  const handleBackToLogin = () => {
+    setMfaRequired(false);
+    setMfaCode('');
+    setError('');
+    setPassword('');
+  };
+
+  // MFA Code Entry Screen
+  if (mfaRequired) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-white flex items-center justify-center py-12 px-4">
+        <div className="max-w-md w-full">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Shield className="w-8 h-8 text-primary-600" />
+            </div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Check Your Email</h1>
+            <p className="text-gray-600">
+              We sent a verification code to<br />
+              <span className="font-medium text-gray-900">{mfaEmail}</span>
+            </p>
+          </div>
+
+          <div className="card">
+            <form onSubmit={handleMFAVerify} className="space-y-6">
+              {error && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-red-800">{error}</p>
+                </div>
+              )}
+
+              <div>
+                <label htmlFor="code" className="block text-sm font-medium text-gray-700 mb-2">
+                  Enter 6-digit code
+                </label>
+                <input
+                  id="code"
+                  type="text"
+                  value={mfaCode}
+                  onChange={(e) => setMfaCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                  required
+                  maxLength={6}
+                  className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-center text-3xl tracking-[0.5em] font-mono"
+                  placeholder="••••••"
+                  autoComplete="one-time-code"
+                  autoFocus
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading || mfaCode.length !== 6}
+                className="btn-primary w-full"
+              >
+                {loading ? 'Verifying...' : 'Verify & Sign In'}
+              </button>
+
+              <div className="flex items-center justify-between text-sm">
+                <button
+                  type="button"
+                  onClick={handleBackToLogin}
+                  className="text-gray-600 hover:text-gray-900 flex items-center gap-1"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  Back to login
+                </button>
+                <button
+                  type="button"
+                  onClick={handleResendCode}
+                  disabled={resending}
+                  className="text-primary-600 hover:text-primary-700 flex items-center gap-1"
+                >
+                  <RefreshCw className={`w-4 h-4 ${resending ? 'animate-spin' : ''}`} />
+                  {resending ? 'Sending...' : 'Resend code'}
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <p className="mt-6 text-center text-xs text-gray-500">
+            Didn&apos;t receive the email? Check your spam folder or try resending.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Normal Login Screen
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-white flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full">
@@ -119,7 +279,7 @@ export default function LoginPage() {
 
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link href="/register" className="text-primary-600 hover:text-primary-700 font-semibold">
                 Create one now
               </Link>

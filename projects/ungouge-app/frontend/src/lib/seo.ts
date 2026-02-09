@@ -28,9 +28,9 @@ export const SITE_CONFIG = {
 
 // Default metadata (used as fallback)
 export const DEFAULT_METADATA: PageMetadata = {
-  title: 'Ungouge.ai – Research Without the Runaround',
+  title: 'Ungouge.ai – Fair Contractor Quote Analysis',
   description:
-    'No affiliate links. No sales pressure. Just honest research that helps you make better buying decisions. Find the best products without the marketing BS.',
+    'Stop getting gouged. Analyze contractor quotes against real BLS labor data. No lead gen, no contractor kickbacks – just honest pricing analysis.',
   canonical: SITE_CONFIG.url,
   ogImage: SITE_CONFIG.ogImage,
 };
@@ -38,9 +38,9 @@ export const DEFAULT_METADATA: PageMetadata = {
 // Page-specific metadata
 export const PAGE_METADATA: Record<string, PageMetadata> = {
   home: {
-    title: 'Ungouge.ai – Research Without the Runaround',
+    title: 'Ungouge.ai – Fair Contractor Quote Analysis',
     description:
-      'Tired of fake reviews and affiliate link spam? Ungouge.ai delivers honest, unbiased product research with no hidden agendas. Real data, real recommendations.',
+      'Is your contractor quote fair? Analyze quotes against real Bureau of Labor Statistics data. No lead gen, no contractor referrals – we work for you, not them.',
     canonical: `${SITE_CONFIG.url}/`,
     ogImage: `${SITE_CONFIG.url}/og-home.png`,
   },
@@ -48,28 +48,28 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   about: {
     title: 'About Ungouge.ai – Our Mission',
     description:
-      'Learn why we built Ungouge.ai: to fix the broken world of online product reviews. No affiliate links, no sponsored content, just research you can trust.',
+      'Learn why we built Ungouge.ai: to protect homeowners from contractor overcharges. We never sell your data or refer contractors. Ever.',
     canonical: `${SITE_CONFIG.url}/about`,
   },
 
   how_it_works: {
-    title: 'How Ungouge.ai Works – Our Research Process',
+    title: 'How Ungouge.ai Works – Quote Analysis Process',
     description:
-      'See how we research products: data analysis, real reviews, expert opinions, and zero affiliate influence. Our methodology explained in plain English.',
+      'See how we analyze contractor quotes: BLS wage data, regional material costs, line-by-line breakdown. Our methodology explained in plain English.',
     canonical: `${SITE_CONFIG.url}/how-it-works`,
   },
 
   pricing: {
     title: 'Pricing – Ungouge.ai',
     description:
-      'Simple, transparent pricing for honest product research. No hidden fees, no bait-and-switch. Start free, upgrade when you need more.',
+      '$19.99 per quote analysis. No subscriptions, no hidden fees, no lead gen. One price, full report, 100% money-back guarantee.',
     canonical: `${SITE_CONFIG.url}/pricing`,
   },
 
   search: {
-    title: 'Search Products – Ungouge.ai',
+    title: 'Search – Ungouge.ai',
     description:
-      'Search thousands of researched products. Get instant access to unbiased reviews, data-driven comparisons, and recommendations you can trust.',
+      'Search your quote history and analysis reports.',
     canonical: `${SITE_CONFIG.url}/search`,
     noindex: true, // Search pages often have dynamic content
   },
@@ -77,23 +77,23 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   dashboard: {
     title: 'Dashboard – Ungouge.ai',
     description:
-      'Your research dashboard. View saved reports, track product prices, and manage your research projects in one place.',
+      'Your quote analysis dashboard. View reports, track savings, and manage your contractor quotes.',
     canonical: `${SITE_CONFIG.url}/dashboard`,
     noindex: true, // Private user content
   },
 
   new_report: {
-    title: 'Create New Report – Ungouge.ai',
+    title: 'Analyze Quote – Ungouge.ai',
     description:
-      'Start a new product research report. Enter what you\'re looking for, set your criteria, and get comprehensive analysis with no marketing BS.',
-    canonical: `${SITE_CONFIG.url}/reports/new`,
+      'Upload your contractor quote for analysis. Get a detailed breakdown of fair pricing based on real labor and material data.',
+    canonical: `${SITE_CONFIG.url}/analyze`,
     noindex: true, // Tool page
   },
 
   saved_reports: {
     title: 'My Reports – Ungouge.ai',
     description:
-      'View all your saved research reports. Access your buying guides, product comparisons, and analysis anytime.',
+      'View all your quote analysis reports. Access your pricing breakdowns and negotiation tips anytime.',
     canonical: `${SITE_CONFIG.url}/reports`,
     noindex: true, // Private user content
   },
@@ -167,12 +167,12 @@ export function generateOrganizationSchema() {
     url: SITE_CONFIG.url,
     logo: `${SITE_CONFIG.url}/logo.png`,
     sameAs: [
-      'https://twitter.com/ungougeai',
+      'https://twitter.com/ungouge',
       // Add more social profiles as needed
     ],
     description:
-      'Honest product research without affiliate links or sales pressure. Research you can trust.',
-    foundingDate: '2024',
+      'Contractor quote analysis powered by real BLS data. No lead gen, no contractor kickbacks – we protect homeowners from overcharges.',
+    foundingDate: '2025',
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Support',
@@ -190,23 +190,16 @@ export function generateSoftwareApplicationSchema() {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: SITE_CONFIG.name,
-    applicationCategory: 'ProductResearchApplication',
+    applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     offers: {
       '@type': 'Offer',
-      price: '0',
+      price: '19.99',
       priceCurrency: 'USD',
-      description: 'Free tier available with premium options',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '127',
-      bestRating: '5',
-      worstRating: '1',
+      description: '$19.99 per quote analysis, 100% money-back guarantee',
     },
     description:
-      'Research products without the runaround. No affiliate links, no sales pressure, just honest recommendations.',
+      'Analyze contractor quotes against Bureau of Labor Statistics data. Find out if you are being overcharged before you sign.',
     url: SITE_CONFIG.url,
     screenshot: `${SITE_CONFIG.url}/screenshot.png`,
     author: {

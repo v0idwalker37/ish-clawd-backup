@@ -133,3 +133,97 @@ class MessageResponse(BaseModel):
                 "message": "Operation completed successfully",
             }
         }
+
+
+# MFA (Email OTP) Models
+
+class MFAStatusResponse(BaseModel):
+    """MFA status response"""
+    mfa_enabled: bool
+    email: str  # Masked email for display
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "mfa_enabled": True,
+                "email": "j***n@example.com",
+            }
+        }
+
+
+class MFAEnableRequest(BaseModel):
+    """Request to enable MFA - sends verification code"""
+    password: str = Field(..., description="Current password for confirmation")
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "password": "CurrentPassword123",
+            }
+        }
+
+
+class MFAVerifyRequest(BaseModel):
+    """Verify MFA code"""
+    code: str = Field(..., min_length=6, max_length=6, description="6-digit verification code")
+    
+    @validator('code')
+    def validate_code(cls, v):
+        if not v.isdigit():
+            raise ValueError('Code must contain only digits')
+        return v
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "code": "123456",
+            }
+        }
+
+
+class MFADisableRequest(BaseModel):
+    """Request to disable MFA"""
+    password: str = Field(..., description="Current password for confirmation")
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "password": "CurrentPassword123",
+            }
+        }
+
+
+class MFALoginRequest(BaseModel):
+    """Complete MFA login with code"""
+    email: EmailStr = Field(..., description="User email")
+    code: str = Field(..., min_length=6, max_length=6, description="6-digit verification code")
+    
+    @validator('code')
+    def validate_code(cls, v):
+        if not v.isdigit():
+            raise ValueError('Code must contain only digits')
+        return v
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "email": "user@example.com",
+                "code": "123456",
+            }
+        }
+
+
+class MFARequiredResponse(BaseModel):
+    """Response when MFA is required"""
+    mfa_required: bool = True
+    email: str  # Masked email
+    message: str = "Please check your email for the verification code"
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "mfa_required": True,
+                "email": "j***n@example.com",
+                "message": "Please check your email for the verification code",
+            }
+        }

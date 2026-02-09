@@ -2,9 +2,12 @@
 Authentication router - handles user registration, login, and profile management
 """
 from fastapi import APIRouter, Depends, HTTPException, status, Request
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from typing import Optional
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 import uuid
+import os
 from datetime import datetime
 from slowapi import Limiter
 from slowapi.util import get_remote_address
@@ -19,6 +22,12 @@ from models.auth import (
     UserUpdate,
     ForgotPasswordRequest,
     MessageResponse,
+    MFAStatusResponse,
+    MFAEnableRequest,
+    MFAVerifyRequest,
+    MFADisableRequest,
+    MFALoginRequest,
+    MFARequiredResponse,
 )
 from models.password_reset import PasswordResetRequest, PasswordResetVerify, PasswordResetResponse
 from models.database import PasswordResetToken, EmailVerificationToken
@@ -152,16 +161,19 @@ async def register(
         # verification_url = f"{os.getenv('FRONTEND_URL')}/verify-email?token={verification_token}"
         # await send_verification_email(new_user.email, new_user.name, verification_url)
         
-        # For development, log the token (REMOVE IN PRODUCTION)
+        # Only log token in development (NEVER in production)
         from services.logger import logger
-        logger.info(
-            "email_verification_sent",
-            extra={
-                "user_id": user_id,
-                "token": verification_token,  # REMOVE IN PRODUCTION
-                "note": "Check logs for verification token (dev only)"
-            }
-        )
+        if os.getenv("ENVIRONMENT") != "production":
+            logger.info(
+                "email_verification_sent",
+                extra={
+                    "user_id": user_id,
+                    "token": verification_token,
+                    "note": "Dev only - token logged for testing"
+                }
+            )
+        else:
+            logger.info("email_verification_sent", extra={"user_id": user_id})
     except Exception as e:
         await db.rollback()
         from services.logger import log_error
@@ -170,14 +182,51 @@ async def register(
     # Log successful registration
     log_auth_success(user_id, "register", request.client.host if request.client else None)
     
-    return TokenResponse(
-        access_token=access_token,
-        refresh_token=refresh_token,
-        token_type="bearer",
+    # Create response with cookies
+    from fastapi.responses import JSONResponse
+    is_production = os.getenv("ENVIRONMENT") == "production"
+    
+    response = JSONResponse(
+        content={
+            "message": "Registration successful",
+            "user": {
+                "id": user_id,
+                "email": normalized_email,
+                "name": sanitized_name,
+                "is_verified": False,
+            },
+            # Also include tokens for backward compatibility / API clients
+            "access_token": access_token,
+            "refresh_token": refresh_token,
+            "token_type": "bearer",
+        },
+        status_code=status.HTTP_201_CREATED,
     )
+    
+    # Set httpOnly cookies (more secure than localStorage)
+    response.set_cookie(
+        key="access_token",
+        value=access_token,
+        httponly=True,
+        secure=is_production,
+        samesite="strict",
+        max_age=30 * 60,
+        path="/",
+    )
+    response.set_cookie(
+        key="refresh_token",
+        value=refresh_token,
+        httponly=True,
+        secure=is_production,
+        samesite="strict",
+        max_age=7 * 24 * 60 * 60,
+        path="/",
+    )
+    
+    return response
 
 
-@router.post("/auth/login", response_model=TokenResponse)
+@router.post("/auth/login")
 @limiter.limit("5/minute")  # Max 5 login attempts per minute per IP
 async def login(
     request: Request,
@@ -242,6 +291,26 @@ async def login(
             detail=exc.to_dict()
         )
     
+    # Check if MFA is enabled
+    if user.mfa_enabled:
+        from services.mfa_service import create_and_send_mfa_code, mask_email
+        
+        # Send MFA code
+        success, message = await create_and_send_mfa_code(db, user)
+        
+        if not success:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail={"error": message}
+            )
+        
+        # Return MFA required response (no tokens yet)
+        return {
+            "mfa_required": True,
+            "email": mask_email(user.email),
+            "message": "Please check your email for the verification code"
+        }
+    
     # Generate tokens
     access_token = create_access_token(data={"sub": user.id})
     refresh_token = create_refresh_token(data={"sub": user.id})
@@ -249,27 +318,77 @@ async def login(
     # Log successful login
     log_auth_success(user.id, "login", request.client.host if request.client else None)
     
-    return TokenResponse(
-        access_token=access_token,
-        refresh_token=refresh_token,
-        token_type="bearer",
+    # Create response with cookies
+    from fastapi.responses import JSONResponse
+    is_production = os.getenv("ENVIRONMENT") == "production"
+    
+    response = JSONResponse(content={
+        "message": "Login successful",
+        "user": {
+            "id": user.id,
+            "email": user.email,
+            "name": user.name,
+            "is_verified": user.is_verified,
+        },
+        # Also include tokens for backward compatibility / API clients
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+        "token_type": "bearer",
+    })
+    
+    # Set httpOnly cookies (more secure than localStorage)
+    response.set_cookie(
+        key="access_token",
+        value=access_token,
+        httponly=True,
+        secure=is_production,  # HTTPS only in production
+        samesite="strict",
+        max_age=30 * 60,  # 30 minutes (matches ACCESS_TOKEN_EXPIRE_MINUTES)
+        path="/",
     )
+    response.set_cookie(
+        key="refresh_token",
+        value=refresh_token,
+        httponly=True,
+        secure=is_production,
+        samesite="strict",
+        max_age=7 * 24 * 60 * 60,  # 7 days (matches REFRESH_TOKEN_EXPIRE_DAYS)
+        path="/",
+    )
+    
+    return response
 
 
-@router.post("/auth/refresh", response_model=TokenResponse)
-async def refresh_token(
-    token_data: RefreshTokenRequest,
+@router.post("/auth/refresh")
+async def refresh_token_endpoint(
+    request: Request,
+    token_data: Optional[RefreshTokenRequest] = None,
     db: AsyncSession = Depends(get_db),
 ):
     """
     Refresh access token using refresh token
     
-    - **refresh_token**: Valid refresh token
+    Accepts refresh token from:
+    - Request body (token_data.refresh_token)
+    - httpOnly cookie (refresh_token)
     
-    Returns new JWT access and refresh tokens
+    Returns new JWT tokens and sets new cookies
     """
+    # Get refresh token from body or cookie
+    refresh_token_value = None
+    if token_data and token_data.refresh_token:
+        refresh_token_value = token_data.refresh_token
+    elif request.cookies.get("refresh_token"):
+        refresh_token_value = request.cookies.get("refresh_token")
+    
+    if not refresh_token_value:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Refresh token required",
+        )
+    
     # Verify refresh token
-    payload = verify_token(token_data.refresh_token, token_type="refresh")
+    payload = verify_token(refresh_token_value, token_type="refresh")
     user_id = payload.get("sub")
     
     if not user_id:
@@ -291,14 +410,40 @@ async def refresh_token(
         )
     
     # Generate new tokens
-    access_token = create_access_token(data={"sub": user_id})
-    refresh_token = create_refresh_token(data={"sub": user_id})
+    new_access_token = create_access_token(data={"sub": user_id})
+    new_refresh_token = create_refresh_token(data={"sub": user_id})
     
-    return TokenResponse(
-        access_token=access_token,
-        refresh_token=refresh_token,
-        token_type="bearer",
+    # Create response with new cookies
+    from fastapi.responses import JSONResponse
+    is_production = os.getenv("ENVIRONMENT") == "production"
+    
+    response = JSONResponse(content={
+        "access_token": new_access_token,
+        "refresh_token": new_refresh_token,
+        "token_type": "bearer",
+    })
+    
+    # Set new cookies
+    response.set_cookie(
+        key="access_token",
+        value=new_access_token,
+        httponly=True,
+        secure=is_production,
+        samesite="strict",
+        max_age=30 * 60,
+        path="/",
     )
+    response.set_cookie(
+        key="refresh_token",
+        value=new_refresh_token,
+        httponly=True,
+        secure=is_production,
+        samesite="strict",
+        max_age=7 * 24 * 60 * 60,
+        path="/",
+    )
+    
+    return response
 
 
 @router.get("/auth/me", response_model=UserProfile)
@@ -423,16 +568,19 @@ async def forgot_password(
             # reset_url = f"{os.getenv('FRONTEND_URL')}/reset-password?token={reset_token}"
             # await send_password_reset_email(user.email, user.name, reset_url)
             
-            # For development, log the token (REMOVE IN PRODUCTION)
+            # Only log token in development (NEVER in production)
             from services.logger import logger
-            logger.info(
-                "password_reset_requested",
-                extra={
-                    "user_id": user.id,
-                    "token": reset_token,  # REMOVE IN PRODUCTION
-                    "note": "Check logs for reset token (dev only)"
-                }
-            )
+            if os.getenv("ENVIRONMENT") != "production":
+                logger.info(
+                    "password_reset_requested",
+                    extra={
+                        "user_id": user.id,
+                        "token": reset_token,
+                        "note": "Dev only - token logged for testing"
+                    }
+                )
+            else:
+                logger.info("password_reset_requested", extra={"user_id": user.id})
         except Exception as e:
             await db.rollback()
             # Don't reveal error to user for security
@@ -495,6 +643,17 @@ async def reset_password(
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="User not found",
+        )
+    
+    # SECURITY: Validate password strength (same rules as registration)
+    from validators import validate_password
+    from exceptions import ValidationError
+    try:
+        validate_password(request.new_password)
+    except ValidationError as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=e.to_dict()
         )
     
     # Update password
@@ -594,7 +753,7 @@ async def verify_email(
 @router.post("/auth/resend-verification", response_model=MessageResponse)
 @limiter.limit("3/hour")  # Max 3 resend requests per hour
 async def resend_verification(
-    req: Request,
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
@@ -624,15 +783,19 @@ async def resend_verification(
         # verification_url = f"{os.getenv('FRONTEND_URL')}/verify-email?token={verification_token}"
         # await send_verification_email(current_user.email, current_user.name, verification_url)
         
-        # For development, log the token
+        # Only log token in development (NEVER in production)
         from services.logger import logger
-        logger.info(
-            "email_verification_resent",
-            extra={
-                "user_id": current_user.id,
-                "token": verification_token,  # REMOVE IN PRODUCTION
-            }
-        )
+        if os.getenv("ENVIRONMENT") != "production":
+            logger.info(
+                "email_verification_resent",
+                extra={
+                    "user_id": current_user.id,
+                    "token": verification_token,
+                    "note": "Dev only - token logged for testing"
+                }
+            )
+        else:
+            logger.info("email_verification_resent", extra={"user_id": current_user.id})
         
         return MessageResponse(message="Verification email has been sent")
     except Exception as e:
@@ -643,46 +806,347 @@ async def resend_verification(
         )
 
 
-@router.post("/auth/logout", response_model=MessageResponse)
+@router.post("/auth/logout")
 async def logout(
-    credentials: HTTPAuthorizationCredentials = Depends(security),
+    request: Request,
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(HTTPBearer(auto_error=False)),
     current_user: User = Depends(get_current_user),
 ):
     """
-    Logout - revoke current access token
+    Logout - revoke current access token and clear cookies
     
     Adds the token to a blacklist so it cannot be used again.
     The token will be blacklisted until its natural expiry.
-    
-    Note: Refresh tokens are not automatically invalidated.
-    For full logout, client should discard refresh token as well.
+    Also clears httpOnly cookies.
     """
-    token = credentials.credentials
+    from fastapi.responses import JSONResponse
+    from fastapi.security import HTTPBearer
     
-    # Calculate remaining validity (token expiry - now)
+    # Get token from cookie or header
+    token = None
+    if request.cookies.get("access_token"):
+        token = request.cookies.get("access_token")
+    elif credentials:
+        token = credentials.credentials
+    
+    # Calculate remaining validity and blacklist token
     try:
-        from jose import jwt
-        from services.auth import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
-        
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        exp_timestamp = payload.get("exp")
-        
-        if exp_timestamp:
-            from datetime import datetime
-            exp_datetime = datetime.utcfromtimestamp(exp_timestamp)
-            remaining_seconds = int((exp_datetime - datetime.utcnow()).total_seconds())
+        if token:
+            from jose import jwt
+            from services.auth import SECRET_KEY, ALGORITHM
             
-            # Only blacklist if token hasn't already expired
-            if remaining_seconds > 0:
-                TokenBlacklist.add(token, remaining_seconds)
+            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+            exp_timestamp = payload.get("exp")
+            
+            if exp_timestamp:
+                exp_datetime = datetime.utcfromtimestamp(exp_timestamp)
+                remaining_seconds = int((exp_datetime - datetime.utcnow()).total_seconds())
+                
+                # Only blacklist if token hasn't already expired
+                if remaining_seconds > 0:
+                    await TokenBlacklist.add(token, remaining_seconds)
+            
+            # Also blacklist refresh token if present in cookies
+            refresh_token = request.cookies.get("refresh_token")
+            if refresh_token:
+                try:
+                    refresh_payload = jwt.decode(refresh_token, SECRET_KEY, algorithms=[ALGORITHM])
+                    refresh_exp = refresh_payload.get("exp")
+                    if refresh_exp:
+                        refresh_remaining = int((datetime.utcfromtimestamp(refresh_exp) - datetime.utcnow()).total_seconds())
+                        if refresh_remaining > 0:
+                            await TokenBlacklist.add(refresh_token, refresh_remaining)
+                except:
+                    pass  # If refresh token is invalid, just ignore
         
         # Log logout
         from services.logger import log_auth_success
         log_auth_success(current_user.id, "logout", None)
         
-        return MessageResponse(message="Logged out successfully")
     except Exception as e:
-        # Even if blacklisting fails, return success (token will expire naturally)
+        # Even if blacklisting fails, continue with logout
         from services.logger import log_error
-        log_error("logout_error", str(e), {"user_id": current_user.id})
-        return MessageResponse(message="Logged out successfully")
+        log_error("logout_blacklist_error", str(e), {"user_id": current_user.id})
+    
+    # Create response that clears cookies
+    is_production = os.getenv("ENVIRONMENT") == "production"
+    response = JSONResponse(content={"message": "Logged out successfully"})
+    
+    # Clear cookies by setting them with expired max_age
+    response.delete_cookie(key="access_token", path="/", secure=is_production, samesite="strict")
+    response.delete_cookie(key="refresh_token", path="/", secure=is_production, samesite="strict")
+    
+    return response
+
+
+# =============================================================================
+# MFA (Email OTP) Endpoints
+# =============================================================================
+
+@router.get("/auth/mfa/status", response_model=MFAStatusResponse)
+async def get_mfa_status(
+    current_user: User = Depends(get_current_user),
+):
+    """
+    Get current MFA status for authenticated user
+    """
+    from services.mfa_service import mask_email
+    
+    return MFAStatusResponse(
+        mfa_enabled=current_user.mfa_enabled,
+        email=mask_email(current_user.email),
+    )
+
+
+@router.post("/auth/mfa/enable")
+@limiter.limit("3/hour")  # Max 3 MFA enable requests per hour
+async def enable_mfa_start(
+    request: Request,
+    data: MFAEnableRequest,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Start MFA enable process - verify password and send verification code
+    
+    - **password**: Current password for confirmation
+    
+    After calling this, user must verify the code with /auth/mfa/verify-enable
+    """
+    # Verify current password
+    if not verify_password(data.password, current_user.password_hash):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid password"
+        )
+    
+    # Check if MFA is already enabled
+    if current_user.mfa_enabled:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Two-factor authentication is already enabled"
+        )
+    
+    # Send verification code
+    from services.mfa_service import create_and_send_mfa_code, mask_email
+    
+    success, message = await create_and_send_mfa_code(db, current_user)
+    
+    if not success:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=message
+        )
+    
+    return {
+        "message": message,
+        "email": mask_email(current_user.email),
+    }
+
+
+@router.post("/auth/mfa/verify-enable")
+async def enable_mfa_verify(
+    data: MFAVerifyRequest,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Verify code and enable MFA
+    
+    - **code**: 6-digit verification code from email
+    """
+    from services.mfa_service import verify_mfa_code, enable_mfa
+    
+    # Verify the code
+    valid, message = await verify_mfa_code(db, current_user, data.code)
+    
+    if not valid:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=message
+        )
+    
+    # Enable MFA
+    success, enable_message = await enable_mfa(db, current_user)
+    
+    if not success:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=enable_message
+        )
+    
+    return {"message": enable_message}
+
+
+@router.post("/auth/mfa/disable")
+async def disable_mfa_endpoint(
+    data: MFADisableRequest,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Disable MFA
+    
+    - **password**: Current password for confirmation
+    """
+    # Verify current password
+    if not verify_password(data.password, current_user.password_hash):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid password"
+        )
+    
+    # Check if MFA is enabled
+    if not current_user.mfa_enabled:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Two-factor authentication is not enabled"
+        )
+    
+    # Disable MFA
+    from services.mfa_service import disable_mfa
+    
+    success, message = await disable_mfa(db, current_user)
+    
+    if not success:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=message
+        )
+    
+    return {"message": message}
+
+
+@router.post("/auth/mfa/resend")
+@limiter.limit("3/minute")  # Max 3 resend requests per minute
+async def resend_mfa_code(
+    request: Request,
+    data: MFALoginRequest,
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Resend MFA verification code during login
+    
+    - **email**: User's email address
+    - **code**: Not required for resend (can be empty "000000")
+    """
+    from services.mfa_service import get_user_by_email, create_and_send_mfa_code, mask_email
+    
+    # Get user
+    user = await get_user_by_email(db, data.email)
+    
+    if not user or not user.mfa_enabled:
+        # Don't reveal if user exists
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid request"
+        )
+    
+    # Send new code
+    success, message = await create_and_send_mfa_code(db, user)
+    
+    if not success:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=message
+        )
+    
+    return {
+        "message": "New verification code sent",
+        "email": mask_email(user.email),
+    }
+
+
+@router.post("/auth/mfa/verify-login")
+@limiter.limit("5/minute")  # Max 5 MFA verify attempts per minute
+async def verify_mfa_login(
+    request: Request,
+    data: MFALoginRequest,
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Complete MFA login by verifying code
+    
+    - **email**: User's email address
+    - **code**: 6-digit verification code from email
+    
+    Returns JWT tokens and sets cookies on success
+    """
+    from services.mfa_service import get_user_by_email, verify_mfa_code
+    
+    # Get user
+    user = await get_user_by_email(db, data.email)
+    
+    if not user or not user.mfa_enabled:
+        # Don't reveal if user exists
+        log_auth_failure(
+            data.email,
+            "mfa_login",
+            "invalid_user",
+            request.client.host if request.client else None
+        )
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid verification code"
+        )
+    
+    # Verify the code
+    valid, message = await verify_mfa_code(db, user, data.code)
+    
+    if not valid:
+        log_auth_failure(
+            data.email,
+            "mfa_login",
+            "invalid_code",
+            request.client.host if request.client else None
+        )
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=message
+        )
+    
+    # Generate tokens
+    access_token = create_access_token(data={"sub": user.id})
+    refresh_token = create_refresh_token(data={"sub": user.id})
+    
+    # Log successful MFA login
+    log_auth_success(user.id, "mfa_login", request.client.host if request.client else None)
+    
+    # Create response with cookies
+    from fastapi.responses import JSONResponse
+    is_production = os.getenv("ENVIRONMENT") == "production"
+    
+    response = JSONResponse(content={
+        "message": "Login successful",
+        "user": {
+            "id": user.id,
+            "email": user.email,
+            "name": user.name,
+            "is_verified": user.is_verified,
+        },
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+        "token_type": "bearer",
+    })
+    
+    # Set httpOnly cookies
+    response.set_cookie(
+        key="access_token",
+        value=access_token,
+        httponly=True,
+        secure=is_production,
+        samesite="strict",
+        max_age=30 * 60,
+        path="/",
+    )
+    response.set_cookie(
+        key="refresh_token",
+        value=refresh_token,
+        httponly=True,
+        secure=is_production,
+        samesite="strict",
+        max_age=7 * 24 * 60 * 60,
+        path="/",
+    )
+    
+    return response

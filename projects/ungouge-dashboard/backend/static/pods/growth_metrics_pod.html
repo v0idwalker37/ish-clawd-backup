@@ -1,0 +1,174 @@
+<!-- Growth Metrics Pod - Ready to integrate into dashboard-v2.html -->
+
+<!--
+PURPOSE:
+Track key growth metrics over time
+- Week-over-week and month-over-month comparisons
+- Visual indicators of momentum (up/down/flat)
+- Early warning for stagnation
+
+DATA SOURCES:
+- Stripe: revenue, customers
+- GA4: traffic, conversions
+- YouTube: subscribers, views
+
+INTEGRATION:
+Add to renderDashboard() in the metrics section
+-->
+
+<script>
+// Growth Metrics Pod
+function renderGrowthMetricsPod(stripe, analytics, youtube) {
+    // Calculate growth percentages (WoW and MoM)
+    function calcGrowth(current, previous) {
+        if (!previous || previous === 0) return { pct: 0, direction: 'flat' };
+        const pct = ((current - previous) / previous * 100).toFixed(1);
+        const direction = pct > 5 ? 'up' : pct < -5 ? 'down' : 'flat';
+        return { pct, direction };
+    }
+    
+    // Get icon for direction
+    function getGrowthIcon(direction) {
+        if (direction === 'up') return '📈';
+        if (direction === 'down') return '📉';
+        return '➡️';
+    }
+    
+    // Get color for direction
+    function getGrowthColor(direction) {
+        if (direction === 'up') return '#10b981';
+        if (direction === 'down') return '#ef4444';
+        return '#94a3b8';
+    }
+    
+    // Extract metrics with fallbacks
+    const revenue = {
+        current: stripe.total_revenue_7d || 0,
+        previous: stripe.total_revenue_prev_7d || 0,
+        label: 'Revenue (7d)'
+    };
+    const revenueGrowth = calcGrowth(revenue.current, revenue.previous);
+    
+    const customers = {
+        current: stripe.new_customers_7d || 0,
+        previous: stripe.new_customers_prev_7d || 0,
+        label: 'New Customers (7d)'
+    };
+    const customersGrowth = calcGrowth(customers.current, customers.previous);
+    
+    const traffic = {
+        current: analytics.sessions_7d || 0,
+        previous: analytics.sessions_prev_7d || 0,
+        label: 'Website Traffic (7d)'
+    };
+    const trafficGrowth = calcGrowth(traffic.current, traffic.previous);
+    
+    const subs = {
+        current: youtube.subscribers || 0,
+        previous: youtube.subscribers_prev_7d || 0,
+        label: 'YouTube Subs'
+    };
+    const subsGrowth = calcGrowth(subs.current, subs.previous);
+    
+    // Overall health assessment
+    const positiveMetrics = [revenueGrowth, customersGrowth, trafficGrowth, subsGrowth]
+        .filter(g => g.direction === 'up').length;
+    const healthStatus = positiveMetrics >= 3 ? 'healthy' : positiveMetrics >= 2 ? 'warning' : 'critical';
+    const healthText = positiveMetrics >= 3 ? 'GROWING' : positiveMetrics >= 2 ? 'MIXED' : 'NEEDS ATTENTION';
+    
+    // Check if we have any data
+    const hasData = revenue.current > 0 || traffic.current > 0 || subs.current > 0;
+    
+    return `
+        <div class="widget no-hover">
+            <div class="widget-header">
+                <div class="widget-title">
+                    <span class="widget-icon">🚀</span>
+                    <span>Growth Metrics</span>
+                </div>
+                <span class="status-badge ${hasData ? healthStatus : 'inactive'}">${hasData ? healthText : 'AWAITING DATA'}</span>
+            </div>
+            <div class="widget-body">
+                ${!hasData ? `
+                    <div style="text-align: center; padding: 20px; color: #94a3b8;">
+                        <div style="font-size: 32px; margin-bottom: 12px;">📊</div>
+                        <div>Growth data will appear once services are connected</div>
+                        <div style="font-size: 12px; margin-top: 8px;">Connect Stripe, GA4, and YouTube</div>
+                    </div>
+                ` : `
+                    <!-- Revenue -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #334155;">
+                        <div>
+                            <div style="font-size: 12px; color: #94a3b8;">${revenue.label}</div>
+                            <div style="font-size: 18px; font-weight: 600; color: #fff;">$${revenue.current.toFixed(2)}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-size: 18px;">${getGrowthIcon(revenueGrowth.direction)}</span>
+                            <div style="font-size: 14px; font-weight: 600; color: ${getGrowthColor(revenueGrowth.direction)};">
+                                ${revenueGrowth.pct > 0 ? '+' : ''}${revenueGrowth.pct}%
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Customers -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #334155;">
+                        <div>
+                            <div style="font-size: 12px; color: #94a3b8;">${customers.label}</div>
+                            <div style="font-size: 18px; font-weight: 600; color: #fff;">${customers.current}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-size: 18px;">${getGrowthIcon(customersGrowth.direction)}</span>
+                            <div style="font-size: 14px; font-weight: 600; color: ${getGrowthColor(customersGrowth.direction)};">
+                                ${customersGrowth.pct > 0 ? '+' : ''}${customersGrowth.pct}%
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Traffic -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #334155;">
+                        <div>
+                            <div style="font-size: 12px; color: #94a3b8;">${traffic.label}</div>
+                            <div style="font-size: 18px; font-weight: 600; color: #fff;">${traffic.current.toLocaleString()}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-size: 18px;">${getGrowthIcon(trafficGrowth.direction)}</span>
+                            <div style="font-size: 14px; font-weight: 600; color: ${getGrowthColor(trafficGrowth.direction)};">
+                                ${trafficGrowth.pct > 0 ? '+' : ''}${trafficGrowth.pct}%
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- YouTube Subs -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;">
+                        <div>
+                            <div style="font-size: 12px; color: #94a3b8;">${subs.label}</div>
+                            <div style="font-size: 18px; font-weight: 600; color: #fff;">${subs.current.toLocaleString()}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-size: 18px;">${getGrowthIcon(subsGrowth.direction)}</span>
+                            <div style="font-size: 14px; font-weight: 600; color: ${getGrowthColor(subsGrowth.direction)};">
+                                ${subsGrowth.pct > 0 ? '+' : ''}${subsGrowth.pct}%
+                            </div>
+                        </div>
+                    </div>
+                `}
+            </div>
+        </div>
+    `;
+}
+
+// BACKEND REQUIREMENTS:
+// Stripe metrics need: total_revenue_7d, total_revenue_prev_7d, new_customers_7d, new_customers_prev_7d
+// Analytics needs: sessions_7d, sessions_prev_7d
+// YouTube needs: subscribers, subscribers_prev_7d
+// 
+// Add these to api_integrations.py get_stripe_metrics() and get_youtube_metrics()
+</script>
+
+<!--
+NOTES FOR JASON:
+- All 4 pods you requested are now ready: CAC, Quote Breakdown, Growth Metrics, (Customer Journey needs GA4)
+- Customer Journey Funnel blocked until GA4 is connected (needs website deployed)
+- These pods show "Awaiting Data" state gracefully until real data flows
+- Integration: just copy the render functions into dashboard-v2.html and call them
+-->

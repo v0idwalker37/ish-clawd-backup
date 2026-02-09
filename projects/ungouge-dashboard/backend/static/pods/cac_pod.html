@@ -1,0 +1,115 @@
+<!-- Customer Acquisition Cost Pod - Ready to integrate into dashboard-v2.html -->
+
+<!--
+CAC CALCULATION:
+- Total Marketing Spend / Number of New Customers
+- Includes: Ad spend, content creation costs, tool subscriptions
+- Target CAC: $9.30 (per Jason's data model - break-even at 11 reports/mo)
+
+INTEGRATION:
+1. Add this render function to dashboard-v2.html
+2. Call from renderDashboard() in the metrics section
+3. Data comes from expenses (category: 'marketing') and Stripe (new customers)
+-->
+
+<script>
+// Customer Acquisition Cost Pod
+function renderCACPod(expenses, stripe) {
+    // Calculate marketing spend (last 30 days)
+    const now = new Date();
+    const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+    
+    const marketingExpenses = expenses.filter(e => {
+        const expDate = new Date(e.date);
+        return e.category === 'marketing' && expDate >= thirtyDaysAgo;
+    });
+    
+    const totalMarketingSpend = marketingExpenses.reduce((sum, e) => 
+        sum + parseFloat(e.amount || 0), 0);
+    
+    // Get new customers from Stripe
+    const newCustomers = stripe.new_customers_30d || 0;
+    
+    // Calculate CAC
+    const cac = newCustomers > 0 
+        ? (totalMarketingSpend / newCustomers).toFixed(2)
+        : '—';
+    
+    // Target CAC from data model
+    const targetCAC = 9.30;
+    const cacNum = parseFloat(cac) || 0;
+    
+    // Determine status
+    let status = 'inactive';
+    let statusText = 'NO DATA';
+    if (newCustomers > 0) {
+        if (cacNum <= targetCAC) {
+            status = 'healthy';
+            statusText = 'ON TARGET';
+        } else if (cacNum <= targetCAC * 1.5) {
+            status = 'warning';
+            statusText = 'ABOVE TARGET';
+        } else {
+            status = 'critical';
+            statusText = 'HIGH';
+        }
+    }
+    
+    // Lifetime Value (LTV) - for now, assume single purchase
+    // Future: factor in repeat customers
+    const ltv = 19.99;
+    const ltvCacRatio = cacNum > 0 ? (ltv / cacNum).toFixed(1) : '—';
+    
+    return `
+        <div class="widget no-hover">
+            <div class="widget-header">
+                <div class="widget-title">
+                    <span class="widget-icon">💸</span>
+                    <span>Customer Acquisition Cost</span>
+                </div>
+                <span class="status-badge ${status}">${statusText}</span>
+            </div>
+            <div class="widget-body">
+                <div class="metric">
+                    <span class="metric-label">CAC (30d)</span>
+                    <span class="metric-value ${cacNum > targetCAC ? 'warning' : cacNum > 0 ? 'success' : ''}">${cac !== '—' ? '$' + cac : cac}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Target CAC</span>
+                    <span class="metric-value">$${targetCAC.toFixed(2)}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Marketing Spend (30d)</span>
+                    <span class="metric-value">$${totalMarketingSpend.toFixed(2)}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">New Customers (30d)</span>
+                    <span class="metric-value">${newCustomers}</span>
+                </div>
+                <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid #334155;">
+                    <div class="metric">
+                        <span class="metric-label">LTV:CAC Ratio</span>
+                        <span class="metric-value ${parseFloat(ltvCacRatio) >= 3 ? 'success' : parseFloat(ltvCacRatio) >= 1 ? '' : 'danger'}">${ltvCacRatio}:1</span>
+                    </div>
+                    <div style="font-size: 11px; color: #94a3b8; margin-top: 8px;">
+                        Target: 3:1 or higher (healthy SaaS benchmark)
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Export for integration
+// Add to renderDashboard():
+// ${renderCACPod(data.expenses, external.stripe || {})}
+</script>
+
+<!--
+NOTES FOR JASON:
+- CAC target of $9.30 comes from your data model spreadsheet
+- Currently assumes LTV = $19.99 (single purchase)
+- When we have repeat customer data from Stripe, update LTV calculation
+- LTV:CAC of 3:1 is standard SaaS benchmark (we'll likely be lower since single-purchase)
+- Can add channel attribution later (which ads drive which customers)
+-->

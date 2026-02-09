@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - UnGouge Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .header {
+            background: #1e293b;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        
+        .back-btn {
+            background: #334155;
+            color: #e2e8f0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .back-btn:hover {
+            background: #475569;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .category-filter {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .filter-btn {
+            background: #334155;
+            color: #94a3b8;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .filter-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .filter-btn:hover:not(.active) {
+            background: #475569;
+        }
+        
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 65px);
+        }
+        
+        /* Left Sidebar - Project List */
+        .project-list {
+            width: 280px;
+            background: #1e293b;
+            border-right: 1px solid #334155;
+            overflow-y: auto;
+        }
+        
+        .project-list-header {
+            padding: 16px;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .project-list-header h2 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .project-count {
+            background: #334155;
+            color: #94a3b8;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+        
+        .project-item {
+            padding: 16px;
+            border-bottom: 1px solid #334155;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        
+        .project-item:hover {
+            background: #334155;
+        }
+        
+        .project-item.selected {
+            background: #1e3a5f;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .project-item-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .project-icon {
+            font-size: 18px;
+        }
+        
+        .project-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #f1f5f9;
+            flex: 1;
+        }
+        
+        .project-category-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        .badge-ungouge {
+            background: #166534;
+            color: #86efac;
+        }
+        
+        .badge-youtube {
+            background: #991b1b;
+            color: #fca5a5;
+        }
+        
+        .badge-content {
+            background: #1e40af;
+            color: #93c5fd;
+        }
+        
+        .project-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: #64748b;
+        }
+        
+        .project-progress-mini {
+            flex: 1;
+            height: 4px;
+            background: #334155;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .project-progress-mini-bar {
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+        
+        /* Right Panel - Project Details */
+        .project-detail {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
+        
+        .no-project-selected {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #64748b;
+        }
+        
+        .no-project-selected .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+        
+        .detail-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .detail-title .icon {
+            font-size: 32px;
+        }
+        
+        .detail-title h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        
+        .detail-title .category {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+        
+        .view-full-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .view-full-btn:hover {
+            background: #2563eb;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .stat-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #334155;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        
+        .stat-value.green { color: #4ade80; }
+        .stat-value.yellow { color: #fbbf24; }
+        .stat-value.red { color: #f87171; }
+        .stat-value.blue { color: #60a5fa; }
+        
+        /* Progress Section */
+        .progress-section {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #334155;
+            margin-bottom: 24px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .progress-header h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        
+        .progress-percent {
+            font-size: 14px;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: #334155;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border-radius: 6px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .info-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #334155;
+        }
+        
+        .info-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Tasks Summary */
+        .tasks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .task-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: #0f172a;
+            border-radius: 8px;
+        }
+        
+        .task-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+        
+        .task-count {
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        
+        .status-done { color: #4ade80; }
+        .status-progress { color: #fbbf24; }
+        .status-todo { color: #94a3b8; }
+        
+        /* Milestones */
+        .milestone-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #0f172a;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .milestone-icon {
+            font-size: 20px;
+        }
+        
+        .milestone-info {
+            flex: 1;
+        }
+        
+        .milestone-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        
+        .milestone-date {
+            font-size: 12px;
+            color: #64748b;
+        }
+        
+        .milestone-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .milestone-upcoming {
+            background: #1e3a5f;
+            color: #60a5fa;
+        }
+        
+        .milestone-overdue {
+            background: #7f1d1d;
+            color: #fca5a5;
+        }
+        
+        .milestone-complete {
+            background: #14532d;
+            color: #86efac;
+        }
+        
+        /* Description */
+        .description-text {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        
+        /* Loading */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: #64748b;
+        }
+        
+        .loading-spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #334155;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 12px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .project-list {
+                width: 100%;
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <a href="/" class="back-btn">← Dashboard</a>
+            <h1>📁 Projects</h1>
+        </div>
+        <div class="header-right">
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all" onclick="filterProjects('all')">All</button>
+                <button class="filter-btn" data-category="ungouge" onclick="filterProjects('ungouge')">🏠 Ungouge.ai</button>
+                <button class="filter-btn" data-category="youtube" onclick="filterProjects('youtube')">📹 YouTube</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Sidebar - Project List -->
+        <div class="project-list" id="projectList">
+            <div class="project-list-header">
+                <h2>Projects</h2>
+                <span class="project-count" id="projectCount">0</span>
+            </div>
+            <div id="projectListItems">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <div>Loading projects...</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Panel - Project Details -->
+        <div class="project-detail" id="projectDetail">
+            <div class="no-project-selected">
+                <div class="icon">📁</div>
+                <div>Select a project to view details</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // State
+        let allProjects = [];
+        let allTasks = [];
+        let selectedProjectId = null;
+        let currentFilter = 'all';
+        
+        // Category icons
+        const categoryIcons = {
+            'ungouge': '🏠',
+            'youtube': '📹',
+            'content': '📝',
+            'default': '📁'
+        };
+        
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check for category filter in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoryParam = urlParams.get('category');
+            if (categoryParam && ['all', 'ungouge', 'youtube'].includes(categoryParam)) {
+                currentFilter = categoryParam;
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.category === categoryParam);
+                });
+            }
+            
+            loadProjects();
+        });
+        
+        // Load projects from API
+        async function loadProjects() {
+            try {
+                const [projectsRes, tasksRes] = await Promise.all([
+                    fetch('/api/projects'),
+                    fetch('/api/tasks')
+                ]);
+                
+                if (!projectsRes.ok || !tasksRes.ok) {
+                    throw new Error('Failed to load data');
+                }
+                
+                allProjects = await projectsRes.json();
+                allTasks = await tasksRes.json();
+                
+                renderProjectList();
+                
+                // Auto-select first project
+                const filteredProjects = getFilteredProjects();
+                if (filteredProjects.length > 0) {
+                    selectProject(filteredProjects[0].id);
+                }
+            } catch (error) {
+                console.error('Error loading projects:', error);
+                document.getElementById('projectListItems').innerHTML = `
+                    <div class="loading">
+                        <div style="color: #f87171;">Error loading projects</div>
+                        <div style="font-size: 12px; margin-top: 8px;">${error.message}</div>
+                    </div>
+                `;
+            }
+        }
+        
+        // Filter projects by category
+        function getFilteredProjects() {
+            if (currentFilter === 'all') {
+                return allProjects;
+            }
+            return allProjects.filter(p => p.category === currentFilter);
+        }
+        
+        // Filter button click
+        function filterProjects(category) {
+            currentFilter = category;
+            
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.category === category);
+            });
+            
+            // Update URL without reload
+            const url = new URL(window.location);
+            if (category === 'all') {
+                url.searchParams.delete('category');
+            } else {
+                url.searchParams.set('category', category);
+            }
+            window.history.pushState({}, '', url);
+            
+            renderProjectList();
+            
+            // Select first project in filtered list
+            const filteredProjects = getFilteredProjects();
+            if (filteredProjects.length > 0) {
+                selectProject(filteredProjects[0].id);
+            } else {
+                document.getElementById('projectDetail').innerHTML = `
+                    <div class="no-project-selected">
+                        <div class="icon">📁</div>
+                        <div>No projects in this category</div>
+                    </div>
+                `;
+            }
+        }
+        
+        // Render project list
+        function renderProjectList() {
+            const filteredProjects = getFilteredProjects();
+            document.getElementById('projectCount').textContent = filteredProjects.length;
+            
+            if (filteredProjects.length === 0) {
+                document.getElementById('projectListItems').innerHTML = `
+                    <div class="loading">
+                        <div>No projects found</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            const html = filteredProjects.map(project => {
+                const icon = categoryIcons[project.category] || categoryIcons.default;
+                const badgeClass = project.category === 'ungouge' ? 'badge-ungouge' : 
+                                   project.category === 'youtube' ? 'badge-youtube' : 'badge-content';
+                const isSelected = project.id === selectedProjectId;
+                
+                return `
+                    <div class="project-item ${isSelected ? 'selected' : ''}" onclick="selectProject(${project.id})">
+                        <div class="project-item-header">
+                            <span class="project-icon">${icon}</span>
+                            <span class="project-name">${project.name}</span>
+                        </div>
+                        <div class="project-meta">
+                            <span class="project-category-badge ${badgeClass}">${project.category || 'general'}</span>
+                            <div class="project-progress-mini">
+                                <div class="project-progress-mini-bar" style="width: ${project.progress || 0}%"></div>
+                            </div>
+                            <span>${project.progress || 0}%</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('projectListItems').innerHTML = html;
+        }
+        
+        // Select a project
+        function selectProject(projectId) {
+            selectedProjectId = projectId;
+            const project = allProjects.find(p => p.id === projectId);
+            
+            if (!project) {
+                console.error('Project not found:', projectId);
+                return;
+            }
+            
+            // Update list selection
+            document.querySelectorAll('.project-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            event?.target?.closest('.project-item')?.classList.add('selected');
+            
+            // Re-render list to show selection
+            renderProjectList();
+            
+            // Render detail view
+            renderProjectDetail(project);
+        }
+        
+        // Render project detail
+        function renderProjectDetail(project) {
+            const projectTasks = allTasks.filter(t => t.project_id === project.id);
+            const doneTasks = projectTasks.filter(t => t.status === 'done').length;
+            const inProgressTasks = projectTasks.filter(t => t.status === 'in_progress').length;
+            const todoTasks = projectTasks.filter(t => t.status === 'todo').length;
+            const milestones = projectTasks.filter(t => t.task_type === 'milestone');
+            
+            const icon = categoryIcons[project.category] || categoryIcons.default;
+            const healthColor = project.health_score >= 70 ? 'green' : 
+                               project.health_score >= 40 ? 'yellow' : 'red';
+            const healthLabel = project.health_score >= 70 ? '🟢 Good' : 
+                               project.health_score >= 40 ? '🟡 Fair' : '🔴 At Risk';
+            
+            const html = `
+                <!-- Header -->
+                <div class="detail-header">
+                    <div class="detail-title">
+                        <span class="icon">${icon}</span>
+                        <div>
+                            <h2>${project.name}</h2>
+                            <div class="category">${(project.category || 'General').toUpperCase()} • ${project.status || 'Active'}</div>
+                        </div>
+                    </div>
+                    <a href="/project-detail.html?id=${project.id}" class="view-full-btn">
+                        View Full Project →
+                    </a>
+                </div>
+                
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Progress</div>
+                        <div class="stat-value blue">${project.progress || 0}%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Health Score</div>
+                        <div class="stat-value ${healthColor}">${project.health_score || 0}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Total Tasks</div>
+                        <div class="stat-value">${projectTasks.length}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Completed</div>
+                        <div class="stat-value green">${doneTasks}</div>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <h3>Overall Progress</h3>
+                        <span class="progress-percent">${project.progress || 0}%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: ${project.progress || 0}%"></div>
+                    </div>
+                </div>
+                
+                <!-- Cards Grid -->
+                <div class="cards-grid">
+                    <!-- Tasks Summary -->
+                    <div class="info-card">
+                        <h3>📋 Tasks</h3>
+                        <div class="tasks-list">
+                            <div class="task-row">
+                                <div class="task-status status-done">✓ Done</div>
+                                <div class="task-count">${doneTasks}</div>
+                            </div>
+                            <div class="task-row">
+                                <div class="task-status status-progress">⏳ In Progress</div>
+                                <div class="task-count">${inProgressTasks}</div>
+                            </div>
+                            <div class="task-row">
+                                <div class="task-status status-todo">📋 To Do</div>
+                                <div class="task-count">${todoTasks}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Milestones -->
+                    <div class="info-card">
+                        <h3>🎯 Milestones</h3>
+                        ${milestones.length > 0 ? milestones.slice(0, 3).map(m => `
+                            <div class="milestone-item">
+                                <span class="milestone-icon">🎯</span>
+                                <div class="milestone-info">
+                                    <div class="milestone-name">${m.title}</div>
+                                    <div class="milestone-date">${m.due_date ? formatDate(m.due_date) : 'No date set'}</div>
+                                </div>
+                                <span class="milestone-status ${getMilestoneStatus(m)}">${getMilestoneLabel(m)}</span>
+                            </div>
+                        `).join('') : '<div style="color: #64748b; font-size: 13px;">No milestones set</div>'}
+                    </div>
+                </div>
+                
+                <!-- Description -->
+                ${project.description ? `
+                    <div class="info-card">
+                        <h3>📝 Description</h3>
+                        <div class="description-text">${project.description}</div>
+                    </div>
+                ` : ''}
+            `;
+            
+            document.getElementById('projectDetail').innerHTML = html;
+        }
+        
+        // Format date
+        function formatDate(dateStr) {
+            if (!dateStr) return 'N/A';
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+        
+        // Get milestone status class
+        function getMilestoneStatus(milestone) {
+            if (milestone.status === 'done') return 'milestone-complete';
+            if (!milestone.due_date) return 'milestone-upcoming';
+            const due = new Date(milestone.due_date);
+            const now = new Date();
+            return due < now ? 'milestone-overdue' : 'milestone-upcoming';
+        }
+        
+        // Get milestone label
+        function getMilestoneLabel(milestone) {
+            if (milestone.status === 'done') return 'Complete';
+            if (!milestone.due_date) return 'Upcoming';
+            const due = new Date(milestone.due_date);
+            const now = new Date();
+            return due < now ? 'Overdue' : 'Upcoming';
+        }
+    </script>
+</body>
+</html>
