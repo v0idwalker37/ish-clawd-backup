@@ -4,6 +4,16 @@ Server-side OAuth 2.0 redirect flow (no popups!)
 Build: 2026-02-09-1439 - Forces cache bust
 """
 
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger = logging.getLogger("ungouge-dashboard")
+
 from fastapi import FastAPI, HTTPException, Cookie, Response, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse, HTMLResponse
@@ -67,22 +77,22 @@ async def add_security_headers(request, call_next):
 @app.on_event("startup")
 def startup_event():
     """Initialize database on startup"""
-    print("🚀 Initializing database...")
+    logger.info("🚀 Initializing database...")
     init_db()
     
-    print("🔌 Initializing API integrations...")
+    logger.info("🔌 Initializing API integrations...")
     initialize_apis()
-    print("✅ API integrations ready")
-    print("✅ Database initialized")
+    logger.info("✅ API integrations ready")
+    logger.info("✅ Database initialized")
     
     # Seed with launch plan data if empty
     from database import seed_sample_data
     seed_sample_data()
-    print("✅ Launch plan data seeded")
+    logger.info("✅ Launch plan data seeded")
     
     # Clean up expired sessions on startup
     cleanup_expired_sessions()
-    print("✅ Expired sessions cleaned up")
+    logger.info("✅ Expired sessions cleaned up")
 
 # Static files
 static_dir = os.path.join(os.path.dirname(__file__), "static")
@@ -166,10 +176,10 @@ def read_root(
     
     # If auth_token in URL (from OAuth callback), validate and set cookie
     if auth_token:
-        print(f"🔍 Received auth_token in URL")
+        logger.info("🔍 Received auth_token in URL")
         user_info = verify_session(auth_token)
         if user_info:
-            print(f"✅ Valid auth token for {user_info.get('email')}, serving dashboard")
+            logger.info(f"✅ Valid auth token for {user_info.get('email')}, serving dashboard")
             # Set cookie and serve dashboard DIRECTLY (no redirect - avoids cookie timing issue)
             dashboard_path = os.path.join(static_dir_path, "dashboard-v2.html")
             if os.path.exists(dashboard_path):
@@ -185,7 +195,7 @@ def read_root(
                 )
                 return dashboard_response
         else:
-            print(f"❌ Invalid auth token")
+            logger.warning("❌ Invalid auth token")
     
     # Read cookie directly from request (more reliable than Cookie parameter)
     session_token = request.cookies.get("session_token")
@@ -194,20 +204,20 @@ def read_root(
     if session_token:
         user_info = verify_session(session_token)
         if user_info:
-            print(f"✅ Authenticated user: {user_info.get('email')}")
+            logger.info(f"✅ Authenticated user: {user_info.get('email')}")
             dashboard_path = os.path.join(static_dir_path, "dashboard-v2.html")
             if os.path.exists(dashboard_path):
                 return FileResponse(dashboard_path)
         else:
             # Session invalid/expired - clear the stale cookie to prevent loops
-            print(f"❌ Invalid or expired session token - clearing cookie")
+            logger.warning("❌ Invalid or expired session token - clearing cookie")
             login_path = os.path.join(static_dir_path, "login.html")
             if os.path.exists(login_path):
                 login_response = FileResponse(login_path)
                 login_response.delete_cookie(key="session_token", path="/")
                 return login_response
     else:
-        print(f"❌ No session cookie present")
+        logger.warning("❌ No session cookie present")
     
     # Not authenticated - serve login page
     login_path = os.path.join(static_dir_path, "login.html")
@@ -321,11 +331,11 @@ async def auth_callback(
         # Clear state cookie
         response.delete_cookie(key="oauth_state")
         
-        print(f"✅ Session created for {user_info['email']}, redirecting to dashboard")
+        logger.info(f"✅ Session created for {user_info['email']}, redirecting to dashboard")
         return response
         
     except Exception as e:
-        print(f"❌ OAuth callback error: {e}")
+        logger.error(f"❌ OAuth callback error: {e}")
         return RedirectResponse(url=f"/?error=token_exchange_failed")
 
 
@@ -352,6 +362,67 @@ async def auth_logout(
     
     response.delete_cookie(key="session_token")
     return {"success": True}
+
+
+@app.delete("/auth/account")
+async def delete_account(
+    response: Response,
+    user_info: dict = Depends(require_auth)
+):
+    """
+    Delete user account and all associated data
+    
+    WARNING: This is permanent and cannot be undone
+    Deletes: user sessions, tasks, projects, expenses, timeclock entries
+    """
+    user_email = user_info.get("email")
+    
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    try:
+        # Delete all user data in order (respecting foreign keys)
+        # 1. Delete timeclock entries
+        cursor.execute("DELETE FROM timeclock WHERE user_email = ?", (user_email,))
+        
+        # 2. Delete expenses for user's projects
+        cursor.execute("""
+            DELETE FROM expenses WHERE project_id IN (
+                SELECT id FROM projects WHERE created_by = ?
+            )
+        """, (user_email,))
+        
+        # 3. Delete tasks for user's projects
+        cursor.execute("""
+            DELETE FROM tasks WHERE project_id IN (
+                SELECT id FROM projects WHERE created_by = ?
+            )
+        """, (user_email,))
+        
+        # 4. Delete projects
+        cursor.execute("DELETE FROM projects WHERE created_by = ?", (user_email,))
+        
+        # 5. Delete all sessions for this user
+        cursor.execute("DELETE FROM sessions WHERE user_email = ?", (user_email,))
+        
+        conn.commit()
+        
+        # Clear session cookie
+        response.delete_cookie(key="session_token")
+        
+        rows_affected = cursor.rowcount
+        conn.close()
+        
+        return {
+            "success": True, 
+            "message": f"Account deleted. Removed {rows_affected} records.",
+            "deleted_email": user_email
+        }
+    
+    except Exception as e:
+        conn.rollback()
+        conn.close()
+        raise HTTPException(status_code=500, detail=f"Failed to delete account: {str(e)}")
 
 
 # Debug: list static files (protected — requires auth)
@@ -677,7 +748,7 @@ async def get_external_metrics(user_info: dict = Depends(require_auth)):
         metrics = await get_all_external_metrics()
         return metrics
     except Exception as e:
-        print(f"Error fetching external metrics: {e}")
+        logger.error(f"❌ Error fetching external metrics: {e}")
         return {
             "youtube": {"error": "Not configured"},
             "stripe": {"error": "Not configured"},
@@ -904,6 +975,6 @@ def serve_login_page():
 
 if __name__ == "__main__":
     import uvicorn
-    print("🚀 Starting UnGouge Dashboard API on http://localhost:8000")
+    logger.info("🚀 Starting UnGouge Dashboard API on http://localhost:8000")
     init_db()
     uvicorn.run(app, host="0.0.0.0", port=8000)
