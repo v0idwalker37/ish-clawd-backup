@@ -211,7 +211,8 @@ def seed_sample_data():
             ('SEO & Blog Content', '16+ blog posts covering home improvement costs - SEO keyword targeting', 'active', 70, 'ungouge', 'high', 80),
             ('Disaster Response System', '3-agent automation (Sentinel/Strategist/Executor) for disaster pricing', 'active', 15, 'ungouge', 'medium', 60),
             ('Data Partnerships', '1build.com API inquiry (68M data points) - waiting for response', 'active', 10, 'ungouge', 'medium', 50),
-            ('Social Media Presence', 'YouTube @ungouge, Instagram @ungouge.ai, TikTok @ungouge.ai, X @Ungouge', 'active', 40, 'youtube', 'medium', 65)
+            ('Social Media Presence', 'YouTube @ungouge, Instagram @ungouge.ai, TikTok @ungouge.ai, X @Ungouge', 'active', 40, 'youtube', 'medium', 65),
+            ('GPT to Web Funnel', 'ChatGPT custom GPT in-app experience funneling to ungouge.ai web app', 'active', 5, 'youtube', 'medium', 50)
     """)
     
     # Get project IDs
@@ -230,6 +231,7 @@ def seed_sample_data():
     disaster = projects.get('Disaster Response System')
     data_partner = projects.get('Data Partnerships')
     social = projects.get('Social Media Presence')
+    gpt_funnel = projects.get('GPT to Web Funnel')
     
     # YouTube Channel tasks
     cursor.execute("""
@@ -422,6 +424,21 @@ def seed_sample_data():
             social, today.strftime('%Y-%m-%d'),
             social, today.strftime('%Y-%m-%d'),
             social, (week_3).strftime('%Y-%m-%d')
+        ))
+
+    if gpt_funnel:
+        cursor.execute("""
+            INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+            VALUES
+                (?, 'Design GPT in-app experience', 'Create conversational flow for quote analysis within ChatGPT', 'todo', 'medium', ?, 'action', 3),
+                (?, 'Add web app funnel CTA', 'Prompt users to visit ungouge.ai for full report after GPT preview', 'todo', 'medium', ?, 'action', 2),
+                (?, 'Track GPT to web conversion', 'Add analytics to measure how many GPT users convert to web app', 'todo', 'low', ?, 'action', 2),
+                (?, 'Test GPT quote preview', 'Ensure GPT can provide useful preview without full paid report', 'todo', 'medium', ?, 'action', 1)
+        """, (
+            gpt_funnel, (week_2 + timedelta(days=2)).strftime('%Y-%m-%d'),
+            gpt_funnel, (week_2 + timedelta(days=3)).strftime('%Y-%m-%d'),
+            gpt_funnel, (week_3).strftime('%Y-%m-%d'),
+            gpt_funnel, (week_2 + timedelta(days=4)).strftime('%Y-%m-%d')
         ))
 
     # Insert current expenses

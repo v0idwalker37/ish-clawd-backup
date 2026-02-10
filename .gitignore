@@ -18,3 +18,8 @@ node_modules/
 # Build artifacts
 *.log
 .DS_Store
+.env.cloudrun
+*.env
+*oauth-credentials.json
+drive-token.json
+token.json
