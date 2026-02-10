@@ -78,3 +78,57 @@ If we need Claude specifically, build **Option B** with streaming optimizations.
 
 ## Priority: Medium
 Jason specifically requested this. Build after Ungouge.ai launch stabilizes.
+
+---
+
+## Updated Research (Feb 10, 2026)
+
+### OpenAI Realtime API - Pricing & Specs
+
+**Checked:** OpenAI pricing page (current as of Feb 2026)
+
+**Audio Input:** $0.06 / minute  
+**Audio Output:** $0.24 / minute  
+**Total:** ~$0.30/minute average
+
+**Example 10-minute call:** $3.00  
+**Jason's usage (100 min/month):** $30/month  
+**Conclusion:** Cost is NOT a blocker.
+
+### Cost Breakdown (Monthly, 100 min usage)
+
+| Service | Cost |
+|---------|------|
+| OpenAI Realtime API | ~$30 (100 min @ $0.30/min) |
+| Twilio phone number | $1.15 |
+| Twilio inbound minutes | $1.30 (@ $0.013/min) |
+| Server hosting | $0 (Jason's Mac) |
+| **Total** | **~$32/month** |
+
+**ROI:** 24/7 voice access to AI assistant for price of Netflix subscription.
+
+### Implementation Recommendation
+
+**Phase 1: Web Client Prototype** (2-3 hours)
+- Simple HTML page with microphone button
+- WebRTC → OpenAI Realtime API
+- Test latency (~300-500ms expected)
+- Jason tries from laptop
+
+**Phase 2: Twilio Phone Integration** (1-2 days)
+- Buy Twilio number, configure Media Streams
+- Build WebSocket relay server
+- Jason calls from iPhone
+
+**Phase 3: OpenClaw Tool Integration** (2-3 days)
+- Function calling → OpenClaw tools
+- Calendar, email, weather, reminders during calls
+
+**Timeline:** ~1 week total for full system
+
+### Decision Point
+
+**Wait until Ungouge.ai app launches?** OR **Start prototype this week?**
+
+Jason to decide based on priorities.
+
