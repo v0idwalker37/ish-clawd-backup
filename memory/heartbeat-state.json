@@ -1,38 +1,55 @@
 {
-  "lastEmailCheck": 1770844028,
-  "lastCalendarCheck": 1770844028,
+  "lastEmailCheck": 1770851471,
+  "lastCalendarCheck": 1770851471,
   "lastWeatherCheck": 1770652200,
   "lastMoltbookCheck": 1770710100,
   "lastNightlyCleanup": 1770784269,
   "lastDeepWork": 1770710100,
-  "notes": "Feb 11 4:07 PM: Dashboard rev 84 deployed. Financial dashboard complete, Feb 10 punch list cleared. Active session with Jason on cost model strategy.",
+  "lastBackup": 1770845700,
+  "notes": "Feb 11 7:31 PM: Email check complete (all newsletters). Jason with family. Cron jobs on schedule.",
   "dashboardStatus": {
-    "revision": "00084-???",
+    "revision": "00084-4tw",
     "projects": 13,
     "tasks": 60,
     "expenses": 10,
     "lastDeploy": "2026-02-11 1:08 PM EST",
     "database": "/tmp/dashboard_v4.db (ephemeral)",
-    "features": "Task CRUD, financial dashboard (4 tabs), Stripe API, CSV export, My Focus filter, Create Task modals"
+    "features": "Task CRUD, financial dashboard (4 tabs), Stripe API, CSV export, My Focus filter, Create Task modals",
+    "securityScore": "66/100 (C+)"
+  },
+  "backupStatus": {
+    "googleDrive": {
+      "lastBackup": "2026-02-11 4:30 PM EST",
+      "location": "Google Drive > Ungouge_Backups > 2026-02-11/",
+      "size": "111 MB",
+      "contents": ["ungouge-app", "ungouge-dashboard", "memory files", "core config files"]
+    },
+    "github": {
+      "status": "pending",
+      "guide": "GITHUB_SETUP_GUIDE.md",
+      "note": "Waiting for Jason's GitHub credentials"
+    }
   },
   "waitingOn": [
     "RSMeans PDF scan (tomorrow at print shop)",
     "Craftsman Estimator book (arriving ~1 week)",
-    "Data scraping cron (8:15 PM tonight)",
+    "Data scraping cron (8:15 PM tonight - 44 min)",
     "Quote collection cron (1:00 AM tonight)",
-    "Jason to choose GitHub option (A/B/C) - he chose C",
+    "Jason to run gh auth login (GitHub backup)",
     "Jason to greenlight Cloud SQL (~$7/mo)"
   ],
   "cronJobs": [
     {
       "id": "6877df9c-5205-46fc-ae47-c47cf89a70dc",
       "name": "Construction Cost Data Scraping Sprint",
-      "runAt": "2026-02-11 8:15 PM EST"
+      "runAt": "2026-02-11 8:15 PM EST",
+      "status": "scheduled"
     },
     {
       "id": "c6a17ba3-5187-427e-89de-b5af162b7632",
-      "name": "Real Contractor Quote Collection (100+ quotes)",
-      "runAt": "2026-02-12 1:00 AM EST"
+      "name": "Real Contractor Quote Collection (500-1000+ quotes)",
+      "runAt": "2026-02-12 1:00 AM EST",
+      "status": "scheduled"
     }
   ]
 }
