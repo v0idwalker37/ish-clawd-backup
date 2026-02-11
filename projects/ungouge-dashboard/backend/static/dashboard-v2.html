@@ -694,6 +694,14 @@
             'youtube': ['content', 'youtube']
         };
 
+        // Helper: build tasks.html URL with current category filter
+        function tasksUrl(extra) {
+            const params = [];
+            if (currentCategory && currentCategory !== 'all') params.push('category=' + currentCategory);
+            if (extra) params.push(extra);
+            return '/tasks.html' + (params.length ? '?' + params.join('&') : '');
+        }
+
         // Set category filter
         function setCategory(category) {
             currentCategory = category;
@@ -805,19 +813,18 @@
             const blockedTasks = tasks.filter(t => t.status === 'blocked').length;
             const todoTasks = tasks.filter(t => t.status === 'todo').length;
 
-            // Overdue tasks
+            // Overdue tasks (due before today, not done)
             const now = new Date();
+            const todayStr = now.toISOString().split('T')[0]; // YYYY-MM-DD local-ish
             const overdueTasks = tasks.filter(t => {
                 if (!t.due_date || t.status === 'done') return false;
-                return new Date(t.due_date) < now;
+                return t.due_date.split('T')[0] < todayStr;
             }).length;
 
-            // Urgent tasks (due in 24h)
-            const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+            // Urgent tasks (priority = urgent OR high, not done)
             const urgentTasks = tasks.filter(t => {
-                if (!t.due_date || t.status === 'done') return false;
-                const dueDate = new Date(t.due_date);
-                return dueDate >= now && dueDate <= tomorrow;
+                if (t.status === 'done') return false;
+                return t.priority === 'urgent' || t.priority === 'high';
             }).length;
 
             // Project stats
@@ -1008,7 +1015,7 @@
             ).slice(0, 4);
             
             return `
-                <div class="widget" onclick="window.location.href='/tasks.html'">
+                <div class="widget" onclick="window.location.href=tasksUrl()">
                     <div class="widget-header">
                         <div class="widget-title">
                             <span class="widget-icon">🎬</span>
@@ -1068,12 +1075,13 @@
             const { revenue, expenses, netIncome, burnRate } = metrics.financial;
             
             return `
-                <div class="widget no-hover">
+                <div class="widget" onclick="window.location.href='/finances.html'" style="cursor:pointer;">
                     <div class="widget-header">
                         <div class="widget-title">
                             <span class="widget-icon">💰</span>
                             <span>Financial Summary</span>
                         </div>
+                        <span class="widget-action">View Details →</span>
                     </div>
                     <div class="widget-body">
                         <div class="metric">
@@ -1105,13 +1113,13 @@
             const completionRate = tasks.total > 0 ? Math.round((tasks.completed / tasks.total) * 100) : 0;
 
             return `
-                <div class="widget" onclick="window.location.href='/tasks.html'">
+                <div class="widget" onclick="window.location.href=tasksUrl()">
                     <div class="widget-header">
                         <div class="widget-title">
                             <span class="widget-icon">📋</span>
                             <span>Tasks</span>
                         </div>
-                        <a href="/tasks.html" class="widget-action">View All →</a>
+                        <a href="#" onclick="event.preventDefault(); window.location.href=tasksUrl()" class="widget-action">View All →</a>
                     </div>
                     <div class="widget-body">
                         <div class="stat-grid">
@@ -1213,13 +1221,14 @@
 
         // Task List Pod
         function renderTaskListPod(tasks, metrics) {
+            const todayStr = new Date().toISOString().split('T')[0];
             const urgentAndOverdue = tasks.filter(t => {
                 if (t.status === 'done') return false;
-                if (!t.due_date) return false;
-                const now = new Date();
-                const dueDate = new Date(t.due_date);
-                const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-                return dueDate <= tomorrow;
+                // Show: overdue tasks, urgent/high priority tasks, or due today
+                const isOverdue = t.due_date && t.due_date.split('T')[0] < todayStr;
+                const isDueToday = t.due_date && t.due_date.split('T')[0] === todayStr;
+                const isUrgentPriority = t.priority === 'urgent' || t.priority === 'high';
+                return isOverdue || isDueToday || isUrgentPriority;
             }).slice(0, 10);
 
             if (urgentAndOverdue.length === 0) {
@@ -1245,7 +1254,7 @@
                             <span class="widget-icon">🔔</span>
                             <span>Urgent & Overdue Tasks</span>
                         </div>
-                        <a href="/tasks.html" class="widget-action">View All →</a>
+                        <a href="#" onclick="event.preventDefault(); window.location.href=tasksUrl()" class="widget-action">View All →</a>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 8px;">
                         ${urgentAndOverdue.map(task => `
@@ -1474,7 +1483,7 @@
                     </div>
                     <div class="widget-body">
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
-                            <button onclick="window.location.href='/tasks.html'" style="background: #3b82f6; color: white; border: none; padding: 14px 8px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 6px; transition: all 0.2s;">
+                            <button onclick="window.location.href=tasksUrl()" style="background: #3b82f6; color: white; border: none; padding: 14px 8px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 6px; transition: all 0.2s;">
                                 <span style="font-size: 20px;">📋</span>
                                 <span>Tasks</span>
                             </button>
@@ -1581,7 +1590,7 @@
                             icon: '📋',
                             title: task.title,
                             subtitle: `Task • ${task.status}`,
-                            url: `/tasks.html`
+                            url: tasksUrl()
                         });
                     }
                 });
@@ -1813,7 +1822,7 @@
                     document.getElementById('globalSearch').focus();
                     break;
                 case 't':
-                    window.location.href = '/tasks.html';
+                    window.location.href = tasksUrl();
                     break;
                 case 'e':
                     window.location.href = '/expenses.html';

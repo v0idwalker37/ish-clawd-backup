@@ -378,6 +378,7 @@
             </h1>
         </div>
         <div class="header-right">
+            <button class="switch-btn" style="background: #3b82f6; font-weight: 600;" onclick="showCreateTaskModal()">+ Create Task</button>
             <a href="/projects-youtube.html" class="switch-btn">
                 📹 Switch to YouTube Projects
             </a>
@@ -422,14 +423,14 @@
                 const authRes = await fetch('/auth/status', {credentials: 'include'});
                 const authData = await authRes.json();
                 if (authData.authenticated) {
-                    window.location.href = '/';
+                    window.location.href = '/dashboard-v2.html';
                 } else {
                     // Session expired, go to login
                     window.location.href = '/login.html';
                 }
             } catch (error) {
                 // On error, try the home page anyway
-                window.location.href = '/';
+                window.location.href = '/dashboard-v2.html';
             }
         }
         
@@ -597,15 +598,301 @@
             board.classList.toggle('collapsed');
         }
         
+        let currentEditTaskId = null;
+
         function openTask(taskId) {
-            // Could open a modal or navigate to task detail
-            window.location.href = `/tasks.html?highlight=${taskId}`;
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+            currentEditTaskId = taskId;
+            
+            const project = projects.find(p => p.id === task.project_id);
+            const projectName = project ? project.name : 'Unknown';
+            const isMilestone = task.task_type === 'milestone';
+            
+            document.getElementById('modalType').innerHTML = (isMilestone ? '🎯 Milestone' : '📋 Task') + ' • ' + escapeHtml(projectName);
+            document.getElementById('modalTitle').value = task.title || '';
+            document.getElementById('modalDescription').value = task.description || '';
+            document.getElementById('modalStatus').value = task.status || 'todo';
+            document.getElementById('modalPriority').value = task.priority || 'medium';
+            document.getElementById('modalDue').value = task.due_date ? task.due_date.split('T')[0] : '';
+            document.getElementById('modalHours').value = task.estimated_hours || '';
+            document.getElementById('modalCreated').textContent = task.created_at ? 'Created ' + new Date(task.created_at).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) : '';
+            document.getElementById('modalSaveMsg').textContent = '';
+            
+            const modal = document.getElementById('taskModal');
+            const overlay = document.getElementById('modalOverlay');
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modal.style.transform = 'translate(-50%,-50%) scale(1)';
+                overlay.style.opacity = '1';
+            }, 10);
+        }
+        
+        function closeTaskModal() {
+            const modal = document.getElementById('taskModal');
+            const overlay = document.getElementById('modalOverlay');
+            modal.style.opacity = '0';
+            modal.style.transform = 'translate(-50%,-50%) scale(0.95)';
+            overlay.style.opacity = '0';
+            setTimeout(() => { modal.style.display = 'none'; overlay.style.display = 'none'; }, 200);
+            currentEditTaskId = null;
+        }
+        
+        async function saveTask() {
+            if (!currentEditTaskId) return;
+            const payload = {
+                title: document.getElementById('modalTitle').value,
+                description: document.getElementById('modalDescription').value,
+                status: document.getElementById('modalStatus').value,
+                priority: document.getElementById('modalPriority').value,
+                due_date: document.getElementById('modalDue').value || null,
+                estimated_hours: parseFloat(document.getElementById('modalHours').value) || null
+            };
+            try {
+                const res = await fetch(`/tasks/${currentEditTaskId}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: 'include',
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    const task = tasks.find(t => t.id === currentEditTaskId);
+                    if (task) Object.assign(task, payload);
+                    document.getElementById('modalSaveMsg').textContent = '✓ Saved';
+                    document.getElementById('modalSaveMsg').style.color = '#22c55e';
+                    renderProjects();
+                    setTimeout(() => { document.getElementById('modalSaveMsg').textContent = ''; }, 1500);
+                } else {
+                    document.getElementById('modalSaveMsg').textContent = '✗ Error saving';
+                    document.getElementById('modalSaveMsg').style.color = '#ef4444';
+                }
+            } catch (e) {
+                console.error('Failed to save task:', e);
+                document.getElementById('modalSaveMsg').textContent = '✗ Network error';
+                document.getElementById('modalSaveMsg').style.color = '#ef4444';
+            }
         }
         
         function formatDate(dateStr) {
             if (!dateStr) return '';
             const date = new Date(dateStr);
             return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+    </script>
+    
+    <!-- Task Edit Modal -->
+    <div id="modalOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;opacity:0;transition:opacity 0.2s" onclick="closeTaskModal()"></div>
+    <div id="taskModal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.95);width:92%;max-width:540px;max-height:90vh;overflow-y:auto;background:#1e293b;border:1px solid #334155;border-radius:16px;z-index:1000;padding:0;opacity:0;transition:all 0.2s;box-shadow:0 20px 60px rgba(0,0,0,0.4)">
+        <style>
+            .modal-header { padding:16px 20px 12px; border-bottom:1px solid #334155; display:flex; justify-content:space-between; align-items:center; }
+            .modal-close { background:none; border:none; color:#94a3b8; font-size:22px; cursor:pointer; padding:0; line-height:1; }
+            .modal-close:hover { color:#f1f5f9; }
+            .modal-body { padding:16px 20px; }
+            .mf-group { margin-bottom:14px; }
+            .mf-label { display:block; color:#94a3b8; font-size:12px; font-weight:600; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.5px; }
+            .mf-input, .mf-select, .mf-textarea { width:100%; background:#0f172a; border:1px solid #334155; border-radius:8px; color:#e2e8f0; padding:9px 12px; font-size:14px; font-family:inherit; outline:none; box-sizing:border-box; }
+            .mf-input:focus, .mf-select:focus, .mf-textarea:focus { border-color:#3b82f6; }
+            .mf-textarea { resize:vertical; min-height:70px; }
+            .mf-row { display:flex; gap:12px; }
+            .mf-row .mf-group { flex:1; }
+            .modal-footer { padding:12px 20px 16px; display:flex; gap:10px; align-items:center; border-top:1px solid #334155; }
+            .modal-footer button { padding:10px 20px; border:none; border-radius:8px; font-weight:600; font-size:13px; cursor:pointer; color:white; transition:opacity 0.2s; }
+            .modal-footer button:hover { opacity:0.85; }
+        </style>
+        <div class="modal-header">
+            <span id="modalType" style="font-size:12px;color:#94a3b8"></span>
+            <button class="modal-close" onclick="closeTaskModal()">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="mf-group">
+                <label class="mf-label">Title</label>
+                <input type="text" id="modalTitle" class="mf-input">
+            </div>
+            <div class="mf-group">
+                <label class="mf-label">Description / Notes</label>
+                <textarea id="modalDescription" class="mf-textarea"></textarea>
+            </div>
+            <div class="mf-row">
+                <div class="mf-group">
+                    <label class="mf-label">Status</label>
+                    <select id="modalStatus" class="mf-select">
+                        <option value="todo">To Do</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="blocked">Blocked</option>
+                        <option value="review">Review</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+                <div class="mf-group">
+                    <label class="mf-label">Priority</label>
+                    <select id="modalPriority" class="mf-select">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mf-row">
+                <div class="mf-group">
+                    <label class="mf-label">Due Date</label>
+                    <input type="date" id="modalDue" class="mf-input">
+                </div>
+                <div class="mf-group">
+                    <label class="mf-label">Est. Hours</label>
+                    <input type="number" id="modalHours" class="mf-input" step="0.5" min="0">
+                </div>
+            </div>
+            <div style="text-align:right;margin-top:2px">
+                <span id="modalCreated" style="font-size:11px;color:#475569"></span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button style="background:#3b82f6;flex:1" onclick="saveTask()">💾 Save Changes</button>
+            <button style="background:#334155" onclick="closeTaskModal()">Cancel</button>
+            <span id="modalSaveMsg" style="font-size:12px;font-weight:600;min-width:70px;text-align:center"></span>
+        </div>
+    </div>
+
+    <!-- Create Task Modal -->
+    <div id="createOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;opacity:0;transition:opacity 0.2s" onclick="closeCreateTaskModal()"></div>
+    <div id="createModal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.95);width:92%;max-width:540px;max-height:90vh;overflow-y:auto;background:#1e293b;border:1px solid #334155;border-radius:16px;z-index:1000;padding:0;opacity:0;transition:all 0.2s;box-shadow:0 20px 60px rgba(0,0,0,0.4)">
+        <div class="modal-header">
+            <span style="font-size:12px;color:#94a3b8">📋 New Task</span>
+            <button class="modal-close" onclick="closeCreateTaskModal()">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="mf-group">
+                <label class="mf-label">Title *</label>
+                <input type="text" id="createTitle" class="mf-input" required>
+            </div>
+            <div class="mf-group">
+                <label class="mf-label">Description</label>
+                <textarea id="createDescription" class="mf-textarea"></textarea>
+            </div>
+            <div class="mf-group">
+                <label class="mf-label">Project *</label>
+                <select id="createProject" class="mf-select"></select>
+            </div>
+            <div class="mf-row">
+                <div class="mf-group">
+                    <label class="mf-label">Status</label>
+                    <select id="createStatus" class="mf-select">
+                        <option value="todo" selected>To Do</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="blocked">Blocked</option>
+                        <option value="review">Review</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+                <div class="mf-group">
+                    <label class="mf-label">Priority</label>
+                    <select id="createPriority" class="mf-select">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mf-row">
+                <div class="mf-group">
+                    <label class="mf-label">Due Date</label>
+                    <input type="date" id="createDue" class="mf-input">
+                </div>
+                <div class="mf-group">
+                    <label class="mf-label">Est. Hours</label>
+                    <input type="number" id="createHours" class="mf-input" step="0.5" min="0">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button style="background:#3b82f6;flex:1" onclick="submitCreateTask()">➕ Create Task</button>
+            <button style="background:#334155" onclick="closeCreateTaskModal()">Cancel</button>
+            <span id="createSaveMsg" style="font-size:12px;font-weight:600;min-width:70px;text-align:center"></span>
+        </div>
+    </div>
+
+    <script>
+        function showCreateTaskModal() {
+            // Populate project dropdown with ungouge projects
+            const select = document.getElementById('createProject');
+            select.innerHTML = '';
+            projects.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.id;
+                opt.textContent = p.name;
+                select.appendChild(opt);
+            });
+            // Pre-select first project
+            if (projects.length > 0) select.value = projects[0].id;
+            // Reset form fields
+            document.getElementById('createTitle').value = '';
+            document.getElementById('createDescription').value = '';
+            document.getElementById('createStatus').value = 'todo';
+            document.getElementById('createPriority').value = 'medium';
+            document.getElementById('createDue').value = '';
+            document.getElementById('createHours').value = '';
+            document.getElementById('createSaveMsg').textContent = '';
+            // Show modal
+            const modal = document.getElementById('createModal');
+            const overlay = document.getElementById('createOverlay');
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modal.style.transform = 'translate(-50%,-50%) scale(1)';
+                overlay.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeCreateTaskModal() {
+            const modal = document.getElementById('createModal');
+            const overlay = document.getElementById('createOverlay');
+            modal.style.opacity = '0';
+            modal.style.transform = 'translate(-50%,-50%) scale(0.95)';
+            overlay.style.opacity = '0';
+            setTimeout(() => { modal.style.display = 'none'; overlay.style.display = 'none'; }, 200);
+        }
+
+        async function submitCreateTask() {
+            const title = document.getElementById('createTitle').value.trim();
+            if (!title) {
+                document.getElementById('createSaveMsg').textContent = 'Title required';
+                document.getElementById('createSaveMsg').style.color = '#ef4444';
+                return;
+            }
+            const payload = {
+                title: title,
+                description: document.getElementById('createDescription').value,
+                project_id: parseInt(document.getElementById('createProject').value),
+                status: document.getElementById('createStatus').value,
+                priority: document.getElementById('createPriority').value,
+                due_date: document.getElementById('createDue').value || null,
+                estimated_hours: parseFloat(document.getElementById('createHours').value) || null,
+                task_type: 'action'
+            };
+            try {
+                const res = await fetch('/tasks', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: 'include',
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    closeCreateTaskModal();
+                    loadData();
+                } else {
+                    const err = await res.json();
+                    document.getElementById('createSaveMsg').textContent = '✗ ' + (err.detail || 'Error');
+                    document.getElementById('createSaveMsg').style.color = '#ef4444';
+                }
+            } catch (e) {
+                document.getElementById('createSaveMsg').textContent = '✗ Network error';
+                document.getElementById('createSaveMsg').style.color = '#ef4444';
+            }
         }
     </script>
 </body>

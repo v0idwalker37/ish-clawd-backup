@@ -97,7 +97,8 @@ def init_db():
             FOREIGN KEY (project_id) REFERENCES projects (id) ON DELETE SET NULL,
             CONSTRAINT category_check CHECK (category IN (
                 'hosting', 'api', 'software', 'marketing', 'consulting', 
-                'tools', 'design', 'legal', 'other'
+                'tools', 'design', 'legal', 'other',
+                'infrastructure', 'tools_subscriptions'
             ))
         )
     """)
@@ -206,9 +207,9 @@ def seed_sample_data():
             ('Ungouge.ai Platform', 'Quote analysis web app - main revenue driver ($19.99/report)', 'active', 85, 'ungouge', 'critical', 90),
             ('Executive Dashboard', 'Business metrics command center - real-time tracking of all operations', 'active', 70, 'ungouge', 'high', 80),
             ('Business Operations', 'Accounts, credentials, and operational setup tasks', 'active', 30, 'ungouge', 'high', 70),
-            ('Coming Soon Page', 'Landing page at ungouge.ai with email capture - deployed on Cloudflare Pages', 'active', 90, 'ungouge', 'high', 85),
+            ('Coming Soon Page', 'Landing page at ungouge.ai - LIVE on Cloudflare Pages, all domains connected', 'completed', 95, 'ungouge', 'high', 95),
             ('UnGouge GPT Kit', 'Custom GPT for ChatGPT Store - system prompt + 4 knowledge files ready', 'active', 95, 'ungouge', 'medium', 90),
-            ('SEO & Blog Content', '16+ blog posts covering home improvement costs - SEO keyword targeting', 'active', 70, 'ungouge', 'high', 80),
+            ('SEO & Blog Content', '23 blog posts covering home improvement costs - SEO keyword targeting', 'active', 90, 'ungouge', 'high', 90),
             ('Disaster Response System', '3-agent automation (Sentinel/Strategist/Executor) for disaster pricing', 'active', 15, 'ungouge', 'medium', 60),
             ('Data Partnerships', '1build.com API inquiry (68M data points) - waiting for response', 'active', 10, 'ungouge', 'medium', 50),
             ('Social Media Presence', 'YouTube @ungouge, Instagram @ungouge.ai, TikTok @ungouge.ai, X @Ungouge', 'active', 40, 'youtube', 'medium', 65),
@@ -362,19 +363,23 @@ def seed_sample_data():
         cursor.execute("""
             INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
             VALUES
-                (?, 'Write 16 blog posts', 'Covering major home improvement categories with cost breakdowns', 'done', 'high', ?, 'action', 20),
+                (?, 'Write 23 blog posts', 'Covering major home improvement categories with cost breakdowns', 'done', 'high', ?, 'action', 30),
                 (?, 'SEO keyword research', 'Target low-difficulty, high-volume keywords per category', 'done', 'high', ?, 'action', 3),
                 (?, 'Create regional guides', 'Central Vermont specific pricing for bathroom, roof, kitchen', 'done', 'medium', ?, 'action', 6),
                 (?, 'Deploy blog to website', 'Integrate blog posts into Next.js app with proper routing', 'todo', 'high', ?, 'milestone', 4),
-                (?, 'Write fence cost guide', 'Missing from current blog portfolio', 'todo', 'medium', ?, 'action', 2),
-                (?, 'Write flooring cost guide', 'Missing from current blog portfolio', 'todo', 'medium', ?, 'action', 2)
+                (?, 'Write fence cost guide', 'Comprehensive fence installation cost breakdown', 'done', 'medium', ?, 'action', 2),
+                (?, 'Write flooring cost guide', 'Comprehensive flooring installation cost breakdown', 'done', 'medium', ?, 'action', 2),
+                (?, 'Write siding cost guide', 'Vinyl, fiber cement, wood, metal - 5,500 words', 'done', 'medium', ?, 'action', 2),
+                (?, 'Write electrical work guide', 'Panel upgrades, outlets, EV chargers - 5,000 words', 'done', 'medium', ?, 'action', 2)
         """, (
             seo_blog, today.strftime('%Y-%m-%d'),
             seo_blog, today.strftime('%Y-%m-%d'),
             seo_blog, today.strftime('%Y-%m-%d'),
             seo_blog, (week_2).strftime('%Y-%m-%d'),
-            seo_blog, (week_2 + timedelta(days=3)).strftime('%Y-%m-%d'),
-            seo_blog, (week_2 + timedelta(days=5)).strftime('%Y-%m-%d')
+            seo_blog, today.strftime('%Y-%m-%d'),
+            seo_blog, today.strftime('%Y-%m-%d'),
+            seo_blog, today.strftime('%Y-%m-%d'),
+            seo_blog, today.strftime('%Y-%m-%d')
         ))
 
     if disaster:
@@ -441,21 +446,22 @@ def seed_sample_data():
             gpt_funnel, (week_2 + timedelta(days=4)).strftime('%Y-%m-%d')
         ))
 
-    # Insert current expenses
+    # Insert all expenses (deduplicated, normalized categories)
     today_str = today.strftime('%Y-%m-%d')
     cursor.execute("""
         INSERT INTO expenses (project_id, amount, description, category, date, vendor, recurring)
-        VALUES 
-            (?, 22.00, 'Voice cloning subscription', 'software', ?, 'ElevenLabs', 1),
-            (?, 5.00, 'Dashboard hosting (estimated)', 'hosting', ?, 'Google Cloud Run', 1),
-            (?, 0.10, 'Memory system (OpenAI + Gemini)', 'api', ?, 'OpenAI/Google', 1),
-            (NULL, 1.00, 'Domain registration (annual)', 'hosting', ?, 'Google Domains', 0)
-    """, (
-        yt, today_str,
-        dashboard, today_str,
-        dashboard, today_str,
-        today_str
-    ))
+        VALUES
+            (NULL, 125.00, 'Claude Max 5x', 'tools_subscriptions', ?, 'Anthropic', 1),
+            (NULL, 20.00, 'ChatGPT Plus', 'tools_subscriptions', ?, 'OpenAI', 1),
+            (NULL, 20.00, 'Gemini Pro', 'tools_subscriptions', ?, 'Google', 1),
+            (NULL, 22.00, 'ElevenLabs Creator', 'tools_subscriptions', ?, 'ElevenLabs', 1),
+            (NULL, 5.00, 'Google Cloud Run (App)', 'infrastructure', ?, 'Google Cloud', 1),
+            (NULL, 5.00, 'Google Cloud Run (Dashboard)', 'infrastructure', ?, 'Google Cloud', 1),
+            (NULL, 0.10, 'Memory System (OpenAI + Gemini)', 'tools_subscriptions', ?, 'OpenAI/Google', 1),
+            (NULL, 0.00, 'Cloudflare (Free Plan)', 'infrastructure', ?, 'Cloudflare', 1),
+            (NULL, 0.00, 'OpenClaw (Self-hosted)', 'tools_subscriptions', ?, 'OpenClaw', 1),
+            (NULL, 1.00, 'Domain Registration (annual)', 'infrastructure', ?, 'Google Domains', 0)
+    """, (today_str, today_str, today_str, today_str, today_str, today_str, today_str, today_str, today_str, today_str))
     
     conn.commit()
     conn.close()

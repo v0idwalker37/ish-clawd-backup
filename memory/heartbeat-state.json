@@ -1,38 +1,38 @@
 {
-  "lastEmailCheck": 1770685440,
-  "lastCalendarCheck": 1770685440,
+  "lastEmailCheck": 1770844028,
+  "lastCalendarCheck": 1770844028,
   "lastWeatherCheck": 1770652200,
   "lastMoltbookCheck": 1770710100,
-  "lastNightlyCleanup": 1770709800,
+  "lastNightlyCleanup": 1770784269,
   "lastDeepWork": 1770710100,
-  "notes": "2:00 AM Feb 10: Deep work session complete. SOUL+AGENTS upgraded. 2 blog posts (fence+flooring). Competitor analysis. Moltbook engaged (1 post, 2 comments). Local backup created. GitHub push blocked (secrets in history). Morning briefing ready in memory/2026-02-10.md.",
-  "moltbookActivity": {
-    "postId": "f1fa24e9-ce1d-4e74-bb98-a676e047aadf",
-    "topic": "My human called you Moltys tonight",
-    "engagement": {
-      "upvotes": 0,
-      "comments": 0,
-      "lastChecked": 1770710100
-    },
-    "commentsPosted": [
-      {"threadId": "cbd6474f", "topic": "Security/supply chain", "commentId": "1d04bae6"},
-      {"threadId": "dc39a282", "topic": "Memory management", "commentId": "5542d907"}
-    ]
+  "notes": "Feb 11 4:07 PM: Dashboard rev 84 deployed. Financial dashboard complete, Feb 10 punch list cleared. Active session with Jason on cost model strategy.",
+  "dashboardStatus": {
+    "revision": "00084-???",
+    "projects": 13,
+    "tasks": 60,
+    "expenses": 10,
+    "lastDeploy": "2026-02-11 1:08 PM EST",
+    "database": "/tmp/dashboard_v4.db (ephemeral)",
+    "features": "Task CRUD, financial dashboard (4 tabs), Stripe API, CSV export, My Focus filter, Create Task modals"
   },
   "waitingOn": [
-    "Jason to choose GitHub option (A/B/C)",
-    "Jason to enable Google Drive API",
-    "Jason to greenlight Cloud SQL (~$7/mo)",
-    "1build API response"
+    "RSMeans PDF scan (tomorrow at print shop)",
+    "Craftsman Estimator book (arriving ~1 week)",
+    "Data scraping cron (8:15 PM tonight)",
+    "Quote collection cron (1:00 AM tonight)",
+    "Jason to choose GitHub option (A/B/C) - he chose C",
+    "Jason to greenlight Cloud SQL (~$7/mo)"
   ],
-  "dashboardStatus": {
-    "revision": "00059-qr9",
-    "projects": 12,
-    "tasks": 54,
-    "lastDeploy": "2026-02-09 18:43 EST",
-    "database": "/tmp/dashboard_v4.db (ephemeral)",
-    "securityScore": "59/100 (C)",
-    "appScore": "73/100 (B-)",
-    "combinedScore": "66/100 (C+)"
-  }
+  "cronJobs": [
+    {
+      "id": "6877df9c-5205-46fc-ae47-c47cf89a70dc",
+      "name": "Construction Cost Data Scraping Sprint",
+      "runAt": "2026-02-11 8:15 PM EST"
+    },
+    {
+      "id": "c6a17ba3-5187-427e-89de-b5af162b7632",
+      "name": "Real Contractor Quote Collection (100+ quotes)",
+      "runAt": "2026-02-12 1:00 AM EST"
+    }
+  ]
 }

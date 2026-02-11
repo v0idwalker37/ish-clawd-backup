@@ -241,7 +241,7 @@
         <h1>📋 All Tasks</h1>
         <div style="display: flex; gap: 12px;">
             <button class="back-btn" style="background: #3b82f6;" onclick="showCreateModal()">+ Create Task</button>
-            <a href="/" class="back-btn">← Back to Dashboard</a>
+            <a href="/dashboard-v2.html" class="back-btn">← Back to Dashboard</a>
         </div>
     </div>
 
@@ -325,6 +325,14 @@
             </select>
         </div>
         <div class="filter-group">
+            <label>Category</label>
+            <select id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="ungouge">Ungouge.ai</option>
+                <option value="youtube">YouTube</option>
+            </select>
+        </div>
+        <div class="filter-group">
             <label>Project</label>
             <select id="projectFilter">
                 <option value="">All Projects</option>
@@ -336,6 +344,10 @@
                 <input type="checkbox" id="hideCompleted" style="width: 16px; height: 16px; cursor: pointer;">
                 <span style="font-size: 14px; text-transform: none;">Hide Completed</span>
             </label>
+        </div>
+        <div class="filter-group" style="justify-content: center;">
+            <label>&nbsp;</label>
+            <button id="myFocusBtn" onclick="toggleMyFocus()" style="padding: 8px 16px; background: #0f172a; border: 1px solid #334155; border-radius: 6px; color: #94a3b8; cursor: pointer; font-size: 14px; font-family: inherit; transition: all 0.2s;">🎯 My Focus</button>
         </div>
     </div>
 
@@ -354,6 +366,23 @@
 
         let allTasks = [];
         let projects = {};
+        let projectCategories = {};
+        let myFocusActive = false;
+
+        function toggleMyFocus() {
+            myFocusActive = !myFocusActive;
+            const btn = document.getElementById('myFocusBtn');
+            if (myFocusActive) {
+                btn.style.background = '#1e40af';
+                btn.style.borderColor = '#3b82f6';
+                btn.style.color = '#fff';
+            } else {
+                btn.style.background = '#0f172a';
+                btn.style.borderColor = '#334155';
+                btn.style.color = '#94a3b8';
+            }
+            renderTasks();
+        }
 
         // Fetch tasks and projects
         async function loadData() {
@@ -380,15 +409,53 @@
                 projects = Object.fromEntries(
                     (projectsData.projects || []).map(p => [p.id, p.name])
                 );
+                projectCategories = Object.fromEntries(
+                    (projectsData.projects || []).map(p => [String(p.id), p.category || 'general'])
+                );
 
-                // Populate project filter
+                // Populate project filter (alphabetically sorted)
                 const projectFilter = document.getElementById('projectFilter');
-                Object.entries(projects).forEach(([id, name]) => {
-                    const option = document.createElement('option');
-                    option.value = id;
-                    option.textContent = name;
-                    projectFilter.appendChild(option);
-                });
+                Object.entries(projects)
+                    .sort((a, b) => a[1].localeCompare(b[1]))
+                    .forEach(([id, name]) => {
+                        const option = document.createElement('option');
+                        option.value = id;
+                        option.textContent = name;
+                        projectFilter.appendChild(option);
+                    });
+
+                // Pre-select category from URL param if present
+                const urlParams = new URLSearchParams(window.location.search);
+                const categoryParam = urlParams.get('category');
+                if (categoryParam) {
+                    const categoryFilterEl = document.getElementById('categoryFilter');
+                    categoryFilterEl.value = categoryParam;
+                    // Also filter project dropdown to match category
+                    projectFilter.innerHTML = '<option value="">All Projects</option>';
+                    Object.entries(projects)
+                        .filter(([id]) => !categoryParam || projectCategories[id] === categoryParam)
+                        .sort((a, b) => a[1].localeCompare(b[1]))
+                        .forEach(([id, name]) => {
+                            const option = document.createElement('option');
+                            option.value = id;
+                            option.textContent = name;
+                            projectFilter.appendChild(option);
+                        });
+                }
+
+                // Pre-select project from URL param if present
+                const projectParam = urlParams.get('project');
+                if (projectParam) {
+                    // Find matching option (handle string/number mismatch)
+                    const options = Array.from(projectFilter.options);
+                    const match = options.find(opt => String(opt.value) === String(projectParam));
+                    if (match) {
+                        projectFilter.value = match.value;
+                        console.log('Pre-selected project filter:', projectParam, '→', match.textContent);
+                    } else {
+                        console.warn('Project param not found in options:', projectParam, 'Available:', options.map(o => o.value));
+                    }
+                }
 
                 renderTasks();
             } catch (error) {
@@ -402,18 +469,34 @@
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const statusFilter = document.getElementById('statusFilter').value;
             const priorityFilter = document.getElementById('priorityFilter').value;
+            const categoryFilter = document.getElementById('categoryFilter').value;
             const projectFilter = document.getElementById('projectFilter').value;
             const hideCompleted = document.getElementById('hideCompleted').checked;
 
             let filtered = allTasks.filter(task => {
                 // Hide completed checkbox
                 if (hideCompleted && task.status === 'done') return false;
+                // My Focus filter: status != done AND (priority urgent/high OR due within 7 days)
+                if (myFocusActive) {
+                    if (task.status === 'done') return false;
+                    const isHighPriority = task.priority === 'urgent' || task.priority === 'high';
+                    let isDueSoon = false;
+                    if (task.due_date) {
+                        const due = new Date(task.due_date);
+                        const now = new Date();
+                        const daysUntil = Math.ceil((due - now) / (1000 * 60 * 60 * 24));
+                        isDueSoon = daysUntil <= 7;
+                    }
+                    if (!isHighPriority && !isDueSoon) return false;
+                }
                 // Search filter
                 if (searchTerm && !task.title.toLowerCase().includes(searchTerm)) return false;
                 // Status filter (normalize both values for comparison)
                 if (statusFilter && task.status !== statusFilter) return false;
                 // Priority filter
                 if (priorityFilter && task.priority !== priorityFilter) return false;
+                // Category filter
+                if (categoryFilter && projectCategories[String(task.project_id)] !== categoryFilter) return false;
                 // Project filter (use == for type coercion since one might be string)
                 if (projectFilter && String(task.project_id) !== String(projectFilter)) return false;
                 return true;
@@ -429,7 +512,7 @@
             // Show count header
             const countText = `Showing ${filtered.length} of ${allTasks.length} tasks`;
             container.innerHTML = `<div style="margin-bottom: 16px; color: #94a3b8; font-size: 14px;">${countText}</div>` + '<div class="tasks-grid">' + filtered.map(task => `
-                <div class="task-card ${escapeHtml(task.priority)}" data-task-id="${task.id}">
+                <div class="task-card ${escapeHtml(task.priority)}" data-task-id="${task.id}" onclick="openTaskEdit(${task.id})" style="cursor:pointer">
                     <div class="task-header">
                         <div>
                             <div class="task-title">${escapeHtml(task.title)}</div>
@@ -484,6 +567,27 @@
         document.getElementById('searchInput').addEventListener('input', renderTasks);
         document.getElementById('statusFilter').addEventListener('change', renderTasks);
         document.getElementById('priorityFilter').addEventListener('change', renderTasks);
+        document.getElementById('categoryFilter').addEventListener('change', function() {
+            // When category changes, filter the project dropdown to match
+            const category = this.value;
+            const projectFilter = document.getElementById('projectFilter');
+            const currentProject = projectFilter.value;
+            projectFilter.innerHTML = '<option value="">All Projects</option>';
+            Object.entries(projects)
+                .filter(([id]) => !category || projectCategories[id] === category)
+                .sort((a, b) => a[1].localeCompare(b[1]))
+                .forEach(([id, name]) => {
+                    const option = document.createElement('option');
+                    option.value = id;
+                    option.textContent = name;
+                    projectFilter.appendChild(option);
+                });
+            // Restore selection if still valid
+            if (currentProject && Array.from(projectFilter.options).some(o => o.value === currentProject)) {
+                projectFilter.value = currentProject;
+            }
+            renderTasks();
+        });
         document.getElementById('projectFilter').addEventListener('change', renderTasks);
         document.getElementById('hideCompleted').addEventListener('change', renderTasks);
 
@@ -576,8 +680,158 @@
         // Update projects when category changes
         document.getElementById('newTaskCategory').addEventListener('change', updateProjectsForCategory);
 
+        // --- Task Edit Modal ---
+        let currentEditTaskId = null;
+
+        function openTaskEdit(taskId) {
+            const task = allTasks.find(t => t.id === taskId);
+            if (!task) return;
+            currentEditTaskId = taskId;
+
+            const projectName = projects[task.project_id] || 'Unknown';
+            const isMilestone = task.task_type === 'milestone';
+
+            document.getElementById('editModalType').innerHTML = (isMilestone ? '🎯 Milestone' : '📋 Task') + ' • ' + escapeHtml(projectName);
+            document.getElementById('editTitle').value = task.title || '';
+            document.getElementById('editDescription').value = task.description || '';
+            document.getElementById('editStatus').value = task.status || 'todo';
+            document.getElementById('editPriority').value = task.priority || 'medium';
+            document.getElementById('editDue').value = task.due_date ? task.due_date.split('T')[0] : '';
+            document.getElementById('editHours').value = task.estimated_hours || '';
+            document.getElementById('editCreated').textContent = task.created_at ? 'Created ' + new Date(task.created_at).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) : '';
+            document.getElementById('editSaveMsg').textContent = '';
+
+            const modal = document.getElementById('editModal');
+            const overlay = document.getElementById('editOverlay');
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modal.style.transform = 'translate(-50%,-50%) scale(1)';
+                overlay.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeEditModal() {
+            const modal = document.getElementById('editModal');
+            const overlay = document.getElementById('editOverlay');
+            modal.style.opacity = '0';
+            modal.style.transform = 'translate(-50%,-50%) scale(0.95)';
+            overlay.style.opacity = '0';
+            setTimeout(() => { modal.style.display = 'none'; overlay.style.display = 'none'; }, 200);
+            currentEditTaskId = null;
+        }
+
+        async function saveTaskEdit() {
+            if (!currentEditTaskId) return;
+            const payload = {
+                title: document.getElementById('editTitle').value,
+                description: document.getElementById('editDescription').value,
+                status: document.getElementById('editStatus').value,
+                priority: document.getElementById('editPriority').value,
+                due_date: document.getElementById('editDue').value || null,
+                estimated_hours: parseFloat(document.getElementById('editHours').value) || null
+            };
+            try {
+                const res = await fetch(`/tasks/${currentEditTaskId}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: 'include',
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    const task = allTasks.find(t => t.id === currentEditTaskId);
+                    if (task) Object.assign(task, payload);
+                    document.getElementById('editSaveMsg').textContent = '✓ Saved';
+                    document.getElementById('editSaveMsg').style.color = '#22c55e';
+                    renderTasks();
+                    setTimeout(() => { document.getElementById('editSaveMsg').textContent = ''; }, 1500);
+                } else {
+                    document.getElementById('editSaveMsg').textContent = '✗ Error saving';
+                    document.getElementById('editSaveMsg').style.color = '#ef4444';
+                }
+            } catch (e) {
+                document.getElementById('editSaveMsg').textContent = '✗ Network error';
+                document.getElementById('editSaveMsg').style.color = '#ef4444';
+            }
+        }
+
         // Load data on page load
         loadData();
     </script>
+
+    <!-- Task Edit Modal -->
+    <div id="editOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;opacity:0;transition:opacity 0.2s" onclick="closeEditModal()"></div>
+    <div id="editModal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.95);width:92%;max-width:540px;max-height:90vh;overflow-y:auto;background:#1e293b;border:1px solid #334155;border-radius:16px;z-index:1000;padding:0;opacity:0;transition:all 0.2s;box-shadow:0 20px 60px rgba(0,0,0,0.4)">
+        <style>
+            .em-header { padding:16px 20px 12px; border-bottom:1px solid #334155; display:flex; justify-content:space-between; align-items:center; }
+            .em-close { background:none; border:none; color:#94a3b8; font-size:22px; cursor:pointer; padding:0; line-height:1; }
+            .em-close:hover { color:#f1f5f9; }
+            .em-body { padding:16px 20px; }
+            .em-group { margin-bottom:14px; }
+            .em-label { display:block; color:#94a3b8; font-size:12px; font-weight:600; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.5px; }
+            .em-input, .em-select, .em-textarea { width:100%; background:#0f172a; border:1px solid #334155; border-radius:8px; color:#e2e8f0; padding:9px 12px; font-size:14px; font-family:inherit; outline:none; box-sizing:border-box; }
+            .em-input:focus, .em-select:focus, .em-textarea:focus { border-color:#3b82f6; }
+            .em-textarea { resize:vertical; min-height:70px; }
+            .em-row { display:flex; gap:12px; }
+            .em-row .em-group { flex:1; }
+            .em-footer { padding:12px 20px 16px; display:flex; gap:10px; align-items:center; border-top:1px solid #334155; }
+            .em-footer button { padding:10px 20px; border:none; border-radius:8px; font-weight:600; font-size:13px; cursor:pointer; color:white; transition:opacity 0.2s; }
+            .em-footer button:hover { opacity:0.85; }
+        </style>
+        <div class="em-header">
+            <span id="editModalType" style="font-size:12px;color:#94a3b8"></span>
+            <button class="em-close" onclick="closeEditModal()">×</button>
+        </div>
+        <div class="em-body">
+            <div class="em-group">
+                <label class="em-label">Title</label>
+                <input type="text" id="editTitle" class="em-input">
+            </div>
+            <div class="em-group">
+                <label class="em-label">Description / Notes</label>
+                <textarea id="editDescription" class="em-textarea"></textarea>
+            </div>
+            <div class="em-row">
+                <div class="em-group">
+                    <label class="em-label">Status</label>
+                    <select id="editStatus" class="em-select">
+                        <option value="todo">To Do</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="blocked">Blocked</option>
+                        <option value="review">Review</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+                <div class="em-group">
+                    <label class="em-label">Priority</label>
+                    <select id="editPriority" class="em-select">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+            </div>
+            <div class="em-row">
+                <div class="em-group">
+                    <label class="em-label">Due Date</label>
+                    <input type="date" id="editDue" class="em-input">
+                </div>
+                <div class="em-group">
+                    <label class="em-label">Est. Hours</label>
+                    <input type="number" id="editHours" class="em-input" step="0.5" min="0">
+                </div>
+            </div>
+            <div style="text-align:right;margin-top:2px">
+                <span id="editCreated" style="font-size:11px;color:#475569"></span>
+            </div>
+        </div>
+        <div class="em-footer">
+            <button style="background:#3b82f6;flex:1" onclick="saveTaskEdit()">💾 Save Changes</button>
+            <button style="background:#334155" onclick="closeEditModal()">Cancel</button>
+            <span id="editSaveMsg" style="font-size:12px;font-weight:600;min-width:70px;text-align:center"></span>
+        </div>
+    </div>
 </body>
 </html>

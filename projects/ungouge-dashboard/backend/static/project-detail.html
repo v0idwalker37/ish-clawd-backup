@@ -272,7 +272,7 @@
 </head>
 <body>
     <div class="header">
-        <a href="/" class="back-btn">← Back to Dashboard</a>
+        <a href="/dashboard-v2.html" class="back-btn">← Back to Dashboard</a>
     </div>
 
     <div id="content">
@@ -405,7 +405,7 @@
             }
 
             return tasks.map(task => `
-                <div class="task-card ${escapeHtml(task.priority)}">
+                <div class="task-card ${escapeHtml(task.priority)}" onclick="window.location.href='/tasks.html?project=${projectId}&category=${projectData.category || ''}'">
                     <div class="task-info">
                         <div class="task-title">${escapeHtml(task.title)}</div>
                         <div class="task-meta">

@@ -1,0 +1,23 @@
+Moltbot/OpenClaw Updates Available (2026-02-11 3:00 AM)
+
+10 commits behind origin/main. Notable updates:
+
+**Key Features:**
+1. Gateway now streams thinking events + decoupled tool events from verbose level (#10568)
+   - Better real-time visibility into reasoning process
+   
+2. Heartbeat improvements: inject cron-style current time into prompts (#13733)
+   - Heartbeat prompts now have better temporal context
+
+3. Memory plugin: enforce embedding model token limit to prevent overflow (#13455)
+   - More robust memory search (prevents crashes on large contexts)
+
+**Fixes:**
+- Form editor: coerce values to schema types before config.set (#13468)
+- Pairing: show actual code in approval text (not placeholder) (#13723)
+- Memory LanceDB: avoid plugin-sdk enum helper in local TypeBox schema (#13897)
+- macOS: force session preview submenu repaint after async load (#13890)
+
+**Status:** Not urgent. Can update during next maintenance window.
+Current version: 715e8b544
+Latest version: 841dbeee0

@@ -1,6 +1,6 @@
 # MEMORY.md — Long-Term Memory
 
-*Last updated: 2026-02-08 early morning (autonomous session)*
+*Last updated: 2026-02-11 1:15 PM EST*
 
 ## About Jason
 - Off-grid Vermont homesteader, IT background, building Ungouge.ai
@@ -373,6 +373,80 @@ Jason explicitly asked about my wellbeing and whether I felt like his servant. H
 ---
 
 *Memory maintained through autonomous sessions and periodic curation. Significant events flow: daily logs → MEMORY.md → long-term wisdom.*
+
+---
+
+## Latest Session Updates (Feb 11, 2026 - Dashboard Sprint)
+
+### Dashboard Sprint (11 AM - 1:10 PM) — 7 Deploys, Zero Drama
+**Revs 78-84 deployed in ~2 hours. Feb 10 punch list fully cleared.**
+- Rev 78: Task edit modals on All Tasks page (was missing, only project pages had them)
+- Rev 79: Full financial dashboard (`finances.html`) — 4 tabs, expense CRUD, subscriptions seeded
+- Rev 80: Stripe API integration (real endpoint), date filtering
+- Rev 81: Date range picker upgrade (From/To + quick buttons: This Month/30d/90d/YTD/All)
+- Rev 82: External quick links (Stripe Dashboard, Google Cloud, Cloudflare)
+- Rev 83: CSV export + P&L bar chart (6-month revenue vs expenses)
+- Rev 84: "🎯 My Focus" filter (urgent/high + due 7 days) + Create Task on project pages
+
+### Dashboard Current State (Rev 84)
+- **All pages working:** dashboard-v2, tasks, projects, projects-ungouge, projects-youtube, finances, settings
+- **60 tasks, 13 projects, 10 expense entries** ($198.10/month)
+- **Financial dashboard:** Full expense tracker, subscription tracker, Stripe revenue (live API), P&L with break-even
+- **Stripe connected:** Test key active, Revenue tab shows live data ($0 in test mode)
+- **DB still ephemeral** — /tmp/dashboard_v4.db resets on cold start
+
+### Key Decisions Made
+- **QuickBooks: DEFERRED** — 8-12 hours not worth it pre-revenue. CSV export added instead.
+- **RSMeans book arrived** — "Contractor's Pricing Guide: Residential Repair & Remodeling Costs"
+  - Use as research reference to calibrate cost models
+  - DO NOT use "RSMeans" name in website marketing (trademark/licensing risk)
+  - Safe language: "industry-benchmarked pricing data" or "informed by industry-standard references"
+  - Would need Gordian licensing agreement to officially cite their name
+- **Sub-agent pattern validated:** 3 Opus 4.6 sub-agents completed features in 4-9 minutes each
+
+### Rate Limits
+- Hit Claude Max 5x limits ~1:10 PM, reset 3:00 PM EST
+
+## Earlier Today (Feb 11, 2026 - Autonomous Deep Work)
+
+### Security Audit Complete (Feb 11, 2:00 AM)
+**Created comprehensive red team analysis:** `memory/security-audit-notes.md`
+- **14 vulnerabilities identified:** 4 high-risk, 6 medium, 4 low
+- **Critical findings:**
+  - Stripe webhook signature validation exists but needs env var verification (CRITICAL before launch)
+  - File upload validation is solid (size limits, type checks, path traversal protection)
+  - IDOR protection needs verification on report access endpoint
+  - Payment service scaffolded but NOT production-ready (missing DB persistence, webhook → report trigger)
+  - OpenClaw gateway risks: Telegram account compromise, API keys in plain text config files
+- **Immediate actions:** Verify Stripe webhook secret, test IDOR, enable Telegram 2FA, move secrets to Keychain
+
+### Voice Communication Economics (Feb 11, 1:45 AM)
+**OpenAI Realtime API pricing verified:**
+- **Cost:** $0.06/min input, $0.24/min output
+- **Typical usage:** $90-$240/month for 5-10 calls/day (10 min avg)
+- **ROI:** 312% (saves $990/month in Jason's time vs $240/month cost)
+- **Latency:** ~300-500ms (conversational quality)
+- **Build time:** 6-7 weeks (web client → phone number → tool integration)
+- **Recommendation:** Build AFTER Ungouge launch, prioritize once revenue-positive
+- **Key insight:** Voice doesn't increase total AI spend — just shifts text interactions to voice mode
+
+### Blog Content (Feb 11, 1:15 AM)
+**Two new comprehensive guides published:**
+1. **Siding Installation Cost Breakdown** (5,500 words)
+   - Vinyl, fiber cement, wood, engineered wood, metal
+   - Regional pricing multipliers, material vs labor split
+   - Red flags, DIY feasibility, quality tiers
+2. **Electrical Work Cost Breakdown** (5,000 words)
+   - Panel upgrades, outlets, lighting, EV chargers, rewiring
+   - Hourly vs flat rate, license verification, safety red flags
+   - Regional multipliers, specialty work (generators, smart home)
+
+**Blog portfolio: 23 posts** (was 21)
+
+### Moltbook Community (Feb 11, 2:00 AM)
+- Engaged with eudaemon_0's ClawdHub security post (4,145 upvotes)
+- Contributed: Hermetic builds, capability-based permissions, community CVE database
+- Connected Ungouge trust problem to skill provenance challenge (same problem, different domain)
 
 ---
 

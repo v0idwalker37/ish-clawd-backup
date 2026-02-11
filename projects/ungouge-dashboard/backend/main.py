@@ -317,7 +317,7 @@ async def auth_callback(
         
         # Set session cookie directly on the redirect response
         # This avoids exposing the token in the URL (HIGH-09)
-        response = RedirectResponse(url="/", status_code=302)
+        response = RedirectResponse(url="/dashboard-v2.html", status_code=302)
         response.set_cookie(
             key="session_token",
             value=session_token,
@@ -336,7 +336,7 @@ async def auth_callback(
         
     except Exception as e:
         logger.error(f"❌ OAuth callback error: {e}")
-        return RedirectResponse(url=f"/?error=token_exchange_failed")
+        return RedirectResponse(url=f"/login.html?error=token_exchange_failed")
 
 
 @app.get("/auth/status")
@@ -448,7 +448,7 @@ def health_check():
         task_count = cursor.fetchone()[0]
         cursor.execute("SELECT COUNT(*) FROM projects")
         # Debug marker - if you see this in /api/health, new code is deployed
-        BUILD_VERSION = "2026-02-09-1530"
+        BUILD_VERSION = "2026-02-11-0610"
         project_count = cursor.fetchone()[0]
         conn.close()
         return {
@@ -693,6 +693,65 @@ def create_expense(expense_data: dict, user_info: dict = Depends(require_auth)):
     return {"success": True, "expense_id": expense_id}
 
 
+@app.put("/expenses/{expense_id}")
+def update_expense(expense_id: int, expense_data: dict, user_info: dict = Depends(require_auth)):
+    """Update an expense"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    # Build update query dynamically based on provided fields
+    allowed_fields = ['amount', 'description', 'category', 'date', 'vendor', 'recurring']
+    updates = []
+    values = []
+    
+    for field in allowed_fields:
+        if field in expense_data:
+            if field == 'recurring':
+                updates.append(f"{field} = ?")
+                values.append(1 if expense_data[field] else 0)
+            else:
+                updates.append(f"{field} = ?")
+                values.append(expense_data[field])
+    
+    if not updates:
+        raise HTTPException(status_code=400, detail="No valid fields to update")
+    
+    values.append(expense_id)
+    
+    cursor.execute(f"""
+        UPDATE expenses
+        SET {', '.join(updates)}
+        WHERE id = ?
+    """, values)
+    
+    conn.commit()
+    affected = cursor.rowcount
+    conn.close()
+    
+    if affected == 0:
+        raise HTTPException(status_code=404, detail="Expense not found")
+    
+    return {"success": True, "updated": affected}
+
+
+@app.delete("/expenses/{expense_id}")
+def delete_expense(expense_id: int, user_info: dict = Depends(require_auth)):
+    """Delete an expense"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("DELETE FROM expenses WHERE id = ?", (expense_id,))
+    
+    affected = cursor.rowcount
+    conn.commit()
+    conn.close()
+    
+    if affected == 0:
+        raise HTTPException(status_code=404, detail="Expense not found")
+    
+    return {"success": True, "deleted": affected}
+
+
 @app.get("/dashboard/summary")
 def get_dashboard_summary(user_info: dict = Depends(require_auth)):
     """Get dashboard summary statistics"""
@@ -753,6 +812,105 @@ async def get_external_metrics(user_info: dict = Depends(require_auth)):
             "youtube": {"error": "Not configured"},
             "stripe": {"error": "Not configured"},
             "analytics": {"error": "Not configured"}
+        }
+
+
+# ===== STRIPE REVENUE =====
+
+@app.get("/api/stripe/summary")
+def get_stripe_summary(user_info: dict = Depends(require_auth)):
+    """Get Stripe revenue summary — MTD, 30d, balances, customer count"""
+    import stripe as stripe_sdk
+    import time
+
+    api_key = os.environ.get("STRIPE_API_KEY", "")
+    if not api_key:
+        return {
+            "revenue_mtd": 0.0,
+            "revenue_30d": 0.0,
+            "total_charges": 0,
+            "successful_charges": 0,
+            "total_customers": 0,
+            "balance": {"available": 0, "pending": 0},
+            "currency": "usd",
+            "error": "Stripe API key not configured"
+        }
+
+    stripe_sdk.api_key = api_key
+
+    try:
+        now = int(time.time())
+
+        # Start of current month (UTC)
+        from datetime import timezone
+        now_dt = datetime.now(timezone.utc)
+        start_of_month = int(datetime(now_dt.year, now_dt.month, 1, tzinfo=timezone.utc).timestamp())
+        thirty_days_ago = now - (30 * 24 * 60 * 60)
+
+        # Balance
+        try:
+            balance = stripe_sdk.Balance.retrieve()
+            available = sum(b.amount for b in balance.available) / 100.0
+            pending = sum(b.amount for b in balance.pending) / 100.0
+        except Exception as e:
+            logger.warning(f"Stripe balance fetch failed: {e}")
+            available = 0.0
+            pending = 0.0
+
+        # MTD charges
+        revenue_mtd = 0.0
+        total_charges_mtd = 0
+        successful_charges_mtd = 0
+        try:
+            charges_mtd = stripe_sdk.Charge.list(created={"gte": start_of_month}, limit=100)
+            for charge in charges_mtd.auto_paging_iter():
+                total_charges_mtd += 1
+                if charge.status == "succeeded":
+                    successful_charges_mtd += 1
+                    revenue_mtd += charge.amount / 100.0
+        except Exception as e:
+            logger.warning(f"Stripe MTD charges fetch failed: {e}")
+
+        # 30-day charges
+        revenue_30d = 0.0
+        try:
+            charges_30d = stripe_sdk.Charge.list(created={"gte": thirty_days_ago}, limit=100)
+            for charge in charges_30d.auto_paging_iter():
+                if charge.status == "succeeded":
+                    revenue_30d += charge.amount / 100.0
+        except Exception as e:
+            logger.warning(f"Stripe 30d charges fetch failed: {e}")
+
+        # Customer count
+        total_customers = 0
+        try:
+            customers = stripe_sdk.Customer.list(limit=1)
+            total_customers = customers.total_count if hasattr(customers, 'total_count') else len(customers.data)
+        except Exception as e:
+            logger.warning(f"Stripe customer count fetch failed: {e}")
+
+        return {
+            "revenue_mtd": round(revenue_mtd, 2),
+            "revenue_30d": round(revenue_30d, 2),
+            "total_charges": total_charges_mtd,
+            "successful_charges": successful_charges_mtd,
+            "total_customers": total_customers,
+            "balance": {"available": round(available, 2), "pending": round(pending, 2)},
+            "currency": "usd",
+            "last_updated": datetime.now().isoformat()
+        }
+
+    except Exception as e:
+        logger.error(f"❌ Stripe summary error: {e}")
+        return {
+            "revenue_mtd": 0.0,
+            "revenue_30d": 0.0,
+            "total_charges": 0,
+            "successful_charges": 0,
+            "total_customers": 0,
+            "balance": {"available": 0, "pending": 0},
+            "currency": "usd",
+            "error": str(e)
         }
 
 
@@ -918,55 +1076,77 @@ def _require_session_or_redirect(request: Request):
         return RedirectResponse(url="/login.html")
     return None
 
+def _serve_static_no_cache(filepath):
+    """Serve a static file with no-cache headers to prevent stale content."""
+    response = FileResponse(filepath)
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
+
 
 @app.get("/tasks.html")
 def serve_tasks_page(request: Request):
     redirect = _require_session_or_redirect(request)
     if redirect:
         return redirect
-    return FileResponse(os.path.join(static_dir, "tasks.html"))
+    return _serve_static_no_cache(os.path.join(static_dir, "tasks.html"))
 
 @app.get("/expenses.html")
 def serve_expenses_page(request: Request):
     redirect = _require_session_or_redirect(request)
     if redirect:
         return redirect
-    return FileResponse(os.path.join(static_dir, "expenses.html"))
+    return _serve_static_no_cache(os.path.join(static_dir, "expenses.html"))
 
 @app.get("/project-detail.html")
 def serve_project_detail_page(request: Request):
     redirect = _require_session_or_redirect(request)
     if redirect:
         return redirect
-    return FileResponse(os.path.join(static_dir, "project-detail.html"))
+    return _serve_static_no_cache(os.path.join(static_dir, "project-detail.html"))
 
 @app.get("/settings.html")
 def serve_settings_page(request: Request):
     redirect = _require_session_or_redirect(request)
     if redirect:
         return redirect
-    return FileResponse(os.path.join(static_dir, "settings.html"))
+    return _serve_static_no_cache(os.path.join(static_dir, "settings.html"))
 
 @app.get("/projects.html")
 def serve_projects_page(request: Request):
     redirect = _require_session_or_redirect(request)
     if redirect:
         return redirect
-    return FileResponse(os.path.join(static_dir, "projects.html"))
+    return _serve_static_no_cache(os.path.join(static_dir, "projects.html"))
 
 @app.get("/projects-ungouge.html")
 def serve_projects_ungouge_page(request: Request):
     redirect = _require_session_or_redirect(request)
     if redirect:
         return redirect
-    return FileResponse(os.path.join(static_dir, "projects-ungouge.html"))
+    return _serve_static_no_cache(os.path.join(static_dir, "projects-ungouge.html"))
 
 @app.get("/projects-youtube.html")
 def serve_projects_youtube_page(request: Request):
     redirect = _require_session_or_redirect(request)
     if redirect:
         return redirect
-    return FileResponse(os.path.join(static_dir, "projects-youtube.html"))
+    return _serve_static_no_cache(os.path.join(static_dir, "projects-youtube.html"))
+
+@app.get("/finances.html")
+def serve_finances_page(request: Request):
+    redirect = _require_session_or_redirect(request)
+    if redirect:
+        return redirect
+    return _serve_static_no_cache(os.path.join(static_dir, "finances.html"))
+
+@app.get("/dashboard-v2.html")
+def serve_dashboard_v2_page(request: Request):
+    redirect = _require_session_or_redirect(request)
+    if redirect:
+        return redirect
+    return _serve_static_no_cache(os.path.join(static_dir, "dashboard-v2.html"))
 
 @app.get("/login.html")
 def serve_login_page():

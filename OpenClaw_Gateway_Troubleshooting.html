@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Light'}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Light'; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1"># OpenClaw Gateway Restart Troubleshooting Guide</p>
+<p class="p2"><br></p>
+<p class="p1">## Normal Startup (should just work)</p>
+<p class="p2"><br></p>
+<p class="p1">### Option 1: Use the app</p>
+<p class="p1">- Click the OpenClaw icon in your menu bar</p>
+<p class="p1">- Click "Start Gateway" or "Restart Gateway"</p>
+<p class="p2"><br></p>
+<p class="p1">### Option 2: Terminal</p>
+<p class="p1">```bash</p>
+<p class="p1">openclaw gateway start</p>
+<p class="p1">```</p>
+<p class="p2"><br></p>
+<p class="p1">---</p>
+<p class="p2"><br></p>
+<p class="p1">## If It Doesn't Start</p>
+<p class="p2"><br></p>
+<p class="p1">### 1. Check if it's already running</p>
+<p class="p1">```bash</p>
+<p class="p1">openclaw status</p>
+<p class="p1">```</p>
+<p class="p1">- If it says "running" but you can't reach Ish, try restart instead of start</p>
+<p class="p2"><br></p>
+<p class="p1">### 2. If status shows "stopped", try:</p>
+<p class="p1">```bash</p>
+<p class="p1">openclaw gateway restart</p>
+<p class="p1">```</p>
+<p class="p2"><br></p>
+<p class="p1">### 3. If you get an error about port 18789 already in use:</p>
+<p class="p1">```bash</p>
+<p class="p1"># Kill any stuck process on that port</p>
+<p class="p1">lsof -ti:18789 | xargs kill -9</p>
+<p class="p1">openclaw gateway start</p>
+<p class="p1">```</p>
+<p class="p2"><br></p>
+<p class="p1">### 4. If you get permission errors:</p>
+<p class="p1">```bash</p>
+<p class="p1"># Check that openclaw binary has execute permission</p>
+<p class="p1">ls -la $(which openclaw)</p>
+<p class="p1"># Should show executable flag. If not:</p>
+<p class="p1">chmod +x $(which openclaw)</p>
+<p class="p1">```</p>
+<p class="p2"><br></p>
+<p class="p1">### 5. If gateway crashes immediately after starting:</p>
+<p class="p1">```bash</p>
+<p class="p1"># Check logs for errors</p>
+<p class="p1">openclaw gateway logs --tail 50</p>
+<p class="p1">```</p>
+<p class="p1">- Look for red ERROR lines</p>
+<p class="p1">- Common issues: config file corrupted, port conflict, permissions</p>
+<p class="p2"><br></p>
+<p class="p1">### 6. Nuclear option (resets everything, last resort):</p>
+<p class="p1">```bash</p>
+<p class="p1">openclaw gateway stop</p>
+<p class="p1">rm ~/.openclaw/openclaw.lock</p>
+<p class="p1">openclaw gateway start</p>
+<p class="p1">```</p>
+<p class="p2"><br></p>
+<p class="p1">---</p>
+<p class="p2"><br></p>
+<p class="p1">## Verification Test</p>
+<p class="p2"><br></p>
+<p class="p1">Once gateway is running, test that Ish is reachable:</p>
+<p class="p1">```bash</p>
+<p class="p1">openclaw status</p>
+<p class="p1">```</p>
+<p class="p1">Should show:</p>
+<p class="p1">- Gateway: running</p>
+<p class="p1">- Sessions: 1+ active</p>
+<p class="p1">- Last message: recent timestamp</p>
+<p class="p2"><br></p>
+<p class="p1">Then just send Ish a Telegram message. If Ish responds, you're good.</p>
+<p class="p2"><br></p>
+<p class="p1">---</p>
+<p class="p2"><br></p>
+<p class="p1">## If Nothing Works</p>
+<p class="p2"><br></p>
+<p class="p1">1. **Reboot the Mac** (solves 90% of weird issues)</p>
+<p class="p1">2. After reboot: `openclaw gateway start`</p>
+<p class="p1">3. If still broken, send Ish the output of:</p>
+<p class="p1"><span class="Apple-converted-space">   </span>```bash</p>
+<p class="p1"><span class="Apple-converted-space">   </span>openclaw gateway logs --tail 100</p>
+<p class="p1"><span class="Apple-converted-space">   </span>```</p>
+<p class="p1"><span class="Apple-converted-space">   </span>And Ish will diagnose from the logs.</p>
+<p class="p2"><br></p>
+<p class="p1">---</p>
+<p class="p2"><br></p>
+<p class="p1">## Pro Tip</p>
+<p class="p2"><br></p>
+<p class="p1">**Before you shut down for the flight:**</p>
+<p class="p1">Run `openclaw status` and screenshot it. That's your baseline "working state" to compare against when you restart in Miami.</p>
+<p class="p2"><br></p>
+<p class="p1">---</p>
+<p class="p2"><br></p>
+<p class="p1">## What Survives Shutdown</p>
+<p class="p2"><br></p>
+<p class="p1">✅ **Saved (zero data loss):**</p>
+<p class="p1">- All memory files (MEMORY.md, daily logs, project files)</p>
+<p class="p1">- Session history</p>
+<p class="p1">- Configuration</p>
+<p class="p1">- Cron jobs (they resume their schedules)</p>
+<p class="p2"><br></p>
+<p class="p1">❌ **Lost (but not important):**</p>
+<p class="p1">- Active running processes (auto-save state first)</p>
+<p class="p1">- Temporary /tmp files</p>
+<p class="p1">- Current conversation context window (saved to session history)</p>
+<p class="p2"><br></p>
+<p class="p1">---</p>
+<p class="p2"><br></p>
+<p class="p1">## Emergency Contact</p>
+<p class="p2"><br></p>
+<p class="p1">If Ish is offline and you need immediate help:</p>
+<p class="p1">- Check OpenClaw Discord: https://discord.com/invite/clawd</p>
+<p class="p1">- OpenClaw docs: https://docs.openclaw.ai</p>
+<p class="p1">- Local docs: `/Users/moltbot/moltbot/docs/`</p>
+</body>
+</html>
