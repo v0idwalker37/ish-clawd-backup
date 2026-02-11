@@ -1,6 +1,7 @@
 """
 Google OAuth 2.0 Authentication Module
 Verifies Google ID tokens and manages user sessions
+Uses Cloud SQL (MySQL) via shared database module
 """
 
 from google.oauth2 import id_token
@@ -8,8 +9,9 @@ from google.auth.transport import requests as google_requests
 import secrets
 from datetime import datetime, timedelta
 from typing import Optional
-import sqlite3
 import os
+
+from database import get_connection
 
 # OAuth Configuration
 GOOGLE_CLIENT_ID = "1093157467231-3pgo81mrq5rjdvhvaa1uf81pk2ifhka2.apps.googleusercontent.com"
@@ -18,37 +20,14 @@ AUTHORIZED_EMAILS = ["void@ungouge.ai"]  # Only these emails can access
 # Session expiration (24 hours)
 SESSION_DURATION = timedelta(hours=24)
 
-# Database path - must match database.py
-DB_PATH = os.environ.get("DATABASE_PATH", "/tmp/dashboard.db")
-
-
-def get_db_connection():
-    """Get database connection"""
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
-
 
 def init_sessions_table():
-    """Initialize sessions table if it doesn't exist"""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS sessions (
-            token TEXT PRIMARY KEY,
-            email TEXT NOT NULL,
-            name TEXT,
-            picture TEXT,
-            created_at TEXT NOT NULL,
-            expires_at TEXT NOT NULL
-        )
-    """)
-    conn.commit()
-    conn.close()
-
-
-# Initialize table on module load
-init_sessions_table()
+    """Initialize sessions table if it doesn't exist.
+    
+    Note: sessions table is now created in database.init_db().
+    This function is kept for backwards compatibility but is a no-op.
+    """
+    pass
 
 
 def verify_google_token(token: str) -> Optional[dict]:
@@ -107,11 +86,11 @@ def create_session(user_info: dict) -> str:
     expires_at = created_at + SESSION_DURATION
     
     # Store in database
-    conn = get_db_connection()
+    conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
         INSERT INTO sessions (token, email, name, picture, created_at, expires_at)
-        VALUES (?, ?, ?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s, %s)
     """, (
         session_token,
         user_info["email"],
@@ -137,13 +116,13 @@ def verify_session(session_token: str) -> Optional[dict]:
     Returns:
         dict with user info if session valid and not expired, None otherwise
     """
-    conn = get_db_connection()
+    conn = get_connection()
     cursor = conn.cursor()
     
     cursor.execute("""
         SELECT email, name, picture, expires_at
         FROM sessions
-        WHERE token = ?
+        WHERE token = %s
     """, (session_token,))
     
     row = cursor.fetchone()
@@ -176,10 +155,10 @@ def delete_session(session_token: str) -> bool:
     Returns:
         True if session existed and was deleted, False otherwise
     """
-    conn = get_db_connection()
+    conn = get_connection()
     cursor = conn.cursor()
     
-    cursor.execute("DELETE FROM sessions WHERE token = ?", (session_token,))
+    cursor.execute("DELETE FROM sessions WHERE token = %s", (session_token,))
     deleted = cursor.rowcount > 0
     
     conn.commit()
@@ -196,12 +175,12 @@ def cleanup_expired_sessions():
     Remove expired sessions from database
     Call periodically to prevent bloat
     """
-    conn = get_db_connection()
+    conn = get_connection()
     cursor = conn.cursor()
     
     cursor.execute("""
         DELETE FROM sessions
-        WHERE expires_at < ?
+        WHERE expires_at < %s
     """, (datetime.now().isoformat(),))
     
     deleted = cursor.rowcount

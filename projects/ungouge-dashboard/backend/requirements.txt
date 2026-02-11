@@ -6,4 +6,6 @@ requests==2.31.0
 httpx
 slowapi
 stripe>=7.0.0
+pymysql>=1.1.0
+cryptography>=41.0.0
 # Build 1770665620

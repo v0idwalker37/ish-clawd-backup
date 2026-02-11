@@ -21,7 +21,6 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime, timedelta
-import sqlite3
 import os
 import secrets
 
@@ -383,27 +382,27 @@ async def delete_account(
     try:
         # Delete all user data in order (respecting foreign keys)
         # 1. Delete timeclock entries
-        cursor.execute("DELETE FROM timeclock WHERE user_email = ?", (user_email,))
+        cursor.execute("DELETE FROM timeclock WHERE user_email = %s", (user_email,))
         
         # 2. Delete expenses for user's projects
         cursor.execute("""
             DELETE FROM expenses WHERE project_id IN (
-                SELECT id FROM projects WHERE created_by = ?
+                SELECT id FROM projects WHERE created_by = %s
             )
         """, (user_email,))
         
         # 3. Delete tasks for user's projects
         cursor.execute("""
             DELETE FROM tasks WHERE project_id IN (
-                SELECT id FROM projects WHERE created_by = ?
+                SELECT id FROM projects WHERE created_by = %s
             )
         """, (user_email,))
         
         # 4. Delete projects
-        cursor.execute("DELETE FROM projects WHERE created_by = ?", (user_email,))
+        cursor.execute("DELETE FROM projects WHERE created_by = %s", (user_email,))
         
         # 5. Delete all sessions for this user
-        cursor.execute("DELETE FROM sessions WHERE user_email = ?", (user_email,))
+        cursor.execute("DELETE FROM sessions WHERE user_email = %s", (user_email,))
         
         conn.commit()
         
@@ -444,12 +443,12 @@ def health_check():
     try:
         conn = get_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM tasks")
-        task_count = cursor.fetchone()[0]
-        cursor.execute("SELECT COUNT(*) FROM projects")
+        cursor.execute("SELECT COUNT(*) AS cnt FROM tasks")
+        task_count = cursor.fetchone()["cnt"]
+        cursor.execute("SELECT COUNT(*) AS cnt FROM projects")
         # Debug marker - if you see this in /api/health, new code is deployed
         BUILD_VERSION = "2026-02-11-0610"
-        project_count = cursor.fetchone()[0]
+        project_count = cursor.fetchone()["cnt"]
         conn.close()
         return {
             "status": "healthy", 
@@ -482,18 +481,18 @@ def get_projects(user_info: dict = Depends(require_auth)):
     projects = []
     for row in cursor.fetchall():
         projects.append({
-            "id": row[0],
-            "name": row[1],
-            "description": row[2],
-            "status": row[3],
-            "progress": row[4],
-            "category": row[5],
-            "priority": row[6],
-            "revenue_current": row[7],
-            "revenue_goal": row[8],
-            "health_score": row[9],
-            "created_at": row[10],
-            "updated_at": row[11]
+            "id": row["id"],
+            "name": row["name"],
+            "description": row["description"],
+            "status": row["status"],
+            "progress": row["progress"],
+            "category": row["category"],
+            "priority": row["priority"],
+            "revenue_current": row["revenue_current"],
+            "revenue_goal": row["revenue_goal"],
+            "health_score": row["health_score"],
+            "created_at": str(row["created_at"]) if row["created_at"] else None,
+            "updated_at": str(row["updated_at"]) if row["updated_at"] else None
         })
     
     conn.close()
@@ -514,7 +513,7 @@ def get_tasks(
             SELECT id, project_id, title, description, status, priority,
                    due_date, task_type, estimated_hours, created_at, updated_at
             FROM tasks
-            WHERE status = ?
+            WHERE status = %s
             ORDER BY priority DESC, due_date ASC
         """, (status,))
     else:
@@ -528,17 +527,17 @@ def get_tasks(
     tasks = []
     for row in cursor.fetchall():
         tasks.append({
-            "id": row[0],
-            "project_id": row[1],
-            "title": row[2],
-            "description": row[3],
-            "status": row[4],
-            "priority": row[5],
-            "due_date": row[6],
-            "task_type": row[7],
-            "estimated_hours": row[8],
-            "created_at": row[9],
-            "updated_at": row[10]
+            "id": row["id"],
+            "project_id": row["project_id"],
+            "title": row["title"],
+            "description": row["description"],
+            "status": row["status"],
+            "priority": row["priority"],
+            "due_date": row["due_date"],
+            "task_type": row["task_type"],
+            "estimated_hours": row["estimated_hours"],
+            "created_at": str(row["created_at"]) if row["created_at"] else None,
+            "updated_at": str(row["updated_at"]) if row["updated_at"] else None
         })
     
     conn.close()
@@ -568,7 +567,7 @@ def create_task(task_data: dict, user_info: dict = Depends(require_auth)):
     
     cursor.execute("""
         INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """, (project_id, title, description, status, priority, due_date, task_type, estimated_hours, 
           datetime.now().isoformat(), datetime.now().isoformat()))
     
@@ -592,24 +591,24 @@ def update_task(task_id: int, task_data: dict, user_info: dict = Depends(require
     
     for field in allowed_fields:
         if field in task_data:
-            updates.append(f"{field} = ?")
+            updates.append(f"{field} = %s")
             values.append(task_data[field])
     
     if 'status' in task_data and task_data['status'] == 'done' and 'completed_at' not in task_data:
-        updates.append("completed_at = ?")
+        updates.append("completed_at = %s")
         values.append(datetime.now().isoformat())
     
     if not updates:
         raise HTTPException(status_code=400, detail="No valid fields to update")
     
-    updates.append("updated_at = ?")
+    updates.append("updated_at = %s")
     values.append(datetime.now().isoformat())
     values.append(task_id)
     
     cursor.execute(f"""
         UPDATE tasks 
         SET {', '.join(updates)}
-        WHERE id = ?
+        WHERE id = %s
     """, values)
     
     conn.commit()
@@ -624,7 +623,7 @@ def delete_task(task_id: int, user_info: dict = Depends(require_auth)):
     conn = get_connection()
     cursor = conn.cursor()
     
-    cursor.execute("DELETE FROM tasks WHERE id = ?", (task_id,))
+    cursor.execute("DELETE FROM tasks WHERE id = %s", (task_id,))
     
     conn.commit()
     conn.close()
@@ -647,14 +646,14 @@ def get_expenses(user_info: dict = Depends(require_auth)):
     expenses = []
     for row in cursor.fetchall():
         expenses.append({
-            "id": row[0],
-            "project_id": row[1],
-            "amount": row[2],
-            "description": row[3],
-            "category": row[4],
-            "date": row[5],
-            "vendor": row[6],
-            "recurring": bool(row[7])
+            "id": row["id"],
+            "project_id": row["project_id"],
+            "amount": row["amount"],
+            "description": row["description"],
+            "category": row["category"],
+            "date": row["date"],
+            "vendor": row["vendor"],
+            "recurring": bool(row["recurring"])
         })
     
     conn.close()
@@ -683,7 +682,7 @@ def create_expense(expense_data: dict, user_info: dict = Depends(require_auth)):
     
     cursor.execute("""
         INSERT INTO expenses (project_id, amount, description, category, date, vendor, recurring, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
     """, (project_id, amount, description, category, date, vendor, 1 if recurring else 0, datetime.now().isoformat()))
     
     expense_id = cursor.lastrowid
@@ -707,10 +706,10 @@ def update_expense(expense_id: int, expense_data: dict, user_info: dict = Depend
     for field in allowed_fields:
         if field in expense_data:
             if field == 'recurring':
-                updates.append(f"{field} = ?")
+                updates.append(f"{field} = %s")
                 values.append(1 if expense_data[field] else 0)
             else:
-                updates.append(f"{field} = ?")
+                updates.append(f"{field} = %s")
                 values.append(expense_data[field])
     
     if not updates:
@@ -721,7 +720,7 @@ def update_expense(expense_id: int, expense_data: dict, user_info: dict = Depend
     cursor.execute(f"""
         UPDATE expenses
         SET {', '.join(updates)}
-        WHERE id = ?
+        WHERE id = %s
     """, values)
     
     conn.commit()
@@ -740,7 +739,7 @@ def delete_expense(expense_id: int, user_info: dict = Depends(require_auth)):
     conn = get_connection()
     cursor = conn.cursor()
     
-    cursor.execute("DELETE FROM expenses WHERE id = ?", (expense_id,))
+    cursor.execute("DELETE FROM expenses WHERE id = %s", (expense_id,))
     
     affected = cursor.rowcount
     conn.commit()
@@ -759,35 +758,35 @@ def get_dashboard_summary(user_info: dict = Depends(require_auth)):
     cursor = conn.cursor()
     
     # Project counts
-    cursor.execute("SELECT COUNT(*) FROM projects WHERE status = 'active'")
-    active_projects = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) AS cnt FROM projects WHERE status = 'active'")
+    active_projects = cursor.fetchone()["cnt"]
     
     # Task stats
-    cursor.execute("SELECT status, COUNT(*) FROM tasks GROUP BY status")
+    cursor.execute("SELECT status, COUNT(*) AS cnt FROM tasks GROUP BY status")
     task_stats = {}
-    for status, count in cursor.fetchall():
-        task_stats[status] = count
+    for row in cursor.fetchall():
+        task_stats[row["status"]] = row["cnt"]
     
     # Monthly expenses
     cursor.execute("""
-        SELECT SUM(amount) FROM expenses 
-        WHERE date >= date('now', 'start of month')
+        SELECT COALESCE(SUM(amount), 0) AS total FROM expenses 
+        WHERE date >= DATE_FORMAT(CURDATE(), '%%Y-%%m-01')
     """)
-    monthly_expenses = cursor.fetchone()[0] or 0
+    monthly_expenses = cursor.fetchone()["total"] or 0
     
     # Quarterly revenue
     cursor.execute("""
-        SELECT SUM(revenue_current) FROM projects
+        SELECT COALESCE(SUM(revenue_current), 0) AS total FROM projects
     """)
-    quarterly_revenue = cursor.fetchone()[0] or 0
+    quarterly_revenue = cursor.fetchone()["total"] or 0
     
     # Overdue tasks
     cursor.execute("""
-        SELECT COUNT(*) FROM tasks 
+        SELECT COUNT(*) AS cnt FROM tasks 
         WHERE status != 'done' 
-        AND due_date < date('now')
+        AND due_date < CURDATE()
     """)
-    overdue_tasks = cursor.fetchone()[0]
+    overdue_tasks = cursor.fetchone()["cnt"]
     
     conn.close()
     
@@ -927,7 +926,7 @@ def clock_in(user_info: dict = Depends(require_auth)):
     # Check if already clocked in
     cursor.execute("""
         SELECT id FROM timeclock 
-        WHERE user_email = ? AND clock_out IS NULL
+        WHERE user_email = %s AND clock_out IS NULL
         ORDER BY clock_in DESC LIMIT 1
     """, (user_email,))
     
@@ -939,7 +938,7 @@ def clock_in(user_info: dict = Depends(require_auth)):
     clock_in_time = datetime.now().isoformat()
     cursor.execute("""
         INSERT INTO timeclock (user_email, clock_in, created_at)
-        VALUES (?, ?, ?)
+        VALUES (%s, %s, %s)
     """, (user_email, clock_in_time, datetime.now().isoformat()))
     
     entry_id = cursor.lastrowid
@@ -964,7 +963,7 @@ def clock_out(user_info: dict = Depends(require_auth)):
     # Find active clock-in entry
     cursor.execute("""
         SELECT id, clock_in FROM timeclock 
-        WHERE user_email = ? AND clock_out IS NULL
+        WHERE user_email = %s AND clock_out IS NULL
         ORDER BY clock_in DESC LIMIT 1
     """, (user_email,))
     
@@ -973,8 +972,8 @@ def clock_out(user_info: dict = Depends(require_auth)):
         conn.close()
         raise HTTPException(status_code=400, detail="Not clocked in")
     
-    entry_id = row[0]
-    clock_in_time = datetime.fromisoformat(row[1])
+    entry_id = row["id"]
+    clock_in_time = datetime.fromisoformat(str(row["clock_in"]))
     clock_out_time = datetime.now()
     
     # Calculate duration in minutes
@@ -983,8 +982,8 @@ def clock_out(user_info: dict = Depends(require_auth)):
     # Update entry
     cursor.execute("""
         UPDATE timeclock 
-        SET clock_out = ?, duration_minutes = ?
-        WHERE id = ?
+        SET clock_out = %s, duration_minutes = %s
+        WHERE id = %s
     """, (clock_out_time.isoformat(), duration, entry_id))
     
     conn.commit()
@@ -1010,25 +1009,25 @@ def get_timeclock_stats(user_info: dict = Depends(require_auth)):
     # Check if currently clocked in
     cursor.execute("""
         SELECT id, clock_in FROM timeclock 
-        WHERE user_email = ? AND clock_out IS NULL
+        WHERE user_email = %s AND clock_out IS NULL
         ORDER BY clock_in DESC LIMIT 1
     """, (user_email,))
     
     active_entry = cursor.fetchone()
     is_clocked_in = active_entry is not None
-    current_session_start = active_entry[1] if active_entry else None
+    current_session_start = active_entry["clock_in"] if active_entry else None
     
     # Today's hours (completed + current session)
     today_start = now.replace(hour=0, minute=0, second=0, microsecond=0).isoformat()
     cursor.execute("""
-        SELECT COALESCE(SUM(duration_minutes), 0) FROM timeclock
-        WHERE user_email = ? AND clock_in >= ?
+        SELECT COALESCE(SUM(duration_minutes), 0) AS total FROM timeclock
+        WHERE user_email = %s AND clock_in >= %s
     """, (user_email, today_start))
-    today_minutes = cursor.fetchone()[0]
+    today_minutes = cursor.fetchone()["total"]
     
     # Add current session if clocked in
     if is_clocked_in:
-        current_duration = (now - datetime.fromisoformat(current_session_start)).total_seconds() / 60
+        current_duration = (now - datetime.fromisoformat(str(current_session_start))).total_seconds() / 60
         today_minutes += current_duration
     
     # This week's hours
@@ -1036,10 +1035,10 @@ def get_timeclock_stats(user_info: dict = Depends(require_auth)):
         hour=0, minute=0, second=0, microsecond=0
     ).isoformat()
     cursor.execute("""
-        SELECT COALESCE(SUM(duration_minutes), 0) FROM timeclock
-        WHERE user_email = ? AND clock_in >= ?
+        SELECT COALESCE(SUM(duration_minutes), 0) AS total FROM timeclock
+        WHERE user_email = %s AND clock_in >= %s
     """, (user_email, week_start))
-    week_minutes = cursor.fetchone()[0]
+    week_minutes = cursor.fetchone()["total"]
     
     if is_clocked_in:
         week_minutes += current_duration
@@ -1047,10 +1046,10 @@ def get_timeclock_stats(user_info: dict = Depends(require_auth)):
     # This month's hours
     month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0).isoformat()
     cursor.execute("""
-        SELECT COALESCE(SUM(duration_minutes), 0) FROM timeclock
-        WHERE user_email = ? AND clock_in >= ?
+        SELECT COALESCE(SUM(duration_minutes), 0) AS total FROM timeclock
+        WHERE user_email = %s AND clock_in >= %s
     """, (user_email, month_start))
-    month_minutes = cursor.fetchone()[0]
+    month_minutes = cursor.fetchone()["total"]
     
     if is_clocked_in:
         month_minutes += current_duration
