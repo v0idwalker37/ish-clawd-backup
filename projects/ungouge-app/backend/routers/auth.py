@@ -86,8 +86,8 @@ async def register(
                 suggestion="Please provide your name."
             )
         
-    except UngougeException:
-        raise
+    except UngougeException as ue:
+        raise HTTPException(status_code=ue.status_code, detail=ue.to_dict())
     
     # Check if email already exists
     result = await db.execute(

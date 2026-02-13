@@ -80,7 +80,9 @@ def app():
     - send_welcome_email: fire-and-forget in register; no real SMTP needed
     """
     with patch("main._daily_cleanup_loop", new_callable=AsyncMock), \
-         patch("services.auth.TokenBlacklistSync") as mock_tbs:
+         patch("services.auth.TokenBlacklistSync") as mock_tbs, \
+         patch("services.token_blacklist.TokenBlacklist.add", new_callable=AsyncMock), \
+         patch("services.token_blacklist.TokenBlacklist.is_blacklisted", new_callable=AsyncMock, return_value=False):
         # TokenBlacklistSync.is_blacklisted is called synchronously in verify_token
         mock_tbs.is_blacklisted.return_value = False
 
