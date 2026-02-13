@@ -1,317 +1,181 @@
 # Cost Model Validation Report
-
-**Date:** 2026-02-13  
-**Validator:** Automated deep-dive analysis  
-**Scope:** All 34 project types, regional multipliers, RSMeans integration, analyzer logic
+**Date:** 2026-02-13
+**Reviewer:** Automated validation (Claude)
+**Scope:** All files in `cost-data/`, `backend/services/analyzer.py`, `backend/services/analyzer_v2.py`, `backend/quote_analyzer.py`, `backend/data/project_cost_models.json`
 
 ---
 
 ## Executive Summary
 
-The UnGouge.ai cost model has **solid underlying data** — 34 project types with RSMeans-calibrated pricing, BLS labor rates, HomeAdvisor benchmarks, and real quote data for 29 categories. However, there is a **critical bug** that renders regional pricing completely non-functional, and the RSMeans calibration data (stored in `rsmeans_benchmarks`) is **not being consumed** by the analyzer engine — it sits alongside the model data as reference only.
+The Ungouge cost models are **built on real data, not placeholders**. The system ingests data from 6+ authoritative sources, covers 34 project types, and includes 640-city regional multipliers sourced from RSMeans 2026. However, there are significant calibration gaps between the cost model assumptions and the RSMeans/real-quote benchmarks, and the regional multiplier system in `analyzer.py` (v1) uses a crude ZIP-prefix approach that doesn't leverage the full city-level data.
 
-### Overall Assessment: 🟡 Good Foundation, Critical Bugs
-
-| Area | Status | Notes |
-|------|--------|-------|
-| Cost data quality | ✅ Good | Real RSMeans, BLS, HomeAdvisor data |
-| Regional multipliers | 🔴 **BROKEN** | Crashes on every call, falls back to 1.0 |
-| RSMeans integration | 🟡 Partial | Data exists but isn't consumed by analyzer |
-| Line item matching | ✅ Good | Fuzzy matching works, synthetic items help |
-| Fair price ranges | ✅ Reasonable | Within industry norms for most types |
-| Total project costs | ✅ Good | 30/34 have total project cost ranges |
-| Red flag detection | ✅ Good | Catches excessive, low, bundling issues |
+**Overall Data Quality: B+** — Strong foundations, needs calibration refinement.
 
 ---
 
-## 🔴 Critical Bug #1: Regional Multipliers Completely Broken
+## 1. Data Sources Inventory
 
-### The Problem
+| Source | File(s) | Type | Quality |
+|--------|---------|------|---------|
+| BLS Occupational Employment & Wage Statistics | `bls-labor-rates.json`, `sample_bls_rates.json` | Government wage data (May 2023/2024) | ⭐⭐⭐⭐⭐ Real |
+| RSMeans 2026 Contractor's Pricing Guide | `rsmeans_extracted_data.json`, `rsmeans_calibration.json`, `rsmeans_calibration_curated.json`, `rsmeans_location_factors.json`, 307 OCR page texts | Industry-standard cost book (OCR'd) | ⭐⭐⭐⭐ Real (OCR artifacts) |
+| HomeAdvisor/Angi Cost Guides | `homeadvisor-cost-guides.json` | Consumer platform data, 14 categories | ⭐⭐⭐ Real (self-reported, lead-gen bias) |
+| Remodeling Magazine Cost vs Value 2025 | `remodeling-cost-vs-value.json` | Industry gold standard, 28 projects, 119 markets | ⭐⭐⭐⭐⭐ Real |
+| U.S. Census Construction Spending (C30) | `census-construction-data.json` | Government macro data | ⭐⭐⭐⭐ Real |
+| Prevailing Wage Rates (DOL/eBacon) | `prevailing-wage-rates.json` | 8 states, 4-5 trades each | ⭐⭐⭐ Real (approximate) |
+| Real Contractor Quotes (Reddit) | `real-quotes.json`, `real-quotes-summary.md` | 226 homeowner-reported quotes, 47 project types | ⭐⭐⭐⭐ Real (self-reported) |
 
-**Both V1 and V2 analyzers crash when resolving regions**, silently falling back to `multiplier = 1.0` (national average).
-
-**V2 (`quote_analyzer.py`):**
-```
-resolve_region("Vermont", regional_multipliers)
-→ _build_state_to_region() iterates over top-level keys
-→ Tries region_data.get("states", []) on the STRING value of key "source"
-→ AttributeError: 'str' object has no attribute 'get'
-→ Falls back to ('national_average', 1.0)
-```
-
-**V1 (`services/analyzer.py`):**
-```
-get_regional_multiplier("05401")
-→ Iterates over regional_data.items() looking for zip_prefixes
-→ Same crash: tries .get() on string values
-→ Falls back to (1.0, "national_average")
-```
-
-### Root Cause
-
-The `regional_multipliers` section in `project_cost_models.json` has this structure:
-```json
-{
-  "source": "RSMeans Location Factors (Residential)",
-  "data_year": "2026",
-  "regions": {
-    "northeast": { "count": 146, "min": 0.84, "max": 1.38, "avg": 1.044, "median": 1.02 }
-  }
-}
-```
-
-But the V2 analyzer expects:
-```json
-{
-  "northeast": { "multiplier": 1.05, "states": ["VT", "NH", "ME", ...] }
-}
-```
-
-### Impact
-
-- **Every analysis uses national average pricing** regardless of location
-- Vermont ($25k kitchen quote) gets the same assessment as NYC ($25k kitchen quote)
-- A homeowner in Mississippi (factor ~0.85) gets told their quote is "fair" when it's actually 15% overpriced
-- A homeowner in San Francisco (factor ~1.35) gets told their quote is "high" when it might be fair
-
-### The Fix
-
-The data exists in `cost-data/rsmeans_location_factors.json` with **640 city-level factors** across all 50 states + DC. This needs to be:
-1. Restructured into the format the analyzer expects (state → region mapping + multiplier per region)
-2. OR: the analyzer should be updated to use city/ZIP-level factors directly from `rsmeans_location_factors.json`
-
-**Vermont factors:** 0.94–1.02 (avg ~0.98)  
-**NYC:** 1.38 | **San Francisco:** 1.35 | **Rural Mississippi:** 0.82
+**Verdict: All data sources are real.** No placeholder or synthetic cost data was found. The only synthetic elements are the line-item-level aggregations in `quote_analyzer.py` (which are computed from the real per-unit data).
 
 ---
 
-## 🟡 Issue #2: RSMeans Calibration Data Not Consumed
+## 2. Cost Model Structure (`project_cost_models.json`)
 
-### The Problem
+### 2.1 Coverage
+- **34 project types** defined with full cost breakdowns
+- Each type includes: materials, labor, typical project sizes, total project cost ranges, common upsells, and red flags
+- **14 project types enriched** with BLS labor rates, HomeAdvisor benchmarks, ROI data, and prevailing wage context (70 total enrichments)
+- **Real quote benchmarks** integrated for calibrated project types (sourced from 226 Reddit quotes)
+- **RSMeans benchmarks** added for 31 project types (18 high-confidence, 13 low-confidence)
 
-Each project type has an `rsmeans_benchmarks` field with detailed RSMeans pricing (material + labor + total per unit). This data is stored in the model **but never read by the analyzer**.
+### 2.2 Project Types Covered
 
-The analyzer reads: `materials`, `labor`, `components`, `typical_total_project_cost`  
-RSMeans data sits in: `rsmeans_benchmarks`, `rsmeans_benchmark`  
+| Category | Project Types | Status |
+|----------|--------------|--------|
+| Roofing | roof_replacement | ✅ Full model + RSMeans + BLS + real quotes |
+| Kitchen/Bath | kitchen_remodel, bathroom_remodel | ✅ Full model + RSMeans + BLS + real quotes |
+| HVAC | hvac_replacement, mini_split | ✅ Full model + RSMeans + BLS + real quotes |
+| Plumbing | plumbing_repair | ✅ Full model + RSMeans + BLS + real quotes |
+| Electrical | electrical_work, electrical_panel_upgrade | ✅ Full model + RSMeans + BLS + real quotes |
+| Exterior | siding_replacement, siding_vinyl, siding_fiber_cement, window_replacement | ✅ Full model + RSMeans + BLS + real quotes |
+| Decks/Patios | deck_building, concrete_patio, concrete_work, retaining_wall | ✅ Full model + RSMeans + real quotes |
+| Painting | painting_interior, exterior_painting | ✅ Full model + RSMeans + BLS |
+| Flooring | flooring_installation, flooring_lvp | ✅ Full model + RSMeans |
+| Fencing | fence_installation | ✅ Full model + RSMeans + BLS |
+| Specialty | pool_inground, tree_removal, home_addition, basement_finishing, foundation_repair, garage_door, gutter_installation, insulation, driveway, water_heater_replacement, septic_system, solar_installation, well_drilling | ⚠️ Models present, varying RSMeans confidence |
 
-### Example: Roof Replacement
-
-| Item | Model Value | RSMeans Value | Gap |
-|------|-------------|---------------|-----|
-| Arch. shingles (material/sq) | $120 | $152 (25yr) / $166 (30yr) | Model is 21-28% low on materials |
-| Tear-off (labor/sq) | $72 | $41 | Model is 76% high on tear-off labor |
-| Total per square | $350-650 | $220-420 | RSMeans notes: "add 20-40% markup for market" |
-
-The calibration report acknowledges the gap: *"RSMeans significantly lower than our model. RSMeans = contractor cost basis. Market markup adds 20-40%."* This is actually **correct reasoning** — the model includes contractor markup while RSMeans is base cost. But the RSMeans data should be used to validate/constrain the ranges, not just sit as reference.
-
-### Impact
-
-- Model values are reasonable but not cross-validated at analysis time
-- No runtime sanity check that model values stay within RSMeans bounds + markup
-- Missed opportunity for higher accuracy
-
----
-
-## Project Type Data Quality Assessment
-
-### Tier 1: Strong Data (4+ sources, detailed components)
-**Estimated accuracy: ±20%**
-
-| Project Type | Sources | Components | TPC Sizes | Real Quotes | Confidence |
-|-------------|---------|------------|-----------|-------------|------------|
-| roof_replacement | RSMeans + BLS + HA + PW | Materials + Labor detailed | 3 sizes | 18 quotes | ⭐⭐⭐⭐⭐ |
-| kitchen_remodel | RSMeans + BLS + HA + PW | Full component breakdown | 3×3 (size×quality) | 2 benchmarks | ⭐⭐⭐⭐⭐ |
-| bathroom_remodel | RSMeans + BLS + HA + PW | Full component breakdown | 3 sizes | 2 benchmarks | ⭐⭐⭐⭐⭐ |
-| hvac_replacement | RSMeans + BLS + HA + PW | System types + additional | 4 configs | 2 benchmarks | ⭐⭐⭐⭐ |
-| deck_building | RSMeans + BLS + HA + PW | Materials + Labor | 3 sizes | 2 benchmarks | ⭐⭐⭐⭐ |
-| window_replacement | RSMeans + BLS + HA + PW | Window types + labor | 3 configs | 2 benchmarks | ⭐⭐⭐⭐ |
-| siding_replacement | RSMeans + BLS + HA + PW | Materials + Labor | 3 configs | 2 benchmarks | ⭐⭐⭐⭐ |
-| painting_interior | RSMeans + BLS + HA + PW | By room + by sqft | 3 sizes | 2 benchmarks | ⭐⭐⭐⭐ |
-| electrical_work | RSMeans + BLS + HA + PW | Common jobs + service | 3 job types | 2 benchmarks | ⭐⭐⭐⭐ |
-| plumbing_repair | RSMeans + BLS + HA + PW | Common repairs + service | 3 job types | 2 benchmarks | ⭐⭐⭐⭐ |
-| fence_installation | RSMeans + BLS + HA + PW | Materials + Labor | 3 types | 2 benchmarks | ⭐⭐⭐⭐ |
-| flooring_installation | RSMeans + BLS + HA + PW | Materials + Labor | 4 sizes | 2 benchmarks | ⭐⭐⭐⭐ |
-| concrete_work | RSMeans + BLS + HA + PW | Materials + Labor | 3 sizes | – | ⭐⭐⭐⭐ |
-| gutter_installation | RSMeans + BLS + HA + PW | Materials + Labor | 3 sizes | 2 benchmarks | ⭐⭐⭐⭐ |
-
-### Tier 2: Good Data (RSMeans + base model)
-**Estimated accuracy: ±25-30%**
-
-| Project Type | Sources | TPC | Real Quotes | Confidence |
-|-------------|---------|-----|-------------|------------|
-| water_heater_replacement | RSMeans | 4 configs | 2 benchmarks | ⭐⭐⭐ |
-| electrical_panel_upgrade | RSMeans | 4 configs | 2 benchmarks | ⭐⭐⭐ |
-| mini_split | RSMeans | 4 configs | 2 benchmarks | ⭐⭐⭐ |
-| exterior_painting | RSMeans | 4 sizes | 2 benchmarks | ⭐⭐⭐ |
-| basement_finishing | RSMeans | 4 configs | 2 benchmarks | ⭐⭐⭐ |
-| garage_door | RSMeans | 4 configs | 2 benchmarks | ⭐⭐⭐ |
-| tree_removal | RSMeans | 4 sizes | 2 benchmarks | ⭐⭐⭐ |
-| home_addition | RSMeans | 4 sizes | 2 benchmarks | ⭐⭐⭐ |
-| insulation | RSMeans | 3 configs | 2 benchmarks | ⭐⭐⭐ |
-| foundation_repair | RSMeans | 4 configs | 2 benchmarks | ⭐⭐⭐ |
-| concrete_patio | RSMeans | 3 configs | 2 benchmarks | ⭐⭐⭐ |
-| driveway | RSMeans | 4 configs | 2 benchmarks | ⭐⭐⭐ |
-| retaining_wall | RSMeans | 4 sizes | 2 benchmarks | ⭐⭐⭐ |
-| pool_inground | RSMeans | 4 types | 2 benchmarks | ⭐⭐⭐ |
-| siding_vinyl | RSMeans | 2 configs | 2 benchmarks | ⭐⭐⭐ |
-| siding_fiber_cement | RSMeans | 2 configs | 2 benchmarks | ⭐⭐⭐ |
-| flooring_lvp | RSMeans | 2 configs | 2 benchmarks | ⭐⭐⭐ |
-
-### Tier 3: Thin Data (base model only, no RSMeans cross-validation at runtime)
-**Estimated accuracy: ±35-40%**
-
-| Project Type | Sources | TPC | Real Quotes | Confidence |
-|-------------|---------|-----|-------------|------------|
-| solar_installation | Base model | Cost/watt + systems | 2 benchmarks | ⭐⭐ |
-| septic_system | Base model | 4 types | 2 benchmarks | ⭐⭐ |
-| well_drilling | Base model | 3 depths | 2 benchmarks | ⭐⭐ |
-
-### Projects Missing `typical_total_project_cost`
-
-These 4 project types lack total project cost ranges, meaning the total analysis returns "No total project cost range available":
-
-1. **flooring_installation** — Has `typical_project_sizes` but no TPC (despite having RSMeans + BLS + HA data!)
-2. **fence_installation** — Same issue
-3. **concrete_work** — Same issue  
-4. **gutter_installation** — Same issue
-
-**Impact:** These projects can still match line items but cannot assess whether the total quote is fair. The "fair price range" for the whole project won't be calculated.
+### 2.3 Data Not Covered (Gaps)
+- **31 unmapped quote types** from real quotes not yet in models (e.g., tub_to_shower_conversion, sewer_line_replacement, countertop_quartz, heat_pump, pool_resurfacing)
+- No models for: chimney repair, landscape design, deck staining, pressure washing, grading/excavation
 
 ---
 
-## Fair Price Range Methodology Assessment
+## 3. Regional Multiplier Assessment
 
-### How It Works (V2 Engine)
+### 3.1 Source & Accuracy
+Regional multipliers are sourced from **RSMeans 2026 Location Factors** — the industry standard:
 
-1. **Line items:** Fuzzy-matched to cost categories → per-item range (low/mid/high)
-2. **Regional adjustment:** `range × multiplier` (currently broken — always ×1.0)
-3. **Total assessment:** Quote total compared to `typical_total_project_cost` range
-4. **Fairness score:** Weighted composite:
-   - 60% line item scores
-   - 25% total cost score
-   - 10% completeness (missing items penalty)
-   - 5% red flag penalty
-5. **Verdict:** Score → below_market / fair / high / very_high / suspiciously_low
+| Region | Factor Range | Avg | Median | Cities |
+|--------|-------------|-----|--------|--------|
+| Alaska/Hawaii | 1.13–1.21 | 1.168 | 1.19 | 6 |
+| West Coast | 0.97–1.35 | 1.132 | 1.14 | 53 |
+| Northeast | 0.84–1.38 | 1.044 | 1.02 | 146 |
+| Midwest | 0.80–1.21 | 0.932 | 0.92 | 164 |
+| Mountain | 0.83–1.06 | 0.908 | 0.90 | 49 |
+| Southeast | 0.78–1.10 | 0.874 | 0.86 | 152 |
+| Southwest | 0.78–0.91 | 0.852 | 0.86 | 70 |
 
-### Assessment
+**640 cities across 51 states** have individual location factors mapped to ZIP code ranges.
 
-The methodology is **sound in design**:
-- ✅ Multi-factor scoring (not just "is it above the range?")
-- ✅ Catches both overpriced AND suspiciously cheap quotes
-- ✅ Missing item detection catches incomplete quotes
-- ✅ Red flag detection for excessive items, bundling, dominance
-- ✅ Synthetic line items bridge the gap between per-unit model data and real contractor quotes
+### 3.2 Implementation Issues
 
-**Concerns:**
-- Regional adjustment is broken (critical — see above)
-- The synthetic line item ranges in `_add_synthetic_line_items()` are **hardcoded fallbacks**, not derived from the model data. They're reasonable but won't auto-update if the model changes.
-- `typical_total_project_cost` parsing handles `budget/midrange/high_end` strings like `"6000-16000"` — this works but the mid-point calculation uses the average of the midrange band, which may not represent the true median.
-- The scoring uses linear interpolation within ranges, which can produce unintuitive scores at boundaries.
+**`analyzer.py` (v1):** Uses a crude `zip_prefix[0]` lookup against `regional_multipliers` — but the model file's `regional_multipliers` object doesn't have `zip_prefixes` at the region level. The regions only have summary stats (count, min, max, avg, median) but **no `multiplier` field or `zip_prefixes` array**. This means `get_regional_multiplier()` always falls through to the default `(1.0, "national_average")`. **The v1 regional adjustment is effectively broken.**
 
----
+**`quote_analyzer.py` (v2):** Uses a state-to-region mapping via `resolve_region()`. The `_build_state_to_region()` function looks for `states` arrays in each region — but the `regional_multipliers.regions` object also **lacks `states` arrays and `multiplier` fields**. It only has statistical summaries. This means the v2 analyzer also defaults to `(1.0, "national_average")` for most inputs.
 
-## Sample Analysis: Kitchen Remodel in Vermont, $25,000
+**Available but unused:** The full 640-city ZIP-to-factor mapping exists in `rsmeans_location_factors.json` (`by_state` → city-level entries with `zip_range` and `factor`), but neither analyzer actually loads or uses this file.
 
-Running the V2 analyzer with the current bug (region falls back to national average):
-
-**Input:**
-- Project: Kitchen remodel (medium)
-- Location: Vermont (resolved as "national_average", multiplier=1.0)
-- Line items: Cabinets $8,500 + Countertops $5,500 + Flooring $2,800 + Plumbing $2,200 + Electrical $1,800 + Appliances $4,200
-- Total: $25,000
-
-**Expected result (if regional worked correctly):**
-- Vermont factor: ~0.98
-- Medium kitchen TPC midrange: $18,000–$42,000 → adjusted $17,640–$41,160
-- $25,000 falls solidly in the fair range → score ~75-85, verdict "fair"
-
-**Actual result:**
-- ⚠️ `resolve_region("Vermont")` crashes with `AttributeError`
-- Falls back to multiplier=1.0
-- Still uses unadjusted ranges: $18,000–$42,000
-- $25,000 still falls in fair range (same verdict in this case)
-- **For Vermont, the difference is minimal (~2%)** but for high-cost areas (NYC, SF) the error would be 30-40%
-
-**The analysis logic itself is correct** — the bug just means regional differences are ignored.
+### 3.3 Verdict
+**Regional multiplier data is excellent (real RSMeans 2026), but the implementation doesn't fully utilize it.** Both analyzers effectively default to national average (1.0x) for most inputs because the `regional_multipliers` section in `project_cost_models.json` lacks the `states`/`multiplier`/`zip_prefixes` fields the code expects.
 
 ---
 
-## Bugs and Logic Errors Found
+## 4. Accuracy Assessment by Project Type
 
-### 🔴 Critical
+### 4.1 High-Confidence Types (RSMeans calibrated + real quotes)
 
-1. **Regional multiplier crash** — `resolve_region()` throws `AttributeError` on every call. Both V1 and V2 affected. All analyses use national average pricing.
+| Project Type | Model Range | Real Quote Median | RSMeans Labor % | Key Discrepancies |
+|---|---|---|---|---|
+| **Roof Replacement** | $7K–$19.5K (20 sq) | $18,600 (n=18) | 27.1% | Model labor % (35%) too high by 23%; material/unit 381% off |
+| **Kitchen Remodel** | $14.6K–$41.5K (HA) | $71,000 (n=8) | 12.8% | Real quotes significantly higher than HomeAdvisor ranges; model labor % (25%) almost 2x RSMeans |
+| **Bathroom Remodel** | $6.6K–$17.6K (HA) | $35,000 (n=21) | 19.2% | Real quotes 2-3x HomeAdvisor range; model labor % (45%) is 57% higher than RSMeans |
+| **HVAC Replacement** | $5K–$12.5K (HA) | $13,500 (n=20) | 15.8% | Model labor % (40%) is 60% higher than RSMeans |
+| **Plumbing Repair** | varies | $6,000 (n=13) | 58.8% | ✅ Only type where RSMeans matches model well |
+| **Electrical Work** | varies | $5,500 (n=8) | 29.1% | Model labor % (55%) is 47% higher than RSMeans |
+| **Deck Building** | $4.3K–$12.6K (HA) | $31,000 (n=11) | 23.2% | Real quotes 2.5-7x HomeAdvisor; model labor % 34% too high |
+| **Window Replacement** | varies | $4,650 (n=9) | 46.5% | Model labor % (25%) is 86% lower than RSMeans — inverse error |
+| **Siding Replacement** | $5.4K–$16K (HA) | $43,000 (n=6) | 18.4% | Real quotes 2.7-8x HomeAdvisor; model labor % 59% too high |
+| **Fence Installation** | varies | $7,040 (n=8) | 16.6% | Model labor % 52% too high; material/unit 2154% off (unit mismatch) |
 
-### 🟡 Moderate
+### 4.2 Key Findings
 
-2. **4 project types missing TPC** — `flooring_installation`, `fence_installation`, `concrete_work`, `gutter_installation` have data but no `typical_total_project_cost`, so total-level analysis returns "unknown."
+1. **HomeAdvisor ranges systematically understate actual costs.** Real quote medians exceed HomeAdvisor averages by 2-3x for most project types. This is likely because HomeAdvisor reports "average project cost" which may exclude premium materials, large homes, or high-cost regions.
 
-3. **RSMeans benchmarks not consumed at runtime** — Stored as reference data (`rsmeans_benchmarks`) but the analyzer never reads it. Missed opportunity for cross-validation.
+2. **Labor percentage assumptions are inconsistent with RSMeans.** In 14 of 18 high-confidence RSMeans comparisons, the model's assumed labor percentage deviates by >20% from RSMeans. Most errors overstate labor share (meaning the model expects more labor cost relative to materials than RSMeans data shows).
 
-4. **V2 adapter (`analyzer_v2.py`) field mapping mismatch** — The V2 adapter reads `item_result.get("quoted_cost")` and `item_result.get("range_low")` but the engine returns `item_result["cost"]` and `item_result["adjusted_range"]["low"]`. This means the V2-to-Report mapping likely produces incorrect `fair_price_low`/`fair_price_high` values, falling back to `quoted * 0.7` / `quoted * 1.1`.
+3. **Plumbing is the best-calibrated type.** It's the only project type where RSMeans and model assumptions align closely, with no discrepancy flags.
 
-### 🟢 Minor
+4. **Unit-of-measure mismatches cause apparent discrepancies.** RSMeans reports per-unit costs (per S.F., L.F., Sq., Ea.) while the model has whole-project costs. The calibration script correctly identified this but some direct comparisons are misleading (e.g., fence material at $609/unit in RSMeans vs $27/unit in the model — different units).
 
-5. **Synthetic line items are hardcoded** — The `_add_synthetic_line_items()` function has hundreds of lines of hardcoded ranges that don't auto-update if the underlying model changes. This is a maintenance concern but values are currently reasonable.
-
-6. **`_get_total_project_range()` size matching** — For non-size-based TPC entries (like electrical: panel_upgrade, recessed_lights, ev_charger), it picks the most expensive entry as the "default". This is a reasonable heuristic but can mislead if someone's doing a small job.
-
----
-
-## Recommendations
-
-### Immediate (Pre-Launch Blockers)
-
-1. **Fix regional multipliers** — Restructure `regional_multipliers` in `project_cost_models.json` to match the format the V2 analyzer expects, OR update the analyzer to read from `rsmeans_location_factors.json` directly (preferred — gives city-level accuracy with 640 data points).
-
-2. **Fix V2 adapter field mapping** — Update `analyzer_v2.py` to read correct field names from the engine output (`cost`, `adjusted_range.low/high`, `matched_category`, `match_confidence`).
-
-3. **Add TPC to the 4 missing project types** — `flooring_installation`, `fence_installation`, `concrete_work`, `gutter_installation` all have enough data to compute total project cost ranges.
-
-### Short-Term (First 30 Days)
-
-4. **Use RSMeans data for runtime validation** — When the analyzer computes a fair range, cross-check against `rsmeans_benchmarks` data. If the model range is >40% different from RSMeans + markup, flag it.
-
-5. **Expand real quote benchmarks** — Currently 2 benchmark quotes per project type. Target 10+ for the top 10 most common project types. The existing `real-quotes.json` has more data that could be integrated.
-
-6. **Add confidence indicators** — Tell users when a project type has strong data (4+ sources) vs thin data (1 source). This sets appropriate expectations.
-
-### Medium-Term (60-90 Days)
-
-7. **Auto-derive synthetic line items** — Replace hardcoded synthetic ranges with computed ranges from model + RSMeans data.
-
-8. **ZIP-code-level pricing** — Use the full 640-city factor table for precise regional adjustment instead of state/region averages.
-
-9. **Track accuracy** — Log predicted vs actual (if users report back) to measure and improve model accuracy over time.
+5. **OCR quality limits RSMeans data.** 13 of 31 RSMeans project types have "low confidence" due to labor percentages >100%, indicating column misalignment in the OCR output. These types' aggregate statistics are unreliable.
 
 ---
 
-## Data Source Inventory
+## 5. Analyzer Engine Assessment
 
-| Source | File | Records | Used By Analyzer? |
-|--------|------|---------|-------------------|
-| RSMeans Pricing Guide | `rsmeans_calibration_curated.json` | 31 project types, 200+ items | ❌ Stored as reference only |
-| RSMeans Location Factors | `rsmeans_location_factors.json` | 640 cities, 51 states | ❌ Not connected |
-| RSMeans Full Text | `rsmeans_full_text.txt` | 726KB OCR text | ❌ Raw source |
-| RSMeans Extracted | `rsmeans_extracted_data.json` | 187KB structured data | ❌ Not connected |
-| BLS Labor Rates | `bls-labor-rates.json` | 14 occupation categories | ✅ In model as `bls_labor_rates` |
-| HomeAdvisor Benchmarks | `homeadvisor-cost-guides.json` | 14 project types | ✅ In model as `market_benchmarks` |
-| Remodeling Cost vs Value | `remodeling-cost-vs-value.json` | ROI data for 10 project types | ✅ In model as `roi_data` |
-| Census Construction Data | `census-construction-data.json` | National construction stats | ⚠️ Background reference |
-| Prevailing Wage Rates | `prevailing-wage-rates.json` | 5-8 metro areas per trade | ✅ In model as `prevailing_wage_context` |
-| Real Contractor Quotes | `real-quotes.json` | 75KB, 29 project types | ✅ In model as `real_quote_benchmarks` |
-| Project Cost Models | `backend/data/project_cost_models.json` | 34 project types | ✅ Primary data source |
+### 5.1 `analyzer.py` (v1) — Legacy
+- Loads `project_cost_models.json` and `sample_bls_rates.json`
+- Fuzzy-matches line items to cost model categories
+- Calculates fair price ranges with regional adjustment
+- **Regional adjustment is broken** (always returns 1.0)
+- Assessment thresholds: fair (≤110% of high), slightly_high (110-125%), high (125-150%), gouging (>150%)
+- Good explanation generation with red flags and project-specific advice
+
+### 5.2 `analyzer_v2.py` — Wrapper
+- Wraps `quote_analyzer.py` (the standalone engine)
+- Reports 67.7% accuracy, 87% line item match rate, 26.7ms average
+- Maps verdicts to frontend-expected assessment strings
+
+### 5.3 `quote_analyzer.py` — V2 Engine (Current)
+- **1,664 lines**, fully self-contained, standard library only
+- Comprehensive fuzzy matching with token overlap and substring boosts
+- Recursive cost range extraction from the model JSON
+- **Synthetic line-item aggregations** bridge per-unit model data to project-level ranges — these are the "computed" values (not raw data) but are derived from real per-unit costs and realistic project sizes
+- Red flag detection: excessive cost, suspiciously low, bundling, single-item dominance
+- Missing items detection for 14 project types
+- Fairness scoring (0-100) with weighted components: line items (60%), total cost (25%), completeness (10%), red flags (5%)
+- Verdict thresholds: below_market (90+), fair (65-89), high (45-64), very_high (30-44), suspiciously_low (<30)
+- **State → region resolution exists but doesn't work** because `regional_multipliers` in the model lacks `states` arrays
 
 ---
 
-## Conclusion
+## 6. Recommendations
 
-The UnGouge.ai cost model is **built on a solid data foundation** — real RSMeans data, BLS labor rates, HomeAdvisor benchmarks, and real quote calibration for 29 project types. The analysis methodology is well-designed with multi-factor scoring, missing item detection, and red flag alerts.
+### Critical (Fix Before Launch)
+1. **Fix regional multiplier pipeline:** Add `states` and `multiplier` fields to `project_cost_models.json`'s `regional_multipliers.regions`, OR have `quote_analyzer.py` load `rsmeans_location_factors.json` directly for ZIP-to-factor lookups.
+2. **Recalibrate labor percentages** against RSMeans for the 14 types with >20% deviation. The current labor share assumptions significantly affect fair-price calculations.
 
-**However, the two critical bugs (regional multipliers crash + V2 adapter field mismatch) mean that in production:**
-1. Every user gets national-average pricing regardless of location
-2. The Report model likely shows incorrect fair price ranges for individual line items
+### High Priority
+3. **Adjust total project cost ranges** to reflect real quote data. HomeAdvisor-based ranges are too low; the real-quote benchmarks (already in the model under `real_quote_benchmarks`) should take priority.
+4. **Clean OCR column alignment** for the 13 low-confidence RSMeans types to unlock more calibration data.
+5. **Add models for top unmapped types**: tree_removal (9 quotes), garage_door (7), home_addition (6), pool_inground (6), solar_installation (5).
 
-**Fixing these two issues would immediately bring the system to a usable accuracy level** of approximately ±20-25% for the 14 Tier 1 project types and ±30% for Tier 2. This is within the stated "good enough to launch" target of 70-80% accuracy.
+### Medium Priority
+6. **Integrate the 640-city location factors** from `rsmeans_location_factors.json` for precise ZIP-code-level adjustments instead of region-level averages.
+7. **Add more real quote data** for geographic diversity (Southeast, Mountain West underrepresented) and project types with <5 quotes.
+8. **Version the cost data** with effective dates so the system can handle inflation/time adjustments.
 
-The RSMeans data integration opportunity (connecting the 640-city location factors and using RSMeans benchmarks for runtime validation) would further improve accuracy to an estimated ±15% for high-data project types.
+---
+
+## 7. Summary Scorecard
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Data Authenticity | **A** | All sources are real, authoritative data |
+| Source Diversity | **A** | 6+ independent sources cross-referenced |
+| Project Type Coverage | **B+** | 34 types, but 31 quote types unmapped |
+| Regional Accuracy | **C** | Excellent data (640 cities) but broken implementation |
+| Labor % Calibration | **C** | 14/18 types deviate >20% from RSMeans |
+| Total Cost Ranges | **B-** | Model ranges understate real market by 2-3x for some types |
+| Analyzer Engine | **B+** | Sophisticated analysis, good UX, needs regional fix |
+| **Overall** | **B+** | Strong data foundation, needs calibration & regional fix |

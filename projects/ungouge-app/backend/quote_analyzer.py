@@ -19,7 +19,10 @@ from typing import Any, Optional
 # ---------------------------------------------------------------------------
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+COST_DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "cost-data")
 COST_MODEL_PATH = os.path.join(DATA_DIR, "project_cost_models.json")
+LOCATION_FACTORS_PATH = os.path.join(COST_DATA_DIR, "rsmeans_location_factors.json")
+RSMEANS_CALIBRATION_PATH = os.path.join(COST_DATA_DIR, "rsmeans_calibration_curated.json")
 NEW_MODELS_DIR = os.path.join(DATA_DIR, "new_models")
 
 FUZZY_MATCH_THRESHOLD = 0.6
@@ -45,16 +48,125 @@ EXTREME_MULTIPLIER = 2.0       # 2x above range_high  → red flag
 
 
 # ---------------------------------------------------------------------------
-# Helper: State → Region lookup
+# Helper: RSMeans Location Factor Lookup
 # ---------------------------------------------------------------------------
 
-def _build_state_to_region(regional_multipliers: dict) -> dict:
-    """Build a mapping from state abbreviation to region name."""
-    lookup = {}
-    for region_name, region_data in regional_multipliers.items():
-        for state in region_data.get("states", []):
-            lookup[state.upper()] = region_name
-    return lookup
+# Lazy-loaded location factors cache
+_LOCATION_FACTORS: Optional[dict] = None
+
+
+def _load_location_factors() -> dict:
+    """Load RSMeans location factors from JSON (640 city-level factors)."""
+    global _LOCATION_FACTORS
+    if _LOCATION_FACTORS is not None:
+        return _LOCATION_FACTORS
+
+    try:
+        with open(LOCATION_FACTORS_PATH, "r") as f:
+            _LOCATION_FACTORS = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        _LOCATION_FACTORS = {}
+
+    return _LOCATION_FACTORS
+
+
+def _zip_matches_range(zip_code: str, zip_range: str) -> bool:
+    """
+    Check if a ZIP code prefix matches a zip_range string from the location factors.
+    zip_range can be: "100-102", "850,853", "942,956-958", "327-328,347", etc.
+    """
+    zip3 = zip_code[:3] if len(zip_code) >= 3 else zip_code
+
+    for part in zip_range.split(","):
+        part = part.strip()
+        if "-" in part:
+            low, high = part.split("-", 1)
+            low = low.strip()
+            high = high.strip()
+            try:
+                if int(low) <= int(zip3) <= int(high):
+                    return True
+            except ValueError:
+                continue
+        else:
+            if zip3 == part.strip():
+                return True
+
+    return False
+
+
+def _lookup_factor_by_zip(zip_code: str, location_data: dict) -> Optional[tuple]:
+    """
+    Look up a location factor by ZIP code.
+    Returns (city_name, factor, state_name) or None.
+    """
+    by_state = location_data.get("by_state", {})
+    for state_name, cities in by_state.items():
+        if not isinstance(cities, list):
+            continue
+        for entry in cities:
+            if _zip_matches_range(zip_code, entry.get("zip_range", "")):
+                return (entry["city"], entry["factor"], state_name)
+    return None
+
+
+def _lookup_factor_by_city(city_name: str, location_data: dict) -> Optional[tuple]:
+    """
+    Look up a location factor by city name (case-insensitive).
+    Returns (city_name, factor, state_name) or None.
+    """
+    city_lower = city_name.lower().strip()
+    by_state = location_data.get("by_state", {})
+    for state_name, cities in by_state.items():
+        if not isinstance(cities, list):
+            continue
+        for entry in cities:
+            if entry.get("city", "").lower() == city_lower:
+                return (entry["city"], entry["factor"], state_name)
+    return None
+
+
+def _state_average_factor(state_name: str, location_data: dict) -> Optional[float]:
+    """
+    Calculate the average factor for an entire state.
+    Returns the average factor or None if state not found.
+    """
+    by_state = location_data.get("by_state", {})
+
+    # Try exact match first (states are uppercase in JSON)
+    state_upper = state_name.upper()
+    cities = by_state.get(state_upper)
+    if not cities or not isinstance(cities, list):
+        # Try title case
+        state_title = state_name.strip().title()
+        cities = by_state.get(state_title)
+    if not cities or not isinstance(cities, list):
+        # Try case-insensitive search
+        for key, val in by_state.items():
+            if key.upper() == state_upper and isinstance(val, list):
+                cities = val
+                break
+
+    if not cities:
+        return None
+
+    factors = [e["factor"] for e in cities if "factor" in e]
+    if not factors:
+        return None
+
+    return sum(factors) / len(factors)
+
+
+def _region_average_factor(region_key: str, location_data: dict) -> Optional[float]:
+    """
+    Get the average factor for a region from the regional_summary.
+    Returns the avg factor or None.
+    """
+    regional_summary = location_data.get("regional_summary", {})
+    region_data = regional_summary.get(region_key)
+    if region_data and isinstance(region_data, dict):
+        return region_data.get("avg")
+    return None
 
 
 # Common state name → abbreviation
@@ -76,53 +188,140 @@ _STATE_ABBREVS = {
     "district of columbia": "DC", "dc": "DC",
 }
 
+# Abbreviation → full state name (uppercase, matching JSON keys)
+_ABBREV_TO_STATE = {v: k.upper() for k, v in _STATE_ABBREVS.items()}
+# Fix multi-word states
+_ABBREV_TO_STATE["NH"] = "NEW HAMPSHIRE"
+_ABBREV_TO_STATE["NJ"] = "NEW JERSEY"
+_ABBREV_TO_STATE["NM"] = "NEW MEXICO"
+_ABBREV_TO_STATE["NY"] = "NEW YORK"
+_ABBREV_TO_STATE["NC"] = "NORTH CAROLINA"
+_ABBREV_TO_STATE["ND"] = "NORTH DAKOTA"
+_ABBREV_TO_STATE["RI"] = "RHODE ISLAND"
+_ABBREV_TO_STATE["SC"] = "SOUTH CAROLINA"
+_ABBREV_TO_STATE["SD"] = "SOUTH DAKOTA"
+_ABBREV_TO_STATE["WV"] = "WEST VIRGINIA"
+_ABBREV_TO_STATE["DC"] = "DC"
+
+# State → region mapping based on RSMeans regional groupings
+_STATE_TO_REGION = {
+    "AL": "southeast", "AK": "alaska_hawaii", "AZ": "southwest",
+    "AR": "southwest", "CA": "west_coast", "CO": "mountain",
+    "CT": "northeast", "DE": "northeast", "DC": "southeast",
+    "FL": "southeast", "GA": "southeast", "HI": "alaska_hawaii",
+    "ID": "mountain", "IL": "midwest", "IN": "midwest",
+    "IA": "midwest", "KS": "midwest", "KY": "southeast",
+    "LA": "southeast", "ME": "northeast", "MD": "northeast",
+    "MA": "northeast", "MI": "midwest", "MN": "midwest",
+    "MS": "southeast", "MO": "midwest", "MT": "mountain",
+    "NE": "midwest", "NV": "mountain", "NH": "northeast",
+    "NJ": "northeast", "NM": "southwest", "NY": "northeast",
+    "NC": "southeast", "ND": "midwest", "OH": "midwest",
+    "OK": "southwest", "OR": "west_coast", "PA": "northeast",
+    "RI": "northeast", "SC": "southeast", "SD": "midwest",
+    "TN": "southeast", "TX": "southwest", "UT": "mountain",
+    "VT": "northeast", "VA": "southeast", "WA": "west_coast",
+    "WV": "southeast", "WI": "midwest", "WY": "mountain",
+}
+
 # Region name aliases people might use
 _REGION_ALIASES = {
     "northeast": "northeast", "new england": "northeast",
-    "mid-atlantic": "mid_atlantic", "mid atlantic": "mid_atlantic",
-    "midatlantic": "mid_atlantic",
+    "mid-atlantic": "northeast", "mid atlantic": "northeast",
+    "midatlantic": "northeast",
     "southeast": "southeast", "south": "southeast",
     "midwest": "midwest", "central": "midwest",
-    "south central": "south_central", "south_central": "south_central",
-    "southwest": "south_central",
+    "south central": "southwest", "south_central": "southwest",
+    "southwest": "southwest",
     "mountain": "mountain", "mountain west": "mountain",
-    "pacific": "pacific", "west coast": "pacific", "west": "pacific",
+    "pacific": "west_coast", "west coast": "west_coast", "west": "west_coast",
+    "alaska hawaii": "alaska_hawaii", "alaska_hawaii": "alaska_hawaii",
 }
 
 
 def resolve_region(region_input: str, regional_multipliers: dict) -> tuple:
     """
-    Resolve a region string (state name, abbreviation, or region name) to
-    (region_key, multiplier). Returns ('national_average', 1.0) if unresolved.
+    Resolve a location string to (region_key, multiplier) using RSMeans
+    location factors (640 city-level data points).
+
+    Lookup priority:
+      1. Exact city match (from location factors)
+      2. ZIP code match (3-digit prefix)
+      3. State-level average factor
+      4. Region-level average factor
+      5. National average (1.0) as last resort
+
+    Args:
+        region_input: State name, abbreviation, city name, ZIP code, or region name.
+        regional_multipliers: The regional_multipliers dict from cost models
+                              (used as fallback only; primary source is location factors).
+
+    Returns:
+        (region_key, multiplier) tuple.
     """
     if not region_input:
         return ("national_average", 1.0)
 
-    region_input_lower = region_input.strip().lower()
-    state_to_region = _build_state_to_region(regional_multipliers)
+    region_input = region_input.strip()
+    region_input_lower = region_input.lower()
+    location_data = _load_location_factors()
 
-    # Try as state abbreviation
-    abbrev = region_input.strip().upper()
-    if abbrev in state_to_region:
-        region_key = state_to_region[abbrev]
-        return (region_key, regional_multipliers[region_key]["multiplier"])
+    # 1. Try as ZIP code (starts with digit, at least 3 chars)
+    if region_input[0].isdigit() and len(region_input) >= 3:
+        result = _lookup_factor_by_zip(region_input, location_data)
+        if result:
+            city, factor, state = result
+            abbrev = _STATE_ABBREVS.get(state.lower())
+            region_key = _STATE_TO_REGION.get(abbrev, "national_average") if abbrev else "national_average"
+            return (region_key, factor)
 
-    # Try as full state name
+    # 2. Try as exact city name
+    city_result = _lookup_factor_by_city(region_input, location_data)
+    if city_result:
+        city, factor, state = city_result
+        abbrev = _STATE_ABBREVS.get(state.lower())
+        region_key = _STATE_TO_REGION.get(abbrev, "national_average") if abbrev else "national_average"
+        return (region_key, factor)
+
+    # 3. Try as state abbreviation → state average
+    abbrev = region_input.upper()
+    if abbrev in _ABBREV_TO_STATE:
+        state_name = _ABBREV_TO_STATE[abbrev]
+        avg = _state_average_factor(state_name, location_data)
+        if avg is not None:
+            region_key = _STATE_TO_REGION.get(abbrev, "national_average")
+            return (region_key, round(avg, 3))
+
+    # 4. Try as full state name → state average
     if region_input_lower in _STATE_ABBREVS:
         abbrev = _STATE_ABBREVS[region_input_lower]
-        if abbrev in state_to_region:
-            region_key = state_to_region[abbrev]
-            return (region_key, regional_multipliers[region_key]["multiplier"])
+        state_name = _ABBREV_TO_STATE.get(abbrev, region_input.upper())
+        avg = _state_average_factor(state_name, location_data)
+        if avg is not None:
+            region_key = _STATE_TO_REGION.get(abbrev, "national_average")
+            return (region_key, round(avg, 3))
 
-    # Try as region alias
+    # 5. Try as region alias → region average
     if region_input_lower in _REGION_ALIASES:
         region_key = _REGION_ALIASES[region_input_lower]
-        if region_key in regional_multipliers:
-            return (region_key, regional_multipliers[region_key]["multiplier"])
+        avg = _region_average_factor(region_key, location_data)
+        if avg is not None:
+            return (region_key, round(avg, 3))
 
-    # Try direct region key
-    if region_input_lower in regional_multipliers:
-        return (region_input_lower, regional_multipliers[region_input_lower]["multiplier"])
+    # 6. Try direct region key match in regional summary
+    regional_summary = location_data.get("regional_summary", {})
+    if region_input_lower in regional_summary:
+        avg = regional_summary[region_input_lower].get("avg", 1.0)
+        return (region_input_lower, round(avg, 3))
+
+    # 7. Fallback: try to find state name in input (e.g., "Burlington, Vermont")
+    for state_name, abbrev in _STATE_ABBREVS.items():
+        if state_name in region_input_lower:
+            full_state = _ABBREV_TO_STATE.get(abbrev, state_name.upper())
+            avg = _state_average_factor(full_state, location_data)
+            if avg is not None:
+                region_key = _STATE_TO_REGION.get(abbrev, "national_average")
+                return (region_key, round(avg, 3))
 
     return ("national_average", 1.0)
 

@@ -95,16 +95,35 @@ async def analyze_quote(
     total_fair_high = 0.0
 
     for item_result in result.get("line_item_analysis", []):
-        quoted = item_result.get("quoted_cost", 0.0)
-        fair_low = item_result.get("range_low", quoted * 0.7)
-        fair_high = item_result.get("range_high", quoted * 1.1)
+        # Engine returns "cost", not "quoted_cost"
+        quoted = item_result.get("cost", item_result.get("quoted_cost", 0.0))
+
+        # Engine returns adjusted_range.low/high, not flat range_low/range_high
+        adjusted_range = item_result.get("adjusted_range") or {}
+        fair_low = adjusted_range.get("low", item_result.get("range_low", quoted * 0.7))
+        fair_high = adjusted_range.get("high", item_result.get("range_high", quoted * 1.1))
+
         assessment = _map_item_status(item_result)
+
+        # Map engine assessment values to frontend status values
+        engine_assessment = item_result.get("assessment", "")
+        assessment_mapping = {
+            "fair": "within_range",
+            "fair_to_high": "slightly_above",
+            "below_range": "below_range",
+            "high": "above_range",
+            "excessive": "well_above",
+            "suspiciously_low": "below_range",
+            "unmatched": "no_match",
+        }
+        status_key = assessment_mapping.get(engine_assessment, item_result.get("status", "unknown"))
+        assessment = _map_item_status({"status": status_key, **item_result})
 
         # Build explanation
         explanation = item_result.get("explanation", "")
         if not explanation:
             matched = item_result.get("matched_category", "")
-            confidence = item_result.get("confidence", 0)
+            confidence = item_result.get("match_confidence", item_result.get("confidence", 0))
             if matched:
                 explanation = (
                     f"Matched to '{matched}' (confidence: {confidence:.0%}). "
@@ -134,10 +153,16 @@ async def analyze_quote(
     # Use engine's total analysis if available
     total_analysis = result.get("total_analysis", {})
     if total_analysis:
-        total_quoted = total_analysis.get("quoted_total", total_quoted)
-        if "expected_low" in total_analysis:
+        total_quoted = total_analysis.get("quote_total", total_analysis.get("quoted_total", total_quoted))
+        # Engine returns adjusted_range.low/high (regionally adjusted)
+        adj_range = total_analysis.get("adjusted_range") or {}
+        if adj_range.get("low") is not None:
+            total_fair_low = adj_range["low"]
+        elif "expected_low" in total_analysis:
             total_fair_low = total_analysis["expected_low"]
-        if "expected_high" in total_analysis:
+        if adj_range.get("high") is not None:
+            total_fair_high = adj_range["high"]
+        elif "expected_high" in total_analysis:
             total_fair_high = total_analysis["expected_high"]
 
     # Build overall assessment from engine summary
