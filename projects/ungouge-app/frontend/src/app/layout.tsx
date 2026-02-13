@@ -9,10 +9,7 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import {
   DEFAULT_METADATA,
   SITE_CONFIG,
-  generateOpenGraphTags,
-  generateTwitterCardTags,
   generateOrganizationSchema,
-  generateSoftwareApplicationSchema,
   renderJsonLd,
 } from '@/lib/seo';
 
@@ -103,21 +100,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Generate structured data schemas
+  // Organization schema is site-wide; page-specific schemas live in page.tsx files
   const organizationSchema = generateOrganizationSchema();
-  const softwareSchema = generateSoftwareApplicationSchema();
 
   return (
     <html lang="en">
       <head>
-        {/* JSON-LD Structured Data */}
+        {/* Site-wide Organization JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={renderJsonLd(organizationSchema)}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={renderJsonLd(softwareSchema)}
         />
       </head>
       <body className={inter.variable}>
