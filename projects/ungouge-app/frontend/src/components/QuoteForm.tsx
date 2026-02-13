@@ -103,17 +103,38 @@ export default function QuoteForm() {
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
       
-      // In production, this would redirect to Stripe payment first
-      // For now, we'll directly submit to the API
-      const response = await axios.post(`${apiUrl}/api/quotes`, data, {
+      // Step 1: Save the quote as a draft (no analysis yet — that happens after payment)
+      const quoteResponse = await axios.post(`${apiUrl}/api/quotes`, data, {
         withCredentials: true,  // Send auth cookies
       });
       
-      // Redirect to report page
-      router.push(`/report/${response.data.id}`);
+      const quoteId = quoteResponse.data.id;
+      
+      // Step 2: Create a Stripe Checkout Session
+      const checkoutResponse = await axios.post(
+        `${apiUrl}/api/payments/create-checkout`,
+        { quote_id: quoteId },
+        { withCredentials: true },
+      );
+      
+      // Step 3: Redirect to Stripe Checkout (external hosted page)
+      // Stripe handles payment collection; on success it redirects to /report/{quoteId}?payment=success
+      const checkoutUrl = checkoutResponse.data.checkout_url;
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      } else {
+        throw new Error('No checkout URL returned');
+      }
     } catch (err: any) {
       console.error('Error submitting quote:', err);
-      setError(err.response?.data?.detail || 'Failed to analyze quote. Please try again.');
+      const detail = err.response?.data?.detail;
+      if (typeof detail === 'object' && detail?.error) {
+        setError(detail.error + (detail.suggestion ? ` ${detail.suggestion}` : ''));
+      } else if (typeof detail === 'string') {
+        setError(detail);
+      } else {
+        setError('Failed to process your quote. Please try again.');
+      }
       setLoading(false);
     }
   };
