@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useEffect, useState, useCallback } from 'react';
+import { useParams, useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import ReportCard from '@/components/ReportCard';
 import PriceGauge from '@/components/PriceGauge';
-import { ArrowLeft, Download, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Download, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
 interface LineItemAnalysis {
@@ -33,10 +33,49 @@ interface Report {
 
 export default function ReportPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const reportId = params.id as string;
   const [report, setReport] = useState<Report | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [pdfDownloading, setPdfDownloading] = useState(false);
+  const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+
+  // Payment success banner
+  useEffect(() => {
+    if (searchParams.get('payment') === 'success') {
+      setShowPaymentSuccess(true);
+      const timer = setTimeout(() => setShowPaymentSuccess(false), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams]);
+
+  // PDF download handler
+  const handleDownloadPdf = useCallback(async () => {
+    if (pdfDownloading) return;
+    setPdfDownloading(true);
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await axios.get(`${apiUrl}/api/quotes/${reportId}/pdf`, {
+        withCredentials: true,
+        responseType: 'blob',
+      });
+      const blob = new Blob([response.data], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `ungouge-report-${reportId}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('PDF download failed:', err);
+      alert('Failed to download PDF. Please try again.');
+    } finally {
+      setPdfDownloading(false);
+    }
+  }, [reportId, pdfDownloading]);
 
   useEffect(() => {
     const fetchReport = async () => {
@@ -101,6 +140,14 @@ export default function ReportPage() {
           Back to Home
         </Link>
 
+        {/* Payment Success Banner */}
+        {showPaymentSuccess && (
+          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3 animate-in fade-in duration-300">
+            <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+            <p className="text-green-800 font-medium">Payment confirmed! Your report is ready.</p>
+          </div>
+        )}
+
         {/* Header */}
         <div className="card mb-8">
           <div className="flex justify-between items-start mb-6">
@@ -113,9 +160,17 @@ export default function ReportPage() {
                 Generated: {new Date(report.created_at).toLocaleDateString()}
               </p>
             </div>
-            <button className="btn-secondary flex items-center">
-              <Download className="w-4 h-4 mr-2" />
-              Download PDF
+            <button
+              onClick={handleDownloadPdf}
+              disabled={pdfDownloading}
+              className="btn-secondary flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {pdfDownloading ? (
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              ) : (
+                <Download className="w-4 h-4 mr-2" />
+              )}
+              {pdfDownloading ? 'Generating...' : 'Download PDF'}
             </button>
           </div>
 

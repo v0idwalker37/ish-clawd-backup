@@ -16,6 +16,7 @@ from pydantic import BaseModel
 from routers import quotes, health, auth, payments
 from models.database import engine, Base
 from middleware.dnt import DNTMiddleware
+from middleware.security_logging import SecurityAuditMiddleware, setup_security_logging
 
 # HIGH-08: Conditional HTTPS redirect for production deployments
 ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
@@ -71,6 +72,9 @@ async def lifespan(app: FastAPI):
     # Create database tables on startup
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
+    # Initialize structured security logging
+    setup_security_logging()
 
     # Schedule daily data retention cleanup (GDPR compliance)
     cleanup_task = asyncio.create_task(_daily_cleanup_loop())
