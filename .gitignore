@@ -25,3 +25,15 @@ drive-token.json
 token.json
 .cloudsql-password
 .dashboard-api-key
+
+# Secrets - NEVER commit these
+*.env
+*.env.*
+!*.env.example
+**/token.json
+**/workspace-token.json
+**/drive-token.json
+**/credentials.json
+**/*-credentials.json
+**/ungouge-oauth-credentials.json
+**/.env.cloudrun
