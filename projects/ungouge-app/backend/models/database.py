@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy import String, Float, Integer, Text, DateTime, JSON, ForeignKey
+from sqlalchemy import String, Float, Integer, Boolean, Text, DateTime, JSON, ForeignKey
 from datetime import datetime
 from typing import Optional, List
 import os
@@ -36,9 +36,27 @@ class User(Base):
     __tablename__ = "users"
     
     id: Mapped[str] = mapped_column(String(36), primary_key=True)
-    email: Mapped[str] = mapped_column(String(255), unique=True, index=True)
-    password_hash: Mapped[str] = mapped_column(String(255))
-    name: Mapped[str] = mapped_column(String(255))
+
+    # ── PII FIELDS — GDPR Art. 32 (R-17) ──────────────────────────────────
+    # These columns contain personally identifiable information and are
+    # candidates for field-level encryption via services.encryption.
+    #
+    # MIGRATION STATUS: Phase 1 — utilities shipped, encryption not yet
+    # applied to storage.  See services/encryption.py for the full plan.
+    #
+    # Phase 2 will add:
+    #   email_encrypted  VARCHAR(512)  — AES-256-GCM ciphertext
+    #   email_hmac       VARCHAR(64)   — blind index for equality lookups
+    #   name_encrypted   VARCHAR(512)  — AES-256-GCM ciphertext
+    # After migration, the plaintext email/name columns can be dropped.
+    #
+    # NOTE: Encrypted values cannot be searched, sorted, or indexed.
+    #       Login-by-email will use the HMAC blind index column.
+    # ───────────────────────────────────────────────────────────────────────
+    email: Mapped[str] = mapped_column(String(255), unique=True, index=True)  # PII — encrypt in Phase 2
+    password_hash: Mapped[str] = mapped_column(String(255))  # NOT PII — already bcrypt hashed
+    name: Mapped[str] = mapped_column(String(255))  # PII — encrypt in Phase 2
+
     is_active: Mapped[bool] = mapped_column(default=True, index=True)  # Indexed: frequently filtered in auth
     is_verified: Mapped[bool] = mapped_column(default=False, index=True)  # Indexed: frequently checked in auth flows
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)  # Indexed: for sorting user lists
@@ -48,6 +66,19 @@ class User(Base):
     mfa_enabled: Mapped[bool] = mapped_column(default=False)
     mfa_code: Mapped[Optional[str]] = mapped_column(String(6), nullable=True)  # 6-digit OTP
     mfa_code_expires: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    
+    # GDPR Art. 18 — Right to Restriction of Processing
+    # When True, data is retained but NOT processed (e.g. quote analysis is blocked).
+    # TODO: Requires Alembic migration for existing databases:
+    #   alembic revision --autogenerate -m "add is_restricted and privacy_preferences to users"
+    #   alembic upgrade head
+    is_restricted: Mapped[bool] = mapped_column(Boolean, default=False, server_default="0")
+    
+    # GDPR Art. 21 — Right to Object / Privacy Preferences
+    # JSON field storing user privacy choices (analytics opt-out, marketing opt-out, etc.)
+    # Schema: {"analytics_opt_out": bool, "marketing_emails_opt_out": bool}
+    # TODO: Requires Alembic migration (same revision as is_restricted above)
+    privacy_preferences: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
     
     # Relationships
     quotes: Mapped[List["Quote"]] = relationship(back_populates="user")

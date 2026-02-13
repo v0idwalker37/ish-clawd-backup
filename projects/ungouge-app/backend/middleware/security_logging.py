@@ -1,15 +1,52 @@
 """
 Structured Security Logging
 Captures security-relevant events in JSON format for monitoring and audit
+
+GDPR R-12: Email addresses are masked in log output (first 3 chars + ***@domain.com).
+IP addresses are retained under legitimate-interest basis (security monitoring, fraud
+prevention, abuse detection — GDPR Art. 6(1)(f)).
 """
 
 import json
 import logging
+import re
 import time
 from datetime import datetime
 from typing import Optional, Dict, Any
 from fastapi import Request, Response
 from starlette.middleware.base import BaseHTTPMiddleware
+
+
+# ---------------------------------------------------------------------------
+# R-12  Email masking utility
+# ---------------------------------------------------------------------------
+_EMAIL_RE = re.compile(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')
+
+
+def mask_email_for_log(email: str) -> str:
+    """
+    Mask an email address for log output.
+    Shows first 3 characters of the local part + ***@domain.
+    Example: jason.trask@gmail.com  →  jas***@gmail.com
+    """
+    if not email or "@" not in email:
+        return email
+    local, domain = email.rsplit("@", 1)
+    visible = local[:3] if len(local) >= 3 else local[:1]
+    return f"{visible}***@{domain}"
+
+
+def mask_emails_in_value(value):
+    """
+    Recursively walk a dict/list/string and mask any email addresses found.
+    """
+    if isinstance(value, str):
+        return _EMAIL_RE.sub(lambda m: mask_email_for_log(m.group(0)), value)
+    if isinstance(value, dict):
+        return {k: mask_emails_in_value(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return type(value)(mask_emails_in_value(item) for item in value)
+    return value
 
 # Create dedicated security logger
 security_logger = logging.getLogger("ungouge.security")
@@ -69,14 +106,21 @@ def log_security_event(
     - input_validation_failed
     - access_denied (BOLA)
     - suspicious_activity
+    
+    GDPR R-12: Email addresses inside *details* are automatically masked.
+    IP addresses are kept (legitimate interest — Art. 6(1)(f): security).
     """
+    # R-12: Mask any email addresses embedded in the details dict
+    masked_details = mask_emails_in_value(details)
+
     log_data = {
         "event_type": event_type,
         "severity": severity,
+        # IP retained — legitimate interest for security monitoring (Art. 6(1)(f))
         "ip": ip,
         "user_id": user_id,
         "timestamp": datetime.utcnow().isoformat() + "Z",
-        **details,
+        **masked_details,
     }
     
     extra = {"event": event_type, "details": log_data}

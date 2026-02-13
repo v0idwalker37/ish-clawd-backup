@@ -32,14 +32,28 @@ def log_auth_success(user_id: str, action: str, ip_address: str = None):
         }
     )
 
+def _mask_email(email: str) -> str:
+    """
+    GDPR R-12: Mask email for log output.
+    Shows first 3 chars of local part + ***@domain.
+    Example: jason.trask@gmail.com → jas***@gmail.com
+    """
+    if not email or "@" not in email:
+        return email or ""
+    local, domain = email.rsplit("@", 1)
+    visible = local[:3] if len(local) >= 3 else local[:1]
+    return f"{visible}***@{domain}"
+
+
 def log_auth_failure(email: str, action: str, reason: str, ip_address: str = None):
-    """Log failed authentication event"""
+    """Log failed authentication event (email is masked — GDPR R-12)"""
     logger.warning(
         f"auth_{action}_failed",
         extra={
-            "email": email,
+            "email": _mask_email(email),
             "action": action,
             "reason": reason,
+            # IP retained — legitimate interest for security (Art. 6(1)(f))
             "ip_address": ip_address,
             "event_type": "auth_failure"
         }

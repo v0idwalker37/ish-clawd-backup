@@ -227,3 +227,62 @@ class MFARequiredResponse(BaseModel):
                 "message": "Please check your email for the verification code",
             }
         }
+
+
+# =============================================================================
+# GDPR Data Subject Rights Models (Art. 16, 18, 21)
+# =============================================================================
+
+
+class RectificationRequest(BaseModel):
+    """
+    GDPR Art. 16 — Right to Rectification
+    Allows users to update their personal data.
+    """
+    name: Optional[str] = Field(None, min_length=1, max_length=200, description="Updated full name")
+    email: Optional[EmailStr] = Field(None, description="Updated email (triggers re-verification)")
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "name": "Jane Doe",
+                "email": "newemail@example.com",
+            }
+        }
+
+
+class PrivacyPreferences(BaseModel):
+    """
+    GDPR Art. 21 — Right to Object
+    Privacy and data-processing preferences.
+    """
+    analytics_opt_out: bool = Field(
+        False,
+        description="Opt out of service-improvement analytics"
+    )
+    marketing_emails_opt_out: bool = Field(
+        False,
+        description="Opt out of non-essential email communications"
+    )
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "analytics_opt_out": True,
+                "marketing_emails_opt_out": False,
+            }
+        }
+
+
+class RestrictionResponse(BaseModel):
+    """Response for restriction/unrestriction actions"""
+    message: str
+    is_restricted: bool
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "message": "Processing of your data has been restricted.",
+                "is_restricted": True,
+            }
+        }

@@ -28,6 +28,9 @@ from models.auth import (
     MFADisableRequest,
     MFALoginRequest,
     MFARequiredResponse,
+    RectificationRequest,
+    PrivacyPreferences,
+    RestrictionResponse,
 )
 from models.password_reset import PasswordResetRequest, PasswordResetVerify, PasswordResetResponse
 from models.database import PasswordResetToken, EmailVerificationToken
@@ -942,6 +945,264 @@ async def delete_my_data(
     response.delete_cookie(key="refresh_token", path="/", secure=is_production, samesite="strict")
     
     return response
+
+
+# =============================================================================
+# GDPR Art. 16 — Right to Rectification (R-06)
+# =============================================================================
+
+@router.put("/auth/my-data")
+async def rectify_my_data(
+    updates: RectificationRequest,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Update (rectify) personal data — GDPR Art. 16
+
+    Allows users to correct their stored personal information:
+    - **name**: Update display name
+    - **email**: Update email address (resets verification; user must re-verify)
+
+    At least one field must be provided.
+    """
+    from validators import validate_email, sanitize_string
+    from exceptions import ValidationError
+    from services.logger import logger
+
+    if updates.name is None and updates.email is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={
+                "error": "No fields provided for update.",
+                "suggestion": "Supply at least 'name' or 'email'.",
+            },
+        )
+
+    changes: dict = {}
+
+    # --- Name rectification ---
+    if updates.name is not None:
+        sanitized_name = sanitize_string(updates.name, 200)
+        if not sanitized_name:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail={"error": "Name cannot be empty after sanitization."},
+            )
+        current_user.name = sanitized_name
+        changes["name"] = sanitized_name
+
+    # --- Email rectification (triggers re-verification) ---
+    if updates.email is not None:
+        normalized_email = validate_email(updates.email)
+
+        if normalized_email != current_user.email:
+            # Check uniqueness
+            result = await db.execute(
+                select(User).where(User.email == normalized_email)
+            )
+            if result.scalar_one_or_none():
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail={
+                        "error": "An account with this email already exists.",
+                        "suggestion": "Use a different email address.",
+                    },
+                )
+
+            current_user.email = normalized_email
+            current_user.is_verified = False  # Must re-verify new email
+            changes["email"] = normalized_email
+            changes["is_verified"] = False
+
+            # Generate new verification token for the changed email
+            verification_token = secrets.token_urlsafe(32)
+            verification_record = EmailVerificationToken(
+                id=str(uuid.uuid4()),
+                user_id=current_user.id,
+                token=verification_token,
+                expires_at=datetime.utcnow() + timedelta(days=7),
+                created_at=datetime.utcnow(),
+            )
+            db.add(verification_record)
+
+    current_user.updated_at = datetime.utcnow()
+
+    try:
+        await db.commit()
+        await db.refresh(current_user)
+    except Exception as e:
+        await db.rollback()
+        from services.logger import log_error
+        log_error("rectification_failed", str(e), {"user_id": current_user.id})
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to update your data. Please try again.",
+        )
+
+    logger.info(
+        "gdpr_rectification",
+        extra={"user_id": current_user.id, "fields_changed": list(changes.keys())},
+    )
+
+    return {
+        "message": "Your data has been updated.",
+        "changes": changes,
+        "re_verification_required": "email" in changes,
+    }
+
+
+# =============================================================================
+# GDPR Art. 18 — Right to Restriction of Processing (R-07)
+# =============================================================================
+
+@router.post("/auth/restrict", response_model=RestrictionResponse)
+async def restrict_processing(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Restrict processing of personal data — GDPR Art. 18
+
+    When restricted:
+    - Your data is **retained** but **not processed** (e.g. no new quote analysis).
+    - Existing reports remain accessible to you.
+    - You can lift the restriction at any time via POST /auth/unrestrict.
+    """
+    from services.logger import logger
+
+    if current_user.is_restricted:
+        return RestrictionResponse(
+            message="Your data processing is already restricted.",
+            is_restricted=True,
+        )
+
+    current_user.is_restricted = True
+    current_user.updated_at = datetime.utcnow()
+
+    try:
+        await db.commit()
+    except Exception as e:
+        await db.rollback()
+        from services.logger import log_error
+        log_error("restriction_failed", str(e), {"user_id": current_user.id})
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to restrict processing. Please try again.",
+        )
+
+    logger.info(
+        "gdpr_restriction_applied",
+        extra={"user_id": current_user.id},
+    )
+
+    return RestrictionResponse(
+        message="Processing of your data has been restricted. Your data is retained but will not be processed.",
+        is_restricted=True,
+    )
+
+
+@router.post("/auth/unrestrict", response_model=RestrictionResponse)
+async def unrestrict_processing(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Lift restriction on data processing — GDPR Art. 18
+
+    Resumes normal processing of your data (e.g. quote analysis).
+    """
+    from services.logger import logger
+
+    if not current_user.is_restricted:
+        return RestrictionResponse(
+            message="Your data processing is not currently restricted.",
+            is_restricted=False,
+        )
+
+    current_user.is_restricted = False
+    current_user.updated_at = datetime.utcnow()
+
+    try:
+        await db.commit()
+    except Exception as e:
+        await db.rollback()
+        from services.logger import log_error
+        log_error("unrestriction_failed", str(e), {"user_id": current_user.id})
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to lift restriction. Please try again.",
+        )
+
+    logger.info(
+        "gdpr_restriction_lifted",
+        extra={"user_id": current_user.id},
+    )
+
+    return RestrictionResponse(
+        message="Restriction has been lifted. Normal data processing has resumed.",
+        is_restricted=False,
+    )
+
+
+# =============================================================================
+# GDPR Art. 21 — Right to Object / Privacy Preferences (R-08)
+# =============================================================================
+
+@router.put("/auth/preferences", response_model=PrivacyPreferences)
+async def update_privacy_preferences(
+    prefs: PrivacyPreferences,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Update privacy and data-processing preferences — GDPR Art. 21
+
+    Allows opting out of:
+    - **analytics_opt_out**: Service-improvement analytics
+    - **marketing_emails_opt_out**: Non-essential email communications
+
+    Preferences take effect immediately.
+    """
+    from services.logger import logger
+
+    current_user.privacy_preferences = prefs.dict()
+    current_user.updated_at = datetime.utcnow()
+
+    try:
+        await db.commit()
+        await db.refresh(current_user)
+    except Exception as e:
+        await db.rollback()
+        from services.logger import log_error
+        log_error("preferences_update_failed", str(e), {"user_id": current_user.id})
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to update preferences. Please try again.",
+        )
+
+    logger.info(
+        "gdpr_preferences_updated",
+        extra={"user_id": current_user.id, "preferences": prefs.dict()},
+    )
+
+    return prefs
+
+
+@router.get("/auth/preferences", response_model=PrivacyPreferences)
+async def get_privacy_preferences(
+    current_user: User = Depends(get_current_user),
+):
+    """
+    Get current privacy preferences — GDPR Art. 21
+
+    Returns the user's current opt-out preferences.
+    """
+    stored = current_user.privacy_preferences or {}
+    return PrivacyPreferences(
+        analytics_opt_out=stored.get("analytics_opt_out", False),
+        marketing_emails_opt_out=stored.get("marketing_emails_opt_out", False),
+    )
 
 
 # =============================================================================
