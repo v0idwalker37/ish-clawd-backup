@@ -15,7 +15,6 @@ from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import JSONResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, update
-from sqlalchemy.orm import with_for_update
 from pydantic import BaseModel
 from typing import Optional
 import uuid

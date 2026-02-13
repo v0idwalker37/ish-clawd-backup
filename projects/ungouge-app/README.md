@@ -1,335 +1,461 @@
-# Ungouge.ai
+<p align="center">
+  <!-- Replace with actual logo when available -->
+  <img src="frontend/public/android-chrome-512x512.png" alt="UnGouge.ai Logo" width="120" />
+</p>
 
-> **Stop getting gouged on contractor quotes.** Get instant, data-backed analysis using real BLS labor rates and material costs.
+<h1 align="center">UnGouge.ai</h1>
+<p align="center"><strong>Independent Quote Verification for Homeowners</strong></p>
+<p align="center">
+  <em>Pay $19.99. Get the truth about your contractor's quote. No lead gen. No hidden agenda.</em>
+</p>
 
-[![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![Next.js](https://img.shields.io/badge/next.js-14-black.svg)](https://nextjs.org/)
-[![FastAPI](https://img.shields.io/badge/fastapi-0.109+-green.svg)](https://fastapi.tiangolo.com/)
-
----
-
-## 🎯 What is Ungouge.ai?
-
-Ungouge.ai brings transparency to home renovation pricing. Upload a contractor quote, get instant analysis showing:
-
-- **Line-by-line breakdown** - See exactly what's overpriced
-- **Real BLS wage data** - Compare against actual labor rates
-- **Fair price estimates** - Know what you *should* be paying
-- **Red flag detection** - Spot suspicious patterns and markups
-
-### Our Promise
-
-- **No Lead Generation** - We NEVER sell your data to contractors
-- **No Hidden Fees** - $19.99 per report, no subscriptions
-- **Real Data** - Official BLS rates + industry-standard material costs
-- **Privacy First** - Your quotes stay yours
+<p align="center">
+  <a href="https://ungouge.ai">Website</a> •
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#api-endpoints">API Docs</a> •
+  <a href="DEPLOY_CHECKLIST.md">Deploy</a> •
+  <a href="SECURITY_PENTEST_REPORT.md">Security</a>
+</p>
 
 ---
 
-## 🏗️ Architecture Overview
+## What is UnGouge?
+
+UnGouge.ai is a **data-driven contractor quote analysis service** that helps homeowners answer one simple question: *"Is this quote fair?"*
+
+You upload or enter your contractor's quote — materials, labor, line items, the whole thing — and UnGouge analyzes it against real-world cost data from RSMeans, BLS labor rates, and regional pricing models. Within minutes you get a detailed report showing where you're getting a fair deal, where you're overpaying, and what to negotiate. It costs **$19.99 per report**, and that's the entire business model.
+
+Unlike every other tool in this space, UnGouge doesn't sell your data to contractors, doesn't generate "leads," and doesn't take referral fees. The free quote-comparison sites make money by selling your phone number to five contractors who call you relentlessly. We make money when you pay us $19.99 for an honest analysis. Our incentives are aligned with yours: giving you accurate information so you come back next time and tell your friends.
+
+The platform is built for transparency and privacy. GDPR-compliant by design, with PII encryption at rest, automatic data retention cleanup, and full data portability. Your quote data belongs to you.
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Details |
+|-------|-----------|---------|
+| **Frontend** | Next.js 14 + React 18 | TypeScript, Tailwind CSS, Framer Motion |
+| **Backend** | FastAPI (Python 3.11) | Async, Pydantic v2, SQLAlchemy 2.0 |
+| **Database** | SQLite (dev) / PostgreSQL 15 (prod) | asyncpg, Alembic migrations |
+| **AI / Analysis** | OpenAI · Anthropic Claude · Google Gemini | Multi-provider with fallback chain |
+| **OCR** | Tesseract + pdf2image | Quote upload parsing from PDF/images |
+| **Payments** | Stripe Checkout | $19.99 per report, webhook-driven |
+| **Auth** | JWT (httpOnly cookies) | Access + refresh tokens, MFA (email OTP) |
+| **Email** | aiosmtplib | SendGrid / SES / Mailgun compatible |
+| **Hosting** | GCP Cloud Run (API) · Vercel (Frontend) | Docker, auto-scaling, managed SSL |
+| **Security** | CSRF · CSP · Rate Limiting · AES-256 encryption | See [Security](#security) |
+| **Cost Data** | RSMeans · BLS · HomeAdvisor · Census | Calibrated regional pricing models |
+
+---
+
+## Architecture
 
 ```
-Frontend (Next.js 14)          Backend (FastAPI)           Data Layer
-─────────────────────         ──────────────────         ────────────
-┌─────────────────┐          ┌──────────────┐           ┌──────────┐
-│   React Pages   │──────────│  REST API    │───────────│PostgreSQL│
-│   (TypeScript)  │  HTTP    │   Routes     │  SQLAlchemy│          │
-└─────────────────┘          └──────────────┘           └──────────┘
-        │                             │
-        │                             ├───────────┐
-        │                             │           │
-    ┌───▼────┐                  ┌────▼────┐  ┌──▼─────┐
-    │Tailwind│                  │ Gemini  │  │ Stripe │
-    │  CSS   │                  │ Vision  │  │Payments│
-    └────────┘                  │  API    │  └────────┘
-                                └─────────┘
+┌─────────────────────┐     ┌──────────────────────┐     ┌─────────────────┐
+│                     │     │                      │     │                 │
+│   Next.js Frontend  │────▶│   FastAPI Backend     │────▶│  PostgreSQL     │
+│   (Vercel)          │     │   (GCP Cloud Run)    │     │  (Cloud SQL)    │
+│                     │     │                      │     │                 │
+└─────────────────────┘     └──────────┬───────────┘     └─────────────────┘
+                                       │
+                            ┌──────────┴───────────┐
+                            │                      │
+                    ┌───────▼──────┐   ┌───────────▼────────┐
+                    │              │   │                    │
+                    │  AI Analysis │   │  Stripe Payments   │
+                    │  (OpenAI /   │   │  (Checkout +       │
+                    │   Claude /   │   │   Webhooks)        │
+                    │   Gemini)    │   │                    │
+                    │              │   │                    │
+                    └──────────────┘   └────────────────────┘
 ```
 
-**Tech Stack:**
-- **Frontend:** Next.js 14 (App Router), TypeScript, Tailwind CSS
-- **Backend:** FastAPI, Python 3.11+, Pydantic v2
-- **Database:** PostgreSQL (SQLite for dev)
-- **AI:** Google Gemini 2.0 Flash (vision-based quote parsing)
-- **Payments:** Stripe
-- **Data Sources:** BLS wage rates, Craftsman National Construction Estimator
-
-See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed tech decisions.
+**Flow:** User submits quote → quote saved (unpaid) → user pays $19.99 via Stripe Checkout → Stripe webhook confirms payment → AI analysis runs → report generated and available.
 
 ---
 
-## 🚀 Quick Start
+## Getting Started
 
-**New to the project?** Start here: [SETUP.md](SETUP.md)
+### Prerequisites
 
-**TL;DR:**
+- **Python 3.11+**
+- **Node.js 18+** (with npm)
+- **Tesseract OCR** — `brew install tesseract` (macOS) or `apt install tesseract-ocr`
+- **libmagic** — `brew install libmagic` (macOS) or `apt install libmagic1`
+- **Poppler** — `brew install poppler` (macOS) or `apt install poppler-utils`
+
+### Backend
+
 ```bash
-# Frontend
-cd frontend
-npm install
-cp .env.local.example .env.local
-# Add your API URL to .env.local
-npm run dev
-
-# Backend
 cd backend
-python3 -m venv venv
-source venv/bin/activate
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
+pip install -r requirements-security.txt
+
+# Configure environment
 cp .env.example .env
-# Add your secrets to .env
-python main.py
+# Edit .env — set at minimum:
+#   JWT_SECRET_KEY, CSRF_SECRET_KEY, STRIPE_SECRET_KEY,
+#   STRIPE_WEBHOOK_SECRET, OPENAI_API_KEY, ENCRYPTION_KEY
+
+# Run development server
+uvicorn main:app --reload --port 8000
 ```
 
-**Frontend:** http://localhost:3000  
-**Backend:** http://localhost:8000  
-**API Docs:** http://localhost:8000/docs
+The API is now running at `http://localhost:8000`. Interactive docs at `http://localhost:8000/docs`.
+
+### Frontend
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Configure environment
+cp .env.local.example .env.local
+# Edit .env.local:
+#   NEXT_PUBLIC_API_URL=http://localhost:8000
+#   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+
+# Run development server
+npm run dev
+```
+
+The frontend is now running at `http://localhost:3000`.
+
+### Database
+
+- **Development:** SQLite — auto-created as `backend/ungouge.db` on first run. Zero config.
+- **Production:** PostgreSQL 15+ via Cloud SQL. Set `DATABASE_URL` to an `asyncpg` connection string. See [DEPLOY_CHECKLIST.md](DEPLOY_CHECKLIST.md#2-database-setup--migrations).
+
+### Stripe (Local Testing)
+
+```bash
+# Install Stripe CLI
+brew install stripe/stripe-cli/stripe
+
+# Forward webhooks to local server
+stripe listen --forward-to localhost:8000/api/payments/webhook
+
+# In another terminal, trigger test events
+stripe trigger checkout.session.completed
+```
 
 ---
 
-## 📚 Documentation
-
-| Document | Description |
-|----------|-------------|
-| [SETUP.md](SETUP.md) | Complete setup guide for new developers |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | Tech stack decisions & system design |
-| [API.md](API.md) | Backend API endpoints & examples |
-| [DEPLOYMENT.md](DEPLOYMENT.md) | Production deployment guide |
-| [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) | File organization |
-
----
-
-## 🧪 Key Features
-
-### ✅ Implemented
-- User authentication (JWT-based)
-- Quote upload (PDF/images via Gemini Vision)
-- Automated line-item analysis
-- BLS wage data integration
-- Regional cost adjustments
-- Stripe payment integration
-- Dashboard with quote history
-- Security hardening (rate limiting, CSRF protection)
-
-### 🚧 In Progress
-- Craftsman API integration (cost model data)
-- Advanced red flag detection
-- Quote comparison feature
-
-### 📋 Planned
-- Email notifications
-- PDF report generation
-- Contractor negotiation tips
-- Mobile app
-
----
-
-## 🗄️ Project Structure
+## Project Structure
 
 ```
 ungouge-app/
-├── frontend/              # Next.js 14 application
+├── backend/
+│   ├── main.py                  # FastAPI app, middleware, startup
+│   ├── requirements.txt         # Python dependencies
+│   ├── requirements-security.txt
+│   ├── routers/
+│   │   ├── auth.py              # Authentication & GDPR endpoints
+│   │   ├── quotes.py            # Quote submission, retrieval, PDF
+│   │   ├── payments.py          # Stripe checkout & webhooks
+│   │   └── health.py            # Health / readiness / liveness probes
+│   ├── models/
+│   │   ├── database.py          # SQLAlchemy models (User, Quote, Payment, etc.)
+│   │   ├── auth.py              # Pydantic request/response schemas
+│   │   ├── quote.py             # Quote schemas
+│   │   └── report.py            # Analysis report schemas
+│   ├── services/
+│   │   ├── analyzer_v2.py       # Quote analysis engine (67.7% accuracy, 87% match)
+│   │   ├── auth.py              # JWT, password hashing, token management
+│   │   ├── payment.py           # Stripe integration
+│   │   ├── email_service.py     # Transactional email (SMTP)
+│   │   ├── encryption.py        # AES-256 PII encryption
+│   │   ├── pdf_generator.py     # Report PDF generation (ReportLab)
+│   │   ├── quote_parser.py      # OCR + file parsing for uploads
+│   │   ├── quote_parser_gemini.py # Gemini-powered quote parsing
+│   │   ├── mfa_service.py       # Multi-factor authentication (email OTP)
+│   │   ├── bls_data.py          # BLS labor rate lookups
+│   │   ├── synonym_matcher.py   # Line item → cost model matching
+│   │   └── token_blacklist.py   # JWT revocation (logout)
+│   ├── middleware/
+│   │   ├── csrf.py              # CSRF protection
+│   │   ├── rate_limit.py        # Rate limiting (slowapi)
+│   │   ├── input_validation.py  # Input sanitization
+│   │   ├── file_security.py     # Upload security (magic bytes, metadata strip)
+│   │   ├── data_retention.py    # GDPR auto-cleanup (30-day TTL)
+│   │   ├── dnt.py               # Do Not Track signal handling
+│   │   └── security_logging.py  # Structured security audit logs
+│   ├── data/
+│   │   ├── project_cost_models.json    # RSMeans-calibrated pricing
+│   │   ├── material_costs.json         # Material cost database
+│   │   └── sample_bls_rates.json       # BLS labor rates
+│   ├── templates/               # Email templates (HTML)
+│   └── tests/                   # pytest test suite
+│
+├── frontend/
+│   ├── package.json
+│   ├── next.config.js           # CSP headers, security config
+│   ├── tailwind.config.js
 │   ├── src/
-│   │   ├── app/          # Pages (App Router)
-│   │   └── components/   # React components
-│   └── package.json
+│   │   ├── app/
+│   │   │   ├── page.tsx         # Landing page
+│   │   │   ├── login/           # Login page
+│   │   │   ├── register/        # Registration page
+│   │   │   ├── analyze/         # Quote submission form
+│   │   │   ├── report/[id]/     # Analysis report view
+│   │   │   ├── dashboard/       # User dashboard (quotes, settings, account)
+│   │   │   ├── pricing/         # Pricing page
+│   │   │   ├── privacy/         # Privacy policy
+│   │   │   └── terms/           # Terms of service
+│   │   ├── components/
+│   │   │   ├── QuoteForm.tsx    # Main quote input form
+│   │   │   ├── FileUpload.tsx   # Drag-and-drop quote upload
+│   │   │   ├── PriceGauge.tsx   # Visual price fairness gauge
+│   │   │   ├── ReportCard.tsx   # Report display component
+│   │   │   ├── Header.tsx       # Navigation header
+│   │   │   ├── Footer.tsx       # Site footer
+│   │   │   └── CookieConsent.tsx # GDPR cookie consent banner
+│   │   └── middleware.ts        # Next.js middleware (auth, redirects)
+│   └── public/                  # Static assets, favicons, sitemap
 │
-├── backend/              # FastAPI application
-│   ├── routers/         # API endpoints
-│   │   ├── auth.py      # Authentication
-│   │   ├── quotes.py    # Quote analysis
-│   │   └── health.py    # Health checks
-│   ├── services/        # Business logic
-│   │   ├── analyzer.py           # Quote analysis engine
-│   │   ├── quote_parser_gemini.py # AI-powered parsing
-│   │   ├── auth.py               # JWT & password handling
-│   │   └── email_service.py      # Email notifications
-│   ├── models/          # Data models
-│   │   ├── database.py  # SQLAlchemy models
-│   │   ├── quote.py     # Quote schemas
-│   │   └── report.py    # Report schemas
-│   ├── data/            # Cost model datasets
-│   └── main.py          # FastAPI app entry
+├── legal/                       # Legal documents
+│   ├── PRIVACY_POLICY.md        # Full privacy policy
+│   ├── TERMS_OF_SERVICE.md      # Terms of service
+│   ├── GDPR_AUDIT_REPORT.md     # GDPR compliance audit
+│   ├── ROPA.md                  # Records of Processing Activities
+│   ├── DPA_REGISTER.md          # Data Processing Agreements
+│   ├── INCIDENT_RESPONSE_PLAN.md
+│   └── BACKUP_RECOVERY_PLAN.md
 │
-├── README.md            # This file
-├── SETUP.md             # Setup guide
-├── ARCHITECTURE.md      # Tech decisions
-├── API.md               # API documentation
-└── DEPLOYMENT.md        # Production deployment
+├── cost-data/                   # Pricing reference data
+│   ├── rsmeans_extracted_data.json
+│   ├── rsmeans_location_factors.json
+│   ├── bls-labor-rates.json
+│   ├── real-quotes.json
+│   └── homeadvisor-cost-guides.json
+│
+├── content/                     # Marketing & blog content
+│   ├── blog/                    # SEO blog posts (30+)
+│   ├── marketing/               # Ad copy, email sequences
+│   └── legal/                   # Content versions of legal pages
+│
+├── Dockerfile                   # Multi-stage production build
+├── .dockerignore
+├── .env.production.example      # All env vars documented
+├── DEPLOY_CHECKLIST.md          # Full deployment guide
+├── SECURITY_PENTEST_REPORT.md   # Security audit results
+└── SECURITY_FIXES_SUMMARY.md    # Security implementation status
 ```
 
 ---
 
-## 🔑 Environment Variables
+## API Endpoints
 
-### Frontend (.env.local)
-```bash
-NEXT_PUBLIC_API_URL=http://localhost:8000
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
-```
+All API routes are prefixed with `/api` except health checks.
 
-### Backend (.env)
-```bash
-# Database
-DATABASE_URL=postgresql://user:pass@localhost/ungouge
-# Or SQLite: sqlite+aiosqlite:///./ungouge.db
+### Health
 
-# Security
-JWT_SECRET_KEY=your-secret-key-here
-ENVIRONMENT=development
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `GET` | `/health` | — | Health check + DB status + version |
+| `GET` | `/health/ready` | — | Readiness probe (DB connection) |
+| `GET` | `/health/live` | — | Liveness probe |
+| `GET` | `/api/health/detailed` | — | Full system status |
 
-# Payments
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_WEBHOOK_SECRET=whsec_...
+### Authentication
 
-# AI
-GEMINI_API_KEY=your-gemini-key
+| Method | Endpoint | Auth | Rate Limit | Description |
+|--------|----------|------|------------|-------------|
+| `POST` | `/api/auth/register` | — | 3/hour | Create account |
+| `POST` | `/api/auth/login` | — | — | Login (returns JWT) |
+| `POST` | `/api/auth/refresh` | — | — | Refresh access token |
+| `POST` | `/api/auth/logout` | ✅ | — | Logout (blacklist token) |
+| `GET` | `/api/auth/me` | ✅ | — | Get current user profile |
+| `PUT` | `/api/auth/me` | ✅ | — | Update user profile |
+| `POST` | `/api/auth/forgot-password` | — | — | Request password reset email |
+| `POST` | `/api/auth/reset-password` | — | — | Reset password with token |
+| `POST` | `/api/auth/verify-email` | — | — | Verify email address |
+| `POST` | `/api/auth/resend-verification` | — | — | Resend verification email |
 
-# Email
-SMTP_HOST=smtp.sendgrid.net
-SMTP_PORT=587
-FROM_EMAIL=noreply@ungouge.ai
+### MFA (Multi-Factor Authentication)
 
-# Frontend
-FRONTEND_URL=http://localhost:3000
-```
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `GET` | `/api/auth/mfa/status` | ✅ | Get MFA status |
+| `POST` | `/api/auth/mfa/enable` | ✅ | Enable MFA (sends OTP) |
+| `POST` | `/api/auth/mfa/verify-enable` | ✅ | Confirm MFA enable with OTP |
+| `POST` | `/api/auth/mfa/disable` | ✅ | Disable MFA |
+| `POST` | `/api/auth/mfa/resend` | — | Resend MFA OTP code |
+| `POST` | `/api/auth/mfa/verify-login` | — | Verify MFA during login |
 
-See [SETUP.md](SETUP.md) for complete setup instructions.
+### GDPR / Privacy
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `GET` | `/api/auth/my-data` | ✅ | Data export (GDPR Art. 20) |
+| `DELETE` | `/api/auth/my-data` | ✅ | Delete all data (GDPR Art. 17) |
+| `PUT` | `/api/auth/my-data` | ✅ | Rectify personal data (GDPR Art. 16) |
+| `POST` | `/api/auth/restrict` | ✅ | Restrict processing (GDPR Art. 18) |
+| `POST` | `/api/auth/unrestrict` | ✅ | Lift restriction |
+| `GET` | `/api/auth/preferences` | ✅ | Get privacy preferences |
+| `PUT` | `/api/auth/preferences` | ✅ | Update privacy preferences (GDPR Art. 21) |
+
+### Quotes
+
+| Method | Endpoint | Auth | Rate Limit | Description |
+|--------|----------|------|------------|-------------|
+| `POST` | `/api/quotes` | ✅ | 10/hour | Submit a quote for analysis |
+| `GET` | `/api/quotes` | ✅ | — | List all user's quotes |
+| `GET` | `/api/quotes/my` | ✅ | — | Get user's quotes (alternate) |
+| `GET` | `/api/quotes/{id}` | ✅ | — | Get quote + analysis report |
+| `GET` | `/api/quotes/{id}/report` | ✅ | — | Get analysis report only |
+| `GET` | `/api/quotes/{id}/pdf` | ✅ | — | Download report as PDF |
+| `POST` | `/api/quotes/parse-upload` | ✅ | — | Upload quote file (PDF/image) for parsing |
+
+### Payments
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `POST` | `/api/payments/create-checkout` | ✅ | Create Stripe Checkout Session ($19.99) |
+| `POST` | `/api/payments/webhook` | — | Stripe webhook (signature-verified) |
+
+### Root
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/` | API info + version |
+
+Interactive API docs available at `/docs` (Swagger UI) and `/redoc` (ReDoc).
 
 ---
 
-## 🧪 Testing
+## Environment Variables
+
+All environment variables are fully documented in [`.env.production.example`](.env.production.example).
+
+**Quick reference:**
+
+| Category | Key Variables |
+|----------|--------------|
+| **General** | `ENVIRONMENT`, `FRONTEND_URL` |
+| **Database** | `DATABASE_URL`, `DATABASE_ECHO` |
+| **Auth** | `JWT_SECRET_KEY`, `CSRF_SECRET_KEY` |
+| **Stripe** | `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET` |
+| **Email** | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `EMAIL_DEV_MODE` |
+| **AI** | `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY` |
+| **Security** | `ENCRYPTION_KEY`, `REDIS_URL`, `VIRUSTOTAL_API_KEY` |
+| **Frontend** | `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` |
+
+Generate secrets:
+```bash
+python -c "import secrets; print(secrets.token_urlsafe(32))"
+```
+
+---
+
+## Deployment
+
+See **[DEPLOY_CHECKLIST.md](DEPLOY_CHECKLIST.md)** for the full production deployment guide, including:
+
+- GCP Cloud Run backend deployment (Docker)
+- Vercel / Cloudflare Pages frontend deployment
+- Cloud SQL PostgreSQL provisioning
+- GCP Secret Manager setup
+- DNS configuration (`ungouge.ai`, `api.ungouge.ai`)
+- SSL/TLS verification
+- Stripe production webhook setup
+- Email service (SMTP) configuration
+- Health checks & monitoring
+- Rollback procedures
+- Launch day runbook
+
+**Quick deploy:**
 
 ```bash
-# Frontend
-cd frontend
-npm run lint
-npm run build  # Test production build
+# Backend → Cloud Run
+docker build -t gcr.io/PROJECT/ungouge-api:v1.0.0 .
+docker push gcr.io/PROJECT/ungouge-api:v1.0.0
+gcloud run deploy ungouge-api --image=gcr.io/PROJECT/ungouge-api:v1.0.0 --region=us-east1
 
-# Backend
+# Frontend → Vercel
+cd frontend && vercel --prod
+```
+
+---
+
+## Security
+
+UnGouge.ai is built with security and privacy as first-class concerns.
+
+| Protection | Implementation |
+|------------|----------------|
+| **GDPR Compliance** | Full Art. 15–22 implementation: data export, deletion, rectification, restriction, portability, right to object |
+| **PII Encryption** | AES-256 encryption at rest for all personal data |
+| **Authentication** | JWT in httpOnly, Secure, SameSite=Strict cookies |
+| **MFA** | Email-based OTP, mandatory for sensitive actions |
+| **CSRF Protection** | Double-submit cookie pattern with signed tokens |
+| **Content Security Policy** | Strict CSP on both frontend and backend |
+| **Rate Limiting** | Per-IP limits on all sensitive endpoints (slowapi) |
+| **Input Validation** | Schema validation (Pydantic) + sanitization middleware |
+| **File Upload Security** | Magic byte verification, metadata stripping, size limits |
+| **SQL Injection** | 100% parameterized queries via SQLAlchemy ORM |
+| **XSS Prevention** | React auto-escaping + CSP headers |
+| **HTTPS / HSTS** | Enforced redirect + HSTS preload header |
+| **Security Headers** | `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy` |
+| **Token Blacklisting** | JWT revocation on logout |
+| **Data Retention** | Automatic 30-day cleanup of expired data (GDPR) |
+| **Do Not Track** | DNT signal respected per user preference |
+| **Audit Logging** | Structured JSON security event logs |
+| **Error Handling** | Generic client errors, full server-side logging |
+
+For the full security audit and penetration test results, see **[SECURITY_PENTEST_REPORT.md](SECURITY_PENTEST_REPORT.md)**.
+
+For implementation details and current status, see **[SECURITY_FIXES_SUMMARY.md](SECURITY_FIXES_SUMMARY.md)**.
+
+---
+
+## Legal
+
+All legal documents are in the [`legal/`](legal/) directory:
+
+- **[Privacy Policy](legal/PRIVACY_POLICY.md)** — What data we collect, how we use it, your rights
+- **[Terms of Service](legal/TERMS_OF_SERVICE.md)** — Usage terms and conditions
+- **[GDPR Audit Report](legal/GDPR_AUDIT_REPORT.md)** — Compliance assessment
+- **[ROPA](legal/ROPA.md)** — Records of Processing Activities (GDPR Art. 30)
+- **[DPA Register](legal/DPA_REGISTER.md)** — Data Processing Agreements with third parties
+- **[Incident Response Plan](legal/INCIDENT_RESPONSE_PLAN.md)** — Data breach response procedures
+- **[Backup & Recovery Plan](legal/BACKUP_RECOVERY_PLAN.md)** — Business continuity
+
+---
+
+## Testing
+
+```bash
 cd backend
-pytest  # Unit tests
-python test_gemini_parser.py  # Test quote parsing
+
+# Run all tests
+pytest
+
+# Run with verbose output
+pytest -v
+
+# Run specific test file
+pytest tests/test_auth.py
+
+# Run with coverage
+pytest --cov=. --cov-report=html
 ```
 
 ---
 
-## 🔒 Security
+## License
 
-- ✅ JWT authentication with token blacklist
-- ✅ Password hashing (bcrypt)
-- ✅ Rate limiting (100 req/min default)
-- ✅ CSRF protection
-- ✅ Security headers (HSTS, X-Frame-Options, etc.)
-- ✅ SQL injection protection (SQLAlchemy ORM)
-- ✅ XSS protection (React + sanitization)
-- ✅ CORS restrictions
-- ✅ Structured logging
-- ✅ Input validation (Pydantic)
+**Proprietary — All Rights Reserved**
 
-See `SECURITY_COMPLETE.md` for full security audit.
+© 2026 UnGouge LLC. This software and its source code are proprietary and confidential. Unauthorized copying, distribution, or use of this software, in whole or in part, is strictly prohibited.
 
----
-
-## 📊 Cost Model System
-
-Ungouge uses comprehensive cost models for accurate analysis:
-
-### Data Sources
-1. **BLS Wage Data** - Official U.S. Bureau of Labor Statistics hourly rates
-2. **Craftsman Cost Database** - Industry-standard material & labor costs
-3. **Regional Multipliers** - Cost-of-living adjustments by ZIP code
-
-### Adding New Models
-
-1. Add cost data to `backend/data/project_cost_models.json`:
-```json
-{
-  "deck_building": {
-    "typical_scope": "...",
-    "line_items": {
-      "pressure_treated_lumber": {
-        "typical_unit_cost": 3.50,
-        "unit": "linear_foot",
-        "fair_range": [3.00, 4.00]
-      }
-    }
-  }
-}
-```
-
-2. Update category matching in `services/analyzer.py`:
-```python
-def fuzzy_match_category(item_name: str, categories: Dict):
-    # Matching logic will auto-detect new categories
-```
-
-3. Test with sample quotes:
-```bash
-python test_analyzer.py --project-type deck_building
-```
-
-See [API.md](API.md) for data model schemas.
-
----
-
-## 🤝 Contributing
-
-This is a commercial project. External contributions are not currently accepted.
-
-**For internal development:**
-1. Create feature branch from `main`
-2. Follow conventional commits (`feat:`, `fix:`, `docs:`)
-3. Test thoroughly
-4. Submit PR for review
-5. Merge after approval
-
----
-
-## 📝 License
-
-Proprietary - All rights reserved © 2024 Ungouge.ai
-
----
-
-## 💬 Support
-
-- **Email:** jasontrask@gmail.com
-- **Docs:** You're reading them!
-- **Issues:** Document in memory or contact Jason
-
----
-
-## 🎯 Development Roadmap
-
-### Phase 1: MVP (✅ Complete)
-- Basic quote upload & analysis
-- User authentication
-- Payment processing
-- Dashboard
-
-### Phase 2: Enhanced Analysis (🚧 In Progress)
-- Craftsman API integration
-- Advanced red flags
-- Quote comparison
-- Email notifications
-
-### Phase 3: Scale & Polish
-- Mobile app
-- PDF reports
-- Contractor negotiation tips
-- Bulk quote analysis
-
-### Phase 4: Advanced Features
-- Historical trend analysis
-- Machine learning cost predictions
-- Contractor reputation tracking
-- API for third-party integrations
-
----
-
-**Built with ❤️ to protect homeowners from price gouging**
-
-For detailed setup instructions, see [SETUP.md](SETUP.md).  
-For architecture decisions, see [ARCHITECTURE.md](ARCHITECTURE.md).  
-For API reference, see [API.md](API.md).
+For licensing inquiries, contact: hello@ungouge.ai
