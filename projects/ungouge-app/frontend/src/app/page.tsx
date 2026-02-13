@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import HomePageContent from './HomePageContent';
-import { SITE_CONFIG } from '@/lib/seo';
+import { SITE_CONFIG, renderJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'UnGouge.ai — Is Your Contractor Quote Fair? Find Out in Seconds',
@@ -131,15 +131,15 @@ export default function HomePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        dangerouslySetInnerHTML={renderJsonLd(organizationSchema)}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
+        dangerouslySetInnerHTML={renderJsonLd(softwareApplicationSchema)}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={renderJsonLd(faqSchema)}
       />
       <HomePageContent />
     </>

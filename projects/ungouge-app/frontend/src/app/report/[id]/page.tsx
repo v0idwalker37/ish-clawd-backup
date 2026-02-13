@@ -85,15 +85,21 @@ export default function ReportPage() {
           withCredentials: true,  // Send auth cookies
         });
         setReport(response.data);
-      } catch (err: any) {
-        if (err.response?.status === 401) {
-          setError('Please log in to view this report.');
-        } else if (err.response?.status === 403) {
-          setError('You do not have permission to view this report.');
+      } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+          if (err.response?.status === 401) {
+            setError('Please log in to view this report.');
+          } else if (err.response?.status === 403) {
+            setError('You do not have permission to view this report.');
+          } else if (err.response?.status === 404) {
+            setError('Report not found. Please check your report ID.');
+          } else {
+            setError('Failed to load report. Please try again later.');
+          }
         } else {
-          setError('Failed to load report. Please check your report ID.');
+          setError('Failed to load report. Please check your connection.');
         }
-        console.error(err);
+        console.error('Report fetch error:', err);
       } finally {
         setLoading(false);
       }

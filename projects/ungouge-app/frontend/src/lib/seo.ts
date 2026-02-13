@@ -271,6 +271,7 @@ export function generateStructuredData(pageKey: string) {
  */
 export function renderJsonLd(schema: object) {
   return {
-    __html: JSON.stringify(schema),
+    // Escape '<' to prevent script injection via </script> breakout in JSON-LD
+    __html: JSON.stringify(schema).replace(/</g, '\\u003c'),
   };
 }

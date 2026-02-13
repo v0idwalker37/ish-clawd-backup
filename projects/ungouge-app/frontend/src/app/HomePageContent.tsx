@@ -1,39 +1,35 @@
-'use client';
-
 import Link from 'next/link';
-import { useState } from 'react';
 import { CheckCircle, Shield, DollarSign, FileText, Upload, Search, Award, Lock, TrendingDown, Star, ChevronDown } from 'lucide-react';
+import FaqAccordion from '@/components/FaqAccordion';
+
+const faqs = [
+  {
+    question: 'How does Ungouge.ai work?',
+    answer: 'Simply upload your contractor quote and project details. Our AI analyzes each line item against official Bureau of Labor Statistics wage data and real-time material cost databases for your region. You\'ll get a detailed report showing fair price ranges, percentage markups, and specific negotiation advice within seconds.',
+  },
+  {
+    question: 'Is my data safe and private?',
+    answer: 'Absolutely. We encrypt all your data and NEVER sell it to contractors or lead generation companies. Unlike other "quote comparison" sites, we make money from you (the homeowner), not from selling your info. Your quotes and contact details stay completely private.',
+  },
+  {
+    question: 'What does $19.99 get me?',
+    answer: 'One comprehensive analysis report including: line-by-line pricing breakdown, fair market ranges based on BLS data, gouge rating for each item, overall quote assessment, negotiation tips, and alternative pricing suggestions. No subscriptions, one-time payment per quote.',
+  },
+  {
+    question: 'How accurate are your reports?',
+    answer: 'We use official BLS occupational wage data (updated quarterly) and real-time material cost databases. In our analysis of thousands of quotes, we\'ve identified overcharges in 73% of cases, with an average markup of 28% above fair market rates. While contractor pricing varies, our reports provide statistically sound benchmarks.',
+  },
+  {
+    question: 'Can I get a refund if I\'m not satisfied?',
+    answer: '100% money-back guarantee within 7 days, no questions asked. If the report doesn\'t meet your needs, just email us and we\'ll issue a full refund.',
+  },
+  {
+    question: 'Do you share my information with contractors?',
+    answer: 'NEVER. This is our core principle. We will never sell your data, share it with contractors, or operate as a lead generation service. We\'re on your side, not theirs.',
+  },
+];
 
 export default function HomePageContent() {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-  const faqs = [
-    {
-      question: 'How does Ungouge.ai work?',
-      answer: 'Simply upload your contractor quote and project details. Our AI analyzes each line item against official Bureau of Labor Statistics wage data and real-time material cost databases for your region. You\'ll get a detailed report showing fair price ranges, percentage markups, and specific negotiation advice within seconds.',
-    },
-    {
-      question: 'Is my data safe and private?',
-      answer: 'Absolutely. We encrypt all your data and NEVER sell it to contractors or lead generation companies. Unlike other "quote comparison" sites, we make money from you (the homeowner), not from selling your info. Your quotes and contact details stay completely private.',
-    },
-    {
-      question: 'What does $19.99 get me?',
-      answer: 'One comprehensive analysis report including: line-by-line pricing breakdown, fair market ranges based on BLS data, gouge rating for each item, overall quote assessment, negotiation tips, and alternative pricing suggestions. No subscriptions, one-time payment per quote.',
-    },
-    {
-      question: 'How accurate are your reports?',
-      answer: 'We use official BLS occupational wage data (updated quarterly) and real-time material cost databases. In our analysis of thousands of quotes, we\'ve identified overcharges in 73% of cases, with an average markup of 28% above fair market rates. While contractor pricing varies, our reports provide statistically sound benchmarks.',
-    },
-    {
-      question: 'Can I get a refund if I\'m not satisfied?',
-      answer: '100% money-back guarantee within 7 days, no questions asked. If the report doesn\'t meet your needs, just email us and we\'ll issue a full refund.',
-    },
-    {
-      question: 'Do you share my information with contractors?',
-      answer: 'NEVER. This is our core principle. We will never sell your data, share it with contractors, or operate as a lead generation service. We\'re on your side, not theirs.',
-    },
-  ];
-
   return (
     <div>
       {/* Hero Section */}
@@ -169,13 +165,13 @@ export default function HomePageContent() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Testimonial 1 */}
             <div className="card border-2 border-gray-100 hover:border-primary-300 transition-colors">
-              <div className="flex items-center gap-1 mb-4">
+              <div className="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                "Saved me $6,200 on a kitchen remodel. The contractor tried to charge $52k for work that should've cost $46k. Used the report to negotiate down to $47k. Best $20 I ever spent!"
+                &ldquo;Saved me $6,200 on a kitchen remodel. The contractor tried to charge $52k for work that should&apos;ve cost $46k. Used the report to negotiate down to $47k. Best $20 I ever spent!&rdquo;
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -190,13 +186,13 @@ export default function HomePageContent() {
 
             {/* Testimonial 2 */}
             <div className="card border-2 border-gray-100 hover:border-primary-300 transition-colors">
-              <div className="flex items-center gap-1 mb-4">
+              <div className="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                "Turns out my deck quote was actually fair! I was worried I was overpaying, but Ungouge showed me the pricing was right in line with market rates. Gave me confidence to move forward."
+                &ldquo;Turns out my deck quote was actually fair! I was worried I was overpaying, but Ungouge showed me the pricing was right in line with market rates. Gave me confidence to move forward.&rdquo;
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -211,13 +207,13 @@ export default function HomePageContent() {
 
             {/* Testimonial 3 */}
             <div className="card border-2 border-gray-100 hover:border-primary-300 transition-colors">
-              <div className="flex items-center gap-1 mb-4">
+              <div className="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                "The report was super detailed and easy to understand. It showed exactly which line items were overpriced and gave me specific talking points for negotiation. Contractor knocked off $3,400 without argument."
+                &ldquo;The report was super detailed and easy to understand. It showed exactly which line items were overpriced and gave me specific talking points for negotiation. Contractor knocked off $3,400 without argument.&rdquo;
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -249,7 +245,7 @@ export default function HomePageContent() {
               <Shield className="w-10 h-10 text-primary-600 mb-4" />
               <h3 className="text-2xl font-semibold mb-3">No Lead Generation</h3>
               <p className="text-gray-600">
-                We'll never sell your data or refer contractors. You get honest analysis, period.
+                We&apos;ll never sell your data or refer contractors. You get honest analysis, period.
               </p>
             </div>
             <div className="card">
@@ -285,28 +281,7 @@ export default function HomePageContent() {
             <p className="text-xl text-gray-600">Everything you need to know</p>
           </div>
 
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className="card border-2 border-gray-200 hover:border-primary-300 transition-colors">
-                <button
-                  onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-                  className="w-full flex items-center justify-between text-left"
-                >
-                  <h3 className="font-semibold text-lg text-gray-900 pr-4">{faq.question}</h3>
-                  <ChevronDown
-                    className={`w-5 h-5 text-primary-600 flex-shrink-0 transition-transform ${
-                      openFaqIndex === index ? 'transform rotate-180' : ''
-                    }`}
-                  />
-                </button>
-                {openFaqIndex === index && (
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          <FaqAccordion faqs={faqs} />
 
           <div className="text-center mt-8">
             <p className="text-gray-600">
@@ -325,7 +300,7 @@ export default function HomePageContent() {
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Stop Overpaying?</h2>
           <p className="text-xl md:text-2xl mb-8 text-primary-100">
-            Join 10,000+ homeowners who've saved an average of $4,127 per project.
+            Join 10,000+ homeowners who&apos;ve saved an average of $4,127 per project.
           </p>
           <Link href="/analyze" className="btn-primary bg-white text-primary-600 hover:bg-gray-100 text-lg shadow-xl inline-flex items-center gap-2">
             Analyze Your Quote Now →
