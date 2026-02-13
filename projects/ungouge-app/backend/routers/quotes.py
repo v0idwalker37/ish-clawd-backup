@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Request, UploadFile, File
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from typing import List, Optional
@@ -51,6 +51,20 @@ async def submit_quote(
     from exceptions import UngougeException, DatabaseError, ValidationError
     from services.logger import log_error
     
+    # GDPR Art. 18: Block processing when user has restricted their data
+    if current_user and getattr(current_user, "is_restricted", False):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={
+                "error": "Your data processing is currently restricted.",
+                "suggestion": (
+                    "You have requested restriction of processing under GDPR Art. 18. "
+                    "To submit new quotes for analysis, please lift the restriction first "
+                    "via your account settings or POST /api/auth/unrestrict."
+                ),
+            },
+        )
+
     try:
         # Validate quote data
         try:
@@ -307,6 +321,53 @@ async def get_quote_full_report(
     Requires authentication for user-owned quotes.
     """
     return await get_quote_report(quote_id, db, current_user)
+
+
+@router.get("/quotes/{quote_id}/pdf")
+async def download_quote_pdf(
+    quote_id: str,
+    db: AsyncSession = Depends(get_db),
+    current_user: Optional[User] = Depends(get_current_user_optional),
+):
+    """
+    Download a branded PDF report for a quote analysis.
+
+    Uses the same access control as the JSON report endpoint:
+    - Anonymous quotes: anyone can download
+    - User-owned quotes: only the owner can download
+    
+    Returns a PDF file as an attachment.
+    """
+    from services.pdf_generator import generate_pdf
+
+    # Reuse the existing report retrieval (includes access control)
+    report = await get_quote_report(quote_id, db, current_user)
+
+    # Generate PDF
+    try:
+        pdf_bytes = generate_pdf(report)
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail={
+                "error": "Failed to generate PDF report.",
+                "suggestion": "Please try again or use the online report view.",
+            },
+        )
+
+    # Build a safe filename
+    safe_project = "".join(
+        c if c.isalnum() or c in " -_" else "" for c in report.project_type
+    ).strip().replace(" ", "-")[:50]
+    filename = f"UnGouge-Report-{safe_project}-{quote_id[:8]}.pdf"
+
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"',
+        },
+    )
 
 
 @router.get("/quotes")
