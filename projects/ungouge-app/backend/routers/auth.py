@@ -880,6 +880,71 @@ async def logout(
 
 
 # =============================================================================
+# GDPR / CCPA Data Rights Endpoints
+# =============================================================================
+
+@router.get("/auth/my-data")
+async def export_my_data(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Export all user data (GDPR data portability)
+    
+    Returns a JSON download of all user data including:
+    - Profile information
+    - All submitted quotes and analysis reports
+    - Account activity
+    """
+    from middleware.data_retention import export_user_data
+    from fastapi.responses import JSONResponse
+    
+    data = await export_user_data(db, current_user.id)
+    
+    return JSONResponse(
+        content=data,
+        headers={
+            "Content-Disposition": f"attachment; filename=ungouge-data-export-{current_user.id[:8]}.json"
+        }
+    )
+
+
+@router.delete("/auth/my-data")
+async def delete_my_data(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Delete all user data (GDPR right to erasure)
+    
+    WARNING: This permanently deletes:
+    - Your account
+    - All submitted quotes
+    - All analysis reports
+    - All associated tokens
+    
+    This action cannot be undone.
+    """
+    from middleware.data_retention import delete_user_data
+    from fastapi.responses import JSONResponse
+    
+    result = await delete_user_data(db, current_user.id)
+    
+    # Clear auth cookies
+    is_production = os.getenv("ENVIRONMENT") == "production"
+    response = JSONResponse(
+        content={
+            "message": "All your data has been permanently deleted",
+            "deleted": result,
+        }
+    )
+    response.delete_cookie(key="access_token", path="/", secure=is_production, samesite="strict")
+    response.delete_cookie(key="refresh_token", path="/", secure=is_production, samesite="strict")
+    
+    return response
+
+
+# =============================================================================
 # MFA (Email OTP) Endpoints
 # =============================================================================
 
