@@ -1,0 +1,55 @@
+Equipment Rental Unit | Material | Labor | Equip. | Total Specification
+Weekly Rental
+Install | Week 2925 2925 | Weekly rental of dump truck.
+Minimum Charge Day 585 585
+Monthly Rental
+Install | Month 11700} 11700} Monthly rental of dump truck.
+Minimum Charge Day 585 585
+Forklift
+Daily Rental
+Install Day 465 465 | Daily rental of forklift.
+Minimum Charge Day 465 465
+Weekly Rental
+Install | Week 2325 2325 Weekly rental of forklift.
+Minimum Charge Day 465 465
+Monthly Rental
+Install | Month 9275 9275 | Mouthily rental of forklift.
+Minimum Charge Day 465 465
+Bobcat
+Daily Rental
+Install Day 300 300 | Daily rental of wheeled, skid steer
+Minimum Charge Day 300 300 | loader.
+Weekly Rental
+Install | Week 1500 1500 | Weekly rental of wheeled, skid steer
+Minimum Charge Day 300 300} loader.
+Monthly Rental
+Install | Month 6025 6025 | Monthly rental of wheeled, skid steer
+Minimum Charge Day 300 300 | loader.
+Air Compressor
+Daily Rental
+Install Day 226 226 | Daily rental of air compressor.
+Minimum Charge Day 226 226
+Weekly Rental
+Install | Week 1125 1125 | Weekly rental of air compressor.
+Minimum Charge Day 226 226
+Monthly Rental
+Install | Month 4525 4525 | Monthly rental of air compressor.
+Minimum Charge Day 226 226
+Jackhammer
+Daily Rental
+Install Day 46 46 | Daily rental of air tool, jackhammer.
+Minimum Charge Day 46 46
+Weekly Rental
+Install | Week 230 230 | Weekly rental of air tool, jackhammer.
+Minimum Charge Day 46 46
+Monthly Rental
+Install | Month 920 920 | Monthly rental of air tool,
+Minimum Charge Day 46 46 | jackhammer.
+Concrete Mixer
+Daily Rental
+Install Day 135 135 | Daily rental of concrete mixer.
+Minimum Charge Day 135 135
+Weekly Rental
+Install | Week 675 675 | Weekly rental of concrete mixer.
+Minimum Charge Day 135 135
+4 For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

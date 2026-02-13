@@ -1,0 +1,41 @@
+Equipment Rental Unit | Material | Labor Equip. Total Specification
+Space Heater
+Daily Rental
+Install Day 83 83 | Daily rental of space heater.
+Minimum Charge Day 50 50
+Weekly Rental
+Install Day Al5 415] Weekly rental of space heater.
+Minimum Charge Day 50 50
+Monthly Rental
+Install Day 1650 1650 Monthly rental of space heater.
+Minimum Charge Day 50 50
+Move / Reset Contents Unit | Material | Labor | Equip. | Total Specification
+Small Room
+Install Room 49 49 Includes cost to remove and reset the
+Minimum Charge Job 202 202 | contents of a small room.
+Average Room
+Install Room 59.50 59.50 | Includes cost to remove and reset the
+Minimum Charge Job 202 202 | contents of an average room
+Large Room
+Install Room 82 82 Includes cost to remove and reset the
+Minimum Charge Job 202 202 contents of a large room.
+Extra Large Room
+Install Room 130 130 | Includes cost to remove and reset the
+Minimum Charge Job 202 202 | contents of an extra large room.
+Store Contents
+Weekly
+Install Week 375 375 Storage fee, per week.
+Monthly
+Install | Month 1125 1125 | Storage fee, per month.
+Cover and Protect Unit | Material | Labor | Equip. Total Specification
+Cover / Protect Walls
+Install] SF Wall 16 .16] Includes labor costs to cover and
+Minimum Charge Job 202 202 protect walls.
+Cover / Protect Floors
+Install SF Flr. 16 -16} Includes labor costs to cover and
+Minimum Charge Job 202 202 | protect floors.
+Temporary Bracing Unit | Material | Labor | Equip. | Total Specification
+Shim Support Piers
+Install Ea. 7.25 159 166.25 | Includes labor and material to install
+Minimum Charge Job 480 480 | shims support for piers.
+6 For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

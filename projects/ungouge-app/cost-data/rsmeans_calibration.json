@@ -1,0 +1,281 @@
+{
+  "roof_replacement": {
+    "project_type": "roof_replacement",
+    "rsmeans_items_found": 94,
+    "rsmeans_avg_total": 402.76,
+    "rsmeans_labor_pct": 27.1,
+    "rsmeans_material_avg": 347.92,
+    "rsmeans_labor_avg": 109.17,
+    "current_labor_pct": null
+  },
+  "siding_replacement": {
+    "project_type": "siding_replacement",
+    "rsmeans_items_found": 58,
+    "rsmeans_avg_total": 378.65,
+    "rsmeans_labor_pct": 18.4,
+    "rsmeans_material_avg": 307.59,
+    "rsmeans_labor_avg": 69.7,
+    "current_labor_pct": null
+  },
+  "siding_vinyl": {
+    "project_type": "siding_vinyl",
+    "rsmeans_items_found": 7,
+    "rsmeans_avg_total": 435.35,
+    "rsmeans_labor_pct": 18.7,
+    "rsmeans_material_avg": 354.06,
+    "rsmeans_labor_avg": 81.29,
+    "current_labor_pct": null
+  },
+  "siding_fiber_cement": {
+    "project_type": "siding_fiber_cement",
+    "rsmeans_items_found": 3,
+    "rsmeans_avg_total": 6.8,
+    "rsmeans_labor_pct": 24.0,
+    "rsmeans_material_avg": 5.17,
+    "rsmeans_labor_avg": 1.63,
+    "current_labor_pct": null
+  },
+  "window_replacement": {
+    "project_type": "window_replacement",
+    "rsmeans_items_found": 42,
+    "rsmeans_avg_total": 238.53,
+    "rsmeans_labor_pct": 46.5,
+    "rsmeans_material_avg": 179.06,
+    "rsmeans_labor_avg": 110.99,
+    "current_labor_pct": null
+  },
+  "bathroom_remodel": {
+    "project_type": "bathroom_remodel",
+    "rsmeans_items_found": 93,
+    "rsmeans_avg_total": 1124.58,
+    "rsmeans_labor_pct": 19.2,
+    "rsmeans_material_avg": 916.51,
+    "rsmeans_labor_avg": 215.37,
+    "current_labor_pct": null
+  },
+  "kitchen_remodel": {
+    "project_type": "kitchen_remodel",
+    "rsmeans_items_found": 57,
+    "rsmeans_avg_total": 846.95,
+    "rsmeans_labor_pct": 12.8,
+    "rsmeans_material_avg": 731.32,
+    "rsmeans_labor_avg": 108.2,
+    "current_labor_pct": null
+  },
+  "painting_interior": {
+    "project_type": "painting_interior",
+    "rsmeans_items_found": 10,
+    "rsmeans_avg_total": 25.84,
+    "rsmeans_labor_pct": 73.7,
+    "rsmeans_material_avg": 43.8,
+    "rsmeans_labor_avg": 19.05,
+    "current_labor_pct": null
+  },
+  "exterior_painting": {
+    "project_type": "exterior_painting",
+    "rsmeans_items_found": 10,
+    "rsmeans_avg_total": 25.84,
+    "rsmeans_labor_pct": 73.7,
+    "rsmeans_material_avg": 43.8,
+    "rsmeans_labor_avg": 19.05,
+    "current_labor_pct": null
+  },
+  "flooring_installation": {
+    "project_type": "flooring_installation",
+    "rsmeans_items_found": 40,
+    "rsmeans_avg_total": 23.8,
+    "rsmeans_labor_pct": 158.7,
+    "rsmeans_material_avg": 27.38,
+    "rsmeans_labor_avg": 37.77,
+    "current_labor_pct": null
+  },
+  "flooring_lvp": {
+    "project_type": "flooring_lvp",
+    "rsmeans_items_found": 13,
+    "rsmeans_avg_total": 15.64,
+    "rsmeans_labor_pct": 537.7,
+    "rsmeans_material_avg": 10.41,
+    "rsmeans_labor_avg": 84.1,
+    "current_labor_pct": null
+  },
+  "deck_building": {
+    "project_type": "deck_building",
+    "rsmeans_items_found": 3,
+    "rsmeans_avg_total": 48.2,
+    "rsmeans_labor_pct": 23.2,
+    "rsmeans_material_avg": 37.0,
+    "rsmeans_labor_avg": 11.2,
+    "current_labor_pct": null
+  },
+  "fence_installation": {
+    "project_type": "fence_installation",
+    "rsmeans_items_found": 5,
+    "rsmeans_avg_total": 1013.5,
+    "rsmeans_labor_pct": 16.6,
+    "rsmeans_material_avg": 844.83,
+    "rsmeans_labor_avg": 168.67,
+    "current_labor_pct": null
+  },
+  "electrical_work": {
+    "project_type": "electrical_work",
+    "rsmeans_items_found": 39,
+    "rsmeans_avg_total": 142.72,
+    "rsmeans_labor_pct": 29.1,
+    "rsmeans_material_avg": 102.21,
+    "rsmeans_labor_avg": 41.46,
+    "current_labor_pct": null
+  },
+  "electrical_panel_upgrade": {
+    "project_type": "electrical_panel_upgrade",
+    "rsmeans_items_found": 3,
+    "rsmeans_avg_total": 40.73,
+    "rsmeans_labor_pct": 66.7,
+    "rsmeans_material_avg": 35.0,
+    "rsmeans_labor_avg": 27.18,
+    "current_labor_pct": null
+  },
+  "plumbing_repair": {
+    "project_type": "plumbing_repair",
+    "rsmeans_items_found": 36,
+    "rsmeans_avg_total": 147.0,
+    "rsmeans_labor_pct": 58.8,
+    "rsmeans_material_avg": 96.66,
+    "rsmeans_labor_avg": 86.46,
+    "current_labor_pct": null
+  },
+  "water_heater_replacement": {
+    "project_type": "water_heater_replacement",
+    "rsmeans_items_found": 14,
+    "rsmeans_avg_total": 71.33,
+    "rsmeans_labor_pct": 111.1,
+    "rsmeans_material_avg": 71.59,
+    "rsmeans_labor_avg": 79.24,
+    "current_labor_pct": null
+  },
+  "hvac_replacement": {
+    "project_type": "hvac_replacement",
+    "rsmeans_items_found": 59,
+    "rsmeans_avg_total": 1842.14,
+    "rsmeans_labor_pct": 15.8,
+    "rsmeans_material_avg": 1567.42,
+    "rsmeans_labor_avg": 291.96,
+    "current_labor_pct": null
+  },
+  "mini_split": {
+    "project_type": "mini_split",
+    "rsmeans_items_found": 11,
+    "rsmeans_avg_total": 943.2,
+    "rsmeans_labor_pct": 36.3,
+    "rsmeans_material_avg": 601.0,
+    "rsmeans_labor_avg": 342.2,
+    "current_labor_pct": null
+  },
+  "insulation": {
+    "project_type": "insulation",
+    "rsmeans_items_found": 18,
+    "rsmeans_avg_total": 13.0,
+    "rsmeans_labor_pct": 509.9,
+    "rsmeans_material_avg": 47.89,
+    "rsmeans_labor_avg": 66.27,
+    "current_labor_pct": null
+  },
+  "concrete_work": {
+    "project_type": "concrete_work",
+    "rsmeans_items_found": 25,
+    "rsmeans_avg_total": 17.93,
+    "rsmeans_labor_pct": 66.5,
+    "rsmeans_material_avg": 6.0,
+    "rsmeans_labor_avg": 11.93,
+    "current_labor_pct": null
+  },
+  "concrete_patio": {
+    "project_type": "concrete_patio",
+    "rsmeans_items_found": 13,
+    "rsmeans_avg_total": 17.34,
+    "rsmeans_labor_pct": 133.5,
+    "rsmeans_material_avg": 11.63,
+    "rsmeans_labor_avg": 23.15,
+    "current_labor_pct": null
+  },
+  "foundation_repair": {
+    "project_type": "foundation_repair",
+    "rsmeans_items_found": 15,
+    "rsmeans_avg_total": 97.19,
+    "rsmeans_labor_pct": 98.3,
+    "rsmeans_material_avg": 1.69,
+    "rsmeans_labor_avg": 95.5,
+    "current_labor_pct": null
+  },
+  "gutter_installation": {
+    "project_type": "gutter_installation",
+    "rsmeans_items_found": 7,
+    "rsmeans_avg_total": 5121.73,
+    "rsmeans_labor_pct": 1.8,
+    "rsmeans_material_avg": 245.05,
+    "rsmeans_labor_avg": 91.33,
+    "current_labor_pct": null
+  },
+  "basement_finishing": {
+    "project_type": "basement_finishing",
+    "rsmeans_items_found": 34,
+    "rsmeans_avg_total": 29.39,
+    "rsmeans_labor_pct": 227.6,
+    "rsmeans_material_avg": 14.03,
+    "rsmeans_labor_avg": 66.89,
+    "current_labor_pct": null
+  },
+  "garage_door": {
+    "project_type": "garage_door",
+    "rsmeans_items_found": 4,
+    "rsmeans_avg_total": 1654.0,
+    "rsmeans_labor_pct": 3.3,
+    "rsmeans_material_avg": 1600.0,
+    "rsmeans_labor_avg": 54.0,
+    "current_labor_pct": null
+  },
+  "home_addition": {
+    "project_type": "home_addition",
+    "rsmeans_items_found": 58,
+    "rsmeans_avg_total": 65.78,
+    "rsmeans_labor_pct": 84.2,
+    "rsmeans_material_avg": 118.92,
+    "rsmeans_labor_avg": 55.37,
+    "current_labor_pct": null
+  },
+  "driveway": {
+    "project_type": "driveway",
+    "rsmeans_items_found": 13,
+    "rsmeans_avg_total": 17.34,
+    "rsmeans_labor_pct": 133.5,
+    "rsmeans_material_avg": 11.63,
+    "rsmeans_labor_avg": 23.15,
+    "current_labor_pct": null
+  },
+  "retaining_wall": {
+    "project_type": "retaining_wall",
+    "rsmeans_items_found": 12,
+    "rsmeans_avg_total": 13.14,
+    "rsmeans_labor_pct": 60.1,
+    "rsmeans_material_avg": 5.25,
+    "rsmeans_labor_avg": 7.89,
+    "current_labor_pct": null
+  },
+  "tree_removal": {
+    "project_type": "tree_removal",
+    "rsmeans_items_found": 16,
+    "rsmeans_avg_total": 1818.23,
+    "rsmeans_labor_pct": 11.9,
+    "rsmeans_material_avg": 36.77,
+    "rsmeans_labor_avg": 215.59,
+    "current_labor_pct": null
+  },
+  "pool_inground": {
+    "project_type": "pool_inground",
+    "rsmeans_items_found": 7,
+    "rsmeans_avg_total": 2105.24,
+    "rsmeans_labor_pct": 11.6,
+    "rsmeans_material_avg": 1862.35,
+    "rsmeans_labor_avg": 243.74,
+    "current_labor_pct": null
+  }
+}

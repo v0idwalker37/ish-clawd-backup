@@ -1,0 +1,63 @@
+e
+Rough Mechanical
+Ductwork Unit | Material | Labor | Equip. Total Specification
+Galvanized, Spiral
+a’
+Demolish LF 3.28 3.28 | Cost includes material and labor to
+; Install LF 5.50 2.95 8.45 | install 4” diameter spiral preformed
+Demolish and Install LF. 5.50 6.23 11.73] steel galvanized ductwork.
+Reinstall LE 2.36 2.36
+Clean LA 1.65 1.65
+Minimum Charge Job 295 295
+6”
+Demolish LF. 3.28 3.28 | Cost includes material and labor to
+Install LF 7.70 3.79 11.49 | install 6” diameter spiral preformed
+Demolish and Install LF. 7.70 7.07 14.77) steal galvanized ductwork.
+Reinstall LE 3.03 3.03
+Clean LE 2.47 2.47
+Minimum Charge Job 295 295
+8”
+Demolish LF 3.28 3.28 | Cost includes material and labor to
+Install LF. 8.90 5.30 14.20 | install 8" diameter spiral preformed
+Demolish and Install LF 8.90 8.58 17.48} steel galvanized ductwork.
+Reinstall LF. 4.25 425
+Clean LF. 3.29 3.29
+Minimum Charge Job 295 295
+10”
+Demolish LF. 4.09 4.09 | Cost includes material and labor to
+Install LF. N 6.65 17.65 | install 10" diameter spiral pre-formed
+Demolish and Install LF. 11 10.74 2174! steel galvanized ductwork.
+Reinstall LF. 5.31 5.31
+Clean LE 412 412
+Minimum Charge Job 295 295
+12”
+Demolish LF. 5.45 5.45 | Cost includes material and labor to
+Install LE 12.45 8.85 21.30} install 12" diameter spiral pre-formed
+Demolish and Install LF. 12.45 14.30 26.75) steal galvanized ductwork.
+Reinstall LF. 7.08 7.08
+Clean LF. 4.94 4.94
+Minimum Charge Job 295 295
+16”
+Demolish LF 10.90 10.90 | Cost includes material and labor to
+Install LF 20.50 17.70 38.20 | install 16” diameter spiral preformed
+Demolish and Install LP 20.50 28.60 49.10) steel galvanized ductwork.
+Reinstall LF. 14.15 14.15
+Clean LF. 6.60 6.60
+Minimum Charge Job 295 295
+Flexible Fiberglass
+6” Non- insulated
+Demolish LF 2.52 2.52 | Cost includes material and labor to
+Seno baal i aa aay aon install 6" diameter non-insulated
+Emel ane ey oe : ; "7 | flexible fiberglass fabric on corrosion
+Reinstall ce 3.08 3.08 resistant metal ductwork.
+Clean LF. 2.47 2.47
+Minimum Charge Job 295 295
+8” Non-insulated
+Demolish LF. 3.64 3.64 | Cost includes material and labor to
+Demolish and res i ‘se aa ae install 8" diameter non-insulated
+emolish and Insta JF f . . ae ti : :
+Reinstall CE 425 405 flexible fiberglass fabric on corrosion
+resistant metal ductwork.
+Clean LF 3.29 3.29
+Minimum Charge Job 295 295
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291. 151

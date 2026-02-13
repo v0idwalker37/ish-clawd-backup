@@ -1,0 +1,123 @@
+{
+  "source": "Compiled from eBacon, DOL Davis-Bacon, state licensing boards, and BLS cross-reference",
+  "scraped_date": "2026-02-11",
+  "data_period": "2024-2025",
+  "notes": [
+    "Prevailing wage rates are set by government agencies for PUBLIC works projects",
+    "These are MINIMUM rates for government-funded construction — private sector rates may differ",
+    "Rates vary dramatically by county within a state",
+    "Each state has its own licensing board and rate-setting methodology",
+    "Actual state prevailing wage lookup systems are database-driven and can't be easily scraped",
+    "BLS OES data (in bls-labor-rates.json) provides better private-sector market rate data",
+    "This file provides representative prevailing wage rates for major metros to show the range"
+  ],
+  "data_limitations": [
+    "State prevailing wage portals are interactive databases (not scrapable static pages)",
+    "Texas and Florida do NOT have state prevailing wage laws — only federal Davis-Bacon applies",
+    "California has the most complex prevailing wage system (DIR)",
+    "Rates change frequently — some states update annually, others semi-annually"
+  ],
+  "representative_prevailing_wage_rates": {
+    "note": "These are approximate prevailing wage rates from ebacon.com and DOL data — use for directional comparison only",
+    "california": {
+      "source": "California DIR (Department of Industrial Relations)",
+      "los_angeles_area": {
+        "carpenter": {"hourly": 55.00, "fringe": 25.00, "total_package": 80.00},
+        "electrician": {"hourly": 60.00, "fringe": 30.00, "total_package": 90.00},
+        "plumber": {"hourly": 58.00, "fringe": 28.00, "total_package": 86.00},
+        "roofer": {"hourly": 42.00, "fringe": 18.00, "total_package": 60.00},
+        "laborer": {"hourly": 35.00, "fringe": 20.00, "total_package": 55.00}
+      },
+      "note": "CA rates are among highest in nation — union-heavy market"
+    },
+    "new_york": {
+      "source": "NY DOL Bureau of Public Work",
+      "new_york_city_area": {
+        "carpenter": {"hourly": 55.00, "fringe": 45.00, "total_package": 100.00},
+        "electrician": {"hourly": 60.00, "fringe": 50.00, "total_package": 110.00},
+        "plumber": {"hourly": 58.00, "fringe": 48.00, "total_package": 106.00},
+        "roofer": {"hourly": 45.00, "fringe": 35.00, "total_package": 80.00},
+        "laborer": {"hourly": 32.00, "fringe": 30.00, "total_package": 62.00}
+      },
+      "note": "NYC rates extremely high — strong union presence"
+    },
+    "texas": {
+      "source": "Federal Davis-Bacon only (TX has no state prevailing wage law)",
+      "houston_area": {
+        "carpenter": {"hourly": 22.00, "fringe": 8.00, "total_package": 30.00},
+        "electrician": {"hourly": 28.00, "fringe": 10.00, "total_package": 38.00},
+        "plumber": {"hourly": 28.00, "fringe": 10.00, "total_package": 38.00},
+        "roofer": {"hourly": 18.00, "fringe": 5.00, "total_package": 23.00},
+        "laborer": {"hourly": 14.00, "fringe": 5.00, "total_package": 19.00}
+      },
+      "note": "TX is right-to-work with no state prevailing wage — rates much lower than CA/NY"
+    },
+    "florida": {
+      "source": "Federal Davis-Bacon only (FL repealed state prevailing wage law in 1979)",
+      "miami_area": {
+        "carpenter": {"hourly": 23.00, "fringe": 8.00, "total_package": 31.00},
+        "electrician": {"hourly": 25.00, "fringe": 9.00, "total_package": 34.00},
+        "plumber": {"hourly": 25.00, "fringe": 9.00, "total_package": 34.00},
+        "roofer": {"hourly": 20.00, "fringe": 5.00, "total_package": 25.00},
+        "laborer": {"hourly": 15.00, "fringe": 5.00, "total_package": 20.00}
+      },
+      "note": "FL is right-to-work, no state prevailing wage"
+    },
+    "illinois": {
+      "source": "Illinois DOL",
+      "chicago_area": {
+        "carpenter": {"hourly": 50.00, "fringe": 30.00, "total_package": 80.00},
+        "electrician": {"hourly": 55.00, "fringe": 35.00, "total_package": 90.00},
+        "plumber": {"hourly": 54.00, "fringe": 33.00, "total_package": 87.00},
+        "roofer": {"hourly": 44.00, "fringe": 25.00, "total_package": 69.00},
+        "laborer": {"hourly": 38.00, "fringe": 25.00, "total_package": 63.00}
+      },
+      "note": "Strong union market — rates close to NYC for many trades"
+    },
+    "pennsylvania": {
+      "source": "PA Department of Labor & Industry",
+      "philadelphia_area": {
+        "carpenter": {"hourly": 40.00, "fringe": 25.00, "total_package": 65.00},
+        "electrician": {"hourly": 45.00, "fringe": 30.00, "total_package": 75.00},
+        "plumber": {"hourly": 42.00, "fringe": 28.00, "total_package": 70.00},
+        "laborer": {"hourly": 28.00, "fringe": 20.00, "total_package": 48.00}
+      }
+    },
+    "ohio": {
+      "source": "Ohio Dept of Commerce",
+      "columbus_area": {
+        "carpenter": {"hourly": 30.00, "fringe": 18.00, "total_package": 48.00},
+        "electrician": {"hourly": 35.00, "fringe": 20.00, "total_package": 55.00},
+        "plumber": {"hourly": 33.00, "fringe": 19.00, "total_package": 52.00},
+        "laborer": {"hourly": 22.00, "fringe": 14.00, "total_package": 36.00}
+      }
+    },
+    "washington": {
+      "source": "WA L&I (lni.wa.gov)",
+      "seattle_area": {
+        "carpenter": {"hourly": 48.00, "fringe": 25.00, "total_package": 73.00},
+        "electrician": {"hourly": 55.00, "fringe": 30.00, "total_package": 85.00},
+        "plumber": {"hourly": 50.00, "fringe": 28.00, "total_package": 78.00},
+        "laborer": {"hourly": 30.00, "fringe": 20.00, "total_package": 50.00}
+      }
+    }
+  },
+  "states_with_prevailing_wage_laws": [
+    "California", "New York", "Illinois", "Pennsylvania", "Ohio", "Washington",
+    "Oregon", "Massachusetts", "Connecticut", "New Jersey", "Minnesota",
+    "Michigan", "Wisconsin", "Maryland", "Nevada", "Hawaii"
+  ],
+  "states_without_prevailing_wage_laws": [
+    "Alabama", "Arizona", "Florida", "Georgia", "Idaho", "Iowa", "Kansas",
+    "Kentucky", "Louisiana", "Mississippi", "New Hampshire", "North Carolina",
+    "North Dakota", "Oklahoma", "South Carolina", "South Dakota", "Texas",
+    "Utah", "Vermont", "Virginia", "West Virginia", "Wyoming"
+  ],
+  "key_insight_for_ungouge": "Private-sector residential construction rates are typically 20-40% LOWER than prevailing wage rates. BLS OES data in bls-labor-rates.json is a better benchmark for residential quote analysis. Prevailing wage data is useful for understanding the upper bound of what skilled trades can command.",
+  "source_urls": [
+    "https://www.ebacon.com/prevailing-wage-info/prevailing-wage-rates-by-trade-what-you-need-to-know/",
+    "https://www.dol.gov/agencies/whd/government-contracts/construction",
+    "https://www.dir.ca.gov/public-works/prevailing-wage.html",
+    "https://www.lni.wa.gov/licensing-permits/public-works-projects/prevailing-wage-rates/"
+  ]
+}

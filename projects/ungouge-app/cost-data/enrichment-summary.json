@@ -1,0 +1,668 @@
+{
+  "enrichment_date": "2026-02-11 22:43:33",
+  "total_changes": 70,
+  "project_types_enriched": 14,
+  "data_sources_integrated": 5,
+  "changes_by_project": {
+    "roof_replacement": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for roofers: $26.85/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.construction_laborers",
+        "description": "Added BLS data for construction_laborers: $24.64/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: detailed cost data"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 5 metro areas"
+      }
+    ],
+    "kitchen_remodel": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for carpenters: $29.31/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.electricians",
+        "description": "Added BLS data for electricians: $32.6/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.plumbers_pipefitters_steamfitters",
+        "description": "Added BLS data for plumbers_pipefitters_steamfitters: $32.62/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.painters_construction_maintenance",
+        "description": "Added BLS data for painters_construction_maintenance: $25.82/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.carpet_floor_tile_installers",
+        "description": "Added BLS data for carpet_floor_tile_installers: $27.8/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: avg=$26,956, range=$14,582-$41,534"
+      },
+      {
+        "field": "roi_data",
+        "description": "Added ROI data for: Minor Kitchen Remodel (Midrange) (112.9% ROI); Minor Kitchen Remodel Midrange (79% ROI); Major Kitchen Remodel Midrange (49.0% ROI); Major Kitchen Remodel Upscale (34.9% ROI)"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "bathroom_remodel": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for plumbers_pipefitters_steamfitters: $32.62/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.carpenters",
+        "description": "Added BLS data for carpenters: $29.31/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.electricians",
+        "description": "Added BLS data for electricians: $32.6/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.carpet_floor_tile_installers",
+        "description": "Added BLS data for carpet_floor_tile_installers: $27.8/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.painters_construction_maintenance",
+        "description": "Added BLS data for painters_construction_maintenance: $25.82/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: avg=$12,125, range=$6,639-$17,621"
+      },
+      {
+        "field": "roi_data",
+        "description": "Added ROI data for: Bathroom Remodel Midrange (79.9% ROI); Bathroom Remodel Universal Design (64.1% ROI); Bathroom Remodel Upscale (42.2% ROI)"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "hvac_replacement": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for hvac_mechanics_installers: $30.14/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.electricians",
+        "description": "Added BLS data for electricians: $32.6/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.sheet_metal_workers",
+        "description": "Added BLS data for sheet_metal_workers: $31.78/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: detailed cost data"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "plumbing_repair": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for plumbers_pipefitters_steamfitters: $32.62/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.pipelayers",
+        "description": "Added BLS data for pipelayers: $26.09/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: detailed cost data"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "electrical_work": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for electricians: $32.6/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: detailed cost data"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "deck_building": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for carpenters: $29.31/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.construction_laborers",
+        "description": "Added BLS data for construction_laborers: $24.64/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: avg=$8,265, range=$4,340-$12,602"
+      },
+      {
+        "field": "roi_data",
+        "description": "Added ROI data for: Wood Deck Addition (94.9% ROI); Composite Deck Addition (88.5% ROI)"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "painting_interior": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for painters_construction_maintenance: $25.82/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.drywall_ceiling_tile_installers_tapers",
+        "description": "Added BLS data for drywall_ceiling_tile_installers_tapers: $30.68/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: detailed cost data"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "siding_replacement": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for carpenters: $29.31/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.construction_laborers",
+        "description": "Added BLS data for construction_laborers: $24.64/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.insulation_workers",
+        "description": "Added BLS data for insulation_workers: $27.63/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: avg=$10,750, range=$5,400-$16,000"
+      },
+      {
+        "field": "roi_data",
+        "description": "Added ROI data for: Fiber-Cement Siding Replacement (113.7% ROI); Vinyl Siding Replacement (96.5% ROI)"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "window_replacement": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for carpenters: $29.31/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.glaziers",
+        "description": "Added BLS data for glaziers: $28.97/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: detailed cost data"
+      },
+      {
+        "field": "roi_data",
+        "description": "Added ROI data for: Window Replacement Vinyl (69% ROI)"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "flooring_installation": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for carpet_floor_tile_installers: $27.8/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.carpenters",
+        "description": "Added BLS data for carpenters: $29.31/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.cement_masons_concrete_finishers",
+        "description": "Added BLS data for cement_masons_concrete_finishers: $28.55/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: avg=$3,156"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "fence_installation": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for fence_erectors: $24.31/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.construction_laborers",
+        "description": "Added BLS data for construction_laborers: $24.64/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: detailed cost data"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "concrete_work": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for cement_masons_concrete_finishers: $28.55/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.construction_laborers",
+        "description": "Added BLS data for construction_laborers: $24.64/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.construction_equipment_operators",
+        "description": "Added BLS data for construction_equipment_operators: $31.1/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: detailed cost data"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 8 metro areas"
+      }
+    ],
+    "gutter_installation": [
+      {
+        "field": "bls_labor_rates.primary_trade",
+        "description": "Added BLS data for roofers: $26.85/hr mean"
+      },
+      {
+        "field": "bls_labor_rates.supplemental_trades.sheet_metal_workers",
+        "description": "Added BLS data for sheet_metal_workers: $31.78/hr mean"
+      },
+      {
+        "field": "market_benchmarks",
+        "description": "Added HomeAdvisor benchmarks: detailed cost data"
+      },
+      {
+        "field": "prevailing_wage_context",
+        "description": "Added prevailing wage data for 5 metro areas"
+      }
+    ]
+  },
+  "changes_detail": [
+    {
+      "project_type": "roof_replacement",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for roofers: $26.85/hr mean"
+    },
+    {
+      "project_type": "roof_replacement",
+      "field": "bls_labor_rates.supplemental_trades.construction_laborers",
+      "description": "Added BLS data for construction_laborers: $24.64/hr mean"
+    },
+    {
+      "project_type": "roof_replacement",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: detailed cost data"
+    },
+    {
+      "project_type": "roof_replacement",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 5 metro areas"
+    },
+    {
+      "project_type": "kitchen_remodel",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for carpenters: $29.31/hr mean"
+    },
+    {
+      "project_type": "kitchen_remodel",
+      "field": "bls_labor_rates.supplemental_trades.electricians",
+      "description": "Added BLS data for electricians: $32.6/hr mean"
+    },
+    {
+      "project_type": "kitchen_remodel",
+      "field": "bls_labor_rates.supplemental_trades.plumbers_pipefitters_steamfitters",
+      "description": "Added BLS data for plumbers_pipefitters_steamfitters: $32.62/hr mean"
+    },
+    {
+      "project_type": "kitchen_remodel",
+      "field": "bls_labor_rates.supplemental_trades.painters_construction_maintenance",
+      "description": "Added BLS data for painters_construction_maintenance: $25.82/hr mean"
+    },
+    {
+      "project_type": "kitchen_remodel",
+      "field": "bls_labor_rates.supplemental_trades.carpet_floor_tile_installers",
+      "description": "Added BLS data for carpet_floor_tile_installers: $27.8/hr mean"
+    },
+    {
+      "project_type": "kitchen_remodel",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: avg=$26,956, range=$14,582-$41,534"
+    },
+    {
+      "project_type": "kitchen_remodel",
+      "field": "roi_data",
+      "description": "Added ROI data for: Minor Kitchen Remodel (Midrange) (112.9% ROI); Minor Kitchen Remodel Midrange (79% ROI); Major Kitchen Remodel Midrange (49.0% ROI); Major Kitchen Remodel Upscale (34.9% ROI)"
+    },
+    {
+      "project_type": "kitchen_remodel",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "bathroom_remodel",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for plumbers_pipefitters_steamfitters: $32.62/hr mean"
+    },
+    {
+      "project_type": "bathroom_remodel",
+      "field": "bls_labor_rates.supplemental_trades.carpenters",
+      "description": "Added BLS data for carpenters: $29.31/hr mean"
+    },
+    {
+      "project_type": "bathroom_remodel",
+      "field": "bls_labor_rates.supplemental_trades.electricians",
+      "description": "Added BLS data for electricians: $32.6/hr mean"
+    },
+    {
+      "project_type": "bathroom_remodel",
+      "field": "bls_labor_rates.supplemental_trades.carpet_floor_tile_installers",
+      "description": "Added BLS data for carpet_floor_tile_installers: $27.8/hr mean"
+    },
+    {
+      "project_type": "bathroom_remodel",
+      "field": "bls_labor_rates.supplemental_trades.painters_construction_maintenance",
+      "description": "Added BLS data for painters_construction_maintenance: $25.82/hr mean"
+    },
+    {
+      "project_type": "bathroom_remodel",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: avg=$12,125, range=$6,639-$17,621"
+    },
+    {
+      "project_type": "bathroom_remodel",
+      "field": "roi_data",
+      "description": "Added ROI data for: Bathroom Remodel Midrange (79.9% ROI); Bathroom Remodel Universal Design (64.1% ROI); Bathroom Remodel Upscale (42.2% ROI)"
+    },
+    {
+      "project_type": "bathroom_remodel",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "hvac_replacement",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for hvac_mechanics_installers: $30.14/hr mean"
+    },
+    {
+      "project_type": "hvac_replacement",
+      "field": "bls_labor_rates.supplemental_trades.electricians",
+      "description": "Added BLS data for electricians: $32.6/hr mean"
+    },
+    {
+      "project_type": "hvac_replacement",
+      "field": "bls_labor_rates.supplemental_trades.sheet_metal_workers",
+      "description": "Added BLS data for sheet_metal_workers: $31.78/hr mean"
+    },
+    {
+      "project_type": "hvac_replacement",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: detailed cost data"
+    },
+    {
+      "project_type": "hvac_replacement",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "plumbing_repair",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for plumbers_pipefitters_steamfitters: $32.62/hr mean"
+    },
+    {
+      "project_type": "plumbing_repair",
+      "field": "bls_labor_rates.supplemental_trades.pipelayers",
+      "description": "Added BLS data for pipelayers: $26.09/hr mean"
+    },
+    {
+      "project_type": "plumbing_repair",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: detailed cost data"
+    },
+    {
+      "project_type": "plumbing_repair",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "electrical_work",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for electricians: $32.6/hr mean"
+    },
+    {
+      "project_type": "electrical_work",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: detailed cost data"
+    },
+    {
+      "project_type": "electrical_work",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "deck_building",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for carpenters: $29.31/hr mean"
+    },
+    {
+      "project_type": "deck_building",
+      "field": "bls_labor_rates.supplemental_trades.construction_laborers",
+      "description": "Added BLS data for construction_laborers: $24.64/hr mean"
+    },
+    {
+      "project_type": "deck_building",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: avg=$8,265, range=$4,340-$12,602"
+    },
+    {
+      "project_type": "deck_building",
+      "field": "roi_data",
+      "description": "Added ROI data for: Wood Deck Addition (94.9% ROI); Composite Deck Addition (88.5% ROI)"
+    },
+    {
+      "project_type": "deck_building",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "painting_interior",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for painters_construction_maintenance: $25.82/hr mean"
+    },
+    {
+      "project_type": "painting_interior",
+      "field": "bls_labor_rates.supplemental_trades.drywall_ceiling_tile_installers_tapers",
+      "description": "Added BLS data for drywall_ceiling_tile_installers_tapers: $30.68/hr mean"
+    },
+    {
+      "project_type": "painting_interior",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: detailed cost data"
+    },
+    {
+      "project_type": "painting_interior",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "siding_replacement",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for carpenters: $29.31/hr mean"
+    },
+    {
+      "project_type": "siding_replacement",
+      "field": "bls_labor_rates.supplemental_trades.construction_laborers",
+      "description": "Added BLS data for construction_laborers: $24.64/hr mean"
+    },
+    {
+      "project_type": "siding_replacement",
+      "field": "bls_labor_rates.supplemental_trades.insulation_workers",
+      "description": "Added BLS data for insulation_workers: $27.63/hr mean"
+    },
+    {
+      "project_type": "siding_replacement",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: avg=$10,750, range=$5,400-$16,000"
+    },
+    {
+      "project_type": "siding_replacement",
+      "field": "roi_data",
+      "description": "Added ROI data for: Fiber-Cement Siding Replacement (113.7% ROI); Vinyl Siding Replacement (96.5% ROI)"
+    },
+    {
+      "project_type": "siding_replacement",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "window_replacement",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for carpenters: $29.31/hr mean"
+    },
+    {
+      "project_type": "window_replacement",
+      "field": "bls_labor_rates.supplemental_trades.glaziers",
+      "description": "Added BLS data for glaziers: $28.97/hr mean"
+    },
+    {
+      "project_type": "window_replacement",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: detailed cost data"
+    },
+    {
+      "project_type": "window_replacement",
+      "field": "roi_data",
+      "description": "Added ROI data for: Window Replacement Vinyl (69% ROI)"
+    },
+    {
+      "project_type": "window_replacement",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "flooring_installation",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for carpet_floor_tile_installers: $27.8/hr mean"
+    },
+    {
+      "project_type": "flooring_installation",
+      "field": "bls_labor_rates.supplemental_trades.carpenters",
+      "description": "Added BLS data for carpenters: $29.31/hr mean"
+    },
+    {
+      "project_type": "flooring_installation",
+      "field": "bls_labor_rates.supplemental_trades.cement_masons_concrete_finishers",
+      "description": "Added BLS data for cement_masons_concrete_finishers: $28.55/hr mean"
+    },
+    {
+      "project_type": "flooring_installation",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: avg=$3,156"
+    },
+    {
+      "project_type": "flooring_installation",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "fence_installation",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for fence_erectors: $24.31/hr mean"
+    },
+    {
+      "project_type": "fence_installation",
+      "field": "bls_labor_rates.supplemental_trades.construction_laborers",
+      "description": "Added BLS data for construction_laborers: $24.64/hr mean"
+    },
+    {
+      "project_type": "fence_installation",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: detailed cost data"
+    },
+    {
+      "project_type": "fence_installation",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "concrete_work",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for cement_masons_concrete_finishers: $28.55/hr mean"
+    },
+    {
+      "project_type": "concrete_work",
+      "field": "bls_labor_rates.supplemental_trades.construction_laborers",
+      "description": "Added BLS data for construction_laborers: $24.64/hr mean"
+    },
+    {
+      "project_type": "concrete_work",
+      "field": "bls_labor_rates.supplemental_trades.construction_equipment_operators",
+      "description": "Added BLS data for construction_equipment_operators: $31.1/hr mean"
+    },
+    {
+      "project_type": "concrete_work",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: detailed cost data"
+    },
+    {
+      "project_type": "concrete_work",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 8 metro areas"
+    },
+    {
+      "project_type": "gutter_installation",
+      "field": "bls_labor_rates.primary_trade",
+      "description": "Added BLS data for roofers: $26.85/hr mean"
+    },
+    {
+      "project_type": "gutter_installation",
+      "field": "bls_labor_rates.supplemental_trades.sheet_metal_workers",
+      "description": "Added BLS data for sheet_metal_workers: $31.78/hr mean"
+    },
+    {
+      "project_type": "gutter_installation",
+      "field": "market_benchmarks",
+      "description": "Added HomeAdvisor benchmarks: detailed cost data"
+    },
+    {
+      "project_type": "gutter_installation",
+      "field": "prevailing_wage_context",
+      "description": "Added prevailing wage data for 5 metro areas"
+    }
+  ]
+}

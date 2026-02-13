@@ -1,0 +1,12 @@
+{
+  "completed_sources": [
+    "reddit",
+    "gdrive",
+    "forums",
+    "angi",
+    "youtube"
+  ],
+  "last_source": "youtube",
+  "total_downloaded": 0,
+  "paused_at": "2026-02-13T02:24:38.340974"
+}

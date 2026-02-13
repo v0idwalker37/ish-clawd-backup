@@ -24,3 +24,4 @@ node_modules/
 drive-token.json
 token.json
 .cloudsql-password
+.dashboard-api-key

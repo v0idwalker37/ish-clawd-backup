@@ -1,0 +1,3363 @@
+{
+  "source": "RSMeans Contractor's Pricing Guide: Residential Repair & Remodeling",
+  "data_year": "2026",
+  "base": "National average = 1.00",
+  "usage": "Multiply base cost by factor to get location-adjusted cost",
+  "total_cities": 640,
+  "total_states": 51,
+  "regional_summary": {
+    "alaska_hawaii": {
+      "count": 6,
+      "min": 1.13,
+      "max": 1.21,
+      "avg": 1.168,
+      "median": 1.19
+    },
+    "midwest": {
+      "count": 164,
+      "min": 0.8,
+      "max": 1.21,
+      "avg": 0.932,
+      "median": 0.92
+    },
+    "mountain": {
+      "count": 49,
+      "min": 0.83,
+      "max": 1.06,
+      "avg": 0.908,
+      "median": 0.9
+    },
+    "northeast": {
+      "count": 146,
+      "min": 0.84,
+      "max": 1.38,
+      "avg": 1.044,
+      "median": 1.02
+    },
+    "southeast": {
+      "count": 152,
+      "min": 0.78,
+      "max": 1.1,
+      "avg": 0.874,
+      "median": 0.86
+    },
+    "southwest": {
+      "count": 70,
+      "min": 0.78,
+      "max": 0.91,
+      "avg": 0.852,
+      "median": 0.86
+    },
+    "west_coast": {
+      "count": 53,
+      "min": 0.97,
+      "max": 1.35,
+      "avg": 1.132,
+      "median": 1.14
+    }
+  },
+  "by_state": {
+    "ALABAMA": [
+      {
+        "zip_range": "350-352",
+        "city": "Birmingham",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "354",
+        "city": "Tuscaloosa",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "355",
+        "city": "Jasper",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "356",
+        "city": "Decatur",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "357-358",
+        "city": "Huntsville",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "359",
+        "city": "Gadsden",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "360-361",
+        "city": "Montgomery",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "362",
+        "city": "Anniston",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "363",
+        "city": "Dothan",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "364",
+        "city": "Evergreen",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "365-366",
+        "city": "Mobile",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "367",
+        "city": "Selma",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "368",
+        "city": "Phenix City",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "369",
+        "city": "Butler",
+        "factor": 0.85
+      }
+    ],
+    "ALASKA": [
+      {
+        "zip_range": "995-996",
+        "city": "Anchorage",
+        "factor": 1.13
+      },
+      {
+        "zip_range": "997",
+        "city": "Fairbanks",
+        "factor": 1.14
+      },
+      {
+        "zip_range": "998",
+        "city": "Juneau",
+        "factor": 1.13
+      },
+      {
+        "zip_range": "999",
+        "city": "Ketchikan",
+        "factor": 1.19
+      }
+    ],
+    "ARIZONA": [
+      {
+        "zip_range": "850,853",
+        "city": "Phoenix",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "851-852",
+        "city": "Mesa/Tempe",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "855",
+        "city": "Globe",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "856-857",
+        "city": "Tucson",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "859",
+        "city": "Show Low",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "860",
+        "city": "Flagstaff",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "863",
+        "city": "Prescott",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "864",
+        "city": "Kingman",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "865",
+        "city": "Chambers",
+        "factor": 0.89
+      }
+    ],
+    "ARKANSAS": [
+      {
+        "zip_range": "716",
+        "city": "Pine Bluff",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "717",
+        "city": "Camden",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "718",
+        "city": "Texarkana",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "719",
+        "city": "Hot Springs",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "720-722",
+        "city": "Little Rock",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "723",
+        "city": "West Memphis",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "724",
+        "city": "Jonesboro",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "725",
+        "city": "Batesville",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "726",
+        "city": "Harrison",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "727",
+        "city": "Fayetteville",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "728",
+        "city": "Russellville",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "729",
+        "city": "Fort Smith",
+        "factor": 0.85
+      }
+    ],
+    "CALIFORNIA": [
+      {
+        "zip_range": "900-902",
+        "city": "Los Angeles",
+        "factor": 1.16
+      },
+      {
+        "zip_range": "903-905",
+        "city": "Inglewood",
+        "factor": 1.15
+      },
+      {
+        "zip_range": "906-908",
+        "city": "Long Beach",
+        "factor": 1.15
+      },
+      {
+        "zip_range": "910-912",
+        "city": "Pasadena",
+        "factor": 1.14
+      },
+      {
+        "zip_range": "913-916",
+        "city": "Van Nuys",
+        "factor": 1.17
+      },
+      {
+        "zip_range": "917-918",
+        "city": "Alhambra",
+        "factor": 1.16
+      },
+      {
+        "zip_range": "919-921",
+        "city": "San Diego",
+        "factor": 1.12
+      },
+      {
+        "zip_range": "922",
+        "city": "Palm Springs",
+        "factor": 1.1
+      },
+      {
+        "zip_range": "923-924",
+        "city": "San Bernardino",
+        "factor": 1.14
+      },
+      {
+        "zip_range": "925",
+        "city": "Riverside",
+        "factor": 1.14
+      },
+      {
+        "zip_range": "926-927",
+        "city": "Santa Ana",
+        "factor": 1.14
+      },
+      {
+        "zip_range": "928",
+        "city": "Anaheim",
+        "factor": 1.14
+      },
+      {
+        "zip_range": "930",
+        "city": "Oxnard",
+        "factor": 1.15
+      },
+      {
+        "zip_range": "931",
+        "city": "Santa Barbara",
+        "factor": 1.14
+      },
+      {
+        "zip_range": "932-933",
+        "city": "Bakersfield",
+        "factor": 1.14
+      },
+      {
+        "zip_range": "934",
+        "city": "San Luis Obispo",
+        "factor": 1.13
+      },
+      {
+        "zip_range": "935",
+        "city": "Mojave",
+        "factor": 1.13
+      },
+      {
+        "zip_range": "936-938",
+        "city": "Fresno",
+        "factor": 1.17
+      },
+      {
+        "zip_range": "939",
+        "city": "Salinas",
+        "factor": 1.18
+      },
+      {
+        "zip_range": "940-941",
+        "city": "San Francisco",
+        "factor": 1.35
+      },
+      {
+        "zip_range": "942,956-958",
+        "city": "Sacramento",
+        "factor": 1.22
+      },
+      {
+        "zip_range": "943",
+        "city": "Palo Alto",
+        "factor": 1.25
+      },
+      {
+        "zip_range": "944-945",
+        "city": "San Mateo",
+        "factor": 1.27
+      },
+      {
+        "zip_range": "946",
+        "city": "Oakland",
+        "factor": 1.27
+      },
+      {
+        "zip_range": "947",
+        "city": "Berkeley",
+        "factor": 1.27
+      },
+      {
+        "zip_range": "948",
+        "city": "Richmond",
+        "factor": 1.27
+      },
+      {
+        "zip_range": "949",
+        "city": "San Rafael",
+        "factor": 1.25
+      },
+      {
+        "zip_range": "950-951",
+        "city": "San Jose",
+        "factor": 1.27
+      },
+      {
+        "zip_range": "952",
+        "city": "Stockton",
+        "factor": 1.17
+      },
+      {
+        "zip_range": "953",
+        "city": "Modesto",
+        "factor": 1.17
+      },
+      {
+        "zip_range": "954",
+        "city": "Santa Rosa",
+        "factor": 1.27
+      },
+      {
+        "zip_range": "955",
+        "city": "Eureka",
+        "factor": 1.24
+      },
+      {
+        "zip_range": "959",
+        "city": "Marysville",
+        "factor": 1.21
+      },
+      {
+        "zip_range": "960",
+        "city": "Redding",
+        "factor": 1.22
+      },
+      {
+        "zip_range": "961",
+        "city": "Susanville",
+        "factor": 1.2
+      }
+    ],
+    "COLORADO": [
+      {
+        "zip_range": "800-802",
+        "city": "Denver",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "803",
+        "city": "Boulder",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "804",
+        "city": "Golden",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "805",
+        "city": "Fort Collins",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "806",
+        "city": "Greeley",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "807",
+        "city": "Fort Morgan",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "808-809",
+        "city": "Colorado Springs",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "810",
+        "city": "Pueblo",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "811",
+        "city": "Alamosa",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "812",
+        "city": "Salida",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "813",
+        "city": "Durango",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "814",
+        "city": "Montrose",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "815",
+        "city": "Grand Junction",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "816",
+        "city": "Glenwood Springs",
+        "factor": 0.9
+      }
+    ],
+    "CONNECTICUT": [
+      {
+        "zip_range": "060",
+        "city": "New Britain",
+        "factor": 1.1
+      },
+      {
+        "zip_range": "061",
+        "city": "Hartford",
+        "factor": 1.1
+      },
+      {
+        "zip_range": "062",
+        "city": "Willimantic",
+        "factor": 1.09
+      },
+      {
+        "zip_range": "063",
+        "city": "New London",
+        "factor": 1.08
+      },
+      {
+        "zip_range": "064",
+        "city": "Meriden",
+        "factor": 1.09
+      },
+      {
+        "zip_range": "065",
+        "city": "New Haven",
+        "factor": 1.09
+      },
+      {
+        "zip_range": "066",
+        "city": "Bridgeport",
+        "factor": 1.1
+      },
+      {
+        "zip_range": "067",
+        "city": "Waterbury",
+        "factor": 1.09
+      },
+      {
+        "zip_range": "068",
+        "city": "Norwalk",
+        "factor": 1.09
+      },
+      {
+        "zip_range": "069",
+        "city": "Stamford",
+        "factor": 1.09
+      }
+    ],
+    "DC": [
+      {
+        "zip_range": "200-205",
+        "city": "Washington",
+        "factor": 0.94
+      }
+    ],
+    "DELAWARE": [
+      {
+        "zip_range": "197",
+        "city": "Newark",
+        "factor": 1.03
+      },
+      {
+        "zip_range": "198",
+        "city": "Wilmington",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "199",
+        "city": "Dover",
+        "factor": 1.04
+      }
+    ],
+    "FLORIDA": [
+      {
+        "zip_range": "320,322",
+        "city": "Jacksonville",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "321",
+        "city": "Daytona Beach",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "323",
+        "city": "Tallahassee",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "324",
+        "city": "Panama City",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "325",
+        "city": "Pensacola",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "326,344",
+        "city": "Gainesville",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "327-328,347",
+        "city": "Orlando",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "329",
+        "city": "Melbourne",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "330-332,340",
+        "city": "Miami",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "333",
+        "city": "Fort Lauderdale",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "334",
+        "city": "West Palm Beach",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "335-336,346",
+        "city": "Tampa",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "337",
+        "city": "St. Petersburg",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "338",
+        "city": "Lakeland",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "339,341",
+        "city": "Fort Myers",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "342",
+        "city": "Sarasota",
+        "factor": 0.85
+      }
+    ],
+    "GEORGIA": [
+      {
+        "zip_range": "300-303,399",
+        "city": "Atlanta",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "304",
+        "city": "Statesboro",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "305",
+        "city": "Gainesville",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "306",
+        "city": "Athens",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "307",
+        "city": "Dalton",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "308-309",
+        "city": "Augusta",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "310-312",
+        "city": "Macon",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "313-314",
+        "city": "Savannah",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "315",
+        "city": "Waycross",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "316",
+        "city": "Valdosta",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "317-318",
+        "city": "Albany",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "319",
+        "city": "Columbus",
+        "factor": 0.85
+      }
+    ],
+    "HAWAII": [
+      {
+        "zip_range": "967",
+        "city": "Hilo",
+        "factor": 1.21
+      },
+      {
+        "zip_range": "968",
+        "city": "Honolulu",
+        "factor": 1.21
+      }
+    ],
+    "IDAHO": [
+      {
+        "zip_range": "832",
+        "city": "Pocatello",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "833",
+        "city": "Twin Falls",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "834",
+        "city": "Idaho Falls",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "835",
+        "city": "Lewiston",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "836-837",
+        "city": "Boise",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "838",
+        "city": "Coeur d'Alene",
+        "factor": 0.94
+      }
+    ],
+    "ILLINOIS": [
+      {
+        "zip_range": "600-603",
+        "city": "North Suburban",
+        "factor": 1.2
+      },
+      {
+        "zip_range": "604",
+        "city": "Joliet",
+        "factor": 1.21
+      },
+      {
+        "zip_range": "605",
+        "city": "South Suburban",
+        "factor": 1.2
+      },
+      {
+        "zip_range": "606-608",
+        "city": "Chicago",
+        "factor": 1.21
+      },
+      {
+        "zip_range": "609",
+        "city": "Kankakee",
+        "factor": 1.13
+      },
+      {
+        "zip_range": "610-611",
+        "city": "Rockford",
+        "factor": 1.12
+      },
+      {
+        "zip_range": "612",
+        "city": "Rock Island",
+        "factor": 1.0
+      },
+      {
+        "zip_range": "613",
+        "city": "La Salle",
+        "factor": 1.1
+      },
+      {
+        "zip_range": "614",
+        "city": "Galesburg",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "615-616",
+        "city": "Peoria",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "617",
+        "city": "Bloomington",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "618-619",
+        "city": "Champaign",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "620-622",
+        "city": "East St. Louis",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "623",
+        "city": "Quincy",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "624",
+        "city": "Effingham",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "625",
+        "city": "Decatur",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "626-627",
+        "city": "Springfield",
+        "factor": 1.03
+      },
+      {
+        "zip_range": "628",
+        "city": "Centralia",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "629",
+        "city": "Carbondale",
+        "factor": 1.0
+      }
+    ],
+    "INDIANA": [
+      {
+        "zip_range": "460",
+        "city": "Anderson",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "461-462",
+        "city": "Indianapolis",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "463-464",
+        "city": "Gary",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "465-466",
+        "city": "South Bend",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "467-468",
+        "city": "Fort Wayne",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "469",
+        "city": "Kokomo",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "470",
+        "city": "Lawrenceburg",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "471",
+        "city": "New Albany",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "472",
+        "city": "Columbus",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "473",
+        "city": "Muncie",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "474",
+        "city": "Bloomington",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "475",
+        "city": "Washington",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "476-477",
+        "city": "Evansville",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "478",
+        "city": "Terre Haute",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "479",
+        "city": "Lafayette",
+        "factor": 0.91
+      }
+    ],
+    "IOWA": [
+      {
+        "zip_range": "500-503,509",
+        "city": "Des Moines",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "504",
+        "city": "Mason City",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "505",
+        "city": "Fort Dodge",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "506-507",
+        "city": "Waterloo",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "508",
+        "city": "Creston",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "510-511",
+        "city": "Sioux City",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "512",
+        "city": "Sibley",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "513",
+        "city": "Spencer",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "514",
+        "city": "Carroll",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "515",
+        "city": "Council Bluffs",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "516",
+        "city": "Shenandoah",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "520",
+        "city": "Dubuque",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "521",
+        "city": "Decorah",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "522-524",
+        "city": "Cedar Rapids",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "525",
+        "city": "Ottumwa",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "526",
+        "city": "Burlington",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "527-528",
+        "city": "Davenport",
+        "factor": 0.96
+      }
+    ],
+    "KANSAS": [
+      {
+        "zip_range": "660-662",
+        "city": "Kansas City",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "664-666",
+        "city": "Topeka",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "667",
+        "city": "Fort Scott",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "668",
+        "city": "Emporia",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "669",
+        "city": "Belleville",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "670-672",
+        "city": "Wichita",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "673",
+        "city": "Independence",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "674",
+        "city": "Salina",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "675",
+        "city": "Hutchinson",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "676",
+        "city": "Hays",
+        "factor": 0.81
+      },
+      {
+        "zip_range": "677",
+        "city": "Colby",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "678",
+        "city": "Dodge City",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "679",
+        "city": "Liberal",
+        "factor": 0.82
+      }
+    ],
+    "KENTUCKY": [
+      {
+        "zip_range": "400-402",
+        "city": "Louisville",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "403-405",
+        "city": "Lexington",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "406",
+        "city": "Frankfort",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "407-409",
+        "city": "Corbin",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "410",
+        "city": "Covington",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "411-412",
+        "city": "Ashland",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "413-414",
+        "city": "Campton",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "415-416",
+        "city": "Pikeville",
+        "factor": 0.81
+      },
+      {
+        "zip_range": "417-418",
+        "city": "Hazard",
+        "factor": 0.78
+      },
+      {
+        "zip_range": "420",
+        "city": "Paducah",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "421-422",
+        "city": "Bowling Green",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "423",
+        "city": "Owensboro",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "424",
+        "city": "Henderson",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "425-426",
+        "city": "Somerset",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "427",
+        "city": "Elizabethtown",
+        "factor": 0.87
+      }
+    ],
+    "LOUISIANA": [
+      {
+        "zip_range": "700-701",
+        "city": "New Orleans",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "703",
+        "city": "Thibodaux",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "704",
+        "city": "Hammond",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "705",
+        "city": "Lafayette",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "706",
+        "city": "Lake Charles",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "707-708",
+        "city": "Baton Rouge",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "710-711",
+        "city": "Shreveport",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "712",
+        "city": "Monroe",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "713-714",
+        "city": "Alexandria",
+        "factor": 0.83
+      }
+    ],
+    "MAINE": [
+      {
+        "zip_range": "039",
+        "city": "Kittery",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "040-041",
+        "city": "Portland",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "042",
+        "city": "Lewiston",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "043",
+        "city": "Augusta",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "044",
+        "city": "Bangor",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "045",
+        "city": "Bath",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "046",
+        "city": "Machias",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "047",
+        "city": "Houlton",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "048",
+        "city": "Rockland",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "049",
+        "city": "Waterville",
+        "factor": 0.87
+      }
+    ],
+    "MARYLAND": [
+      {
+        "zip_range": "206",
+        "city": "Waldorf",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "207-208",
+        "city": "College Park",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "209",
+        "city": "Silver Spring",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "210-212",
+        "city": "Baltimore",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "214",
+        "city": "Annapolis",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "215",
+        "city": "Cumberland",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "216",
+        "city": "Easton",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "217",
+        "city": "Hagerstown",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "218",
+        "city": "Salisbury",
+        "factor": 0.87
+      }
+    ],
+    "MASSACHUSETTS": [
+      {
+        "zip_range": "010-011",
+        "city": "Springfield",
+        "factor": 1.09
+      },
+      {
+        "zip_range": "012",
+        "city": "Pittsfield",
+        "factor": 1.07
+      },
+      {
+        "zip_range": "013",
+        "city": "Greenfield",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "014",
+        "city": "Fitchburg",
+        "factor": 1.12
+      },
+      {
+        "zip_range": "015-016",
+        "city": "Worcester",
+        "factor": 1.15
+      },
+      {
+        "zip_range": "017",
+        "city": "Framingham",
+        "factor": 1.14
+      },
+      {
+        "zip_range": "018",
+        "city": "Lowell",
+        "factor": 1.15
+      },
+      {
+        "zip_range": "019",
+        "city": "Lawrence",
+        "factor": 1.15
+      },
+      {
+        "zip_range": "020-022,024",
+        "city": "Boston",
+        "factor": 1.23
+      },
+      {
+        "zip_range": "023",
+        "city": "Brockton",
+        "factor": 1.14
+      },
+      {
+        "zip_range": "025",
+        "city": "Buzzards Bay",
+        "factor": 1.1
+      },
+      {
+        "zip_range": "026",
+        "city": "Hyannis",
+        "factor": 1.08
+      },
+      {
+        "zip_range": "027",
+        "city": "New Bedford",
+        "factor": 1.1
+      }
+    ],
+    "MICHIGAN": [
+      {
+        "zip_range": "480,483",
+        "city": "Royal Oak",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "481",
+        "city": "Ann Arbor",
+        "factor": 0.98
+      },
+      {
+        "zip_range": "482",
+        "city": "Detroit",
+        "factor": 1.01
+      },
+      {
+        "zip_range": "484-485",
+        "city": "Flint",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "486",
+        "city": "Saginaw",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "487",
+        "city": "Bay City",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "488-489",
+        "city": "Lansing",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "490",
+        "city": "Battle Creek",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "491",
+        "city": "Kalamazoo",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "492",
+        "city": "Jackson",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "493-495",
+        "city": "Grand Rapids",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "496",
+        "city": "Traverse City",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "497",
+        "city": "Gaylord",
+        "factor": 0.81
+      },
+      {
+        "zip_range": "498-499",
+        "city": "Iron Mountain",
+        "factor": 0.88
+      }
+    ],
+    "MINNESOTA": [
+      {
+        "zip_range": "550-551",
+        "city": "Saint Paul",
+        "factor": 1.13
+      },
+      {
+        "zip_range": "553-555",
+        "city": "Minneapolis",
+        "factor": 1.16
+      },
+      {
+        "zip_range": "556-558",
+        "city": "Duluth",
+        "factor": 1.01
+      },
+      {
+        "zip_range": "559",
+        "city": "Rochester",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "560",
+        "city": "Mankato",
+        "factor": 1.03
+      },
+      {
+        "zip_range": "561",
+        "city": "Windom",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "562",
+        "city": "Willmar",
+        "factor": 1.01
+      },
+      {
+        "zip_range": "563",
+        "city": "St. Cloud",
+        "factor": 1.07
+      },
+      {
+        "zip_range": "564",
+        "city": "Brainerd",
+        "factor": 1.0
+      },
+      {
+        "zip_range": "565",
+        "city": "Detroit Lakes",
+        "factor": 1.0
+      },
+      {
+        "zip_range": "566",
+        "city": "Bemidji",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "567",
+        "city": "Thief River Falls",
+        "factor": 0.99
+      }
+    ],
+    "MISSISSIPPI": [
+      {
+        "zip_range": "386",
+        "city": "Clarksdale",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "387",
+        "city": "Greenville",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "388",
+        "city": "Tupelo",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "389",
+        "city": "Greenwood",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "390-392",
+        "city": "Jackson",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "393",
+        "city": "Meridian",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "394",
+        "city": "Laurel",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "395",
+        "city": "Biloxi",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "396",
+        "city": "McComb",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "397",
+        "city": "Columbus",
+        "factor": 0.82
+      }
+    ],
+    "MISSOURI": [
+      {
+        "zip_range": "630-631",
+        "city": "St. Louis",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "633",
+        "city": "Bowling Green",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "634",
+        "city": "Hannibal",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "635",
+        "city": "Kirksville",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "636",
+        "city": "Flat River",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "637",
+        "city": "Cape Girardeau",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "638",
+        "city": "Sikeston",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "639",
+        "city": "Poplar Bluff",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "640-641",
+        "city": "Kansas City",
+        "factor": 0.98
+      },
+      {
+        "zip_range": "644-645",
+        "city": "St. Joseph",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "646",
+        "city": "Chillicothe",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "647",
+        "city": "Harrisonville",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "648",
+        "city": "Joplin",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "650-651",
+        "city": "Jefferson City",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "652",
+        "city": "Columbia",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "653",
+        "city": "Sedalia",
+        "factor": 0.9
+      }
+    ],
+    "MONTANA": [
+      {
+        "zip_range": "590-591",
+        "city": "Billings",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "592",
+        "city": "Wolf Point",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "593",
+        "city": "Miles City",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "594",
+        "city": "Great Falls",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "595",
+        "city": "Havre",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "596",
+        "city": "Helena",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "597",
+        "city": "Butte",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "598",
+        "city": "Missoula",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "599",
+        "city": "Kalispell",
+        "factor": 0.9
+      }
+    ],
+    "NEBRASKA": [
+      {
+        "zip_range": "680-681",
+        "city": "Omaha",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "683-685",
+        "city": "Lincoln",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "686",
+        "city": "Columbus",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "687",
+        "city": "Norfolk",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "688",
+        "city": "Grand Island",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "689",
+        "city": "Hastings",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "690",
+        "city": "McCook",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "691",
+        "city": "North Platte",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "692",
+        "city": "Valentine",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "693",
+        "city": "Alliance",
+        "factor": 0.8
+      }
+    ],
+    "NEVADA": [
+      {
+        "zip_range": "889-891",
+        "city": "Las Vegas",
+        "factor": 1.06
+      },
+      {
+        "zip_range": "893",
+        "city": "Ely",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "894-895",
+        "city": "Reno",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "897",
+        "city": "Carson City",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "898",
+        "city": "Elko",
+        "factor": 0.97
+      }
+    ],
+    "NEW HAMPSHIRE": [
+      {
+        "zip_range": "030",
+        "city": "Nashua",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "031",
+        "city": "Manchester",
+        "factor": 1.03
+      },
+      {
+        "zip_range": "032-033",
+        "city": "Concord",
+        "factor": 1.0
+      },
+      {
+        "zip_range": "034",
+        "city": "Keene",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "035",
+        "city": "Littleton",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "036",
+        "city": "Charleston",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "037",
+        "city": "Claremont",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "038",
+        "city": "Portsmouth",
+        "factor": 1.02
+      }
+    ],
+    "NEW JERSEY": [
+      {
+        "zip_range": "070-071",
+        "city": "Newark",
+        "factor": 1.19
+      },
+      {
+        "zip_range": "072",
+        "city": "Elizabeth",
+        "factor": 1.18
+      },
+      {
+        "zip_range": "073",
+        "city": "Jersey City",
+        "factor": 1.17
+      },
+      {
+        "zip_range": "074-075",
+        "city": "Paterson",
+        "factor": 1.17
+      },
+      {
+        "zip_range": "076",
+        "city": "Hackensack",
+        "factor": 1.17
+      },
+      {
+        "zip_range": "077",
+        "city": "Long Branch",
+        "factor": 1.18
+      },
+      {
+        "zip_range": "078",
+        "city": "Dover",
+        "factor": 1.18
+      },
+      {
+        "zip_range": "079",
+        "city": "Summit",
+        "factor": 1.16
+      },
+      {
+        "zip_range": "080-083",
+        "city": "Vineland",
+        "factor": 1.15
+      },
+      {
+        "zip_range": "084",
+        "city": "Atlantic City",
+        "factor": 1.17
+      },
+      {
+        "zip_range": "085-086",
+        "city": "Trenton",
+        "factor": 1.15
+      },
+      {
+        "zip_range": "087",
+        "city": "Point Pleasant",
+        "factor": 1.15
+      },
+      {
+        "zip_range": "088-089",
+        "city": "New Brunswick",
+        "factor": 1.16
+      }
+    ],
+    "NEW MEXICO": [
+      {
+        "zip_range": "870-872",
+        "city": "Albuquerque",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "873",
+        "city": "Gallup",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "874",
+        "city": "Farmington",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "875",
+        "city": "Santa Fe",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "877",
+        "city": "Las Vegas",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "878",
+        "city": "Socorro",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "879",
+        "city": "Truth or Consequences",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "880-881",
+        "city": "Las Cruces",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "882",
+        "city": "Roswell",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "883",
+        "city": "Carlsbad",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "884",
+        "city": "Tucumcari",
+        "factor": 0.86
+      }
+    ],
+    "NEW YORK": [
+      {
+        "zip_range": "100-102",
+        "city": "New York",
+        "factor": 1.38
+      },
+      {
+        "zip_range": "103",
+        "city": "Staten Island",
+        "factor": 1.37
+      },
+      {
+        "zip_range": "104",
+        "city": "Bronx",
+        "factor": 1.38
+      },
+      {
+        "zip_range": "105",
+        "city": "Mount Vernon",
+        "factor": 1.25
+      },
+      {
+        "zip_range": "106",
+        "city": "White Plains",
+        "factor": 1.23
+      },
+      {
+        "zip_range": "107",
+        "city": "Yonkers",
+        "factor": 1.25
+      },
+      {
+        "zip_range": "108",
+        "city": "New Rochelle",
+        "factor": 1.24
+      },
+      {
+        "zip_range": "109",
+        "city": "Suffern",
+        "factor": 1.16
+      },
+      {
+        "zip_range": "110",
+        "city": "Queens",
+        "factor": 1.38
+      },
+      {
+        "zip_range": "111",
+        "city": "Long Island City",
+        "factor": 1.38
+      },
+      {
+        "zip_range": "112",
+        "city": "Brooklyn",
+        "factor": 1.38
+      },
+      {
+        "zip_range": "113",
+        "city": "Flushing",
+        "factor": 1.36
+      },
+      {
+        "zip_range": "114",
+        "city": "Jamaica",
+        "factor": 1.36
+      },
+      {
+        "zip_range": "115,117-118",
+        "city": "Hicksville",
+        "factor": 1.25
+      },
+      {
+        "zip_range": "116",
+        "city": "Far Rockaway",
+        "factor": 1.38
+      },
+      {
+        "zip_range": "119",
+        "city": "Riverhead",
+        "factor": 1.25
+      },
+      {
+        "zip_range": "120-122",
+        "city": "Albany",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "123",
+        "city": "Schenectady",
+        "factor": 1.01
+      },
+      {
+        "zip_range": "124",
+        "city": "Kingston",
+        "factor": 1.07
+      },
+      {
+        "zip_range": "125-126",
+        "city": "Poughkeepsie",
+        "factor": 1.11
+      },
+      {
+        "zip_range": "127",
+        "city": "Monticello",
+        "factor": 1.06
+      },
+      {
+        "zip_range": "128",
+        "city": "Glens Falls",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "129",
+        "city": "Plattsburgh",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "130-132",
+        "city": "Syracuse",
+        "factor": 0.98
+      },
+      {
+        "zip_range": "133-135",
+        "city": "Utica",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "136",
+        "city": "Watertown",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "137-139",
+        "city": "Binghamton",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "140-142",
+        "city": "Buffalo",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "143",
+        "city": "Niagara Falls",
+        "factor": 1.01
+      },
+      {
+        "zip_range": "144-146",
+        "city": "Rochester",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "147",
+        "city": "Jamestown",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "148",
+        "city": "Elmira",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "149",
+        "city": "Ithaca",
+        "factor": 0.97
+      }
+    ],
+    "NORTH CAROLINA": [
+      {
+        "zip_range": "270-272,274",
+        "city": "Greensboro",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "273",
+        "city": "Raleigh",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "275-276",
+        "city": "Fayetteville",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "277",
+        "city": "Durham",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "278",
+        "city": "Rocky Mount",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "279",
+        "city": "Elizabeth City",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "280-282",
+        "city": "Charlotte",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "283",
+        "city": "Hickory",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "284",
+        "city": "Gastonia",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "285",
+        "city": "Kinston",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "286",
+        "city": "Wilmington",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "287-288",
+        "city": "Asheville",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "289",
+        "city": "Murphy",
+        "factor": 0.83
+      }
+    ],
+    "NORTH DAKOTA": [
+      {
+        "zip_range": "580-581",
+        "city": "Fargo",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "582",
+        "city": "Grand Forks",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "583",
+        "city": "Devils Lake",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "584",
+        "city": "Jamestown",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "585",
+        "city": "Bismarck",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "586",
+        "city": "Dickinson",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "587",
+        "city": "Minot",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "588",
+        "city": "Williston",
+        "factor": 0.9
+      }
+    ],
+    "OHIO": [
+      {
+        "zip_range": "430-432",
+        "city": "Columbus",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "433",
+        "city": "Marion",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "434-436",
+        "city": "Toledo",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "437-438",
+        "city": "Zanesville",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "439",
+        "city": "Steubenville",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "440",
+        "city": "Lorain",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "441",
+        "city": "Cleveland",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "442-443",
+        "city": "Akron",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "444-445",
+        "city": "Youngstown",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "446-447",
+        "city": "Canton",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "448-449",
+        "city": "Mansfield",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "450",
+        "city": "Hamilton",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "451-452",
+        "city": "Cincinnati",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "453-454",
+        "city": "Dayton",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "455",
+        "city": "Springfield",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "456",
+        "city": "Chillicothe",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "457",
+        "city": "Athens",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "458",
+        "city": "Lima",
+        "factor": 0.92
+      }
+    ],
+    "OKLAHOMA": [
+      {
+        "zip_range": "730-731",
+        "city": "Oklahoma City",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "734",
+        "city": "Ardmore",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "735",
+        "city": "Lawton",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "736",
+        "city": "Clinton",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "737",
+        "city": "Enid",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "738",
+        "city": "Woodward",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "739",
+        "city": "Guymon",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "740-741",
+        "city": "Tulsa",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "743",
+        "city": "Miami",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "744",
+        "city": "Muskogee",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "745",
+        "city": "McAlester",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "746",
+        "city": "Ponca City",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "747",
+        "city": "Durant",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "748",
+        "city": "Shawnee",
+        "factor": 0.87
+      }
+    ],
+    "OREGON": [
+      {
+        "zip_range": "970-972",
+        "city": "Portland",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "973",
+        "city": "Salem",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "974",
+        "city": "Eugene",
+        "factor": 1.03
+      },
+      {
+        "zip_range": "975",
+        "city": "Medford",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "976",
+        "city": "Klamath Falls",
+        "factor": 1.01
+      },
+      {
+        "zip_range": "977",
+        "city": "Bend",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "978",
+        "city": "Pendleton",
+        "factor": 1.01
+      },
+      {
+        "zip_range": "979",
+        "city": "Vale",
+        "factor": 0.97
+      }
+    ],
+    "PENNSYLVANIA": [
+      {
+        "zip_range": "150-152",
+        "city": "Pittsburgh",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "153",
+        "city": "Washington",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "154",
+        "city": "Uniontown",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "155",
+        "city": "Bedford",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "156",
+        "city": "Greensburg",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "157",
+        "city": "Indiana",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "158",
+        "city": "DuBois",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "159",
+        "city": "Johnstown",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "160",
+        "city": "Butler",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "161",
+        "city": "New Castle",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "162",
+        "city": "Kittanning",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "163",
+        "city": "Oil City",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "164-165",
+        "city": "Erie",
+        "factor": 0.98
+      },
+      {
+        "zip_range": "166",
+        "city": "Altoona",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "167",
+        "city": "Bradford",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "168",
+        "city": "State College",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "169",
+        "city": "Wellsboro",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "170-171",
+        "city": "Harrisburg",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "172",
+        "city": "Chambersburg",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "173-174",
+        "city": "York",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "175-176",
+        "city": "Lancaster",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "177",
+        "city": "Williamsport",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "178",
+        "city": "Sunbury",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "179",
+        "city": "Pottsville",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "180-181",
+        "city": "Lehigh Valley",
+        "factor": 1.03
+      },
+      {
+        "zip_range": "182",
+        "city": "Hazleton",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "183",
+        "city": "Stroudsburg",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "184-185",
+        "city": "Scranton",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "186-187",
+        "city": "Wilkes-Barre",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "188",
+        "city": "Montrose",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "189",
+        "city": "Doylestown",
+        "factor": 1.08
+      },
+      {
+        "zip_range": "190-191",
+        "city": "Philadelphia",
+        "factor": 1.13
+      },
+      {
+        "zip_range": "193",
+        "city": "Westchester",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "194",
+        "city": "Norristown",
+        "factor": 1.1
+      },
+      {
+        "zip_range": "195-196",
+        "city": "Reading",
+        "factor": 1.0
+      }
+    ],
+    "RHODE ISLAND": [
+      {
+        "zip_range": "028",
+        "city": "Newport",
+        "factor": 1.07
+      },
+      {
+        "zip_range": "029",
+        "city": "Providence",
+        "factor": 1.07
+      }
+    ],
+    "SOUTH CAROLINA": [
+      {
+        "zip_range": "290-292",
+        "city": "Columbia",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "293",
+        "city": "Spartanburg",
+        "factor": 0.81
+      },
+      {
+        "zip_range": "294",
+        "city": "Charleston",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "295",
+        "city": "Florence",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "296",
+        "city": "Greenville",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "297",
+        "city": "Rock Hill",
+        "factor": 0.79
+      },
+      {
+        "zip_range": "298",
+        "city": "Aiken",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "299",
+        "city": "Beaufort",
+        "factor": 0.82
+      }
+    ],
+    "SOUTH DAKOTA": [
+      {
+        "zip_range": "570-571",
+        "city": "Sioux Falls",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "572",
+        "city": "Watertown",
+        "factor": 0.81
+      },
+      {
+        "zip_range": "573",
+        "city": "Mitchell",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "574",
+        "city": "Aberdeen",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "575",
+        "city": "Pierre",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "576",
+        "city": "Mobridge",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "577",
+        "city": "Rapid City",
+        "factor": 0.83
+      }
+    ],
+    "TENNESSEE": [
+      {
+        "zip_range": "370-372",
+        "city": "Nashville",
+        "factor": 0.89
+      },
+      {
+        "zip_range": "373-374",
+        "city": "Chattanooga",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "375-380-381",
+        "city": "Memphis",
+        "factor": 0.88
+      },
+      {
+        "zip_range": "376",
+        "city": "Johnson City",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "377-379",
+        "city": "Knoxville",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "382",
+        "city": "McKenzie",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "383",
+        "city": "Jackson",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "384",
+        "city": "Columbia",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "385",
+        "city": "Cookeville",
+        "factor": 0.79
+      }
+    ],
+    "TEXAS": [
+      {
+        "zip_range": "750",
+        "city": "McKinney",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "751",
+        "city": "Waxahachie",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "752-753",
+        "city": "Dallas",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "754",
+        "city": "Greenville",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "755",
+        "city": "Texarkana",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "756",
+        "city": "Longview",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "757",
+        "city": "Tyler",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "758",
+        "city": "Palestine",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "759",
+        "city": "Lufkin",
+        "factor": 0.81
+      },
+      {
+        "zip_range": "760-761",
+        "city": "Fort Worth",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "762",
+        "city": "Denton",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "763",
+        "city": "Wichita Falls",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "764",
+        "city": "Stephenville",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "765",
+        "city": "Temple",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "766-767",
+        "city": "Waco",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "768",
+        "city": "Brownwood",
+        "factor": 0.81
+      },
+      {
+        "zip_range": "769",
+        "city": "San Angelo",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "770-772",
+        "city": "Houston",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "773",
+        "city": "Huntsville",
+        "factor": 0.81
+      },
+      {
+        "zip_range": "774",
+        "city": "Wharton",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "775",
+        "city": "Galveston",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "776-777",
+        "city": "Beaumont",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "778",
+        "city": "Bryan",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "779",
+        "city": "Victoria",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "780-782",
+        "city": "San Antonio",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "783-784",
+        "city": "Corpus Christi",
+        "factor": 0.81
+      },
+      {
+        "zip_range": "785",
+        "city": "McAllen",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "786-787",
+        "city": "Austin",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "788",
+        "city": "Del Rio",
+        "factor": 0.78
+      },
+      {
+        "zip_range": "789",
+        "city": "Giddings",
+        "factor": 0.81
+      },
+      {
+        "zip_range": "790-791",
+        "city": "Amarillo",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "792",
+        "city": "Childress",
+        "factor": 0.8
+      },
+      {
+        "zip_range": "793-794",
+        "city": "Lubbock",
+        "factor": 0.82
+      },
+      {
+        "zip_range": "795-796",
+        "city": "Abilene",
+        "factor": 0.81
+      },
+      {
+        "zip_range": "797",
+        "city": "Midland",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "798-799",
+        "city": "El Paso",
+        "factor": 0.84
+      }
+    ],
+    "UTAH": [
+      {
+        "zip_range": "840-841",
+        "city": "Salt Lake City",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "842,844",
+        "city": "Ogden",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "843",
+        "city": "Logan",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "845",
+        "city": "Price",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "846-847",
+        "city": "Provo",
+        "factor": 0.9
+      }
+    ],
+    "VERMONT": [
+      {
+        "zip_range": "050",
+        "city": "White River Jct.",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "051",
+        "city": "Bellows Falls",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "052",
+        "city": "Bennington",
+        "factor": 1.01
+      },
+      {
+        "zip_range": "053",
+        "city": "Brattleboro",
+        "factor": 1.02
+      },
+      {
+        "zip_range": "054",
+        "city": "Burlington",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "056",
+        "city": "Montpelier",
+        "factor": 1.01
+      },
+      {
+        "zip_range": "057",
+        "city": "Rutland",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "058",
+        "city": "St. Johnsbury",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "059",
+        "city": "Guildhall",
+        "factor": 0.98
+      }
+    ],
+    "VIRGINIA": [
+      {
+        "zip_range": "220-221",
+        "city": "Fairfax",
+        "factor": 1.03
+      },
+      {
+        "zip_range": "222",
+        "city": "Arlington",
+        "factor": 1.04
+      },
+      {
+        "zip_range": "223",
+        "city": "Alexandria",
+        "factor": 1.1
+      },
+      {
+        "zip_range": "224-225",
+        "city": "Fredericksburg",
+        "factor": 1.09
+      },
+      {
+        "zip_range": "226",
+        "city": "Winchester",
+        "factor": 1.07
+      },
+      {
+        "zip_range": "227",
+        "city": "Culpeper",
+        "factor": 1.06
+      },
+      {
+        "zip_range": "228",
+        "city": "Harrisonburg",
+        "factor": 1.01
+      },
+      {
+        "zip_range": "229",
+        "city": "Charlottesville",
+        "factor": 0.98
+      },
+      {
+        "zip_range": "230-232",
+        "city": "Richmond",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "233-235",
+        "city": "Norfolk",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "236",
+        "city": "Newport News",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "237",
+        "city": "Portsmouth",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "238",
+        "city": "Petersburg",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "239",
+        "city": "Farmville",
+        "factor": 0.98
+      },
+      {
+        "zip_range": "240-241",
+        "city": "Roanoke",
+        "factor": 1.0
+      },
+      {
+        "zip_range": "242",
+        "city": "Bristol",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "243",
+        "city": "Pulaski",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "244",
+        "city": "Staunton",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "245",
+        "city": "Lynchburg",
+        "factor": 0.98
+      },
+      {
+        "zip_range": "246",
+        "city": "Grundy",
+        "factor": 0.96
+      }
+    ],
+    "WASHINGTON": [
+      {
+        "zip_range": "980-981,987",
+        "city": "Seattle",
+        "factor": 1.07
+      },
+      {
+        "zip_range": "982",
+        "city": "Everett",
+        "factor": 1.06
+      },
+      {
+        "zip_range": "983-984",
+        "city": "Tacoma",
+        "factor": 1.05
+      },
+      {
+        "zip_range": "985",
+        "city": "Olympia",
+        "factor": 1.05
+      },
+      {
+        "zip_range": "986",
+        "city": "Vancouver",
+        "factor": 1.05
+      },
+      {
+        "zip_range": "988",
+        "city": "Wenatchee",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "989",
+        "city": "Yakima",
+        "factor": 0.98
+      },
+      {
+        "zip_range": "990-992",
+        "city": "Spokane",
+        "factor": 1.0
+      },
+      {
+        "zip_range": "993",
+        "city": "Richland",
+        "factor": 0.98
+      },
+      {
+        "zip_range": "994",
+        "city": "Clarkston",
+        "factor": 0.99
+      }
+    ],
+    "WEST VIRGINIA": [
+      {
+        "zip_range": "247-248",
+        "city": "Bluefield",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "249",
+        "city": "Lewisburg",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "250-253",
+        "city": "Charleston",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "254",
+        "city": "Martinsburg",
+        "factor": 0.87
+      },
+      {
+        "zip_range": "255-257",
+        "city": "Huntington",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "258-259",
+        "city": "Beckley",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "260",
+        "city": "Wheeling",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "261",
+        "city": "Parkersburg",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "262",
+        "city": "Buckhannon",
+        "factor": 0.9
+      },
+      {
+        "zip_range": "263-264",
+        "city": "Clarksburg",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "265",
+        "city": "Morgantown",
+        "factor": 0.92
+      },
+      {
+        "zip_range": "266",
+        "city": "Gassaway",
+        "factor": 0.91
+      },
+      {
+        "zip_range": "267",
+        "city": "Romney",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "268",
+        "city": "Petersburg",
+        "factor": 0.87
+      }
+    ],
+    "WISCONSIN": [
+      {
+        "zip_range": "530,532",
+        "city": "Milwaukee",
+        "factor": 1.03
+      },
+      {
+        "zip_range": "531",
+        "city": "Kenosha",
+        "factor": 1.0
+      },
+      {
+        "zip_range": "534",
+        "city": "Racine",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "535",
+        "city": "Beloit",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "537",
+        "city": "Madison",
+        "factor": 1.0
+      },
+      {
+        "zip_range": "538",
+        "city": "Lancaster",
+        "factor": 0.94
+      },
+      {
+        "zip_range": "539",
+        "city": "Portage",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "540",
+        "city": "New Richmond",
+        "factor": 1.01
+      },
+      {
+        "zip_range": "541-543",
+        "city": "Green Bay",
+        "factor": 0.99
+      },
+      {
+        "zip_range": "544",
+        "city": "Wausau",
+        "factor": 0.96
+      },
+      {
+        "zip_range": "545",
+        "city": "Rhinelander",
+        "factor": 0.93
+      },
+      {
+        "zip_range": "546",
+        "city": "La Crosse",
+        "factor": 0.95
+      },
+      {
+        "zip_range": "547",
+        "city": "Eau Claire",
+        "factor": 1.0
+      },
+      {
+        "zip_range": "548",
+        "city": "Superior",
+        "factor": 0.97
+      },
+      {
+        "zip_range": "549",
+        "city": "Oshkosh",
+        "factor": 0.95
+      }
+    ],
+    "WYOMING": [
+      {
+        "zip_range": "820",
+        "city": "Cheyenne",
+        "factor": 0.86
+      },
+      {
+        "zip_range": "821",
+        "city": "Yellowstone Park",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "822",
+        "city": "Wheatland",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "823",
+        "city": "Rawlins",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "824",
+        "city": "Worland",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "825",
+        "city": "Riverton",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "826",
+        "city": "Casper",
+        "factor": 0.85
+      },
+      {
+        "zip_range": "827",
+        "city": "Gillette",
+        "factor": 0.83
+      },
+      {
+        "zip_range": "828-829",
+        "city": "Sheridan",
+        "factor": 0.84
+      },
+      {
+        "zip_range": "830-831",
+        "city": "Rock Springs",
+        "factor": 0.88
+      }
+    ]
+  }
+}

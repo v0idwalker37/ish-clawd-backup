@@ -1,0 +1,55 @@
+e
+Rough Mechanical
+Furnace Unit Unit | Material | Labor | Equip. Total Specification
+60 MBH w / Thermostat
+Demolish Ea. 133 133 Includes material and labor to install a
+Install Ea. 2075 295 2370 | gas fired hot air furnace rated at 60
+Demolish and Install Ea. 2075 428 2503 MBH.
+Reinstall Ea. 235.91 235.91
+Clean Ea. 1.64} 112 113.64
+Minimum Charge Job 320 320
+Floor (gas-fired)
+30 MBH w / Thermostat
+Demolish Ea. 133 133 Includes material and labor to install a
+Install Ea. 2675 212 2887 | gas fired hot air floor furnace rated at
+Demolish and Install | Ea. | 2675 | 345 3020 | 30 MBH.
+Reinstall Ea. 169.86 169,86
+Clean Ea. 1.64] 112 113.64
+Minimum Charge Job 320 320
+50 MBH w / Thermostat
+Demolish Ea. 133 133 Includes material and labor to install a
+Install Ea, 3050 265 3315 | gas fired hot air floor furnace rated at
+Demolish and Install Ea, 3050 398 3448 50 MBH.
+Reinstall Ea. 212.32 212.32
+Clean Ea. 1.64] 112 113.64
+Minimum Charge Job 320 320
+Gas Forced Air
+50 MBH
+Demolish Ea. 133 133 Includes material and labor to install
+Install Ea. 1375 265 1640 | an up flow gas fired hot air furnace
+Demolish and Install Ea. 1375 398 1773 rated at 50 MBH.
+Reinstall Ea. 212.32 212.32
+Clean Ea, 1.64] 112 113.64
+Minimum Charge Job 320 320
+80 MBH
+Demolish Ea. 133 133 Includes material and labor to install
+Install Ea. 1675 295 1970 | an up flow gas fired hot air furnace
+Demolish and Install Ea. 1675 428 2103 rated at 80 MBH.
+Reinstall Ea. 235.91 235.91
+Clean Ea. 1.64 112 113.64
+Minimum Charge Job 320 320
+100 MBH
+Demolish Ea. 133 133 | Includes material and labor to install
+Install Ea. 1675 330 2005 | an up flow gas fired hot air furnace
+Demolish and Install Ea. 1675 463 2138 tated at 100 MBH.
+Reinstall Ea. 265.40 265.40
+Clean Ea. 1.64] 112 113.64
+Minimum Charge Job 320 320
+120 MBH
+Demolish Ea. 133 133 | Includes material and labor to install
+Install Ea. 1700 355 2055 | an up flow gas fired hot air furnace
+Demolish and Install Ea, 1700 488 2188 tated at 120 MBH.
+Reinstall Ea. 283.09 283.09
+Clean Ea. 1.64} 112 113.64
+Minimum Charge Job 320 320
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291. 155

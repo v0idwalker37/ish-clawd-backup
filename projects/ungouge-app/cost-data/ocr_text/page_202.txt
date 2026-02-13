@@ -1,0 +1,69 @@
+eye
+Walls / Ceilings
+Acoustical Ceiling Unit | Material | Labor | Equip. Total Specification
+T-bar Grid
+2x2
+Demolish SE. .88 88 | Includes material and labor to install
+, Install SE 2.34 83 3.17] Thar grid acoustical ceiling
+Demolish and Install SE 2.34 171 4.05 suspension system.
+Reinstall SF .66 66
+Clean SF. .03 31 34
+Minimum Charge Job 258 258
+2x4
+Demolish SF. 88 .88 | Includes material and labor to install
+; Install SF 1.90 67 2.57 | Tbar grid acoustical ceiling
+Demolish and Install SF 1.90 1.55 3.45 suspension system.
+Reinstall SF. 54 54
+Clean SF 03 31 34
+Minimum Charge Job 258 258
+Tile Panels
+2' x 2’ Square Edge
+Demolish SE .25 .25| Includes material and labor to install
+Demolish and Pa Ft or at 22 square edge panels 5/8” thick with
+emolisn and Ins! a . . . “ .
+Reinstall SE 69 9 pinhole pattern. T-bar grid not
+included.
+Clean SF 03 31 34
+Minimum Charge Job 269 269
+2’ x 2’ Reveal Edge
+Demolish SF. .25 .25 | Includes material and labor to install
+Demolish and a AG ee 1.14 ae reveal edge panels 5/8” thick with
+/emolish and instal A . . . H .
+Reinstall SE 30 90 pinhole pattern. Tbar grid not
+included.
+Clean SF 03 31 34
+Minimum Charge Job 269 269
+2' x 2’ Fire-rated
+Demolish SF. 25 .25 | Includes material and labor to install
+Demolish end te . ol ren i FR square edge panels 5/8” thick with
+emolish and Instat An . . y ; 7
+Reinstall SE ‘6d ‘6A pinhole pattern. Thar grid not
+included.
+Clean SA 03 31 34
+Minimum Charge Job 269 269
+2' x 4’ Square Edge
+Demolish SF 25 .25 | Includes material and labor to install
+Demolish and instal 7 ey se Be square edge panels 5/8" thick with
+emolish and Insta AF, ; } } : ;
+Reinstall SE 69 39 pinhole pattern. Tar grid not
+included.
+Clean SF. 03 31 34
+Minimum Charge Job 269 269 F
+2' x 4’ Reveal Edge
+Demolish SF. .25 .25 | Includes material and labor to install
+Demolish and instal SF rr Le a reveal edge panels 5/8” thick with
+emolish and Instal F. ! ! : F 7 ;
+Reinstall SF 0 99 pinhole pattern. T-bar grid not
+included.
+Clean SF .03 31 34
+Minimum Charge Job 269 269
+2' x 4 Fire-rated
+Demolish SE .25 .25 | Includes material and labor to install
+Demolish and hee is ea a a FR square edge panels 5/8” thick with
+emotisn and Ins! A y 5 . H i
+Reinstall SE “64 ‘6d pinhole pattern. T-bar grid not
+included.
+Clean SF .03 31 34
+Minimum Charge Job 269 269
+]
+88 For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

@@ -1,0 +1,53 @@
+e
+Rough Mechanical
+Plumbing Unit | Material | Labor | Equip. Total Specification
+Medium
+Demolish Ea. 15.20 15.20 Includes labor and material to install a
+Install Ea. 142 26 168 PVC plumbing pipe vent cap.
+Demolish and Install Ea. 142 41.20 183.20
+Clean Ea. A5 9.20 9.65
+Paint Ea. A3 10 10.43
+Minimum Charge Job 151 151
+Small
+Demolish Ea. 15.20 15.20 Includes material and labor to install a
+Install Ea. 11.20 25 36.20 | PVC plumbing pipe vent cap.
+Demolish and Install Ea. 11.20 40.20 51.40
+Clean Ea. 5 9.20 9.65
+Paint Ea. A3 10 10.43
+Minimum Charge Job 151 151
+Plumbing Unit | Material | Labor | Equip. | Total Specification
+Sump Pump
+1/4 HP
+Demolish Ea, 60.50 60.50 | Includes material and labor to install a
+Install Ea. 209 94 303 submersible sump pump.
+Demolish and Install Ea. 209 154.50 363.50
+Reinstall Ea. 75.35 75.35
+Clean Ea. 1.14 25.50 26.64
+Minimum Charge Job 300 300
+1/3 HP
+Demolish Ea. 60.50 60.50 | Includes material and labor to install a
+Install | Ea. | 212 100 312 | submersible sump pump.
+Demolish and Install Ea. 212 160.50 372.50
+Reinstall Ea, 80.37 80.37
+Clean Ea. 1.14 25.50 26.64
+Minimum Charge Job 300 300
+1/2 HP
+Demolish Ea, 60.50 60.50 | Includes material and labor to install a
+Install | Ea, | 315 112 427 | submersible sump pump.
+Demolish and Install Eo. 315 172.50 487.50
+Reinstall Ea. 89.30 89.30
+Clean Ea. 1.14 25.50 26.64
+Minimum Charge Job 300 300
+Clean and Service
+Clean Ea. 37.50 37.50 | Includes labor to clean and service a
+Minimum Charge Job 300 300 | sump pump.
+Water Heater Unit | Material | Labor | Equip. | Total Specification
+Electric
+30 Gallon
+Demolish Ea. 188 188 Includes material and labor to install a
+Install Ea. 925 274 1199 | 30 gallon electric water heater.
+Demolish and Install Ea. 925 462 1387
+Reinstall Ea. 219.20 219.20
+Clean Ea. 1.14 25.50 26.64
+Minimum Charge Job 300 300
+148 For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

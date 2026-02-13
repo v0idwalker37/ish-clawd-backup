@@ -1,0 +1,52 @@
+e
+Rough Mechanical
+Air Conditioning Unit | Material | Labor | Equip. | Total Specification
+Thermostat
+Demolish Ea. 17.80 17.80} Includes material and labor to install
+Install Ea. 195 80 275 an electric thermostat, 2 set back.
+Demolish and Install Ea. 195 97.80 292.80
+Reinstall Ea. 64 64
+Clean Ea. .07 12.65 12.72
+Minimum Charge Job 320 320
+Concrete Pad
+Demolish SA. 2.81 2.81 | Includes material and labor to install
+Install SE. 4.50 6.65 11.15} air conditioner pad.
+Demolish and Install SF. 4.50 9.46 13.96
+Reinstall SF 5.32 5.32
+Clean SA 07 81 .88
+Paint SF 50 A5 95
+Minimum Charge Job 320 320
+A/C Junction Box
+Install Ea, 238 184 422 Includes labor and materials to install
+Minimum Charge Job 325 325 an air conditioning circuit including up
+to 40 feet of non-metallic cable.
+Sprinkler System Unit | Material | Labor | Equip. | Total Specification
+Exposed
+Wet Type
+Demolish SF Flr. 27 .27 | Includes material and labor to install
+Install | SF Flr. 3.92 273 6.65 | an exposed wet pipe fire sprinkler
+Demolish and Install SF Flr. 3.92 3 6.92 system.
+Reinstall SF Fir. 2.73 2.73
+Minimum Charge Job 300 300
+Dry Type
+Demolish SF Flr. 27 .27 | Includes material and labor to install
+Install | SF Flr. 4.50 273 7.23 | an exposed dry pipe fire sprinkler
+Demolish and Install SF Flr. 4.50 3 7.50 system.
+Reinstall SF Fir. 2.73 2.73
+Minimum Charge Job 300 300
+Concealed
+Wet Type
+Demolish SF Flr. 54 .54| Includes material and labor to install a
+Install | SF Flr. 3.92 3.72 7.64) concealed wet pipe fire sprinkler
+Demolish and Install SF Flr. 3.92 4.26 8.18 system,
+Reinstall SF Fir. 3.72 3.72
+Minimum Charge Job 300 300
+Dry Type
+Demolish SF Flr. 54 .54| Includes material and labor to install a
+Install | SF Flr. 4.50 3.72 8.22 | concealed dry pipe fire sprinkler
+Demolish and Install SF Fir. 4.50 4.26 8.76 system.
+Reinstall SF Fir. 3,72 3.72
+Minimum Charge Job 300 300
+ae po Att EE AOR
+163
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

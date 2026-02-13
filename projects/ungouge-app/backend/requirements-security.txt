@@ -1,0 +1,6 @@
+# Security middleware dependencies
+slowapi>=0.1.9         # Rate limiting
+python-magic>=0.4.27   # File type detection via magic bytes
+Pillow>=10.0.0         # Image processing and metadata stripping
+PyPDF2>=3.0.0          # PDF metadata stripping
+python-multipart       # File upload support

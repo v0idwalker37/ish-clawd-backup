@@ -12,7 +12,12 @@ from models.database import get_db, User
 from models.quote import QuoteSubmission, QuoteResponse
 from models.report import Report as ReportModel, LineItemAnalysis
 from models.database import Quote, QuoteLineItem, AnalysisReport
-from services.analyzer import analyze_quote
+# V2 engine: uses QuoteAnalyzer (67.7% accuracy, 87% match rate)
+# Fallback to V1 if V2 fails to import
+try:
+    from services.analyzer_v2 import analyze_quote
+except ImportError:
+    from services.analyzer import analyze_quote
 from services.payment import create_payment_intent, verify_payment
 from services.auth import get_current_user_optional, get_current_user
 from services.logger import log_quote_submission, log_access_denied

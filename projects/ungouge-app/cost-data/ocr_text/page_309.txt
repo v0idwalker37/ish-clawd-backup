@@ -1,0 +1,87 @@
+. : . nv
+Location Factors - Residential =
+Costs shown in Residential Costs with RSMeans Data are based on that city. The data is arranged alphabetically by state and postal zip code ba
+national averages for materials and installation. To adjust these costs numbers. For a city not listed, use the factor for a nearby city with co
+to a specific location, simply multiply the base cost by the factor for similar economic characteristics. aa
+3
+ALABAMA CALIFORNIA (CONT'D) eer}
+350-352 Birmingham 89 954 Santa Rosa 1.27 co
+354 Tuscaloosa 88 955 Eureka 1.24 vu
+355 Jasper 87 959 Marysville 1.21 fo}
+356 Decatur 87 960 Redding 1.22 al
+357-358 Huntsville 88 961 Susanville 1.20
+359 Gadsden 86
+360-361 Montgomery 89 COLORADO
+362 Anniston 85 800-802 Denver 91
+363 Dothan 89 803 Boulder 91
+364 Evergreen 87 804 Golden 90
+365-366 Mobile 86 805 Fort Collins 91
+367 Selma 86 806 Greeley 91
+368 Phenix City 86 807 Fort Morgan 31
+369 Butler 85 808-809 Colorado Springs 90
+810 Pueblo 89
+ALASKA 811 Alamosa 88
+995-996 Anchorage 1.13 812 Salida 90
+997 Fairbanks 1.14 813 Durango 89
+998 Juneau 1.13 814 Montrose 88
+999 Ketchikan 1.19 815 Grand Junction 91
+816 Glenwood Springs 30
+ARIZONA
+850,853 Phoenix 90 CONNECTICUT
+851,852 Mesa/Tempe 90 060 New Britain 1.10
+855 Globe 89 061 Hartford 1.10
+856-857 Tucson 91 062 Willimantic 1.09
+859 Show Low 91 063 New London 1.08
+860 Flagstaff 91 064. Meriden 1.09
+863 Prescott 90 065 New Haven 1.09
+864 Kingman 89 066 Bridgeport 1.10
+865 Chambers 89 067 Waterbury 1.09
+068 Norwalk 1.09
+ARKANSAS 069 Stamford 1.09
+716 Pine Bluff 87
+717 Camden 84 D.C.
+718 Texarkana 87 200-205 Washington 94
+719 Hot Springs 83
+720-722 Little Rock 86 DELAWARE
+723 West Memphis 86 197 Newark 1.03
+724 Jonesboro 86 198 Wilmington 1.04
+725 Batesville 82 199 Dover 1.04
+726 Harrison 83
+727 Fayetteville 84 FLORIDA
+728 Russellville 84 320,322 Jacksonville 89
+729 Fort Smith 85 321 Daytona Beach 89
+323 Tallahassee 89
+CALIFORNIA 324 Panama City 86
+900-902 Los Angeles 1.16 325 Pensacola 87
+903905 Inglewood 1.15 326,344 Gainesville 88
+906-908 Long Beach 1,15 327-328,347 Orlando 89
+910912 Pasadena 1.14 329 Melbourne 89
+913916 Van Nuys 1.17 330-332,340 Miami 87
+917-918 Alhambra 1.16 333 Fort Lauderdale 86
+919-921 San Diego 1.13 334,349 West Palm Beach 86
+922 Palm Springs 1.14 335-336,346 Tampa 86
+923-924 San Bernardino 1.15 337 St. Petersburg 86
+925 Riverside 1.15 338 Lakeland 84
+926927 Santa Ana 1.16 339,341 Fort Myers 85
+928 Anaheim 1.15 342 Sarasota 87
+930 Oxnard 1.15
+931 Santa Barbara 1.15 GEORGIA
+932-933 Bakersfield 1.15 300-303,399 Atlanta 92
+934 San Luis Obispo 1.16 304 Statesboro 88
+935 Mojave 1.15 305 Gainesville 86
+936-938 Fresno 1.21 306 Athens 88
+939 Salinas 1.25 307 Dalton 89
+940941 San Francisco 1.30 308-309 Augusta 90
+942,956-958 Sacramento 1.22 310-312 Macon 91
+943 Palo Alto 1.28 313314 Savannah 91
+944 San Mateo 1.29 315 Waycross 88
+945 Vallejo 1.26 316 Valdosta 91
+946 Oakland 1.28 317,398 Albany 90
+947 Berkeley 1.30 318319 Columbus 91
+948 Richmond 1.27
+949 San Rafael 1.30 HAWAII
+950 Santa Cruz 1.24 967 Hilo 1.13
+951 San Jose 1.28 968 Honolulu 1.14
+952 Stockton 1.21
+953 Modesto 1.19
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291. 295

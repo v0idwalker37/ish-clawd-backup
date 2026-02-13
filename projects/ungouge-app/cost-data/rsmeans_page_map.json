@@ -1,0 +1,140 @@
+{
+  "_note": "Maps our project types to RSMeans book page numbers. PDF page = book page + 14",
+  "_offset": 14,
+  "roof_replacement": {
+    "book_pages": [73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89],
+    "index_refs": "Architectural shingles 73, asphalt roofing 87, cedar shingles 76, clay roofing tile 80, flat roofing 85-87, metal roofing 83-84, plywood roofing 56, slate roofing 79"
+  },
+  "siding_replacement": {
+    "book_pages": [126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138],
+    "index_refs": "Aluminum siding 133, cedar siding 134, hardboard 135, plywood panel 135, stucco 128, vinyl siding 136"
+  },
+  "siding_vinyl": {
+    "book_pages": [136],
+    "index_refs": "Vinyl siding 136"
+  },
+  "siding_fiber_cement": {
+    "book_pages": [135],
+    "index_refs": "Fiber cement siding (cementitious panel) 135"
+  },
+  "window_replacement": {
+    "book_pages": [106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121],
+    "index_refs": "Aluminum window 106, glass window 119, storm window 112, vinyl window 114, wood window 114"
+  },
+  "bathroom_remodel": {
+    "book_pages": [148, 149, 150, 250, 251, 252, 253, 254, 255, 256, 257, 258, 282],
+    "index_refs": "Plumbing 148, toilet 250-251, sink 252-254, bathtub 255-256, shower 257, dispenser bathroom 282"
+  },
+  "kitchen_remodel": {
+    "book_pages": [210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 278, 279, 280, 281],
+    "index_refs": "Cabinets 210-228, countertop 229-230, microwave 278, dishwasher 281, garbage disposal 281"
+  },
+  "painting_interior": {
+    "book_pages": [235, 236, 237, 238, 239],
+    "index_refs": "Paint prep wall/ceiling 235-236, painting 237-239"
+  },
+  "exterior_painting": {
+    "book_pages": [235, 236, 237, 238, 239],
+    "index_refs": "Same painting section, includes exterior"
+  },
+  "flooring_installation": {
+    "book_pages": [240, 241, 242, 243, 244, 245, 246, 247, 248, 249],
+    "index_refs": "Hardwood floor 240, parquet 242, hard tile 243, granite floor 244, resilient 245, carpet 246-248"
+  },
+  "flooring_lvp": {
+    "book_pages": [245, 246],
+    "index_refs": "Resilient flooring 245 (includes vinyl/LVP)"
+  },
+  "deck_building": {
+    "book_pages": [61, 62, 63],
+    "index_refs": "Decking composite 61, fir 61, mahogany 62, PVC 62, treated 61, porch 63"
+  },
+  "fence_installation": {
+    "book_pages": [144, 145, 146],
+    "index_refs": "Fencing 144, gate 144, wrought iron 144"
+  },
+  "electrical_work": {
+    "book_pages": [260, 261, 262, 263, 264, 265, 266, 267, 268, 269],
+    "index_refs": "Switch 262-263, outlet 264, wiring 260-261, light fixture 267, smoke detector 269"
+  },
+  "electrical_panel_upgrade": {
+    "book_pages": [260, 261],
+    "index_refs": "Electric panel/load center ~260-261"
+  },
+  "plumbing_repair": {
+    "book_pages": [147, 148, 149, 150, 151, 152, 153],
+    "index_refs": "Plumbing 147-148, sump pump 148, water heater 149"
+  },
+  "water_heater_replacement": {
+    "book_pages": [149, 150],
+    "index_refs": "Gas-fired water heater 149, wrap insulating 150"
+  },
+  "hvac_replacement": {
+    "book_pages": [154, 155, 156, 157, 158, 159, 160, 161, 162, 163],
+    "index_refs": "A/C 156-157, air conditioning 159, air handler 161, furnace 154-155"
+  },
+  "mini_split": {
+    "book_pages": [159, 160],
+    "index_refs": "Air conditioning (ductless/mini split) ~159-160"
+  },
+  "insulation": {
+    "book_pages": [170, 171, 172, 173, 174],
+    "index_refs": "Insulation ~170-174, polystyrene 173"
+  },
+  "concrete_work": {
+    "book_pages": [26, 27, 28, 29, 30],
+    "index_refs": "Concrete 26-30"
+  },
+  "concrete_patio": {
+    "book_pages": [139, 140],
+    "index_refs": "Paving asphalt 139, paver 140"
+  },
+  "foundation_repair": {
+    "book_pages": [20, 21, 22, 23, 24, 25, 26],
+    "index_refs": "Foundation 20-26, piles 20-22, stem wall 24, gunite 26, slabjacking 26"
+  },
+  "gutter_installation": {
+    "book_pages": [284, 285],
+    "index_refs": "Gutters 284, downspouts 285"
+  },
+  "basement_finishing": {
+    "book_pages": [175, 176, 177, 178, 179, 180, 181, 182, 183],
+    "index_refs": "Interior wall 175, wallboard 177-179, paneling 182"
+  },
+  "garage_door": {
+    "book_pages": [103],
+    "index_refs": "Garage door ~103"
+  },
+  "home_addition": {
+    "book_pages": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48],
+    "index_refs": "Framing/wall stud 36-44, sheathing 45-46, subflooring 33"
+  },
+  "driveway": {
+    "book_pages": [139, 140],
+    "index_refs": "Asphalt paving 139, paver 140"
+  },
+  "retaining_wall": {
+    "book_pages": [126, 127, 140],
+    "index_refs": "Structural brick 126, masonry/concrete block"
+  },
+  "tree_removal": {
+    "book_pages": [7, 8],
+    "index_refs": "Tree removal, debris hauling 7"
+  },
+  "septic_system": {
+    "book_pages": [],
+    "index_refs": "Not in RSMeans residential guide"
+  },
+  "well_drilling": {
+    "book_pages": [],
+    "index_refs": "Not in RSMeans residential guide"
+  },
+  "solar_installation": {
+    "book_pages": [],
+    "index_refs": "Not in RSMeans residential guide"
+  },
+  "pool_inground": {
+    "book_pages": [291],
+    "index_refs": "Pool 291"
+  }
+}

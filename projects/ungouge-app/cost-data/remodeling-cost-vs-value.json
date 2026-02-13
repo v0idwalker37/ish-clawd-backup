@@ -1,0 +1,183 @@
+{
+  "source": "Remodeling Magazine / Zonda / JLC 2025 Cost vs. Value Report",
+  "scraped_date": "2026-02-11",
+  "data_period": "2025 (published September 2025)",
+  "notes": [
+    "Original source at remodeling.hw.net and jlconline.com blocked by Cloudflare (403)",
+    "Data compiled from secondary sources: customcraftdbr.com, dadimprovement.com, newagedesignandbuild.com",
+    "Report covers 28 remodeling projects across 119 US markets",
+    "ROI = Resale Value / Job Cost",
+    "38th annual edition — industry gold standard",
+    "Exterior projects consistently outperform interior projects for ROI",
+    "New in 2025: backup generators, ADUs, basement remodels, rooftop solar"
+  ],
+  "top_projects_by_roi": [
+    {
+      "rank": 1,
+      "project": "Garage Door Replacement",
+      "average_cost": 4672,
+      "resale_value": 12507,
+      "roi_pct": 267.7,
+      "alt_sources_roi": "91% (DadImprovement) / 336.6% (CustomCraft)",
+      "note": "Wide variance in ROI calculation methods across secondary sources"
+    },
+    {
+      "rank": 2,
+      "project": "Steel Entry Door Replacement",
+      "average_cost": 2435,
+      "resale_value": 5270,
+      "roi_pct": 216.4,
+      "alt_sources_roi": "82% / 219.8%"
+    },
+    {
+      "rank": 3,
+      "project": "Manufactured Stone Veneer",
+      "average_cost": 11702,
+      "resale_value": 24328,
+      "roi_pct": 207.9,
+      "alt_sources_roi": "92% / 200.7%"
+    },
+    {
+      "rank": 4,
+      "project": "Fiber-Cement Siding Replacement",
+      "average_cost": 21485,
+      "resale_value": 24420,
+      "roi_pct": 113.7,
+      "alt_sources_roi": "79% / 99.3%"
+    },
+    {
+      "rank": 5,
+      "project": "Minor Kitchen Remodel (Midrange)",
+      "average_cost": 28458,
+      "resale_value": 32141,
+      "roi_pct": 112.9,
+      "alt_sources_roi": "79% / 107.2%"
+    },
+    {
+      "rank": 6,
+      "project": "Vinyl Siding Replacement",
+      "average_cost": 17950,
+      "resale_value": 17313,
+      "roi_pct": 96.5
+    },
+    {
+      "rank": 7,
+      "project": "Backup Power Generator",
+      "average_cost": 13534,
+      "resale_value": 12902,
+      "roi_pct": 95.3,
+      "note": "New category for 2025; more relevant in storm-prone areas"
+    },
+    {
+      "rank": 8,
+      "project": "Wood Deck Addition",
+      "average_cost": 18263,
+      "resale_value": 17323,
+      "roi_pct": 94.9
+    },
+    {
+      "rank": 9,
+      "project": "Composite Deck Addition",
+      "average_cost": 25096,
+      "resale_value": 22199,
+      "roi_pct": 88.5
+    },
+    {
+      "rank": 10,
+      "project": "Fiberglass Grand Entrance",
+      "average_cost": 11754,
+      "resale_value": 9959,
+      "roi_pct": 84.7
+    }
+  ],
+  "additional_projects": {
+    "minor_kitchen_remodel_midrange": {
+      "cost": 27000,
+      "resale_value": 21500,
+      "roi_pct": 79,
+      "alt_roi": "107.2%"
+    },
+    "major_kitchen_remodel_midrange": {
+      "cost": 80000,
+      "resale_value": 44000,
+      "roi_pct": 49.0,
+      "note": "Returns less than 50% — buyers prefer to customize"
+    },
+    "major_kitchen_remodel_upscale": {
+      "cost": 80000,
+      "resale_value": null,
+      "roi_pct": 34.9
+    },
+    "bathroom_remodel_midrange": {
+      "cost": 25000,
+      "resale_value": 15000,
+      "roi_pct": 79.9
+    },
+    "bathroom_remodel_universal_design": {
+      "cost": null,
+      "resale_value": null,
+      "roi_pct": 64.1,
+      "note": "Accessibility features — growing trend"
+    },
+    "bathroom_remodel_upscale": {
+      "cost": null,
+      "resale_value": null,
+      "roi_pct": 42.2
+    },
+    "window_replacement_vinyl": {
+      "cost": 20000,
+      "resale_value": 13800,
+      "roi_pct": 69
+    },
+    "primary_suite_addition_midrange": {
+      "cost": null,
+      "resale_value": null,
+      "roi_pct": 27.1
+    },
+    "primary_suite_addition_upscale": {
+      "cost": null,
+      "resale_value": null,
+      "roi_pct": 15.9
+    },
+    "basement_remodel": {
+      "cost": null,
+      "resale_value": null,
+      "roi_pct": 63.4,
+      "note": "New category for 2025; national avg ROI 71% per JLC"
+    },
+    "adu_accessory_dwelling_unit": {
+      "note": "New for 2025; returns vary widely by market; CA loosened ADU rules",
+      "roi_pct": "varies"
+    },
+    "rooftop_solar": {
+      "note": "New for 2025; payback depends on local utility rates and incentives",
+      "roi_pct": "mixed"
+    }
+  },
+  "regional_roi_ranges": {
+    "northeast": {"low": 65, "high": 80},
+    "midwest": {"low": 65, "high": 90},
+    "south": {"low": 70, "high": 95},
+    "west": {"low": 55, "high": 85},
+    "pacific": "Tends to show strongest returns",
+    "west_south_central": "Also shows strong returns"
+  },
+  "key_insights": [
+    "8 of top 10 projects are exterior improvements",
+    "Curb appeal projects consistently outperform interior remodels",
+    "Minor kitchen remodels return 2-3x more than major gut renovations",
+    "Luxury/upscale upgrades rarely recoup full cost at resale",
+    "Exterior taste is universal; interior taste is personal — buyers prefer to customize interiors",
+    "Small targeted improvements often beat big renovations for ROI",
+    "Energy efficiency upgrades add both resale value and utility savings",
+    "Universal Design (accessibility) bathroom remodels are a growing trend"
+  ],
+  "roi_note": "IMPORTANT: Different sources cite different ROI figures for the same projects. This is because some calculate ROI as (Resale Value / Cost) while others calculate Cost Recouped as (Resale Value / Cost × 100%). The NewAge source appears to use resale_value/cost ratio (267% = $12,507/$4,672) while DadImprovement uses a different methodology. Both are from the same underlying report.",
+  "source_urls": [
+    "https://www.remodeling.hw.net/cost-vs-value/2025/ (blocked - Cloudflare 403)",
+    "https://www.jlconline.com/cost-vs-value/2025/ (blocked - Cloudflare 403)",
+    "https://customcraftdbr.com/2025-cost-vs-value-report-remodeling/",
+    "https://dadimprovement.com/remodeling-magazine-cost-vs-value/",
+    "https://newagedesignandbuild.com/cost-vs-value-report-2025/"
+  ]
+}

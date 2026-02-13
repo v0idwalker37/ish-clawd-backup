@@ -1,0 +1,59 @@
+Exterior Siding Unit | Material | Labor | Equip. Total Specification
+8” Insulated
+Demolish SE 1.01 1.01 | Includes material and labor to install
+; Install SF 3.87 2.18 6.05 | horizontal, colored insulated
+Demolish and Install SF 3.87 3.19 7.06 clapboard, 8" wide, plain.
+Reinstall SF 2.18 2.18
+Clean SF 40 40
+Minimum Charge Job 269 269
+12” Non-Insulated
+Demolish SF 1.01 1.01 | Includes material and labor to install
+Install SF 4.22 1.88 6.10} horizontal, colored clapboard, plain.
+Demolish and Install SF. 4.22 2.89 7.11
+Reinstall SA 1.88 1.88
+Clean SF. 40 40
+Minimum Charge Job 269 269
+12” Insulated
+Demolish SF 1.01 1.01 | Includes material and labor to install
+, Install SF. 3.83 1.88 571) horizontal, colored insulated
+Demolish and Install SA. 3.83 2.89 672 clapboard, plain. ;
+Reinstall SF. 1.88 1.88
+Clean SF 40 40
+Minimum Charge Job 269 269
+Clapboard 8” to 10”
+Demolish SA 1.01 1.01 | Includes material and labor fo install
+, Install SF 3.53 2.18 5.71 | horizontal, colored clapboard, 8" to
+Demolish and Install SA 3.53 3.19 6.72} yr wide, plain,
+Reinstall SF. 2.18 2.18
+Clean SF 40 AO
+Minimum Charge Job 269 269
+Corner Strips
+Demolish LF. 53 .53 | Includes material and labor to install
+; Install V.LF. 1.35 2.18 3.53 | comers for horizontal lapped
+Demolish and Install V.LE. 1.35 27) 4.06} gluminum siding.
+Reinstall V.LE. 2.18 2.18
+Clean LF. 27 .27
+Minimum Charge Job 269 269
+Vinyl
+Non-Insulated
+Demolish SF. 79 .79| Cost includes material and labor to
+Install SE 3.84 1.95 5.79) install 10” nominsulated solid vinyl
+Demolish and Install SR 3.84 2.74 6.58 siding.
+Reinstall SF 1.56 1.56
+Clean SF. 40 40
+Minimum Charge Job 269 269
+Insulated
+Demolish SF 79 .79| Cost includes material and labor to
+Install SF 5.30 2.69 7.99 | install insulated solid vinyl siding
+Demolish and Install SF. 5.30 3.48 8.78 panels,
+Reinstall SF 2.15 2.15
+Clean S.F. 40 40
+Minimum Charge Job 269 269
+Corner Strips
+Demolish LF. 50 -50 | Cost includes material and labor to
+Install LF 3.21 1.54 4,75 | install corner posts for vinyl siding
+Demolish and Install LF 3.21 2.04 D120 panels.
+Reinstall LF 1,23 1,23
+Clean LF. 27 .27
+Minimum Charge Job 269 269
+134 For customer support on your Contractor's Pricing Gulde: Residential Repair & Remodeling, call 800.874.2291.

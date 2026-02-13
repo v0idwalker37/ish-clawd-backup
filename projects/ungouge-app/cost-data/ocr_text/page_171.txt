@@ -1,0 +1,60 @@
+e
+Rough Mechanical
+Boiler Unit | Material | Labor | Equip. | Total Specification
+Gas-Fired
+125 MBH
+Demolish Ea. 3200 3200 —_| Includes material and labor to install a
+Install Ea. 4625 2550 7175 | gas fired cast iron boiler rated at 125
+Demolish and Install Ea. 4625 5750 10375 MBH
+Reinstall Ea. 2047.43 2047.43
+Clean Ea. 3.27 67.50 70.77
+Minimum Charge Job 320 320
+Gas-Fired
+400 MBH
+Demolish Ea. 3200 3200 Includes material and labor to install a
+Install Ea. 6125 3600 9725 | gas fired cast iron boiler rated at 400
+Demolish and Install Ea. 6125 6800 12925 | BH
+Reinstall Ea. 3599 3599
+Clean Ea. 3.27 67.50 70.77
+Minimum Charge Job 320 320
+Heat Pump Unit | Material | Labor | Equip. | Total Specification
+2 Ton
+Demolish Ea. 320 320 Includes material and labor to install a
+install | Eo. | 2100 | 575 2675 | 2 ton heat pump.
+Demolish and Install Ea. 2100 895 2995
+Reinstall Ea. 460.67 460.67
+Clean Ea, 3.27 50.50 53.77
+Minimum Charge Job 320 320
+3 Ton
+Demolish Ea. 535 535 Includes material and labor to install a
+install | Ea. | 2575 | 960 3535 | 3 ton heat pump.
+Demolish and Install Ea, 2575 1495 4070
+Reinstall Ea. 767.79 767.79
+Clean Ea. 3.27 50.50 53.77
+Minimum Charge Job 320 320
+4Ton
+Demolish Ea. 800 800 Includes material and labor to install a
+Install Ea. 2975 1450 4425 | A ton heat pump.
+Demolish and Install Ea. 2975 2250 5225
+Reinstall Ea. 1151.68 1151.68
+Clean Ea. 3.27 50.50 53.77
+Minimum Charge Job 320 320
+5 Ton
+Demolish Ea. 1275 1275 Includes material and labor to install a
+Install Ea. 3250 2300 5550 | 5 ton heat pump.
+Demolish and Install Ea. 3250 3575 6825
+Reinstall Ea. 1842.69 1842.69
+Clean Ea. 3.27 50.50 53.77
+Minimum Charge Job 320 320
+Thermostat
+Demolish Ea. 17.80 17.80 | Includes material and labor to install
+Install Ea. 195 80 275 an electric thermostat, 2 set back.
+Demolish and Install Ea. 195 97.80 292.80
+Reinstall Ea. 64 64
+Clean Ea. 07 12.65 12.72
+Minimum Charge Job 320 320
+A/C Junction Box
+Install Ea. 695 495 1190 Includes labor and materials to install
+Minimum Charge Job 325 325 | a heat pump circuit including up to 40
+feet of non-metallic cable. 157
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

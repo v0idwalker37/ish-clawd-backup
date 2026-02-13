@@ -1,0 +1,43 @@
+Abbreviations
+A Area
+ASTM American Society for Testing and Materials
+BF. Board feet
+Carp. Carpenter
+CF. Cubic feet
+cw Composite wood joist
+cy. Cubic yard
+Ea. Each
+Equip. Equipment
+Exp. Exposure
+Ext, Exterior
+F Fahrenheit
+Ft. Foot, feet
+Gal. Gallon
+Hr. Hour
+in. Inch, inches
+Inst. Installation
+Int. Interior
+Lb. Pound
+LF. Linear feet
+LVL Laminated veneer lumber
+Mat. Material
+Max. Maximum
+MBF Thousand board feet
+MBM Thousand feet board measure
+MSF Thousand square feet
+Min. Minimum
+O.c. On center
+oOaP Overhead and profit
+ows Open web wood joist
+Oz. Ounce
+Pr. Pair
+Quan. Quantity
+SF. Square foot
+Sq. Square, 100 square feet
+SY. Square yard
+V.L-F. Vertical linear feet
+' Foot, feet
+. Inch, inches
+o Degrees
+
+301

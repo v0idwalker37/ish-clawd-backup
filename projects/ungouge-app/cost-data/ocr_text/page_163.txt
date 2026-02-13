@@ -1,0 +1,59 @@
+e
+Rough Mechanical
+Water Heater Unit | Material | Labor | Equip. | Total Specification
+40 Gallon
+Demolish Ea. 188 188 Includes material and labor to install a
+Install Eq. 785 300 1085 | 40 gallon electric water heater.
+Demolish and Install Ea. 785 488 1273
+Reinstall Ea. 241.12 241.12
+Clean Ea. 1.14 25.50 26.64
+Minimum Charge Job 300 300
+52 Gallon
+Demolish Ea. 188 188 Includes material and labor to install a
+Install Ea. 1025 300 1325 | 52 gallon electric water heater.
+Demolish and Install Ea. 1025 488 1513
+Reinstall Ea. 241.12 241.12
+Clean Ea. 1.14 25.50 26.64
+Minimum Charge Job 300 300
+82 Gallon
+Demolish Ea. 188 188 Includes material and labor to install
+Install Ea. 1600 375 1975 | an 82 gallon electric water heater.
+Demolish and Install Ea, 1600 563 2163
+Reinstall Ea. 301.40 301.40
+Clean Ea. 1.14 25.50 26.64
+Minimum Charge Job 300 300
+Gas-fired
+30 Gallon Gas-fired
+Demolish Ea. 232 232 | Includes material and labor to install a
+Install Ea. 1150 300 1450 | 30 gallon gas water heater.
+Demolish and Install Ea. 1150 532 1682
+Reinstall Ea. 241.12 241.12
+Clean Ea. 1.14 25.50 26.64
+Minimum Charge Job 300 300
+30 Gallon Gas-fired, Flue
+Install Ea. 60 86 146 Includes labor and materials to install
+Minimum Charge Job 300 300 | a flue for a water heater (up to 50
+gallon size).
+40 Gallon Gas-fired
+Demolish Ea. 232 232 Includes material and labor to install a
+Install Ea. 885 315 1200 | 40 gallon gas water heater.
+Demolish and Install Ea. 885 547 1432
+Reinstall Ea. 253.81 253.81
+Clean Ea. 1.14 25.50 26.64
+Minimum Charge Job 300 300
+40 Gallon Gas-fired, Flue
+Install Ea. 60 86 146 | Includes labor and materials to install
+Minimum Charge Job 300 300 | a flue for a water heater (up to 50
+gallon size).
+50 Gallon Gas-fired
+Demolish Ea. 232 232 | Includes material and labor to install a
+Install Ea. 895 335 1230 | 50 gallon gas water heater.
+Demolish and Install Ea. 895 567 1462
+Reinstall Ea. 267.91 267.91
+Clean Ea. 1.14 25.50 26.64
+Minimum Charge Job 300 300
+50 Gallon Gas-fired, Flue
+Install Ea. 60 86 146 | Includes labor and materials to install
+Minimum Charge Job 300 300 | a flue for a water heater (up to 50
+gallon size).
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291. 149

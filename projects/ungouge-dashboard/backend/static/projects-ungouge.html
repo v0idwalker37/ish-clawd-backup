@@ -380,7 +380,10 @@
         <div class="header-right">
             <button class="switch-btn" style="background: #3b82f6; font-weight: 600;" onclick="showCreateTaskModal()">+ Create Task</button>
             <a href="/projects-youtube.html" class="switch-btn">
-                📹 Switch to YouTube Projects
+                📹 YouTube
+            </a>
+            <a href="/projects-social.html" class="switch-btn">
+                📱 Social
             </a>
         </div>
     </div>
@@ -403,6 +406,7 @@
         }
 
         // State
+        let allProjects = [];
         let projects = [];
         let tasks = [];
         
@@ -457,7 +461,7 @@
                 const tasksData = await tasksRes.json();
                 
                 // API returns {projects: [...]} and {tasks: [...]}
-                const allProjects = projectsData.projects || projectsData;
+                allProjects = projectsData.projects || projectsData;
                 const allTasks = tasksData.tasks || tasksData;
                 
                 // Filter to only Ungouge category
@@ -609,9 +613,23 @@
             const projectName = project ? project.name : 'Unknown';
             const isMilestone = task.task_type === 'milestone';
             
-            document.getElementById('modalType').innerHTML = (isMilestone ? '🎯 Milestone' : '📋 Task') + ' • ' + escapeHtml(projectName);
+            document.getElementById('modalType').innerHTML = (isMilestone ? '🎯 Milestone' : '📋 Task');
             document.getElementById('modalTitle').value = task.title || '';
             document.getElementById('modalDescription').value = task.description || '';
+
+            // Populate project dropdown
+            const modalProjectSelect = document.getElementById('modalProject');
+            modalProjectSelect.innerHTML = '<option value="">No Project</option>';
+            allProjects
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .forEach(p => {
+                    const opt = document.createElement('option');
+                    opt.value = p.id;
+                    opt.textContent = p.name;
+                    modalProjectSelect.appendChild(opt);
+                });
+            modalProjectSelect.value = task.project_id || '';
+
             document.getElementById('modalStatus').value = task.status || 'todo';
             document.getElementById('modalPriority').value = task.priority || 'medium';
             document.getElementById('modalDue').value = task.due_date ? task.due_date.split('T')[0] : '';
@@ -642,9 +660,11 @@
         
         async function saveTask() {
             if (!currentEditTaskId) return;
+            const modalProjectVal = document.getElementById('modalProject').value;
             const payload = {
                 title: document.getElementById('modalTitle').value,
                 description: document.getElementById('modalDescription').value,
+                project_id: modalProjectVal ? parseInt(modalProjectVal) : null,
                 status: document.getElementById('modalStatus').value,
                 priority: document.getElementById('modalPriority').value,
                 due_date: document.getElementById('modalDue').value || null,
@@ -672,6 +692,27 @@
                 console.error('Failed to save task:', e);
                 document.getElementById('modalSaveMsg').textContent = '✗ Network error';
                 document.getElementById('modalSaveMsg').style.color = '#ef4444';
+            }
+        }
+
+        async function deleteTask() {
+            if (!currentEditTaskId) return;
+            if (!confirm('Delete this task?')) return;
+            try {
+                const res = await fetch(`/tasks/${currentEditTaskId}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
+                if (res.ok) {
+                    tasks = tasks.filter(t => t.id !== currentEditTaskId);
+                    closeTaskModal();
+                    renderProjects();
+                } else {
+                    alert('Failed to delete task');
+                }
+            } catch (e) {
+                console.error('Failed to delete task:', e);
+                alert('Network error deleting task');
             }
         }
         
@@ -714,6 +755,12 @@
                 <label class="mf-label">Description / Notes</label>
                 <textarea id="modalDescription" class="mf-textarea"></textarea>
             </div>
+            <div class="mf-group">
+                <label class="mf-label">Project</label>
+                <select id="modalProject" class="mf-select">
+                    <option value="">No Project</option>
+                </select>
+            </div>
             <div class="mf-row">
                 <div class="mf-group">
                     <label class="mf-label">Status</label>
@@ -722,7 +769,7 @@
                         <option value="in_progress">In Progress</option>
                         <option value="blocked">Blocked</option>
                         <option value="review">Review</option>
-                        <option value="done">Done</option>
+                        <option value="done">Complete</option>
                     </select>
                 </div>
                 <div class="mf-group">
@@ -750,6 +797,7 @@
             </div>
         </div>
         <div class="modal-footer">
+            <button style="background:#ef4444;" onclick="deleteTask()">🗑 Delete</button>
             <button style="background:#3b82f6;flex:1" onclick="saveTask()">💾 Save Changes</button>
             <button style="background:#334155" onclick="closeTaskModal()">Cancel</button>
             <span id="modalSaveMsg" style="font-size:12px;font-weight:600;min-width:70px;text-align:center"></span>
@@ -784,7 +832,7 @@
                         <option value="in_progress">In Progress</option>
                         <option value="blocked">Blocked</option>
                         <option value="review">Review</option>
-                        <option value="done">Done</option>
+                        <option value="done">Complete</option>
                     </select>
                 </div>
                 <div class="mf-group">

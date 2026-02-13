@@ -1,0 +1,49 @@
+Trade Labor Unit | Material | Labor | Equip. | Total Specification
+Weekly (40 hours)
+Install Week 2025 2025 | Weekly labor rate for a common
+Minimum Charge Job 202 202 | laborer.
+Temporary Utilities Unit | Material | Ltobor | Equip. | — Total Specification
+Power Pole
+Job Site Electricity
+Install | Month 78 78 — | Includes average cost of electricity per
+Minimum Charge Job 325 325 month.
+Water Service
+Job Site Water
+Install =| Month 144 144 | Includes average costs for water for
+Minimum Charge | Month 144 144 | one month.
+Telephone
+Install | Month 113 113 | Includes average cost for local and
+Minimum Charge | Month 13 113 | long distance telephone service for
+Chemical Toilet one month.
+Install | Month 400 400 | Monthly rental of portable toilet.
+Minimum Charge Day 20 20
+Office Trailer
+Place and Remove
+Install Job A495 495 Includes cost to a contractor to deliver,
+Minimum Charge Job 255 255 | place and level an office trailer and
+Storage Container remove at end of job.
+Place and Remove
+Install Job 284 284 | Includes cost to a contractor to deliver
+Minimum Charge | Job 255 255 | and place a storage container and
+Fencing remove at end of job.
+Install LF. 4.80 4,80 | Includes material costs for temporary
+Minimum Charge Job 202 202 fencing.
+Railing
+Install LF 22.50 13.85 1.09 37.44 | Includes material and labor to install
+Minimum Charge Job 202 202 | primed steel pipe.
+Equipment Rental Unit | Material | Labor | Equip. | Total Specification
+Flatbed Truck
+Daily Rental
+Install Day 470 470 | Daily rental of flatbed truck.
+Minimum Charge Job 470 470
+Weekly Rental
+Install Week 2350 2350 | Weekly rental of flatbed truck.
+Minimum Charge Job 470 470
+Monthly Rental
+Install | Month 9425 9425 | Monthly rental of flatbed truck.
+Minimum Charge Job 470 470
+Dump Truck
+Daily Rental
+Install Day 585 585 | Daily rental of dump truck.
+Minimum Charge Day 585 585
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291. 3

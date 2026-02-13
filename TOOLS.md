@@ -16,6 +16,8 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 
 **Sonnet 4.5 only for:** Routine chat, quick questions, simple file reads, heartbeat checks
 
+**Extended thinking (ultrathink):** Be PROACTIVE. If a task warrants it, switch without asking. If Jason doesn't mention it but it's clearly needed, just do it. Ask/flag only if unsure. (Jason's explicit instruction, Feb 12)
+
 **Always announce the switch:** "Switching to Opus 4.6 for this — [reason]" so Jason learns the pattern.
 
 ## Apple Calendar

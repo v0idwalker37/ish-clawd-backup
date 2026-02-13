@@ -4,7 +4,7 @@ pydantic==2.5.3
 google-auth==2.27.0
 requests==2.31.0
 httpx
-slowapi
+# rate_limiter.py is a zero-dependency custom implementation (no slowapi needed)
 stripe>=7.0.0
 pymysql>=1.1.0
 cryptography>=41.0.0

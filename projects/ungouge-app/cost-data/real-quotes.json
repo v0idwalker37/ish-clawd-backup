@@ -1,0 +1,2785 @@
+[
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "city": "Tampa",
+      "state": "FL"
+    },
+    "cost": 19200,
+    "size": "2000 sqft, 2-story house",
+    "materials": "GAF shingles",
+    "year": 2025,
+    "source": "reddit.com/r/Roofing/comments/1i162g3/",
+    "notes": "Also quoted $27,500 for engineered shingles, $54,000 for 24ga metal"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "city": "Tampa",
+      "state": "FL"
+    },
+    "cost": 27500,
+    "size": "2000 sqft, 2-story house",
+    "materials": "engineered shingles",
+    "year": 2025,
+    "source": "reddit.com/r/Roofing/comments/1i162g3/",
+    "notes": "Same house, different material option"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "city": "Tampa",
+      "state": "FL"
+    },
+    "cost": 54000,
+    "size": "2000 sqft, 2-story house",
+    "materials": "24ga metal",
+    "year": 2025,
+    "source": "reddit.com/r/Roofing/comments/1i162g3/",
+    "notes": "Same house, metal option"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "state": "WA"
+    },
+    "cost": 10240,
+    "size": "2000 sqft + 2-car garage, 2-story",
+    "materials": "shingles",
+    "year": 2025,
+    "source": "reddit.com/r/Roofing/comments/1i162g3/ (comments)",
+    "notes": "Lowest of 3 quotes: $10,240, $12,130, $14,450"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "state": "WA"
+    },
+    "cost": 12130,
+    "size": "2000 sqft + 2-car garage, 2-story",
+    "materials": "shingles",
+    "year": 2025,
+    "source": "reddit.com/r/Roofing/comments/1i162g3/ (comments)",
+    "notes": "Middle of 3 quotes"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "state": "WA"
+    },
+    "cost": 14450,
+    "size": "2000 sqft + 2-car garage, 2-story",
+    "materials": "shingles",
+    "year": 2025,
+    "source": "reddit.com/r/Roofing/comments/1i162g3/ (comments)",
+    "notes": "Highest of 3 quotes"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "city": "Georgetown",
+      "state": "ON"
+    },
+    "cost": 8000,
+    "size": "standard residential",
+    "materials": "Atlas Pinnacle Pristine architectural shingles",
+    "year": 2023,
+    "source": "reddit.com/r/Roofing/comments/1122m0r/",
+    "notes": "Ontario, Canada. 3 quotes from reputable companies"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "city": "Long Beach",
+      "state": "CA"
+    },
+    "cost": 16000,
+    "size": "2000 sqft",
+    "materials": "shingles",
+    "year": 2021,
+    "source": "reddit.com/r/longbeach/comments/15a8lp7/",
+    "notes": "No problems reported"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "state": "WI"
+    },
+    "cost": 20000,
+    "size": "~20 squares",
+    "materials": "lifetime shingles, full new sheeting",
+    "year": 2020,
+    "source": "reddit.com/r/RealEstate/comments/18t4x3b/",
+    "notes": "Removed 5 asphalt layers + cedar chip roof (6 total layers)"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "state": "WI"
+    },
+    "cost": 12000,
+    "size": "smaller roof",
+    "materials": "shingles",
+    "year": 2020,
+    "source": "reddit.com/r/RealEstate/comments/18t4x3b/",
+    "notes": "3 layers removed, 10 sq, new sheeting"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "city": "Nashville",
+      "state": "TN"
+    },
+    "cost": 7000,
+    "size": "smaller property",
+    "materials": "shingles",
+    "year": 2024,
+    "source": "reddit.com/r/nashville/comments/1qdhe49/",
+    "notes": "One of two properties done in 2024"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "city": "Nashville",
+      "state": "TN"
+    },
+    "cost": 18000,
+    "size": "larger property",
+    "materials": "shingles",
+    "year": 2024,
+    "source": "reddit.com/r/nashville/comments/1qdhe49/",
+    "notes": "One of two properties done in 2024"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "city": "Westchester",
+      "state": "NY"
+    },
+    "cost": 21000,
+    "size": "residential",
+    "materials": "shingles, skylights, gutters",
+    "year": 2023,
+    "source": "reddit.com/r/Westchester/comments/10t1i70/",
+    "notes": "Used Franzoso Contracting. Included windows, skylights, gutters"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 9200,
+    "size": "1500 sqft house",
+    "materials": "architectural shingles, some rotted wood replaced",
+    "year": 2021,
+    "source": "reddit.com/r/FirstTimeHomeBuyer/comments/u7406a/",
+    "notes": "November installation"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "city": "Riverside",
+      "state": "CA"
+    },
+    "cost": 20000,
+    "size": "3200 sqft",
+    "materials": "shingles",
+    "year": 2024,
+    "source": "reddit.com/r/Roofing/comments/1e1t3g3/",
+    "notes": "Tear off two roofs, vents replaced, fascia, plywood replaced"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "state": "PNW"
+    },
+    "cost": 33000,
+    "size": "~1900 sqft roof area",
+    "materials": "Owens Corning Platinum 50yr, new decking, chimney rebuild, gutters",
+    "year": 2024,
+    "source": "reddit.com/r/RealEstate/comments/18t4x3b/",
+    "notes": "Best of quotes. 75% plywood replacement needed. Full rebuild."
+  },
+  {
+    "project_type": "deck",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 35000,
+    "size": "16x20 feet (320 sqft)",
+    "materials": "cedar",
+    "year": 2024,
+    "source": "reddit.com/r/Decks/comments/1b1tp5m/",
+    "notes": "3 quotes all around $35k. Materials only ~$4k"
+  },
+  {
+    "project_type": "deck",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 42000,
+    "size": "16x24 feet (384 sqft)",
+    "materials": "Trex board, vinyl railing, covered with gabled roof",
+    "year": 2024,
+    "source": "reddit.com/r/Decks/comments/1einpep/",
+    "notes": "Covered deck with gabled roof"
+  },
+  {
+    "project_type": "deck",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 26000,
+    "size": "20x14 feet (280 sqft)",
+    "materials": "composite",
+    "year": 2024,
+    "source": "reddit.com/r/Decks/comments/1jnne05/",
+    "notes": "Homeowner built it themselves for $8,500"
+  },
+  {
+    "project_type": "deck",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 50000,
+    "size": "12x35 feet (420 sqft)",
+    "materials": "composite (Trex), railing, one set of stairs",
+    "year": 2023,
+    "source": "reddit.com/r/homeowners/comments/14pzl3h/",
+    "notes": "Raised up 4 feet. Multiple contractors confirmed price range"
+  },
+  {
+    "project_type": "kitchen_remodel",
+    "location": {
+      "city": "Marin County",
+      "state": "CA"
+    },
+    "cost": 80000,
+    "size": "full kitchen, 1948 home",
+    "materials": "full remodel with rewire and replumbing",
+    "year": 2024,
+    "source": "reddit.com/r/Marin/comments/1flugyu/",
+    "notes": "Budget recommendation for full remodel on 1948 kitchen"
+  },
+  {
+    "project_type": "kitchen_remodel",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 72000,
+    "size": "massive kitchen",
+    "materials": "removed load-bearing wall, bump out, full demo, plumbing, electrical, insulation",
+    "year": 2024,
+    "source": "reddit.com/r/Renovations/comments/1ap0chq/",
+    "notes": "Removed load-bearing 14ft tall wall, did most work DIY"
+  },
+  {
+    "project_type": "kitchen_remodel",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 75000,
+    "size": "small condo kitchen",
+    "materials": "quartzite countertops ($9,600 for 52 sqft), labor ~$30k",
+    "year": 2024,
+    "source": "reddit.com/r/kitchenremodel/comments/1btb6ei/",
+    "notes": "HCOL area, purchasing all materials separately"
+  },
+  {
+    "project_type": "kitchen_remodel",
+    "location": {
+      "city": "Sterling",
+      "state": "VA"
+    },
+    "cost": 15000,
+    "size": "townhome kitchen",
+    "materials": "includes wall demolition, electrical upgrades",
+    "year": 2024,
+    "source": "reddit.com/r/nova/comments/1h0ita7/",
+    "notes": "Low end of 5 quotes ranging $15k-$70k"
+  },
+  {
+    "project_type": "kitchen_remodel",
+    "location": {
+      "city": "Sterling",
+      "state": "VA"
+    },
+    "cost": 70000,
+    "size": "townhome kitchen",
+    "materials": "includes wall demolition, electrical upgrades",
+    "year": 2024,
+    "source": "reddit.com/r/nova/comments/1h0ita7/",
+    "notes": "High end of 5 quotes ranging $15k-$70k"
+  },
+  {
+    "project_type": "kitchen_remodel",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 200000,
+    "size": "nearly whole house remodel including kitchen",
+    "materials": "high-end finishes",
+    "year": 2025,
+    "source": "reddit.com/r/HENRYfinance/comments/1iydf1y/",
+    "notes": "Whole house remodel, $500k+ household income"
+  },
+  {
+    "project_type": "kitchen_remodel",
+    "location": {
+      "city": "Austin",
+      "state": "TX"
+    },
+    "cost": 18000,
+    "size": "basic kitchen remodel",
+    "materials": "standard",
+    "year": 2025,
+    "source": "reddit.com/r/Austin/comments/1jolcr0/",
+    "notes": "Low end pricing in Austin area"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 15000,
+    "size": "standard bathroom, down to studs",
+    "materials": "drywall, hot mop, tile, plumbing, electrical",
+    "year": 2023,
+    "source": "reddit.com/r/Remodel/comments/1l3rbme/",
+    "notes": "Served as own GC. Two bathrooms done 2023-2024 at $15k each"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 40000,
+    "size": "5x8 bathroom",
+    "materials": "high-end finishes, kerdi board",
+    "year": 2025,
+    "source": "reddit.com/r/Remodel/comments/1jgvlfa/",
+    "notes": "Quoted $40k for high-end remodel"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "city": "Cleveland",
+      "state": "OH"
+    },
+    "cost": 30000,
+    "size": "100 sqft bathroom",
+    "materials": "full renovation, mid-range finishes",
+    "year": 2024,
+    "source": "reddit.com/r/Remodel/comments/1ddkf4h/",
+    "notes": "Low end of range $30k-$40k"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "city": "Cleveland",
+      "state": "OH"
+    },
+    "cost": 40000,
+    "size": "100 sqft bathroom",
+    "materials": "full renovation, mid-range finishes",
+    "year": 2024,
+    "source": "reddit.com/r/Remodel/comments/1ddkf4h/",
+    "notes": "High end of range $30k-$40k"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 12500,
+    "size": "smaller bathroom",
+    "materials": "standard finishes, paint",
+    "year": 2025,
+    "source": "reddit.com/r/Remodel/comments/1htoqs7/",
+    "notes": "Smaller of 3 bathrooms remodeled"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 30000,
+    "size": "master bathroom (bedroom-sized)",
+    "materials": "standard finishes, paint",
+    "year": 2025,
+    "source": "reddit.com/r/Remodel/comments/1htoqs7/",
+    "notes": "Master bath. Other quotes: $50k and $55k for all 3 baths"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 3000,
+    "size": "basement bathroom",
+    "materials": "everything except shower",
+    "year": 2024,
+    "source": "reddit.com/r/Home/comments/1iben6v/",
+    "notes": "Budget remodel, kept existing shower"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "city": "Boulder",
+      "state": "CO"
+    },
+    "cost": 25000,
+    "size": "full bathroom",
+    "materials": "standard finishes",
+    "year": 2024,
+    "source": "reddit.com/r/boulder/comments/1dpr4lo/",
+    "notes": "In Longmont area, $12k just for stand-up shower replacement"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "city": "Bolingbrook",
+      "state": "IL"
+    },
+    "cost": 8500,
+    "size": "full bathroom",
+    "materials": "standard",
+    "year": 2024,
+    "source": "reddit.com/r/Remodel/comments/1d9rwwu/",
+    "notes": "GC charged $8,500 labor only. Materials additional."
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "city": "Fairfax",
+      "state": "VA"
+    },
+    "cost": 15000,
+    "size": "5x8 townhome bathroom",
+    "materials": "standard",
+    "year": 2025,
+    "source": "reddit.com/r/nova/comments/1jtvgpc/",
+    "notes": "Baseline quote $15k-$17k each for small townhome bathrooms"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "city": "Ann Arbor",
+      "state": "MI"
+    },
+    "cost": 35000,
+    "size": "full bathroom",
+    "materials": "new vanity, medicine cabinet, tub, tile, toilet, bidet outlet",
+    "year": 2023,
+    "source": "reddit.com/r/AnnArbor/comments/1i0xxh2/",
+    "notes": "Complete full bathroom remodel"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "city": "Dunn Loring",
+      "state": "VA"
+    },
+    "cost": 19500,
+    "size": "standard bathroom",
+    "materials": "standard finishes",
+    "year": 2024,
+    "source": "reddit.com/r/nova/comments/1bjdzgg/",
+    "notes": "Low range: $19.5-$24k. Upper quotes $30k. Northern Virginia."
+  },
+  {
+    "project_type": "hvac_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 15900,
+    "size": "2.5 ton",
+    "materials": "Lennox heat pump and AC unit",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1d049fn/",
+    "notes": "Originally quoted $19.5k, discounted to $15.9k"
+  },
+  {
+    "project_type": "hvac_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 5500,
+    "size": "2.5 ton, 14 SEER",
+    "materials": "high efficiency system",
+    "year": 2022,
+    "source": "reddit.com/r/homeowners/comments/vs68xq/",
+    "notes": "Cash price. $6,500 on credit card."
+  },
+  {
+    "project_type": "hvac_replacement",
+    "location": {
+      "city": "Lowell",
+      "state": "MA"
+    },
+    "cost": 17000,
+    "size": "furnace and AC",
+    "materials": "standard",
+    "year": 2023,
+    "source": "reddit.com/r/hvacadvice/comments/11hepag/",
+    "notes": "Quote for full furnace and AC replacement"
+  },
+  {
+    "project_type": "hvac_replacement",
+    "location": {
+      "state": "MN"
+    },
+    "cost": 3900,
+    "size": "80k BTU furnace, 96% efficient",
+    "materials": "American Standard",
+    "year": 2018,
+    "source": "reddit.com/r/homeowners/comments/8a2y4j/",
+    "notes": "Furnace only. AC was additional $2,700 (2.5 ton, 15 SEER)"
+  },
+  {
+    "project_type": "hvac_replacement",
+    "location": {
+      "city": "Minneapolis",
+      "state": "MN"
+    },
+    "cost": 8000,
+    "size": "80% efficient furnace + central air",
+    "materials": "standard",
+    "year": 2021,
+    "source": "reddit.com/r/TwinCities/comments/1bin9v8/",
+    "notes": "Through Airics"
+  },
+  {
+    "project_type": "hvac_replacement",
+    "location": {
+      "city": "Minneapolis",
+      "state": "MN"
+    },
+    "cost": 13000,
+    "size": "furnace + AC",
+    "materials": "standard",
+    "year": 2024,
+    "source": "reddit.com/r/TwinCities/comments/1bin9v8/",
+    "notes": "Through Centerpoint Energy"
+  },
+  {
+    "project_type": "hvac_replacement",
+    "location": {
+      "state": "VA"
+    },
+    "cost": 7900,
+    "size": "2000 sqft house",
+    "materials": "Lennox 14 SEER + furnace",
+    "year": 2022,
+    "source": "reddit.com/r/nova/comments/xtnytq/",
+    "notes": "Installed 2 weeks before posting"
+  },
+  {
+    "project_type": "hvac_replacement",
+    "location": {
+      "state": "CO"
+    },
+    "cost": 8000,
+    "size": "1800 sqft, 2-story + basement",
+    "materials": "14 SEER AC + new furnace",
+    "year": 2021,
+    "source": "reddit.com/r/homeowners/comments/1397q0y/",
+    "notes": "Colorado installation"
+  },
+  {
+    "project_type": "hvac_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 14600,
+    "size": "standard residential",
+    "materials": "furnace + AC",
+    "year": 2025,
+    "source": "reddit.com/r/hvacadvice/comments/1k9fh68/",
+    "notes": "Quote from HVAC industry veteran, installed by co-worker"
+  },
+  {
+    "project_type": "hvac_replacement",
+    "location": {
+      "city": "Kansas City",
+      "state": "MO"
+    },
+    "cost": 13000,
+    "size": "1400 sqft house",
+    "materials": "AC and furnace",
+    "year": 2023,
+    "source": "reddit.com/r/kansascity/comments/16cugdi/",
+    "notes": "Quote for both AC and furnace"
+  },
+  {
+    "project_type": "hvac_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 20000,
+    "size": "2400 sqft house",
+    "materials": "oil-fired furnace, central air, all new ductwork",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1n0mt5p/",
+    "notes": "Entirely new system with new ductwork"
+  },
+  {
+    "project_type": "fence",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 6400,
+    "size": "64 linear feet",
+    "materials": "wood/vinyl",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1czox8t/",
+    "notes": "~$100/ft quote. DIY was $15/ft ($960)"
+  },
+  {
+    "project_type": "fence",
+    "location": {
+      "state": "MN"
+    },
+    "cost": 5100,
+    "size": "210 linear feet, 4ft tall",
+    "materials": "vinyl with 2 regular gates and 1 double gate",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1j2ko5t/",
+    "notes": "Suburban Minnesota, October 2024"
+  },
+  {
+    "project_type": "fence",
+    "location": {
+      "state": "CT"
+    },
+    "cost": 8800,
+    "size": "150 linear feet, 6ft tall",
+    "materials": "vinyl with lattice topper, one gate",
+    "year": 2025,
+    "source": "reddit.com/r/homeowners/comments/1iz7c92/",
+    "notes": "Best of 3 quotes"
+  },
+  {
+    "project_type": "fence",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 14850,
+    "size": "~180 linear feet",
+    "materials": "vinyl, includes gate and demo/removal of old fence",
+    "year": 2024,
+    "source": "reddit.com/r/HomeImprovement/comments/1ah3fck/",
+    "notes": "Seemed high to homeowner"
+  },
+  {
+    "project_type": "fence",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 12500,
+    "size": "600 linear feet, 6ft tall",
+    "materials": "wood privacy fence, dog-eared pickets, 2 drive-through gates + walk gate",
+    "year": 2023,
+    "source": "reddit.com/r/homeowners/comments/14v097e/",
+    "notes": "~$20/ft installed. $7,500 down payment for materials"
+  },
+  {
+    "project_type": "fence",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 2100,
+    "size": "~75 linear feet, 6ft tall",
+    "materials": "wood privacy fence",
+    "year": 2024,
+    "source": "reddit.com/r/FenceBuilding/comments/1b1ssic/",
+    "notes": "Rear section only"
+  },
+  {
+    "project_type": "fence",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 3400,
+    "size": "48 linear feet",
+    "materials": "white vinyl, 2 gates",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/196wx9l/",
+    "notes": "Includes removal of old fence"
+  },
+  {
+    "project_type": "window_replacement",
+    "location": {
+      "city": "DFW",
+      "state": "TX"
+    },
+    "cost": 1050,
+    "size": "per window",
+    "materials": "high-end windows, $800 window + $250 labor",
+    "year": 2024,
+    "source": "reddit.com/r/RealEstate/comments/1catga2/",
+    "notes": "Per window installed. Could go cheaper on windows"
+  },
+  {
+    "project_type": "window_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 400,
+    "size": "per window",
+    "materials": "tilt-in double glass vinyl, DIY install",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1h95my8/",
+    "notes": "$200-$400/window, self-installed on ranch house"
+  },
+  {
+    "project_type": "window_replacement",
+    "location": {
+      "city": "Long Island",
+      "state": "NY"
+    },
+    "cost": 35000,
+    "size": "2 bay windows + 2 sliding doors",
+    "materials": "Pella, top of the line",
+    "year": 2024,
+    "source": "reddit.com/r/longisland/comments/1eouy9d/",
+    "notes": "Pella brand, premium quality"
+  },
+  {
+    "project_type": "window_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 550,
+    "size": "30x52 inches per window",
+    "materials": "Harvey Industries through builder",
+    "year": 2022,
+    "source": "reddit.com/r/HomeImprovement/comments/1bawdrn/",
+    "notes": "Per window cost"
+  },
+  {
+    "project_type": "window_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 17000,
+    "size": "20 windows, 2000 sqft house",
+    "materials": "basic replacement windows",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1ds5vux/",
+    "notes": "Budget ~$800-$900/window. Nicer windows for 50 windows was $60k"
+  },
+  {
+    "project_type": "window_replacement",
+    "location": {
+      "city": "Cary",
+      "state": "NC"
+    },
+    "cost": 45000,
+    "size": "20 single hung vinyl windows",
+    "materials": "vinyl windows",
+    "year": 2025,
+    "source": "reddit.com/r/cary/comments/1o98aa5/",
+    "notes": "$2,250/window. Homeowner expected half that"
+  },
+  {
+    "project_type": "window_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 4400,
+    "size": "4 windows (2 pairs of 35x71 inch)",
+    "materials": "standard replacement",
+    "year": 2024,
+    "source": "reddit.com/r/HomeImprovement/comments/1mq0wzn/",
+    "notes": "End of 2024 quote, windows + labor"
+  },
+  {
+    "project_type": "water_heater_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 2500,
+    "size": "50 gallon gas",
+    "materials": "gas water heater",
+    "year": 2023,
+    "source": "reddit.com/r/homeowners/comments/16f1d4v/",
+    "notes": "Same day replacement"
+  },
+  {
+    "project_type": "water_heater_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 2000,
+    "size": "standard tank",
+    "materials": "tank water heater, labor only",
+    "year": 2023,
+    "source": "reddit.com/r/homeowners/comments/170oe16/",
+    "notes": "Labor quote for installation only"
+  },
+  {
+    "project_type": "water_heater_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 10000,
+    "size": "tankless + whole house water filter",
+    "materials": "tankless water heater, whole house filter",
+    "year": 2025,
+    "source": "reddit.com/r/HomeMaintenance/comments/1r1dqb2/",
+    "notes": "Tankless plus filtration system"
+  },
+  {
+    "project_type": "water_heater_replacement",
+    "location": {
+      "city": "Los Angeles",
+      "state": "CA"
+    },
+    "cost": 1000,
+    "size": "standard tank",
+    "materials": "tank water heater, labor only",
+    "year": 2025,
+    "source": "reddit.com/r/Plumbing/comments/1j9mp3r/",
+    "notes": "Labor only quote. Homeowner felt $400-500 would be fair"
+  },
+  {
+    "project_type": "water_heater_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 3000,
+    "size": "standard tank",
+    "materials": "water heater + installation",
+    "year": 2026,
+    "source": "reddit.com/r/homeowners/comments/1q6pfu9/",
+    "notes": "Reputable company, not just single plumber"
+  },
+  {
+    "project_type": "sewer_line_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 3500,
+    "size": "60 feet run with new cleanout",
+    "materials": "sewer pipe",
+    "year": 2024,
+    "source": "reddit.com/r/Home/comments/1f43sns/",
+    "notes": "Cheaper quote vs $5,200 from another company"
+  },
+  {
+    "project_type": "interior_painting",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 3800,
+    "size": "1100 sqft house",
+    "materials": "paint",
+    "year": 2019,
+    "source": "reddit.com/r/homeowners/comments/idb3q6/",
+    "notes": "Pro quote. DIY cost was $400"
+  },
+  {
+    "project_type": "exterior_painting",
+    "location": {
+      "city": "New Orleans",
+      "state": "LA"
+    },
+    "cost": 12000,
+    "size": "2000 sqft, 2-story",
+    "materials": "paint",
+    "year": 2023,
+    "source": "reddit.com/r/NewOrleans/comments/183x11s/",
+    "notes": "Low end of quotes. Range $12-15k"
+  },
+  {
+    "project_type": "interior_painting",
+    "location": {
+      "city": "Pittsburgh",
+      "state": "PA"
+    },
+    "cost": 10000,
+    "size": "2100 sqft house",
+    "materials": "paint",
+    "year": 2022,
+    "source": "reddit.com/r/pittsburgh/comments/yyis46/",
+    "notes": "First estimate seemed high to homeowner"
+  },
+  {
+    "project_type": "interior_painting",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 7000,
+    "size": "2300 sqft, walls/ceilings/doors/baseboards/trim",
+    "materials": "Sherwin Williams paint",
+    "year": 2022,
+    "source": "reddit.com/r/homeowners/comments/10375t7/",
+    "notes": "Everything included"
+  },
+  {
+    "project_type": "exterior_painting",
+    "location": {
+      "state": "NE"
+    },
+    "cost": 10500,
+    "size": "3500 sqft house",
+    "materials": "paint, ~$3/sqft",
+    "year": 2024,
+    "source": "reddit.com/r/paint/comments/1csv6d8/",
+    "notes": "$3/sqft in Northeast"
+  },
+  {
+    "project_type": "exterior_painting",
+    "location": {
+      "city": "Portland",
+      "state": "OR"
+    },
+    "cost": 10000,
+    "size": "1550 sqft, 2-story",
+    "materials": "paint",
+    "year": 2025,
+    "source": "reddit.com/r/askportland/comments/1hz3znr/",
+    "notes": "Lowest of quotes. Range $10k-$17k"
+  },
+  {
+    "project_type": "exterior_painting",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 17000,
+    "size": "whole exterior including trims, soffits, gutters",
+    "materials": "paint",
+    "year": 2025,
+    "source": "reddit.com/r/homeowners/comments/1jaaqp4/",
+    "notes": "Range $17k-$22k for full exterior"
+  },
+  {
+    "project_type": "exterior_painting",
+    "location": {
+      "city": "Los Angeles",
+      "state": "CA"
+    },
+    "cost": 7000,
+    "size": "800 sqft, 2 bed/1 bath",
+    "materials": "paint",
+    "year": 2024,
+    "source": "reddit.com/r/LosAngeles/comments/1o1pjr8/",
+    "notes": "Phenomenal job reported"
+  },
+  {
+    "project_type": "exterior_painting",
+    "location": {
+      "city": "Phoenix",
+      "state": "AZ"
+    },
+    "cost": 1800,
+    "size": "1200 sqft, one story",
+    "materials": "all paint and materials included",
+    "year": 2021,
+    "source": "reddit.com/r/homeowners/comments/qxhqzb/",
+    "notes": "Average of 3 quotes. Low cost area"
+  },
+  {
+    "project_type": "interior_painting",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 8500,
+    "size": "2300 sqft house",
+    "materials": "paint",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1e8ub3d/",
+    "notes": "Midpoint estimate $7-10k for whole home interior"
+  },
+  {
+    "project_type": "flooring_lvp",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 12800,
+    "size": "whole house",
+    "materials": "Coretec Pro Plus LVP",
+    "year": 2023,
+    "source": "reddit.com/r/Flooring/comments/13rxbyq/",
+    "notes": "Included demo, furniture moving, 2 toilet pulls, new trim, leveling"
+  },
+  {
+    "project_type": "flooring_lvp",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 6800,
+    "size": "residential",
+    "materials": "luxury vinyl plank",
+    "year": 2025,
+    "source": "reddit.com/r/Flooring/comments/1i54f1x/",
+    "notes": "LVP install at ~$2/sqft for product"
+  },
+  {
+    "project_type": "flooring_lvp",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 12000,
+    "size": "large area, $12k",
+    "materials": "LVP",
+    "year": 2024,
+    "source": "reddit.com/r/Flooring/comments/1ahxtcf/",
+    "notes": "$12k total job"
+  },
+  {
+    "project_type": "flooring_tile",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 8550,
+    "size": "400 sqft kitchen + 6 steps",
+    "materials": "12x24 tile",
+    "year": 2023,
+    "source": "reddit.com/r/Flooring/comments/16g1c4o/",
+    "notes": "Tile not included in price, labor only"
+  },
+  {
+    "project_type": "flooring_hardwood",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 5993,
+    "size": "440 sqft",
+    "materials": "hardwood at ~$8/sqft + $2,473 labor",
+    "year": 2024,
+    "source": "reddit.com/r/Flooring/comments/1bjpzxr/",
+    "notes": "Not official quote yet but estimated total"
+  },
+  {
+    "project_type": "siding_vinyl",
+    "location": {
+      "state": "NJ"
+    },
+    "cost": 130000,
+    "size": "2200 sqft home",
+    "materials": "vinyl siding, removing cedar shake",
+    "year": 2025,
+    "source": "reddit.com/r/HomeMaintenance/comments/1mfnxr2/",
+    "notes": "Seemed extreme, expected $50-60k. Northern NJ"
+  },
+  {
+    "project_type": "siding_hardie",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 52000,
+    "size": "3100 sqft home",
+    "materials": "Hardie board",
+    "year": 2023,
+    "source": "reddit.com/r/homeowners/comments/1107b8m/",
+    "notes": "Quote for hardie board siding"
+  },
+  {
+    "project_type": "siding_vinyl",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 17000,
+    "size": "900 sqft house",
+    "materials": "Certainteed vinyl (best quality)",
+    "year": 2023,
+    "source": "reddit.com/r/homeowners/comments/1107b8m/",
+    "notes": "House only. Garage additional $9,000"
+  },
+  {
+    "project_type": "siding_hardie",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 30000,
+    "size": "1000 sqft of siding area",
+    "materials": "Hardie or LP siding",
+    "year": 2024,
+    "source": "reddit.com/r/HomeImprovement/comments/19866b5/",
+    "notes": "Kept getting quoted $30/sqft vs online estimate of $10/sqft"
+  },
+  {
+    "project_type": "siding_vinyl",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 38000,
+    "size": "full house, reside + 18 window wraps",
+    "materials": "vinyl siding",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1c2ol9p/",
+    "notes": "October 2024 quote. No soffit or gutters"
+  },
+  {
+    "project_type": "siding_vinyl",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 48000,
+    "size": "2600 sqft ranch",
+    "materials": "vinyl siding",
+    "year": 2022,
+    "source": "reddit.com/r/HomeImprovement/comments/xqig20/",
+    "notes": "Homeowner thought insanely high"
+  },
+  {
+    "project_type": "siding_vinyl",
+    "location": {
+      "state": "midwest"
+    },
+    "cost": 32000,
+    "size": "2500 sqft tri-level + 3-car garage",
+    "materials": "vinyl siding",
+    "year": 2025,
+    "source": "reddit.com/r/HomeImprovement/comments/1p6p2dm/",
+    "notes": "$45k for Hardie board. Decided to wait."
+  },
+  {
+    "project_type": "siding_hardie",
+    "location": {
+      "city": "Charlotte",
+      "state": "NC"
+    },
+    "cost": 28000,
+    "size": "4200 sqft siding area",
+    "materials": "Hardie Color Plus",
+    "year": 2025,
+    "source": "reddit.com/r/Charlotte/comments/1qyn0h4/",
+    "notes": "Another quote was $40k for 3401 sqft"
+  },
+  {
+    "project_type": "siding_hardie",
+    "location": {
+      "city": "Charlotte",
+      "state": "NC"
+    },
+    "cost": 40000,
+    "size": "3401 sqft siding area",
+    "materials": "Hardie siding",
+    "year": 2026,
+    "source": "reddit.com/r/Charlotte/comments/1qyn0h4/",
+    "notes": "Quote from last week"
+  },
+  {
+    "project_type": "electrical_panel_upgrade",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 15000,
+    "size": "200 amp service upgrade",
+    "materials": "electrical panel + shutoff",
+    "year": 2024,
+    "source": "reddit.com/r/AskElectricians/comments/1l7bysh/",
+    "notes": "All-in including shutoff"
+  },
+  {
+    "project_type": "electrical_panel_upgrade",
+    "location": {
+      "state": "MO"
+    },
+    "cost": 3300,
+    "size": "200 amp panel",
+    "materials": "standard panel",
+    "year": 2022,
+    "source": "reddit.com/r/HomeImprovement/comments/zw8yt4/",
+    "notes": "Midwest. Highest of multiple quotes. Rest were \u00b110%"
+  },
+  {
+    "project_type": "electrical_panel_upgrade",
+    "location": {
+      "city": "Long Island",
+      "state": "NY"
+    },
+    "cost": 6000,
+    "size": "200 amp upgrade",
+    "materials": "electrical panel",
+    "year": 2025,
+    "source": "reddit.com/r/longisland/comments/1kze0nq/",
+    "notes": "Seemed excessive to commenters"
+  },
+  {
+    "project_type": "electrical_panel_upgrade",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 13300,
+    "size": "150A to 200A service upgrade",
+    "materials": "electrical panel, up to 2024 code",
+    "year": 2024,
+    "source": "reddit.com/r/AskElectricians/comments/1bqwyd7/",
+    "notes": "Large local company quote"
+  },
+  {
+    "project_type": "electrical_panel_upgrade",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 5000,
+    "size": "200 amp service + panel",
+    "materials": "electrical panel",
+    "year": 2024,
+    "source": "reddit.com/r/electrical/comments/192de0e/",
+    "notes": "$5k seemed about right to most"
+  },
+  {
+    "project_type": "electrical_panel_upgrade",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 3200,
+    "size": "100A to 200A upgrade",
+    "materials": "electrical panel",
+    "year": 2022,
+    "source": "reddit.com/r/homeowners/comments/u8rk2m/",
+    "notes": "From trusted electrician"
+  },
+  {
+    "project_type": "electrical_panel_upgrade",
+    "location": {
+      "city": "Long Island",
+      "state": "NY"
+    },
+    "cost": 5000,
+    "size": "200 amp upgrade",
+    "materials": "electrical panel",
+    "year": 2024,
+    "source": "reddit.com/r/longisland/comments/1hc8hz1/",
+    "notes": "Range $4k-$6k from electrician quotes"
+  },
+  {
+    "project_type": "electrical_panel_upgrade",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 12500,
+    "size": "panel upgrades",
+    "materials": "electrical panels",
+    "year": 2024,
+    "source": "reddit.com/r/electrical/comments/1dkmnok/",
+    "notes": "West coast: $25k for 2 x 200A panels"
+  },
+  {
+    "project_type": "driveway_asphalt",
+    "location": {
+      "city": "Rochester",
+      "state": "NY"
+    },
+    "cost": 7000,
+    "size": "standard residential driveway",
+    "materials": "3 inch fine dense asphalt binder",
+    "year": 2024,
+    "source": "reddit.com/r/Rochester/comments/1era4oj/",
+    "notes": "Tear out and replace. Middle of quotes except $15k outlier"
+  },
+  {
+    "project_type": "driveway_concrete",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 16000,
+    "size": "2000 sqft",
+    "materials": "4000psi fiber mesh w/wire, broom finish",
+    "year": 2023,
+    "source": "reddit.com/r/Concrete/comments/16mppci/",
+    "notes": "$8/sqft. Removed 800sqft old asphalt, poured 2000sqft"
+  },
+  {
+    "project_type": "driveway_asphalt",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 4800,
+    "size": "580 sqft",
+    "materials": "asphalt + new steel drains",
+    "year": 2025,
+    "source": "reddit.com/r/homeowners/comments/1jpbigd/",
+    "notes": "~$8.28/sqft including drains"
+  },
+  {
+    "project_type": "driveway_concrete",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 7250,
+    "size": "driveway extension",
+    "materials": "concrete",
+    "year": 2024,
+    "source": "reddit.com/r/Concrete/comments/1cgrpyq/",
+    "notes": "Extension quote. Another got $23,000 for 600ft asphalt driveway"
+  },
+  {
+    "project_type": "driveway_asphalt",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 23000,
+    "size": "600 linear feet",
+    "materials": "asphalt",
+    "year": 2024,
+    "source": "reddit.com/r/Concrete/comments/1cgrpyq/ (comment)",
+    "notes": "$38/linear foot"
+  },
+  {
+    "project_type": "basement_finishing",
+    "location": {
+      "city": "Minneapolis",
+      "state": "MN"
+    },
+    "cost": 90000,
+    "size": "full basement with 10ft bar, custom cabinets, gas fireplace",
+    "materials": "custom cabinets, fireplace",
+    "year": 2024,
+    "source": "reddit.com/r/TwinCities/comments/1grxxlp/",
+    "notes": "Single quote, planning to buy materials and pay cash labor"
+  },
+  {
+    "project_type": "basement_finishing",
+    "location": {
+      "city": "Delaware County",
+      "state": "PA"
+    },
+    "cost": 60000,
+    "size": "rec area + bedroom + bathroom",
+    "materials": "carpeted, no hardwood",
+    "year": 2024,
+    "source": "reddit.com/r/Homebuilding/comments/1f3z7vg/",
+    "notes": "New construction home, flat lot, no walkout"
+  },
+  {
+    "project_type": "basement_finishing",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 18000,
+    "size": "1100 sqft",
+    "materials": "basic finish",
+    "year": 2025,
+    "source": "reddit.com/r/Homebuilding/comments/1hqr73g/",
+    "notes": "+$2k rough-in plumbing +$3k bathroom finish = $23k total"
+  },
+  {
+    "project_type": "basement_finishing",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 65000,
+    "size": "1400 sqft",
+    "materials": "standard finish",
+    "year": 2025,
+    "source": "reddit.com/r/Homebuilding/comments/1hqr73g/",
+    "notes": "Higher-end finish level"
+  },
+  {
+    "project_type": "basement_finishing",
+    "location": {
+      "state": "VA"
+    },
+    "cost": 55000,
+    "size": "standard basement",
+    "materials": "standard finishes",
+    "year": 2025,
+    "source": "reddit.com/r/nova/comments/1lgd3wy/",
+    "notes": "$50-60k ballpark depending on finishes. Fairfax County"
+  },
+  {
+    "project_type": "basement_finishing",
+    "location": {
+      "city": "Denver",
+      "state": "CO"
+    },
+    "cost": 45000,
+    "size": "1100 sqft",
+    "materials": "bedroom + bathroom + living area",
+    "year": 2021,
+    "source": "reddit.com/r/Denver/comments/1bs4vb5/",
+    "notes": "Pandemic-era pricing"
+  },
+  {
+    "project_type": "basement_finishing",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 55000,
+    "size": "900 sqft",
+    "materials": "great room, bathroom, closet, storage room, mechanical room",
+    "year": 2023,
+    "source": "reddit.com/r/handyman/comments/18d4fxw/",
+    "notes": "All plumbing added, floor cut for bathroom. Supplied own carpet"
+  },
+  {
+    "project_type": "basement_finishing",
+    "location": {
+      "city": "Chicago suburbs",
+      "state": "IL"
+    },
+    "cost": 68000,
+    "size": "~800 sqft of 1000 sqft basement",
+    "materials": "full bathroom + wet bar",
+    "year": 2022,
+    "source": "reddit.com/r/ChicagoSuburbs/comments/1cnhx16/",
+    "notes": "Quote from 2 years before post date"
+  },
+  {
+    "project_type": "garage_door",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 3200,
+    "size": "9x7 single car",
+    "materials": "CHI Plank steel door + Liftmaster wall mount opener",
+    "year": 2024,
+    "source": "reddit.com/r/GarageDoorService/comments/191t2wy/",
+    "notes": "Low end of range $3,200-$4,300"
+  },
+  {
+    "project_type": "garage_door",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 2600,
+    "size": "standard single car",
+    "materials": "plain white steel R6.5 insulated",
+    "year": 2024,
+    "source": "reddit.com/r/HomeImprovement/comments/1avrqe3/",
+    "notes": "Range $2,200-$3,000 from multiple quotes"
+  },
+  {
+    "project_type": "garage_door",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 3000,
+    "size": "standard",
+    "materials": "door with windows + insulation, new motor/belt, keypad, app",
+    "year": 2024,
+    "source": "reddit.com/r/GarageDoorInstall/comments/1eif89n/",
+    "notes": "Includes new motor, belt, button, keypad, 2 clickers"
+  },
+  {
+    "project_type": "garage_door",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 2494,
+    "size": "16x7 uninsulated",
+    "materials": "door + opener replacement",
+    "year": 2024,
+    "source": "reddit.com/r/GarageDoorService/comments/1h19mjv/",
+    "notes": "Door + opener to get up to code"
+  },
+  {
+    "project_type": "garage_door",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 2400,
+    "size": "16x7",
+    "materials": "steel door + Chamberlain smart opener with cameras and battery backup",
+    "year": 2025,
+    "source": "reddit.com/r/GarageDoorInstall/comments/1p10bur/",
+    "notes": "Beat everyone by 30%"
+  },
+  {
+    "project_type": "garage_door",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 3300,
+    "size": "standard",
+    "materials": "CHI door + chain drive opener",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1bpvlt8/",
+    "notes": "$3,000 cash price"
+  },
+  {
+    "project_type": "garage_door",
+    "location": {
+      "city": "Seattle",
+      "state": "WA"
+    },
+    "cost": 3000,
+    "size": "standard",
+    "materials": "garage door",
+    "year": 2024,
+    "source": "reddit.com/r/Seattle/comments/1f0fz3x/",
+    "notes": "Quote through Cressy doors. HD installer was cheaper."
+  },
+  {
+    "project_type": "tree_removal",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 7000,
+    "size": "3 oak trees",
+    "materials": "no stump grinding",
+    "year": 2022,
+    "source": "reddit.com/r/FirstTimeHomeBuyer/comments/yuo5e3/",
+    "notes": "~$2,333 per tree"
+  },
+  {
+    "project_type": "tree_removal",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 2500,
+    "size": "1 mature Silver Oak",
+    "materials": "front yard removal",
+    "year": 2022,
+    "source": "reddit.com/r/FirstTimeHomeBuyer/comments/yuo5e3/",
+    "notes": "Single large tree"
+  },
+  {
+    "project_type": "tree_removal",
+    "location": {
+      "city": "Rochester",
+      "state": "NY"
+    },
+    "cost": 4500,
+    "size": "large complicated tree",
+    "materials": "full removal",
+    "year": 2025,
+    "source": "reddit.com/r/Rochester/comments/1jl3qya/",
+    "notes": "Complicated removal situation"
+  },
+  {
+    "project_type": "tree_removal",
+    "location": {
+      "city": "Kansas City",
+      "state": "MO"
+    },
+    "cost": 3500,
+    "size": "2 birch trees + trim 2 large trees",
+    "materials": "includes stump grinding",
+    "year": 2025,
+    "source": "reddit.com/r/kansascity/comments/1jp8rf4/",
+    "notes": "Farage Tree or Everhart were lowest quotes"
+  },
+  {
+    "project_type": "tree_removal",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 1800,
+    "size": "25ft dead cottonwood",
+    "materials": "easily accessible, crane truck",
+    "year": 2023,
+    "source": "reddit.com/r/homeowners/comments/12hlpod/",
+    "notes": "2 guys and a crane truck"
+  },
+  {
+    "project_type": "tree_removal",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 2000,
+    "size": "large tree split in half",
+    "materials": "emergency removal",
+    "year": 2023,
+    "source": "reddit.com/r/lawncare/comments/16w89rt/",
+    "notes": "Middle estimate. Range: $1,000-$3,000"
+  },
+  {
+    "project_type": "tree_removal",
+    "location": {
+      "city": "Gainesville",
+      "state": "FL"
+    },
+    "cost": 2500,
+    "size": "80ft tall water oak, ~2ft diameter",
+    "materials": "tricky spot near property line",
+    "year": 2025,
+    "source": "reddit.com/r/GNV/comments/1iu1mvo/",
+    "notes": "8 feet from house, on property line. Reasonable per comments"
+  },
+  {
+    "project_type": "tree_removal",
+    "location": {
+      "state": "NJ"
+    },
+    "cost": 15000,
+    "size": "massive tree, inaccessible",
+    "materials": "full removal",
+    "year": 2024,
+    "source": "reddit.com/r/newjersey/comments/1d0zkqw/",
+    "notes": "Most quotes $15-25k range. Went with Friendly Tree for ~$7k"
+  },
+  {
+    "project_type": "tub_to_shower_conversion",
+    "location": {
+      "city": "Austin",
+      "state": "TX"
+    },
+    "cost": 18000,
+    "size": "basic conversion",
+    "materials": "standard",
+    "year": 2025,
+    "source": "reddit.com/r/Austin/comments/1jolcr0/",
+    "notes": "Low end $18-28k. Home Depot contractor. Considered robbery"
+  },
+  {
+    "project_type": "countertop_quartz",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 9600,
+    "size": "52 sqft",
+    "materials": "quartzite",
+    "year": 2024,
+    "source": "reddit.com/r/kitchenremodel/comments/1btb6ei/",
+    "notes": "~$185/sqft for quartzite countertops"
+  },
+  {
+    "project_type": "countertop_cambria",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 12000,
+    "size": "kitchen",
+    "materials": "Cambria quartz",
+    "year": 2024,
+    "source": "reddit.com/r/kitchenremodel/comments/1df2eqt/",
+    "notes": "Went with cheaper option: $6,500 for countertop + backsplash"
+  },
+  {
+    "project_type": "shower_replacement",
+    "location": {
+      "city": "Longmont",
+      "state": "CO"
+    },
+    "cost": 12000,
+    "size": "stand-up shower",
+    "materials": "standard",
+    "year": 2024,
+    "source": "reddit.com/r/boulder/comments/1dpr4lo/",
+    "notes": "Just the shower replacement portion"
+  },
+  {
+    "project_type": "deck",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 40000,
+    "size": "40x11 feet (440 sqft)",
+    "materials": "Trex Transcend composite, railing, stairs",
+    "year": 2022,
+    "source": "reddit.com/r/homeowners/comments/rxqnyz/",
+    "notes": "Low end of 2 quotes: $40k and $48k. Demo + full composite"
+  },
+  {
+    "project_type": "deck",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 48000,
+    "size": "40x11 feet (440 sqft)",
+    "materials": "Trex Transcend composite, railing, stairs",
+    "year": 2022,
+    "source": "reddit.com/r/homeowners/comments/rxqnyz/",
+    "notes": "High end of 2 quotes"
+  },
+  {
+    "project_type": "deck",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 15000,
+    "size": "20x20 feet (400 sqft)",
+    "materials": "Trex deck with PT wood frame",
+    "year": 2024,
+    "source": "reddit.com/r/Decks/comments/1dinlrk/",
+    "notes": "Price doubled in 4 months - earlier quote was $8-9k"
+  },
+  {
+    "project_type": "deck",
+    "location": {
+      "city": "Denver",
+      "state": "CO"
+    },
+    "cost": 26250,
+    "size": "250 sqft",
+    "materials": "entry level composite, metal railing",
+    "year": 2024,
+    "source": "reddit.com/r/Decks/comments/1bphknd/",
+    "notes": "~$100-105/sqft in Denver area"
+  },
+  {
+    "project_type": "deck",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 31000,
+    "size": "21x15 feet (315 sqft)",
+    "materials": "Trex decking, vinyl trim",
+    "year": 2021,
+    "source": "reddit.com/r/homeowners/comments/mwdxie/",
+    "notes": "Composite decking is expensive and heavy"
+  },
+  {
+    "project_type": "deck",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 5200,
+    "size": "12x16 feet (192 sqft)",
+    "materials": "Trex basics, replacement of PT deck",
+    "year": 2025,
+    "source": "reddit.com/r/Decks/comments/1n71apn/",
+    "notes": "Resurfacing existing frame with Trex"
+  },
+  {
+    "project_type": "deck",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 10000,
+    "size": "400 sqft",
+    "materials": "Trex Enhanced, $25/sqft",
+    "year": 2024,
+    "source": "reddit.com/r/Decks/comments/1cxqygg/",
+    "notes": "$25/sqft invoice for Trex Enhanced"
+  },
+  {
+    "project_type": "insulation_blown_in",
+    "location": {
+      "city": "Tampa",
+      "state": "FL"
+    },
+    "cost": 900,
+    "size": "2300 sqft attic",
+    "materials": "13 inches blown-in over existing rolled insulation",
+    "year": 2024,
+    "source": "reddit.com/r/DIY/comments/1e1raui/",
+    "notes": "Very affordable blown-in addition"
+  },
+  {
+    "project_type": "insulation_blown_in",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 8000,
+    "size": "attic",
+    "materials": "attic insulation (type not specified)",
+    "year": 2024,
+    "source": "reddit.com/r/DIY/comments/1e1raui/",
+    "notes": "Quote seemed high to homeowner"
+  },
+  {
+    "project_type": "insulation_spray_foam",
+    "location": {
+      "city": "Columbia",
+      "state": "SC"
+    },
+    "cost": 3500,
+    "size": "attic",
+    "materials": "spray foam insulation",
+    "year": 2024,
+    "source": "reddit.com/r/Insulation/comments/15oswde/",
+    "notes": "Power consumption dropped 25% after installation"
+  },
+  {
+    "project_type": "insulation_blown_in",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 1700,
+    "size": "1000 sqft attic",
+    "materials": "blown-in insulation",
+    "year": 2023,
+    "source": "reddit.com/r/Insulation/comments/15b78i3/",
+    "notes": "Initial quote. Third quote: $3,500 blown-in R38, $4,000 spray"
+  },
+  {
+    "project_type": "insulation_blown_in",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 2300,
+    "size": "500 sqft attic (1500 sqft home)",
+    "materials": "cellulose blown-in",
+    "year": 2023,
+    "source": "reddit.com/r/homeowners/comments/1046k0u/",
+    "notes": "Cellulose blown-in insulation"
+  },
+  {
+    "project_type": "insulation_spray_foam",
+    "location": {
+      "city": "Albany",
+      "state": "NY"
+    },
+    "cost": 6900,
+    "size": "attic crawlspaces",
+    "materials": "spray foam on rafters to knee wall",
+    "year": 2025,
+    "source": "reddit.com/r/Albany/comments/1no06jk/",
+    "notes": "NYSERDA grant job"
+  },
+  {
+    "project_type": "insulation_spray_foam",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 10000,
+    "size": "1700 sqft single level ranch attic + basement top plate",
+    "materials": "spray foam",
+    "year": 2021,
+    "source": "reddit.com/r/HomeImprovement/comments/l5ulwn/",
+    "notes": "Similar quote for cellulose in attic only"
+  },
+  {
+    "project_type": "insulation_spray_foam",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 6000,
+    "size": "standard attic",
+    "materials": "spray foam or blown-in options",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1fcuhks/",
+    "notes": "VHCOL area, range $5-7k"
+  },
+  {
+    "project_type": "concrete_patio",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 6000,
+    "size": "13x36 feet (468 sqft)",
+    "materials": "stamped concrete",
+    "year": 2023,
+    "source": "reddit.com/r/Concrete/comments/151i7uq/",
+    "notes": "~$12.82/sqft for stamped"
+  },
+  {
+    "project_type": "concrete_patio",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 8000,
+    "size": "20x35 feet (700 sqft)",
+    "materials": "concrete patio",
+    "year": 2023,
+    "source": "reddit.com/r/Concrete/comments/151i7uq/ (comment)",
+    "notes": "~$11.43/sqft"
+  },
+  {
+    "project_type": "concrete_patio",
+    "location": {
+      "state": "ON"
+    },
+    "cost": 7200,
+    "size": "15x20 feet (300 sqft)",
+    "materials": "brushed concrete",
+    "year": 2024,
+    "source": "reddit.com/r/landscaping/comments/1b626a7/",
+    "notes": "Ontario, Canada. $24/sqft"
+  },
+  {
+    "project_type": "concrete_patio",
+    "location": {
+      "city": "San Antonio",
+      "state": "TX"
+    },
+    "cost": 9400,
+    "size": "12x18 feet (216 sqft)",
+    "materials": "stamped colored concrete + small pad removal",
+    "year": 2024,
+    "source": "reddit.com/r/Concrete/comments/1ctrpu1/",
+    "notes": "~$43.52/sqft for stamped colored. Previously paid $12-18/sqft broomed"
+  },
+  {
+    "project_type": "concrete_patio",
+    "location": {
+      "city": "Buffalo",
+      "state": "NY"
+    },
+    "cost": 5000,
+    "size": "12x23 feet (276 sqft)",
+    "materials": "stamped and colored concrete",
+    "year": 2023,
+    "source": "reddit.com/r/Buffalo/comments/1c9t77a/",
+    "notes": "Just over $5k. Quotes ranged up to ~$12k"
+  },
+  {
+    "project_type": "concrete_patio",
+    "location": {
+      "state": "VA"
+    },
+    "cost": 5500,
+    "size": "20x20 feet (400 sqft)",
+    "materials": "stamped concrete with grading and drainage",
+    "year": 2021,
+    "source": "reddit.com/r/nova/comments/pr970s/",
+    "notes": "Including some grading and drainage work"
+  },
+  {
+    "project_type": "solar_installation",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 25000,
+    "size": "~10 kW system",
+    "materials": "panels + microinverters, own permits",
+    "year": 2023,
+    "source": "reddit.com/r/solar/comments/13ohxbf/",
+    "notes": "Self-sourced panels and inverters. Others quoted $28k for 9.6kW"
+  },
+  {
+    "project_type": "solar_installation",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 18000,
+    "size": "4.9 kW (12 panels)",
+    "materials": "Panasonic/REC panels",
+    "year": 2023,
+    "source": "reddit.com/r/solar/comments/11n9t0z/",
+    "notes": "$3.67/W before 30% tax credit. Cash deal"
+  },
+  {
+    "project_type": "solar_installation",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 34000,
+    "size": "6.48 kW",
+    "materials": "solar panels + inverter",
+    "year": 2024,
+    "source": "reddit.com/r/solar/comments/1b0uq1l/",
+    "notes": "Before rebate. $5.25/W seemed high"
+  },
+  {
+    "project_type": "solar_installation",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 21000,
+    "size": "6.2 kW (17 REC panels)",
+    "materials": "Enphase microinverters + REC panels",
+    "year": 2021,
+    "source": "reddit.com/r/solar/comments/1b0uq1l/ (comment)",
+    "notes": "$12,600 after rebate"
+  },
+  {
+    "project_type": "solar_installation",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 30500,
+    "size": "~10 kW average system",
+    "materials": "standard residential solar",
+    "year": 2026,
+    "source": "energysage.com/local-data/solar-panel-cost/",
+    "notes": "National average. $2.50-$3.50/W before incentives"
+  },
+  {
+    "project_type": "retaining_wall",
+    "location": {
+      "state": "NJ"
+    },
+    "cost": 14000,
+    "size": "~40 linear feet, 2-3ft high",
+    "materials": "block retaining wall with drainage",
+    "year": 2024,
+    "source": "reddit.com/r/landscaping/comments/1f93y57/",
+    "notes": "Near Haddonfield NJ area"
+  },
+  {
+    "project_type": "retaining_wall",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 95000,
+    "size": "133.5 linear feet",
+    "materials": "large retaining wall",
+    "year": 2025,
+    "source": "reddit.com/r/landscaping/comments/1maw2jf/",
+    "notes": "Major retaining wall project"
+  },
+  {
+    "project_type": "retaining_wall",
+    "location": {
+      "state": "midwest"
+    },
+    "cost": 20000,
+    "size": "50 linear feet, 2-3ft high",
+    "materials": "block retaining wall",
+    "year": 2025,
+    "source": "reddit.com/r/landscaping/comments/1n5bvtq/",
+    "notes": "Upper Midwest"
+  },
+  {
+    "project_type": "retaining_wall",
+    "location": {
+      "state": "OR"
+    },
+    "cost": 11200,
+    "size": "two poured concrete walls",
+    "materials": "poured concrete",
+    "year": 2025,
+    "source": "reddit.com/r/landscaping/comments/1m5ytn3/",
+    "notes": "Oregon/PNW area"
+  },
+  {
+    "project_type": "retaining_wall",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 30000,
+    "size": "80 linear feet, 3ft high",
+    "materials": "block wall, 2ft below grade, gravel, drainage",
+    "year": 2024,
+    "source": "reddit.com/r/landscaping/comments/1bah69d/",
+    "notes": "Professional job with proper drainage and burial"
+  },
+  {
+    "project_type": "retaining_wall",
+    "location": {
+      "state": "midwest"
+    },
+    "cost": 5000,
+    "size": "small wall",
+    "materials": "retaining wall + 4 arborvitae + privacy screen",
+    "year": 2024,
+    "source": "reddit.com/r/landscaping/comments/1l8jfif/",
+    "notes": "Including tree installation and privacy screen"
+  },
+  {
+    "project_type": "foundation_repair",
+    "location": {
+      "state": "OH"
+    },
+    "cost": 10300,
+    "size": "foundation waterproofing and repair",
+    "materials": "waterproofing, drainage",
+    "year": 2023,
+    "source": "reddit.com/r/homeowners/comments/14e8yqc/",
+    "notes": "NE Ohio. Another quote was $13k"
+  },
+  {
+    "project_type": "foundation_repair",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 35000,
+    "size": "wall braces and piers, full length of house",
+    "materials": "wall braces, piers, drywall demo/rebuild",
+    "year": 2025,
+    "source": "reddit.com/r/Home/comments/1lat82b/",
+    "notes": "Range $30-35k for major foundation work"
+  },
+  {
+    "project_type": "foundation_repair",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 30000,
+    "size": "7 push piers + 3 house jacks + 2 concrete pads",
+    "materials": "push piers, house jacks, concrete",
+    "year": 2024,
+    "source": "reddit.com/r/HomeImprovement/comments/1b8va66/",
+    "notes": "Major foundation repair with piers"
+  },
+  {
+    "project_type": "foundation_repair",
+    "location": {
+      "city": "Los Angeles",
+      "state": "CA"
+    },
+    "cost": 9500,
+    "size": "crack repair + footing expansion",
+    "materials": "epoxy, concrete for footing expansion",
+    "year": 2020,
+    "source": "reddit.com/r/homeowners/comments/fxit8a/",
+    "notes": "Cracked stem wall epoxy + footing expansion"
+  },
+  {
+    "project_type": "foundation_waterproofing",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 30000,
+    "size": "full excavation + waterproofing + drain",
+    "materials": "hydraulic cement, tar sealer, drain tile",
+    "year": 2025,
+    "source": "reddit.com/r/homeowners/comments/1n4xnqu/",
+    "notes": "Quote for professional job. DIY for ~$750"
+  },
+  {
+    "project_type": "bathroom_remodel",
+    "location": {
+      "city": "Phoenix",
+      "state": "AZ"
+    },
+    "cost": 35000,
+    "size": "100 sqft master bathroom",
+    "materials": "double vanity, frameless glass shower, tile flooring, mid-range",
+    "year": 2024,
+    "source": "reddit.com/r/Remodel/comments/1ddkf4h/",
+    "notes": "Budget estimate for mid-range finishes in Phoenix"
+  },
+  {
+    "project_type": "hvac_furnace_only",
+    "location": {
+      "city": "Minneapolis",
+      "state": "MN"
+    },
+    "cost": 6700,
+    "size": "top of the line furnace",
+    "materials": "high-end furnace",
+    "year": 2024,
+    "source": "reddit.com/r/TwinCities/comments/1bin9v8/",
+    "notes": "Furnace only, top of the line"
+  },
+  {
+    "project_type": "water_heater_replacement",
+    "location": {
+      "city": "East Bay",
+      "state": "CA"
+    },
+    "cost": 2650,
+    "size": "standard tank",
+    "materials": "water heater + install",
+    "year": 2023,
+    "source": "reddit.com/r/eastbay/comments/15vu2bh/",
+    "notes": "Midpoint of range $2,400-$2,900 quoted"
+  },
+  {
+    "project_type": "water_heater_replacement",
+    "location": {
+      "city": "Chapel Hill",
+      "state": "NC"
+    },
+    "cost": 2400,
+    "size": "standard tank with plumbing/wiring adjustments",
+    "materials": "water heater + adjustments",
+    "year": 2023,
+    "source": "reddit.com/r/eastbay/comments/15vu2bh/ (comment)",
+    "notes": "Including plumbing and wiring adjustments"
+  },
+  {
+    "project_type": "kitchen_countertop",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 6500,
+    "size": "kitchen countertop + backsplash",
+    "materials": "stone by the sqft (not Cambria brand)",
+    "year": 2024,
+    "source": "reddit.com/r/kitchenremodel/comments/1df2eqt/",
+    "notes": "Cheaper option vs $12k Cambria quote"
+  },
+  {
+    "project_type": "gutter_installation",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 3500,
+    "size": "standard home",
+    "materials": "K-style aluminum 6 inch gutters + downspouts",
+    "year": 2024,
+    "source": "reddit.com/r/RealEstate/comments/18t4x3b/ (in roof quote)",
+    "notes": "Part of roof replacement package, estimated gutter portion"
+  },
+  {
+    "project_type": "heat_pump",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 15900,
+    "size": "2.5 ton Lennox",
+    "materials": "Lennox heat pump + AC unit",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1d049fn/",
+    "notes": "Originally $19.5k, discounted. Heat pump + AC combo"
+  },
+  {
+    "project_type": "garage_door_opener",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 1000,
+    "size": "single garage door motor",
+    "materials": "garage door motor and bands",
+    "year": 2022,
+    "source": "reddit.com/r/GarageDoorService/comments/vs59fk/",
+    "notes": "Several quotes from independent shops, all ~$1,000"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 38000,
+    "size": "28 squares, Victorian home",
+    "materials": "Davinci multi-width slate",
+    "year": 2021,
+    "source": "reddit.com/r/Roofing/comments/obvtvx/",
+    "notes": "130 year old Queen Anne Victorian, premium material"
+  },
+  {
+    "project_type": "window_replacement",
+    "location": {
+      "city": "Portland",
+      "state": "OR"
+    },
+    "cost": 4650,
+    "size": "4 windows",
+    "materials": "3 casement + 1 window with sill replacement",
+    "year": 2022,
+    "source": "reddit.com/r/askportland/comments/stcgii/",
+    "notes": "$2,950 for 3 casements + $1,700 for window + sill"
+  },
+  {
+    "project_type": "exterior_painting",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 6500,
+    "size": "1100 sqft house exterior",
+    "materials": "paint",
+    "year": 2019,
+    "source": "reddit.com/r/homeowners/comments/idb3q6/",
+    "notes": "Pro quote for exterior"
+  },
+  {
+    "project_type": "septic_installation",
+    "location": {
+      "state": "NY"
+    },
+    "cost": 17500,
+    "size": "standard residential",
+    "materials": "septic tank + drain field",
+    "year": 2025,
+    "source": "reddit.com/r/upstate_new_york/comments/1jg7rym/",
+    "notes": "Range $15k-$20k in upstate NY"
+  },
+  {
+    "project_type": "septic_installation",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 7000,
+    "size": "1000 gallon tank + 250ft drain field",
+    "materials": "concrete tank, leach forms",
+    "year": 2022,
+    "source": "reddit.com/r/Homebuilding/comments/v1jzf0/",
+    "notes": "Other quotes $6k-$8k"
+  },
+  {
+    "project_type": "septic_installation",
+    "location": {
+      "city": "Middle Tennessee",
+      "state": "TN"
+    },
+    "cost": 6000,
+    "size": "standard residential",
+    "materials": "septic system, simple dig",
+    "year": 2024,
+    "source": "reddit.com/r/Homebuilding/comments/1az8w2q/",
+    "notes": "No blasting needed"
+  },
+  {
+    "project_type": "septic_repair",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 1800,
+    "size": "collapsed pipe",
+    "materials": "pipe replacement",
+    "year": 2025,
+    "source": "reddit.com/r/homeowners/comments/1i6s4hp/",
+    "notes": "Collapsed pipe from RV driving over it"
+  },
+  {
+    "project_type": "septic_installation",
+    "location": {
+      "city": "Midcoast",
+      "state": "ME"
+    },
+    "cost": 25000,
+    "size": "3-bedroom system, 20 chambers + 1000g tank",
+    "materials": "concrete H-20 rated chambers, 1000g tank",
+    "year": 2024,
+    "source": "reddit.com/r/Maine/comments/1fcrfxd/",
+    "notes": "Complete system installed May 2024"
+  },
+  {
+    "project_type": "septic_installation",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 15000,
+    "size": "2-bed/3-bath house",
+    "materials": "standard septic system",
+    "year": 2023,
+    "source": "reddit.com/r/Homebuilding/comments/13rwx0z/",
+    "notes": "Standard installation quote"
+  },
+  {
+    "project_type": "septic_installation",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 20000,
+    "size": "standard residential",
+    "materials": "septic system",
+    "year": 2025,
+    "source": "reddit.com/r/Homebuilding/comments/1jap5bf/",
+    "notes": "Just under $20k quote"
+  },
+  {
+    "project_type": "well_drilling",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 15000,
+    "size": "~200 feet deep",
+    "materials": "well drilling + casing",
+    "year": 2023,
+    "source": "reddit.com/r/homestead/comments/18uvwyn/",
+    "notes": "Quoted $15k for assumed 200ft depth"
+  },
+  {
+    "project_type": "well_drilling",
+    "location": {
+      "city": "Reno",
+      "state": "NV"
+    },
+    "cost": 40000,
+    "size": "500 feet deep",
+    "materials": "well drilling at $75/ft",
+    "year": 2024,
+    "source": "reddit.com/r/WaterWellDrilling/comments/18uvzxm/",
+    "notes": "$75/ft. 3 quotes all similar"
+  },
+  {
+    "project_type": "well_drilling",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 7000,
+    "size": "~180 feet deep",
+    "materials": "well drilling",
+    "year": 2024,
+    "source": "reddit.com/r/Homebuilding/comments/1c47ado/",
+    "notes": "Honest pricing from driller"
+  },
+  {
+    "project_type": "well_drilling",
+    "location": {
+      "state": "CO"
+    },
+    "cost": 30000,
+    "size": "~500 feet deep",
+    "materials": "well drilling in granite",
+    "year": 2023,
+    "source": "reddit.com/r/homestead/comments/11iwcgr/",
+    "notes": "Adams County CO, multiple company quotes"
+  },
+  {
+    "project_type": "mini_split",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 6500,
+    "size": "1 ton, single zone",
+    "materials": "ductless mini split",
+    "year": 2023,
+    "source": "reddit.com/r/hvacadvice/comments/11eepar/",
+    "notes": "30% federal tax credit available"
+  },
+  {
+    "project_type": "mini_split",
+    "location": {
+      "state": "NH"
+    },
+    "cost": 15000,
+    "size": "3 zones",
+    "materials": "ductless mini split",
+    "year": 2022,
+    "source": "reddit.com/r/homeowners/comments/ut4xbe/",
+    "notes": "New Hampshire. ~$4,500/zone in OH"
+  },
+  {
+    "project_type": "mini_split",
+    "location": {
+      "city": "Vancouver",
+      "state": "WA"
+    },
+    "cost": 5200,
+    "size": "single Mitsubishi unit, living room",
+    "materials": "Mitsubishi ductless AC",
+    "year": 2023,
+    "source": "reddit.com/r/vancouverwa/comments/13yooi7/",
+    "notes": "$6k before $800 county rebate"
+  },
+  {
+    "project_type": "mini_split",
+    "location": {
+      "city": "Houston",
+      "state": "TX"
+    },
+    "cost": 6500,
+    "size": "single zone, garage",
+    "materials": "ductless mini split",
+    "year": 2024,
+    "source": "reddit.com/r/houston/comments/1d8qirj/",
+    "notes": "Felt high for garage installation"
+  },
+  {
+    "project_type": "mini_split",
+    "location": {
+      "state": "CT"
+    },
+    "cost": 17000,
+    "size": "2000 sqft colonial, ducted + ductless",
+    "materials": "heat pump, 1 ducted + ductless upstairs",
+    "year": 2024,
+    "source": "reddit.com/r/Connecticut/comments/1ctlzzb/",
+    "notes": "Range $16-18k for 3 quotes"
+  },
+  {
+    "project_type": "mini_split",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 23000,
+    "size": "4 zones",
+    "materials": "ductless mini split",
+    "year": 2024,
+    "source": "reddit.com/r/hvacadvice/comments/1e8wdox/",
+    "notes": "All 3 quotes around $23k"
+  },
+  {
+    "project_type": "mini_split",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 14000,
+    "size": "2 zones (office + master bedroom)",
+    "materials": "Carrier ductless mini split",
+    "year": 2025,
+    "source": "reddit.com/r/hvacadvice/comments/neygmz/",
+    "notes": "2-zone Carrier system"
+  },
+  {
+    "project_type": "mini_split",
+    "location": {
+      "state": "MA"
+    },
+    "cost": 48000,
+    "size": "1300 sqft whole house",
+    "materials": "ductless mini split system",
+    "year": 2023,
+    "source": "reddit.com/r/massachusetts/comments/10jn99y/",
+    "notes": "Before $10k Mass Saves rebate. Seemed extreme"
+  },
+  {
+    "project_type": "mini_split",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 21000,
+    "size": "3 zones",
+    "materials": "Daikin or Mitsubishi ductless",
+    "year": 2022,
+    "source": "reddit.com/r/hvacadvice/comments/x4czsw/",
+    "notes": "$21k before tax with 10yr warranty"
+  },
+  {
+    "project_type": "home_addition",
+    "location": {
+      "city": "Jacksonville",
+      "state": "FL"
+    },
+    "cost": 35000,
+    "size": "15x15 feet (225 sqft)",
+    "materials": "dry room addition",
+    "year": 2019,
+    "source": "reddit.com/r/HomeImprovement/comments/16iiwu4/",
+    "notes": "DIY materials only $15k"
+  },
+  {
+    "project_type": "home_addition",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 265000,
+    "size": "280 sqft",
+    "materials": "full addition with permits",
+    "year": 2024,
+    "source": "reddit.com/r/BayAreaRealEstate/comments/1gw3dmt/",
+    "notes": "Bay Area CA. ~$946/sqft"
+  },
+  {
+    "project_type": "home_addition",
+    "location": {
+      "city": "Pittsburgh",
+      "state": "PA"
+    },
+    "cost": 262500,
+    "size": "large addition",
+    "materials": "full addition, multiple rooms",
+    "year": 2023,
+    "source": "reddit.com/r/pittsburgh/comments/106t8h7/",
+    "notes": "$250-275k from 3 builders. Didn't proceed"
+  },
+  {
+    "project_type": "home_addition",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 350000,
+    "size": "second floor + kitchen expansion + porch move",
+    "materials": "adding a level, master ensuite, 2 rooms, kitchen expansion",
+    "year": 2022,
+    "source": "reddit.com/r/Construction/comments/ta9c7i/",
+    "notes": "Major second-story addition"
+  },
+  {
+    "project_type": "home_addition",
+    "location": {
+      "city": "Denver",
+      "state": "CO"
+    },
+    "cost": 412500,
+    "size": "~1000 sqft",
+    "materials": "full addition",
+    "year": 2024,
+    "source": "reddit.com/r/Denver/comments/1h5wwu5/",
+    "notes": "$375-$450/sqft range from multiple quotes"
+  },
+  {
+    "project_type": "home_addition",
+    "location": {
+      "state": "NC"
+    },
+    "cost": 75000,
+    "size": "~300 sqft",
+    "materials": "room addition, mid-range",
+    "year": 2023,
+    "source": "reddit.com/r/bullcity/comments/14rr6ut/",
+    "notes": "$200-300/sqft starting line in Durham NC area"
+  },
+  {
+    "project_type": "pool_inground",
+    "location": {
+      "state": "NJ"
+    },
+    "cost": 40000,
+    "size": "14x26 salt water",
+    "materials": "salt water pool, extra returns, concrete patio around pool",
+    "year": 2023,
+    "source": "reddit.com/r/pools/comments/12xgmve/",
+    "notes": "$39,999 quote"
+  },
+  {
+    "project_type": "pool_inground",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 90000,
+    "size": "standard inground",
+    "materials": "inground pool",
+    "year": 2024,
+    "source": "reddit.com/r/swimmingpools/comments/1fygub2/",
+    "notes": "Poster said 'back in 2024 I paid ONLY 90k'"
+  },
+  {
+    "project_type": "pool_inground",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 114000,
+    "size": "large inground",
+    "materials": "inground pool (no deck)",
+    "year": 2024,
+    "source": "reddit.com/r/pools/comments/1elvrmz/",
+    "notes": "Deck cost double the pool itself"
+  },
+  {
+    "project_type": "pool_inground",
+    "location": {
+      "state": "ON"
+    },
+    "cost": 52000,
+    "size": "12x24 feet",
+    "materials": "inground pool",
+    "year": 2025,
+    "source": "reddit.com/r/pools/comments/1l0wyxy/",
+    "notes": "Ontario Canada. Plus 13% HST"
+  },
+  {
+    "project_type": "pool_inground",
+    "location": {
+      "city": "Phoenix",
+      "state": "AZ"
+    },
+    "cost": 65000,
+    "size": "standard",
+    "materials": "inground pool",
+    "year": 2024,
+    "source": "reddit.com/r/phoenix/comments/1d9m15g/",
+    "notes": "Average starting $60-70k. Some quoted over $100k"
+  },
+  {
+    "project_type": "pool_inground",
+    "location": {
+      "city": "Orlando",
+      "state": "FL"
+    },
+    "cost": 110000,
+    "size": "standard",
+    "materials": "inground pool",
+    "year": 2024,
+    "source": "reddit.com/r/pools/comments/1eb8536/",
+    "notes": "Prices went up considerably post-COVID"
+  },
+  {
+    "project_type": "pool_resurfacing",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 20000,
+    "size": "existing pool",
+    "materials": "pool resurfacing",
+    "year": 2024,
+    "source": "reddit.com/r/pools/comments/1enmkni/",
+    "notes": "Resurfacing only. Plumbing and decking additional ~$10k"
+  },
+  {
+    "project_type": "flooring_lvp",
+    "location": {
+      "state": "IL"
+    },
+    "cost": 4800,
+    "size": "800 sqft",
+    "materials": "LVP, $2-4/sqft product + $2-3/sqft labor",
+    "year": 2024,
+    "source": "reddit.com/r/Flooring/comments/1czsegz/",
+    "notes": "Midwest near Chicago. $6/sqft all-in"
+  },
+  {
+    "project_type": "driveway_concrete",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 2300,
+    "size": "64 sqft",
+    "materials": "concrete with rebar and wire mesh",
+    "year": 2023,
+    "source": "reddit.com/r/Concrete/comments/13yk9am/",
+    "notes": "Small replacement job. ~$36/sqft"
+  },
+  {
+    "project_type": "fence",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 7680,
+    "size": "240 linear feet, 6ft",
+    "materials": "wood privacy fence at $32/ft",
+    "year": 2022,
+    "source": "reddit.com/r/FenceBuilding/comments/wla30r/",
+    "notes": "Contractor pricing without gates. Higher quote was $22k"
+  },
+  {
+    "project_type": "tub_to_shower_conversion",
+    "location": {
+      "city": "Austin",
+      "state": "TX"
+    },
+    "cost": 28000,
+    "size": "basic conversion",
+    "materials": "standard",
+    "year": 2025,
+    "source": "reddit.com/r/Austin/comments/1jolcr0/",
+    "notes": "High end of $18-28k quote range from HD contractor"
+  },
+  {
+    "project_type": "kitchen_remodel",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 25000,
+    "size": "basic kitchen remodel",
+    "materials": "bought cabinets online, reused appliances, minimal electrical/plumbing",
+    "year": 2024,
+    "source": "reddit.com/r/Marin/comments/1flugyu/ (comment)",
+    "notes": "Budget approach, not full gut"
+  },
+  {
+    "project_type": "window_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 60000,
+    "size": "50+ windows, whole house",
+    "materials": "nicer replacement windows",
+    "year": 2024,
+    "source": "reddit.com/r/homeowners/comments/1ds5vux/ (comment)",
+    "notes": "Large home with 50+ windows, all needed replacement"
+  },
+  {
+    "project_type": "tree_removal",
+    "location": {
+      "state": "NJ"
+    },
+    "cost": 7000,
+    "size": "massive tree, inaccessible",
+    "materials": "full removal by Friendly Tree",
+    "year": 2024,
+    "source": "reddit.com/r/newjersey/comments/1d0zkqw/",
+    "notes": "Best price found. Most quotes $15-25k. Chose Friendly Tree"
+  },
+  {
+    "project_type": "siding_vinyl",
+    "location": {
+      "state": "CT"
+    },
+    "cost": 48000,
+    "size": "~2600 sqft ranch",
+    "materials": "vinyl siding",
+    "year": 2022,
+    "source": "reddit.com/r/Connecticut/comments/xqi2nd/",
+    "notes": "Same homeowner cross-posted to both r/HomeImprovement and r/CT"
+  },
+  {
+    "project_type": "concrete_sidewalk",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 2300,
+    "size": "64 sqft",
+    "materials": "concrete with rebar + wire mesh, cut-out and replace",
+    "year": 2023,
+    "source": "reddit.com/r/Concrete/comments/13yk9am/",
+    "notes": "~$36/sqft for small job"
+  },
+  {
+    "project_type": "dishwasher_install",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 350,
+    "size": "single dishwasher",
+    "materials": "installation labor",
+    "year": 2022,
+    "source": "reddit.com/r/askaplumber/comments/w4gesy/",
+    "notes": "Handyman quote. Seemed high for simple swap"
+  },
+  {
+    "project_type": "roof_replacement",
+    "location": {
+      "state": "unknown"
+    },
+    "cost": 44000,
+    "size": "~1900 sqft + insulation + gutters + chimney",
+    "materials": "shingles, plywood, insulation, gutters, chimney rebuild, ventilation, flashings",
+    "year": 2024,
+    "source": "reddit.com/r/RealEstate/comments/18t4x3b/",
+    "notes": "Full rebuild. Best quote was $33k without insulation"
+  }
+]

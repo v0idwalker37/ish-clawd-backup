@@ -1,0 +1,54 @@
+e
+Rough Mechanical
+Furnace Unit Unit | Material | Labor | Equip. | Total Specification
+Electric Forced Air
+31.4 MBH
+Demolish Ea. 133 133 Includes material and labor to install
+Install Ea. 2625 310 2935 | an electric hot air furnace rated at
+Demolish and Install Ea. 2625 443 3068 31.4 MBH.
+Reinstall Ea. 246.08 246.08
+Clean Ea. 1.64} 112 113.64
+Minimum Charge Job 320 320
+47.1 MBH
+Demolish Ea. 133 133 Includes material and labor to install
+Install Ea. 3000 320 3320 | an electric hot air furnace rated at
+Demolish and Install Ea. 3000 453 3453 | 471 MBH.
+Reinstall Ea. 257.53 257.53
+Clean Ea, 1.64} 112 113.64
+Minimum Charge Job 320 320
+62.9 MBH
+Demolish Ea. 133 133 Includes material and labor to install
+Install Ea, 3200 345 3545 an electric hot air furnace rated at
+Demolish and Install Ea, 3200 478 3678 62.9 MBH.
+Reinstall Ea, 276.84 276.84
+Clean Ea. 1.64 112 113.64
+Minimum Charge Job 320 320
+78.5 MBH
+Demolish Ea. 133 133 Includes material and labor to install
+Install Ea. 4350 355 4705 | an electric hot air furnace rated at
+Demolish and Install Ea. 4350 A88 4838 | 7g 5 MBH.
+Reinstall Ea. 283.94 283.94
+Clean Ea. 1.64} 112 113.64
+Minimum Charge Job 320 320
+110 MBH
+Demolish Ea. 133 133 Includes material and labor to install
+Install Ea. 5850 375 6225 an electric hot air furnace rated at
+Demolish and Install Ea. 5850 508 6358 110 MBH.
+Reinstall Ea. 299.29 299.29
+Clean Ea. 1.64) 112 113.64
+Minimum Charge Job * 320 320
+A/C Junction Box
+Install Ea. 86 161 247 | Includes labor and materials to install
+Minimum Charge Job 320 320 a heating system emergency shutoff
+switch. Cost includes up to 40 feet of
+non-metallic cable.
+Boiler Unit | Material | Labor | Equip. Total Specification
+Gas-Fired
+60 MBH
+Demolish Ea. 1175 1175 Includes material and labor to install a
+Install Ea, | 4200 2100 6300 | gas fired cast iron boiler rated at 60
+Demolish and Install Ea. 4200 3275 7475 MBH.
+Reinstall Ea. 1675.17 | 1675.17
+Clean Ea. 3.27 67.50 70.77
+Minimum Charge Job 320 320
+156 For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

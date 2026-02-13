@@ -311,7 +311,7 @@
                 <option value="todo">To Do</option>
                 <option value="in_progress">In Progress</option>
                 <option value="blocked">Blocked</option>
-                <option value="done">Done</option>
+                <option value="done">Complete</option>
             </select>
         </div>
         <div class="filter-group">
@@ -330,6 +330,7 @@
                 <option value="">All Categories</option>
                 <option value="ungouge">Ungouge.ai</option>
                 <option value="youtube">YouTube</option>
+                <option value="social">Social</option>
             </select>
         </div>
         <div class="filter-group">
@@ -365,6 +366,7 @@
         }
 
         let allTasks = [];
+        let allProjects = [];
         let projects = {};
         let projectCategories = {};
         let myFocusActive = false;
@@ -406,6 +408,7 @@
                 console.log('Projects loaded:', projectsData);
                 
                 allTasks = tasksData.tasks || [];
+                allProjects = projectsData.projects || [];
                 projects = Object.fromEntries(
                     (projectsData.projects || []).map(p => [p.id, p.name])
                 );
@@ -691,9 +694,23 @@
             const projectName = projects[task.project_id] || 'Unknown';
             const isMilestone = task.task_type === 'milestone';
 
-            document.getElementById('editModalType').innerHTML = (isMilestone ? '🎯 Milestone' : '📋 Task') + ' • ' + escapeHtml(projectName);
+            document.getElementById('editModalType').innerHTML = (isMilestone ? '🎯 Milestone' : '📋 Task');
             document.getElementById('editTitle').value = task.title || '';
             document.getElementById('editDescription').value = task.description || '';
+
+            // Populate project dropdown
+            const editProjectSelect = document.getElementById('editProject');
+            editProjectSelect.innerHTML = '<option value="">No Project</option>';
+            allProjects
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .forEach(p => {
+                    const opt = document.createElement('option');
+                    opt.value = p.id;
+                    opt.textContent = p.name;
+                    editProjectSelect.appendChild(opt);
+                });
+            editProjectSelect.value = task.project_id || '';
+
             document.getElementById('editStatus').value = task.status || 'todo';
             document.getElementById('editPriority').value = task.priority || 'medium';
             document.getElementById('editDue').value = task.due_date ? task.due_date.split('T')[0] : '';
@@ -724,9 +741,11 @@
 
         async function saveTaskEdit() {
             if (!currentEditTaskId) return;
+            const editProjectVal = document.getElementById('editProject').value;
             const payload = {
                 title: document.getElementById('editTitle').value,
                 description: document.getElementById('editDescription').value,
+                project_id: editProjectVal ? parseInt(editProjectVal) : null,
                 status: document.getElementById('editStatus').value,
                 priority: document.getElementById('editPriority').value,
                 due_date: document.getElementById('editDue').value || null,
@@ -753,6 +772,27 @@
             } catch (e) {
                 document.getElementById('editSaveMsg').textContent = '✗ Network error';
                 document.getElementById('editSaveMsg').style.color = '#ef4444';
+            }
+        }
+
+        async function deleteTaskEdit() {
+            if (!currentEditTaskId) return;
+            if (!confirm('Delete this task?')) return;
+            try {
+                const res = await fetch(`/tasks/${currentEditTaskId}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
+                if (res.ok) {
+                    allTasks = allTasks.filter(t => t.id !== currentEditTaskId);
+                    closeEditModal();
+                    renderTasks();
+                } else {
+                    alert('Failed to delete task');
+                }
+            } catch (e) {
+                console.error('Failed to delete task:', e);
+                alert('Network error deleting task');
             }
         }
 
@@ -792,6 +832,12 @@
                 <label class="em-label">Description / Notes</label>
                 <textarea id="editDescription" class="em-textarea"></textarea>
             </div>
+            <div class="em-group">
+                <label class="em-label">Project</label>
+                <select id="editProject" class="em-select">
+                    <option value="">No Project</option>
+                </select>
+            </div>
             <div class="em-row">
                 <div class="em-group">
                     <label class="em-label">Status</label>
@@ -800,7 +846,7 @@
                         <option value="in_progress">In Progress</option>
                         <option value="blocked">Blocked</option>
                         <option value="review">Review</option>
-                        <option value="done">Done</option>
+                        <option value="done">Complete</option>
                     </select>
                 </div>
                 <div class="em-group">
@@ -828,6 +874,7 @@
             </div>
         </div>
         <div class="em-footer">
+            <button style="background:#ef4444;" onclick="deleteTaskEdit()">🗑 Delete</button>
             <button style="background:#3b82f6;flex:1" onclick="saveTaskEdit()">💾 Save Changes</button>
             <button style="background:#334155" onclick="closeEditModal()">Cancel</button>
             <span id="editSaveMsg" style="font-size:12px;font-weight:600;min-width:70px;text-align:center"></span>

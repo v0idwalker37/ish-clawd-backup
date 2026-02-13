@@ -1,0 +1,52 @@
+s
+Job Preparation
+Flood Clean-up Unit | Material | Labor | Equip. | Total Specification
+Mildicide Walls
+Topographical
+Clean | SF Wall 37 .37 | Clean-up of deflooding including
+Minimum Charge Job 202 202 | topographical mildicide application.
+Injection Treatments
+Clean | SF Fir. 62.50 6.25 68.75 | Clean-up of deflooding including
+Minimum Charge Job 202 202 mildicide injection.
+Carpet Cleaning
+Uncontaminated
+Clean | SF Flr. 25 .25 | Includes labor to clean carpet
+Minimum Charge Job 202 202
+Contaminated
+Clean SF Flr, 40 AO | Includes labor to clean contaminated
+Minimum Charge Job 202 202 carpet.
+Stairway
+Clean Ea. AS 476 4.91 | Includes labor to clean contaminated
+Minimum Charge Job 202 202 | carpet on a stairway.
+Carpet Treatment
+Disinfect / Deodorize
+Clean | SF Fir. 25 .25 | Includes disinfecting and deodorizing
+Minimum Charge Job 202 202 of carpet.
+Disinfect For Sewage
+Clean | SF Flr. 65 .65 | Includes labor to disinfect and
+Minimum Charge Job 202 202 | deodorize carpet exposed to sewage.
+Mildicide
+Clean | SF Flr. .03 25 .28 | Includes labor and materials to apply
+Minimum Charge Job 202 202 | mildicide to carpet.
+Thermal Fog Area
+Clean SF Fir. .02 62 .64| Includes labor and materials to
+Minimum Charge Job 202 202 | perform thermal fogging during
+deflooding clean-up.
+Wet Fog / ULV Area
+Clean SF Flr. 04 35 .39 | Includes labor and materials to
+Minimum Charge Job 202 202 perform wet fogging / ULV during
+deflooding clean-up.
+Steam Clean Fixtures
+Clean Ea. .02 40.50 40.52 | Includes labor and materials to steam
+Minimum Charge Job 202 202 | clean fixtures during deflooding
+Pressure Wash Sewage clean-up.
+Clean | SF Fir. 3.68 3.68 | Includes labor to pressure wash
+Minimum Charge Job 202 202 | sewage contamination.
+Air Mover
+Minimum Charge Day 100 100 —_| Daily rental of air mover.
+Dehumidifier
+Medium Size
+Minimum Charge Day 55.50 55.50 | Daily rental of dehumidifier, medium.
+Large Size
+Minimum Charge Day 274 274 | Daily rental of dehumidifier, large.
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291. nN

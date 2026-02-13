@@ -1,0 +1,264 @@
+{
+  "source": "HomeAdvisor / Angi Cost Guides",
+  "scraped_date": "2026-02-11",
+  "data_period": "2025-2026 (updated continuously by HomeAdvisor)",
+  "notes": [
+    "Data from homeadvisor.com/cost/ pages and search snippets",
+    "Prices include both materials and labor unless noted otherwise",
+    "HomeAdvisor is a lead-gen platform (competitor context for Ungouge)",
+    "Rate-limited: 20-second delays between page fetches",
+    "Some URLs returned 404 - HomeAdvisor has restructured their cost pages"
+  ],
+  "cost_guides": {
+    "roofing": {
+      "source_url": "https://www.homeadvisor.com/cost/roofing/",
+      "materials_per_square": {
+        "note": "Per 'square' = 100 sq ft, materials only",
+        "asphalt_shingles": {"low": 100, "high": 150, "lifespan_years": "15-30"},
+        "metal": {"low": 120, "high": 900, "lifespan_years": "50+"},
+        "concrete_tile": {"low": 150, "high": 250, "lifespan_years": "30-50"},
+        "wood_cedar": {"low": 250, "high": 600, "lifespan_years": "15-30"},
+        "plastic_polymer": {"low": 400, "high": 1200, "lifespan_years": "35-50"},
+        "clay_tile": {"low": 800, "high": 1800, "lifespan_years": "75+"},
+        "slate": {"low": 800, "high": 1800, "lifespan_years": "125-200"}
+      },
+      "labor_per_square": {
+        "asphalt": {"low": 50, "high": 175},
+        "metal": {"low": 70, "high": 500}
+      },
+      "metal_over_shingles": {"low": 400, "high": 700, "unit": "per square"},
+      "mobile_home_replacement": {"low": 1000, "high": 3000}
+    },
+    "deck_building": {
+      "source_url": "https://www.homeadvisor.com/cost/outdoor-living/build-a-deck/",
+      "average_cost": 8265,
+      "typical_range": {"low": 4340, "high": 12602},
+      "labor_per_sqft": {"low": 15, "high": 35},
+      "materials_per_sqft": {
+        "pressure_treated_wood": {"low": 2, "high": 5},
+        "cedar": {"low": 3, "high": 7},
+        "bamboo": {"low": 3, "high": 10},
+        "mahogany": {"low": 8, "high": 11},
+        "tigerwood": {"low": 7, "high": 15},
+        "ipe": {"low": 10, "high": 20},
+        "composite_fiberglass": {"low": 12, "high": 22},
+        "redwood": {"low": 5, "high": 35},
+        "aluminum": {"low": 15, "high": 20}
+      },
+      "by_size": {
+        "10x10_100sqft": {"low": 4000, "high": 6000},
+        "12x12_144sqft": {"low": 5760, "high": 8640},
+        "12x20_240sqft": {"low": 9600, "high": 14400},
+        "16x20_320sqft": {"low": 12800, "high": 19200},
+        "20x20_400sqft": {"low": 16000, "high": 24000}
+      },
+      "by_type_per_sqft": {
+        "ground_level": {"low": 10, "high": 20},
+        "floating": {"low": 20, "high": 60},
+        "second_story": {"low": 40, "high": 50},
+        "elevated_concrete": {"low": 30, "high": 75},
+        "multi_level": {"low": 30, "high": 75}
+      },
+      "permits": {"low": 230, "high": 500},
+      "demolition_per_sqft": {"low": 5, "high": 15}
+    },
+    "kitchen_remodel": {
+      "source_url": "https://www.homeadvisor.com/cost/kitchens/remodel-a-kitchen/",
+      "average_cost": 26956,
+      "typical_range": {"low": 14582, "high": 41534},
+      "per_sqft": {"low": 75, "high": 250},
+      "by_scope": {
+        "budget_refresh": {"low": 3500, "high": 20000},
+        "minor_remodel": {"low": 10000, "high": 20000},
+        "major_remodel": {"low": 20000, "high": 65000},
+        "total_makeover": {"low": 65000, "high": 130000}
+      },
+      "by_region": {
+        "northwest": {"low": 25600, "high": 61100},
+        "rocky_mountains": {"low": 12700, "high": 39600},
+        "southwest": {"low": 12350, "high": 33950},
+        "mountain_prairie": {"low": 6000, "high": 37400},
+        "midwest": {"low": 10300, "high": 34300},
+        "southeast": {"low": 12000, "high": 32200},
+        "mideast": {"low": 13600, "high": 37650},
+        "northeast": {"low": 10800, "high": 40400}
+      },
+      "components": {
+        "cabinets_per_linear_ft": {"stock": {"low": 100, "high": 300}, "custom": {"low": 500, "high": 1200}},
+        "countertops_install": {"low": 1870, "high": 4400},
+        "flooring": {"low": 1000, "high": 4000},
+        "backsplash": {"low": 500, "high": 1700},
+        "permits": {"low": 460, "high": 2770}
+      },
+      "labor_pct_of_total": "25%",
+      "designer_cost_per_hour": {"low": 65, "high": 250}
+    },
+    "bathroom_remodel": {
+      "source_url": "https://www.homeadvisor.com/cost/bathrooms/remodel-a-bathroom/",
+      "average_cost": 12125,
+      "typical_range": {"low": 6639, "high": 17621},
+      "labor_pct_of_total": "40-65%",
+      "labor_per_hour": {"low": 50, "high": 75},
+      "by_size": {
+        "half_bath_powder_room": {"low": 1500, "high": 15000},
+        "full_bath": {"low": 3500, "high": 20000},
+        "primary_bathroom": {"low": 7000, "high": 30000}
+      },
+      "fixtures": {
+        "sink_installed": {"low": 60, "high": 5000},
+        "toilet_installed": {"low": 350, "high": 4000},
+        "bathtub_installed": {"low": 300, "high": 11000},
+        "shower_installed": {"low": 200, "high": 15000},
+        "cabinetry": {"low": 300, "high": 42000},
+        "vanity": {"low": 100, "high": 10000}
+      },
+      "demolition": {"low": 1000, "high": 2300},
+      "permits": {"low": 100, "high": 1000},
+      "plumber_per_hour": {"low": 45, "high": 200}
+    },
+    "flooring": {
+      "source_url": "https://www.homeadvisor.com/cost/flooring/install-flooring/",
+      "average_cost": 3156,
+      "per_sqft_range": {"low": 3, "high": 22},
+      "labor_pct": "60%",
+      "materials_pct": "40%",
+      "by_material_per_sqft": {
+        "vinyl": {"low": 2, "high": 14},
+        "linoleum": {"low": 3, "high": 12},
+        "laminate": {"low": 3, "high": 13},
+        "carpet": {"low": 3.5, "high": 11},
+        "hardwood": {"low": 6, "high": 25},
+        "tile": {"low": 15, "high": 20},
+        "stone": {"low": 6, "high": 20},
+        "wood_tile": {"low": 15, "high": 20}
+      },
+      "by_room_avg_cost": {
+        "basement_138sqft": {"low": 830, "high": 2900},
+        "hallways_230sqft": {"low": 1610, "high": 8100},
+        "living_room_460sqft": {"low": 1840, "high": 11500},
+        "bathrooms_368sqft": {"low": 2210, "high": 13250},
+        "bedrooms_667sqft": {"low": 2670, "high": 16680},
+        "kitchen_dining_437sqft": {"low": 3060, "high": 15300}
+      }
+    },
+    "painting": {
+      "source_url": "https://www.homeadvisor.com/cost/painting/",
+      "paint_per_gallon": {"low": 25, "high": 50, "designer": "100+"},
+      "coverage_per_gallon_sqft": 350,
+      "painter_per_hour": {"low": 20, "high": 50, "high_cost_areas": 100},
+      "painter_per_sqft": {"low": 2, "high": 6},
+      "painter_per_day": {"low": 200, "high": 500},
+      "by_project": {
+        "interior_room": {"low": 1000, "high": 2900},
+        "exterior_siding": {"low": 1800, "high": 4200},
+        "small_project": {"low": 400, "high": 1200},
+        "ceiling": {"low": 150, "high": 350}
+      },
+      "exterior_premium": "up to 25% more than interior",
+      "new_construction_per_sqft": {"low": 2, "high": 4}
+    },
+    "siding": {
+      "source_url": "https://www.homeadvisor.com/cost/siding/",
+      "average_cost": 10750,
+      "typical_range": {"low": 5400, "high": 16000},
+      "avg_per_sqft": 12,
+      "per_square_100sqft": 1200,
+      "by_material_per_sqft_installed": {
+        "wood": {"low": 2, "high": 20},
+        "vinyl": {"low": 3, "high": 12},
+        "fiber_cement": {"low": 5, "high": 15},
+        "brick": {"low": 9, "high": 30},
+        "stucco": {"low": 3, "high": 10},
+        "stone": {"low": 15, "high": 50}
+      }
+    },
+    "windows": {
+      "source_url": "https://www.homeadvisor.com/cost/doors-and-windows/window-replacement/",
+      "average_per_window": 850,
+      "per_window_range": {"low": 300, "high": 2100},
+      "by_size": {
+        "small_2x3_or_less": {"low": 100, "high": 400},
+        "medium_3x4_to_4x6": {"low": 200, "high": 800},
+        "large_over_4x6": {"low": 700, "high": 3000}
+      }
+    },
+    "hvac": {
+      "source_url": "https://www.homeadvisor.com/cost/heating-and-cooling/",
+      "new_system_average": 7500,
+      "new_system_range": {"low": 5000, "high": 12500},
+      "per_sqft": {"low": 25, "high": 60},
+      "by_type": {
+        "ac": {"low": 3900, "high": 7900},
+        "furnace_gas": {"low": 3800, "high": 10000},
+        "furnace_electric": {"low": 1700, "high": 7100},
+        "heat_pump": {"low": 4200, "high": 7600},
+        "boiler_gas": {"low": 2800, "high": 9000},
+        "boiler_electric": {"low": 1800, "high": 8000},
+        "ductwork": {"low": 1000, "high": 2700},
+        "ductless_mini_split": {"low": 2000, "high": 14500},
+        "geothermal": {"low": 3700, "high": 17000}
+      },
+      "by_home_size": {
+        "1000sqft": {"low": 3000, "high": 6000},
+        "1500sqft": {"low": 4000, "high": 7000},
+        "2000sqft": {"low": 5000, "high": 9000},
+        "2500sqft": {"low": 6000, "high": 10000},
+        "3000sqft": {"low": 7000, "high": 12000}
+      }
+    },
+    "electrical": {
+      "source_url": "https://www.homeadvisor.com/cost/electrical/",
+      "panel_upgrade_replace": 1100,
+      "panel_install_new": 1300,
+      "rewire_house_per_sqft": {"low": 6, "high": 10},
+      "rewire_house_total": {"low": 12000, "high": 20000},
+      "electrical_wiring_project": {
+        "average": 1563,
+        "range": {"low": 603, "high": 2592}
+      },
+      "generator_install": 4000,
+      "generator_repair": 250
+    },
+    "plumbing": {
+      "source_url": "https://www.homeadvisor.com/cost/plumbing/",
+      "note": "Could not directly scrape - data from search snippets",
+      "plumber_per_hour": {"low": 45, "high": 200},
+      "common_repairs": {
+        "faucet_install": 260,
+        "sink_install": 420,
+        "toilet_install_avg": 500,
+        "water_heater_install": {"low": 800, "high": 3500}
+      }
+    },
+    "fencing": {
+      "source_url": "https://www.homeadvisor.com/cost/fencing/",
+      "per_linear_foot_installed": {
+        "barbed_wire": {"low": 1, "high": 6},
+        "electric_invisible": {"low": 1, "high": 6},
+        "chain_link": {"low": 5, "high": 40},
+        "wood_privacy": {"low": 10, "high": 20},
+        "vinyl": {"low": 20, "high": 25},
+        "aluminum": {"low": 20, "high": 30},
+        "wrought_iron": {"low": 20, "high": 35},
+        "composite_trex": {"low": 15, "high": 45}
+      },
+      "wood_fence_total": {"low": 1700, "high": 4000},
+      "typical_backyard_perimeter_linear_ft": "150-170"
+    },
+    "gutters": {
+      "source_url": "https://www.homeadvisor.com/cost/gutters/",
+      "install_total": {"low": 550, "high": 1500},
+      "replacement_average": 1179,
+      "replacement_range": {"low": 627, "high": 1731},
+      "cleaning": {"low": 105, "high": 190},
+      "repair_average": 330
+    },
+    "concrete": {
+      "source_url": "https://www.homeadvisor.com/cost/garages/install-a-concrete-driveway/",
+      "driveway_average": 6400,
+      "driveway_range": {"low": 2700, "high": 14500},
+      "driveway_per_sqft": {"low": 8, "high": 18},
+      "paving_per_sqft": {"low": 7, "high": 22}
+    }
+  }
+}

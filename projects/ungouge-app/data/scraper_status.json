@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-02-12T18:20:54.676322",
+  "running": true,
+  "elapsed_seconds": 1777,
+  "sources": {
+    "reddit": {
+      "quotes_found": 462,
+      "requests_made": 299,
+      "errors": 5,
+      "status": "running",
+      "last_url": "https://old.reddit.com/r/HomeOwners/comments/1m0xl2e.json?limit=100&depth=3"
+    }
+  },
+  "total_quotes": 462,
+  "duplicates_skipped": 237,
+  "last_activity": "2026-02-12T18:49:23.977348"
+}

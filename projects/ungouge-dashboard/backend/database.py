@@ -240,6 +240,8 @@ def seed_sample_data():
             (%s, %s, %s, %s, %s, %s, %s),
             (%s, %s, %s, %s, %s, %s, %s),
             (%s, %s, %s, %s, %s, %s, %s),
+            (%s, %s, %s, %s, %s, %s, %s),
+            (%s, %s, %s, %s, %s, %s, %s),
             (%s, %s, %s, %s, %s, %s, %s)
     """, (
         'YouTube Channel', 'UnGouge Digest - Homeowner advocacy channel with data-driven content', 'active', 20, 'youtube', 'high', 70,
@@ -253,8 +255,10 @@ def seed_sample_data():
         'SEO & Blog Content', '23 blog posts covering home improvement costs - SEO keyword targeting', 'active', 90, 'ungouge', 'high', 90,
         'Disaster Response System', '3-agent automation (Sentinel/Strategist/Executor) for disaster pricing', 'active', 15, 'ungouge', 'medium', 60,
         'Data Partnerships', '1build.com API inquiry (68M data points) - waiting for response', 'active', 10, 'ungouge', 'medium', 50,
-        'Social Media Presence', 'YouTube @ungouge, Instagram @ungouge.ai, TikTok @ungouge.ai, X @Ungouge', 'active', 40, 'youtube', 'medium', 65,
+        'Social Media Presence', 'YouTube @ungouge, Instagram @ungouge.ai, TikTok @ungouge.ai, X @Ungouge', 'active', 40, 'social', 'medium', 65,
         'GPT to Web Funnel', 'ChatGPT custom GPT in-app experience funneling to ungouge.ai web app', 'active', 5, 'youtube', 'medium', 50,
+        'Social Media Management', 'Managing all social media accounts - scheduling, engagement, analytics', 'active', 20, 'social', 'medium', 60,
+        'Blog Distribution', 'Tracking blog posts across platforms - Website, Medium, LinkedIn', 'active', 10, 'social', 'medium', 55,
     ))
 
     # Get project IDs
@@ -274,6 +278,8 @@ def seed_sample_data():
     data_partner = projects.get('Data Partnerships')
     social = projects.get('Social Media Presence')
     gpt_funnel = projects.get('GPT to Web Funnel')
+    social_mgmt = projects.get('Social Media Management')
+    blog_dist = projects.get('Blog Distribution')
 
     # YouTube Channel tasks
     cursor.execute("""
@@ -485,6 +491,36 @@ def seed_sample_data():
             gpt_funnel, 'Add web app funnel CTA', 'Prompt users to visit ungouge.ai for full report after GPT preview', 'todo', 'medium', (week_2 + timedelta(days=3)).strftime('%Y-%m-%d'), 'action', 2,
             gpt_funnel, 'Track GPT to web conversion', 'Add analytics to measure how many GPT users convert to web app', 'todo', 'low', week_3.strftime('%Y-%m-%d'), 'action', 2,
             gpt_funnel, 'Test GPT quote preview', 'Ensure GPT can provide useful preview without full paid report', 'todo', 'medium', (week_2 + timedelta(days=4)).strftime('%Y-%m-%d'), 'action', 1,
+        ))
+
+    if social_mgmt:
+        cursor.execute("""
+            INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+            VALUES
+                (%s, %s, %s, %s, %s, %s, %s, %s),
+                (%s, %s, %s, %s, %s, %s, %s, %s),
+                (%s, %s, %s, %s, %s, %s, %s, %s),
+                (%s, %s, %s, %s, %s, %s, %s, %s)
+        """, (
+            social_mgmt, 'Create content calendar', 'Plan weekly posting schedule across all platforms', 'todo', 'high', week_2.strftime('%Y-%m-%d'), 'action', 2,
+            social_mgmt, 'Set up scheduling tool', 'Evaluate and configure Buffer/Later for multi-platform posting', 'todo', 'medium', week_2.strftime('%Y-%m-%d'), 'action', 1,
+            social_mgmt, 'Design brand templates', 'Create consistent visual templates for Instagram/TikTok/X posts', 'todo', 'medium', week_3.strftime('%Y-%m-%d'), 'action', 3,
+            social_mgmt, 'First cross-platform post', 'Publish coordinated launch content across all social accounts', 'todo', 'high', week_3.strftime('%Y-%m-%d'), 'milestone', 2,
+        ))
+
+    if blog_dist:
+        cursor.execute("""
+            INSERT INTO tasks (project_id, title, description, status, priority, due_date, task_type, estimated_hours)
+            VALUES
+                (%s, %s, %s, %s, %s, %s, %s, %s),
+                (%s, %s, %s, %s, %s, %s, %s, %s),
+                (%s, %s, %s, %s, %s, %s, %s, %s),
+                (%s, %s, %s, %s, %s, %s, %s, %s)
+        """, (
+            blog_dist, 'Set up Medium publication', 'Create UnGouge publication on Medium for blog syndication', 'todo', 'medium', week_2.strftime('%Y-%m-%d'), 'action', 1,
+            blog_dist, 'Create LinkedIn company page', 'Set up UnGouge LinkedIn page for blog cross-posting', 'todo', 'medium', week_2.strftime('%Y-%m-%d'), 'action', 1,
+            blog_dist, 'Publish first 5 blogs to website', 'Deploy top-priority blog posts to ungouge.ai/blog', 'todo', 'high', week_3.strftime('%Y-%m-%d'), 'milestone', 4,
+            blog_dist, 'Cross-post to Medium and LinkedIn', 'Syndicate published blogs to Medium and LinkedIn', 'todo', 'medium', (week_3 + timedelta(days=2)).strftime('%Y-%m-%d'), 'action', 2,
         ))
 
     # Insert all expenses (deduplicated, normalized categories)

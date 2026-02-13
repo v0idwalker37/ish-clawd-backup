@@ -16,13 +16,15 @@ logger = logging.getLogger("ungouge-dashboard")
 
 from fastapi import FastAPI, HTTPException, Cookie, Response, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, RedirectResponse, HTMLResponse
+from fastapi.responses import FileResponse, RedirectResponse, HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime, timedelta
 import os
 import secrets
+
+from rate_limiter import RateLimiter, rate_limit
 
 from database import get_connection, init_db
 from api_integrations import initialize_apis, get_all_external_metrics
@@ -33,6 +35,9 @@ from auth import (
     delete_session,
     cleanup_expired_sessions
 )
+
+# Initialize rate limiter (zero external dependencies)
+limiter = RateLimiter()
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -60,6 +65,8 @@ async def add_security_headers(request, call_next):
     response.headers["X-XSS-Protection"] = "1; mode=block"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    # HSTS: Force HTTPS for 1 year, include subdomains
+    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains; preload"
     # CSP: Allow inline scripts (needed for current architecture) but restrict sources
     response.headers["Content-Security-Policy"] = (
         "default-src 'self'; "
@@ -71,6 +78,16 @@ async def add_security_headers(request, call_next):
         "form-action 'self' https://accounts.google.com;"
     )
     return response
+
+# Global exception handler — prevent internal detail leakage
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    """Catch unhandled exceptions and return generic message. Log details server-side."""
+    logger.error(f"Unhandled error on {request.method} {request.url.path}: {type(exc).__name__}: {exc}")
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "An internal error occurred. Please try again later."}
+    )
 
 # Startup event - initialize database
 @app.on_event("startup")
@@ -85,8 +102,28 @@ def startup_event():
     logger.info("✅ Database initialized")
     
     # Seed with launch plan data if empty
-    from database import seed_sample_data
+    from database import seed_sample_data, get_connection
     seed_sample_data()
+    
+    # Migration: Ensure social category projects exist
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) as cnt FROM projects WHERE category = 'social'")
+        result = cursor.fetchone()
+        if result['cnt'] == 0:
+            logger.info("📱 Adding Social category projects...")
+            cursor.execute("INSERT INTO projects (name, description, category, status) VALUES (%s, %s, %s, %s)",
+                ("Social Media Management", "Managing all social accounts - X, Instagram, TikTok, LinkedIn", "social", "active"))
+            cursor.execute("INSERT INTO projects (name, description, category, status) VALUES (%s, %s, %s, %s)",
+                ("Blog Distribution", "Publishing and syndicating blog content across platforms", "social", "active"))
+            # Move Social Media Presence to social category
+            cursor.execute("UPDATE projects SET category = 'social' WHERE name = 'Social Media Presence' AND category = 'youtube'")
+            conn.commit()
+            logger.info("✅ Social projects added")
+        conn.close()
+    except Exception as e:
+        logger.warning(f"Social migration skipped: {e}")
     logger.info("✅ Launch plan data seeded")
     
     # Clean up expired sessions on startup
@@ -143,15 +180,23 @@ _last_cleanup_time = None
 
 # Session verification dependency
 # TODO [HIGH-01]: Add rate limiting to auth endpoints using slowapi
-# e.g. @limiter.limit("5/minute") on /auth/login, /auth/callback
+# e.g. @rate_limit(limiter, "5/minute") on /auth/login, /auth/callback
+# Internal API key for programmatic access (Ish/automation)
+INTERNAL_API_KEY = os.environ.get("INTERNAL_API_KEY", "")
+
 async def require_auth(request: Request):
-    """Verify session token from cookie"""
+    """Verify session token from cookie OR internal API key from header"""
     # Periodically clean up expired sessions (at most once per hour)
     global _last_cleanup_time
     now = datetime.now()
     if _last_cleanup_time is None or (now - _last_cleanup_time) > timedelta(hours=1):
         _last_cleanup_time = now
         cleanup_expired_sessions()
+
+    # Check for internal API key first (X-API-Key header)
+    api_key = request.headers.get("X-API-Key")
+    if api_key and INTERNAL_API_KEY and api_key == INTERNAL_API_KEY:
+        return {"email": "ish@ungouge.ai", "name": "Ish", "picture": None}
 
     session_token = request.cookies.get("session_token")
     if not session_token:
@@ -226,8 +271,25 @@ def read_root(
     return {"status": "healthy", "message": "Please authenticate"}
 
 
+@app.get("/api/blog/{slug}")
+def get_blog_post(slug: str, user_info: dict = Depends(require_auth)):
+    """Read a blog post markdown file and return its content"""
+    blog_dir = "/Users/moltbot/clawd/projects/ungouge-app/content/blog"
+    # Sanitize slug: only allow alphanumeric, hyphens, underscores
+    import re
+    if not re.match(r'^[a-zA-Z0-9_-]+$', slug):
+        raise HTTPException(status_code=400, detail="Invalid slug")
+    filepath = os.path.join(blog_dir, f"{slug}.md")
+    if not os.path.exists(filepath):
+        raise HTTPException(status_code=404, detail="Blog post not found")
+    with open(filepath, 'r') as f:
+        content = f.read()
+    return {"slug": slug, "content": content}
+
+
 @app.get("/auth/login")
-def auth_login():
+@rate_limit(limiter, "10/minute")
+def auth_login(request: Request):
     """
     Step 1: Redirect user to Google OAuth consent page
     Server-side redirect flow (no popup!)
@@ -265,6 +327,7 @@ def auth_login():
 
 
 @app.get("/auth/callback")
+@rate_limit(limiter, "10/minute")
 async def auth_callback(
     request: Request,
     code: Optional[str] = None,
@@ -364,7 +427,9 @@ async def auth_logout(
 
 
 @app.delete("/auth/account")
+@rate_limit(limiter, "3/hour")
 async def delete_account(
+    request: Request,
     response: Response,
     user_info: dict = Depends(require_auth)
 ):
@@ -421,7 +486,8 @@ async def delete_account(
     except Exception as e:
         conn.rollback()
         conn.close()
-        raise HTTPException(status_code=500, detail=f"Failed to delete account: {str(e)}")
+        logger.error(f"Account deletion failed for {user_email}: {type(e).__name__}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to delete account. Please try again later.")
 
 
 # Debug: list static files (protected — requires auth)
@@ -545,7 +611,8 @@ def get_tasks(
 
 
 @app.post("/tasks")
-def create_task(task_data: dict, user_info: dict = Depends(require_auth)):
+@rate_limit(limiter, "30/minute")
+def create_task(request: Request, task_data: dict, user_info: dict = Depends(require_auth)):
     """Create a new task"""
     conn = get_connection()
     cursor = conn.cursor()
@@ -579,7 +646,8 @@ def create_task(task_data: dict, user_info: dict = Depends(require_auth)):
 
 
 @app.put("/tasks/{task_id}")
-def update_task(task_id: int, task_data: dict, user_info: dict = Depends(require_auth)):
+@rate_limit(limiter, "30/minute")
+def update_task(request: Request, task_id: int, task_data: dict, user_info: dict = Depends(require_auth)):
     """Update a task"""
     conn = get_connection()
     cursor = conn.cursor()
@@ -618,7 +686,8 @@ def update_task(task_id: int, task_data: dict, user_info: dict = Depends(require
 
 
 @app.delete("/tasks/{task_id}")
-def delete_task(task_id: int, user_info: dict = Depends(require_auth)):
+@rate_limit(limiter, "20/minute")
+def delete_task(request: Request, task_id: int, user_info: dict = Depends(require_auth)):
     """Delete a task"""
     conn = get_connection()
     cursor = conn.cursor()
@@ -661,7 +730,8 @@ def get_expenses(user_info: dict = Depends(require_auth)):
 
 
 @app.post("/expenses")
-def create_expense(expense_data: dict, user_info: dict = Depends(require_auth)):
+@rate_limit(limiter, "30/minute")
+def create_expense(request: Request, expense_data: dict, user_info: dict = Depends(require_auth)):
     """Create a new expense"""
     conn = get_connection()
     cursor = conn.cursor()
@@ -693,7 +763,8 @@ def create_expense(expense_data: dict, user_info: dict = Depends(require_auth)):
 
 
 @app.put("/expenses/{expense_id}")
-def update_expense(expense_id: int, expense_data: dict, user_info: dict = Depends(require_auth)):
+@rate_limit(limiter, "30/minute")
+def update_expense(request: Request, expense_id: int, expense_data: dict, user_info: dict = Depends(require_auth)):
     """Update an expense"""
     conn = get_connection()
     cursor = conn.cursor()
@@ -734,7 +805,8 @@ def update_expense(expense_id: int, expense_data: dict, user_info: dict = Depend
 
 
 @app.delete("/expenses/{expense_id}")
-def delete_expense(expense_id: int, user_info: dict = Depends(require_auth)):
+@rate_limit(limiter, "20/minute")
+def delete_expense(request: Request, expense_id: int, user_info: dict = Depends(require_auth)):
     """Delete an expense"""
     conn = get_connection()
     cursor = conn.cursor()
@@ -817,7 +889,8 @@ async def get_external_metrics(user_info: dict = Depends(require_auth)):
 # ===== STRIPE REVENUE =====
 
 @app.get("/api/stripe/summary")
-def get_stripe_summary(user_info: dict = Depends(require_auth)):
+@rate_limit(limiter, "10/minute")
+def get_stripe_summary(request: Request, user_info: dict = Depends(require_auth)):
     """Get Stripe revenue summary — MTD, 30d, balances, customer count"""
     import stripe as stripe_sdk
     import time
@@ -916,7 +989,8 @@ def get_stripe_summary(user_info: dict = Depends(require_auth)):
 # ===== TIME CLOCK =====
 
 @app.post("/api/timeclock/in")
-def clock_in(user_info: dict = Depends(require_auth)):
+@rate_limit(limiter, "10/minute")
+def clock_in(request: Request, user_info: dict = Depends(require_auth)):
     """Clock in - create new time entry"""
     conn = get_connection()
     cursor = conn.cursor()
@@ -953,7 +1027,8 @@ def clock_in(user_info: dict = Depends(require_auth)):
 
 
 @app.post("/api/timeclock/out")
-def clock_out(user_info: dict = Depends(require_auth)):
+@rate_limit(limiter, "10/minute")
+def clock_out(request: Request, user_info: dict = Depends(require_auth)):
     """Clock out - close current time entry"""
     conn = get_connection()
     cursor = conn.cursor()
@@ -1132,6 +1207,13 @@ def serve_projects_youtube_page(request: Request):
     if redirect:
         return redirect
     return _serve_static_no_cache(os.path.join(static_dir, "projects-youtube.html"))
+
+@app.get("/projects-social.html")
+def serve_projects_social_page(request: Request):
+    redirect = _require_session_or_redirect(request)
+    if redirect:
+        return redirect
+    return _serve_static_no_cache(os.path.join(static_dir, "projects-social.html"))
 
 @app.get("/finances.html")
 def serve_finances_page(request: Request):

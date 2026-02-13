@@ -1,0 +1,56 @@
+= re
+=e, ar
+ae oe eae —_
+Se Lt.
+ae ~~} joo
+SSaeeeeeeaee = LDL...
+ees | Pe eL “srstza |
+an "TSS 1 43
+Brick Veneer Concrete Masonry Units
+Masonry Wall Unit | Material | Labor | Equip. | Total Specification
+Unreinforced CMU
+4’ x8” x 16"
+Demolish SA 16 A2 58 | Includes material and labor to install
+Install SF 2.98 5.40 8.38 | normal weight 4” x 8” x 16” block.
+Demolish and Install SE 2.98 5.56 A2 8.96
+Clean S.F 14 62 76
+Paint SF 30 ] 1.30
+Minimum Charge Job 266 266
+6” x 8” x 16”
+Demolish SF 22 56 78 | Includes material and labor to install
+Install SF. 3.83 5.65 9.48 | normal weight 6” x 8" x 16" block.
+Demolish and Install SF. 3.83 5.87 56 10.26
+Clean SE 14 62 76
+Paint SFE 30 1 1.30
+Minimum Charge Job 266 266
+8” x 8” x 16”
+Demolish SA A3 1.12 1.55 | Includes material and labor to install
+Install S.F 3.85 6.25 10.10] normal weight 8" x 8" x 16" block.
+Demolish and Install SF 3.85 6.68 1.12 11.65
+Clean SF. J4 62 76
+Paint SF 30 ] 1.30
+Minimum Charge Job 266 266
+12” x 8” x 16”
+Demolish SE A3 1.12 1.55 | Includes material and labor to install
+Install SF 6.10 9.50 15.60 | normal weight 12” x 8" x 16" block.
+Demolish and Install SF 6.10 9.93 1.12 17.15
+Clean SF. 14 62 76
+Paint SF 30 ] 1.30
+Minimum Charge Job 266 266
+Reinforced CMU
+4 x 8’ x 16”
+Demolish SF 2.50 1.65 4.15 | Includes material and labor to install
+Install SE 3.42 5.55 8.97 | normal weight 4” x 8” x 16” block,
+Demolish and Install SF. 3.42 8.05 1.65 13.12) mortar and 1/2" rebar installed
+Clean a 14 as fo) vertically every 24” O.C.
+Paint SF. 30 ] 1.30
+Minimum Charge Job 490 490
+6” x 8” x 16”
+Demolish SA 2.63 1.06 3.69 | Includes material and labor to install
+Install SF. 4.16 5.80 9.96 | normal weight 6" x 8" x 16” block,
+Demolish and Install SF 4.16 8.43 1.06 13.65 | mortar and 1/2" rebar installed
+Clean SF 14 62 76 .
+vertically every 24” O.C.
+Paint SF. 30 ] 1.30
+Minimum Charge Job 490 490
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291. 125

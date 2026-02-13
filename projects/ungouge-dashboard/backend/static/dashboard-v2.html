@@ -608,6 +608,10 @@
                         <span class="quick-links-icon">📹</span>
                         <span>YouTube Projects</span>
                     </a>
+                    <a href="/projects-social.html" class="quick-links-item">
+                        <span class="quick-links-icon">📱</span>
+                        <span>Social & Content</span>
+                    </a>
                     
                     <!-- External Tools -->
                     <div style="padding: 8px 16px; font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #334155; margin-top: 8px;">External Tools</div>
@@ -662,6 +666,9 @@
         <button onclick="setCategory('youtube')" id="cat-youtube" class="cat-btn" style="background: #334155; color: #e2e8f0; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; white-space: nowrap;">
             📹 YouTube
         </button>
+        <button onclick="window.location.href='/projects-social.html'" id="cat-social" class="cat-btn" style="background: #334155; color: #e2e8f0; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+            📱 Social
+        </button>
     </div>
 
     <div class="container">
@@ -691,7 +698,8 @@
         // Category filter mappings (by project.category field, not hardcoded names)
         const categoryMap = {
             'ungouge': ['product', 'operations', 'ungouge'],
-            'youtube': ['content', 'youtube']
+            'youtube': ['content', 'youtube'],
+            'social': ['social']
         };
 
         // Helper: build tasks.html URL with current category filter
@@ -1110,7 +1118,14 @@
         // Task Summary Pod
         function renderTaskSummaryPod(metrics) {
             const { tasks } = metrics;
-            const completionRate = tasks.total > 0 ? Math.round((tasks.completed / tasks.total) * 100) : 0;
+            const overdueCount = tasks.overdue;
+            
+            // On-time health gauge
+            const totalActive = tasks.total - tasks.completed;
+            const onTimeCount = totalActive - overdueCount;
+            const healthPct = totalActive > 0 ? Math.round((onTimeCount / totalActive) * 100) : 100;
+            const healthColor = healthPct >= 80 ? '#22c55e' : healthPct >= 60 ? '#eab308' : '#ef4444';
+            const healthLabel = healthPct >= 80 ? 'Healthy' : healthPct >= 60 ? 'At Risk' : 'Critical';
 
             return `
                 <div class="widget" onclick="window.location.href=tasksUrl()">
@@ -1141,12 +1156,17 @@
                             </div>
                         </div>
                         <div style="margin-top: 12px;">
-                            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #94a3b8; margin-bottom: 4px;">
-                                <span>Completion Rate</span>
-                                <span>${completionRate}%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill ${completionRate >= 75 ? 'success' : completionRate >= 50 ? 'warning' : 'danger'}" style="width: ${completionRate}%"></div>
+                            <div style="padding: 12px 14px; background: #0f172a; border-radius: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <span style="font-size: 13px; color: #94a3b8;">🩺 On-Time Health</span>
+                                    <span style="font-size: 14px; font-weight: 600; color: ${healthColor};">${healthPct}% on time</span>
+                                </div>
+                                <div style="width: 100%; height: 20px; background: #1e293b; border-radius: 10px; overflow: hidden;">
+                                    <div style="width: ${healthPct}%; height: 100%; background: ${healthColor}; border-radius: 10px; transition: width 0.8s ease-in-out;"></div>
+                                </div>
+                                <div style="text-align: center; margin-top: 6px; font-size: 12px; color: #64748b;">
+                                    ${overdueCount === 0 ? 'All tasks on track! 🎉' : `(${overdueCount} overdue)`}
+                                </div>
                             </div>
                         </div>
                     </div>

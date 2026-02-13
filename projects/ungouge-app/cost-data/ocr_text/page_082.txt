@@ -1,0 +1,52 @@
+Fascia Unit | Material | Labor | Equip. | Total Specification
+Hem-fir Std & Better
+2" x6"
+Demolish LF. .60 .60 | Cost includes material and labor to
+Install LF 1.16 4.30 5.46 | install 2” x 6” exterior trim board.
+Demolish and Install LE. 1.16 4.90 6.06
+Reinstall LF. 3.44 3.44
+Clean LF 02 34 36
+Paint LR (0) 1.10 1.50
+Minimum Charge Job 269 269
+2” x 8”
+Demolish LF. 68 .68 | Cost includes material and labor to
+Install LF. 1.53 478 6.31 | install 2" x 8” exterior trim board
+Demolish and Install LF. 1.53 5.46 6.99
+Reinstall LF 3.82 3.82
+Clean LE 02 34 36
+Paint LE AO 1.10 1.50
+Minimum Charge Job 269 269
+2’ x 10”
+Demolish LF. 78 .78 | Cost includes material and labor to
+Install LF. 2.08 5.95 8.03 | install 2” x 10” exterior trim board,
+Demolish and Install LE. 2.08 6.73 8.81
+Reinstall LE 478 4,78
+Clean LF. 03 37 40
+Paint LE 40 1.10 1.50
+Minimum Charge Job 269 269
+Barge Rafter
+2" x6"
+Demolish LF. 1,20 1.20 | Cost includes material and labor to
+Install LE 1.16 60 1.76 | install 2" x 6" barge rafters.
+Demolish and Install LE 1.16 1.80 2.96
+Reinstall LE. A8 A8
+Clean LF. 02 34 36
+Paint LE 40 1.10 1.50
+Minimum Charge Job 269 269
+2” x8”
+Demolish LF. 1.22 1,22 | Cost includes material and labor to
+Install LF 1.53 63 2.16} install 2" x 8” barge rafters.
+Demolish and Install LF. 1.53 1.85 3.38
+Reinstall LE 51 51
+Clean LF. .02 34 36
+Paint LE 40 1.10 1.50
+Minimum Charge Job 269 269
+2” x 10”
+Demolish LF. 1.24 1.24 | Cost includes material and labor to
+Install LF 2.08 65 2.73 | install 2" x 10” barge rafters.
+Demolish and Install LF. 2.08 1.89 3.97
+Reinstall LF. 52 52
+Clean LE 03 37 40
+Paint LE 40 1.10 1.50
+Minimum Charge Job 269 269
+68 For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

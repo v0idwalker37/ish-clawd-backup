@@ -1,0 +1,56 @@
+eye
+Walls / Ceilings
+Wall Plaster Unit | Material | Labor | Equip. Total Specification
+Lath
+Metal
+Demolish SY. 1.76 1.76 | Includes material and labor to install
+Install SY. 15.40 7.20 22.60) wire lath on steel framed walls.
+Demolish and Install SY. 15.40 8.96 24,36
+Clean SY. 3.68 3.68
+Minimum Charge Job 127 127
+Gypsum
+Demolish SY. 1.76 1.76 | Includes material and labor to install
+Install | SY. 8.20] 675 14.95] gypsum lath on walls.
+Demolish and Install SY. 8.20 8.51 16.71
+Clean Sty 3.68 3.68
+Minimum Charge Job 258 258
+Repairs
+Fill in Small Cracks
+Install LR .09 4.13 4.22 | Includes labor and material to fill in
+Minimum Charge Job 258 258 | hairline cracks up to 1/8" with filler,
+sand and prep for paint.
+Repair up to 1” Stock
+Install LE 36 5.15 5.51 | Includes labor and material to fill in
+Minimum Charge Job 258 258 | hairline cracks up to 1” with filler,
+sand and prep for paint.
+Patch Small Hole (2”)
+Install Ea. 09 5.45 5.54 | Includes labor and material to patch
+Minimum Charge Job 258 258 | up to 0 2" diameter hole in plaster.
+Patch Large Hole
+Install Ea, 10.90} 172 182.90 | Includes labor and material to patch
+Minimum Charge Job 258 258 | up to a 20" diameter hole in plaster.
+Patch Plaster Section
+Install Ea. 4.17 5.15 9.32 | Includes labor and material to repair
+Minimum Charge Job 258 258 | section of plaster wall, area less than
+20 S.F
+Repair Inside Corner
+Install LE. 4.36 12.90 17.26 | Includes material and labor to patch
+Minimum Charge Job 258 258 | plaster corners.
+Ceiling Plaster Unit | Material | Labor | Equip. | Total Specification
+Interior
+Cement
+Demolish SY. 7.50 7.50 | Includes material and labor to install
+. Install SY. 26 33 1.83 60.83 | cement plaster on interior wood
+Demolish and Install SY. 26 40.50 1.83 68.33 framing with metal lath,
+Clean SY. 3.86 3.86
+Paint SY. 2.17 5.90 8.07
+Minimum Charge Job 258 258
+Acoustic
+Demolish SY. 7.50 7.50 | Includes material and labor to install
+Demolish and Hi ay a raw } ee rite acoustical cement plaster on inletion
+mMolish and Inst Te ° . . + io
+Clean sy 3.86 386 wood framing with metal lath.
+Paint SY. 2.17 5.90 8.07
+Minimum Charge Job 258 258
+176
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

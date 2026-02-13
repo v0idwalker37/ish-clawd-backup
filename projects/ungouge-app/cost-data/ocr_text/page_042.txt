@@ -1,0 +1,60 @@
+Rough Frame / Structure
+Beam / Girder Unit | Material | Labor | Equip. Total Specification
+6x 8”
+Demolish LF. 5 5 | Cost includes material and labor to
+Install | LE 12.95} 4.75} 4.94] 22.64 install 6" x 8” beam.
+Demolish and Install LF. 12.95 975 4.94 27.64
+Clean LE 15 51 66
+Paint LE 30 171 2.01
+Minimum Charge Job 269 269
+6” x 10”
+Demolish LF. 6.25 6.25 | Cost includes material and labor to
+Install LF. 6.20 2.15 8.35} install 6” x 10” triple beam.
+Demolish and Install LR 6.20 8.40 14.60
+Clean LR 18 58 76
+Paint LF. 34 1.96 2.30
+Minimum Charge Job 269 269
+6” x 12”
+Demolish LT. 7.45 7.A5 | Cost Includes material and labor to
+Install LF 8.80 2.26 11.06 install 6” x 12" triple beam.
+Demolish and Install LE. 8.80 971 18.51
+Clean LF 19 65 84
+Paint LE 39 2.20 2.59
+Minimum Charge Job 269 269
+Steel I-type
+W8 x 31
+Demolish LF 11.70 11.95 23.65 | Includes material and labor to install
+Install | LE 53.50| 3.36] 3.02| 59.88 | W shaped steel beam / girder.
+Demolish and Install LE. 53.50 15.06 14.97 83.53
+Minimum Charge Job 605 605
+W8 x 48
+Demolish LE. 11.70 11.95 23.65 | Includes material and labor to install
+Install LF. 82.50 3.51 3.16 89.17 | W shaped steel beam / girder.
+Demolish and Install LF 82.50 15.21 15.11 112.82
+Minimum Charge Job 605 605
+W8 x 67
+Demolish LE. 11.70 11.95 23.65 | Includes material and labor to install
+Install | LE | 116 3.68} 3.31] 122.99] W shaped steel beam / girder.
+Demolish and Install LF. 116 15.38 15.26] 146.64
+Minimum Charge Job 605 605
+WI0 x 45
+Demolish LF. 11.70 11.95 23.65 | Includes material and labor to install
+Install | LE 77.50} 351] 3.16] 84.17 | W shaped steel beam / girder.
+Demolish and Install LF 77.50 15.21 15.11] 107.82
+Minimum Charge Job 605 605
+W10 x 68
+Demolish LF. 11.70 11.95 23.65 | Includes material and labor to install
+Install LE 117 3.68 3.31} 123.99 W shaped steel beam / girder.
+Demolish and Install LF 117 15.38 15.26] 147.64
+Minimum Charge Job 605 605
+W12 x 50
+Demolish LE 11.70 11.95 23.65 | Includes material and labor to install
+Install LF 86 3.51 3.16 92.67 | W shaped steel beam / girder.
+Demolish and Install LE 86 15.21 15.11 116.32
+Minimum Charge Job 605 605
+W12 x 87
+Demolish LF. 17.20 17.60 34.80 | Includes material and labor to install
+Install | LE | 150 3.68] 3.31] 156.99 W shaped steel beam / girder.
+Demolish and Install LF. 150 20.88 20.91} 191.79
+Minimum Charge Job 605 605
+28 For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

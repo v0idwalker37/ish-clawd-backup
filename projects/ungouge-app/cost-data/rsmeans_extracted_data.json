@@ -1,0 +1,7680 @@
+{
+  "roof_replacement": {
+    "items_found": 94,
+    "avg_total": 402.75676056338017,
+    "min_total": 2.64,
+    "max_total": 4770.0,
+    "avg_material": 347.9196825396826,
+    "avg_labor": 109.16816901408451,
+    "labor_pct": 27.105235641824855,
+    "sample_items": [
+      {
+        "section": "Underlayment",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 8.70 7.80 16.50} #15 felt underlayment.",
+        "costs": [
+          8.7,
+          7.8,
+          16.5,
+          15.0
+        ],
+        "source_page": 87,
+        "book_page": 73,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Underlayment",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 16.15 8.60 24.75 | #30 felt underlayment.",
+        "costs": [
+          16.15,
+          8.6,
+          24.75,
+          30.0
+        ],
+        "source_page": 87,
+        "book_page": 73,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Self Adhering",
+        "subsection": "",
+        "unit": "",
+        "raw_line": ". Install Sq. 90 22.50 112.50) self adhering ice barrier roofing",
+        "costs": [
+          90.0,
+          22.5,
+          112.5
+        ],
+        "material": 90.0,
+        "labor": 22.5,
+        "total": 112.5,
+        "source_page": 87,
+        "book_page": 73,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Self Adhering",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 61.50 41.50 103 __| install 90 Ib mineral surface rolled",
+        "costs": [
+          61.5,
+          41.5,
+          103.0,
+          90.0
+        ],
+        "source_page": 87,
+        "book_page": 73,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Self Adhering",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 115 55.50 170.50 | install 25 year fiberglass shingles.",
+        "costs": [
+          115.0,
+          55.5,
+          170.5,
+          25.0
+        ],
+        "source_page": 87,
+        "book_page": 73
+      },
+      {
+        "section": "Self Adhering",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 121 62.50 183.50 | install 30 year fiberglass shingles.",
+        "costs": [
+          121.0,
+          62.5,
+          183.5,
+          30.0
+        ],
+        "source_page": 87,
+        "book_page": 73
+      },
+      {
+        "section": "Emergency Repairs",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 229) 250 479 | Includes labor and material for",
+        "costs": [
+          229.0,
+          250.0,
+          479.0
+        ],
+        "material": 229.0,
+        "labor": 250.0,
+        "total": 479.0,
+        "source_page": 87,
+        "book_page": 73,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Emergency Repairs",
+        "subsection": "Architectural",
+        "unit": "",
+        "raw_line": "Install Sq. 152 69.50 221.50 | install 25 year fiberglass roof shingles.",
+        "costs": [
+          152.0,
+          69.5,
+          221.5,
+          25.0
+        ],
+        "source_page": 87,
+        "book_page": 73
+      },
+      {
+        "section": "Emergency Repairs",
+        "subsection": "Architectural",
+        "unit": "",
+        "raw_line": "Install Sq. 166 89.50 255.50 | install 30 year laminated roof",
+        "costs": [
+          166.0,
+          89.5,
+          255.5,
+          30.0
+        ],
+        "source_page": 87,
+        "book_page": 73
+      },
+      {
+        "section": "Roofing",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 455 104 559 | install 40 year laminated roof",
+        "costs": [
+          455.0,
+          104.0,
+          559.0,
+          40.0
+        ],
+        "source_page": 88,
+        "book_page": 74,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Roofing",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 455 104 559 | install 40 year laminated roof",
+        "costs": [
+          455.0,
+          104.0,
+          559.0,
+          40.0
+        ],
+        "source_page": 88,
+        "book_page": 74,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Emergency Repairs",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 229 250 479 Includes labor and material for",
+        "costs": [
+          229.0,
+          250.0,
+          479.0
+        ],
+        "material": 229.0,
+        "labor": 250.0,
+        "total": 479.0,
+        "source_page": 88,
+        "book_page": 74,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Emergency Repairs",
+        "subsection": "Ridge Vent",
+        "unit": "LF",
+        "raw_line": "Install LF. 4.64 3.80 8.44 | mill finish aluminum ridge vent strip.",
+        "costs": [
+          4.64,
+          3.8,
+          8.44
+        ],
+        "material": 4.64,
+        "labor": 3.8,
+        "total": 8.44,
+        "source_page": 88,
+        "book_page": 74,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Emergency Repairs",
+        "subsection": "Shingle Molding",
+        "unit": "LF",
+        "raw_line": "Install LF. 30 1.63 1.93) install 1\" x 2\" pine trim.",
+        "costs": [
+          30.0,
+          1.63,
+          1.93,
+          1.0,
+          2.0
+        ],
+        "source_page": 88,
+        "book_page": 74
+      },
+      {
+        "section": "Emergency Repairs",
+        "subsection": "Shingle Molding",
+        "unit": "LF",
+        "raw_line": "Install LF. 42 1.85 2.27 | install 1\" x 3\u201d pine trim",
+        "costs": [
+          42.0,
+          1.85,
+          2.27,
+          1.0,
+          3.0
+        ],
+        "source_page": 88,
+        "book_page": 74
+      },
+      {
+        "section": "Emergency Repairs",
+        "subsection": "Shingle Molding",
+        "unit": "LF",
+        "raw_line": "Install LF 87 2.15 3.02 | install 1\u201d x 4\u201d pine trim,",
+        "costs": [
+          87.0,
+          2.15,
+          3.02,
+          1.0,
+          4.0
+        ],
+        "source_page": 88,
+        "book_page": 74
+      },
+      {
+        "section": "Add for Steep Pitch",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 31.50 31.50} Includes labor and material added for",
+        "costs": [
+          31.5,
+          31.5
+        ],
+        "labor": 31.5,
+        "total": 31.5,
+        "source_page": 88,
+        "book_page": 74,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Add for Steep Pitch",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 31.50 31.50 | Includes labor and material added for",
+        "costs": [
+          31.5,
+          31.5
+        ],
+        "labor": 31.5,
+        "total": 31.5,
+        "source_page": 88,
+        "book_page": 74,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cedar Wood Shingles",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 615 215 830 | wood shingles/shakes.",
+        "costs": [
+          615.0,
+          215.0,
+          830.0
+        ],
+        "material": 615.0,
+        "labor": 215.0,
+        "total": 830.0,
+        "source_page": 89,
+        "book_page": 75
+      },
+      {
+        "section": "Cedar Wood Shingles",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 535 165 700 | wood shingles/shakes.",
+        "costs": [
+          535.0,
+          165.0,
+          700.0
+        ],
+        "material": 535.0,
+        "labor": 165.0,
+        "total": 700.0,
+        "source_page": 89,
+        "book_page": 75
+      }
+    ],
+    "all_totals": [
+      112.5,
+      479.0,
+      479.0,
+      8.44,
+      31.5,
+      31.5,
+      830.0,
+      700.0,
+      888.0,
+      1576.0,
+      23.4,
+      762.0,
+      785.0,
+      1059.0,
+      1040.0,
+      1644.0,
+      994.0,
+      774.0,
+      23.4,
+      1266.0,
+      36.75,
+      1311.0,
+      1211.0,
+      1886.0,
+      1001.0,
+      1211.0,
+      415.0,
+      39.75,
+      232.2,
+      245.0,
+      23.5,
+      42.5,
+      317.5,
+      42.5,
+      77.95,
+      39.8,
+      77.95,
+      174.55,
+      171.5,
+      23.0,
+      36.5,
+      32.5,
+      183.85,
+      303.0,
+      30.35,
+      415.0,
+      39.8,
+      3.99,
+      5.49,
+      6.029999999999999,
+      3.35,
+      3.99,
+      5.49,
+      8.11,
+      5.61,
+      7.05,
+      7.17,
+      6.029999999999999,
+      3.35,
+      8.81,
+      8.56,
+      2.64,
+      3.14,
+      121.5,
+      300.5,
+      4770.0,
+      68.1,
+      100.5,
+      5.68,
+      8.51,
+      4.94
+    ]
+  },
+  "siding_replacement": {
+    "items_found": 58,
+    "avg_total": 378.6451851851852,
+    "min_total": 3.52,
+    "max_total": 3644.0,
+    "avg_material": 307.59185185185186,
+    "avg_labor": 69.69666666666667,
+    "labor_pct": 18.406854066447433,
+    "sample_items": [
+      {
+        "section": "",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SA. 6.65 9.80 16.45 | normal weight 12\u201d x 8\u201d x 16\u201d block,",
+        "costs": [
+          6.65,
+          9.8,
+          16.45,
+          12.0,
+          8.0,
+          16.0
+        ],
+        "source_page": 140,
+        "book_page": 126,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Structural Brick",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 7.85 11.60 19.45 | install 4\u201d red brick wall, running bond",
+        "costs": [
+          7.85,
+          11.6,
+          19.45,
+          4.0
+        ],
+        "source_page": 140,
+        "book_page": 126,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Structural Brick",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": ". Install SF 80 26 106 install 12\u201d red brick wall, running",
+        "costs": [
+          80.0,
+          26.0,
+          106.0,
+          12.0
+        ],
+        "source_page": 140,
+        "book_page": 126,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Structural Brick",
+        "subsection": "Brick Veneer",
+        "unit": "",
+        "raw_line": "Install | SE 2% 10.85 36.85 | install 4\" 4d face brick,",
+        "costs": [
+          2.0,
+          10.85,
+          36.85,
+          4.0,
+          4.0
+        ],
+        "source_page": 140,
+        "book_page": 126,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Structural Brick",
+        "subsection": "Brick Veneer",
+        "unit": "",
+        "raw_line": "Install SA 7.85 11.60 19.45 | install 4\u201d red brick wall, running bond",
+        "costs": [
+          7.85,
+          11.6,
+          19.45,
+          4.0
+        ],
+        "source_page": 140,
+        "book_page": 126,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Glazed",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 26 11.85 37.85 | equipment to install glazed brick.",
+        "costs": [
+          26.0,
+          11.85,
+          37.85
+        ],
+        "material": 26.0,
+        "labor": 11.85,
+        "total": 37.85,
+        "source_page": 141,
+        "book_page": 127,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Slumpstone",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 8.55 6.15 14,70) install 6\" x 4\u201d x 16\" concrete slump",
+        "costs": [
+          8.55,
+          6.15,
+          1470.0,
+          6.0,
+          4.0,
+          16.0
+        ],
+        "source_page": 141,
+        "book_page": 127,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Slumpstone",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 6.60 6.30 12.90) install 6\" x 6\" x 16\" concrete slump",
+        "costs": [
+          6.6,
+          6.3,
+          12.9,
+          6.0,
+          6.0,
+          16.0
+        ],
+        "source_page": 141,
+        "book_page": 127,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Slumpstone",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 9.80 6.55 16.35 | install 8\u201d x 6\u201d x 16\u201d concrete slump",
+        "costs": [
+          9.8,
+          6.55,
+          16.35,
+          8.0,
+          6.0,
+          16.0
+        ],
+        "source_page": 141,
+        "book_page": 127,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Slumpstone",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 17.20 7.55 24,75 | install 12\" x 4\" x 16\" concrete slump",
+        "costs": [
+          17.2,
+          7.55,
+          2475.0,
+          12.0,
+          4.0,
+          16.0
+        ],
+        "source_page": 141,
+        "book_page": 127,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Slumpstone",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 18.60 8.15 26.75} install 12\u201d x 6\" x 16\" concrete slump",
+        "costs": [
+          18.6,
+          8.15,
+          26.75,
+          12.0,
+          6.0,
+          16.0
+        ],
+        "source_page": 141,
+        "book_page": 127,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Three Coat",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SY. 6.45 12.30 68 19.43 | stucco on exterior masonry walls,",
+        "costs": [
+          6.45,
+          12.3,
+          68.0,
+          19.43
+        ],
+        "source_page": 142,
+        "book_page": 128
+      },
+      {
+        "section": "Three Coat w / Wire Mesh",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | SY. 14.05} 4750} 2.15} 63.70] stucco on wire mesh over wood",
+        "costs": [
+          14.05,
+          4750.0,
+          2.15,
+          63.7
+        ],
+        "source_page": 142,
+        "book_page": 128
+      },
+      {
+        "section": "Three Coat w / Wire Mesh",
+        "subsection": "Fill Cracks",
+        "unit": "SF",
+        "raw_line": "Install SF 25 4,13 4.38 | Includes labor and material to fill in",
+        "costs": [
+          25.0,
+          413.0,
+          4.38
+        ],
+        "material": 25.0,
+        "labor": 413.0,
+        "total": 4.38,
+        "source_page": 142,
+        "book_page": 128,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Three Coat w / Wire Mesh",
+        "subsection": "Furring",
+        "unit": "LF",
+        "raw_line": "Install LF. 30 1.09 1.39) install 1\u201d x 2\" furring on masonry wall",
+        "costs": [
+          30.0,
+          1.09,
+          1.39,
+          1.0,
+          2.0
+        ],
+        "source_page": 142,
+        "book_page": 128,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Three Coat w / Wire Mesh",
+        "subsection": "Furring",
+        "unit": "LF",
+        "raw_line": "Install LF. 2.04 1.19 3.23 | install 2\" x 2\" furring on masonry wall.",
+        "costs": [
+          2.04,
+          1.19,
+          3.23,
+          2.0,
+          2.0
+        ],
+        "source_page": 142,
+        "book_page": 128,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Three Coat w / Wire Mesh",
+        "subsection": "Furring",
+        "unit": "LF",
+        "raw_line": "Install LF. 70 1.36 2.06 | install 2\u201d x 4\u201d furring on masonry wall.",
+        "costs": [
+          70.0,
+          1.36,
+          2.06,
+          2.0,
+          4.0
+        ],
+        "source_page": 142,
+        "book_page": 128,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Three Coat w / Wire Mesh",
+        "subsection": "Repoint",
+        "unit": "SF",
+        "raw_line": "Install SF. 1.74 6.65 8.39 | Includes labor and material to cut and",
+        "costs": [
+          1.74,
+          6.65,
+          8.39
+        ],
+        "material": 1.74,
+        "labor": 6.65,
+        "total": 8.39,
+        "source_page": 142,
+        "book_page": 128,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Three Coat w / Wire Mesh",
+        "subsection": "Acid Etch bond.",
+        "unit": "SF",
+        "raw_line": "Install SF 09 95 1,04} Includes labor and material to acid",
+        "costs": [
+          9.0,
+          95.0,
+          104.0
+        ],
+        "material": 9.0,
+        "labor": 95.0,
+        "total": 104.0,
+        "source_page": 142,
+        "book_page": 128,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Three Coat w / Wire Mesh",
+        "subsection": "Waterproof",
+        "unit": "SF",
+        "raw_line": "Install SF 81 ] 1.81 | Includes labor and material to install",
+        "costs": [
+          81.0,
+          1.81
+        ],
+        "material": 81.0,
+        "labor": 1.81,
+        "total": 82.81,
+        "source_page": 142,
+        "book_page": 128,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      37.85,
+      4.38,
+      8.39,
+      104.0,
+      82.81,
+      191.5,
+      186.0,
+      191.5,
+      169.5,
+      128.0,
+      494.0,
+      19.35,
+      39.85,
+      257.0,
+      35.0,
+      3644.0,
+      1108.0,
+      1333.0,
+      380.55,
+      6.1,
+      7.99,
+      475.0,
+      10.08,
+      3.52,
+      4.81,
+      12.24,
+      1289.0
+    ]
+  },
+  "siding_vinyl": {
+    "items_found": 7,
+    "avg_total": 435.34999999999997,
+    "min_total": 4.81,
+    "max_total": 1289.0,
+    "avg_material": 354.0566666666667,
+    "avg_labor": 81.29333333333334,
+    "labor_pct": 18.673098273419857,
+    "sample_items": [
+      {
+        "section": "Cedar, Tongue and Groove",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SE 2.37 2.44 4.81 | cedar tongue and groove exterior",
+        "costs": [
+          2.37,
+          2.44,
+          4.81
+        ],
+        "material": 2.37,
+        "labor": 2.44,
+        "total": 4.81,
+        "source_page": 150,
+        "book_page": 136,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Redwood, Tongue and Groove",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 9.80 2.44 12.24 | redwood tongue and groove exterior",
+        "costs": [
+          9.8,
+          2.44,
+          12.24
+        ],
+        "material": 9.8,
+        "labor": 2.44,
+        "total": 12.24,
+        "source_page": 150,
+        "book_page": 136,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Redwood, Tongue and Groove",
+        "subsection": "Board and Batten",
+        "unit": "SF",
+        "raw_line": "Install SF 28 1.63 1.91} install 1\u201d x 8\" fir boards with 1\" x 3\u201d",
+        "costs": [
+          28.0,
+          1.63,
+          1.91,
+          1.0,
+          8.0,
+          1.0,
+          3.0
+        ],
+        "source_page": 150,
+        "book_page": 136,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Redwood, Tongue and Groove",
+        "subsection": "Pine",
+        "unit": "",
+        "raw_line": "Install SE 4.86 1.43 6.29} install 1\u201d x 10\" pine boards with 1\" x",
+        "costs": [
+          4.86,
+          1.43,
+          6.29,
+          1.0,
+          10.0,
+          1.0
+        ],
+        "source_page": 150,
+        "book_page": 136,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Redwood, Tongue and Groove",
+        "subsection": "Cedar",
+        "unit": "",
+        "raw_line": "Install SE 14.05 1.43 15.48 | install 1\u201d x 10\" cedar boards with 1\u201d x",
+        "costs": [
+          14.05,
+          1.43,
+          15.48,
+          1.0,
+          10.0,
+          1.0
+        ],
+        "source_page": 150,
+        "book_page": 136,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Redwood, Tongue and Groove",
+        "subsection": "Redwood",
+        "unit": "SF",
+        "raw_line": "Install SF. 13.65 1.43 15.08 install 1\" x 10\" redwood boards with",
+        "costs": [
+          13.65,
+          1.43,
+          15.08,
+          1.0,
+          10.0
+        ],
+        "source_page": 150,
+        "book_page": 136,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Redwood, Tongue and Groove",
+        "subsection": "Wood Shingle",
+        "unit": "",
+        "raw_line": "Install Sq. 1050 239 1289 | wood shingles/shakes.",
+        "costs": [
+          1050.0,
+          239.0,
+          1289.0
+        ],
+        "material": 1050.0,
+        "labor": 239.0,
+        "total": 1289.0,
+        "source_page": 150,
+        "book_page": 136,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      4.81,
+      12.24,
+      1289.0
+    ]
+  },
+  "siding_fiber_cement": {
+    "items_found": 3,
+    "avg_total": 6.8,
+    "min_total": 3.52,
+    "max_total": 10.08,
+    "avg_material": 5.17,
+    "avg_labor": 1.63,
+    "labor_pct": 23.970588235294116,
+    "sample_items": [
+      {
+        "section": "Fiber Cement Siding",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SE 04 1.18 1.22 install 4\u2019 x 8\u2019 fiber cement 7/16\"",
+        "costs": [
+          4.0,
+          1.18,
+          1.22,
+          4.0,
+          8.0,
+          7.0,
+          16.0
+        ],
+        "source_page": 149,
+        "book_page": 135
+      },
+      {
+        "section": "Fir, Tongue and Groove",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 8.45 1.63 10.08 | fir tongue and groove exterior siding",
+        "costs": [
+          8.45,
+          1.63,
+          10.08
+        ],
+        "material": 8.45,
+        "labor": 1.63,
+        "total": 10.08,
+        "source_page": 149,
+        "book_page": 135,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Pine, Tongue and Groove",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 1.89 1.63 3.52 | Pine tongue and groove exterior",
+        "costs": [
+          1.89,
+          1.63,
+          3.52
+        ],
+        "material": 1.89,
+        "labor": 1.63,
+        "total": 3.52,
+        "source_page": 149,
+        "book_page": 135,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      10.08,
+      3.52
+    ]
+  },
+  "window_replacement": {
+    "items_found": 42,
+    "avg_total": 238.5304347826087,
+    "min_total": 18.1,
+    "max_total": 763.0,
+    "avg_material": 179.0630434782609,
+    "avg_labor": 110.9904347826087,
+    "labor_pct": 46.530932157048596,
+    "sample_items": [
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Lever Handle",
+        "unit": "",
+        "raw_line": "Install Ea. 156 54 210 _ | passage lockset, keyless bored type",
+        "costs": [
+          156.0,
+          54.0,
+          210.0
+        ],
+        "material": 156.0,
+        "labor": 54.0,
+        "total": 210.0,
+        "source_page": 120,
+        "book_page": 106
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Deadbolt",
+        "unit": "",
+        "raw_line": "Install Ea, 142 38.50 180.50] deadbolt.",
+        "costs": [
+          142.0,
+          38.5,
+          180.5
+        ],
+        "material": 142.0,
+        "labor": 38.5,
+        "total": 180.5,
+        "source_page": 120,
+        "book_page": 106
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Panic Device",
+        "unit": "",
+        "raw_line": "Install Ea. 585 89.50 674.50) touch bar, low profile, exit only,",
+        "costs": [
+          585.0,
+          89.5,
+          674.5
+        ],
+        "material": 585.0,
+        "labor": 89.5,
+        "total": 674.5,
+        "source_page": 120,
+        "book_page": 106
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Closer",
+        "unit": "",
+        "raw_line": "Install Ea. 390 89.50 479.50 pneumatic heavy duty model for",
+        "costs": [
+          390.0,
+          89.5,
+          479.5
+        ],
+        "material": 390.0,
+        "labor": 89.5,
+        "total": 479.5,
+        "source_page": 120,
+        "book_page": 106
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Peep-Hole",
+        "unit": "",
+        "raw_line": "Install Ea. 16.10 16.80 32.90| peephole for door.",
+        "costs": [
+          16.1,
+          16.8,
+          32.9
+        ],
+        "material": 16.1,
+        "labor": 16.8,
+        "total": 32.9,
+        "source_page": 120,
+        "book_page": 106
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Exit Sign",
+        "unit": "",
+        "raw_line": "Install Ea. 127 80.50 207.50} wall mounted interior electric exit sign.",
+        "costs": [
+          127.0,
+          80.5,
+          207.5
+        ],
+        "material": 127.0,
+        "labor": 80.5,
+        "total": 207.5,
+        "source_page": 120,
+        "book_page": 106
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Kickplate",
+        "unit": "",
+        "raw_line": "Install Ea. 143 36 179 | stainless steel kickplate, 10\" x 36\".",
+        "costs": [
+          143.0,
+          36.0,
+          179.0,
+          10.0,
+          36.0
+        ],
+        "source_page": 120,
+        "book_page": 106
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Mullion Bars",
+        "unit": "",
+        "raw_line": "Install Ea, 117 48.50 165.50 | Includes labor and material to install",
+        "costs": [
+          117.0,
+          48.5,
+          165.5
+        ],
+        "material": 117.0,
+        "labor": 48.5,
+        "total": 165.5,
+        "source_page": 125,
+        "book_page": 111
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 4200 269 4469 install 4\u2019 8\u201d x 9\u2019 2\" angle bay doubl",
+        "costs": [
+          4200.0,
+          269.0,
+          4469.0,
+          4.0,
+          8.0,
+          9.0,
+          2.0
+        ],
+        "source_page": 126,
+        "book_page": 112
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Casing",
+        "unit": "",
+        "raw_line": ". Install | Opng. 58.50 41.50 100 | install 11/16\" x 2-1/2\" pine ranch",
+        "costs": [
+          58.5,
+          41.5,
+          100.0,
+          11.0,
+          16.0,
+          2.0,
+          1.0,
+          2.0
+        ],
+        "source_page": 126,
+        "book_page": 112
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 930 43 973 residential aluminum storm window, 4\u2019",
+        "costs": [
+          930.0,
+          43.0,
+          973.0,
+          4.0
+        ],
+        "source_page": 127,
+        "book_page": 113
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Weatherstripping",
+        "unit": "LF",
+        "raw_line": "Install LF 83 4.48 5,31 | Includes labor and material to install",
+        "costs": [
+          83.0,
+          4.48,
+          531.0
+        ],
+        "material": 83.0,
+        "labor": 4.48,
+        "total": 531.0,
+        "source_page": 127,
+        "book_page": 113
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Casing",
+        "unit": "",
+        "raw_line": "Install | Opng. 58.50 41.50 100 | install 11/16\" x 2-1/2\" pine ranch",
+        "costs": [
+          58.5,
+          41.5,
+          100.0,
+          11.0,
+          16.0,
+          2.0,
+          1.0,
+          2.0
+        ],
+        "source_page": 132,
+        "book_page": 118
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Wood Picture Window",
+        "unit": "",
+        "raw_line": "Install | Eo. | 330 89.50 419.50] wood framed picture window",
+        "costs": [
+          330.0,
+          89.5,
+          419.5
+        ],
+        "material": 330.0,
+        "labor": 89.5,
+        "total": 419.5,
+        "source_page": 132,
+        "book_page": 118
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Wood Picture Window",
+        "unit": "",
+        "raw_line": "Install Ea. 625 98 723 | wood framed picture window",
+        "costs": [
+          625.0,
+          98.0,
+          723.0
+        ],
+        "material": 625.0,
+        "labor": 98.0,
+        "total": 723.0,
+        "source_page": 132,
+        "book_page": 118
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Wood Picture Window",
+        "unit": "",
+        "raw_line": "Install Ea. 665 98 763 | wood framed picture window",
+        "costs": [
+          665.0,
+          98.0,
+          763.0
+        ],
+        "material": 665.0,
+        "labor": 98.0,
+        "total": 763.0,
+        "source_page": 132,
+        "book_page": 118
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Small",
+        "unit": "",
+        "raw_line": "Install | Ea. 50.50] 16.30 66.80 | small window screen, 4 S.F",
+        "costs": [
+          50.5,
+          16.3,
+          66.8,
+          4.0
+        ],
+        "source_page": 132,
+        "book_page": 118
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Standard Size",
+        "unit": "",
+        "raw_line": "Install Ea. 113 16.30 129.30} medium window screen, 12 S.F.",
+        "costs": [
+          113.0,
+          16.3,
+          129.3,
+          12.0
+        ],
+        "source_page": 133,
+        "book_page": 119
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Large",
+        "unit": "",
+        "raw_line": "Install Ea. 151 16.30 167.30] large window screen, 16 S.F.",
+        "costs": [
+          151.0,
+          16.3,
+          167.3,
+          16.0
+        ],
+        "source_page": 133,
+        "book_page": 119
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Large",
+        "unit": "",
+        "raw_line": "Install | SE 16.90] 8.70 25.60| clear glass.",
+        "costs": [
+          16.9,
+          8.7,
+          25.6
+        ],
+        "material": 16.9,
+        "labor": 8.7,
+        "total": 25.6,
+        "source_page": 133,
+        "book_page": 119
+      }
+    ],
+    "all_totals": [
+      210.0,
+      180.5,
+      674.5,
+      479.5,
+      32.9,
+      207.5,
+      165.5,
+      531.0,
+      419.5,
+      723.0,
+      763.0,
+      25.6,
+      61.9,
+      18.1,
+      49.95,
+      50.6,
+      41.25,
+      25.6,
+      95.2,
+      80.2,
+      534.0,
+      75.0,
+      41.9
+    ]
+  },
+  "bathroom_remodel": {
+    "items_found": 93,
+    "avg_total": 1124.5849230769231,
+    "min_total": 4.0,
+    "max_total": 6225.0,
+    "avg_material": 916.5084615384615,
+    "avg_labor": 215.37338461538462,
+    "labor_pct": 19.151366890649022,
+    "sample_items": [
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Medium",
+        "unit": "",
+        "raw_line": "Install Ea. 142 26 168 PVC plumbing pipe vent cap.",
+        "costs": [
+          142.0,
+          26.0,
+          168.0
+        ],
+        "material": 142.0,
+        "labor": 26.0,
+        "total": 168.0,
+        "source_page": 162,
+        "book_page": 148,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Small",
+        "unit": "",
+        "raw_line": "Install Ea. 11.20 25 36.20 | PVC plumbing pipe vent cap.",
+        "costs": [
+          11.2,
+          25.0,
+          36.2
+        ],
+        "material": 11.2,
+        "labor": 25.0,
+        "total": 36.2,
+        "source_page": 162,
+        "book_page": 148,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Sump Pump",
+        "unit": "",
+        "raw_line": "Install Ea. 209 94 303 submersible sump pump.",
+        "costs": [
+          209.0,
+          94.0,
+          303.0
+        ],
+        "material": 209.0,
+        "labor": 94.0,
+        "total": 303.0,
+        "source_page": 162,
+        "book_page": 148,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Sump Pump",
+        "unit": "",
+        "raw_line": "Install | Ea. | 212 100 312 | submersible sump pump.",
+        "costs": [
+          212.0,
+          100.0,
+          312.0
+        ],
+        "material": 212.0,
+        "labor": 100.0,
+        "total": 312.0,
+        "source_page": 162,
+        "book_page": 148,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Sump Pump",
+        "unit": "",
+        "raw_line": "Install | Ea, | 315 112 427 | submersible sump pump.",
+        "costs": [
+          315.0,
+          112.0,
+          427.0
+        ],
+        "material": 315.0,
+        "labor": 112.0,
+        "total": 427.0,
+        "source_page": 162,
+        "book_page": 148,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Electric",
+        "unit": "",
+        "raw_line": "Install Ea. 925 274 1199 | 30 gallon electric water heater.",
+        "costs": [
+          925.0,
+          274.0,
+          1199.0,
+          30.0
+        ],
+        "source_page": 162,
+        "book_page": 148,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Eq. 785 300 1085 | 40 gallon electric water heater.",
+        "costs": [
+          785.0,
+          300.0,
+          1085.0,
+          40.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 1025 300 1325 | 52 gallon electric water heater.",
+        "costs": [
+          1025.0,
+          300.0,
+          1325.0,
+          52.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 1600 375 1975 | an 82 gallon electric water heater.",
+        "costs": [
+          1600.0,
+          375.0,
+          1975.0,
+          82.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 1150 300 1450 | 30 gallon gas water heater.",
+        "costs": [
+          1150.0,
+          300.0,
+          1450.0,
+          30.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 60 86 146 Includes labor and materials to install",
+        "costs": [
+          60.0,
+          86.0,
+          146.0
+        ],
+        "material": 60.0,
+        "labor": 86.0,
+        "total": 146.0,
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 885 315 1200 | 40 gallon gas water heater.",
+        "costs": [
+          885.0,
+          315.0,
+          1200.0,
+          40.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 60 86 146 | Includes labor and materials to install",
+        "costs": [
+          60.0,
+          86.0,
+          146.0
+        ],
+        "material": 60.0,
+        "labor": 86.0,
+        "total": 146.0,
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 895 335 1230 | 50 gallon gas water heater.",
+        "costs": [
+          895.0,
+          335.0,
+          1230.0,
+          50.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 60 86 146 | Includes labor and materials to install",
+        "costs": [
+          60.0,
+          86.0,
+          146.0
+        ],
+        "material": 60.0,
+        "labor": 86.0,
+        "total": 146.0,
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Solar Hot Water System",
+        "subsection": "Solar Panel",
+        "unit": "",
+        "raw_line": "Install | SE 40 3.97 43.97] solar panel",
+        "costs": [
+          40.0,
+          3.97,
+          43.97
+        ],
+        "material": 40.0,
+        "labor": 3.97,
+        "total": 43.97,
+        "source_page": 164,
+        "book_page": 150,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Solar Hot Water System",
+        "subsection": "Repair Plumbing",
+        "unit": "Job",
+        "raw_line": "Install Job 320 320 Includes 4 hour minimum labor charge",
+        "costs": [
+          320.0,
+          320.0,
+          4.0
+        ],
+        "material": 320.0,
+        "labor": 320.0,
+        "total": 4.0,
+        "source_page": 164,
+        "book_page": 150,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Galvanized, Square or Rectangular",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install LF. 8.20 13.10 21.30] rectangular ductwork with a greatest",
+        "costs": [
+          8.2,
+          13.1,
+          21.3
+        ],
+        "material": 8.2,
+        "labor": 13.1,
+        "total": 21.3,
+        "source_page": 164,
+        "book_page": 150,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Galvanized, Square or Rectangular",
+        "subsection": "",
+        "unit": "",
+        "raw_line": ". Install LE 10.90 16.85 27.75 tectangular ductwork with a greatest",
+        "costs": [
+          10.9,
+          16.85,
+          27.75
+        ],
+        "material": 10.9,
+        "labor": 16.85,
+        "total": 27.75,
+        "source_page": 164,
+        "book_page": 150,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Galvanized, Square or Rectangular",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install LF. 13.65 22 35.65 rectangular ductwork with a greatest",
+        "costs": [
+          13.65,
+          22.0,
+          35.65
+        ],
+        "material": 13.65,
+        "labor": 22.0,
+        "total": 35.65,
+        "source_page": 164,
+        "book_page": 150,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      168.0,
+      36.2,
+      303.0,
+      312.0,
+      427.0,
+      146.0,
+      146.0,
+      146.0,
+      43.97,
+      4.0,
+      21.3,
+      27.75,
+      35.65,
+      10.0,
+      34.05,
+      2240.0,
+      1342.0,
+      1680.0,
+      4480.0,
+      2887.0,
+      3315.0,
+      1640.0,
+      1970.0,
+      2005.0,
+      2055.0,
+      2935.0,
+      3320.0,
+      3545.0,
+      4705.0,
+      6225.0,
+      247.0,
+      4425.0,
+      1190.0,
+      446.0,
+      1387.0,
+      1280.0,
+      860.0,
+      1057.0,
+      375.5,
+      405.5,
+      8.5,
+      770.0,
+      840.0,
+      765.0,
+      596.0,
+      896.0,
+      689.0,
+      1874.0,
+      498.0,
+      308.0,
+      780.0,
+      155.5,
+      233.5,
+      427.0,
+      57.5,
+      2900.0,
+      596.0,
+      527.0,
+      707.5,
+      60.0,
+      189.5,
+      59.6,
+      960.0,
+      262.5,
+      60.0
+    ]
+  },
+  "kitchen_remodel": {
+    "items_found": 57,
+    "avg_total": 846.9525490196079,
+    "min_total": 3.57,
+    "max_total": 3665.0,
+    "avg_material": 731.3152941176471,
+    "avg_labor": 108.20196078431373,
+    "labor_pct": 12.775445437830394,
+    "sample_items": [
+      {
+        "section": "Wall and Base Cabinets Countertop",
+        "subsection": "Good Grade Laminated",
+        "unit": "",
+        "raw_line": ". Install Ea. 180 49 229 _| good modular unit with melamine",
+        "costs": [
+          180.0,
+          49.0,
+          229.0
+        ],
+        "material": 180.0,
+        "labor": 49.0,
+        "total": 229.0,
+        "source_page": 225,
+        "book_page": 211
+      },
+      {
+        "section": "Wall and Base Cabinets Countertop",
+        "subsection": "Good Grade Laminated",
+        "unit": "",
+        "raw_line": ". Install Ea. 330 93 383 | good modular unit with melamine",
+        "costs": [
+          330.0,
+          93.0,
+          383.0
+        ],
+        "material": 330.0,
+        "labor": 93.0,
+        "total": 383.0,
+        "source_page": 225,
+        "book_page": 211
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "Premium Grade Wood",
+        "unit": "",
+        "raw_line": ". Install Ea. 288 49 337 _| premium modular unit with solid",
+        "costs": [
+          288.0,
+          49.0,
+          337.0
+        ],
+        "material": 288.0,
+        "labor": 49.0,
+        "total": 337.0,
+        "source_page": 228,
+        "book_page": 214
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "Premium Grade Wood",
+        "unit": "",
+        "raw_line": ". Install Ea. 345 50 395 | premium modular unit with solid",
+        "costs": [
+          345.0,
+          50.0,
+          395.0
+        ],
+        "material": 345.0,
+        "labor": 50.0,
+        "total": 395.0,
+        "source_page": 228,
+        "book_page": 214
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "",
+        "unit": "",
+        "raw_line": ". Install Ea. 283 52 335 premium hardwood modular unit with",
+        "costs": [
+          283.0,
+          52.0,
+          335.0
+        ],
+        "material": 283.0,
+        "labor": 52.0,
+        "total": 335.0,
+        "source_page": 230,
+        "book_page": 216
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "",
+        "unit": "",
+        "raw_line": ". Install Ea. 176 94.50 230.50] premium hardwood modular unit with",
+        "costs": [
+          176.0,
+          94.5,
+          230.5
+        ],
+        "material": 176.0,
+        "labor": 94.5,
+        "total": 230.5,
+        "source_page": 230,
+        "book_page": 216
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "",
+        "unit": "",
+        "raw_line": ". Install Ea. 655 55.50 710.50 | premium hardwood modular unit with",
+        "costs": [
+          655.0,
+          55.5,
+          710.5
+        ],
+        "material": 655.0,
+        "labor": 55.5,
+        "total": 710.5,
+        "source_page": 230,
+        "book_page": 216
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "Good Grade",
+        "unit": "",
+        "raw_line": "Install Ea, 335 38.50 373.50 | install 14\u201d x 18\u201d d medici",
+        "costs": [
+          335.0,
+          38.5,
+          373.5,
+          14.0,
+          18.0
+        ],
+        "source_page": 231,
+        "book_page": 217
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "Better Grade",
+        "unit": "",
+        "raw_line": "Install Ea. 605 38.50 643.50 sed medici binet with",
+        "costs": [
+          605.0,
+          38.5,
+          643.5
+        ],
+        "material": 605.0,
+        "labor": 38.5,
+        "total": 643.5,
+        "source_page": 231,
+        "book_page": 217
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "Better Grade Lighted",
+        "unit": "",
+        "raw_line": "Install Ea. 640 45 685 d medici binet with",
+        "costs": [
+          640.0,
+          45.0,
+          685.0
+        ],
+        "material": 640.0,
+        "labor": 45.0,
+        "total": 685.0,
+        "source_page": 231,
+        "book_page": 217
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "Premium Grade",
+        "unit": "",
+        "raw_line": "Install Ea. 345 38.50 383.50 | install 14\u201d x 24\u201d d medici",
+        "costs": [
+          345.0,
+          38.5,
+          383.5,
+          14.0,
+          24.0
+        ],
+        "source_page": 231,
+        "book_page": 217
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "Strip and Refinish",
+        "unit": "",
+        "raw_line": "Install LE 8.05 55 63.05 | Includes labor and material to strip,",
+        "costs": [
+          8.05,
+          55.0,
+          63.05
+        ],
+        "material": 8.05,
+        "labor": 55.0,
+        "total": 63.05,
+        "source_page": 232,
+        "book_page": 218
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "Premium Hardwood",
+        "unit": "LF",
+        "raw_line": "Install LF. 1075 59.50 1134.50) premium hardwood modular unit with",
+        "costs": [
+          1075.0,
+          59.5,
+          1134.5
+        ],
+        "material": 1075.0,
+        "labor": 59.5,
+        "total": 1134.5,
+        "source_page": 232,
+        "book_page": 218
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "Premium Grade Veneer",
+        "unit": "",
+        "raw_line": "Install Ea. 1550 134 1684 i dular unit with solid",
+        "costs": [
+          1550.0,
+          134.0,
+          1684.0
+        ],
+        "material": 1550.0,
+        "labor": 134.0,
+        "total": 1684.0,
+        "source_page": 234,
+        "book_page": 220
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "Better Grade Veneer",
+        "unit": "",
+        "raw_line": "Install Ea. 440 108 548 | custom modular unit with solid",
+        "costs": [
+          440.0,
+          108.0,
+          548.0
+        ],
+        "material": 440.0,
+        "labor": 108.0,
+        "total": 548.0,
+        "source_page": 234,
+        "book_page": 220
+      },
+      {
+        "section": "Gaus, is a panels, hinges and pulls.",
+        "subsection": "Premium Grade Veneer",
+        "unit": "",
+        "raw_line": "Install Ea, 530 108 638 it dular unit with solid",
+        "costs": [
+          530.0,
+          108.0,
+          638.0
+        ],
+        "material": 530.0,
+        "labor": 108.0,
+        "total": 638.0,
+        "source_page": 234,
+        "book_page": 220,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Gaus, is a panels, hinges and pulls.",
+        "subsection": "Premium Hardwood",
+        "unit": "",
+        "raw_line": "Install Ea. 580 108 688 ium hardwood modular unit with",
+        "costs": [
+          580.0,
+          108.0,
+          688.0
+        ],
+        "material": 580.0,
+        "labor": 108.0,
+        "total": 688.0,
+        "source_page": 234,
+        "book_page": 220,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cabinets and Countertops",
+        "subsection": "Plain Shelves",
+        "unit": "",
+        "raw_line": "Install Ea. 36.50 30 66.50 | Includes labor and material to install",
+        "costs": [
+          36.5,
+          30.0,
+          66.5
+        ],
+        "material": 36.5,
+        "labor": 30.0,
+        "total": 66.5,
+        "source_page": 235,
+        "book_page": 221
+      },
+      {
+        "section": "Rotating Shelves tall cabinet shelving, per set.",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 249 27 276 | Includes labor and material to install",
+        "costs": [
+          249.0,
+          27.0,
+          276.0
+        ],
+        "material": 249.0,
+        "labor": 27.0,
+        "total": 276.0,
+        "source_page": 235,
+        "book_page": 221
+      },
+      {
+        "section": "Strip and Refinish lazy susan shelving for wall cabinet.",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install LE 16 88 104 | Includes labor and material to strip,",
+        "costs": [
+          16.0,
+          88.0,
+          104.0
+        ],
+        "material": 16.0,
+        "labor": 88.0,
+        "total": 104.0,
+        "source_page": 235,
+        "book_page": 221
+      }
+    ],
+    "all_totals": [
+      229.0,
+      383.0,
+      337.0,
+      395.0,
+      335.0,
+      230.5,
+      710.5,
+      643.5,
+      685.0,
+      63.05,
+      1134.5,
+      1684.0,
+      548.0,
+      638.0,
+      688.0,
+      66.5,
+      276.0,
+      104.0,
+      4.68,
+      436.0,
+      503.0,
+      380.0,
+      528.5,
+      545.0,
+      571.0,
+      597.5,
+      490.0,
+      773.0,
+      1229.5,
+      838.0,
+      1764.5,
+      8.41,
+      8.41,
+      8.41,
+      63.05,
+      3.57,
+      3665.0,
+      2744.0,
+      2636.0,
+      1200.0,
+      1420.0,
+      1905.0,
+      696.0,
+      1110.0,
+      676.0,
+      905.0,
+      1051.0,
+      2066.0,
+      2691.0,
+      2331.0,
+      195.5
+    ]
+  },
+  "painting_interior": {
+    "items_found": 10,
+    "avg_total": 25.838,
+    "min_total": 1.38,
+    "max_total": 75.0,
+    "avg_material": 43.8,
+    "avg_labor": 19.046,
+    "labor_pct": 73.713135691617,
+    "sample_items": [
+      {
+        "section": "Cover / Protect Floors",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 08 JA7 .25| Includes material and labor to install",
+        "costs": [
+          8.0,
+          7.0,
+          25.0
+        ],
+        "material": 8.0,
+        "labor": 7.0,
+        "total": 25.0,
+        "source_page": 249,
+        "book_page": 235,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cover / Protect Walls uninterrupted areas.",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SA 08 17 .25| Includes material and labor to install",
+        "costs": [
+          8.0,
+          17.0,
+          25.0
+        ],
+        "material": 8.0,
+        "labor": 17.0,
+        "total": 25.0,
+        "source_page": 249,
+        "book_page": 235
+      },
+      {
+        "section": "Cover / Protect Floors",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SR .08 17 .25 | Includes material and labor to install",
+        "costs": [
+          8.0,
+          17.0,
+          25.0
+        ],
+        "material": 8.0,
+        "labor": 17.0,
+        "total": 25.0,
+        "source_page": 250,
+        "book_page": 236,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cover / Protect Walls uninterrupted areas.",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. .08 A7 -25| Includes material and labor to install",
+        "costs": [
+          8.0,
+          7.0,
+          25.0
+        ],
+        "material": 8.0,
+        "labor": 7.0,
+        "total": 25.0,
+        "source_page": 250,
+        "book_page": 236
+      },
+      {
+        "section": "Cover / Protect Walls uninterrupted areas.",
+        "subsection": "Spray",
+        "unit": "",
+        "raw_line": "Install SE .07 68 .75 | Includes labor and material to install",
+        "costs": [
+          7.0,
+          68.0,
+          75.0
+        ],
+        "material": 7.0,
+        "labor": 68.0,
+        "total": 75.0,
+        "source_page": 250,
+        "book_page": 236
+      },
+      {
+        "section": "Cover / Protect Walls uninterrupted areas.",
+        "subsection": "Trowel",
+        "unit": "SF",
+        "raw_line": "Install SF. 59 1.17 1.76| Includes labor and material to apply",
+        "costs": [
+          59.0,
+          1.17,
+          1.76
+        ],
+        "material": 59.0,
+        "labor": 1.17,
+        "total": 1.76,
+        "source_page": 250,
+        "book_page": 236
+      },
+      {
+        "section": "Cover / Protect Walls uninterrupted areas.",
+        "subsection": "Spray",
+        "unit": "SF",
+        "raw_line": "Install SF 07 68 75 | Includes labor and material to install",
+        "costs": [
+          7.0,
+          68.0,
+          75.0
+        ],
+        "material": 7.0,
+        "labor": 68.0,
+        "total": 75.0,
+        "source_page": 250,
+        "book_page": 236
+      },
+      {
+        "section": "Trowel",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 59 1.17 1.76 | Includes labor and material to apply",
+        "costs": [
+          59.0,
+          1.17,
+          1.76
+        ],
+        "material": 59.0,
+        "labor": 1.17,
+        "total": 1.76,
+        "source_page": 251,
+        "book_page": 237,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Plank Flooring Wood Strip Flooring Tile Flooring",
+        "subsection": "Sand and Finish",
+        "unit": "SF",
+        "raw_line": "Install SF. 237] 1.01 1.38 | Includes labor and material to refinish",
+        "costs": [
+          237.0,
+          1.01,
+          1.38
+        ],
+        "material": 237.0,
+        "labor": 1.01,
+        "total": 1.38,
+        "source_page": 253,
+        "book_page": 239,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Plank Flooring Wood Strip Flooring Tile Flooring",
+        "subsection": "Sand and Finish",
+        "unit": "SF",
+        "raw_line": "Install SF. 37 3.11 3.48 | Includes labor and material to refinish",
+        "costs": [
+          37.0,
+          3.11,
+          3.48
+        ],
+        "material": 37.0,
+        "labor": 3.11,
+        "total": 3.48,
+        "source_page": 253,
+        "book_page": 239,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      25.0,
+      25.0,
+      25.0,
+      25.0,
+      75.0,
+      1.76,
+      75.0,
+      1.76,
+      1.38,
+      3.48
+    ]
+  },
+  "exterior_painting": {
+    "items_found": 10,
+    "avg_total": 25.838,
+    "min_total": 1.38,
+    "max_total": 75.0,
+    "avg_material": 43.8,
+    "avg_labor": 19.046,
+    "labor_pct": 73.713135691617,
+    "sample_items": [
+      {
+        "section": "Cover / Protect Floors",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 08 JA7 .25| Includes material and labor to install",
+        "costs": [
+          8.0,
+          7.0,
+          25.0
+        ],
+        "material": 8.0,
+        "labor": 7.0,
+        "total": 25.0,
+        "source_page": 249,
+        "book_page": 235,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cover / Protect Walls uninterrupted areas.",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SA 08 17 .25| Includes material and labor to install",
+        "costs": [
+          8.0,
+          17.0,
+          25.0
+        ],
+        "material": 8.0,
+        "labor": 17.0,
+        "total": 25.0,
+        "source_page": 249,
+        "book_page": 235,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cover / Protect Floors",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SR .08 17 .25 | Includes material and labor to install",
+        "costs": [
+          8.0,
+          17.0,
+          25.0
+        ],
+        "material": 8.0,
+        "labor": 17.0,
+        "total": 25.0,
+        "source_page": 250,
+        "book_page": 236,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cover / Protect Walls uninterrupted areas.",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. .08 A7 -25| Includes material and labor to install",
+        "costs": [
+          8.0,
+          7.0,
+          25.0
+        ],
+        "material": 8.0,
+        "labor": 7.0,
+        "total": 25.0,
+        "source_page": 250,
+        "book_page": 236,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cover / Protect Walls uninterrupted areas.",
+        "subsection": "Spray",
+        "unit": "",
+        "raw_line": "Install SE .07 68 .75 | Includes labor and material to install",
+        "costs": [
+          7.0,
+          68.0,
+          75.0
+        ],
+        "material": 7.0,
+        "labor": 68.0,
+        "total": 75.0,
+        "source_page": 250,
+        "book_page": 236,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cover / Protect Walls uninterrupted areas.",
+        "subsection": "Trowel",
+        "unit": "SF",
+        "raw_line": "Install SF. 59 1.17 1.76| Includes labor and material to apply",
+        "costs": [
+          59.0,
+          1.17,
+          1.76
+        ],
+        "material": 59.0,
+        "labor": 1.17,
+        "total": 1.76,
+        "source_page": 250,
+        "book_page": 236,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cover / Protect Walls uninterrupted areas.",
+        "subsection": "Spray",
+        "unit": "SF",
+        "raw_line": "Install SF 07 68 75 | Includes labor and material to install",
+        "costs": [
+          7.0,
+          68.0,
+          75.0
+        ],
+        "material": 7.0,
+        "labor": 68.0,
+        "total": 75.0,
+        "source_page": 250,
+        "book_page": 236,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Trowel",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 59 1.17 1.76 | Includes labor and material to apply",
+        "costs": [
+          59.0,
+          1.17,
+          1.76
+        ],
+        "material": 59.0,
+        "labor": 1.17,
+        "total": 1.76,
+        "source_page": 251,
+        "book_page": 237,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Plank Flooring Wood Strip Flooring Tile Flooring",
+        "subsection": "Sand and Finish",
+        "unit": "SF",
+        "raw_line": "Install SF. 237] 1.01 1.38 | Includes labor and material to refinish",
+        "costs": [
+          237.0,
+          1.01,
+          1.38
+        ],
+        "material": 237.0,
+        "labor": 1.01,
+        "total": 1.38,
+        "source_page": 253,
+        "book_page": 239,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Plank Flooring Wood Strip Flooring Tile Flooring",
+        "subsection": "Sand and Finish",
+        "unit": "SF",
+        "raw_line": "Install SF. 37 3.11 3.48 | Includes labor and material to refinish",
+        "costs": [
+          37.0,
+          3.11,
+          3.48
+        ],
+        "material": 37.0,
+        "labor": 3.11,
+        "total": 3.48,
+        "source_page": 253,
+        "book_page": 239,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      25.0,
+      25.0,
+      25.0,
+      25.0,
+      75.0,
+      1.76,
+      75.0,
+      1.76,
+      1.38,
+      3.48
+    ]
+  },
+  "flooring_installation": {
+    "items_found": 40,
+    "avg_total": 23.804230769230774,
+    "min_total": 1.38,
+    "max_total": 130.3,
+    "avg_material": 27.379615384615384,
+    "avg_labor": 37.76576923076922,
+    "labor_pct": 158.65150021812536,
+    "sample_items": [
+      {
+        "section": "Walnut",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": ". Install SF. 5.65 1.90 7.55 | unfinished T&G walnut flooring,",
+        "costs": [
+          5.65,
+          1.9,
+          7.55
+        ],
+        "material": 5.65,
+        "labor": 1.9,
+        "total": 7.55,
+        "source_page": 254,
+        "book_page": 240
+      },
+      {
+        "section": "Sand and Finish",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 37 3.11 3.48 | Includes labor and material to refinish",
+        "costs": [
+          37.0,
+          3.11,
+          3.48
+        ],
+        "material": 37.0,
+        "labor": 3.11,
+        "total": 3.48,
+        "source_page": 254,
+        "book_page": 240,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Sand and Finish",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 37 3.11 3.48 | Includes labor and material to refinish",
+        "costs": [
+          37.0,
+          3.11,
+          3.48
+        ],
+        "material": 37.0,
+        "labor": 3.11,
+        "total": 3.48,
+        "source_page": 254,
+        "book_page": 240,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Prefinished Oak",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 5.40 2.68 8.08 | prefinished T&G oak flooring, 2-1/4\u201d",
+        "costs": [
+          5.4,
+          2.68,
+          8.08,
+          2.0,
+          1.0,
+          4.0
+        ],
+        "source_page": 254,
+        "book_page": 240
+      },
+      {
+        "section": "Prefinished Oak",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 5.15 2.46 7.61 | prefinished T&G oak flooring, 25/32\"",
+        "costs": [
+          5.15,
+          2.46,
+          7.61,
+          25.0,
+          32.0
+        ],
+        "source_page": 254,
+        "book_page": 240
+      },
+      {
+        "section": "Sand and Finish New",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 37 1.37 1.74 | Includes labor and material to refinish",
+        "costs": [
+          37.0,
+          1.37,
+          1.74
+        ],
+        "material": 37.0,
+        "labor": 1.37,
+        "total": 1.74,
+        "source_page": 254,
+        "book_page": 240,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Sand and Finish New",
+        "subsection": "Refinish Existing",
+        "unit": "",
+        "raw_line": "Install SA. 37 1.01 1.38 | Includes labor and material to refinish",
+        "costs": [
+          37.0,
+          1.01,
+          1.38
+        ],
+        "material": 37.0,
+        "labor": 1.01,
+        "total": 1.38,
+        "source_page": 254,
+        "book_page": 240,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Urethane Coat",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF .20 23 A3 | Includes labor and material to install",
+        "costs": [
+          20.0,
+          23.0,
+          3.0
+        ],
+        "material": 20.0,
+        "labor": 23.0,
+        "total": 3.0,
+        "source_page": 255,
+        "book_page": 241,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Walnut",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SE 24 4.30 28.30 | prefinished walnut 9\u201d x 9\" parquet",
+        "costs": [
+          24.0,
+          4.3,
+          28.3,
+          9.0,
+          9.0
+        ],
+        "source_page": 256,
+        "book_page": 242,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Acrylic Impregnated",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": ". Install SF 24 3.84 27.84 | prefinished cherry 12\" x 12\" acrylic",
+        "costs": [
+          24.0,
+          3.84,
+          27.84,
+          12.0,
+          12.0
+        ],
+        "source_page": 256,
+        "book_page": 242,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Premium Grade",
+        "subsection": "Re-grout",
+        "unit": "SF",
+        "raw_line": "Install SF. 08 A.18 4.26 | Includes material and labor to regrout",
+        "costs": [
+          8.0,
+          18.0,
+          4.26
+        ],
+        "material": 8.0,
+        "labor": 18.0,
+        "total": 4.26,
+        "source_page": 257,
+        "book_page": 243,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Thick Set Paver",
+        "subsection": "Saliillo",
+        "unit": "SF",
+        "raw_line": "Install SF 476 10.90 15.66 } install 12\u201d x 12\" saltillo tile in mortar",
+        "costs": [
+          476.0,
+          10.9,
+          15.66,
+          12.0,
+          12.0
+        ],
+        "source_page": 257,
+        "book_page": 243
+      },
+      {
+        "section": "Thick Set Paver",
+        "subsection": "Premium Grade",
+        "unit": "SF",
+        "raw_line": "Install SF. 22 22.50 44.50 | install 3/8\u201d x 12\u201d x 12\u201d marble, in",
+        "costs": [
+          22.0,
+          22.5,
+          44.5,
+          3.0,
+          8.0,
+          12.0,
+          12.0
+        ],
+        "source_page": 257,
+        "book_page": 243,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Gray Cement",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 5.30 12.65 5.50 23.45 | install 1-3/4\" terrazzo , #1 and #2",
+        "costs": [
+          5.3,
+          12.65,
+          5.5,
+          23.45,
+          1.0,
+          3.0,
+          4.0,
+          1.0,
+          2.0
+        ],
+        "source_page": 258,
+        "book_page": 244,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "White Cement",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | SE 620] 1265} 5,50 24.35) install 1.3/4\" terrazzo, #1 and #2",
+        "costs": [
+          620.0,
+          1265.0,
+          550.0,
+          24.35,
+          1.3,
+          4.0,
+          1.0,
+          2.0
+        ],
+        "source_page": 258,
+        "book_page": 244,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Non-skid Gray",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | SLE 9.80 15.80} 6.85] 32.45) install 1-3/4 terrazzo, #1 and #2",
+        "costs": [
+          9.8,
+          15.8,
+          6.85,
+          32.45,
+          1.0,
+          3.0,
+          4.0,
+          1.0,
+          2.0
+        ],
+        "source_page": 258,
+        "book_page": 244,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Non-skid White",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 10.85 15.80 6.85 33.50} install 1-3/4\" terrazzo, #1 and #2",
+        "costs": [
+          10.85,
+          15.8,
+          6.85,
+          33.5,
+          1.0,
+          3.0,
+          4.0,
+          1.0,
+          2.0
+        ],
+        "source_page": 258,
+        "book_page": 244,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Gray w / Brass Divider",
+        "subsection": "Slate",
+        "unit": "SF",
+        "raw_line": "Install SF. 5.50 5.15 10.65 | slate tile flooring in thin set with grout.",
+        "costs": [
+          5.5,
+          5.15,
+          10.65
+        ],
+        "material": 5.5,
+        "labor": 5.15,
+        "total": 10.65,
+        "source_page": 258,
+        "book_page": 244
+      },
+      {
+        "section": "Gray w / Brass Divider",
+        "subsection": "Granite",
+        "unit": "SF",
+        "raw_line": "Install SF 23.50 5.20 28.70 | granite tile flooring in thin set with",
+        "costs": [
+          23.5,
+          5.2,
+          28.7
+        ],
+        "material": 23.5,
+        "labor": 5.2,
+        "total": 28.7,
+        "source_page": 258,
+        "book_page": 244
+      },
+      {
+        "section": "Gray w / Brass Divider",
+        "subsection": "Re-grout",
+        "unit": "",
+        "raw_line": "Install SE 08 4.18 4.26) Includes material and labor to regrout",
+        "costs": [
+          8.0,
+          4.18,
+          4.26
+        ],
+        "material": 8.0,
+        "labor": 4.18,
+        "total": 4.26,
+        "source_page": 258,
+        "book_page": 244,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      7.55,
+      3.48,
+      3.48,
+      1.74,
+      1.38,
+      3.0,
+      4.26,
+      10.65,
+      28.7,
+      4.26,
+      7.18,
+      4.1,
+      2.64,
+      64.7,
+      36.7,
+      23.8,
+      2.22,
+      3.07,
+      1.96,
+      10.04,
+      17.6,
+      20.8,
+      127.3,
+      130.3,
+      93.0,
+      5.0
+    ]
+  },
+  "flooring_lvp": {
+    "items_found": 13,
+    "avg_total": 15.641,
+    "min_total": 1.96,
+    "max_total": 64.7,
+    "avg_material": 10.407,
+    "avg_labor": 84.103,
+    "labor_pct": 537.7085864075186,
+    "sample_items": [
+      {
+        "section": "Economy Grade",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 5.55 1.63 7.18} resilient sheet vinyl flooring.",
+        "costs": [
+          5.55,
+          1.63,
+          7.18
+        ],
+        "material": 5.55,
+        "labor": 1.63,
+        "total": 7.18,
+        "source_page": 259,
+        "book_page": 245
+      },
+      {
+        "section": "Average Grade",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 2.47 1.63 4.10 | resilient sheet vinyl flooring",
+        "costs": [
+          2.47,
+          1.63,
+          4.1
+        ],
+        "material": 2.47,
+        "labor": 1.63,
+        "total": 4.1,
+        "source_page": 259,
+        "book_page": 245
+      },
+      {
+        "section": "Premium Grade",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 1.01 1.63 2.64 | resilient sheet vinyl flooring.",
+        "costs": [
+          1.01,
+          1.63,
+          2.64
+        ],
+        "material": 1.01,
+        "labor": 1.63,
+        "total": 2.64,
+        "source_page": 259,
+        "book_page": 245
+      },
+      {
+        "section": "Economy Grade",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SY. 50 14.70 64.70 | no wax sheet vinyl flooring.",
+        "costs": [
+          50.0,
+          14.7,
+          64.7
+        ],
+        "material": 50.0,
+        "labor": 14.7,
+        "total": 64.7,
+        "source_page": 259,
+        "book_page": 245
+      },
+      {
+        "section": "Average Grade",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SY. 22 14.70 36.70 | no wax sheet vinyl flooring.",
+        "costs": [
+          22.0,
+          14.7,
+          36.7
+        ],
+        "material": 22.0,
+        "labor": 14.7,
+        "total": 36.7,
+        "source_page": 259,
+        "book_page": 245
+      },
+      {
+        "section": "Premium Grade",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SY. 9.10 14.70 23.80 | no wax sheet vinyl flooring.",
+        "costs": [
+          9.1,
+          14.7,
+          23.8
+        ],
+        "material": 9.1,
+        "labor": 14.7,
+        "total": 23.8,
+        "source_page": 259,
+        "book_page": 245
+      },
+      {
+        "section": "Economy Grade",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 2.34 1.04 3.38 | no wax 12\" x 12\" vinyl tile.",
+        "costs": [
+          2.34,
+          1.04,
+          3.38,
+          12.0,
+          12.0
+        ],
+        "source_page": 259,
+        "book_page": 245
+      },
+      {
+        "section": "Average Grade",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 2.42 1.04 3.46 | no wax 12\" x 12\" vinyl tile.",
+        "costs": [
+          2.42,
+          1.04,
+          3.46,
+          12.0,
+          12.0
+        ],
+        "source_page": 260,
+        "book_page": 246
+      },
+      {
+        "section": "Premium Grade",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SR 3.80 1.04 4.84 | no wax 12\"x 12\" vinyl tile,",
+        "costs": [
+          3.8,
+          1.04,
+          4.84,
+          12.0,
+          12.0
+        ],
+        "source_page": 260,
+        "book_page": 246
+      },
+      {
+        "section": "Average Grade",
+        "subsection": "",
+        "unit": "",
+        "raw_line": ". Install SE 1.45 7 2.22 | carpet including tack strips and hot",
+        "costs": [
+          1.45,
+          7.0,
+          2.22
+        ],
+        "material": 1.45,
+        "labor": 7.0,
+        "total": 2.22,
+        "source_page": 260,
+        "book_page": 246,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Premium Grade",
+        "subsection": "",
+        "unit": "",
+        "raw_line": ". Install SE 2.30 7 3.07 carpet including tack strips and hot",
+        "costs": [
+          2.3,
+          7.0,
+          3.07
+        ],
+        "material": 2.3,
+        "labor": 7.0,
+        "total": 3.07,
+        "source_page": 260,
+        "book_page": 246,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Indoor/Outdoor",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 1.19 777 1.96 | indooroutdoor carpet.",
+        "costs": [
+          1.19,
+          777.0,
+          1.96
+        ],
+        "material": 1.19,
+        "labor": 777.0,
+        "total": 1.96,
+        "source_page": 260,
+        "book_page": 246,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Indoor/Outdoor",
+        "subsection": "Average Grade",
+        "unit": "SF",
+        "raw_line": ". Install SF 9 1.04 10.04 | carpet including tack strips and hot",
+        "costs": [
+          9.0,
+          1.04,
+          10.04
+        ],
+        "material": 9.0,
+        "labor": 1.04,
+        "total": 10.04,
+        "source_page": 260,
+        "book_page": 246,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      7.18,
+      4.1,
+      2.64,
+      64.7,
+      36.7,
+      23.8,
+      2.22,
+      3.07,
+      1.96,
+      10.04
+    ]
+  },
+  "deck_building": {
+    "items_found": 3,
+    "avg_total": 48.2,
+    "min_total": 48.2,
+    "max_total": 48.2,
+    "avg_material": 37.0,
+    "avg_labor": 11.2,
+    "labor_pct": 23.236514522821576,
+    "sample_items": [
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Treated Decking",
+        "unit": "",
+        "raw_line": ". Install S.F. 2.56 1.79 4.35 | treated lumber 2\" x 4\" decking for",
+        "costs": [
+          2.56,
+          1.79,
+          4.35,
+          2.0,
+          4.0
+        ],
+        "source_page": 75,
+        "book_page": 61
+      },
+      {
+        "section": "Tongue and Groove Fir Decking",
+        "subsection": "PVC Post Sleeve",
+        "unit": "LF",
+        "raw_line": ". Install LF 19.05 5.60 24.65 | PVC post sleeves over 4\u201d x 4\u201d porch",
+        "costs": [
+          19.05,
+          5.6,
+          24.65,
+          4.0,
+          4.0
+        ],
+        "source_page": 76,
+        "book_page": 62
+      },
+      {
+        "section": "Tongue and Groove Fir Decking",
+        "subsection": "Post Cap",
+        "unit": "",
+        "raw_line": "Install Ea. 37 11.20 48.20 | PVC post caps for porch or deck",
+        "costs": [
+          37.0,
+          11.2,
+          48.2
+        ],
+        "material": 37.0,
+        "labor": 11.2,
+        "total": 48.2,
+        "source_page": 76,
+        "book_page": 62
+      }
+    ],
+    "all_totals": [
+      48.2
+    ]
+  },
+  "fence_installation": {
+    "items_found": 5,
+    "avg_total": 1013.5,
+    "min_total": 229.5,
+    "max_total": 2430.0,
+    "avg_material": 844.8333333333334,
+    "avg_labor": 168.66666666666666,
+    "labor_pct": 16.641999671106724,
+    "sample_items": [
+      {
+        "section": "Concrete Based Wood",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 74.50) 155 229.50 | wood post set in concrete.",
+        "costs": [
+          74.5,
+          155.0,
+          229.5
+        ],
+        "material": 74.5,
+        "labor": 155.0,
+        "total": 229.5,
+        "source_page": 158,
+        "book_page": 144,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Concrete Based Wood",
+        "subsection": "Block Pilaster",
+        "unit": "",
+        "raw_line": "Install Ea. 185 196 381 block pilaster for fence.",
+        "costs": [
+          185.0,
+          196.0,
+          381.0
+        ],
+        "material": 185.0,
+        "labor": 196.0,
+        "total": 381.0,
+        "source_page": 158,
+        "book_page": 144
+      },
+      {
+        "section": "Concrete Based Wood",
+        "subsection": "Chain Link",
+        "unit": "",
+        "raw_line": "Install Ea. 167 69 236 | install 3\u00b0 wide chain link pass gate",
+        "costs": [
+          167.0,
+          69.0,
+          236.0,
+          3.0
+        ],
+        "source_page": 158,
+        "book_page": 144
+      },
+      {
+        "section": "Concrete Based Wood",
+        "subsection": "Red Cedar",
+        "unit": "",
+        "raw_line": ". Install Ea. 345 69 414 | install 3 wide red cedar pass gate",
+        "costs": [
+          345.0,
+          69.0,
+          414.0,
+          3.0
+        ],
+        "source_page": 158,
+        "book_page": 144
+      },
+      {
+        "section": "Wrought Iron",
+        "subsection": "",
+        "unit": "",
+        "raw_line": ". Install Ea. 2275 155 2430 | equipment to install wrought iron gate",
+        "costs": [
+          2275.0,
+          155.0,
+          2430.0
+        ],
+        "material": 2275.0,
+        "labor": 155.0,
+        "total": 2430.0,
+        "source_page": 159,
+        "book_page": 145
+      }
+    ],
+    "all_totals": [
+      229.5,
+      381.0,
+      2430.0
+    ]
+  },
+  "electrical_work": {
+    "items_found": 39,
+    "avg_total": 142.72029411764706,
+    "min_total": 5.7,
+    "max_total": 1736.0,
+    "avg_material": 102.21088235294118,
+    "avg_labor": 41.46411764705882,
+    "labor_pct": 29.05271314314919,
+    "sample_items": [
+      {
+        "section": "Flush-out / Sanitize",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install LE. 65 5.05 5.70 | Includes labor and material costs to",
+        "costs": [
+          65.0,
+          5.05,
+          5.7
+        ],
+        "material": 65.0,
+        "labor": 5.05,
+        "total": 5.7,
+        "source_page": 274,
+        "book_page": 260,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Lighting Fixture Duplex Receptacle",
+        "subsection": "Light Fixtures",
+        "unit": "SF",
+        "raw_line": "Install SF. 28 32 .60| Includes labor and material to replace",
+        "costs": [
+          28.0,
+          32.0,
+          60.0
+        ],
+        "material": 28.0,
+        "labor": 32.0,
+        "total": 60.0,
+        "source_page": 275,
+        "book_page": 261
+      },
+      {
+        "section": "Lighting Fixture Duplex Receptacle",
+        "subsection": "Outlet with Wiring",
+        "unit": "",
+        "raw_line": "Install Ea. 12 44.50 56.50 | general purpose outlet with cover, up",
+        "costs": [
+          12.0,
+          44.5,
+          56.5
+        ],
+        "material": 12.0,
+        "labor": 44.5,
+        "total": 56.5,
+        "source_page": 275,
+        "book_page": 261
+      },
+      {
+        "section": "TV / Cable Jack w / Wiring",
+        "subsection": "",
+        "unit": "",
+        "raw_line": ". Install Ea, 20.50 40.50 61 TV/cable outlet box and cover plate",
+        "costs": [
+          20.5,
+          40.5,
+          61.0
+        ],
+        "material": 20.5,
+        "labor": 40.5,
+        "total": 61.0,
+        "source_page": 276,
+        "book_page": 262
+      },
+      {
+        "section": "TV / Cable Jack w / Wiring",
+        "subsection": "Switch",
+        "unit": "",
+        "raw_line": "Install Ea. 4.09 30.50 34.59 | single switch and wall plate. Wiring is",
+        "costs": [
+          4.09,
+          30.5,
+          34.59
+        ],
+        "material": 4.09,
+        "labor": 30.5,
+        "total": 34.59,
+        "source_page": 276,
+        "book_page": 262
+      },
+      {
+        "section": "TV / Cable Jack w / Wiring",
+        "subsection": "Plate",
+        "unit": "",
+        "raw_line": "Install Ea, Ad 8.05 8.49 | one gang brown wall switch plate.",
+        "costs": [
+          8.05,
+          8.49
+        ],
+        "material": 8.05,
+        "labor": 8.49,
+        "total": 16.54,
+        "source_page": 276,
+        "book_page": 262
+      },
+      {
+        "section": "TV / Cable Jack w / Wiring",
+        "subsection": "Switch",
+        "unit": "",
+        "raw_line": "Install Fa, 9.85 46 51.85 | double switch and wall plate. Wiring",
+        "costs": [
+          9.85,
+          46.0,
+          51.85
+        ],
+        "material": 9.85,
+        "labor": 46.0,
+        "total": 51.85,
+        "source_page": 276,
+        "book_page": 262
+      },
+      {
+        "section": "TV / Cable Jack w / Wiring",
+        "subsection": "Plate",
+        "unit": "",
+        "raw_line": "Install Ea. 89 12.15 13.04 | two gang brown wall switch plate.",
+        "costs": [
+          89.0,
+          12.15,
+          13.04
+        ],
+        "material": 89.0,
+        "labor": 12.15,
+        "total": 13.04,
+        "source_page": 276,
+        "book_page": 262
+      },
+      {
+        "section": "TV / Cable Jack w / Wiring",
+        "subsection": "Switch",
+        "unit": "",
+        "raw_line": "Install Ea. 17.10 54 71.10) triple switch and wall plate. Wiring is",
+        "costs": [
+          17.1,
+          54.0,
+          71.1
+        ],
+        "material": 17.1,
+        "labor": 54.0,
+        "total": 71.1,
+        "source_page": 276,
+        "book_page": 262
+      },
+      {
+        "section": "Plate",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Eo. 1.38 20 21.38] three gang brown wall switch plate.",
+        "costs": [
+          1.38,
+          20.0,
+          21.38
+        ],
+        "material": 1.38,
+        "labor": 20.0,
+        "total": 21.38,
+        "source_page": 277,
+        "book_page": 263
+      },
+      {
+        "section": "Switch",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea, 40 38 78 _| dimmer switch. Wiring is not included,",
+        "costs": [
+          40.0,
+          38.0,
+          78.0
+        ],
+        "material": 40.0,
+        "labor": 38.0,
+        "total": 78.0,
+        "source_page": 277,
+        "book_page": 263
+      },
+      {
+        "section": "Switch",
+        "subsection": "Plate",
+        "unit": "",
+        "raw_line": "Install Ea. AA 8.05 8.49 | one gang brown wall switch plate.",
+        "costs": [
+          8.05,
+          8.49
+        ],
+        "material": 8.05,
+        "labor": 8.49,
+        "total": 16.54,
+        "source_page": 277,
+        "book_page": 263
+      },
+      {
+        "section": "With Wiring",
+        "subsection": "Single",
+        "unit": "",
+        "raw_line": "Install Ea. 11.15 37.50 48.65 | single switch and plate including up to",
+        "costs": [
+          11.15,
+          37.5,
+          48.65
+        ],
+        "material": 11.15,
+        "labor": 37.5,
+        "total": 48.65,
+        "source_page": 277,
+        "book_page": 263
+      },
+      {
+        "section": "With Wiring",
+        "subsection": "Double",
+        "unit": "",
+        "raw_line": "Install Ea. 31 64.50 95.50 double switch and plate including up",
+        "costs": [
+          31.0,
+          64.5,
+          95.5
+        ],
+        "material": 31.0,
+        "labor": 64.5,
+        "total": 95.5,
+        "source_page": 277,
+        "book_page": 263
+      },
+      {
+        "section": "With Wiring",
+        "subsection": "Triple",
+        "unit": "",
+        "raw_line": "Install Ea. 25.50 72.50 98 | triple switch and plate including up to",
+        "costs": [
+          25.5,
+          72.5,
+          98.0
+        ],
+        "material": 25.5,
+        "labor": 72.5,
+        "total": 98.0,
+        "source_page": 277,
+        "book_page": 263
+      },
+      {
+        "section": "High Grade",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 2.30 8.05 10.35 | wall plate, stainless steel, 1 gang.",
+        "costs": [
+          2.3,
+          8.05,
+          10.35,
+          1.0
+        ],
+        "source_page": 278,
+        "book_page": 264,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Deluxe Grade",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 8.15 8.05 16.20 | wall plate, brushed brass, 1 gang.",
+        "costs": [
+          8.15,
+          8.05,
+          16.2,
+          1.0
+        ],
+        "source_page": 278,
+        "book_page": 264,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Recessed Shower Type",
+        "subsection": "Run Wiring",
+        "unit": "",
+        "raw_line": "Install Ea. 22 26 48 Includes labor and material to install",
+        "costs": [
+          22.0,
+          26.0,
+          48.0
+        ],
+        "material": 22.0,
+        "labor": 26.0,
+        "total": 48.0,
+        "source_page": 279,
+        "book_page": 265
+      },
+      {
+        "section": "Recessed Shower Type",
+        "subsection": "Better Quality",
+        "unit": "",
+        "raw_line": "Install Ea. 234 104 338 an interior fluorescent lighting fixture.",
+        "costs": [
+          234.0,
+          104.0,
+          338.0
+        ],
+        "material": 234.0,
+        "labor": 104.0,
+        "total": 338.0,
+        "source_page": 279,
+        "book_page": 265,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Recessed Shower Type",
+        "subsection": "Premium Quality",
+        "unit": "",
+        "raw_line": "Install Ea. 175 122 297 __| deluxe quality 24\u201d wide by 48\u201d long",
+        "costs": [
+          175.0,
+          122.0,
+          297.0,
+          24.0,
+          48.0
+        ],
+        "source_page": 279,
+        "book_page": 265,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      5.7,
+      60.0,
+      56.5,
+      61.0,
+      34.59,
+      16.54,
+      51.85,
+      13.04,
+      71.1,
+      21.38,
+      78.0,
+      16.54,
+      48.65,
+      95.5,
+      98.0,
+      48.0,
+      338.0,
+      48.0,
+      48.0,
+      48.0,
+      48.0,
+      47.55,
+      131.55,
+      48.0,
+      63.5,
+      48.0,
+      203.5,
+      389.5,
+      369.5,
+      135.5,
+      1736.0,
+      131.0,
+      184.0,
+      58.5
+    ]
+  },
+  "electrical_panel_upgrade": {
+    "items_found": 3,
+    "avg_total": 40.733333333333334,
+    "min_total": 5.7,
+    "max_total": 60.0,
+    "avg_material": 35.0,
+    "avg_labor": 27.183333333333334,
+    "labor_pct": 66.73486088379705,
+    "sample_items": [
+      {
+        "section": "Flush-out / Sanitize",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install LE. 65 5.05 5.70 | Includes labor and material costs to",
+        "costs": [
+          65.0,
+          5.05,
+          5.7
+        ],
+        "material": 65.0,
+        "labor": 5.05,
+        "total": 5.7,
+        "source_page": 274,
+        "book_page": 260,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Lighting Fixture Duplex Receptacle",
+        "subsection": "Light Fixtures",
+        "unit": "SF",
+        "raw_line": "Install SF. 28 32 .60| Includes labor and material to replace",
+        "costs": [
+          28.0,
+          32.0,
+          60.0
+        ],
+        "material": 28.0,
+        "labor": 32.0,
+        "total": 60.0,
+        "source_page": 275,
+        "book_page": 261,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Lighting Fixture Duplex Receptacle",
+        "subsection": "Outlet with Wiring",
+        "unit": "",
+        "raw_line": "Install Ea. 12 44.50 56.50 | general purpose outlet with cover, up",
+        "costs": [
+          12.0,
+          44.5,
+          56.5
+        ],
+        "material": 12.0,
+        "labor": 44.5,
+        "total": 56.5,
+        "source_page": 275,
+        "book_page": 261,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      5.7,
+      60.0,
+      56.5
+    ]
+  },
+  "plumbing_repair": {
+    "items_found": 36,
+    "avg_total": 146.99555555555557,
+    "min_total": 4.0,
+    "max_total": 427.0,
+    "avg_material": 96.6638888888889,
+    "avg_labor": 86.45944444444444,
+    "labor_pct": 58.81772691540183,
+    "sample_items": [
+      {
+        "section": "Fire-extinguishing System Space Heater Hot-air Furnace",
+        "subsection": "Components",
+        "unit": "",
+        "raw_line": "Install Ea. 73 201 274 | Includes labor and materials to install",
+        "costs": [
+          73.0,
+          201.0,
+          274.0
+        ],
+        "material": 73.0,
+        "labor": 201.0,
+        "total": 274.0,
+        "source_page": 161,
+        "book_page": 147,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Fire-extinguishing System Space Heater Hot-air Furnace",
+        "subsection": "Components",
+        "unit": "",
+        "raw_line": "Install Ea. 30.50] 300 330.50] PVC vent stack pipe with couplings at",
+        "costs": [
+          30.5,
+          300.0,
+          330.5
+        ],
+        "material": 30.5,
+        "labor": 300.0,
+        "total": 330.5,
+        "source_page": 161,
+        "book_page": 147
+      },
+      {
+        "section": "Fire-extinguishing System Space Heater Hot-air Furnace",
+        "subsection": "Large",
+        "unit": "",
+        "raw_line": "Install Ea. 153 27.50 180.50 | PVC plumbing pipe vent cap.",
+        "costs": [
+          153.0,
+          27.5,
+          180.5
+        ],
+        "material": 153.0,
+        "labor": 27.5,
+        "total": 180.5,
+        "source_page": 161,
+        "book_page": 147
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Medium",
+        "unit": "",
+        "raw_line": "Install Ea. 142 26 168 PVC plumbing pipe vent cap.",
+        "costs": [
+          142.0,
+          26.0,
+          168.0
+        ],
+        "material": 142.0,
+        "labor": 26.0,
+        "total": 168.0,
+        "source_page": 162,
+        "book_page": 148
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Small",
+        "unit": "",
+        "raw_line": "Install Ea. 11.20 25 36.20 | PVC plumbing pipe vent cap.",
+        "costs": [
+          11.2,
+          25.0,
+          36.2
+        ],
+        "material": 11.2,
+        "labor": 25.0,
+        "total": 36.2,
+        "source_page": 162,
+        "book_page": 148
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Sump Pump",
+        "unit": "",
+        "raw_line": "Install Ea. 209 94 303 submersible sump pump.",
+        "costs": [
+          209.0,
+          94.0,
+          303.0
+        ],
+        "material": 209.0,
+        "labor": 94.0,
+        "total": 303.0,
+        "source_page": 162,
+        "book_page": 148,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Sump Pump",
+        "unit": "",
+        "raw_line": "Install | Ea. | 212 100 312 | submersible sump pump.",
+        "costs": [
+          212.0,
+          100.0,
+          312.0
+        ],
+        "material": 212.0,
+        "labor": 100.0,
+        "total": 312.0,
+        "source_page": 162,
+        "book_page": 148,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Sump Pump",
+        "unit": "",
+        "raw_line": "Install | Ea, | 315 112 427 | submersible sump pump.",
+        "costs": [
+          315.0,
+          112.0,
+          427.0
+        ],
+        "material": 315.0,
+        "labor": 112.0,
+        "total": 427.0,
+        "source_page": 162,
+        "book_page": 148,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Electric",
+        "unit": "",
+        "raw_line": "Install Ea. 925 274 1199 | 30 gallon electric water heater.",
+        "costs": [
+          925.0,
+          274.0,
+          1199.0,
+          30.0
+        ],
+        "source_page": 162,
+        "book_page": 148,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Eq. 785 300 1085 | 40 gallon electric water heater.",
+        "costs": [
+          785.0,
+          300.0,
+          1085.0,
+          40.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 1025 300 1325 | 52 gallon electric water heater.",
+        "costs": [
+          1025.0,
+          300.0,
+          1325.0,
+          52.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 1600 375 1975 | an 82 gallon electric water heater.",
+        "costs": [
+          1600.0,
+          375.0,
+          1975.0,
+          82.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 1150 300 1450 | 30 gallon gas water heater.",
+        "costs": [
+          1150.0,
+          300.0,
+          1450.0,
+          30.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 60 86 146 Includes labor and materials to install",
+        "costs": [
+          60.0,
+          86.0,
+          146.0
+        ],
+        "material": 60.0,
+        "labor": 86.0,
+        "total": 146.0,
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 885 315 1200 | 40 gallon gas water heater.",
+        "costs": [
+          885.0,
+          315.0,
+          1200.0,
+          40.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 60 86 146 | Includes labor and materials to install",
+        "costs": [
+          60.0,
+          86.0,
+          146.0
+        ],
+        "material": 60.0,
+        "labor": 86.0,
+        "total": 146.0,
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 895 335 1230 | 50 gallon gas water heater.",
+        "costs": [
+          895.0,
+          335.0,
+          1230.0,
+          50.0
+        ],
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 60 86 146 | Includes labor and materials to install",
+        "costs": [
+          60.0,
+          86.0,
+          146.0
+        ],
+        "material": 60.0,
+        "labor": 86.0,
+        "total": 146.0,
+        "source_page": 163,
+        "book_page": 149,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Solar Hot Water System",
+        "subsection": "Solar Panel",
+        "unit": "",
+        "raw_line": "Install | SE 40 3.97 43.97] solar panel",
+        "costs": [
+          40.0,
+          3.97,
+          43.97
+        ],
+        "material": 40.0,
+        "labor": 3.97,
+        "total": 43.97,
+        "source_page": 164,
+        "book_page": 150,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Solar Hot Water System",
+        "subsection": "Repair Plumbing",
+        "unit": "Job",
+        "raw_line": "Install Job 320 320 Includes 4 hour minimum labor charge",
+        "costs": [
+          320.0,
+          320.0,
+          4.0
+        ],
+        "material": 320.0,
+        "labor": 320.0,
+        "total": 4.0,
+        "source_page": 164,
+        "book_page": 150
+      }
+    ],
+    "all_totals": [
+      274.0,
+      330.5,
+      180.5,
+      168.0,
+      36.2,
+      303.0,
+      312.0,
+      427.0,
+      146.0,
+      146.0,
+      146.0,
+      43.97,
+      4.0,
+      21.3,
+      27.75,
+      35.65,
+      10.0,
+      34.05
+    ]
+  },
+  "water_heater_replacement": {
+    "items_found": 14,
+    "avg_total": 71.33375,
+    "min_total": 4.0,
+    "max_total": 146.0,
+    "avg_material": 71.59375,
+    "avg_labor": 79.24000000000001,
+    "labor_pct": 111.0834632975275,
+    "sample_items": [
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Eq. 785 300 1085 | 40 gallon electric water heater.",
+        "costs": [
+          785.0,
+          300.0,
+          1085.0,
+          40.0
+        ],
+        "source_page": 163,
+        "book_page": 149
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 1025 300 1325 | 52 gallon electric water heater.",
+        "costs": [
+          1025.0,
+          300.0,
+          1325.0,
+          52.0
+        ],
+        "source_page": 163,
+        "book_page": 149
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 1600 375 1975 | an 82 gallon electric water heater.",
+        "costs": [
+          1600.0,
+          375.0,
+          1975.0,
+          82.0
+        ],
+        "source_page": 163,
+        "book_page": 149
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 1150 300 1450 | 30 gallon gas water heater.",
+        "costs": [
+          1150.0,
+          300.0,
+          1450.0,
+          30.0
+        ],
+        "source_page": 163,
+        "book_page": 149
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 60 86 146 Includes labor and materials to install",
+        "costs": [
+          60.0,
+          86.0,
+          146.0
+        ],
+        "material": 60.0,
+        "labor": 86.0,
+        "total": 146.0,
+        "source_page": 163,
+        "book_page": 149
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 885 315 1200 | 40 gallon gas water heater.",
+        "costs": [
+          885.0,
+          315.0,
+          1200.0,
+          40.0
+        ],
+        "source_page": 163,
+        "book_page": 149
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 60 86 146 | Includes labor and materials to install",
+        "costs": [
+          60.0,
+          86.0,
+          146.0
+        ],
+        "material": 60.0,
+        "labor": 86.0,
+        "total": 146.0,
+        "source_page": 163,
+        "book_page": 149
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 895 335 1230 | 50 gallon gas water heater.",
+        "costs": [
+          895.0,
+          335.0,
+          1230.0,
+          50.0
+        ],
+        "source_page": 163,
+        "book_page": 149
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "Gas-fired",
+        "unit": "",
+        "raw_line": "Install Ea. 60 86 146 | Includes labor and materials to install",
+        "costs": [
+          60.0,
+          86.0,
+          146.0
+        ],
+        "material": 60.0,
+        "labor": 86.0,
+        "total": 146.0,
+        "source_page": 163,
+        "book_page": 149
+      },
+      {
+        "section": "Solar Hot Water System",
+        "subsection": "Solar Panel",
+        "unit": "",
+        "raw_line": "Install | SE 40 3.97 43.97] solar panel",
+        "costs": [
+          40.0,
+          3.97,
+          43.97
+        ],
+        "material": 40.0,
+        "labor": 3.97,
+        "total": 43.97,
+        "source_page": 164,
+        "book_page": 150,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Solar Hot Water System",
+        "subsection": "Repair Plumbing",
+        "unit": "Job",
+        "raw_line": "Install Job 320 320 Includes 4 hour minimum labor charge",
+        "costs": [
+          320.0,
+          320.0,
+          4.0
+        ],
+        "material": 320.0,
+        "labor": 320.0,
+        "total": 4.0,
+        "source_page": 164,
+        "book_page": 150,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Galvanized, Square or Rectangular",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install LF. 8.20 13.10 21.30] rectangular ductwork with a greatest",
+        "costs": [
+          8.2,
+          13.1,
+          21.3
+        ],
+        "material": 8.2,
+        "labor": 13.1,
+        "total": 21.3,
+        "source_page": 164,
+        "book_page": 150,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Galvanized, Square or Rectangular",
+        "subsection": "",
+        "unit": "",
+        "raw_line": ". Install LE 10.90 16.85 27.75 tectangular ductwork with a greatest",
+        "costs": [
+          10.9,
+          16.85,
+          27.75
+        ],
+        "material": 10.9,
+        "labor": 16.85,
+        "total": 27.75,
+        "source_page": 164,
+        "book_page": 150,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Galvanized, Square or Rectangular",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install LF. 13.65 22 35.65 rectangular ductwork with a greatest",
+        "costs": [
+          13.65,
+          22.0,
+          35.65
+        ],
+        "material": 13.65,
+        "labor": 22.0,
+        "total": 35.65,
+        "source_page": 164,
+        "book_page": 150,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      146.0,
+      146.0,
+      146.0,
+      43.97,
+      4.0,
+      21.3,
+      27.75,
+      35.65
+    ]
+  },
+  "hvac_replacement": {
+    "items_found": 59,
+    "avg_total": 1842.1367647058823,
+    "min_total": 4.0,
+    "max_total": 6225.0,
+    "avg_material": 1567.4161764705882,
+    "avg_labor": 291.95588235294116,
+    "labor_pct": 15.848762586286863,
+    "sample_items": [
+      {
+        "section": "Cabinet Unit Heater",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 2075 165 2240 __| cabinet space heater with an output of",
+        "costs": [
+          2075.0,
+          165.0,
+          2240.0
+        ],
+        "material": 2075.0,
+        "labor": 165.0,
+        "total": 2240.0,
+        "source_page": 168,
+        "book_page": 154,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cabinet Unit Heater",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 1150 192 1342 | cabinet space heater with an output of",
+        "costs": [
+          1150.0,
+          192.0,
+          1342.0
+        ],
+        "material": 1150.0,
+        "labor": 192.0,
+        "total": 1342.0,
+        "source_page": 168,
+        "book_page": 154,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cabinet Unit Heater",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 1450 230 1680 | cabinet space heater with an output of",
+        "costs": [
+          1450.0,
+          230.0,
+          1680.0
+        ],
+        "material": 1450.0,
+        "labor": 230.0,
+        "total": 1680.0,
+        "source_page": 168,
+        "book_page": 154,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cabinet Unit Heater",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 4150 330 4480 _ | cabinet space heater with an output of",
+        "costs": [
+          4150.0,
+          330.0,
+          4480.0
+        ],
+        "material": 4150.0,
+        "labor": 330.0,
+        "total": 4480.0,
+        "source_page": 168,
+        "book_page": 154,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cabinet Unit Heater",
+        "subsection": "Wall (gas-fired)",
+        "unit": "",
+        "raw_line": "Install Ea. 1125 212 1337 | gas fired hot air furnace rated at 25",
+        "costs": [
+          1125.0,
+          212.0,
+          1337.0,
+          25.0
+        ],
+        "source_page": 168,
+        "book_page": 154
+      },
+      {
+        "section": "Cabinet Unit Heater",
+        "subsection": "Wall (gas-fired)",
+        "unit": "",
+        "raw_line": "Install Ea. 75 236 1411 | gas fired hot air furnace rated at 35",
+        "costs": [
+          75.0,
+          236.0,
+          1411.0,
+          35.0
+        ],
+        "source_page": 168,
+        "book_page": 154
+      },
+      {
+        "section": "Cabinet Unit Heater",
+        "subsection": "Wall (gas-fired)",
+        "unit": "",
+        "raw_line": "Install Ea. 3125 265 3390 | gas fired hot air furnace rated at 50",
+        "costs": [
+          3125.0,
+          265.0,
+          3390.0,
+          50.0
+        ],
+        "source_page": 168,
+        "book_page": 154
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 2075 295 2370 | gas fired hot air furnace rated at 60",
+        "costs": [
+          2075.0,
+          295.0,
+          2370.0,
+          60.0
+        ],
+        "source_page": 169,
+        "book_page": 155
+      },
+      {
+        "section": "Floor (gas-fired)",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 2675 212 2887 | gas fired hot air floor furnace rated at",
+        "costs": [
+          2675.0,
+          212.0,
+          2887.0
+        ],
+        "material": 2675.0,
+        "labor": 212.0,
+        "total": 2887.0,
+        "source_page": 169,
+        "book_page": 155
+      },
+      {
+        "section": "Floor (gas-fired)",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea, 3050 265 3315 | gas fired hot air floor furnace rated at",
+        "costs": [
+          3050.0,
+          265.0,
+          3315.0
+        ],
+        "material": 3050.0,
+        "labor": 265.0,
+        "total": 3315.0,
+        "source_page": 169,
+        "book_page": 155
+      },
+      {
+        "section": "Floor (gas-fired)",
+        "subsection": "Gas Forced Air",
+        "unit": "",
+        "raw_line": "Install Ea. 1375 265 1640 | an up flow gas fired hot air furnace",
+        "costs": [
+          1375.0,
+          265.0,
+          1640.0
+        ],
+        "material": 1375.0,
+        "labor": 265.0,
+        "total": 1640.0,
+        "source_page": 169,
+        "book_page": 155
+      },
+      {
+        "section": "Floor (gas-fired)",
+        "subsection": "Gas Forced Air",
+        "unit": "",
+        "raw_line": "Install Ea. 1675 295 1970 | an up flow gas fired hot air furnace",
+        "costs": [
+          1675.0,
+          295.0,
+          1970.0
+        ],
+        "material": 1675.0,
+        "labor": 295.0,
+        "total": 1970.0,
+        "source_page": 169,
+        "book_page": 155
+      },
+      {
+        "section": "Floor (gas-fired)",
+        "subsection": "Gas Forced Air",
+        "unit": "",
+        "raw_line": "Install Ea. 1675 330 2005 | an up flow gas fired hot air furnace",
+        "costs": [
+          1675.0,
+          330.0,
+          2005.0
+        ],
+        "material": 1675.0,
+        "labor": 330.0,
+        "total": 2005.0,
+        "source_page": 169,
+        "book_page": 155
+      },
+      {
+        "section": "Floor (gas-fired)",
+        "subsection": "Gas Forced Air",
+        "unit": "",
+        "raw_line": "Install Ea. 1700 355 2055 | an up flow gas fired hot air furnace",
+        "costs": [
+          1700.0,
+          355.0,
+          2055.0
+        ],
+        "material": 1700.0,
+        "labor": 355.0,
+        "total": 2055.0,
+        "source_page": 169,
+        "book_page": 155
+      },
+      {
+        "section": "Electric Forced Air",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 2625 310 2935 | an electric hot air furnace rated at",
+        "costs": [
+          2625.0,
+          310.0,
+          2935.0
+        ],
+        "material": 2625.0,
+        "labor": 310.0,
+        "total": 2935.0,
+        "source_page": 170,
+        "book_page": 156
+      },
+      {
+        "section": "Electric Forced Air",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 3000 320 3320 | an electric hot air furnace rated at",
+        "costs": [
+          3000.0,
+          320.0,
+          3320.0
+        ],
+        "material": 3000.0,
+        "labor": 320.0,
+        "total": 3320.0,
+        "source_page": 170,
+        "book_page": 156
+      },
+      {
+        "section": "Electric Forced Air",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea, 3200 345 3545 an electric hot air furnace rated at",
+        "costs": [
+          3200.0,
+          345.0,
+          3545.0
+        ],
+        "material": 3200.0,
+        "labor": 345.0,
+        "total": 3545.0,
+        "source_page": 170,
+        "book_page": 156
+      },
+      {
+        "section": "Electric Forced Air",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 4350 355 4705 | an electric hot air furnace rated at",
+        "costs": [
+          4350.0,
+          355.0,
+          4705.0
+        ],
+        "material": 4350.0,
+        "labor": 355.0,
+        "total": 4705.0,
+        "source_page": 170,
+        "book_page": 156
+      },
+      {
+        "section": "Electric Forced Air",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 5850 375 6225 an electric hot air furnace rated at",
+        "costs": [
+          5850.0,
+          375.0,
+          6225.0
+        ],
+        "material": 5850.0,
+        "labor": 375.0,
+        "total": 6225.0,
+        "source_page": 170,
+        "book_page": 156
+      },
+      {
+        "section": "Electric Forced Air",
+        "subsection": "A/C Junction Box",
+        "unit": "",
+        "raw_line": "Install Ea. 86 161 247 | Includes labor and materials to install",
+        "costs": [
+          86.0,
+          161.0,
+          247.0
+        ],
+        "material": 86.0,
+        "labor": 161.0,
+        "total": 247.0,
+        "source_page": 170,
+        "book_page": 156,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      2240.0,
+      1342.0,
+      1680.0,
+      4480.0,
+      2887.0,
+      3315.0,
+      1640.0,
+      1970.0,
+      2005.0,
+      2055.0,
+      2935.0,
+      3320.0,
+      3545.0,
+      4705.0,
+      6225.0,
+      247.0,
+      4425.0,
+      1190.0,
+      38.15,
+      755.0,
+      855.0,
+      920.0,
+      1006.0,
+      1180.0,
+      1665.0,
+      3355.0,
+      583.0,
+      231.0,
+      90.0,
+      113.5,
+      4.0,
+      457.0,
+      559.5,
+      614.5
+    ]
+  },
+  "mini_split": {
+    "items_found": 11,
+    "avg_total": 943.2,
+    "min_total": 755.0,
+    "max_total": 1180.0,
+    "avg_material": 601.0,
+    "avg_labor": 342.2,
+    "labor_pct": 36.28074639525021,
+    "sample_items": [
+      {
+        "section": "Electric Radiant Wall Pane!",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea, 440 129 569 | an 18\" x 23\u201d electric radiant heat wall",
+        "costs": [
+          440.0,
+          129.0,
+          569.0,
+          18.0,
+          23.0
+        ],
+        "source_page": 173,
+        "book_page": 159,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Electric Radiant Wall Pane!",
+        "subsection": "Thermostat",
+        "unit": "",
+        "raw_line": "Install Ea. 195 80 275 an electric thermostat, 2 set back.",
+        "costs": [
+          195.0,
+          80.0,
+          275.0,
+          2.0
+        ],
+        "source_page": 173,
+        "book_page": 159,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Electric Radiant Wall Pane!",
+        "subsection": "Compressor",
+        "unit": "",
+        "raw_line": "Install Ea. 435 320 755 | refrigeration compressor.",
+        "costs": [
+          435.0,
+          320.0,
+          755.0
+        ],
+        "material": 435.0,
+        "labor": 320.0,
+        "total": 755.0,
+        "source_page": 173,
+        "book_page": 159,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 510 345 855 | refrigeration compressor.",
+        "costs": [
+          510.0,
+          345.0,
+          855.0
+        ],
+        "material": 510.0,
+        "labor": 345.0,
+        "total": 855.0,
+        "source_page": 174,
+        "book_page": 160,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 560 360 920 | refrigeration compressor.",
+        "costs": [
+          560.0,
+          360.0,
+          920.0
+        ],
+        "material": 560.0,
+        "labor": 360.0,
+        "total": 920.0,
+        "source_page": 174,
+        "book_page": 160,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 715 291 1006 | refrigeration compressor.",
+        "costs": [
+          715.0,
+          291.0,
+          1006.0
+        ],
+        "material": 715.0,
+        "labor": 291.0,
+        "total": 1006.0,
+        "source_page": 174,
+        "book_page": 160,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 785 395 1180 refrigeration compressor.",
+        "costs": [
+          785.0,
+          395.0,
+          1180.0
+        ],
+        "material": 785.0,
+        "labor": 395.0,
+        "total": 1180.0,
+        "source_page": 174,
+        "book_page": 160,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | Ea. | 1675 | 550 2225 | 2 ton condensing unit.",
+        "costs": [
+          1675.0,
+          550.0,
+          2225.0,
+          2.0
+        ],
+        "source_page": 174,
+        "book_page": 160,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 1825 675 2500 | 2.5 ton condensing unit.",
+        "costs": [
+          1825.0,
+          675.0,
+          2500.0,
+          2.5
+        ],
+        "source_page": 174,
+        "book_page": 160,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | Ea. | 2025 | 885 2910 | 3 ton condensing unit",
+        "costs": [
+          2025.0,
+          885.0,
+          2910.0,
+          3.0
+        ],
+        "source_page": 174,
+        "book_page": 160,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Mechanical",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 2500 1275 3775 | 4 ton condensing unit.",
+        "costs": [
+          2500.0,
+          1275.0,
+          3775.0,
+          4.0
+        ],
+        "source_page": 174,
+        "book_page": 160,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      755.0,
+      855.0,
+      920.0,
+      1006.0,
+      1180.0
+    ]
+  },
+  "insulation": {
+    "items_found": 18,
+    "avg_total": 12.997272727272728,
+    "min_total": 1.15,
+    "max_total": 126.0,
+    "avg_material": 47.89363636363637,
+    "avg_labor": 66.27272727272727,
+    "labor_pct": 509.8971812268308,
+    "sample_items": [
+      {
+        "section": "Rigid Board",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 59 67 1,26 rigid foam insulation board, foil faced,",
+        "costs": [
+          59.0,
+          67.0,
+          126.0
+        ],
+        "material": 59.0,
+        "labor": 67.0,
+        "total": 126.0,
+        "source_page": 184,
+        "book_page": 170
+      },
+      {
+        "section": "Rigid Board",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 70 67 1.37 | rigid foam insulation board, foil faced,",
+        "costs": [
+          70.0,
+          67.0,
+          1.37
+        ],
+        "material": 70.0,
+        "labor": 67.0,
+        "total": 1.37,
+        "source_page": 184,
+        "book_page": 170
+      },
+      {
+        "section": "Rigid Board",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 1.61 74 2.35 rigid foam insulation board, foil faced,",
+        "costs": [
+          1.61,
+          74.0,
+          2.35
+        ],
+        "material": 1.61,
+        "labor": 74.0,
+        "total": 2.35,
+        "source_page": 184,
+        "book_page": 170
+      },
+      {
+        "section": "Unfaced Batt",
+        "subsection": "Blown",
+        "unit": "SF",
+        "raw_line": "Install SF. 35 33 19 -87 | fiberglass blown-in insulation.",
+        "costs": [
+          35.0,
+          33.0,
+          19.0,
+          87.0
+        ],
+        "source_page": 185,
+        "book_page": 171
+      },
+      {
+        "section": "Unfaced Batt",
+        "subsection": "Blown",
+        "unit": "SF",
+        "raw_line": "Install SF 50 Al 24 1.15 | fiberglass blown-in insulation.",
+        "costs": [
+          50.0,
+          24.0,
+          1.15
+        ],
+        "material": 50.0,
+        "labor": 24.0,
+        "total": 1.15,
+        "source_page": 185,
+        "book_page": 171
+      },
+      {
+        "section": "Unfaced Batt",
+        "subsection": "Blown",
+        "unit": "SF",
+        "raw_line": "Install SF 62 56 33 1.51] fiberglass blown-in insulation.",
+        "costs": [
+          62.0,
+          56.0,
+          33.0,
+          1.51
+        ],
+        "source_page": 185,
+        "book_page": 171
+      },
+      {
+        "section": "Unfaced Batt",
+        "subsection": "Blown",
+        "unit": "SF",
+        "raw_line": "Install SF. 85 83 AB 2.16 | fiberglass blown-in insulation.",
+        "costs": [
+          85.0,
+          83.0,
+          2.16
+        ],
+        "material": 85.0,
+        "labor": 83.0,
+        "total": 2.16,
+        "source_page": 185,
+        "book_page": 171
+      },
+      {
+        "section": "Unfaced Batt",
+        "subsection": "Rigid Board",
+        "unit": "SF",
+        "raw_line": "Install SF 59 67 1.26 | rigid foam insulation board, foil faced,",
+        "costs": [
+          59.0,
+          67.0,
+          1.26
+        ],
+        "material": 59.0,
+        "labor": 67.0,
+        "total": 1.26,
+        "source_page": 185,
+        "book_page": 171
+      },
+      {
+        "section": "",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 70 67 1.37 rigid foam insulation board, foil faced,",
+        "costs": [
+          70.0,
+          67.0,
+          1.37
+        ],
+        "material": 70.0,
+        "labor": 67.0,
+        "total": 1.37,
+        "source_page": 186,
+        "book_page": 172
+      },
+      {
+        "section": "",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 1.61 74 2.35 tigid foam insulation board, foil faced,",
+        "costs": [
+          1.61,
+          74.0,
+          2.35
+        ],
+        "material": 1.61,
+        "labor": 74.0,
+        "total": 2.35,
+        "source_page": 186,
+        "book_page": 172
+      },
+      {
+        "section": "Rigid Board",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 59 67 1.26 | tigid foam insulation board foil faced",
+        "costs": [
+          59.0,
+          67.0,
+          1.26
+        ],
+        "material": 59.0,
+        "labor": 67.0,
+        "total": 1.26,
+        "source_page": 186,
+        "book_page": 172
+      },
+      {
+        "section": "Rigid Board",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SE 70 67 1.37 | rigid foam insulation board foil faced",
+        "costs": [
+          70.0,
+          67.0,
+          1.37
+        ],
+        "material": 70.0,
+        "labor": 67.0,
+        "total": 1.37,
+        "source_page": 186,
+        "book_page": 172
+      },
+      {
+        "section": "Rigid Board",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 1.61 72 2.33 | rigid foam insulation board foil faced",
+        "costs": [
+          1.61,
+          72.0,
+          2.33
+        ],
+        "material": 1.61,
+        "labor": 72.0,
+        "total": 2.33,
+        "source_page": 186,
+        "book_page": 172
+      },
+      {
+        "section": "Vapor Barrier",
+        "subsection": "Fiberglass",
+        "unit": "",
+        "raw_line": "Install Sq. 129 34.50 163.50 fiberglass board insulation 1\u201d thick,",
+        "costs": [
+          129.0,
+          34.5,
+          163.5,
+          1.0
+        ],
+        "source_page": 186,
+        "book_page": 172
+      },
+      {
+        "section": "Perlite",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 113 34.50 147.50 | perlite board insulation 1\u201d thick,",
+        "costs": [
+          113.0,
+          34.5,
+          147.5,
+          1.0
+        ],
+        "source_page": 187,
+        "book_page": 173
+      },
+      {
+        "section": "Perlite",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 450 66 516 | perlite board insulation 4\u201d thick,",
+        "costs": [
+          450.0,
+          66.0,
+          516.0,
+          4.0
+        ],
+        "source_page": 187,
+        "book_page": 173
+      },
+      {
+        "section": "Perlite",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 200 46 246 perlite board insulation 2\u201d thick,",
+        "costs": [
+          200.0,
+          46.0,
+          246.0,
+          2.0
+        ],
+        "source_page": 187,
+        "book_page": 173
+      },
+      {
+        "section": "Perlite",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Sq. 340 55 395 perlite board insulation 3\u201d thick,",
+        "costs": [
+          340.0,
+          55.0,
+          395.0,
+          3.0
+        ],
+        "source_page": 187,
+        "book_page": 173
+      }
+    ],
+    "all_totals": [
+      126.0,
+      1.37,
+      2.35,
+      1.15,
+      2.16,
+      1.26,
+      1.37,
+      2.35,
+      1.26,
+      1.37,
+      2.33
+    ]
+  },
+  "concrete_work": {
+    "items_found": 25,
+    "avg_total": 17.925,
+    "min_total": 12.85,
+    "max_total": 23.0,
+    "avg_material": 6.0,
+    "avg_labor": 11.925,
+    "labor_pct": 66.52719665271967,
+    "sample_items": [
+      {
+        "section": "Foundation",
+        "subsection": "Gunite",
+        "unit": "SF",
+        "raw_line": "Install SF 61 1.64 26 2.51 | gunite on flat plane per inch of",
+        "costs": [
+          61.0,
+          1.64,
+          26.0,
+          2.51
+        ],
+        "source_page": 40,
+        "book_page": 26
+      },
+      {
+        "section": "Epoxy Inject",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install LE. 4 8.85 12.85 | Includes labor and material to inject",
+        "costs": [
+          4.0,
+          8.85,
+          12.85
+        ],
+        "material": 4.0,
+        "labor": 8.85,
+        "total": 12.85,
+        "source_page": 40,
+        "book_page": 26,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Epoxy Inject",
+        "subsection": "Slabjacking",
+        "unit": "SF",
+        "raw_line": "Install SF 1.10 1.53 16 2.79 | Includes labor, material and",
+        "costs": [
+          1.1,
+          1.53,
+          16.0,
+          2.79
+        ],
+        "source_page": 40,
+        "book_page": 26
+      },
+      {
+        "section": "Vapor Barrier",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF .08 15 .23 | Cost includes material and labor to",
+        "costs": [
+          8.0,
+          15.0,
+          23.0
+        ],
+        "material": 8.0,
+        "labor": 15.0,
+        "total": 23.0,
+        "source_page": 40,
+        "book_page": 26,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Solid Wood Beam",
+        "unit": "LF",
+        "raw_line": "Install LF. 1,53 1.65 3.18 | install 2\u201d x 8\u201d beam",
+        "costs": [
+          153.0,
+          1.65,
+          3.18,
+          2.0,
+          8.0
+        ],
+        "source_page": 41,
+        "book_page": 27,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Solid Wood Beam",
+        "unit": "LF",
+        "raw_line": "Install LF. 2.08 1.79 3.87 | install 2\u201d x 10\u201d beam.",
+        "costs": [
+          2.08,
+          1.79,
+          3.87,
+          2.0,
+          10.0
+        ],
+        "source_page": 41,
+        "book_page": 27,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Solid Wood Beam",
+        "unit": "",
+        "raw_line": "Install | LE 1270} 250}  2.60| \u201817.80 install 4\" x 8\" beam,",
+        "costs": [
+          1270.0,
+          250.0,
+          2.6,
+          17.8,
+          4.0,
+          8.0
+        ],
+        "source_page": 41,
+        "book_page": 27,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Solid Wood Beam",
+        "unit": "",
+        "raw_line": "Install | LE 870! 263) 273} 14.06] install 4\u201d x 10\u201d beam.",
+        "costs": [
+          870.0,
+          263.0,
+          273.0,
+          14.06,
+          4.0,
+          10.0
+        ],
+        "source_page": 41,
+        "book_page": 27,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Solid Wood Beam",
+        "unit": "",
+        "raw_line": "Install LE 12.30 2.77 2.88 17.95 | install 4\u201d x 12\" beam.",
+        "costs": [
+          12.3,
+          2.77,
+          2.88,
+          17.95,
+          4.0,
+          12.0
+        ],
+        "source_page": 41,
+        "book_page": 27,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | LE 12.95} 4.75} 4.94] 22.64 install 6\" x 8\u201d beam.",
+        "costs": [
+          12.95,
+          4.75,
+          4.94,
+          22.64,
+          6.0,
+          8.0
+        ],
+        "source_page": 42,
+        "book_page": 28,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install LF. 6.20 2.15 8.35} install 6\u201d x 10\u201d triple beam.",
+        "costs": [
+          6.2,
+          2.15,
+          8.35,
+          6.0,
+          10.0
+        ],
+        "source_page": 42,
+        "book_page": 28,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install LF 8.80 2.26 11.06 install 6\u201d x 12\" triple beam.",
+        "costs": [
+          8.8,
+          2.26,
+          11.06,
+          6.0,
+          12.0
+        ],
+        "source_page": 42,
+        "book_page": 28,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Steel I-type",
+        "unit": "",
+        "raw_line": "Install | LE 53.50| 3.36] 3.02| 59.88 | W shaped steel beam / girder.",
+        "costs": [
+          53.5,
+          3.36,
+          3.02,
+          59.88
+        ],
+        "source_page": 42,
+        "book_page": 28,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Steel I-type",
+        "unit": "LF",
+        "raw_line": "Install LF. 82.50 3.51 3.16 89.17 | W shaped steel beam / girder.",
+        "costs": [
+          82.5,
+          3.51,
+          3.16,
+          89.17
+        ],
+        "source_page": 42,
+        "book_page": 28,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Steel I-type",
+        "unit": "",
+        "raw_line": "Install | LE | 116 3.68} 3.31] 122.99] W shaped steel beam / girder.",
+        "costs": [
+          116.0,
+          3.68,
+          3.31,
+          122.99
+        ],
+        "source_page": 42,
+        "book_page": 28,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Steel I-type",
+        "unit": "",
+        "raw_line": "Install | LE 77.50} 351] 3.16] 84.17 | W shaped steel beam / girder.",
+        "costs": [
+          77.5,
+          351.0,
+          3.16,
+          84.17
+        ],
+        "source_page": 42,
+        "book_page": 28,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Steel I-type",
+        "unit": "",
+        "raw_line": "Install LE 117 3.68 3.31} 123.99 W shaped steel beam / girder.",
+        "costs": [
+          117.0,
+          3.68,
+          3.31,
+          123.99
+        ],
+        "source_page": 42,
+        "book_page": 28,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Steel I-type",
+        "unit": "LF",
+        "raw_line": "Install LF 86 3.51 3.16 92.67 | W shaped steel beam / girder.",
+        "costs": [
+          86.0,
+          3.51,
+          3.16,
+          92.67
+        ],
+        "source_page": 42,
+        "book_page": 28,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Steel I-type",
+        "unit": "",
+        "raw_line": "Install | LE | 150 3.68] 3.31] 156.99 W shaped steel beam / girder.",
+        "costs": [
+          150.0,
+          3.68,
+          3.31,
+          156.99
+        ],
+        "source_page": 42,
+        "book_page": 28,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install LE 207 3.78 3.39| 214.17! W shaped steel beam / girder.",
+        "costs": [
+          207.0,
+          3.78,
+          3.39,
+          214.17
+        ],
+        "source_page": 43,
+        "book_page": 29,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      12.85,
+      23.0
+    ]
+  },
+  "concrete_patio": {
+    "items_found": 13,
+    "avg_total": 17.340909090909093,
+    "min_total": 1.67,
+    "max_total": 81.0,
+    "avg_material": 11.633000000000001,
+    "avg_labor": 23.14545454545455,
+    "labor_pct": 133.47313237221493,
+    "sample_items": [
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Hand (fine)",
+        "unit": "SF",
+        "raw_line": "Install SF 81 81 | Includes labor and material to install",
+        "costs": [
+          81.0,
+          81.0
+        ],
+        "labor": 81.0,
+        "total": 81.0,
+        "source_page": 153,
+        "book_page": 139,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Machine (fine) grade.",
+        "unit": "",
+        "raw_line": "Install SY. 72 95 1.67 | Includes labor and material to install",
+        "costs": [
+          72.0,
+          95.0,
+          1.67
+        ],
+        "material": 72.0,
+        "labor": 95.0,
+        "total": 1.67,
+        "source_page": 153,
+        "book_page": 139,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Seal Coat",
+        "unit": "SF",
+        "raw_line": "Install SF 1.68 15 1.83 | Includes labor and material to install",
+        "costs": [
+          1.68,
+          15.0,
+          1.83
+        ],
+        "material": 1.68,
+        "labor": 15.0,
+        "total": 1.83,
+        "source_page": 153,
+        "book_page": 139,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Wearing Course",
+        "unit": "",
+        "raw_line": "Install SA 95 52 39 95.91 | Cost includes labor and material to",
+        "costs": [
+          95.0,
+          52.0,
+          39.0,
+          95.91
+        ],
+        "source_page": 153,
+        "book_page": 139,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Sand Base",
+        "unit": "",
+        "raw_line": "Install S.F 6.10 8.85 14.95 | concrete pavers on sand base.",
+        "costs": [
+          6.1,
+          8.85,
+          14.95
+        ],
+        "material": 6.1,
+        "labor": 8.85,
+        "total": 14.95,
+        "source_page": 153,
+        "book_page": 139
+      },
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Mortar Base",
+        "unit": "",
+        "raw_line": "Install S.F 5.05 7.40 12.45 | concrete pavers on mortar base.",
+        "costs": [
+          5.05,
+          7.4,
+          12.45
+        ],
+        "material": 5.05,
+        "labor": 7.4,
+        "total": 12.45,
+        "source_page": 153,
+        "book_page": 139
+      },
+      {
+        "section": "Sand Base",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 3.39 5.90 9.29 | adobe pavers on sand base.",
+        "costs": [
+          3.39,
+          5.9,
+          9.29
+        ],
+        "material": 3.39,
+        "labor": 5.9,
+        "total": 9.29,
+        "source_page": 154,
+        "book_page": 140
+      },
+      {
+        "section": "Mortar Base",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | SE 3.81| 7.40 11.21 | adobe pavers on mortar base.",
+        "costs": [
+          3.81,
+          7.4,
+          11.21
+        ],
+        "material": 3.81,
+        "labor": 7.4,
+        "total": 11.21,
+        "source_page": 154,
+        "book_page": 140
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Sand Base P",
+        "unit": "",
+        "raw_line": "Install SE 5.50 9.80 15.30 | standard brick pavers on sand base.",
+        "costs": [
+          5.5,
+          9.8,
+          15.3
+        ],
+        "material": 5.5,
+        "labor": 9.8,
+        "total": 15.3,
+        "source_page": 154,
+        "book_page": 140
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Mortar Base",
+        "unit": "SF",
+        "raw_line": "Install SF 5.70 3.55 9.25 | standard brick pavers on mortar base.",
+        "costs": [
+          5.7,
+          3.55,
+          9.25
+        ],
+        "material": 5.7,
+        "labor": 3.55,
+        "total": 9.25,
+        "source_page": 154,
+        "book_page": 140
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Sand Base",
+        "unit": "SF",
+        "raw_line": "Install SF 6.65 7.40 14.05 | deluxe brick pavers on sand base,",
+        "costs": [
+          6.65,
+          7.4,
+          14.05
+        ],
+        "material": 6.65,
+        "labor": 7.4,
+        "total": 14.05,
+        "source_page": 154,
+        "book_page": 140
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Mortar Base",
+        "unit": "",
+        "raw_line": "Install SE 6.45 13.30 19.75 | deluxe brick pavers on mortar base.",
+        "costs": [
+          6.45,
+          13.3,
+          19.75
+        ],
+        "material": 6.45,
+        "labor": 13.3,
+        "total": 19.75,
+        "source_page": 154,
+        "book_page": 140
+      },
+      {
+        "section": "Block w / Footing",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 279 5.80 8.59 | install 4\" non-reinforced concrete",
+        "costs": [
+          279.0,
+          5.8,
+          8.59,
+          4.0
+        ],
+        "source_page": 154,
+        "book_page": 140
+      }
+    ],
+    "all_totals": [
+      81.0,
+      1.67,
+      1.83,
+      14.95,
+      12.45,
+      9.29,
+      11.21,
+      15.3,
+      9.25,
+      14.05,
+      19.75
+    ]
+  },
+  "foundation_repair": {
+    "items_found": 15,
+    "avg_total": 97.19,
+    "min_total": 97.19,
+    "max_total": 97.19,
+    "avg_material": 1.69,
+    "avg_labor": 95.5,
+    "labor_pct": 98.26113797715814,
+    "sample_items": [
+      {
+        "section": "Foundation",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install V.LF. 18.75 5.50 3.92 28.17 equipment to install 30\u2019 to 40\u2019 long",
+        "costs": [
+          18.75,
+          5.5,
+          3.92,
+          28.17,
+          30.0,
+          40.0
+        ],
+        "source_page": 34,
+        "book_page": 20
+      },
+      {
+        "section": "Foundation",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install V.LF 28 4.81 3.43 36.24 | equipment to install 50\u2019 to 60! long",
+        "costs": [
+          28.0,
+          4.81,
+          3.43,
+          36.24,
+          50.0,
+          60.0
+        ],
+        "source_page": 34,
+        "book_page": 20
+      },
+      {
+        "section": "Cross Bracing",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install LF. 2.26 8.25 10.51} install 2\u201d x 10\u201d lumber f",
+        "costs": [
+          2.26,
+          8.25,
+          10.51,
+          2.0,
+          10.0
+        ],
+        "source_page": 35,
+        "book_page": 21,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cross Bracing",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install LF. 3.36 8.55 11.91 | install 2\u201d x 12\u201d lumber f",
+        "costs": [
+          3.36,
+          8.55,
+          11.91,
+          2.0,
+          12.0
+        ],
+        "source_page": 35,
+        "book_page": 21,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cross Bracing",
+        "subsection": "Metal Pipe",
+        "unit": "LF",
+        "raw_line": "Install V.LF 26 8 5.70 39.70 | equi t to install te filled",
+        "costs": [
+          26.0,
+          8.0,
+          5.7,
+          39.7
+        ],
+        "source_page": 35,
+        "book_page": 21,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Cross Bracing",
+        "subsection": "Metal Pipe",
+        "unit": "",
+        "raw_line": "Install | VLE 29 8.35| 5.95] 43.30 equioment to install concrete filled",
+        "costs": [
+          29.0,
+          8.35,
+          5.95,
+          43.3
+        ],
+        "source_page": 35,
+        "book_page": 21,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Foundation",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install V.LE. 63.50 8.55 6.10 78.15.) equipment to install concrete filled",
+        "costs": [
+          63.5,
+          8.55,
+          6.1,
+          78.15
+        ],
+        "source_page": 36,
+        "book_page": 22
+      },
+      {
+        "section": "Foundation",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install V.LF. 51.50 7.70 5.50 64.70 | equipment to install unfilled steel pipe",
+        "costs": [
+          51.5,
+          7.7,
+          5.5,
+          64.7
+        ],
+        "source_page": 36,
+        "book_page": 22
+      },
+      {
+        "section": "Foundation",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": ". Install V.LF. 43 9.30 6.60 58.90} equipment to install concrete filled",
+        "costs": [
+          43.0,
+          9.3,
+          6.6,
+          58.9
+        ],
+        "source_page": 36,
+        "book_page": 22
+      },
+      {
+        "section": "Foundation",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install VLE. 43 8.10 5.80} 56.90 equipment to install unfilled steel pipe",
+        "costs": [
+          43.0,
+          8.1,
+          5.8,
+          56.9
+        ],
+        "source_page": 36,
+        "book_page": 22
+      },
+      {
+        "section": "Steel H Section",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install VLE. 21 6 4.29 31.29] equipment to install steel H section",
+        "costs": [
+          21.0,
+          6.0,
+          4.29,
+          31.29
+        ],
+        "source_page": 36,
+        "book_page": 22,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Steel H Section",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install V.LF. 32 6.30 4.50 42.80) equipment to install steel H section",
+        "costs": [
+          32.0,
+          6.3,
+          4.5,
+          42.8
+        ],
+        "source_page": 36,
+        "book_page": 22,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Steel H Section",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install V.LF. 40.50 6.55 6.65 53.70 equipment to install steel H section",
+        "costs": [
+          40.5,
+          6.55,
+          6.65,
+          53.7
+        ],
+        "source_page": 36,
+        "book_page": 22,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Steel H Section",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install V.LF. 55 7.15 7.30 69.45 | equipment to install steel H section",
+        "costs": [
+          55.0,
+          7.15,
+          7.3,
+          69.45
+        ],
+        "source_page": 36,
+        "book_page": 22,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Wood Foundation Post",
+        "subsection": "Shim",
+        "unit": "",
+        "raw_line": "Install Ea. 1.69 95.50 97.19 Includes labor and material to trim or",
+        "costs": [
+          1.69,
+          95.5,
+          97.19
+        ],
+        "material": 1.69,
+        "labor": 95.5,
+        "total": 97.19,
+        "source_page": 37,
+        "book_page": 23
+      }
+    ],
+    "all_totals": [
+      97.19
+    ]
+  },
+  "gutter_installation": {
+    "items_found": 7,
+    "avg_total": 5121.735,
+    "min_total": 8.94,
+    "max_total": 20120.0,
+    "avg_material": 245.05,
+    "avg_labor": 91.325,
+    "labor_pct": 1.7830871765134277,
+    "sample_items": [
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea 82 82 | Includes labor and material to install",
+        "costs": [
+          82.0,
+          82.0
+        ],
+        "labor": 82.0,
+        "total": 82.0,
+        "source_page": 298,
+        "book_page": 284,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea, 276 276 | Includes labor and material to install",
+        "costs": [
+          276.0,
+          276.0
+        ],
+        "labor": 276.0,
+        "total": 276.0,
+        "source_page": 298,
+        "book_page": 284,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Plastic",
+        "unit": "LF",
+        "raw_line": ". Install LF 2.82 4.67 7.49 | install 4\u201d white vinyl gutter fitings,",
+        "costs": [
+          2.82,
+          4.67,
+          7.49,
+          4.0
+        ],
+        "source_page": 298,
+        "book_page": 284
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Galvanized",
+        "unit": "",
+        "raw_line": ". Install Lr. 7.25 4.07 11.32} install 4\u201d diameter downspout with",
+        "costs": [
+          7.25,
+          4.07,
+          11.32,
+          4.0
+        ],
+        "source_page": 298,
+        "book_page": 284
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Aluminum",
+        "unit": "",
+        "raw_line": "Install LE. 473 4.2] 8.94 | aluminum enameled downspout.",
+        "costs": [
+          473.0,
+          4.2,
+          8.94
+        ],
+        "material": 473.0,
+        "labor": 4.2,
+        "total": 8.94,
+        "source_page": 299,
+        "book_page": 285
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Copper",
+        "unit": "",
+        "raw_line": "Install | LE. 17.10] 3.10 20120 | aond copper doumesou",
+        "costs": [
+          17.1,
+          3.1,
+          20120.0
+        ],
+        "material": 17.1,
+        "labor": 3.1,
+        "total": 20120.0,
+        "source_page": 299,
+        "book_page": 285
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Plastic",
+        "unit": "",
+        "raw_line": "Install | LE 3.83| 2.81 6.64] install 2\" x 3\u00b0 vinyl rectangular",
+        "costs": [
+          3.83,
+          2.81,
+          6.64,
+          2.0,
+          3.0
+        ],
+        "source_page": 299,
+        "book_page": 285,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      82.0,
+      276.0,
+      8.94,
+      20120.0
+    ]
+  },
+  "basement_finishing": {
+    "items_found": 34,
+    "avg_total": 29.385555555555552,
+    "min_total": 1.08,
+    "max_total": 182.9,
+    "avg_material": 14.026666666666666,
+    "avg_labor": 66.89111111111112,
+    "labor_pct": 227.6326237380422,
+    "sample_items": [
+      {
+        "section": "Gypsum Wallboard Tile Ceiling Gypsum Wallboard Ceiling",
+        "subsection": "Cement",
+        "unit": "",
+        "raw_line": ". Install SY. 26 33 1.83 60.83 | cement plaster on interior wood",
+        "costs": [
+          26.0,
+          33.0,
+          1.83,
+          60.83
+        ],
+        "source_page": 189,
+        "book_page": 175
+      },
+      {
+        "section": "Gypsum Wallboard Tile Ceiling Gypsum Wallboard Ceiling",
+        "subsection": "Stucco",
+        "unit": "",
+        "raw_line": "Install | SY. 14.05} 47.50! 2.15} 63.70 stucco on wire mesh over wood",
+        "costs": [
+          14.05,
+          47.5,
+          2.15,
+          63.7
+        ],
+        "source_page": 189,
+        "book_page": 175
+      },
+      {
+        "section": "Gypsum Wallboard Tile Ceiling Gypsum Wallboard Ceiling",
+        "subsection": "Veneer",
+        "unit": "",
+        "raw_line": "Install SY. 1,25 6.15 34 7.74) thin coat veneer plaster.",
+        "costs": [
+          125.0,
+          6.15,
+          34.0,
+          7.74
+        ],
+        "source_page": 189,
+        "book_page": 175
+      },
+      {
+        "section": "Walls / Ceilings",
+        "subsection": "Metal",
+        "unit": "",
+        "raw_line": "Install SY. 15.40 7.20 22.60) wire lath on steel framed walls.",
+        "costs": [
+          15.4,
+          7.2,
+          22.6
+        ],
+        "material": 15.4,
+        "labor": 7.2,
+        "total": 22.6,
+        "source_page": 190,
+        "book_page": 176
+      },
+      {
+        "section": "Walls / Ceilings",
+        "subsection": "Gypsum",
+        "unit": "",
+        "raw_line": "Install | SY. 8.20] 675 14.95] gypsum lath on walls.",
+        "costs": [
+          8.2,
+          675.0,
+          14.95
+        ],
+        "material": 8.2,
+        "labor": 675.0,
+        "total": 14.95,
+        "source_page": 190,
+        "book_page": 176
+      },
+      {
+        "section": "Fill in Small Cracks",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install LR .09 4.13 4.22 | Includes labor and material to fill in",
+        "costs": [
+          9.0,
+          4.13,
+          4.22
+        ],
+        "material": 9.0,
+        "labor": 4.13,
+        "total": 4.22,
+        "source_page": 190,
+        "book_page": 176,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Fill in Small Cracks",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install LE 36 5.15 5.51 | Includes labor and material to fill in",
+        "costs": [
+          36.0,
+          5.15,
+          5.51
+        ],
+        "material": 36.0,
+        "labor": 5.15,
+        "total": 5.51,
+        "source_page": 190,
+        "book_page": 176,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Fill in Small Cracks",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 09 5.45 5.54 | Includes labor and material to patch",
+        "costs": [
+          9.0,
+          5.45,
+          5.54
+        ],
+        "material": 9.0,
+        "labor": 5.45,
+        "total": 5.54,
+        "source_page": 190,
+        "book_page": 176,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Fill in Small Cracks",
+        "subsection": "Patch Large Hole",
+        "unit": "",
+        "raw_line": "Install Ea, 10.90} 172 182.90 | Includes labor and material to patch",
+        "costs": [
+          10.9,
+          172.0,
+          182.9
+        ],
+        "material": 10.9,
+        "labor": 172.0,
+        "total": 182.9,
+        "source_page": 190,
+        "book_page": 176,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Patch Plaster Section",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 4.17 5.15 9.32 | Includes labor and material to repair",
+        "costs": [
+          4.17,
+          5.15,
+          9.32
+        ],
+        "material": 4.17,
+        "labor": 5.15,
+        "total": 9.32,
+        "source_page": 190,
+        "book_page": 176,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Patch Plaster Section",
+        "subsection": "Repair Inside Corner",
+        "unit": "",
+        "raw_line": "Install LE. 4.36 12.90 17.26 | Includes material and labor to patch",
+        "costs": [
+          4.36,
+          12.9,
+          17.26
+        ],
+        "material": 4.36,
+        "labor": 12.9,
+        "total": 17.26,
+        "source_page": 190,
+        "book_page": 176,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Patch Plaster Section",
+        "subsection": "Cement",
+        "unit": "",
+        "raw_line": ". Install SY. 26 33 1.83 60.83 | cement plaster on interior wood",
+        "costs": [
+          26.0,
+          33.0,
+          1.83,
+          60.83
+        ],
+        "source_page": 190,
+        "book_page": 176,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Walls / Ceilings",
+        "subsection": "Stucco",
+        "unit": "",
+        "raw_line": "Install SY. 14,05 47.50 2.15 63.70 stucco on wire mesh over wood",
+        "costs": [
+          1405.0,
+          47.5,
+          2.15,
+          63.7
+        ],
+        "source_page": 191,
+        "book_page": 177
+      },
+      {
+        "section": "Walls / Ceilings",
+        "subsection": "Veneer",
+        "unit": "",
+        "raw_line": "Install | SY. 125) 6.15 34) 7-74] thin coat veneer plaster.",
+        "costs": [
+          125.0,
+          6.15,
+          34.0,
+          7.0,
+          74.0
+        ],
+        "source_page": 191,
+        "book_page": 177
+      },
+      {
+        "section": "Walls / Ceilings",
+        "subsection": "Metal",
+        "unit": "",
+        "raw_line": "Install SY. 15.40 9 24.40 | wire lath on steel framed ceilings.",
+        "costs": [
+          15.4,
+          9.0,
+          24.4
+        ],
+        "material": 15.4,
+        "labor": 9.0,
+        "total": 24.4,
+        "source_page": 191,
+        "book_page": 177
+      },
+      {
+        "section": "Walls / Ceilings",
+        "subsection": "Gypsum",
+        "unit": "",
+        "raw_line": "Install SY. 8.20 5.65 13.85 gypsum lath on ceilings.",
+        "costs": [
+          8.2,
+          5.65,
+          13.85
+        ],
+        "material": 8.2,
+        "labor": 5.65,
+        "total": 13.85,
+        "source_page": 191,
+        "book_page": 177
+      },
+      {
+        "section": "Fill in Small Cracks",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 09 94 1.08 | Includes labor and material to fill in",
+        "costs": [
+          9.0,
+          94.0,
+          1.08
+        ],
+        "material": 9.0,
+        "labor": 94.0,
+        "total": 1.08,
+        "source_page": 191,
+        "book_page": 177,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Fill in Small Cracks",
+        "subsection": "Finished",
+        "unit": "SF",
+        "raw_line": "Install SF Jl 1.68 2.19} install 3/8\u201d drywall including joint",
+        "costs": [
+          1.68,
+          2.19,
+          3.0,
+          8.0
+        ],
+        "source_page": 191,
+        "book_page": 177
+      },
+      {
+        "section": "Walls / Ceilings",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 38 1.64 2.22 | install 5/8\u201d drywall including joint",
+        "costs": [
+          38.0,
+          1.64,
+          2.22,
+          5.0,
+          8.0
+        ],
+        "source_page": 192,
+        "book_page": 178
+      },
+      {
+        "section": "Walls / Ceilings",
+        "subsection": "Unfinished",
+        "unit": "SF",
+        "raw_line": ". Install SF Ab 38 1.04} install 3/8\" drywall including screws.",
+        "costs": [
+          38.0,
+          1.04,
+          3.0,
+          8.0
+        ],
+        "source_page": 192,
+        "book_page": 178
+      }
+    ],
+    "all_totals": [
+      22.6,
+      14.95,
+      4.22,
+      5.51,
+      5.54,
+      182.9,
+      9.32,
+      17.26,
+      24.4,
+      13.85,
+      1.08,
+      61.0,
+      75.0,
+      1.76,
+      74.6,
+      5.43,
+      5.43,
+      4.09
+    ]
+  },
+  "garage_door": {
+    "items_found": 4,
+    "avg_total": 1654.0,
+    "min_total": 1654.0,
+    "max_total": 1654.0,
+    "avg_material": 1600.0,
+    "avg_labor": 54.0,
+    "labor_pct": 3.2648125755743655,
+    "sample_items": [
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "",
+        "unit": "",
+        "raw_line": ". Install Ea. 1300 134 1434 | sectional metal garage door 9 x 7\u2019",
+        "costs": [
+          1300.0,
+          134.0,
+          1434.0,
+          9.0,
+          7.0
+        ],
+        "source_page": 117,
+        "book_page": 103
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Metal / Steel Roll Up",
+        "unit": "",
+        "raw_line": "Install Ea. 1625 860 2485 install 10\u2019 x 10\u2019 steel overhead roll-",
+        "costs": [
+          1625.0,
+          860.0,
+          2485.0,
+          10.0,
+          10.0
+        ],
+        "source_page": 117,
+        "book_page": 103,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Metal / Steel Roll Up",
+        "unit": "",
+        "raw_line": "Install Ea. 3025 1500 A525 install 14\u2019 x 14\u2019 steel overhead roll-",
+        "costs": [
+          3025.0,
+          1500.0,
+          525.0,
+          14.0,
+          14.0
+        ],
+        "source_page": 117,
+        "book_page": 103,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Exterior Doors and Windows",
+        "subsection": "Automatic Motor",
+        "unit": "",
+        "raw_line": "Install Ea. 1600 54 1654 Includes labor and material to install",
+        "costs": [
+          1600.0,
+          54.0,
+          1654.0
+        ],
+        "material": 1600.0,
+        "labor": 54.0,
+        "total": 1654.0,
+        "source_page": 117,
+        "book_page": 103,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      1654.0
+    ]
+  },
+  "home_addition": {
+    "items_found": 58,
+    "avg_total": 65.7778947368421,
+    "min_total": 5.67,
+    "max_total": 269.9,
+    "avg_material": 118.92473684210525,
+    "avg_labor": 55.36894736842104,
+    "labor_pct": 84.17561490822382,
+    "sample_items": [
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Bracing",
+        "unit": "LF",
+        "raw_line": "Install LF 58 3.36 3.94) install 1\" x 3\" letin bracing.",
+        "costs": [
+          58.0,
+          3.36,
+          3.94,
+          1.0,
+          3.0
+        ],
+        "source_page": 50,
+        "book_page": 36,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Bracing",
+        "unit": "LF",
+        "raw_line": "Install LF 81 3.36 4.17) install 1\u201d x 4\" letin bracing,",
+        "costs": [
+          81.0,
+          3.36,
+          4.17,
+          1.0,
+          4.0
+        ],
+        "source_page": 50,
+        "book_page": 36,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Bracing",
+        "unit": "LF",
+        "raw_line": "Install LF 1.33 3.58 4.91 | install 1\u201d x 6\" letin bracing",
+        "costs": [
+          1.33,
+          3.58,
+          4.91,
+          1.0,
+          6.0
+        ],
+        "source_page": 50,
+        "book_page": 36,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Bracing",
+        "unit": "LF",
+        "raw_line": "Install LF. SI 3.58 4.09 | install 2\u201d x 3\" letin bracing.",
+        "costs": [
+          3.58,
+          4.09,
+          2.0,
+          3.0
+        ],
+        "source_page": 50,
+        "book_page": 36,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Bracing",
+        "unit": "LF",
+        "raw_line": "Install LF 59 3.58 4.17} install 2\u201d x 4\u201d letin bracing",
+        "costs": [
+          59.0,
+          3.58,
+          4.17,
+          2.0,
+          4.0
+        ],
+        "source_page": 50,
+        "book_page": 36,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Bracing",
+        "unit": "LF",
+        "raw_line": "Install LF 1.16 3.84 5 install 2\u201d x 6\u201d letin bracing",
+        "costs": [
+          1.16,
+          3.84,
+          5.0,
+          2.0,
+          6.0
+        ],
+        "source_page": 50,
+        "book_page": 36,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Bracing",
+        "unit": "LF",
+        "raw_line": "Install LF 1.53 3.84 5.37 | install 2\u201d x 8\" letin bracing.",
+        "costs": [
+          1.53,
+          3.84,
+          5.37,
+          2.0,
+          8.0
+        ],
+        "source_page": 50,
+        "book_page": 36,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Earthquake Strapping",
+        "unit": "",
+        "raw_line": "Install Ea. 2.50 3.36 5.86 | Includes labor and material to replace",
+        "costs": [
+          2.5,
+          3.36,
+          5.86
+        ],
+        "material": 2.5,
+        "labor": 3.36,
+        "total": 5.86,
+        "source_page": 50,
+        "book_page": 36,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Hurricane Clips",
+        "unit": "",
+        "raw_line": "Install Ea. 1.96 37] 5.67 | Includes labor and material to install a",
+        "costs": [
+          1.96,
+          37.0,
+          5.67
+        ],
+        "material": 1.96,
+        "labor": 37.0,
+        "total": 5.67,
+        "source_page": 50,
+        "book_page": 36,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Stud",
+        "unit": "LF",
+        "raw_line": "Install LF 37 98 1.55} install 2\u201d x 4\" wall stud per LF. of stud",
+        "costs": [
+          37.0,
+          98.0,
+          1.55,
+          2.0,
+          4.0
+        ],
+        "source_page": 50,
+        "book_page": 36
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install LF. 1.16 1.08 2.24) install 2\u201d x 6\" stud per L.F. of stud.",
+        "costs": [
+          1.16,
+          1.08,
+          2.24,
+          2.0,
+          6.0
+        ],
+        "source_page": 51,
+        "book_page": 37
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Plates",
+        "unit": "",
+        "raw_line": "Install LE 59 1.34 1.93, install 2\u201d x 4\u201d plate per L-F. of plate.",
+        "costs": [
+          59.0,
+          1.34,
+          1.93,
+          2.0,
+          4.0
+        ],
+        "source_page": 51,
+        "book_page": 37,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Plates",
+        "unit": "LF",
+        "raw_line": "Install LF 1.16 1.43 2.59| install 2\" x 6\" plate per LF. of plate.",
+        "costs": [
+          1.16,
+          1.43,
+          2.59,
+          2.0,
+          6.0
+        ],
+        "source_page": 51,
+        "book_page": 37,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "Headers",
+        "unit": "LF",
+        "raw_line": "Install LF 12.70 4.14 16.84 | header over wall openings and",
+        "costs": [
+          12.7,
+          4.14,
+          16.84
+        ],
+        "material": 12.7,
+        "labor": 4.14,
+        "total": 16.84,
+        "source_page": 51,
+        "book_page": 37,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "",
+        "unit": "LF",
+        "raw_line": "Install LF. 8.70 4,48 13.18 | head. iI i d",
+        "costs": [
+          8.7,
+          448.0,
+          13.18
+        ],
+        "material": 8.7,
+        "labor": 448.0,
+        "total": 13.18,
+        "source_page": 52,
+        "book_page": 38,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | LE 1230] 5.65 17.95] head ll openings and",
+        "costs": [
+          1230.0,
+          5.65,
+          17.95
+        ],
+        "material": 1230.0,
+        "labor": 5.65,
+        "total": 17.95,
+        "source_page": 52,
+        "book_page": 38,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 26.50 16.80 43.30 | header, double studs each side,",
+        "costs": [
+          26.5,
+          16.8,
+          43.3
+        ],
+        "material": 26.5,
+        "labor": 16.8,
+        "total": 43.3,
+        "source_page": 52,
+        "book_page": 38
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea, 28.50 16.80 45.30 | header, double studs each side,",
+        "costs": [
+          28.5,
+          16.8,
+          45.3
+        ],
+        "material": 28.5,
+        "labor": 16.8,
+        "total": 45.3,
+        "source_page": 52,
+        "book_page": 38
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea. 233 17.90 250.90 | header, double studs each side,",
+        "costs": [
+          233.0,
+          17.9,
+          250.9
+        ],
+        "material": 233.0,
+        "labor": 17.9,
+        "total": 250.9,
+        "source_page": 53,
+        "book_page": 39
+      },
+      {
+        "section": "Rough Frame / Structure",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | ~~Ea 53 16:80 69.80 | header, double studs each side, -",
+        "costs": [
+          53.0,
+          16.0,
+          80.0,
+          69.8
+        ],
+        "source_page": 53,
+        "book_page": 39
+      }
+    ],
+    "all_totals": [
+      5.86,
+      5.67,
+      16.84,
+      13.18,
+      17.95,
+      43.3,
+      45.3,
+      250.9,
+      72.3,
+      88.4,
+      114.4,
+      269.9,
+      117.0,
+      57.99,
+      80.49,
+      5.86,
+      5.67,
+      33.0,
+      5.77
+    ]
+  },
+  "driveway": {
+    "items_found": 13,
+    "avg_total": 17.340909090909093,
+    "min_total": 1.67,
+    "max_total": 81.0,
+    "avg_material": 11.633000000000001,
+    "avg_labor": 23.14545454545455,
+    "labor_pct": 133.47313237221493,
+    "sample_items": [
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Hand (fine)",
+        "unit": "SF",
+        "raw_line": "Install SF 81 81 | Includes labor and material to install",
+        "costs": [
+          81.0,
+          81.0
+        ],
+        "labor": 81.0,
+        "total": 81.0,
+        "source_page": 153,
+        "book_page": 139,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Machine (fine) grade.",
+        "unit": "",
+        "raw_line": "Install SY. 72 95 1.67 | Includes labor and material to install",
+        "costs": [
+          72.0,
+          95.0,
+          1.67
+        ],
+        "material": 72.0,
+        "labor": 95.0,
+        "total": 1.67,
+        "source_page": 153,
+        "book_page": 139,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Seal Coat",
+        "unit": "SF",
+        "raw_line": "Install SF 1.68 15 1.83 | Includes labor and material to install",
+        "costs": [
+          1.68,
+          15.0,
+          1.83
+        ],
+        "material": 1.68,
+        "labor": 15.0,
+        "total": 1.83,
+        "source_page": 153,
+        "book_page": 139,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Wearing Course",
+        "unit": "",
+        "raw_line": "Install SA 95 52 39 95.91 | Cost includes labor and material to",
+        "costs": [
+          95.0,
+          52.0,
+          39.0,
+          95.91
+        ],
+        "source_page": 153,
+        "book_page": 139,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Sand Base",
+        "unit": "",
+        "raw_line": "Install S.F 6.10 8.85 14.95 | concrete pavers on sand base.",
+        "costs": [
+          6.1,
+          8.85,
+          14.95
+        ],
+        "material": 6.1,
+        "labor": 8.85,
+        "total": 14.95,
+        "source_page": 153,
+        "book_page": 139
+      },
+      {
+        "section": "Front-end Loader Bulldozer",
+        "subsection": "Mortar Base",
+        "unit": "",
+        "raw_line": "Install S.F 5.05 7.40 12.45 | concrete pavers on mortar base.",
+        "costs": [
+          5.05,
+          7.4,
+          12.45
+        ],
+        "material": 5.05,
+        "labor": 7.4,
+        "total": 12.45,
+        "source_page": 153,
+        "book_page": 139
+      },
+      {
+        "section": "Sand Base",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 3.39 5.90 9.29 | adobe pavers on sand base.",
+        "costs": [
+          3.39,
+          5.9,
+          9.29
+        ],
+        "material": 3.39,
+        "labor": 5.9,
+        "total": 9.29,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Mortar Base",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | SE 3.81| 7.40 11.21 | adobe pavers on mortar base.",
+        "costs": [
+          3.81,
+          7.4,
+          11.21
+        ],
+        "material": 3.81,
+        "labor": 7.4,
+        "total": 11.21,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Sand Base P",
+        "unit": "",
+        "raw_line": "Install SE 5.50 9.80 15.30 | standard brick pavers on sand base.",
+        "costs": [
+          5.5,
+          9.8,
+          15.3
+        ],
+        "material": 5.5,
+        "labor": 9.8,
+        "total": 15.3,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Mortar Base",
+        "unit": "SF",
+        "raw_line": "Install SF 5.70 3.55 9.25 | standard brick pavers on mortar base.",
+        "costs": [
+          5.7,
+          3.55,
+          9.25
+        ],
+        "material": 5.7,
+        "labor": 3.55,
+        "total": 9.25,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Sand Base",
+        "unit": "SF",
+        "raw_line": "Install SF 6.65 7.40 14.05 | deluxe brick pavers on sand base,",
+        "costs": [
+          6.65,
+          7.4,
+          14.05
+        ],
+        "material": 6.65,
+        "labor": 7.4,
+        "total": 14.05,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Mortar Base",
+        "unit": "",
+        "raw_line": "Install SE 6.45 13.30 19.75 | deluxe brick pavers on mortar base.",
+        "costs": [
+          6.45,
+          13.3,
+          19.75
+        ],
+        "material": 6.45,
+        "labor": 13.3,
+        "total": 19.75,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Block w / Footing",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 279 5.80 8.59 | install 4\" non-reinforced concrete",
+        "costs": [
+          279.0,
+          5.8,
+          8.59,
+          4.0
+        ],
+        "source_page": 154,
+        "book_page": 140
+      }
+    ],
+    "all_totals": [
+      81.0,
+      1.67,
+      1.83,
+      14.95,
+      12.45,
+      9.29,
+      11.21,
+      15.3,
+      9.25,
+      14.05,
+      19.75
+    ]
+  },
+  "retaining_wall": {
+    "items_found": 12,
+    "avg_total": 13.141666666666666,
+    "min_total": 9.25,
+    "max_total": 19.75,
+    "avg_material": 5.249999999999999,
+    "avg_labor": 7.891666666666668,
+    "labor_pct": 60.05072923272037,
+    "sample_items": [
+      {
+        "section": "",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install SA. 6.65 9.80 16.45 | normal weight 12\u201d x 8\u201d x 16\u201d block,",
+        "costs": [
+          6.65,
+          9.8,
+          16.45,
+          12.0,
+          8.0,
+          16.0
+        ],
+        "source_page": 140,
+        "book_page": 126,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Structural Brick",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF. 7.85 11.60 19.45 | install 4\u201d red brick wall, running bond",
+        "costs": [
+          7.85,
+          11.6,
+          19.45,
+          4.0
+        ],
+        "source_page": 140,
+        "book_page": 126,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Structural Brick",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": ". Install SF 80 26 106 install 12\u201d red brick wall, running",
+        "costs": [
+          80.0,
+          26.0,
+          106.0,
+          12.0
+        ],
+        "source_page": 140,
+        "book_page": 126,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Structural Brick",
+        "subsection": "Brick Veneer",
+        "unit": "",
+        "raw_line": "Install | SE 2% 10.85 36.85 | install 4\" 4d face brick,",
+        "costs": [
+          2.0,
+          10.85,
+          36.85,
+          4.0,
+          4.0
+        ],
+        "source_page": 140,
+        "book_page": 126,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Structural Brick",
+        "subsection": "Brick Veneer",
+        "unit": "",
+        "raw_line": "Install SA 7.85 11.60 19.45 | install 4\u201d red brick wall, running bond",
+        "costs": [
+          7.85,
+          11.6,
+          19.45,
+          4.0
+        ],
+        "source_page": 140,
+        "book_page": 126,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Sand Base",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 3.39 5.90 9.29 | adobe pavers on sand base.",
+        "costs": [
+          3.39,
+          5.9,
+          9.29
+        ],
+        "material": 3.39,
+        "labor": 5.9,
+        "total": 9.29,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Mortar Base",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | SE 3.81| 7.40 11.21 | adobe pavers on mortar base.",
+        "costs": [
+          3.81,
+          7.4,
+          11.21
+        ],
+        "material": 3.81,
+        "labor": 7.4,
+        "total": 11.21,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Sand Base P",
+        "unit": "",
+        "raw_line": "Install SE 5.50 9.80 15.30 | standard brick pavers on sand base.",
+        "costs": [
+          5.5,
+          9.8,
+          15.3
+        ],
+        "material": 5.5,
+        "labor": 9.8,
+        "total": 15.3,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Mortar Base",
+        "unit": "SF",
+        "raw_line": "Install SF 5.70 3.55 9.25 | standard brick pavers on mortar base.",
+        "costs": [
+          5.7,
+          3.55,
+          9.25
+        ],
+        "material": 5.7,
+        "labor": 3.55,
+        "total": 9.25,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Sand Base",
+        "unit": "SF",
+        "raw_line": "Install SF 6.65 7.40 14.05 | deluxe brick pavers on sand base,",
+        "costs": [
+          6.65,
+          7.4,
+          14.05
+        ],
+        "material": 6.65,
+        "labor": 7.4,
+        "total": 14.05,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Standard Brick",
+        "subsection": "Mortar Base",
+        "unit": "",
+        "raw_line": "Install SE 6.45 13.30 19.75 | deluxe brick pavers on mortar base.",
+        "costs": [
+          6.45,
+          13.3,
+          19.75
+        ],
+        "material": 6.45,
+        "labor": 13.3,
+        "total": 19.75,
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Block w / Footing",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 279 5.80 8.59 | install 4\" non-reinforced concrete",
+        "costs": [
+          279.0,
+          5.8,
+          8.59,
+          4.0
+        ],
+        "source_page": 154,
+        "book_page": 140,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      9.29,
+      11.21,
+      15.3,
+      9.25,
+      14.05,
+      19.75
+    ]
+  },
+  "tree_removal": {
+    "items_found": 16,
+    "avg_total": 1818.2276923076922,
+    "min_total": 3.84,
+    "max_total": 21050.0,
+    "avg_material": 36.772000000000006,
+    "avg_labor": 215.59153846153848,
+    "labor_pct": 11.857235448213308,
+    "sample_items": [
+      {
+        "section": "Single Story",
+        "subsection": "",
+        "unit": "SF",
+        "raw_line": "Install SF 1.93 191 3.84 Includes labor and equipment to jack",
+        "costs": [
+          1.93,
+          191.0,
+          3.84
+        ],
+        "material": 1.93,
+        "labor": 191.0,
+        "total": 3.84,
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Single Story",
+        "subsection": "Two-story",
+        "unit": "",
+        "raw_line": "Install SE 1.93 3.19 5.12 Includes labor and equipment to jack",
+        "costs": [
+          1.93,
+          3.19,
+          5.12
+        ],
+        "material": 1.93,
+        "labor": 3.19,
+        "total": 5.12,
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Single Story",
+        "subsection": "Small Load",
+        "unit": "Week",
+        "raw_line": "Install | Week 750 750 | Dumpster, weekly rental, 2 dumps, 5",
+        "costs": [
+          750.0,
+          750.0,
+          2.0,
+          5.0
+        ],
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Single Story",
+        "subsection": "Medium Load",
+        "unit": "Week",
+        "raw_line": "Install | Week 855 855 | Dumpster, weekly rental, 2 dumps, 10",
+        "costs": [
+          855.0,
+          855.0,
+          2.0,
+          10.0
+        ],
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Single Story",
+        "subsection": "Large Load",
+        "unit": "Week",
+        "raw_line": "Install Week 1325 1325 | Dumpster, weekly rental, 2 dumps, 30",
+        "costs": [
+          1325.0,
+          1325.0,
+          2.0,
+          30.0
+        ],
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Single Story",
+        "subsection": "Per Ton",
+        "unit": "",
+        "raw_line": "Install Ton 130 80.50} 210,50} Includes hauling of debris by trailer or",
+        "costs": [
+          130.0,
+          80.5,
+          21050.0
+        ],
+        "material": 130.0,
+        "labor": 80.5,
+        "total": 21050.0,
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Per Cubic Yard",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install CY. 43 27 70 | Includes hauling of debris by trailer or",
+        "costs": [
+          43.0,
+          27.0,
+          70.0
+        ],
+        "material": 43.0,
+        "labor": 27.0,
+        "total": 70.0,
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Per Pick-up Truck Load",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install Ea, 225 225 | Includes hauling of debris by pick-up",
+        "costs": [
+          225.0,
+          225.0
+        ],
+        "labor": 225.0,
+        "total": 225.0,
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Per Pick-up Truck Load",
+        "subsection": "Per Cubic Yard",
+        "unit": "",
+        "raw_line": "Install CY. 7\\ 71 Dump charges, building materials.",
+        "costs": [
+          7.0,
+          71.0
+        ],
+        "material": 7.0,
+        "labor": 71.0,
+        "total": 78.0,
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Per Pick-up Truck Load",
+        "subsection": "Per Ton",
+        "unit": "",
+        "raw_line": "Install Ton 171 171 | Dump charges, building materials.",
+        "costs": [
+          171.0,
+          171.0
+        ],
+        "labor": 171.0,
+        "total": 171.0,
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Per Pick-up Truck Load",
+        "subsection": "Per Ton",
+        "unit": "",
+        "raw_line": "Install | Month 193 193 | Includes monthly rental of scaffolding,",
+        "costs": [
+          193.0,
+          193.0
+        ],
+        "labor": 193.0,
+        "total": 193.0,
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Per Pick-up Truck Load",
+        "subsection": "Per Ton",
+        "unit": "",
+        "raw_line": "Install | Month 238 238 | Includes monthly rental of scaffolding,",
+        "costs": [
+          238.0,
+          238.0
+        ],
+        "labor": 238.0,
+        "total": 238.0,
+        "source_page": 21,
+        "book_page": 7,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | Month 283 283 | Includes monthly rental of scaffolding,",
+        "costs": [
+          283.0,
+          283.0
+        ],
+        "labor": 283.0,
+        "total": 283.0,
+        "source_page": 22,
+        "book_page": 8,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | Month 395 395 | Includes monthly rental of scaffolding,",
+        "costs": [
+          395.0,
+          395.0
+        ],
+        "labor": 395.0,
+        "total": 395.0,
+        "source_page": 22,
+        "book_page": 8,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | Month 440 440 | Includes monthly rental of scaffolding,",
+        "costs": [
+          440.0,
+          440.0
+        ],
+        "labor": 440.0,
+        "total": 440.0,
+        "source_page": 22,
+        "book_page": 8,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "",
+        "subsection": "",
+        "unit": "",
+        "raw_line": "Install | Month 485 485 | Includes monthly rental of scaffolding,",
+        "costs": [
+          485.0,
+          485.0
+        ],
+        "labor": 485.0,
+        "total": 485.0,
+        "source_page": 22,
+        "book_page": 8,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      3.84,
+      5.12,
+      21050.0,
+      70.0,
+      225.0,
+      78.0,
+      171.0,
+      193.0,
+      238.0,
+      283.0,
+      395.0,
+      440.0,
+      485.0
+    ]
+  },
+  "pool_inground": {
+    "items_found": 7,
+    "avg_total": 2105.2414285714285,
+    "min_total": 6.11,
+    "max_total": 8270.0,
+    "avg_material": 1862.347142857143,
+    "avg_labor": 243.74285714285716,
+    "labor_pct": 11.577905214807394,
+    "sample_items": [
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Wood",
+        "unit": "",
+        "raw_line": "Install Ea. 5500 795 6295 | prefabricated wood storage shed.",
+        "costs": [
+          5500.0,
+          795.0,
+          6295.0
+        ],
+        "material": 5500.0,
+        "labor": 795.0,
+        "total": 6295.0,
+        "source_page": 305,
+        "book_page": 291,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Wood",
+        "unit": "",
+        "raw_line": "Install Ea. 7475 795 8270 | prefabricated wood storage shed.",
+        "costs": [
+          7475.0,
+          795.0,
+          8270.0
+        ],
+        "material": 7475.0,
+        "labor": 795.0,
+        "total": 8270.0,
+        "source_page": 305,
+        "book_page": 291,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Good Grade",
+        "unit": "",
+        "raw_line": "Install | SE 17.10} 40.50 57.60| gazebo.",
+        "costs": [
+          17.1,
+          40.5,
+          57.6
+        ],
+        "material": 17.1,
+        "labor": 40.5,
+        "total": 57.6,
+        "source_page": 305,
+        "book_page": 291,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Custom Grade",
+        "unit": "",
+        "raw_line": "Install | SE 29.50| 40.50 70 | gazebo.",
+        "costs": [
+          29.5,
+          40.5,
+          70.0
+        ],
+        "material": 29.5,
+        "labor": 40.5,
+        "total": 70.0,
+        "source_page": 305,
+        "book_page": 291,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Bench Seating",
+        "unit": "LF",
+        "raw_line": "Install LF. 3.33 27 30.33 | pressure treated bench seating.",
+        "costs": [
+          3.33,
+          27.0,
+          30.33
+        ],
+        "material": 3.33,
+        "labor": 27.0,
+        "total": 30.33,
+        "source_page": 305,
+        "book_page": 291,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Re-screen",
+        "unit": "SF",
+        "raw_line": "Install SF. 5.50 2.15 7.65 | Includes labor and material to",
+        "costs": [
+          5.5,
+          2.15,
+          7.65
+        ],
+        "material": 5.5,
+        "labor": 2.15,
+        "total": 7.65,
+        "source_page": 305,
+        "book_page": 291,
+        "matched_by": "page_location"
+      },
+      {
+        "section": "Improvements / Appliances / Treatments",
+        "subsection": "Re-screen",
+        "unit": "SF",
+        "raw_line": "Install | SF Wall .06 6.05 6.11| Includes material and labor to install a",
+        "costs": [
+          6.0,
+          6.05,
+          6.11
+        ],
+        "material": 6.0,
+        "labor": 6.05,
+        "total": 6.11,
+        "source_page": 305,
+        "book_page": 291,
+        "matched_by": "page_location"
+      }
+    ],
+    "all_totals": [
+      6295.0,
+      8270.0,
+      57.6,
+      70.0,
+      30.33,
+      7.65,
+      6.11
+    ]
+  }
+}

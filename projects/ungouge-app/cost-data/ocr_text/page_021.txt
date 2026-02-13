@@ -1,0 +1,43 @@
+Jack and Relevel Unit | Material | Lobor | Equip. Total Specification
+Single Story
+Install SF 1.93 191 3.84 Includes labor and equipment to jack
+Minimum Charge Job 480 480 | and relevel single-story building.
+Two-story
+Install SE 1.93 3.19 5.12 Includes labor and equipment to jack
+Minimum Charge Job 480 480 | and relevel twostory building.
+Dumpster Rental Unit | Material | Labor | Equip. Total Specification
+Small Load
+Install | Week 750 750 | Dumpster, weekly rental, 2 dumps, 5
+Minimum Charge | Week 750 750] yard container.
+Medium Load
+Install | Week 855 855 | Dumpster, weekly rental, 2 dumps, 10
+Minimum Charge Week 855 855 | yard container.
+Large Load
+Install Week 1325 1325 | Dumpster, weekly rental, 2 dumps, 30
+Minimum Charge Week 1325 1325 | yard container.
+Debris Hauling Unit | Material | Labor | Equip. | Total Specification
+Per Ton
+Install Ton 130 80.50} 210,50} Includes hauling of debris by trailer or
+Minimum Charge Ton 975| 605 1580 | dump truck.
+Per Cubic Yard
+Install CY. 43 27 70 | Includes hauling of debris by trailer or
+Minimum Charge Job 975| 605 1580 | dump truck.
+Per Pick-up Truck Load
+Install Ea, 225 225 | Includes hauling of debris by pick-up
+Minimum Charge Ea. 225 225 truck.
+Dump Fees Unit | Material | Labor | Equip. | Total Specification
+Per Cubic Yard
+Install CY. 7\ 71 Dump charges, building materials.
+Minimum Charge Gs 71 7\
+Per Ton
+Install Ton 171 171 | Dump charges, building materials.
+Minimum Charge Ton 171 171
+Scaffolding Unit | Material | Labor | Equip. | Total Specification
+4’ to 6’ High
+Install | Month 193 193 | Includes monthly rental of scaffolding,
+Minimum Charge Month 193 193} steel tubular, 30" wide, 7’ long, 5’
+7’ to 11’ High high.
+Install | Month 238 238 | Includes monthly rental of scaffolding,
+Minimum Charge Month 238 238 | steel tubular, 30” wide, 7’ long, 10’
+high.
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291. 7

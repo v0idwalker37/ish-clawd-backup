@@ -1,0 +1,55 @@
+Equipment Rental Unit | Material | Labor | Equip. Total Specification
+Monthly Rental
+Install | Month 2700 2700 | Monthly rental of concrete mixer.
+Minimum Charge Day 135 135
+Concrete Bucket
+Daily Rental
+Install Day 50.50 50,50 | Daily rental of concrete bucket.
+Minimum Charge Day 50,50 50,50
+Weekly Rental
+Install Week 253 253 Weekly rental of concrete bucket.
+Minimum Charge Day 50.50 50.50
+Monthly Rental
+Install Month 1000 1000 | Monthly rental of concrete bucket.
+Minimum Charge Day 50.50 50.50
+Concrete Pump
+Daily Rental
+Install Day 1000 1000 —_| Daily rental of concrete pump.
+Minimum Charge Day 1000 1000
+Weekly Rental
+Install Week 5025 5025 | Weekly rental of concrete pump.
+Minimum Charge Day 1000 1000
+Monthly Rental
+Install | Month 20100 | 20100 | Monthly rental of concrete pump.
+Minimum Charge Day 1000 1000
+Generator
+Daily Rental
+Install Day 78 78 | Daily rental of generator.
+Minimum Charge Day 78 78
+Weekly Rental
+Install Week 390 390 | Weekly rental of generator.
+Minimum Charge Day 78 78
+Monthly Rental
+\ Install Month 1575 1575 | Monthly rental of generator.
+Minimum Charge Day 78 78
+Welder
+Daily Rental
+Install Day 66 66 | Daily rental of welder.
+Minimum Charge Day 66 66
+Weekly Rental
+Install | Week 330 330 | Weekly rental of welder.
+Minimum Charge Day 66 66
+Monthly Rental
+Install | Month 1325 1325 | Monthly rental of welder.
+Minimum Charge Day 66 66
+Sandblaster
+Daily Rental
+Install Day 139 139 | Daily rental of sandblaster.
+Minimum Charge Day 139 139
+Weekly Rental
+Install | Week 695 695 | Weekly rental of sandblaster.
+Minimum Charge Day 139 139
+Monthly Rental
+Install | Month 2800 2800 | Monthly rental of sandblaster.
+Minimum Charge Day 139 139
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291. 5

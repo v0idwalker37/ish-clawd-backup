@@ -1,0 +1,55 @@
+{
+  "started_at": "2026-02-13T01:03:57.628915",
+  "running": false,
+  "elapsed_seconds": 4840,
+  "sources": {
+    "gdrive": {
+      "groups_processed": 0,
+      "posts_scanned": 0,
+      "images_found": 0,
+      "pdfs_found": 0,
+      "files_downloaded": 0,
+      "errors": 0,
+      "status": "done",
+      "last_url": ""
+    },
+    "forums": {
+      "groups_processed": 4,
+      "posts_scanned": 0,
+      "images_found": 0,
+      "pdfs_found": 0,
+      "files_downloaded": 0,
+      "errors": 0,
+      "status": "done",
+      "last_url": ""
+    },
+    "angi": {
+      "groups_processed": 0,
+      "posts_scanned": 2,
+      "images_found": 0,
+      "pdfs_found": 0,
+      "files_downloaded": 0,
+      "errors": 0,
+      "status": "blocked",
+      "last_url": "https://www.angi.com/articles/how-much-does-roof-replacement-cost.htm"
+    },
+    "youtube": {
+      "groups_processed": 0,
+      "posts_scanned": 58,
+      "images_found": 0,
+      "pdfs_found": 0,
+      "files_downloaded": 0,
+      "errors": 0,
+      "status": "done",
+      "last_url": "https://www.youtube.com/watch?v=aZyTOOysYuI"
+    }
+  },
+  "total_files_downloaded": 0,
+  "duplicates_skipped": 0,
+  "classification": {
+    "confirmed_quotes": 0,
+    "not_quotes": 0,
+    "pending_review": 0
+  },
+  "last_activity": "2026-02-13T02:24:24.032851"
+}

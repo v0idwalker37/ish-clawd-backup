@@ -74,6 +74,7 @@ gcloud run deploy "$SERVICE" \
     --region "$REGION" \
     --allow-unauthenticated \
     --set-env-vars "$ENV_VARS" \
+    --add-cloudsql-instances "ungouge-dashboard:us-central1:ungouge-dashboard-db" \
     --memory 256Mi \
     --cpu 1 \
     --timeout 60 \

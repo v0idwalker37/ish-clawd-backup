@@ -1,0 +1,57 @@
+{
+  "source": "U.S. Census Bureau - Value of Construction Put in Place (C30)",
+  "scraped_date": "2026-02-11",
+  "data_period": "October 2025 (latest available)",
+  "notes": [
+    "Seasonally adjusted annual rates (SAAR) in billions of dollars",
+    "November/December 2025 data delayed until Feb 27, 2026",
+    "JCHS Harvard homeowner spending data was blocked by Cloudflare (403)",
+    "For Ungouge: residential improvement spending shows ~$914B annual rate"
+  ],
+  "construction_spending_october_2025": {
+    "total_construction": {
+      "saar_billions": 2175.2,
+      "month_over_month_change_pct": 0.5,
+      "year_over_year_change_pct": -1.0,
+      "ytd_10_months_billions": 1825.3,
+      "ytd_prior_year_billions": 1851.4,
+      "ytd_change_pct": -1.4
+    },
+    "private_construction": {
+      "total_saar_billions": 1651.3,
+      "month_over_month_change_pct": 0.6,
+      "residential": {
+        "saar_billions": 913.9,
+        "month_over_month_change_pct": 1.3,
+        "note": "Includes new construction + improvements/additions/alterations"
+      },
+      "nonresidential": {
+        "saar_billions": 737.4,
+        "month_over_month_change_pct": -0.2
+      }
+    },
+    "public_construction": {
+      "total_saar_billions": 524.0,
+      "month_over_month_change_pct": 0.1,
+      "educational": {
+        "saar_billions": 114.8,
+        "month_over_month_change_pct": 0.7
+      },
+      "highway": {
+        "saar_billions": 141.6,
+        "month_over_month_change_pct": 0.1
+      }
+    }
+  },
+  "market_context": {
+    "total_residential_market_size": "~$914 billion annually (seasonally adjusted)",
+    "home_improvement_share": "Approximately 40-45% of residential construction is improvements (est. $365-410B)",
+    "trend": "Slight decline year-over-year but residential ticking up month-over-month",
+    "relevance_to_ungouge": "Target addressable market is the improvement/remodeling portion of residential construction"
+  },
+  "source_urls": [
+    "https://www.census.gov/construction/c30/c30index.html",
+    "https://www.census.gov/construction/c30/current/index.html",
+    "https://www.census.gov/construction/c30/data/index.html"
+  ]
+}

@@ -1,0 +1,347 @@
+{
+  "source": "Bureau of Labor Statistics - Occupational Employment and Wage Statistics (OEWS)",
+  "scraped_date": "2026-02-11",
+  "data_period": "May 2023 (detailed occupation pages) + May 2024 (national summary table)",
+  "notes": [
+    "May 2023 data used for detailed occupation-level breakdowns (state/metro area data)",
+    "May 2024 national summary also captured with updated construction trade figures",
+    "Wages do not include self-employed workers",
+    "Annual wages calculated from hourly × 2,080 hours",
+    "The 'current' URL (oes472031.htm etc) redirected to a tables page; 2023/may/ path worked"
+  ],
+  "occupations": {
+    "carpenters": {
+      "soc_code": "47-2031",
+      "description": "Construct, erect, install, or repair structures and fixtures made of wood and comparable materials",
+      "national": {
+        "employment": 700290,
+        "mean_hourly_wage": 29.31,
+        "mean_annual_wage": 60970,
+        "percentiles": {
+          "10th": 18.00,
+          "25th": 22.18,
+          "50th_median": 27.09,
+          "75th": 34.75,
+          "90th": 45.47
+        }
+      },
+      "may_2024_national": {
+        "employment": 697740,
+        "mean_hourly_wage": 30.79,
+        "mean_annual_wage": 64040,
+        "median_hourly_wage": 28.51
+      },
+      "top_states_by_employment": [
+        {"state": "California", "employment": 102870, "mean_hourly": 35.28, "mean_annual": 73370},
+        {"state": "Florida", "employment": 49900, "mean_hourly": 23.35, "mean_annual": 48570},
+        {"state": "New York", "employment": 47740, "mean_hourly": 32.91, "mean_annual": 68450},
+        {"state": "Texas", "employment": 34970, "mean_hourly": 23.44, "mean_annual": 48760},
+        {"state": "Pennsylvania", "employment": 29270, "mean_hourly": 28.78, "mean_annual": 59860}
+      ],
+      "top_states_by_pay": [
+        {"state": "Hawaii", "mean_hourly": 40.03, "mean_annual": 83250},
+        {"state": "New Jersey", "mean_hourly": 38.07, "mean_annual": 79180},
+        {"state": "Washington", "mean_hourly": 36.13, "mean_annual": 75150},
+        {"state": "Massachusetts", "mean_hourly": 36.01, "mean_annual": 74900},
+        {"state": "Illinois", "mean_hourly": 35.58, "mean_annual": 74010}
+      ],
+      "top_metros_by_employment": [
+        {"area": "New York-Newark-Jersey City, NY-NJ-PA", "employment": 42690, "mean_hourly": 35.79},
+        {"area": "Los Angeles-Long Beach-Anaheim, CA", "employment": 26400, "mean_hourly": 35.06},
+        {"area": "Chicago-Naperville-Elgin, IL-IN-WI", "employment": 18890, "mean_hourly": 36.85},
+        {"area": "Seattle-Tacoma-Bellevue, WA", "employment": 17320, "mean_hourly": 38.54},
+        {"area": "San Francisco-Oakland-Hayward, CA", "employment": 15570, "mean_hourly": 39.06}
+      ],
+      "vermont_data": {
+        "employment": 3210,
+        "per_thousand_jobs": 10.68,
+        "location_quotient": 2.32,
+        "mean_hourly": 27.96,
+        "mean_annual": 58150,
+        "note": "Vermont has highest concentration of carpenters in US (LQ 2.32)"
+      },
+      "by_industry": [
+        {"industry": "Residential Building Construction", "employment": 218950, "mean_hourly": 28.04},
+        {"industry": "Building Finishing Contractors", "employment": 123630, "mean_hourly": 30.14},
+        {"industry": "Nonresidential Building Construction", "employment": 118290, "mean_hourly": 32.76},
+        {"industry": "Foundation, Structure, and Building Exterior Contractors", "employment": 94360, "mean_hourly": 28.67}
+      ]
+    },
+    "electricians": {
+      "soc_code": "47-2111",
+      "description": "Install, maintain, and repair electrical wiring, equipment, and fixtures",
+      "national": {
+        "employment": 712580,
+        "mean_hourly_wage": 32.60,
+        "mean_annual_wage": 67810,
+        "percentiles": {
+          "10th": 18.49,
+          "25th": 23.13,
+          "50th_median": 29.61,
+          "75th": 38.59,
+          "90th": 50.09
+        }
+      },
+      "may_2024_national": {
+        "employment": 742580,
+        "mean_hourly_wage": 33.47,
+        "mean_annual_wage": 69630,
+        "median_hourly_wage": 29.98
+      },
+      "top_states_by_employment": [
+        {"state": "California", "employment": 72880, "mean_hourly": 40.54, "mean_annual": 84330},
+        {"state": "Texas", "employment": 70580, "mean_hourly": 27.09, "mean_annual": 56350},
+        {"state": "Florida", "employment": 46690, "mean_hourly": 25.18, "mean_annual": 52380},
+        {"state": "New York", "employment": 40670, "mean_hourly": 40.17, "mean_annual": 83550},
+        {"state": "Ohio", "employment": 24430, "mean_hourly": 30.94, "mean_annual": 64360}
+      ],
+      "top_states_by_pay": [
+        {"state": "District of Columbia", "mean_hourly": 42.72, "mean_annual": 88860},
+        {"state": "Washington", "mean_hourly": 42.61, "mean_annual": 88620},
+        {"state": "Hawaii", "mean_hourly": 42.44, "mean_annual": 88280},
+        {"state": "Illinois", "mean_hourly": 42.33, "mean_annual": 88040},
+        {"state": "Oregon", "mean_hourly": 41.03, "mean_annual": 85330}
+      ],
+      "top_metros_by_employment": [
+        {"area": "New York-Newark-Jersey City, NY-NJ-PA", "employment": 39310, "mean_hourly": 41.18},
+        {"area": "Houston-The Woodlands-Sugar Land, TX", "employment": 19600, "mean_hourly": 28.33},
+        {"area": "Los Angeles-Long Beach-Anaheim, CA", "employment": 19520, "mean_hourly": 39.95},
+        {"area": "Dallas-Fort Worth-Arlington, TX", "employment": 18730, "mean_hourly": 27.38},
+        {"area": "Chicago-Naperville-Elgin, IL-IN-WI", "employment": 15860, "mean_hourly": 44.02}
+      ],
+      "by_industry": [
+        {"industry": "Building Equipment Contractors", "employment": 522600, "mean_hourly": 32.20},
+        {"industry": "Employment Services", "employment": 24590, "mean_hourly": 27.11},
+        {"industry": "Local Government", "employment": 15280, "mean_hourly": 38.61},
+        {"industry": "Nonresidential Building Construction", "employment": 13140, "mean_hourly": 33.64}
+      ]
+    },
+    "plumbers_pipefitters_steamfitters": {
+      "soc_code": "47-2152",
+      "description": "Assemble, install, alter, and repair pipelines or pipe systems that carry water, steam, air, or other liquids or gases",
+      "national": {
+        "employment": 436160,
+        "mean_hourly_wage": 32.62,
+        "mean_annual_wage": 67840,
+        "percentiles": {
+          "10th": 18.60,
+          "25th": 22.99,
+          "50th_median": 29.59,
+          "75th": 38.56,
+          "90th": 49.59
+        }
+      },
+      "may_2024_national": {
+        "employment": 455940,
+        "mean_hourly_wage": 33.63,
+        "mean_annual_wage": 69940,
+        "median_hourly_wage": 30.27
+      },
+      "top_states_by_employment": [
+        {"state": "California", "employment": 42480, "mean_hourly": 36.20, "mean_annual": 75300},
+        {"state": "Texas", "employment": 41890, "mean_hourly": 27.35, "mean_annual": 56890},
+        {"state": "Florida", "employment": 28750, "mean_hourly": 24.92, "mean_annual": 51830},
+        {"state": "New York", "employment": 24440, "mean_hourly": 40.81, "mean_annual": 84890},
+        {"state": "Illinois", "employment": 16940, "mean_hourly": 42.51, "mean_annual": 88420}
+      ],
+      "top_states_by_pay": [
+        {"state": "New Jersey", "mean_hourly": 46.97, "mean_annual": 97690},
+        {"state": "Massachusetts", "mean_hourly": 42.86, "mean_annual": 89140},
+        {"state": "Illinois", "mean_hourly": 42.51, "mean_annual": 88420},
+        {"state": "Oregon", "mean_hourly": 41.19, "mean_annual": 85680},
+        {"state": "New York", "mean_hourly": 40.81, "mean_annual": 84890}
+      ],
+      "top_metros_by_employment": [
+        {"area": "New York-Newark-Jersey City, NY-NJ-PA", "employment": 23600, "mean_hourly": 45.02},
+        {"area": "Los Angeles-Long Beach-Anaheim, CA", "employment": 13700, "mean_hourly": 35.35},
+        {"area": "Chicago-Naperville-Elgin, IL-IN-WI", "employment": 12540, "mean_hourly": 44.26},
+        {"area": "Boston-Cambridge-Nashua, MA-NH", "employment": 12000, "mean_hourly": 43.55},
+        {"area": "Houston-The Woodlands-Sugar Land, TX", "employment": 11540, "mean_hourly": 28.66}
+      ],
+      "by_industry": [
+        {"industry": "Building Equipment Contractors", "employment": 318630, "mean_hourly": 32.96},
+        {"industry": "Utility System Construction", "employment": 15500, "mean_hourly": 30.45},
+        {"industry": "Local Government", "employment": 9740, "mean_hourly": 31.15},
+        {"industry": "Nonresidential Building Construction", "employment": 9360, "mean_hourly": 34.86}
+      ]
+    },
+    "roofers": {
+      "soc_code": "47-2181",
+      "description": "Cover roofs of structures with shingles, slate, asphalt, aluminum, wood, or related materials",
+      "national": {
+        "employment": 135140,
+        "mean_hourly_wage": 26.85,
+        "mean_annual_wage": 55840,
+        "percentiles": {
+          "10th": 17.42,
+          "25th": 21.23,
+          "50th_median": 24.05,
+          "75th": 29.97,
+          "90th": 38.39
+        }
+      },
+      "may_2024_national": {
+        "employment": 136740,
+        "mean_hourly_wage": 27.45,
+        "mean_annual_wage": 57090,
+        "median_hourly_wage": 24.51
+      },
+      "top_states_by_employment": [
+        {"state": "Florida", "employment": 25190, "mean_hourly": 22.61, "mean_annual": 47030},
+        {"state": "California", "employment": 18920, "mean_hourly": 33.17, "mean_annual": 69000},
+        {"state": "Illinois", "employment": 6240, "mean_hourly": 33.71, "mean_annual": 70110},
+        {"state": "Texas", "employment": 5990, "mean_hourly": 21.39, "mean_annual": 44480},
+        {"state": "Washington", "employment": 5560, "mean_hourly": 32.27, "mean_annual": 67110}
+      ],
+      "top_states_by_pay": [
+        {"state": "Massachusetts", "mean_hourly": 34.80, "mean_annual": 72390},
+        {"state": "Illinois", "mean_hourly": 33.71, "mean_annual": 70110},
+        {"state": "Connecticut", "mean_hourly": 33.26, "mean_annual": 69170},
+        {"state": "California", "mean_hourly": 33.17, "mean_annual": 69000},
+        {"state": "Alaska", "mean_hourly": 32.64, "mean_annual": 67880}
+      ],
+      "top_metros_by_employment": [
+        {"area": "Miami-Fort Lauderdale-West Palm Beach, FL", "employment": 4990, "mean_hourly": 23.45},
+        {"area": "Los Angeles-Long Beach-Anaheim, CA", "employment": 4680, "mean_hourly": 33.29},
+        {"area": "Chicago-Naperville-Elgin, IL-IN-WI", "employment": 4510, "mean_hourly": 35.23},
+        {"area": "New York-Newark-Jersey City, NY-NJ-PA", "employment": 3690, "mean_hourly": 34.18},
+        {"area": "Orlando-Kissimmee-Sanford, FL", "employment": 3590, "mean_hourly": 22.52}
+      ],
+      "by_industry": [
+        {"industry": "Foundation, Structure, and Building Exterior Contractors", "employment": 123840, "mean_hourly": 26.72},
+        {"industry": "Residential Building Construction", "employment": 3400, "mean_hourly": 28.10},
+        {"industry": "Nonresidential Building Construction", "employment": 1910, "mean_hourly": 31.09}
+      ]
+    },
+    "additional_may_2024_construction_trades": {
+      "note": "From May 2024 national summary table (Table 1)",
+      "construction_and_extraction_total": {
+        "employment": 6361720,
+        "mean_hourly_wage": 30.73,
+        "mean_annual_wage": 63920,
+        "median_hourly_wage": 28.06
+      },
+      "first_line_supervisors": {
+        "employment": 806080,
+        "mean_hourly_wage": 40.62,
+        "mean_annual_wage": 84500,
+        "median_hourly_wage": 37.83
+      },
+      "brickmasons_blockmasons_stonemasons": {
+        "employment": 62260,
+        "mean_hourly_wage": 30.89,
+        "mean_annual_wage": 64240,
+        "median_hourly_wage": 28.93
+      },
+      "carpet_floor_tile_installers": {
+        "employment": 82710,
+        "mean_hourly_wage": 27.80,
+        "mean_annual_wage": 57830,
+        "median_hourly_wage": 25.00
+      },
+      "cement_masons_concrete_finishers": {
+        "employment": 206680,
+        "mean_hourly_wage": 28.55,
+        "mean_annual_wage": 59380,
+        "median_hourly_wage": 26.30
+      },
+      "construction_laborers": {
+        "employment": 1057660,
+        "mean_hourly_wage": 24.64,
+        "mean_annual_wage": 51260,
+        "median_hourly_wage": 22.47
+      },
+      "construction_equipment_operators": {
+        "employment": 518000,
+        "mean_hourly_wage": 31.10,
+        "mean_annual_wage": 64680,
+        "median_hourly_wage": 28.04
+      },
+      "drywall_ceiling_tile_installers_tapers": {
+        "employment": 95400,
+        "mean_hourly_wage": 30.68,
+        "mean_annual_wage": 63800,
+        "median_hourly_wage": 28.27
+      },
+      "glaziers": {
+        "employment": 57000,
+        "mean_hourly_wage": 28.97,
+        "mean_annual_wage": 60260,
+        "median_hourly_wage": 26.65
+      },
+      "insulation_workers": {
+        "employment": 64250,
+        "mean_hourly_wage": 27.63,
+        "mean_annual_wage": 57470,
+        "median_hourly_wage": 24.39
+      },
+      "painters_construction_maintenance": {
+        "employment": 224180,
+        "mean_hourly_wage": 25.82,
+        "mean_annual_wage": 53710,
+        "median_hourly_wage": 23.40
+      },
+      "pipelayers": {
+        "employment": 33580,
+        "mean_hourly_wage": 26.09,
+        "mean_annual_wage": 54270,
+        "median_hourly_wage": 23.42
+      },
+      "plasterers_stucco_masons": {
+        "employment": 20880,
+        "mean_hourly_wage": 29.33,
+        "mean_annual_wage": 61000,
+        "median_hourly_wage": 26.93
+      },
+      "sheet_metal_workers": {
+        "employment": 117470,
+        "mean_hourly_wage": 31.78,
+        "mean_annual_wage": 66110,
+        "median_hourly_wage": 29.26
+      },
+      "structural_iron_steel_workers": {
+        "employment": 64720,
+        "mean_hourly_wage": 33.30,
+        "mean_annual_wage": 69270,
+        "median_hourly_wage": 30.14
+      },
+      "solar_photovoltaic_installers": {
+        "employment": 28280,
+        "mean_hourly_wage": 27.59,
+        "mean_annual_wage": 57380,
+        "median_hourly_wage": 24.93
+      },
+      "construction_inspectors": {
+        "employment": 137210,
+        "mean_hourly_wage": 36.75,
+        "mean_annual_wage": 76430,
+        "median_hourly_wage": 34.67
+      },
+      "elevator_escalator_installers": {
+        "employment": 23340,
+        "mean_hourly_wage": 50.42,
+        "mean_annual_wage": 104860,
+        "median_hourly_wage": 51.24
+      },
+      "fence_erectors": {
+        "employment": 22640,
+        "mean_hourly_wage": 24.31,
+        "mean_annual_wage": 50550,
+        "median_hourly_wage": 22.57
+      },
+      "hvac_mechanics_installers": {
+        "employment": 396870,
+        "mean_hourly_wage": 30.14,
+        "mean_annual_wage": 62690,
+        "median_hourly_wage": 28.75
+      }
+    }
+  },
+  "source_urls": [
+    "https://www.bls.gov/oes/2023/may/oes472031.htm",
+    "https://www.bls.gov/oes/2023/may/oes472111.htm",
+    "https://www.bls.gov/oes/2023/may/oes472152.htm",
+    "https://www.bls.gov/oes/2023/may/oes472181.htm",
+    "https://www.bls.gov/news.release/ocwage.t01.htm"
+  ]
+}

@@ -1,0 +1,20 @@
+Paint / Texture, Ceilings Unit | Material | Labor | Equip. Total Specification
+Trowel
+Install SF. 59 1.17 1.76 | Includes labor and material to apply
+Minimum Charge Job 220 220 hand troweled texture.
+Paint Ceiling, 1 Coat
+Paint SF 24 34 .58 | Includes labor and material to paint
+Minimum Charge Job 220 220 | ceiling, one coat flat latex.
+Paint Ceiling, 2 Coats
+Paint SF. .20 55 .75 | Includes labor and material to paint
+Minimum Charge Job 220 220 | two coats flat latex paint.
+Paint Ceiling, 3 Coats
+Paint SF 30 65 .95 | Includes labor and material to paint
+Minimum Charge Job 220 220 | ceiling, three coats flat latex.
+Clean and Seal
+Paint SF. 30 93 1.23 | Includes labor and material for light
+Minimum Charge Job 220 220 | cleaning, sealing and paint 3 coats of
+flat latex paint.
+ee
+237
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

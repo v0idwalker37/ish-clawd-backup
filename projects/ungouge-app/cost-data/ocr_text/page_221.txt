@@ -1,0 +1,60 @@
+e.@
+Finish Carpentry
+Shelving Unit | Material | Labor | Equip. Total Specification
+24”
+Demolish LF. 1.29 1.29 | Cost includes material and labor to
+Install LF 7.30 6.30 13.60 | install 1” thick custom shelving board.
+Demolish and Install LF. 7.30 7.59 14.89
+Reinstall LF. 5.06 5.06
+Clean LE .07 1.01 1.08
+Paint LE. 3.69 93 4.62
+Minimum Charge Job 269 269
+Particle Board
+Demolish LF. 1.18 1.18 | Cost includes material and labor to
+Install LF 1.95 2.83 4,78 | install 3/4” thick particle shelving
+Demolish and Install LE 1.95 401 5.96] board 18" wide.
+Reinstall LF. 2.26 2.26
+Clean LF. 04 67 71
+Paint SF 23 1,03 1.26
+Minimum Charge Job 269 269
+Demolish LF. 1.18 1.18 | Cost includes material and labor to
+Install LE 1.12 8.25 9.37 | install 3/4" thick plywood shelving
+Demolish and Install LF 1.12 9.43 10.55 | board.
+Reinstall LF. 6.62 6.62
+Clean LE. 04 .67 7|
+Paint Sif .23 1.03 1.26
+Minimum Charge Job 269 269
+Hardwood {oak}
+Demolish LF 1.18 1.18] Includes material and labor to install
+Install LF 9.70 3.71 13.41] oak shelving, 1” x 12”, incl. cleats and
+Demolish and Install LF. 9.70 4.89 14.59 bracing.
+Reinstall LF. 2.97 2.97
+Clean LF. 04 67 71
+Paint SF .23 1.03 1.26
+Minimum Charge Job 269 269
+Custom Bookcase
+Demolish LF. 15 15 Includes material and labor to install
+Demolish and ee i rH 3 eS custom modular bookcase unit with
+ee Oe ee cs clear pine faced frames, shelves 12”
+Reinstall LE. 43.01 43.01 O.C,, 7" high, 8” deep.
+Clean LA 1.31 14.45 15.76
+Paint LF 3.70 34 37.70
+Minimum Charge Job 269 269
+Glass
+Demolish LF. 1.18 1.18 | Includes material and labor to install
+Install LR 61 3.71 64.71 | glass shelving, 1” x 12", incl. cleats
+Demolish and Install LF. 61 4.89 65.89 | and bracing.
+Reinstall LE 2.97 2.97
+Clean LF. 06 62 68
+Minimum Charge Job 261 261
+Closet Shelving Unit | Material | Labor | Equip. | Total Specification
+Closet Shelf and Rod
+Demolish LF. 1.18 1.18 | Cost includes material and labor to
+Demolish ond le te 4 a a install 1” thick custom shelving board
+sill 7 : . ‘2 | 18" wide and 1” diameter clothes pole
+Reinstall LE 7.17 7.17 with brackets 3’ O.C.
+Clean LF. .03 51 54
+Paint LF. A2 1.10 1.52
+Minimum Charge Job 269 269
+207
+For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.

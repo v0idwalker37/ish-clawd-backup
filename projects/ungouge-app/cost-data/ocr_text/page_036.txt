@@ -1,0 +1,58 @@
+e
+Foundation
+Piles Unit | Material | Labor | Equip. Total Specification
+10” Concrete Filled
+Demolish LF. 9.55 2.33 11.88 | Includes material, labor and
+Install V.LE. 63.50 8.55 6.10 78.15.) equipment to install concrete filled
+Demolish and Install V.LE. 63,50 18.10 8.43 90.03} steel pipe pil
+pipe pile.
+Paint LE 29 2.52 2.81
+Minimum Charge Job 3850 2750 6600
+10” Unfilled
+Demolish LE. 9.55 2.33 11.88 | Includes material, labor and
+Install V.LF. 51.50 7.70 5.50 64.70 | equipment to install unfilled steel pipe
+Demolish and Install V.LF. 51.50 17.25 7.83 76.58 pile.
+Paint LF. 29 2.52 2.81
+Minimum Charge Job 3850 2750 6600
+12” Concrete Filled
+Demolish LE. 9.55 2.33 11.88 | Includes material, labor and
+. Install V.LF. 43 9.30 6.60 58.90} equipment to install concrete filled
+Demolish and Install V.LF. 43 18.85 8.93 70.78 | ste0| pipe pile.
+Paint LE 29 2.52 2.81
+Minimum Charge Job 3850 2750 6600
+12” Unfilled
+Demolish LF. 9.55 2.33 11.88 | Includes material, labor and
+Install VLE. 43 8.10 5.80} 56.90 equipment to install unfilled steel pipe
+Demolish and Install V.LF. 43 17.65 8.13 68.78 pile.
+Paint LE 29 2.52 2.81
+Minimum Charge Job 3850 2750 6600
+Steel H Section
+H Section 8 x 8 x 36#
+Demolish LF. 6.50 1.58 8.08 | Includes material, labor and
+Install VLE. 21 6 4.29 31.29] equipment to install steel H section
+pile.
+Demolish and Install VLE. 21 12.50 5.87 39.37
+Paint SF 33 36 69
+Minimum Charge Job 3850 2750 6600
+H Section 10 x 10 x 57#
+Demolish LE 7.10 1.73 8.83 | Includes material, labor and
+Install V.LF. 32 6.30 4.50 42.80) equipment to install steel H section
+pile.
+Demolish and Install V.LF 32 13.40 6.23 51.63
+Paint SF 33 36 69
+Minimum Charge Job 3850 2750 6600
+H Section 12 x 12 x 74#
+Demolish LF. 7.35 1.78 9.13 | Includes material, labor and
+Install V.LF. 40.50 6.55 6.65 53.70 equipment to install steel H section
+pile.
+Demolish and Install V.LF. 40.50 13.90 8.43 62.83
+Paint SF. 33 36 69
+Minimum Charge Job 3850 2750 6600
+H Section 14 x 14 x 894
+Demolish LF 7.70 1.88 9.58 | Includes material, labor and
+Install V.LF. 55 7.15 7.30 69.45 | equipment to install steel H section
+pile.
+Demolish and Install VLE. 55 14.85 9.18 79.03
+Paint SF 33 36 69
+Minimum Charge Job 3850 2750 6600
+22 For customer support on your Contractor's Pricing Guide: Residential Repair & Remodeling, call 800.874.2291.
