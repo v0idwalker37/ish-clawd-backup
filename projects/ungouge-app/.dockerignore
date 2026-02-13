@@ -1,0 +1,43 @@
+# Frontend (not needed in backend image)
+frontend/
+frontend/node_modules/
+frontend/.next/
+
+# Version control
+.git
+.gitignore
+
+# Environment files (secrets — never bake into image)
+.env
+.env.*
+!.env.production.example
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.mypy_cache
+*.egg-info
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs (not needed at runtime)
+*.md
+LICENSE
+
+# SQLite dev database
+*.db
+*.sqlite3
+
+# Docker
+Dockerfile
+docker-compose*.yml
