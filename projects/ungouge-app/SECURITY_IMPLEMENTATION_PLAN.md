@@ -41,19 +41,19 @@
 11. ✅ **Rate limiting** - Already implemented (slowapi)
 12. ✅ **HSTS header** - Already implemented
 13. ✅ **Error sanitization** - Already implemented
-14. ⏳ **BOLA audit** - Verify ownership checks on all endpoints
+14. ✅ **BOLA audit** - VERIFIED SAFE (all endpoints check ownership)
 15. ⏳ **API key hashing** - Hash keys before storage (bcrypt)
 
 ### Documentation & Legal
-16. ⏳ **Privacy policy** - GDPR/CCPA compliant
-17. ⏳ **Terms of service**
-18. ⏳ **Data retention policy** - Auto-delete quotes after 90 days
-19. ⏳ **User data export** - JSON download feature
+16. ✅ **Privacy policy** - GDPR/CCPA compliant (319 lines, legal/PRIVACY_POLICY.md)
+17. ✅ **Terms of service** - Full ToS (328 lines, legal/TERMS_OF_SERVICE.md)
+18. ✅ **Data retention policy** - Auto-delete (30d anon, 90d auth) in data_retention.py
+19. ✅ **User data export** - GET /auth/my-data + DELETE /auth/my-data
 
 ### DevOps
-20. ⏳ **Dependabot enable** - GitHub automated scanning
-21. ⏳ **Logging implementation** - Structured JSON logs
-22. ⏳ **Security testing** - OWASP ZAP scan
+20. ⏳ **Dependabot enable** - Blocked (no GitHub auth)
+21. ✅ **Logging implementation** - Structured JSON security logging
+22. ⏳ **Security testing** - OWASP ZAP scan (post-deploy)
 
 ---
 
