@@ -241,6 +241,29 @@ async def _handle_successful_payment(
         extra={"quote_id": quote_id, "payment_id": payment.id},
     )
 
+    # Send receipt email (non-blocking)
+    import asyncio as _asyncio
+    from services.email_service import send_receipt_email
+
+    # Resolve user email from the quote
+    _quote_result = await db.execute(select(Quote).where(Quote.id == quote_id))
+    _quote_obj = _quote_result.scalar_one_or_none()
+    if _quote_obj and _quote_obj.user_id:
+        _user_result = await db.execute(select(User).where(User.id == _quote_obj.user_id))
+        _user_obj = _user_result.scalar_one_or_none()
+        if _user_obj:
+            _amount_str = f"${(payment.amount or 1999) / 100:.2f}"
+            _date_str = datetime.utcnow().strftime("%B %d, %Y")
+            _asyncio.create_task(
+                send_receipt_email(
+                    user_email=_user_obj.email,
+                    user_name=_user_obj.name or "there",
+                    amount=_amount_str,
+                    quote_id=quote_id,
+                    date=_date_str,
+                )
+            )
+
     # Check if report already exists (e.g., from a retry)
     existing_report = await db.execute(
         select(AnalysisReport).where(AnalysisReport.quote_id == quote_id)
@@ -319,6 +342,30 @@ async def _generate_report_for_quote(db: AsyncSession, quote_id: str):
             "report_generated_after_payment",
             extra={"quote_id": quote_id, "report_id": analysis_report.id},
         )
+
+        # Send report-ready email (non-blocking)
+        import asyncio as _asyncio
+        from services.email_service import send_report_ready_email
+
+        if quote and quote.user_id:
+            _user_result = await db.execute(select(User).where(User.id == quote.user_id))
+            _user_obj = _user_result.scalar_one_or_none()
+            if _user_obj:
+                _asyncio.create_task(
+                    send_report_ready_email(
+                        user_email=_user_obj.email,
+                        user_name=_user_obj.name or "there",
+                        quote_id=quote_id,
+                        total_quoted=f"${report.total_quoted:,.2f}" if report.total_quoted else None,
+                        fair_range_low=f"${report.total_fair_low:,.2f}" if report.total_fair_low else None,
+                        fair_range_high=f"${report.total_fair_high:,.2f}" if report.total_fair_high else None,
+                        potential_savings=(
+                            f"${report.total_quoted - report.total_fair_high:,.2f}"
+                            if report.total_quoted and report.total_fair_high and report.total_quoted > report.total_fair_high
+                            else None
+                        ),
+                    )
+                )
 
     except Exception as e:
         log_error(

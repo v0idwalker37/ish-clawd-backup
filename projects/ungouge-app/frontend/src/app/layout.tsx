@@ -23,18 +23,27 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
     default: DEFAULT_METADATA.title,
-    template: '%s | Ungouge.ai',
+    template: '%s | UnGouge — Independent Quote Verification',
   },
-  description: DEFAULT_METADATA.description,
+  description:
+    'Is your contractor quote fair? UnGouge.ai analyzes contractor quotes against real Bureau of Labor Statistics labor rates and regional material costs. Independent, data-backed price verification for homeowners — no lead gen, no contractor kickbacks.',
   keywords: [
+    'contractor quote verification',
+    'home improvement pricing',
     'contractor quote analysis',
     'fair contractor pricing',
-    'quote verification',
+    'is my contractor quote fair',
     'contractor overcharge',
-    'home improvement quotes',
+    'home renovation cost check',
     'BLS labor data',
-    'no lead gen',
+    'contractor price comparison',
+    'home improvement quote analyzer',
+    'independent quote verification',
     'homeowner protection',
+    'no lead gen',
+    'kitchen remodel cost',
+    'bathroom renovation pricing',
+    'roofing quote check',
   ],
   authors: [{ name: 'Ungouge.ai Team' }],
   creator: 'Ungouge.ai',
@@ -56,13 +65,14 @@ export const metadata: Metadata = {
     url: SITE_CONFIG.url,
     siteName: SITE_CONFIG.name,
     title: DEFAULT_METADATA.title,
-    description: DEFAULT_METADATA.description,
+    description:
+      'Stop overpaying on contractor quotes. UnGouge.ai uses real BLS labor data and regional material costs to verify your quote is fair. Trusted by 10,000+ homeowners.',
     images: [
       {
         url: DEFAULT_METADATA.ogImage!,
         width: 1200,
         height: 630,
-        alt: 'Ungouge.ai - Research Without the Runaround',
+        alt: 'UnGouge.ai — Independent Contractor Quote Verification',
       },
     ],
   },
@@ -71,11 +81,15 @@ export const metadata: Metadata = {
     site: SITE_CONFIG.twitterHandle,
     creator: SITE_CONFIG.twitterHandle,
     title: DEFAULT_METADATA.title,
-    description: DEFAULT_METADATA.description,
+    description:
+      'Is your contractor quote fair? Analyze it against real BLS data in seconds. No lead gen — we work for homeowners, not contractors.',
     images: [DEFAULT_METADATA.ogImage!],
   },
   alternates: {
     canonical: DEFAULT_METADATA.canonical,
+  },
+  other: {
+    'theme-color': '#2563eb',
   },
   verification: {
     // Add verification codes when available

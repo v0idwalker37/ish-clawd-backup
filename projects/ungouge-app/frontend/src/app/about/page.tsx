@@ -1,4 +1,20 @@
+import type { Metadata } from 'next';
 import { Shield, Target, Heart } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'About Us — Our Mission to End Contractor Overcharging',
+  description:
+    'UnGouge.ai was built to protect homeowners from contractor overcharges. Learn about our mission, our data-driven approach using BLS labor rates, and our zero lead-gen promise.',
+  alternates: {
+    canonical: 'https://ungouge.ai/about',
+  },
+  openGraph: {
+    title: 'About UnGouge.ai — Protecting Homeowners from Overcharges',
+    description:
+      'We bring transparency to home renovation pricing. No lead gen, no contractor kickbacks — just honest, BLS-backed quote analysis.',
+    url: 'https://ungouge.ai/about',
+  },
+};
 
 export default function AboutPage() {
   return (

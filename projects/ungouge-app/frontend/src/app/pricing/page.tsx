@@ -1,5 +1,21 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Check, X } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Pricing — $19.99 Per Quote Analysis',
+  description:
+    '$19.99 per contractor quote analysis. No subscriptions, no hidden fees, no lead generation. Get a full BLS-backed pricing report with 100% money-back guarantee.',
+  alternates: {
+    canonical: 'https://ungouge.ai/pricing',
+  },
+  openGraph: {
+    title: 'Simple, Honest Pricing — UnGouge.ai',
+    description:
+      '$19.99 per quote. Full line-item analysis against BLS data. No subscriptions. 100% money-back guarantee.',
+    url: 'https://ungouge.ai/pricing',
+  },
+};
 
 export default function PricingPage() {
   return (

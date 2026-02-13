@@ -185,6 +185,11 @@ async def register(
     # Log successful registration
     log_auth_success(user_id, "register", request.client.host if request.client else None)
     
+    # Send welcome email (non-blocking — fire and forget)
+    import asyncio
+    from services.email_service import send_welcome_email
+    asyncio.create_task(send_welcome_email(normalized_email, sanitized_name))
+    
     # Create response with cookies
     from fastapi.responses import JSONResponse
     is_production = os.getenv("ENVIRONMENT") == "production"

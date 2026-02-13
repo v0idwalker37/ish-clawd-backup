@@ -1,4 +1,14 @@
+import type { Metadata } from 'next';
 import { Scale, FileText, Shield, AlertTriangle, CheckCircle } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
+  description:
+    'UnGouge.ai terms of service. Read our terms for using our contractor quote analysis service, explained in plain English.',
+  alternates: {
+    canonical: 'https://ungouge.ai/terms',
+  },
+};
 
 export default function TermsPage() {
   return (

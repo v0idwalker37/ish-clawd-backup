@@ -1,4 +1,14 @@
+import type { Metadata } from 'next';
 import { Shield, Lock, Eye, Database, UserX, FileText } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description:
+    'UnGouge.ai privacy policy. We never sell your data to contractors or lead generation companies. Your quotes and contact details stay completely private.',
+  alternates: {
+    canonical: 'https://ungouge.ai/privacy',
+  },
+};
 
 export default function PrivacyPage() {
   return (

@@ -1,364 +1,397 @@
 """
-Email notification service for Ungouge.ai
-Sends professional, anti-lead-gen HTML emails with dev mode logging
+Async email notification service for UnGouge.ai
+
+Design choice: aiosmtplib + email.mime
+  - aiosmtplib is the async counterpart to smtplib — battle-tested, zero vendor lock-in
+  - Works with any SMTP provider (Gmail, SES, Postmark, self-hosted)
+  - No paid SDK dependency (resend is nice but ties you to one vendor)
+
+Features:
+  - Non-blocking: callers use asyncio.create_task() so API responses aren't delayed
+  - Rate limiting: max 3 emails per user per hour (in-memory counter)
+  - Graceful failure: email errors are logged, never crash the request
+  - Dev mode: logs email to console instead of sending via SMTP
+  - Template rendering: loads HTML files from email-templates/ and replaces {{variables}}
 """
 
+import asyncio
+import logging
 import os
-import smtplib
-from email.mime.text import MIMEText
+import time
+from collections import defaultdict
+from datetime import datetime
 from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from pathlib import Path
 from typing import Optional
-import logging
 
-logger = logging.getLogger(__name__)
+import aiosmtplib
 
-# Dev mode toggle - set to False to enable real SMTP
+logger = logging.getLogger("ungouge.email")
+
+# ── Configuration ────────────────────────────────────────────────────────
+
 DEV_MODE = os.getenv("EMAIL_DEV_MODE", "true").lower() == "true"
 
-# HIGH-05: Warn loudly at startup when emails are not being sent
+SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+SMTP_USER = os.getenv("SMTP_USER", "")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
+FROM_EMAIL = os.getenv("FROM_EMAIL", "noreply@ungouge.ai")
+FROM_NAME = os.getenv("FROM_NAME", "UnGouge.ai")
+
+# Template directory: <project>/email-templates/
+TEMPLATE_DIR = Path(__file__).parent.parent.parent / "email-templates"
+
 if DEV_MODE:
     logger.warning(
         "⚠️  EMAIL_DEV_MODE is ON — emails will be logged to console, NOT sent via SMTP. "
         "Set EMAIL_DEV_MODE=false and configure SMTP_* env vars for production."
     )
 
-# SMTP Configuration (for production)
-SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
-SMTP_USER = os.getenv("SMTP_USER", "")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
-FROM_EMAIL = os.getenv("FROM_EMAIL", "noreply@ungouge.ai")
-FROM_NAME = os.getenv("FROM_NAME", "Ungouge.ai")
+# ── Rate Limiting (in-memory, per-process) ───────────────────────────────
+# Tracks: { user_email: [timestamp, timestamp, ...] }
+# Max 3 emails per user per rolling hour window.
 
-# Template directory
-TEMPLATE_DIR = Path(__file__).parent.parent / "templates"
+_rate_limit_store: dict[str, list[float]] = defaultdict(list)
+_RATE_LIMIT_MAX = 3
+_RATE_LIMIT_WINDOW = 3600  # 1 hour in seconds
 
 
-def _load_template(template_name: str, **kwargs) -> str:
-    """Load and render HTML email template"""
-    template_path = TEMPLATE_DIR / template_name
-    
-    if not template_path.exists():
-        logger.error(f"Template not found: {template_path}")
-        return f"<html><body><p>Template {template_name} not found</p></body></html>"
-    
-    with open(template_path, 'r', encoding='utf-8') as f:
-        template = f.read()
-    
-    # Simple template variable replacement
-    for key, value in kwargs.items():
-        template = template.replace(f"{{{{{key}}}}}", str(value))
-    
-    return template
-
-
-def _send_email(to_email: str, subject: str, html_body: str) -> bool:
+def _check_rate_limit(user_email: str) -> bool:
     """
-    Send email via SMTP or log to console in dev mode
-    
-    Args:
-        to_email: Recipient email address
-        subject: Email subject line
-        html_body: HTML email body
-        
-    Returns:
-        bool: True if sent successfully (or logged in dev mode)
+    Returns True if the email can be sent (under limit).
+    Returns False if rate-limited.
+    """
+    now = time.time()
+    window_start = now - _RATE_LIMIT_WINDOW
+
+    # Prune old entries
+    _rate_limit_store[user_email] = [
+        ts for ts in _rate_limit_store[user_email] if ts > window_start
+    ]
+
+    if len(_rate_limit_store[user_email]) >= _RATE_LIMIT_MAX:
+        return False
+
+    _rate_limit_store[user_email].append(now)
+    return True
+
+
+# ── Template Loading ─────────────────────────────────────────────────────
+
+def _load_template(filename: str, **variables) -> str:
+    """
+    Load an HTML template from email-templates/ and replace {{variables}}.
+
+    Handles simple mustache-style conditionals:
+      {{#name}} ... {{/name}}  → included if 'name' is truthy, stripped otherwise
+    """
+    template_path = TEMPLATE_DIR / filename
+
+    if not template_path.exists():
+        logger.error(f"Email template not found: {template_path}")
+        return f"<html><body><p>Email template '{filename}' not found.</p></body></html>"
+
+    html = template_path.read_text(encoding="utf-8")
+
+    # Handle {{#var}}...{{/var}} conditional blocks
+    import re
+    for key, value in variables.items():
+        pattern = re.compile(r"\{\{#" + re.escape(key) + r"\}\}(.*?)\{\{/" + re.escape(key) + r"\}\}", re.DOTALL)
+        if value:
+            # Keep the inner content, replace {{key}} inside it too
+            html = pattern.sub(r"\1", html)
+        else:
+            # Remove the entire block
+            html = pattern.sub("", html)
+
+    # Replace {{variable}} placeholders
+    for key, value in variables.items():
+        html = html.replace(f"{{{{{key}}}}}", str(value))
+
+    return html
+
+
+# ── Core Sender ──────────────────────────────────────────────────────────
+
+async def _send_email(to_email: str, subject: str, html_body: str) -> bool:
+    """
+    Send an email via async SMTP or log to console in dev mode.
+
+    Returns True on success, False on failure. Never raises.
     """
     if DEV_MODE:
-        logger.info("=" * 80)
-        logger.info(f"[DEV MODE] Email would be sent:")
-        logger.info(f"To: {to_email}")
-        logger.info(f"From: {FROM_NAME} <{FROM_EMAIL}>")
-        logger.info(f"Subject: {subject}")
-        logger.info("-" * 80)
-        logger.info("HTML Body Preview:")
-        logger.info(html_body[:500] + "..." if len(html_body) > 500 else html_body)
-        logger.info("=" * 80)
+        logger.info(
+            f"[DEV MODE] Email → {to_email}\n"
+            f"  From: {FROM_NAME} <{FROM_EMAIL}>\n"
+            f"  Subject: {subject}\n"
+            f"  Body: {html_body[:300]}..."
+        )
         return True
-    
+
     try:
-        # Create message
-        msg = MIMEMultipart('alternative')
-        msg['Subject'] = subject
-        msg['From'] = f"{FROM_NAME} <{FROM_EMAIL}>"
-        msg['To'] = to_email
-        
-        # Attach HTML body
-        html_part = MIMEText(html_body, 'html', 'utf-8')
-        msg.attach(html_part)
-        
-        # Send via SMTP
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = subject
+        msg["From"] = f"{FROM_NAME} <{FROM_EMAIL}>"
+        msg["To"] = to_email
+        msg["Reply-To"] = FROM_EMAIL
+        msg.attach(MIMEText(html_body, "html", "utf-8"))
+
+        await aiosmtplib.send(
+            msg,
+            hostname=SMTP_HOST,
+            port=SMTP_PORT,
+            username=SMTP_USER,
+            password=SMTP_PASSWORD,
+            start_tls=True,
+        )
+
+        logger.info(f"Email sent to {to_email}: {subject}")
+        return True
+
+    except Exception as e:
+        logger.error(f"Failed to send email to {to_email}: {e}", exc_info=True)
+        return False
+
+
+# ── Public API ───────────────────────────────────────────────────────────
+
+async def send_welcome_email(user_email: str, user_name: str) -> bool:
+    """
+    Send welcome email after registration.
+    Uses email-templates/welcome.html.
+    """
+    if not _check_rate_limit(user_email):
+        logger.warning(f"Rate limited: welcome email to {user_email}")
+        return False
+
+    html = _load_template(
+        "welcome.html",
+        name=user_name,
+        current_year=datetime.utcnow().year,
+    )
+
+    return await _send_email(
+        to_email=user_email,
+        subject="Welcome to UnGouge.ai — Know Before You Pay",
+        html_body=html,
+    )
+
+
+async def send_receipt_email(
+    user_email: str,
+    user_name: str,
+    amount: str,
+    quote_id: str,
+    date: str,
+    payment_method: str = "Credit Card",
+    report_url: Optional[str] = None,
+) -> bool:
+    """
+    Send payment receipt after successful checkout.
+    Uses email-templates/receipt.html.
+
+    Args:
+        amount: Formatted string like "$19.99"
+        quote_id: The quote/report ID
+        date: Human-readable date string
+        payment_method: e.g. "Visa ending in 4242"
+        report_url: Link to view the report
+    """
+    if not _check_rate_limit(user_email):
+        logger.warning(f"Rate limited: receipt email to {user_email}")
+        return False
+
+    frontend_url = os.getenv("FRONTEND_URL", "https://ungouge.ai")
+    if report_url is None:
+        report_url = f"{frontend_url}/report/{quote_id}"
+
+    html = _load_template(
+        "receipt.html",
+        report_id=quote_id,
+        payment_date=date,
+        payment_method=payment_method,
+        report_url=report_url,
+        current_year=datetime.utcnow().year,
+    )
+
+    return await _send_email(
+        to_email=user_email,
+        subject=f"Your UnGouge.ai Receipt — {amount}",
+        html_body=html,
+    )
+
+
+async def send_report_ready_email(
+    user_email: str,
+    user_name: str,
+    quote_id: str,
+    report_url: Optional[str] = None,
+    total_quoted: Optional[str] = None,
+    fair_range_low: Optional[str] = None,
+    fair_range_high: Optional[str] = None,
+    potential_savings: Optional[str] = None,
+) -> bool:
+    """
+    Notify user that their quote analysis report is ready.
+    Uses email-templates/report-ready.html.
+    """
+    if not _check_rate_limit(user_email):
+        logger.warning(f"Rate limited: report-ready email to {user_email}")
+        return False
+
+    frontend_url = os.getenv("FRONTEND_URL", "https://ungouge.ai")
+    if report_url is None:
+        report_url = f"{frontend_url}/report/{quote_id}"
+
+    html = _load_template(
+        "report-ready.html",
+        report_url=report_url,
+        total_quoted=total_quoted or "See report",
+        fair_range_low=fair_range_low or "—",
+        fair_range_high=fair_range_high or "—",
+        potential_savings=potential_savings or "—",
+        current_year=datetime.utcnow().year,
+    )
+
+    return await _send_email(
+        to_email=user_email,
+        subject="Your Quote Analysis is Ready — UnGouge.ai",
+        html_body=html,
+    )
+
+
+# ── Legacy-compatible wrappers ───────────────────────────────────────────
+# These maintain backward compatibility with the old synchronous API
+# used by mfa_service.py and other existing callers.
+
+def send_mfa_code(
+    to_email: str,
+    user_name: str,
+    code: str,
+    expiry_minutes: int = 10,
+) -> bool:
+    """
+    Send MFA verification code (synchronous wrapper for existing callers).
+    Uses inline HTML template — no external file needed.
+    """
+    subject = f"Your UnGouge.ai verification code: {code}"
+
+    html_body = f'''<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px;">
+  <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h1 style="color: #2563eb; font-size: 24px; margin: 0;">UnGouge.ai</h1>
+    </div>
+    <p style="color: #374151; font-size: 16px; line-height: 1.6;">Hi {user_name},</p>
+    <p style="color: #374151; font-size: 16px; line-height: 1.6;">Your verification code is:</p>
+    <div style="background: #f0f9ff; border: 2px solid #2563eb; border-radius: 8px; padding: 20px; text-align: center; margin: 24px 0;">
+      <span style="font-size: 36px; font-weight: bold; letter-spacing: 8px; color: #1e40af;">{code}</span>
+    </div>
+    <p style="color: #6b7280; font-size: 14px; line-height: 1.6;">
+      This code expires in {expiry_minutes} minutes. If you didn't request this code, you can safely ignore this email.
+    </p>
+    <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+    <p style="color: #9ca3af; font-size: 12px; text-align: center; margin: 0;">
+      This is an automated security email from UnGouge.ai<br>We never sell your data. Ever.
+    </p>
+  </div>
+</body></html>'''
+
+    if DEV_MODE:
+        logger.info(
+            f"[DEV MODE] MFA Email → {to_email}\n"
+            f"  Subject: {subject}\n"
+            f"  Code: {code}"
+        )
+        return True
+
+    try:
+        import smtplib
+
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = subject
+        msg["From"] = f"{FROM_NAME} <{FROM_EMAIL}>"
+        msg["To"] = to_email
+        msg.attach(MIMEText(html_body, "html", "utf-8"))
+
         with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
             server.starttls()
             server.login(SMTP_USER, SMTP_PASSWORD)
             server.send_message(msg)
-        
-        logger.info(f"Email sent successfully to {to_email}")
+
+        logger.info(f"MFA code sent to {to_email}")
         return True
-        
+
     except Exception as e:
-        logger.error(f"Failed to send email to {to_email}: {str(e)}")
+        logger.error(f"Failed to send MFA code to {to_email}: {e}", exc_info=True)
         return False
-
-
-def send_welcome_email(to_email: str, user_name: str) -> bool:
-    """
-    Send welcome email to new user
-    
-    Anti-lead-gen messaging: No upsells, no marketing pressure.
-    Just a genuine welcome to a service that respects your time.
-    
-    Args:
-        to_email: User's email address
-        user_name: User's display name
-        
-    Returns:
-        bool: True if sent successfully
-    """
-    subject = "Welcome to Ungouge.ai – Research Without the Runaround"
-    
-    html_body = _load_template(
-        "welcome.html",
-        user_name=user_name,
-        current_year=2024
-    )
-    
-    return _send_email(to_email, subject, html_body)
-
-
-def send_report_ready(
-    to_email: str,
-    user_name: str,
-    report_title: str,
-    report_url: str,
-    preview_text: Optional[str] = None
-) -> bool:
-    """
-    Notify user that their research report is ready
-    
-    Anti-lead-gen: Just the facts. Your report is done. Here's the link.
-    No "upgrade now" nonsense.
-    
-    Args:
-        to_email: User's email address
-        user_name: User's display name
-        report_title: Title of the completed report
-        report_url: Direct link to view the report
-        preview_text: Optional preview snippet
-        
-    Returns:
-        bool: True if sent successfully
-    """
-    subject = f"Your research report is ready: {report_title}"
-    
-    html_body = _load_template(
-        "report_ready.html",
-        user_name=user_name,
-        report_title=report_title,
-        report_url=report_url,
-        preview_text=preview_text or "Your comprehensive research analysis is complete.",
-        current_year=2024
-    )
-    
-    return _send_email(to_email, subject, html_body)
 
 
 def send_password_reset(
     to_email: str,
     user_name: str,
     reset_url: str,
-    expiry_hours: int = 24
+    expiry_hours: int = 24,
 ) -> bool:
     """
-    Send password reset link
-    
-    Anti-lead-gen: Security-focused, no marketing junk mixed into
-    a sensitive security email.
-    
-    Args:
-        to_email: User's email address
-        user_name: User's display name
-        reset_url: Password reset link with token
-        expiry_hours: How many hours until link expires
-        
-    Returns:
-        bool: True if sent successfully
+    Send password reset email (synchronous wrapper — kept for existing callers).
     """
-    subject = "Reset your Ungouge.ai password"
-    
-    html_body = _load_template(
-        "password_reset.html",
-        user_name=user_name,
-        reset_url=reset_url,
-        expiry_hours=expiry_hours,
-        current_year=2024
-    )
-    
-    return _send_email(to_email, subject, html_body)
+    subject = "Reset your UnGouge.ai password"
 
+    html_body = f'''<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px;">
+  <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h1 style="color: #2563eb; font-size: 24px; margin: 0;">UnGouge.ai</h1>
+    </div>
+    <p style="color: #374151; font-size: 16px; line-height: 1.6;">Hi {user_name},</p>
+    <p style="color: #374151; font-size: 16px; line-height: 1.6;">
+      We received a request to reset your password. Click the button below to choose a new one:
+    </p>
+    <div style="text-align: center; margin: 30px 0;">
+      <a href="{reset_url}" style="display: inline-block; background-color: #2563eb; color: #ffffff; font-size: 16px; font-weight: 700; text-decoration: none; padding: 14px 48px; border-radius: 6px;">
+        Reset Password
+      </a>
+    </div>
+    <p style="color: #6b7280; font-size: 14px; line-height: 1.6;">
+      This link expires in {expiry_hours} hours. If you didn't request this, you can safely ignore this email.
+    </p>
+    <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+    <p style="color: #9ca3af; font-size: 12px; text-align: center; margin: 0;">
+      This is an automated security email from UnGouge.ai
+    </p>
+  </div>
+</body></html>'''
 
-def send_mfa_code(
-    to_email: str,
-    user_name: str,
-    code: str,
-    expiry_minutes: int = 10
-) -> bool:
-    """
-    Send MFA verification code
-    
-    Security-focused: Just the code, clear instructions, no marketing.
-    
-    Args:
-        to_email: User's email address
-        user_name: User's display name
-        code: 6-digit verification code
-        expiry_minutes: How many minutes until code expires
-        
-    Returns:
-        bool: True if sent successfully
-    """
-    subject = f"Your Ungouge.ai verification code: {code}"
-    
-    # Simple inline template for MFA (doesn't need fancy formatting)
-    html_body = f'''
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px;">
-        <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <h1 style="color: #2563eb; font-size: 24px; margin: 0;">Ungouge.ai</h1>
-            </div>
-            
-            <p style="color: #374151; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
-                Hi {user_name},
-            </p>
-            
-            <p style="color: #374151; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
-                Your verification code is:
-            </p>
-            
-            <div style="background: #f0f9ff; border: 2px solid #2563eb; border-radius: 8px; padding: 20px; text-align: center; margin-bottom: 24px;">
-                <span style="font-size: 36px; font-weight: bold; letter-spacing: 8px; color: #1e40af;">{code}</span>
-            </div>
-            
-            <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin-bottom: 24px;">
-                This code expires in {expiry_minutes} minutes. If you didn't request this code, you can safely ignore this email.
-            </p>
-            
-            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
-            
-            <p style="color: #9ca3af; font-size: 12px; text-align: center; margin: 0;">
-                This is an automated security email from Ungouge.ai<br>
-                We never sell your data. Ever.
-            </p>
-        </div>
-    </body>
-    </html>
-    '''
-    
-    return _send_email(to_email, subject, html_body)
+    if DEV_MODE:
+        logger.info(
+            f"[DEV MODE] Password Reset Email → {to_email}\n"
+            f"  Subject: {subject}\n"
+            f"  Reset URL: {reset_url}"
+        )
+        return True
 
+    try:
+        import smtplib
 
-def send_weekly_digest(
-    to_email: str,
-    user_name: str,
-    reports_this_week: int,
-    total_reports: int,
-    recent_reports: list,
-    insights: Optional[str] = None
-) -> bool:
-    """
-    Send weekly activity digest
-    
-    Anti-lead-gen: Optional digest (user controls frequency).
-    Shows your activity, not sales pitches. Unsubscribe is prominent.
-    
-    Args:
-        to_email: User's email address
-        user_name: User's display name
-        reports_this_week: Number of reports created this week
-        total_reports: Total lifetime reports
-        recent_reports: List of dicts with 'title' and 'url' keys
-        insights: Optional personalized insights text
-        
-    Returns:
-        bool: True if sent successfully
-    """
-    subject = f"Your week in research – {reports_this_week} reports created"
-    
-    # Build recent reports HTML list
-    reports_html = ""
-    for report in recent_reports[:5]:  # Max 5 recent
-        reports_html += f'''
-        <tr>
-            <td style="padding: 12px 0; border-bottom: 1px solid #e0e0e0;">
-                <a href="{report.get('url', '#')}" style="color: #2563eb; text-decoration: none; font-weight: 500;">
-                    {report.get('title', 'Untitled Report')}
-                </a>
-            </td>
-        </tr>
-        '''
-    
-    html_body = _load_template(
-        "weekly_digest.html",
-        user_name=user_name,
-        reports_this_week=reports_this_week,
-        total_reports=total_reports,
-        reports_html=reports_html,
-        insights=insights or "Keep up the great research work!",
-        current_year=2024
-    )
-    
-    return _send_email(to_email, subject, html_body)
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = subject
+        msg["From"] = f"{FROM_NAME} <{FROM_EMAIL}>"
+        msg["To"] = to_email
+        msg.attach(MIMEText(html_body, "html", "utf-8"))
 
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            server.starttls()
+            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.send_message(msg)
 
-# Convenience function for testing
-def test_all_emails():
-    """Send all email types to console (dev mode only)"""
-    if not DEV_MODE:
-        logger.warning("test_all_emails() should only be run in DEV_MODE")
-        return
-    
-    print("\n📧 Testing all email templates...\n")
-    
-    send_welcome_email("user@example.com", "Alex")
-    
-    send_report_ready(
-        "user@example.com",
-        "Alex",
-        "Best Dishwashers Under $600",
-        "https://ungouge.ai/reports/abc123",
-        "We analyzed 47 models to find the best value options."
-    )
-    
-    send_password_reset(
-        "user@example.com",
-        "Alex",
-        "https://ungouge.ai/reset-password?token=xyz789"
-    )
-    
-    send_weekly_digest(
-        "user@example.com",
-        "Alex",
-        3,
-        12,
-        [
-            {"title": "Best Running Shoes 2024", "url": "https://ungouge.ai/reports/1"},
-            {"title": "Laptop Buying Guide", "url": "https://ungouge.ai/reports/2"},
-            {"title": "Coffee Maker Comparison", "url": "https://ungouge.ai/reports/3"},
-        ],
-        "You've been researching a lot of tech this week!"
-    )
-    
-    print("\n✅ All email templates tested!\n")
+        logger.info(f"Password reset email sent to {to_email}")
+        return True
 
-
-if __name__ == "__main__":
-    # Test emails in dev mode
-    logging.basicConfig(level=logging.INFO)
-    test_all_emails()
+    except Exception as e:
+        logger.error(f"Failed to send password reset email to {to_email}: {e}", exc_info=True)
+        return False
