@@ -22,7 +22,7 @@ export default function QuotesPage() {
   useEffect(() => {
     const fetchQuotes = async () => {
       try {
-        const data = await api.get('/api/quotes');
+        const data = await api.get<{ quotes: Quote[] }>('/api/quotes');
         setQuotes(data.quotes || []);
       } catch (error) {
         console.error('Failed to fetch quotes:', error);

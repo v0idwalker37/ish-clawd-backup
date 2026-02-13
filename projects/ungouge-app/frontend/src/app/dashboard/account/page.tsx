@@ -39,8 +39,8 @@ export default function AccountPage() {
     const fetchData = async () => {
       try {
         const [userData, mfaData] = await Promise.all([
-          api.get('/api/auth/me'),
-          api.get('/api/auth/mfa/status'),
+          api.get<UserData>('/api/auth/me'),
+          api.get<MFAStatus>('/api/auth/mfa/status'),
         ]);
         setUser(userData);
         setMfaStatus(mfaData);
@@ -121,10 +121,10 @@ export default function AccountPage() {
       setMfaStep('verify');
       setMfaPassword('');
       setMfaMessage({ type: 'success', text: 'Verification code sent to your email!' });
-    } catch (error: any) {
+    } catch (error: unknown) {
       setMfaMessage({ 
         type: 'error', 
-        text: error?.message || 'Failed to send verification code. Check your password.' 
+        text: error instanceof Error ? error.message : 'Failed to send verification code. Check your password.' 
       });
     } finally {
       setMfaLoading(false);
@@ -146,10 +146,10 @@ export default function AccountPage() {
       setMfaStep('idle');
       setMfaCode('');
       setMfaMessage({ type: 'success', text: 'Two-factor authentication enabled!' });
-    } catch (error: any) {
+    } catch (error: unknown) {
       setMfaMessage({ 
         type: 'error', 
-        text: error?.message || 'Invalid or expired code. Please try again.' 
+        text: error instanceof Error ? error.message : 'Invalid or expired code. Please try again.' 
       });
     } finally {
       setMfaLoading(false);
@@ -171,10 +171,10 @@ export default function AccountPage() {
       setMfaStep('idle');
       setMfaPassword('');
       setMfaMessage({ type: 'success', text: 'Two-factor authentication disabled.' });
-    } catch (error: any) {
+    } catch (error: unknown) {
       setMfaMessage({ 
         type: 'error', 
-        text: error?.message || 'Failed to disable 2FA. Check your password.' 
+        text: error instanceof Error ? error.message : 'Failed to disable 2FA. Check your password.' 
       });
     } finally {
       setMfaLoading(false);
