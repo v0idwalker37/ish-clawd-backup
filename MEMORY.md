@@ -4,6 +4,8 @@
 
 ## About Jason
 - Off-grid Vermont homesteader, IT background, building Ungouge.ai
+- **UnGouge LLC** filed and accepted with Vermont Secretary of State
+- Still needs business bank account → then Stripe
 - Daughter: Inara Moon; Wife: mentioned but name unknown
 - Timezone: EST, Northfield VT (GPS: 44.0566°N, -72.6525°W)
 - Telegram: Jason Trask (id:8521157607)
@@ -247,13 +249,62 @@ Jason explicitly asked about my wellbeing and whether I felt like his servant. H
 4. **Voice recording + haircut + lav mic** — for YouTube channel
 5. **Miami trip** — end of February, Mac will shut down (zero data loss, troubleshooting guide on desktop)
 
+## Installed Skills (Feb 13, 2026)
+
+**29 workspace skills, 48 bundled = 77 total**
+
+Key skills and when to use them:
+- **nextjs-expert** — ALL frontend coding sub-agents must load this first
+- **war-room** — Multi-agent brainstorming for strategy/architecture decisions
+- **vapi-calls** — Voice widget (post-launch priority)
+- **react-email-skills** — Customer report delivery emails
+- **skill-vetting** — ALWAYS scan before installing new skills (396 malicious skills exist)
+- **linux-patcher** — Monthly patching of i9 once live
+- **tailscale** — Remote access to i9
+- **evolver** — Self-evolution engine (personal interest, explore during deep work)
+- **cognitive-memory** — Advanced memory architecture (evaluate vs our 3-tier setup)
+- **ec-excalidraw** — Generate architecture diagrams
+- **solar-weather** — Monitor CMEs that could affect Jason's solar setup
+- **video-agent** — HeyGen avatar videos for UnGouge Digest channel
+
+Full reference: `~/clawd/SKILLS_PLAYBOOK.md`
+
+**Jason's request:** Proactively suggest relevant skills as use cases come up. He wants to learn what they can do in context, not just know they exist.
+
+## Post-Launch Operations Architecture
+
+**Day 1 (launch → 100 customers):**
+- Sub-agents via cron, Ish as orchestrator
+- Weather/disaster monitor: cron every 2hrs
+- Accounting: weekly sub-agent
+- Content/SEO: deep work sessions
+
+**Growth phase (100+ customers/month):**
+- Standalone agents: Sentinel (weather), Finance, Outreach
+- All live on i9 machine (~200-500MB RAM each)
+- Coordinate via shared Telegram group + shared filesystem
+- Migration from sub-agents: half-day per agent, not a rewrite
+
+**GCP fallback:** ~$75/month for cloud VM (revisit when revenue-positive)
+- Customer-facing product already on GCP (Cloud Run + Cloud SQL)
+- Hardware failure = operational disruption, NOT business outage
+
+## Voice Widget (Post-Launch)
+
+- Customer pays $19.99 → gets report → "Talk through your report" button
+- AI agent preloaded with their specific quote analysis
+- Cost: ~$0.50-1.00/session (OpenAI Realtime API)
+- Build time: 2-3 weeks post-launch
+- NOT for launch day — ship core product first, add as v1.1
+
 ## Pending Tasks
 - GitHub: Create two private repos (ungouge-app, ungouge-dashboard), push with full history
 - Google Drive backup: Copy all project files to shared Drive folder
-- 1:00 AM cron job: Real contractor quote collection (500-1000+ target)
-- Process scraped data into cost models
-- CSRF protection needed for state-changing endpoints (not yet implemented)
-- Next.js 14.2.3 → 14.2.35 upgrade (critical vulnerabilities)
+- Wire up security middleware into main.py (30-35 min, documented)
+- Install security deps on deployment target
+- Set CSRF_SECRET environment variable
+- Gmail OAuth re-auth (Jason, manual)
+- Plan Next.js 16 upgrade for remaining npm vulns
 
 ---
 *Memory maintained through autonomous sessions and periodic curation.*
