@@ -43,10 +43,8 @@ export default function RegisterPage() {
 
     setLoading(true);
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-
     try {
-      const response = await fetch(`${apiUrl}/api/auth/register`, {
+      const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',  // SECURITY: Send/receive cookies
@@ -66,8 +64,8 @@ export default function RegisterPage() {
       // Cookies are set automatically by the browser (httpOnly)
       // No more localStorage token storage - more secure!
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'An error occurred during registration');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'An error occurred during registration');
     } finally {
       setLoading(false);
     }

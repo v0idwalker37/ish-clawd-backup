@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import axios from 'axios';
 import { Plus, Trash2, ArrowRight, ArrowLeft, FileText, AlertCircle } from 'lucide-react';
 import FileUpload, { ParsedQuoteData } from './FileUpload';
 
@@ -101,37 +100,55 @@ export default function QuoteForm() {
     setError(null);
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-      
       // Step 1: Save the quote as a draft (no analysis yet — that happens after payment)
-      const quoteResponse = await axios.post(`${apiUrl}/api/quotes`, data, {
-        withCredentials: true,  // Send auth cookies
+      const quoteRes = await fetch('/api/quotes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(data),
       });
-      
-      const quoteId = quoteResponse.data.id;
+
+      if (!quoteRes.ok) {
+        const errData = await quoteRes.json().catch(() => ({}));
+        const detail = errData.detail;
+        if (typeof detail === 'object' && detail?.error) {
+          throw new Error(detail.error + (detail.suggestion ? ` ${detail.suggestion}` : ''));
+        } else if (typeof detail === 'string') {
+          throw new Error(detail);
+        }
+        throw new Error('Failed to save your quote.');
+      }
+
+      const quoteData = await quoteRes.json();
+      const quoteId = quoteData.id;
       
       // Step 2: Create a Stripe Checkout Session
-      const checkoutResponse = await axios.post(
-        `${apiUrl}/api/payments/create-checkout`,
-        { quote_id: quoteId },
-        { withCredentials: true },
-      );
+      const checkoutRes = await fetch('/api/payments/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ quote_id: quoteId }),
+      });
+
+      if (!checkoutRes.ok) {
+        const errData = await checkoutRes.json().catch(() => ({}));
+        throw new Error(errData.detail || 'Failed to create checkout session.');
+      }
+
+      const checkoutData = await checkoutRes.json();
       
       // Step 3: Redirect to Stripe Checkout (external hosted page)
       // Stripe handles payment collection; on success it redirects to /report/{quoteId}?payment=success
-      const checkoutUrl = checkoutResponse.data.checkout_url;
+      const checkoutUrl = checkoutData.checkout_url;
       if (checkoutUrl) {
         window.location.href = checkoutUrl;
       } else {
         throw new Error('No checkout URL returned');
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Error submitting quote:', err);
-      const detail = err.response?.data?.detail;
-      if (typeof detail === 'object' && detail?.error) {
-        setError(detail.error + (detail.suggestion ? ` ${detail.suggestion}` : ''));
-      } else if (typeof detail === 'string') {
-        setError(detail);
+      if (err instanceof Error) {
+        setError(err.message);
       } else {
         setError('Failed to process your quote. Please try again.');
       }

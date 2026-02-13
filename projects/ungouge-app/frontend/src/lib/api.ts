@@ -7,7 +7,9 @@
  * - Consistent error parsing
  */
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+// Use relative URLs in the browser (proxied via Next.js rewrites in next.config.js).
+// Server-side code should use process.env.API_URL (non-public, never leaked to client).
+const API_URL = typeof window !== 'undefined' ? '' : (process.env.API_URL || 'http://localhost:8000');
 
 interface ApiError {
   error: string;
@@ -18,24 +20,33 @@ interface ApiError {
 /**
  * Parse API error response into user-friendly message
  */
-export function parseApiError(error: any): string {
+export function parseApiError(error: unknown): string {
   // If it's already a string, return it
   if (typeof error === 'string') return error;
+
+  if (typeof error !== 'object' || error === null) {
+    return 'An unexpected error occurred. Please try again.';
+  }
+  
+  const err = error as Record<string, unknown>;
   
   // Check for our custom exception format
-  if (error?.error) {
-    return error.suggestion 
-      ? `${error.error}. ${error.suggestion}`
-      : error.error;
+  if (typeof err.error === 'string') {
+    return typeof err.suggestion === 'string'
+      ? `${err.error}. ${err.suggestion}`
+      : err.error;
   }
   
   // Check for FastAPI detail format
-  if (error?.detail) {
-    if (typeof error.detail === 'string') return error.detail;
-    if (error.detail.error) {
-      return error.detail.suggestion
-        ? `${error.detail.error}. ${error.detail.suggestion}`
-        : error.detail.error;
+  if (err.detail != null) {
+    if (typeof err.detail === 'string') return err.detail;
+    if (typeof err.detail === 'object') {
+      const detail = err.detail as Record<string, unknown>;
+      if (typeof detail.error === 'string') {
+        return typeof detail.suggestion === 'string'
+          ? `${detail.error}. ${detail.suggestion}`
+          : detail.error;
+      }
     }
   }
   
@@ -46,7 +57,7 @@ export function parseApiError(error: any): string {
 /**
  * Make an authenticated API request
  */
-export async function apiFetch<T = any>(
+export async function apiFetch<T = unknown>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
@@ -91,24 +102,24 @@ export async function apiFetch<T = any>(
  * Convenience methods
  */
 export const api = {
-  get: <T = any>(endpoint: string, options?: RequestInit) =>
+  get: <T = unknown>(endpoint: string, options?: RequestInit) =>
     apiFetch<T>(endpoint, { ...options, method: 'GET' }),
   
-  post: <T = any>(endpoint: string, body?: any, options?: RequestInit) =>
+  post: <T = unknown>(endpoint: string, body?: unknown, options?: RequestInit) =>
     apiFetch<T>(endpoint, {
       ...options,
       method: 'POST',
       body: body ? JSON.stringify(body) : undefined,
     }),
   
-  put: <T = any>(endpoint: string, body?: any, options?: RequestInit) =>
+  put: <T = unknown>(endpoint: string, body?: unknown, options?: RequestInit) =>
     apiFetch<T>(endpoint, {
       ...options,
       method: 'PUT',
       body: body ? JSON.stringify(body) : undefined,
     }),
   
-  delete: <T = any>(endpoint: string, options?: RequestInit) =>
+  delete: <T = unknown>(endpoint: string, options?: RequestInit) =>
     apiFetch<T>(endpoint, { ...options, method: 'DELETE' }),
 };
 

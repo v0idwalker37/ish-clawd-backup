@@ -38,8 +38,8 @@ export default function SettingsPage() {
 
       // Redirect to homepage
       window.location.href = '/';
-    } catch (err: any) {
-      setDeleteError(err.message || 'Something went wrong. Please try again.');
+    } catch (err: unknown) {
+      setDeleteError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
       setIsDeleting(false);
     }
   };

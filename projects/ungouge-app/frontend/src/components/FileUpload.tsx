@@ -83,9 +83,8 @@ export default function FileUpload({ onFileProcessed, onError }: FileUploadProps
       const formData = new FormData()
       formData.append('file', file)
 
-      // Upload to backend
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
-      const response = await fetch(`${apiUrl}/api/quotes/parse-upload`, {
+      // Upload to backend (uses Next.js rewrite proxy)
+      const response = await fetch('/api/quotes/parse-upload', {
         method: 'POST',
         credentials: 'include',  // Send auth cookies
         body: formData,

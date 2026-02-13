@@ -5,7 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Home, FileText, User, Settings, LogOut, Menu, X } from 'lucide-react';
-import api from '@/lib/api';
+import { useAuth } from '@/providers/AuthProvider';
 
 export default function DashboardLayout({
   children,
@@ -14,43 +14,18 @@ export default function DashboardLayout({
 }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [user, setUser] = useState<{ name: string; email: string } | null>(null);
+  const { user, loading, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Verify authentication by calling the API
-    const checkAuth = async () => {
-      try {
-        const userData = await api.get('/api/auth/me');
-        setUser({
-          name: userData.name,
-          email: userData.email,
-        });
-      } catch (error) {
-        // api.get already handles 401 redirect
-        console.error('Auth check failed:', error);
-        router.push('/login');
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    checkAuth();
-  }, [router]);
+    // Redirect to login if auth check finished and no user
+    if (!loading && !user) {
+      router.push('/login');
+    }
+  }, [loading, user, router]);
 
   const handleLogout = async () => {
-    try {
-      // Call backend to logout (clears cookies)
-      await api.post('/api/auth/logout');
-    } catch (error) {
-      // Even if logout API fails, redirect to home
-      console.error('Logout error:', error);
-    }
-    
-    // Clear any local state and redirect
-    localStorage.clear();
-    sessionStorage.clear();
+    await logout();
     router.push('/');
   };
 
@@ -97,6 +72,7 @@ export default function DashboardLayout({
                 alt="Ungouge.ai"
                 width={130}
                 height={41}
+                priority
               />
             </Link>
             <button

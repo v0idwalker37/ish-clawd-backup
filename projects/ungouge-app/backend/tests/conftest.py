@@ -11,7 +11,7 @@ Provides:
 import os
 import uuid
 from datetime import datetime, timedelta
-from typing import AsyncGenerator, Generator
+from typing import AsyncGenerator, Generator, Optional, List
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -182,7 +182,7 @@ def make_quote_payload(
     project_type: str = "kitchen_remodel",
     location: str = "Denver, CO",
     contractor_name: str = "ABC Contracting",
-    line_items: list | None = None,
+    line_items: Optional[List[dict]] = None,
 ) -> dict:
     """Return a valid JSON-serializable quote submission body."""
     if line_items is None:

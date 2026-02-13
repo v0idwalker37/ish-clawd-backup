@@ -18,15 +18,13 @@ export default function LoginPage() {
   const [mfaCode, setMfaCode] = useState('');
   const [resending, setResending] = useState(false);
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
     try {
-      const response = await fetch(`${apiUrl}/api/auth/login`, {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -48,8 +46,8 @@ export default function LoginPage() {
 
       // Success - cookies are set automatically
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'An error occurred during login');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'An error occurred during login');
     } finally {
       setLoading(false);
     }
@@ -61,7 +59,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${apiUrl}/api/auth/mfa/verify-login`, {
+      const response = await fetch('/api/auth/mfa/verify-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -76,8 +74,8 @@ export default function LoginPage() {
 
       // Success - cookies are set automatically
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'An error occurred during verification');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'An error occurred during verification');
     } finally {
       setLoading(false);
     }
@@ -88,7 +86,7 @@ export default function LoginPage() {
     setResending(true);
 
     try {
-      const response = await fetch(`${apiUrl}/api/auth/mfa/resend`, {
+      const response = await fetch('/api/auth/mfa/resend', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -104,8 +102,8 @@ export default function LoginPage() {
       setError(''); // Clear any previous error
       // Show success briefly
       setMfaEmail(data.email || mfaEmail);
-    } catch (err: any) {
-      setError(err.message || 'Failed to resend code');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to resend code');
     } finally {
       setResending(false);
     }

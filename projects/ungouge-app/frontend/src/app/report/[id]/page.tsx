@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
-import axios from 'axios';
 import ReportCard from '@/components/ReportCard';
 import PriceGauge from '@/components/PriceGauge';
 import { ArrowLeft, Download, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
@@ -55,12 +54,11 @@ export default function ReportPage() {
     if (pdfDownloading) return;
     setPdfDownloading(true);
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-      const response = await axios.get(`${apiUrl}/api/quotes/${reportId}/pdf`, {
-        withCredentials: true,
-        responseType: 'blob',
+      const response = await fetch(`/api/quotes/${reportId}/pdf`, {
+        credentials: 'include',
       });
-      const blob = new Blob([response.data], { type: 'application/pdf' });
+      if (!response.ok) throw new Error('PDF download failed');
+      const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
@@ -69,7 +67,7 @@ export default function ReportPage() {
       link.click();
       link.remove();
       window.URL.revokeObjectURL(url);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('PDF download failed:', err);
       alert('Failed to download PDF. Please try again.');
     } finally {
@@ -80,22 +78,28 @@ export default function ReportPage() {
   useEffect(() => {
     const fetchReport = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-        const response = await axios.get(`${apiUrl}/api/quotes/${reportId}`, {
-          withCredentials: true,  // Send auth cookies
+        const response = await fetch(`/api/quotes/${reportId}`, {
+          credentials: 'include',
         });
-        setReport(response.data);
-      } catch (err: unknown) {
-        if (axios.isAxiosError(err)) {
-          if (err.response?.status === 401) {
+
+        if (!response.ok) {
+          if (response.status === 401) {
             setError('Please log in to view this report.');
-          } else if (err.response?.status === 403) {
+          } else if (response.status === 403) {
             setError('You do not have permission to view this report.');
-          } else if (err.response?.status === 404) {
+          } else if (response.status === 404) {
             setError('Report not found. Please check your report ID.');
           } else {
             setError('Failed to load report. Please try again later.');
           }
+          return;
+        }
+
+        const data = await response.json();
+        setReport(data);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
         } else {
           setError('Failed to load report. Please check your connection.');
         }
