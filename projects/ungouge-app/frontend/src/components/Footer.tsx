@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Shield, Lock } from 'lucide-react';
+import { openCookieSettings } from '@/components/CookieConsent';
 
 export default function Footer() {
   const pathname = usePathname();
@@ -201,6 +202,14 @@ export default function Footer() {
               <a href="mailto:support@ungouge.ai" className="hover:text-white transition-colors">
                 Support
               </a>
+              <span>•</span>
+              <button
+                onClick={openCookieSettings}
+                className="hover:text-white transition-colors"
+                aria-label="Open cookie settings"
+              >
+                Cookie Settings
+              </button>
             </div>
           </div>
         </div>
