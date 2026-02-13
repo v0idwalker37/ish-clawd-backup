@@ -167,6 +167,9 @@ async def add_security_headers(request: Request, call_next):
 # GDPR R-15: DNT (Do Not Track) signal handling
 app.add_middleware(DNTMiddleware)
 
+# Security audit logging (outermost middleware — logs all requests)
+app.add_middleware(SecurityAuditMiddleware)
+
 # CORS middleware (hardened for production)
 cors_origins = [
     "http://localhost:3000",
@@ -183,7 +186,7 @@ app.add_middleware(
     allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH"],  # Explicit list, no wildcards
-    allow_headers=["Content-Type", "Authorization", "Accept"],  # Explicit list, no wildcards
+    allow_headers=["Content-Type", "Authorization", "Accept", "X-CSRF-Token"],  # Explicit list, no wildcards
     expose_headers=["X-RateLimit-Limit", "X-RateLimit-Remaining", "X-RateLimit-Reset"],  # Rate limit headers
 )
 
