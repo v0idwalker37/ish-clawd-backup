@@ -76,6 +76,9 @@ export default function Header() {
             <Link href="/pricing" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Pricing
             </Link>
+            <Link href="/blog" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+              Blog
+            </Link>
             <Link href="/about" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               About
             </Link>
@@ -191,6 +194,13 @@ export default function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Pricing
+            </Link>
+            <Link
+              href="/blog"
+              className="block text-gray-700 hover:text-primary-600 font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Blog
             </Link>
             <Link
               href="/about"
