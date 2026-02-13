@@ -1183,6 +1183,14 @@ class QuoteAnalyzer:
         self._regional_multipliers = self._data.get("regional_multipliers", {})
         self._project_types = self._data.get("project_types", {})
 
+        # Load RSMeans calibration benchmarks for runtime cross-validation
+        self._rsmeans_benchmarks = {}
+        try:
+            with open(RSMEANS_CALIBRATION_PATH, "r") as f:
+                self._rsmeans_benchmarks = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            pass  # Benchmarks are optional — analysis still works without them
+
     # ------------------------------------------------------------------ #
     # Public API
     # ------------------------------------------------------------------ #
@@ -1256,6 +1264,11 @@ class QuoteAnalyzer:
             resolved_type, project_data, line_items, total, multiplier, line_item_results
         )
 
+        # Cross-validate against RSMeans benchmarks
+        rsmeans_validation = self._validate_against_rsmeans(
+            resolved_type, line_item_results, total, multiplier
+        )
+
         # Calculate fairness score
         fairness_score = self._calculate_fairness_score(
             line_item_results, total_analysis, missing_items, red_flags
@@ -1282,6 +1295,7 @@ class QuoteAnalyzer:
             "total_analysis": total_analysis,
             "missing_items": missing_items,
             "red_flags": red_flags,
+            "rsmeans_validation": rsmeans_validation,
             "recommendations": recommendations,
             "summary": self._build_summary(
                 fairness_score, verdict, len(line_item_results),
@@ -1630,6 +1644,162 @@ class QuoteAnalyzer:
             })
 
         return flags
+
+    # ------------------------------------------------------------------ #
+    # RSMeans Benchmark Cross-Validation
+    # ------------------------------------------------------------------ #
+
+    def _validate_against_rsmeans(
+        self,
+        project_type: str,
+        line_item_results: list[dict],
+        total: float,
+        multiplier: float,
+    ) -> dict:
+        """
+        Cross-validate the analysis against RSMeans benchmark data.
+
+        Uses rsmeans_calibration_curated.json to check whether the calculated
+        fair price ranges are consistent with RSMeans contractor cost basis
+        (plus expected 20-40% market markup).
+
+        Returns a dict with validation results and any warnings.
+        """
+        validation = {
+            "has_benchmarks": False,
+            "project_type": project_type,
+            "benchmark_source": None,
+            "calibration_notes": None,
+            "total_validation": None,
+            "item_validations": [],
+            "warnings": [],
+        }
+
+        # Find RSMeans benchmark data for this project type
+        benchmark = self._rsmeans_benchmarks.get(project_type)
+        if not benchmark or not isinstance(benchmark, dict):
+            return validation
+
+        validation["has_benchmarks"] = True
+        validation["benchmark_source"] = benchmark.get("source", "RSMeans")
+
+        # Get calibration data if available
+        calibration = benchmark.get("calibration", {})
+        key_items = benchmark.get("key_items", {})
+        validation["calibration_notes"] = calibration.get("notes", "")
+
+        # --- Total project cost validation ---
+        # RSMeans calibration often has total ranges like "full_system_low",
+        # "small_kitchen_low", etc. Find applicable range.
+        rsmeans_total_low = None
+        rsmeans_total_high = None
+
+        for cal_key, cal_val in calibration.items():
+            if not isinstance(cal_val, (int, float)):
+                continue
+            cal_key_lower = cal_key.lower()
+            # Look for mid/standard ranges as representative
+            if any(kw in cal_key_lower for kw in ("_mid", "medium_", "standard_", "full_")):
+                if "_low" in cal_key_lower or cal_key_lower.endswith("_low"):
+                    continue
+                if "_high" in cal_key_lower or cal_key_lower.endswith("_high"):
+                    continue
+                # This is a mid-point reference
+                rsmeans_mid = cal_val
+                # RSMeans is contractor cost basis; market price is +20-40%
+                if rsmeans_total_low is None:
+                    rsmeans_total_low = rsmeans_mid * 1.20 * multiplier
+                    rsmeans_total_high = rsmeans_mid * 1.40 * multiplier
+
+        # Try to build range from explicit low/high calibration values
+        cal_lows = [v for k, v in calibration.items()
+                     if isinstance(v, (int, float)) and "_low" in k.lower()]
+        cal_highs = [v for k, v in calibration.items()
+                      if isinstance(v, (int, float)) and "_high" in k.lower()]
+
+        if cal_lows and cal_highs:
+            # Use the middle-tier range if multiple tiers exist
+            cal_lows.sort()
+            cal_highs.sort()
+            # Pick representative values (not the cheapest budget tier)
+            ref_low = cal_lows[len(cal_lows) // 2] if len(cal_lows) > 1 else cal_lows[0]
+            ref_high = cal_highs[len(cal_highs) // 2] if len(cal_highs) > 1 else cal_highs[-1]
+
+            # Apply markup (RSMeans = contractor cost, market = +20-40%)
+            rsmeans_total_low = ref_low * 1.0 * multiplier  # Low end is already market-ish
+            rsmeans_total_high = ref_high * 1.40 * multiplier  # High end + markup
+
+        if rsmeans_total_low is not None and rsmeans_total_high is not None:
+            validation["total_validation"] = {
+                "rsmeans_adjusted_low": round(rsmeans_total_low, 2),
+                "rsmeans_adjusted_high": round(rsmeans_total_high, 2),
+                "quote_total": total,
+                "within_rsmeans_range": rsmeans_total_low * 0.8 <= total <= rsmeans_total_high * 1.2,
+            }
+
+            # Warn if quote is wildly outside RSMeans bounds
+            if total > rsmeans_total_high * 1.5:
+                validation["warnings"].append(
+                    f"Quote total ${total:,.0f} is >50% above RSMeans-derived upper bound "
+                    f"${rsmeans_total_high:,.0f} (including markup). Likely overpriced."
+                )
+            elif total < rsmeans_total_low * 0.5:
+                validation["warnings"].append(
+                    f"Quote total ${total:,.0f} is <50% of RSMeans-derived lower bound "
+                    f"${rsmeans_total_low:,.0f}. Suspiciously low — verify scope and quality."
+                )
+
+        # --- Per-item validation against RSMeans key_items ---
+        if key_items:
+            for li_result in line_item_results:
+                if li_result.get("assessment") == "unmatched":
+                    continue
+
+                desc_lower = _normalize(li_result.get("description", ""))
+                cost = li_result.get("cost", 0)
+
+                # Try to find a matching RSMeans key item
+                best_match = None
+                best_score = 0.0
+
+                for rsmeans_key, rsmeans_data in key_items.items():
+                    if not isinstance(rsmeans_data, dict):
+                        continue
+                    rsmeans_norm = _normalize(rsmeans_key)
+                    score = SequenceMatcher(None, desc_lower, rsmeans_norm).ratio()
+
+                    # Token overlap boost
+                    desc_tokens = set(desc_lower.split())
+                    key_tokens = set(rsmeans_norm.split())
+                    if desc_tokens and key_tokens:
+                        overlap = len(desc_tokens & key_tokens) / max(len(desc_tokens), len(key_tokens))
+                        score = max(score, overlap * 0.9)
+
+                    if score > best_score and score >= 0.5:
+                        best_score = score
+                        best_match = (rsmeans_key, rsmeans_data)
+
+                if best_match:
+                    rsmeans_key, rsmeans_data = best_match
+                    rsmeans_total = rsmeans_data.get("total", 0)
+                    if rsmeans_total > 0:
+                        # RSMeans is contractor cost; market = +20-40%
+                        rsmeans_market_low = rsmeans_total * 1.20 * multiplier
+                        rsmeans_market_high = rsmeans_total * 1.40 * multiplier
+
+                        item_validation = {
+                            "description": li_result["description"],
+                            "rsmeans_item": rsmeans_key,
+                            "rsmeans_base_cost": rsmeans_total,
+                            "rsmeans_market_range": {
+                                "low": round(rsmeans_market_low, 2),
+                                "high": round(rsmeans_market_high, 2),
+                            },
+                            "match_confidence": round(best_score, 2),
+                        }
+                        validation["item_validations"].append(item_validation)
+
+        return validation
 
     # ------------------------------------------------------------------ #
     # Scoring

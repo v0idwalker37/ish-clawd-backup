@@ -41,26 +41,27 @@ def _load_bls_rates():
             _BLS_RATES = json.load(f)
     return _BLS_RATES
 
-def get_regional_multiplier(zip_code: str) -> Tuple[float, str]:
+def get_regional_multiplier(location: str) -> Tuple[float, str]:
     """
-    Determine regional cost multiplier based on ZIP code.
+    Determine regional cost multiplier based on location string.
+    Delegates to the QuoteAnalyzer's resolve_region which uses
+    RSMeans 640-city location factors for accurate regional pricing.
+    
     Returns (multiplier, region_name)
     """
-    if not zip_code or len(zip_code) < 1:
+    if not location or len(location) < 1:
         return (1.0, "national_average")
     
-    models = _load_cost_models()
-    regional_data = models.get('regional_multipliers', {})
-    
-    # Use first digit of ZIP code
-    zip_prefix = zip_code[0]
-    
-    for region_name, region_info in regional_data.items():
-        if zip_prefix in region_info.get('zip_prefixes', []):
-            return (region_info['multiplier'], region_name)
-    
-    # Default to national average
-    return (1.0, "national_average")
+    # Import the shared resolve_region from the quote_analyzer engine
+    try:
+        from quote_analyzer import resolve_region
+        models = _load_cost_models()
+        regional_data = models.get('regional_multipliers', {})
+        region_name, multiplier = resolve_region(location, regional_data)
+        return (multiplier, region_name)
+    except ImportError:
+        # Fallback if quote_analyzer not available
+        return (1.0, "national_average")
 
 def fuzzy_match_category(item_name: str, categories: Dict, threshold: float = 0.6) -> Optional[Tuple[str, float]]:
     """
