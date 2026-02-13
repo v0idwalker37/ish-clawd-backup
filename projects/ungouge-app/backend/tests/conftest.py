@@ -72,19 +72,17 @@ async def _override_get_db() -> AsyncGenerator[AsyncSession, None]:
 
 @pytest.fixture()
 def app():
-    """Return a fresh FastAPI app with test-DB override."""
-    # Patch heavy middleware/startup and services that need external deps
+    """Return a fresh FastAPI app with test-DB override.
+
+    Key patches:
+    - _daily_cleanup_loop: skip background cleanup task
+    - TokenBlacklistSync.is_blacklisted: avoid cross-engine DB calls
+    - send_welcome_email: fire-and-forget in register; no real SMTP needed
+    """
     with patch("main._daily_cleanup_loop", new_callable=AsyncMock), \
-         patch("services.token_blacklist.TokenBlacklistSync.is_blacklisted", return_value=False), \
-         patch("services.token_blacklist.TokenBlacklist.is_blacklisted", new_callable=AsyncMock, return_value=False), \
-         patch("services.token_blacklist.TokenBlacklist.add", new_callable=AsyncMock):
-        # Mock email service to avoid aiosmtplib import failure
-        import sys
-        _fake_email = MagicMock()
-        _fake_email.send_welcome_email = AsyncMock()
-        _fake_email.send_receipt_email = AsyncMock()
-        _fake_email.send_report_ready_email = AsyncMock()
-        sys.modules.setdefault("services.email_service", _fake_email)
+         patch("services.auth.TokenBlacklistSync") as mock_tbs:
+        # TokenBlacklistSync.is_blacklisted is called synchronously in verify_token
+        mock_tbs.is_blacklisted.return_value = False
 
         from main import app as _app
 

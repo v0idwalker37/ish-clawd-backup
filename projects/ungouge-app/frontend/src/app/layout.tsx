@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ChatWidget from '@/components/ChatWidget';
 import CookieConsent from '@/components/CookieConsent';
+import PlausibleAnalytics from '@/components/PlausibleAnalytics';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { AuthProvider } from '@/providers/AuthProvider';
 import {
@@ -138,6 +139,9 @@ export default function RootLayout({
             </Suspense>
             <Suspense fallback={null}>
               <ChatWidget />
+            </Suspense>
+            <Suspense fallback={null}>
+              <PlausibleAnalytics />
             </Suspense>
           </div>
         </AuthProvider>
