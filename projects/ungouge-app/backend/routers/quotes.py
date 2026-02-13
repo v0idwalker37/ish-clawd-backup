@@ -32,27 +32,29 @@ async def submit_quote(
     request: Request,
     quote_data: QuoteSubmission,
     db: AsyncSession = Depends(get_db),
-    current_user: Optional[User] = Depends(get_current_user_optional),
+    # CRIT-2: Require authentication for ALL quote submissions (no anonymous quotes)
+    current_user: User = Depends(get_current_user),
 ):
     """
-    Submit a contractor quote for analysis
+    Submit a contractor quote for analysis.
     
-    Optionally authenticated - if user is logged in, quote will be linked to their account
+    SECURITY (CRIT-1): Saves raw quote data only — NO analysis is performed.
+    Analysis is triggered AFTER payment confirmation (via Stripe webhook).
     
-    In production, this would:
-    1. Create a payment intent with Stripe
-    2. Wait for payment confirmation
-    3. Process the analysis
-    4. Return the report ID
+    SECURITY (CRIT-2): Authentication required — no anonymous quotes.
     
-    For MVP, we'll skip payment and generate report immediately
+    Flow:
+    1. User submits quote → saved with payment_status="pending"
+    2. User pays via POST /api/payments/create-checkout
+    3. Stripe webhook confirms payment → triggers analysis
+    4. User views report via GET /api/quotes/{id}
     """
     from validators import validate_quote_submission, sanitize_string
     from exceptions import UngougeException, DatabaseError, ValidationError
     from services.logger import log_error
     
     # GDPR Art. 18: Block processing when user has restricted their data
-    if current_user and getattr(current_user, "is_restricted", False):
+    if getattr(current_user, "is_restricted", False):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail={
@@ -80,16 +82,14 @@ async def submit_quote(
         # Generate unique ID
         quote_id = str(uuid.uuid4())
         
-        # TODO: In production, create Stripe payment intent here
-        # payment_intent = await create_payment_intent(amount=1999, quote_id=quote_id)
-        
-        # Create quote record, link to user if authenticated
+        # CRIT-1: Save quote with payment_status="pending" — NO analysis yet
         quote = Quote(
             id=quote_id,
-            user_id=current_user.id if current_user else None,
+            user_id=current_user.id,
             project_type=sanitized_project_type,
             location=sanitized_location,
             contractor_name=sanitized_contractor,
+            payment_status="pending",
             created_at=datetime.utcnow(),
         )
         db.add(quote)
@@ -118,50 +118,17 @@ async def submit_quote(
             await db.rollback()
             raise DatabaseError("quote_creation", str(db_error))
         
-        # Perform analysis
-        try:
-            report = await analyze_quote(quote_data, db)
-        except Exception as analysis_error:
-            # Analysis failed, but quote is saved
-            log_error("analysis_failed_quote_saved", str(analysis_error), {
-                "quote_id": quote_id
-            })
-            # Return a partial response
-            return QuoteResponse(
-                id=quote_id,
-                message="Quote saved, but analysis is temporarily unavailable. Check back soon.",
-                report_url=f"/report/{quote_id}",
-            )
-        
-        # Create analysis report record
-        try:
-            analysis_report = AnalysisReport(
-                id=str(uuid.uuid4()),
-                quote_id=quote_id,
-                total_quoted=report.total_quoted,
-                total_fair_low=report.total_fair_low,
-                total_fair_high=report.total_fair_high,
-                overall_assessment=report.overall_assessment,
-                line_items_analysis=report.dict(),  # Store full analysis as JSON
-                created_at=datetime.utcnow(),
-            )
-            db.add(analysis_report)
-            await db.commit()
-        except Exception as db_error:
-            await db.rollback()
-            raise DatabaseError("analysis_save", str(db_error))
-        
         # Log quote submission
         log_quote_submission(
             quote_id,
-            current_user.id if current_user else None,
+            current_user.id,
             sanitized_project_type,
             request.client.host if request.client else None
         )
         
         return QuoteResponse(
             id=quote_id,
-            message="Quote analyzed successfully",
+            message="Quote saved. Please complete payment to receive your analysis report.",
             report_url=f"/report/{quote_id}",
         )
         
@@ -169,7 +136,7 @@ async def submit_quote(
         # Our custom exceptions have user-friendly messages
         await db.rollback()
         log_error("quote_submission_failed", e.message, {
-            "user_id": current_user.id if current_user else None,
+            "user_id": current_user.id,
             "project_type": quote_data.project_type,
             **e.log_context
         })
@@ -182,7 +149,7 @@ async def submit_quote(
         # Unexpected error
         await db.rollback()
         log_error("quote_submission_unexpected_error", str(e), {
-            "user_id": current_user.id if current_user else None,
+            "user_id": current_user.id,
             "project_type": quote_data.project_type,
             "error_type": type(e).__name__
         })
@@ -203,15 +170,20 @@ async def submit_quote(
 async def get_quote_report(
     quote_id: str,
     db: AsyncSession = Depends(get_db),
-    current_user: Optional[User] = Depends(get_current_user_optional),
+    # CRIT-2: Always require authentication
+    current_user: User = Depends(get_current_user),
 ):
     """
-    Retrieve analysis report for a quote
+    Retrieve analysis report for a quote.
     
-    Access Control:
-    - If quote is linked to a user (authenticated submission), only that user can view it
-    - If quote has no user_id (anonymous submission), anyone can view it
+    SECURITY (CRIT-1): Returns 402 Payment Required if quote is not paid.
+    SECURITY (CRIT-2): Requires authentication; only the quote owner can view.
+    
+    Lazy generation: If payment is confirmed but report doesn't exist yet,
+    triggers analysis on-demand (handles webhook race / retry scenarios).
     """
+    from services.logger import log_error
+
     # Fetch quote
     result = await db.execute(
         select(Quote).where(Quote.id == quote_id)
@@ -224,21 +196,24 @@ async def get_quote_report(
             detail="Quote not found",
         )
     
-    # SECURITY: Check access control
-    # If quote belongs to a user, verify ownership
-    if quote.user_id:
-        if not current_user:
-            log_access_denied(f"quote/{quote_id}", None, None)
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Authentication required to view this quote",
-            )
-        if quote.user_id != current_user.id:
-            log_access_denied(f"quote/{quote_id}", current_user.id, None)
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Access denied - you can only view your own quotes",
-            )
+    # CRIT-2: Strict ownership check — only the quote owner can view
+    if quote.user_id != current_user.id:
+        log_access_denied(f"quote/{quote_id}", current_user.id, None)
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Access denied - you can only view your own quotes",
+        )
+    
+    # CRIT-1: Payment gate — must be paid before viewing report
+    if quote.payment_status != "paid":
+        raise HTTPException(
+            status_code=status.HTTP_402_PAYMENT_REQUIRED,
+            detail={
+                "error": "Payment required to view this report.",
+                "suggestion": "Please complete payment at /api/payments/create-checkout",
+                "quote_id": quote_id,
+            },
+        )
     
     # Fetch analysis report
     result = await db.execute(
@@ -246,10 +221,26 @@ async def get_quote_report(
     )
     report = result.scalar_one_or_none()
     
+    # CRIT-1: Lazy generation — if paid but report not yet generated, generate now
+    if not report:
+        try:
+            from routers.payments import _generate_report_for_quote
+            await _generate_report_for_quote(db, quote_id)
+            # Re-fetch the generated report
+            result = await db.execute(
+                select(AnalysisReport).where(AnalysisReport.quote_id == quote_id)
+            )
+            report = result.scalar_one_or_none()
+        except Exception as e:
+            log_error("lazy_report_generation_failed", str(e), {"quote_id": quote_id})
+    
     if not report:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Analysis report not found",
+            detail={
+                "error": "Analysis report is being generated. Please try again in a moment.",
+                "suggestion": "Your payment has been confirmed. The report should be ready shortly.",
+            },
         )
     
     # Reconstruct report model from stored JSON
@@ -312,13 +303,13 @@ async def get_my_quotes(
 async def get_quote_full_report(
     quote_id: str,
     db: AsyncSession = Depends(get_db),
-    current_user: Optional[User] = Depends(get_current_user_optional),
+    current_user: User = Depends(get_current_user),
 ):
     """
     Get full analysis report for a specific quote
     
-    This is an alias for GET /quotes/{quote_id} for clearer API semantics
-    Requires authentication for user-owned quotes.
+    This is an alias for GET /quotes/{quote_id} for clearer API semantics.
+    Requires authentication and payment verification.
     """
     return await get_quote_report(quote_id, db, current_user)
 
@@ -327,14 +318,13 @@ async def get_quote_full_report(
 async def download_quote_pdf(
     quote_id: str,
     db: AsyncSession = Depends(get_db),
-    current_user: Optional[User] = Depends(get_current_user_optional),
+    current_user: User = Depends(get_current_user),
 ):
     """
     Download a branded PDF report for a quote analysis.
 
-    Uses the same access control as the JSON report endpoint:
-    - Anonymous quotes: anyone can download
-    - User-owned quotes: only the owner can download
+    SECURITY: Requires authentication, ownership check, and payment verification
+    (enforced via get_quote_report).
     
     Returns a PDF file as an attachment.
     """

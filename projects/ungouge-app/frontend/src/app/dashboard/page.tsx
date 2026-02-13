@@ -1,44 +1,87 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FileText, DollarSign, TrendingDown, Clock, ArrowRight, CheckCircle, AlertTriangle } from 'lucide-react';
 
+interface DashboardStats {
+  totalReports: number;
+  totalSavings: number;
+  averageSavings: number;
+  pendingReports: number;
+}
+
+interface Quote {
+  id: string;
+  projectType: string;
+  contractor: string;
+  quoteAmount: number;
+  fairPrice: number;
+  savings: number;
+  status: string;
+  date: string;
+  overallRating: string;
+}
+
 export default function DashboardPage() {
-  // Mock data - in a real app, this would come from an API
-  const stats = {
-    totalReports: 12,
-    totalSavings: 8450,
-    averageSavings: 704,
-    pendingReports: 2,
-  };
+  const [stats, setStats] = useState<DashboardStats>({
+    totalReports: 0,
+    totalSavings: 0,
+    averageSavings: 0,
+    pendingReports: 0,
+  });
+  const [recentQuotes, setRecentQuotes] = useState<Quote[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Demo mode - set to empty array to show empty state
-  type Quote = {
-    id: string;
-    projectType: string;
-    contractor: string;
-    quoteAmount: number;
-    fairPrice: number;
-    savings: number;
-    status: string;
-    date: string;
-    overallRating: string;
-  };
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const res = await fetch('/api/dashboard/stats', {
+          credentials: 'include',
+        });
 
-  const recentQuotes: Quote[] = [
-    // Uncomment for demo data
-    // {
-    //   id: 'QT-2024-001',
-    //   projectType: 'Kitchen Remodel',
-    //   contractor: 'ABC Renovations',
-    //   quoteAmount: 45000,
-    //   fairPrice: 38500,
-    //   savings: 6500,
-    //   status: 'completed',
-    //   date: '2024-02-01',
-    //   overallRating: 'gouged',
-    // },
-  ];
+        if (!res.ok) {
+          if (res.status === 401) {
+            // Auth handled by middleware/layout
+            return;
+          }
+          throw new Error('Failed to load dashboard data');
+        }
+
+        const data = await res.json();
+        setStats({
+          totalReports: data.total_reports ?? 0,
+          totalSavings: data.total_savings ?? 0,
+          averageSavings: data.average_savings ?? 0,
+          pendingReports: data.pending_reports ?? 0,
+        });
+        setRecentQuotes(
+          (data.recent_quotes ?? []).map((q: Record<string, unknown>) => ({
+            id: q.id,
+            projectType: q.project_type ?? 'Quote',
+            contractor: q.contractor_name ?? '',
+            quoteAmount: q.total_quoted ?? 0,
+            fairPrice: q.total_fair_high ?? 0,
+            savings: ((q.total_quoted as number) ?? 0) - ((q.total_fair_high as number) ?? 0),
+            status: q.status ?? 'pending',
+            date: q.created_at ?? '',
+            overallRating: q.overall_rating ?? 'fair',
+          }))
+        );
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('Failed to load dashboard data');
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
 
   const getStatusBadge = (status: string) => {
     if (status === 'completed') {
@@ -73,6 +116,41 @@ export default function DashboardPage() {
       </span>
     );
   };
+
+  if (loading) {
+    return (
+      <div className="max-w-7xl mx-auto space-y-8 animate-pulse">
+        <div>
+          <div className="h-8 w-48 bg-gray-200 rounded mb-2" />
+          <div className="h-5 w-72 bg-gray-100 rounded" />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {Array.from({ length: 4 }, (_, i) => (
+            <div key={i} className="card">
+              <div className="h-4 w-24 bg-gray-200 rounded mb-3" />
+              <div className="h-8 w-16 bg-gray-200 rounded mb-2" />
+              <div className="h-3 w-20 bg-gray-100 rounded" />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-2xl mx-auto py-16">
+        <div className="card text-center">
+          <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Unable to load dashboard</h2>
+          <p className="text-gray-600 mb-6">{error}</p>
+          <button onClick={() => window.location.reload()} className="btn-primary">
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto space-y-8">

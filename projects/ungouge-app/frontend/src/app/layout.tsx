@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
@@ -6,6 +7,7 @@ import Footer from '@/components/Footer';
 import ChatWidget from '@/components/ChatWidget';
 import CookieConsent from '@/components/CookieConsent';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import { AuthProvider } from '@/providers/AuthProvider';
 import {
   DEFAULT_METADATA,
   SITE_CONFIG,
@@ -113,15 +115,32 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.variable}>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <ErrorBoundary>
-            <main className="flex-grow">{children}</main>
-          </ErrorBoundary>
-          <Footer />
-          <CookieConsent />
-          <ChatWidget />
-        </div>
+        <AuthProvider>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <ErrorBoundary>
+              <main className="flex-grow">
+                <Suspense fallback={
+                  <div className="min-h-screen flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4" />
+                      <p className="text-gray-600">Loading...</p>
+                    </div>
+                  </div>
+                }>
+                  {children}
+                </Suspense>
+              </main>
+            </ErrorBoundary>
+            <Footer />
+            <Suspense fallback={null}>
+              <CookieConsent />
+            </Suspense>
+            <Suspense fallback={null}>
+              <ChatWidget />
+            </Suspense>
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

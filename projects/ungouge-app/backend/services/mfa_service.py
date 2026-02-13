@@ -1,10 +1,16 @@
 """
 MFA (Multi-Factor Authentication) Service
 Email OTP implementation for Ungouge.ai
+
+SECURITY FIXES:
+  HIGH-2: MFA codes hashed with HMAC-SHA256 (server-side secret key) instead of plain SHA-256
+  HIGH-3: Brute-force protection with attempt counter and 15-minute lockout after 5 failures
 """
 
+import hmac
 import hashlib
 import secrets
+import os
 from datetime import datetime, timedelta
 from typing import Optional, Tuple
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -16,6 +22,11 @@ from services.email_service import send_mfa_code
 # MFA Configuration
 MFA_CODE_LENGTH = 6
 MFA_CODE_EXPIRY_MINUTES = 10
+MFA_MAX_ATTEMPTS = 5           # HIGH-3: max failed attempts before lockout
+MFA_LOCKOUT_MINUTES = 15       # HIGH-3: lockout duration after max attempts
+
+# HIGH-2: Server-side secret key for HMAC — falls back to JWT secret if not set
+MFA_HMAC_SECRET = os.getenv("MFA_HMAC_SECRET", os.getenv("JWT_SECRET_KEY", "")).encode("utf-8")
 
 
 def generate_mfa_code() -> str:
@@ -24,8 +35,13 @@ def generate_mfa_code() -> str:
 
 
 def hash_mfa_code(code: str) -> str:
-    """Hash an MFA code with SHA-256 for secure storage"""
-    return hashlib.sha256(code.encode('utf-8')).hexdigest()
+    """
+    HIGH-2: Hash an MFA code with HMAC-SHA256 using a server-side secret key.
+    
+    This prevents rainbow table attacks — even with DB read access, an attacker
+    cannot reverse the 1M possible 6-digit codes without the HMAC secret.
+    """
+    return hmac.new(MFA_HMAC_SECRET, code.encode('utf-8'), hashlib.sha256).hexdigest()
 
 
 def mask_email(email: str) -> str:
@@ -52,6 +68,8 @@ async def create_and_send_mfa_code(
     """
     Generate MFA code, save to user, and send via email.
     
+    HIGH-3: Also resets the attempt counter when a new code is issued.
+    
     Args:
         db: Database session
         user: User object
@@ -63,9 +81,12 @@ async def create_and_send_mfa_code(
     code = generate_mfa_code()
     expires_at = datetime.utcnow() + timedelta(minutes=MFA_CODE_EXPIRY_MINUTES)
     
-    # Save hashed code to user (never store plaintext)
+    # Save HMAC-hashed code to user (HIGH-2: never store plaintext or plain hash)
     user.mfa_code = hash_mfa_code(code)
     user.mfa_code_expires = expires_at
+    # HIGH-3: Reset attempt counter when new code is issued
+    user.mfa_attempts = 0
+    user.mfa_locked_until = None
     
     try:
         await db.commit()
@@ -95,6 +116,11 @@ async def verify_mfa_code(
     """
     Verify the MFA code entered by user.
     
+    HIGH-3: Enforces brute-force protection:
+      - Max 5 failed attempts per code
+      - 15-minute lockout after exceeding max attempts
+      - Counter resets on successful verification
+    
     Args:
         db: Database session
         user: User object
@@ -103,6 +129,16 @@ async def verify_mfa_code(
     Returns:
         Tuple of (valid: bool, message: str)
     """
+    # HIGH-3: Check if account is locked out
+    if user.mfa_locked_until and datetime.utcnow() < user.mfa_locked_until:
+        remaining = int((user.mfa_locked_until - datetime.utcnow()).total_seconds() / 60) + 1
+        return False, f"Too many failed attempts. Please try again in {remaining} minutes."
+    
+    # If lockout has expired, reset
+    if user.mfa_locked_until and datetime.utcnow() >= user.mfa_locked_until:
+        user.mfa_locked_until = None
+        user.mfa_attempts = 0
+    
     # Check if code exists
     if not user.mfa_code:
         return False, "No verification code found. Please request a new one."
@@ -112,16 +148,33 @@ async def verify_mfa_code(
         # Clear expired code
         user.mfa_code = None
         user.mfa_code_expires = None
+        user.mfa_attempts = 0
         await db.commit()
         return False, "Verification code has expired. Please request a new one."
     
-    # Verify code (constant-time comparison of hashes for security)
-    if not secrets.compare_digest(user.mfa_code, hash_mfa_code(code)):
-        return False, "Invalid verification code"
+    # HIGH-2: Verify code using HMAC (constant-time comparison via hmac.compare_digest)
+    if not hmac.compare_digest(user.mfa_code, hash_mfa_code(code)):
+        # HIGH-3: Increment attempt counter
+        user.mfa_attempts = (user.mfa_attempts or 0) + 1
+        
+        if user.mfa_attempts >= MFA_MAX_ATTEMPTS:
+            # Lock the account for MFA
+            user.mfa_locked_until = datetime.utcnow() + timedelta(minutes=MFA_LOCKOUT_MINUTES)
+            # Invalidate the current code
+            user.mfa_code = None
+            user.mfa_code_expires = None
+            await db.commit()
+            return False, f"Too many failed attempts. MFA locked for {MFA_LOCKOUT_MINUTES} minutes. Please request a new code after the lockout."
+        
+        remaining_attempts = MFA_MAX_ATTEMPTS - user.mfa_attempts
+        await db.commit()
+        return False, f"Invalid verification code. {remaining_attempts} attempt(s) remaining."
     
-    # Clear the code after successful verification
+    # Success — clear the code and reset attempts
     user.mfa_code = None
     user.mfa_code_expires = None
+    user.mfa_attempts = 0
+    user.mfa_locked_until = None
     await db.commit()
     
     return True, "Code verified successfully"
@@ -168,6 +221,8 @@ async def disable_mfa(
     user.mfa_enabled = False
     user.mfa_code = None
     user.mfa_code_expires = None
+    user.mfa_attempts = 0
+    user.mfa_locked_until = None
     
     try:
         await db.commit()

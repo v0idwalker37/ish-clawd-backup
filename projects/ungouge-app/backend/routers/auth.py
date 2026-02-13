@@ -190,7 +190,7 @@ async def register(
     from services.email_service import send_welcome_email
     asyncio.create_task(send_welcome_email(normalized_email, sanitized_name))
     
-    # Create response with cookies
+    # HIGH-4: Set httpOnly cookies ONLY — no tokens in response body
     from fastapi.responses import JSONResponse
     is_production = os.getenv("ENVIRONMENT") == "production"
     
@@ -203,9 +203,6 @@ async def register(
                 "name": sanitized_name,
                 "is_verified": False,
             },
-            # Also include tokens for backward compatibility / API clients
-            "access_token": access_token,
-            "refresh_token": refresh_token,
             "token_type": "bearer",
         },
         status_code=status.HTTP_201_CREATED,
@@ -326,7 +323,7 @@ async def login(
     # Log successful login
     log_auth_success(user.id, "login", request.client.host if request.client else None)
     
-    # Create response with cookies
+    # HIGH-4: Set httpOnly cookies ONLY — no tokens in response body
     from fastapi.responses import JSONResponse
     is_production = os.getenv("ENVIRONMENT") == "production"
     
@@ -338,9 +335,6 @@ async def login(
             "name": user.name,
             "is_verified": user.is_verified,
         },
-        # Also include tokens for backward compatibility / API clients
-        "access_token": access_token,
-        "refresh_token": refresh_token,
         "token_type": "bearer",
     })
     
@@ -374,14 +368,20 @@ async def refresh_token_endpoint(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Refresh access token using refresh token
+    Refresh access token using refresh token.
+    
+    HIGH-1: Implements refresh token rotation — the old refresh token is
+    invalidated (blacklisted) and a new one is issued every time.
     
     Accepts refresh token from:
     - Request body (token_data.refresh_token)
     - httpOnly cookie (refresh_token)
     
-    Returns new JWT tokens and sets new cookies
+    Sets new httpOnly cookies (HIGH-4: no tokens in response body).
     """
+    import hashlib
+    from models.database import RefreshTokenRecord
+    
     # Get refresh token from body or cookie
     refresh_token_value = None
     if token_data and token_data.refresh_token:
@@ -395,7 +395,7 @@ async def refresh_token_endpoint(
             detail="Refresh token required",
         )
     
-    # Verify refresh token
+    # Verify refresh token (checks expiry, type, blacklist)
     payload = verify_token(refresh_token_value, token_type="refresh")
     user_id = payload.get("sub")
     
@@ -403,6 +403,34 @@ async def refresh_token_endpoint(
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid refresh token",
+        )
+    
+    # HIGH-1: Check if this refresh token has been revoked in our rotation table
+    old_token_hash = hashlib.sha256(refresh_token_value.encode()).hexdigest()
+    existing_record = await db.execute(
+        select(RefreshTokenRecord).where(RefreshTokenRecord.token_hash == old_token_hash)
+    )
+    token_record = existing_record.scalar_one_or_none()
+    if token_record and token_record.is_revoked:
+        # A revoked token was reused — potential theft! Revoke ALL tokens for this user.
+        from services.logger import log_error
+        log_error("refresh_token_reuse_detected", "Revoked refresh token was reused — revoking all tokens for user", {
+            "user_id": user_id,
+        })
+        await db.execute(
+            select(RefreshTokenRecord).where(RefreshTokenRecord.user_id == user_id)
+        )
+        # Mark all user's refresh tokens as revoked
+        from sqlalchemy import update as sql_update
+        await db.execute(
+            sql_update(RefreshTokenRecord)
+            .where(RefreshTokenRecord.user_id == user_id)
+            .values(is_revoked=True)
+        )
+        await db.commit()
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Session invalidated for security. Please log in again.",
         )
     
     # Verify user still exists and is active
@@ -417,17 +445,56 @@ async def refresh_token_endpoint(
             detail="User not found or inactive",
         )
     
+    # HIGH-1: Blacklist the old refresh token (invalidate it)
+    exp_timestamp = payload.get("exp")
+    if exp_timestamp:
+        remaining_seconds = int((datetime.utcfromtimestamp(exp_timestamp) - datetime.utcnow()).total_seconds())
+        if remaining_seconds > 0:
+            await TokenBlacklist.add(refresh_token_value, remaining_seconds)
+    
+    # Mark old token as revoked in rotation table
+    if token_record:
+        token_record.is_revoked = True
+    else:
+        # Token wasn't in table (issued before rotation was added) — add as revoked
+        revoked_record = RefreshTokenRecord(
+            id=str(uuid.uuid4()),
+            user_id=user_id,
+            token_hash=old_token_hash,
+            is_revoked=True,
+            expires_at=datetime.utcfromtimestamp(exp_timestamp) if exp_timestamp else datetime.utcnow(),
+            created_at=datetime.utcnow(),
+        )
+        db.add(revoked_record)
+    
     # Generate new tokens
     new_access_token = create_access_token(data={"sub": user_id})
     new_refresh_token = create_refresh_token(data={"sub": user_id})
     
-    # Create response with new cookies
+    # Store the new refresh token in rotation table
+    new_token_hash = hashlib.sha256(new_refresh_token.encode()).hexdigest()
+    from jose import jwt as jose_jwt
+    from services.auth import SECRET_KEY, ALGORITHM
+    new_payload = jose_jwt.decode(new_refresh_token, SECRET_KEY, algorithms=[ALGORITHM])
+    new_exp = new_payload.get("exp")
+    
+    new_token_record = RefreshTokenRecord(
+        id=str(uuid.uuid4()),
+        user_id=user_id,
+        token_hash=new_token_hash,
+        is_revoked=False,
+        expires_at=datetime.utcfromtimestamp(new_exp) if new_exp else datetime.utcnow() + timedelta(days=7),
+        created_at=datetime.utcnow(),
+    )
+    db.add(new_token_record)
+    await db.commit()
+    
+    # HIGH-4: Set cookies only — no tokens in response body
     from fastapi.responses import JSONResponse
     is_production = os.getenv("ENVIRONMENT") == "production"
     
     response = JSONResponse(content={
-        "access_token": new_access_token,
-        "refresh_token": new_refresh_token,
+        "message": "Tokens refreshed successfully",
         "token_type": "bearer",
     })
     
@@ -1443,7 +1510,7 @@ async def verify_mfa_login(
     # Log successful MFA login
     log_auth_success(user.id, "mfa_login", request.client.host if request.client else None)
     
-    # Create response with cookies
+    # HIGH-4: Set httpOnly cookies ONLY — no tokens in response body
     from fastapi.responses import JSONResponse
     is_production = os.getenv("ENVIRONMENT") == "production"
     
@@ -1455,8 +1522,6 @@ async def verify_mfa_login(
             "name": user.name,
             "is_verified": user.is_verified,
         },
-        "access_token": access_token,
-        "refresh_token": refresh_token,
         "token_type": "bearer",
     })
     

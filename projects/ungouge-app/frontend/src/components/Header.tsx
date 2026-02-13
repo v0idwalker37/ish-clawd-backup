@@ -5,45 +5,18 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { Menu, X, User, FileText, Settings, LogOut, ChevronDown } from 'lucide-react';
+import { useAuth } from '@/providers/AuthProvider';
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
+  const { user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [user, setUser] = useState<{ name: string; email: string } | null>(null);
-  const [authChecked, setAuthChecked] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   
   // Check if we're on a dashboard page (must be AFTER all hooks, BEFORE early return)
   const isDashboard = pathname?.startsWith('/dashboard');
-
-  useEffect(() => {
-    // Check if user is logged in by calling API
-    const checkAuth = async () => {
-      try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-        const response = await fetch(`${apiUrl}/api/auth/me`, {
-          credentials: 'include',
-        });
-        
-        if (response.ok) {
-          const data = await response.json();
-          setUser({
-            name: data.name,
-            email: data.email,
-          });
-        } else {
-          setUser(null);
-        }
-      } catch {
-        // Not logged in or error - just don't show user menu
-        setUser(null);
-      }
-    };
-    
-    checkAuth();
-  }, []);
 
   useEffect(() => {
     // Close user menu when clicking outside
@@ -57,6 +30,17 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        setUserMenuOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
+
   // Don't render header on dashboard pages (dashboard has its own nav)
   // This MUST be after all hooks to avoid "rendered fewer hooks" error
   if (isDashboard) {
@@ -64,20 +48,7 @@ export default function Header() {
   }
 
   const handleLogout = async () => {
-    try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-      await fetch(`${apiUrl}/api/auth/logout`, {
-        method: 'POST',
-        credentials: 'include',
-      });
-    } catch {
-      // Even if logout API fails, clear local state
-    }
-    
-    // Clear any local state
-    localStorage.clear();
-    sessionStorage.clear();
-    setUser(null);
+    await logout();
     setUserMenuOpen(false);
     router.push('/');
   };
@@ -115,6 +86,8 @@ export default function Header() {
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+                  aria-expanded={userMenuOpen}
+                  aria-haspopup="true"
                 >
                   <div className="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center text-white font-semibold text-sm">
                     {user.name.charAt(0).toUpperCase()}
@@ -124,12 +97,17 @@ export default function Header() {
                 </button>
 
                 {userMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 py-2">
+                  <div
+                    role="menu"
+                    aria-orientation="vertical"
+                    className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 py-2"
+                  >
                     <div className="px-4 py-3 border-b border-gray-100">
                       <p className="font-semibold text-gray-900">{user.name}</p>
                       <p className="text-sm text-gray-500 truncate">{user.email}</p>
                     </div>
                     <Link
+                      role="menuitem"
                       href="/dashboard"
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 text-gray-700"
                       onClick={() => setUserMenuOpen(false)}
@@ -138,6 +116,7 @@ export default function Header() {
                       Dashboard
                     </Link>
                     <Link
+                      role="menuitem"
                       href="/dashboard/quotes"
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 text-gray-700"
                       onClick={() => setUserMenuOpen(false)}
@@ -146,6 +125,7 @@ export default function Header() {
                       My Quotes
                     </Link>
                     <Link
+                      role="menuitem"
                       href="/dashboard/settings"
                       className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 text-gray-700"
                       onClick={() => setUserMenuOpen(false)}
@@ -155,6 +135,7 @@ export default function Header() {
                     </Link>
                     <div className="border-t border-gray-100 mt-2 pt-2">
                       <button
+                        role="menuitem"
                         onClick={handleLogout}
                         className="flex items-center gap-3 px-4 py-2.5 hover:bg-red-50 text-red-600 w-full"
                       >
@@ -182,7 +163,9 @@ export default function Header() {
           <button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 active:scale-95 transition-all tap-highlight-none"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
               <X className="w-6 h-6 text-gray-700" />
@@ -194,7 +177,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-4 animate-in slide-in-from-top duration-300">
+          <div id="mobile-menu" className="md:hidden mt-4 pb-4 space-y-4 animate-in slide-in-from-top duration-300">
             <Link
               href="/analyze"
               className="block text-gray-700 hover:text-primary-600 font-medium"

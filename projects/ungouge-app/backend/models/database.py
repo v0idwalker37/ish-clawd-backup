@@ -64,8 +64,10 @@ class User(Base):
     
     # MFA (Email OTP) fields
     mfa_enabled: Mapped[bool] = mapped_column(default=False)
-    mfa_code: Mapped[Optional[str]] = mapped_column(String(6), nullable=True)  # 6-digit OTP
+    mfa_code: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)  # HMAC-SHA256 hex digest
     mfa_code_expires: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    mfa_attempts: Mapped[int] = mapped_column(Integer, default=0, server_default="0")  # HIGH-3: brute-force counter
+    mfa_locked_until: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)  # HIGH-3: lockout timestamp
     
     # GDPR Art. 18 — Right to Restriction of Processing
     # When True, data is retained but NOT processed (e.g. quote analysis is blocked).
@@ -92,6 +94,8 @@ class Quote(Base):
     project_type: Mapped[str] = mapped_column(String(100))
     location: Mapped[str] = mapped_column(String(255))
     contractor_name: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    # CRIT-1: Payment gating — quote starts as "pending", set to "paid" after payment
+    payment_status: Mapped[str] = mapped_column(String(20), default="pending", server_default="pending", index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)  # Indexed: for sorting/filtering by date
     
     # Relationships
@@ -137,9 +141,23 @@ class Payment(Base):
     id: Mapped[str] = mapped_column(String(36), primary_key=True)
     quote_id: Mapped[str] = mapped_column(String(36), ForeignKey("quotes.id"), index=True)  # Indexed: for payment lookups by quote
     stripe_payment_intent_id: Mapped[str] = mapped_column(String(255), unique=True)  # unique=True creates index automatically
+    # CRIT-3: Store Stripe checkout session ID for idempotent webhook processing
+    stripe_session_id: Mapped[Optional[str]] = mapped_column(String(255), unique=True, nullable=True, index=True)
     amount: Mapped[int] = mapped_column(Integer)  # Amount in cents
     currency: Mapped[str] = mapped_column(String(3), default="usd")
     status: Mapped[str] = mapped_column(String(50), index=True)  # Indexed: for filtering by payment status
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+class RefreshTokenRecord(Base):
+    """HIGH-1: Stored refresh tokens for rotation — invalidate old tokens on use"""
+    __tablename__ = "refresh_tokens"
+    
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    user_id: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), index=True)
+    token_hash: Mapped[str] = mapped_column(String(64), unique=True, index=True)  # SHA-256 of the JWT
+    is_revoked: Mapped[bool] = mapped_column(Boolean, default=False)
+    expires_at: Mapped[datetime] = mapped_column(DateTime, index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
 class PasswordResetToken(Base):

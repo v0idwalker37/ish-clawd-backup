@@ -14,7 +14,8 @@ Environment Variables Required:
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import JSONResponse
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, update
+from sqlalchemy.orm import with_for_update
 from pydantic import BaseModel
 from typing import Optional
 import uuid
@@ -50,7 +51,8 @@ class CreateCheckoutResponse(BaseModel):
 async def create_checkout(
     body: CreateCheckoutRequest,
     db: AsyncSession = Depends(get_db),
-    current_user: Optional[User] = Depends(get_current_user_optional),
+    # CRIT-2: Require authentication — all quotes now require a user
+    current_user: User = Depends(get_current_user),
 ):
     """
     Create a Stripe Checkout Session for a quote analysis report ($19.99).
@@ -58,7 +60,7 @@ async def create_checkout(
     The frontend should redirect the user to the returned `checkout_url`.
     On successful payment, Stripe redirects to /report/{quote_id}?payment=success.
 
-    Requires authentication if the quote belongs to a user.
+    Requires authentication. Only the quote owner can create a checkout.
     """
     # 1. Verify the quote exists
     result = await db.execute(select(Quote).where(Quote.id == body.quote_id))
@@ -70,34 +72,34 @@ async def create_checkout(
             detail={"error": "Quote not found", "suggestion": "Please submit a quote first."},
         )
 
-    # 2. Access control: if quote belongs to a user, verify ownership
-    if quote.user_id:
-        if not current_user:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail={"error": "Authentication required", "suggestion": "Please log in to pay for this quote."},
-            )
-        if quote.user_id != current_user.id:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail={"error": "Access denied", "suggestion": "You can only pay for your own quotes."},
-            )
+    # 2. Access control: verify ownership
+    if quote.user_id != current_user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={"error": "Access denied", "suggestion": "You can only pay for your own quotes."},
+        )
 
-    # 3. Check if already paid (don't double-charge)
+    # 3. CRIT-3: Check if already paid OR has a pending checkout (don't double-charge)
     existing_payment = await db.execute(
         select(Payment).where(
             Payment.quote_id == body.quote_id,
-            Payment.status == "paid",
+            Payment.status.in_(["paid", "pending"]),
         )
     )
-    if existing_payment.scalar_one_or_none():
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail={
-                "error": "This quote has already been paid for.",
-                "suggestion": "View your report at /report/" + body.quote_id,
-            },
-        )
+    existing = existing_payment.scalar_one_or_none()
+    if existing:
+        if existing.status == "paid":
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail={
+                    "error": "This quote has already been paid for.",
+                    "suggestion": "View your report at /report/" + body.quote_id,
+                },
+            )
+        # If pending, allow re-creating (the old session may have expired)
+        # But clean up the old pending record
+        await db.delete(existing)
+        await db.flush()
 
     # 4. Create Stripe Checkout Session
     user_email = current_user.email if current_user else None
@@ -106,11 +108,12 @@ async def create_checkout(
         user_email=user_email,
     )
 
-    # 5. Create a pending payment record
+    # 5. Create a pending payment record with stripe_session_id for idempotency
     payment = Payment(
         id=str(uuid.uuid4()),
         quote_id=body.quote_id,
         stripe_payment_intent_id=checkout_data["session_id"],  # Store session ID; updated to PI on webhook
+        stripe_session_id=checkout_data["session_id"],  # CRIT-3: idempotency key
         amount=1999,
         currency="usd",
         status="pending",
@@ -206,18 +209,53 @@ async def _handle_successful_payment(
     session_obj,
 ):
     """
-    Handle a successful checkout payment:
-    1. Update payment record to 'paid'
-    2. Trigger report generation if not already generated
+    Handle a successful checkout payment.
+    
+    SECURITY (CRIT-3): Uses Stripe session ID for idempotency and
+    SELECT FOR UPDATE to prevent race conditions from concurrent webhooks.
+    
+    Steps:
+    1. Idempotency check: skip if this session_id was already processed
+    2. Lock payment row with SELECT FOR UPDATE
+    3. Update payment status to 'paid'
+    4. Update quote payment_status to 'paid' (CRIT-1)
+    5. Trigger report generation if not already generated
     """
-    # Update payment record
+    stripe_session_id = session_obj.id
+
+    # CRIT-3: Idempotency — check if this exact Stripe session was already processed
+    already_processed = await db.execute(
+        select(Payment).where(
+            Payment.stripe_session_id == stripe_session_id,
+            Payment.status == "paid",
+        )
+    )
+    if already_processed.scalar_one_or_none():
+        logger.info(
+            "webhook_duplicate_skipped",
+            extra={"quote_id": quote_id, "session_id": stripe_session_id},
+        )
+        return
+
+    # CRIT-3: SELECT FOR UPDATE — lock the payment row to prevent concurrent updates
     payment_result = await db.execute(
-        select(Payment).where(Payment.quote_id == quote_id).order_by(Payment.created_at.desc())
+        select(Payment)
+        .where(Payment.quote_id == quote_id)
+        .order_by(Payment.created_at.desc())
+        .with_for_update()
     )
     payment = payment_result.scalar_one_or_none()
 
     if payment:
+        # Double-check status after acquiring lock
+        if payment.status == "paid":
+            logger.info(
+                "payment_already_paid_after_lock",
+                extra={"quote_id": quote_id, "payment_id": payment.id},
+            )
+            return
         payment.status = "paid"
+        payment.stripe_session_id = stripe_session_id
         # Update with the actual payment intent ID from the session
         if hasattr(session_obj, "payment_intent") and session_obj.payment_intent:
             payment.stripe_payment_intent_id = session_obj.payment_intent
@@ -227,6 +265,7 @@ async def _handle_successful_payment(
             id=str(uuid.uuid4()),
             quote_id=quote_id,
             stripe_payment_intent_id=session_obj.payment_intent or session_obj.id,
+            stripe_session_id=stripe_session_id,
             amount=session_obj.amount_total or 1999,
             currency=session_obj.currency or "usd",
             status="paid",
@@ -234,11 +273,16 @@ async def _handle_successful_payment(
         )
         db.add(payment)
 
+    # CRIT-1: Update quote payment_status to "paid"
+    await db.execute(
+        update(Quote).where(Quote.id == quote_id).values(payment_status="paid")
+    )
+
     await db.commit()
 
     logger.info(
         "payment_marked_paid",
-        extra={"quote_id": quote_id, "payment_id": payment.id},
+        extra={"quote_id": quote_id, "payment_id": payment.id, "session_id": stripe_session_id},
     )
 
     # Send receipt email (non-blocking)
