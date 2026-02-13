@@ -15,6 +15,7 @@ from pydantic import BaseModel
 
 from routers import quotes, health, auth
 from models.database import engine, Base
+from middleware.dnt import DNTMiddleware
 
 # HIGH-08: Conditional HTTPS redirect for production deployments
 ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
@@ -35,16 +36,49 @@ class CsrfSettings(BaseModel):
 def get_csrf_config():
     return CsrfSettings()
 
+async def _daily_cleanup_loop():
+    """Background loop that runs data retention cleanup once per day."""
+    import asyncio
+    import logging
+    from middleware.data_retention import cleanup_expired_quotes, cleanup_expired_tokens
+    from models.database import async_session_maker as AsyncSessionLocal
+
+    logger = logging.getLogger("ungouge.retention")
+    INTERVAL = 24 * 60 * 60  # 24 hours in seconds
+
+    while True:
+        try:
+            async with AsyncSessionLocal() as db:
+                quotes_deleted = await cleanup_expired_quotes(db)
+                tokens_deleted = await cleanup_expired_tokens(db)
+                logger.info(
+                    f"Daily cleanup completed: {quotes_deleted} quotes, "
+                    f"{tokens_deleted} tokens removed"
+                )
+        except Exception as e:
+            logger.error(f"Daily cleanup failed: {e}")
+        await asyncio.sleep(INTERVAL)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Startup and shutdown events"""
+    import asyncio
+
     # Ensure all models are imported so create_all picks up their tables
     from services.token_blacklist import BlacklistedToken  # noqa: F401 — registers token_blacklist table
 
     # Create database tables on startup
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
+    # Schedule daily data retention cleanup (GDPR compliance)
+    cleanup_task = asyncio.create_task(_daily_cleanup_loop())
+
     yield
+
+    # Cancel cleanup task on shutdown
+    cleanup_task.cancel()
     # Cleanup on shutdown
     await engine.dispose()
 
@@ -125,6 +159,9 @@ async def add_security_headers(request: Request, call_next):
     response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
     
     return response
+
+# GDPR R-15: DNT (Do Not Track) signal handling
+app.add_middleware(DNTMiddleware)
 
 # CORS middleware (hardened for production)
 cors_origins = [

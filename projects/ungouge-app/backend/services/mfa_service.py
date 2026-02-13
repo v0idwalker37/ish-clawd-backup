@@ -3,6 +3,7 @@ MFA (Multi-Factor Authentication) Service
 Email OTP implementation for Ungouge.ai
 """
 
+import hashlib
 import secrets
 from datetime import datetime, timedelta
 from typing import Optional, Tuple
@@ -20,6 +21,11 @@ MFA_CODE_EXPIRY_MINUTES = 10
 def generate_mfa_code() -> str:
     """Generate a secure 6-digit numeric code"""
     return ''.join([str(secrets.randbelow(10)) for _ in range(MFA_CODE_LENGTH)])
+
+
+def hash_mfa_code(code: str) -> str:
+    """Hash an MFA code with SHA-256 for secure storage"""
+    return hashlib.sha256(code.encode('utf-8')).hexdigest()
 
 
 def mask_email(email: str) -> str:
@@ -57,8 +63,8 @@ async def create_and_send_mfa_code(
     code = generate_mfa_code()
     expires_at = datetime.utcnow() + timedelta(minutes=MFA_CODE_EXPIRY_MINUTES)
     
-    # Save to user
-    user.mfa_code = code
+    # Save hashed code to user (never store plaintext)
+    user.mfa_code = hash_mfa_code(code)
     user.mfa_code_expires = expires_at
     
     try:
@@ -109,8 +115,8 @@ async def verify_mfa_code(
         await db.commit()
         return False, "Verification code has expired. Please request a new one."
     
-    # Verify code (constant-time comparison for security)
-    if not secrets.compare_digest(user.mfa_code, code):
+    # Verify code (constant-time comparison of hashes for security)
+    if not secrets.compare_digest(user.mfa_code, hash_mfa_code(code)):
         return False, "Invalid verification code"
     
     # Clear the code after successful verification

@@ -13,7 +13,7 @@ export default function PrivacyPage() {
           <p className="text-xl text-gray-600">
             We protect your data because that's literally our entire mission
           </p>
-          <p className="text-sm text-gray-500 mt-2">Last updated: February 3, 2024</p>
+          <p className="text-sm text-gray-500 mt-2">Last updated: February 13, 2026</p>
         </div>
 
         {/* Core Promise */}
@@ -145,7 +145,7 @@ export default function PrivacyPage() {
                     <li><strong>Opt-out:</strong> You can opt out of any non-essential emails (we'll still send transactional emails like receipts)</li>
                   </ul>
                   
-                  <p className="mt-4">To exercise any of these rights, email us at <a href="mailto:privacy@ungouge.ai" className="text-primary-600 hover:underline font-semibold">privacy@ungouge.ai</a> or use your account settings.</p>
+                  <p className="mt-4">To exercise any of these rights, email us at <a href="mailto:legal@ungouge.ai" className="text-primary-600 hover:underline font-semibold">legal@ungouge.ai</a> or use your account settings.</p>
                 </div>
               </div>
             </div>
@@ -178,7 +178,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-3">Children's Privacy</h2>
             <p className="text-gray-700">
-              Our service is not intended for anyone under 18. We do not knowingly collect information from children. If you believe we've accidentally collected data from a child, please contact us immediately at <a href="mailto:privacy@ungouge.ai" className="text-primary-600 hover:underline">privacy@ungouge.ai</a>.
+              Our service is not intended for anyone under 18. We do not knowingly collect information from children. If you believe we've accidentally collected data from a child, please contact us immediately at <a href="mailto:legal@ungouge.ai" className="text-primary-600 hover:underline">legal@ungouge.ai</a>.
             </p>
           </section>
 
@@ -200,7 +200,7 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-3">Contact Us</h2>
             <div className="text-gray-700">
               <p className="mb-2">Questions about privacy? We're here to help:</p>
-              <p><strong>Email:</strong> <a href="mailto:privacy@ungouge.ai" className="text-primary-600 hover:underline">privacy@ungouge.ai</a></p>
+              <p><strong>Email:</strong> <a href="mailto:legal@ungouge.ai" className="text-primary-600 hover:underline">legal@ungouge.ai</a></p>
               <p><strong>General support:</strong> <a href="mailto:support@ungouge.ai" className="text-primary-600 hover:underline">support@ungouge.ai</a></p>
             </div>
           </section>

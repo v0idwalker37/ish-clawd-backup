@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Settings, Bell, Shield, Trash2, AlertTriangle } from 'lucide-react';
+import { Settings, Bell, Shield, Trash2, AlertTriangle, Loader2 } from 'lucide-react';
 
 export default function SettingsPage() {
   const [notifications, setNotifications] = useState({
@@ -10,6 +10,39 @@ export default function SettingsPage() {
     marketing: false,
   });
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+
+  const handleDeleteAccount = async () => {
+    if (deleteConfirmText !== 'DELETE') return;
+
+    setIsDeleting(true);
+    setDeleteError(null);
+
+    try {
+      const res = await fetch('/api/auth/my-data', {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.detail || 'Failed to delete account');
+      }
+
+      // Clear any local cookies/storage
+      document.cookie = 'access_token=; Max-Age=0; path=/';
+      document.cookie = 'refresh_token=; Max-Age=0; path=/';
+      localStorage.clear();
+
+      // Redirect to homepage
+      window.location.href = '/';
+    } catch (err: any) {
+      setDeleteError(err.message || 'Something went wrong. Please try again.');
+      setIsDeleting(false);
+    }
+  };
 
   const handleNotificationChange = (key: keyof typeof notifications) => {
     setNotifications((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -128,26 +161,44 @@ export default function SettingsPage() {
               </button>
             ) : (
               <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-sm text-red-700 mb-4">
-                  Are you sure? This will permanently delete your account, all quotes, and reports.
-                  This cannot be undone.
+                <p className="text-sm text-red-700 mb-3">
+                  This will permanently delete your account and all data. Type <strong>DELETE</strong> to confirm.
                 </p>
+                <input
+                  type="text"
+                  value={deleteConfirmText}
+                  onChange={(e) => setDeleteConfirmText(e.target.value)}
+                  placeholder="Type DELETE to confirm"
+                  className="w-full px-3 py-2 border border-red-300 rounded-lg mb-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+                  disabled={isDeleting}
+                  autoFocus
+                />
+                {deleteError && (
+                  <p className="text-sm text-red-600 mb-3">{deleteError}</p>
+                )}
                 <div className="flex gap-3">
                   <button
-                    onClick={() => setShowDeleteConfirm(false)}
+                    onClick={() => {
+                      setShowDeleteConfirm(false);
+                      setDeleteConfirmText('');
+                      setDeleteError(null);
+                    }}
+                    disabled={isDeleting}
                     className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
                   >
                     Cancel
                   </button>
                   <button
-                    onClick={() => {
-                      // TODO: Implement account deletion
-                      alert('Account deletion not yet implemented');
-                    }}
-                    className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 flex items-center gap-2"
+                    onClick={handleDeleteAccount}
+                    disabled={deleteConfirmText !== 'DELETE' || isDeleting}
+                    className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <Trash2 className="w-4 h-4" />
-                    Yes, Delete My Account
+                    {isDeleting ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Trash2 className="w-4 h-4" />
+                    )}
+                    {isDeleting ? 'Deleting...' : 'Yes, Delete My Account'}
                   </button>
                 </div>
               </div>
