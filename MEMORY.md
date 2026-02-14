@@ -297,14 +297,36 @@ Full reference: `~/clawd/SKILLS_PLAYBOOK.md`
 - Build time: 2-3 weeks post-launch
 - NOT for launch day — ship core product first, add as v1.1
 
+## Beast Machine (Migration Target)
+- **Specs:** i9-9980XE (36 cores), 32GB DDR4, GTX 1080 Ti 11GB, 935GB NVMe
+- **OS:** Ubuntu 24.04 LTS, kernel 6.17.0
+- **Access:** ungouge@100.65.165.81 (Tailscale), passwordless sudo
+- **Status (Feb 13):** Fully prepped — Node 22, OpenClaw 2026.2.12, Docker, Python 3.12, repo cloned, firewall, fail2ban, auto-updates
+- **HARD DEADLINE:** Must be primary before Miami trip (next weekend) — Mac going with Jason
+- **Remaining:** Copy OpenClaw config → boot → verify Telegram → cut over
+
+## Feb 13 Sprint Summary
+- **20 Opus sub-agents deployed**, all completed successfully
+- **~25 commits pushed** to GitHub (history scrubbed of secrets)
+- Stripe payment integration (full checkout flow)
+- Professional pentest + all critical/high fixes (payment gating, race conditions, token security)
+- Frontend audit (43 findings) + all critical/high fixes
+- Full GDPR compliance (21/21 items)
+- SEO optimization, blog system (34 posts), landing page, email service
+- Error boundaries, loading states, backend test suite (46 tests)
+- Alembic migrations, Dockerfile, deploy checklist, health checks, README
+- Cost model validated + 3 critical bugs fixed (regional multipliers now work)
+- Beast Machine setup started (Phases 1-4 complete)
+- **Estimated output: 150-200 person-hours ($25-40K commercial value)**
+
 ## Pending Tasks
-- GitHub: Create two private repos (ungouge-app, ungouge-dashboard), push with full history
-- Google Drive backup: Copy all project files to shared Drive folder
-- Wire up security middleware into main.py (30-35 min, documented)
-- Install security deps on deployment target
-- Set CSRF_SECRET environment variable
+- Copy OpenClaw config to Beast, verify, cut over (before Miami)
 - Gmail OAuth re-auth (Jason, manual)
-- Plan Next.js 16 upgrade for remaining npm vulns
+- Stripe live keys (after bank account Monday 9:30 AM)
+- Deploy to production (checklist ready at DEPLOY_CHECKLIST.md)
+- DNS: api.ungouge.ai → Cloud Run
+- Final smoke test → launch (~March 1)
+- 4 high npm vulns need Next.js 16 upgrade (deferred, not blocking)
 
 ---
 *Memory maintained through autonomous sessions and periodic curation.*
