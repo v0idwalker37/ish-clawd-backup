@@ -43,20 +43,14 @@ Things like:
 - **Query:** `curl -s "https://api.open-meteo.com/v1/forecast?latitude=44.0566&longitude=-72.6525&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&timezone=America/New_York"`
 - **Backup:** `curl -s "wttr.in/Northfield+Vermont?u&format=..."` (less accurate)
 
-## Examples
-
-```markdown
-### Cameras
-- living-room → Main area, 180° wide angle
-- front-door → Entrance, motion-triggered
-
 ### SSH
-- home-server → 192.168.1.100, user: admin
+- **Beast Machine:** ungouge@100.65.165.81 (Tailscale) — i9-9980XE, 36 cores, 32GB, GTX 1080 Ti, 935GB NVMe, Ubuntu 24.04
+- **Mac:** mains-air / 100.95.240.20 (Tailscale)
+- Tailscale tailnet: ungouge.ai (void@ account)
+- Beast has passwordless sudo configured
 
 ### TTS
-- Preferred voice: "Nova" (warm, slightly British)
-- Default speaker: Kitchen HomePod
-```
+- Preferred voice: TBD
 
 ## Why Separate?
 
