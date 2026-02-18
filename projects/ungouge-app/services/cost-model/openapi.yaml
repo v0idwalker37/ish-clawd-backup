@@ -1,0 +1,160 @@
+openapi: 3.0.3
+info:
+  title: Ungouge Cost Model Service
+  description: Calculate fair market pricing for contractor quotes
+  version: 2.0.0
+
+servers:
+  - url: http://localhost:8001
+    description: Local development
+  - url: https://cost-model-staging.ungouge.ai
+    description: Staging
+  - url: https://cost-model.ungouge.ai
+    description: Production (internal only)
+
+paths:
+  /health/live:
+    get:
+      summary: Liveness probe
+      responses:
+        '200':
+          description: Service is alive
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+
+  /health/ready:
+    get:
+      summary: Readiness probe
+      responses:
+        '200':
+          description: Service is ready
+        '503':
+          description: Service not ready
+
+  /analyze:
+    post:
+      summary: Analyze quote and return cost breakdown
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CostAnalysisRequest'
+      responses:
+        '200':
+          description: Analysis complete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostAnalysisResponse'
+        '400':
+          description: Invalid request
+
+components:
+  schemas:
+    LineItem:
+      type: object
+      required: [description, quantity, unit, unit_price]
+      properties:
+        description:
+          type: string
+        quantity:
+          type: number
+        unit:
+          type: string
+        unit_price:
+          type: number
+
+    Location:
+      type: object
+      required: [zip_code]
+      properties:
+        zip_code:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+
+    CostAnalysisRequest:
+      type: object
+      required: [quote_id, line_items, location, project_type]
+      properties:
+        quote_id:
+          type: string
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        location:
+          $ref: '#/components/schemas/Location'
+        project_type:
+          type: string
+        total_quoted:
+          type: number
+
+    CostBreakdownItem:
+      type: object
+      properties:
+        category:
+          type: string
+        estimated_cost:
+          type: number
+        quoted_cost:
+          type: number
+        variance:
+          type: number
+        variance_pct:
+          type: number
+        flag:
+          type: string
+          enum: [high, low, extreme, null]
+
+    CostAnalysisResponse:
+      type: object
+      properties:
+        quote_id:
+          type: string
+        total_cost:
+          type: number
+        fair_price_range:
+          type: object
+          properties:
+            min:
+              type: number
+            max:
+              type: number
+        confidence_score:
+          type: number
+          minimum: 0
+          maximum: 1
+        fairness_score:
+          type: integer
+          minimum: 0
+          maximum: 100
+        verdict:
+          type: string
+          enum: [suspiciously_low, fair, slightly_high, overpriced]
+        breakdown:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostBreakdownItem'
+        recommendations:
+          type: array
+          items:
+            type: string
+        flags:
+          type: array
+          items:
+            type: string
+        location_factor:
+          type: number
+        analyzed_at:
+          type: string
+          format: date-time

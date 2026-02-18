@@ -1,0 +1,113 @@
+===============================================================================
+HDD HASH JOB REPORT — 2026-02-17
+===============================================================================
+
+STATUS: IN PROGRESS (exceeds 8-hour agent monitoring limit)
+        Job continues running in tmux session "hdd-hash"
+
+Start Time:       2026-02-17 06:36:44 EST
+Report Time:      2026-02-17 06:57:xx EST (agent monitoring ~20 min)
+Restarts:         0 (no restarts needed — script was fixed and started fresh)
+
+SUMMARY:
+  Total files:    566,989
+  Hashed:         509,941 (89.9%)
+  Remaining:      57,048
+  Errors:         0
+  Data to hash:   ~4.87 TB (on 5.5TB external HDD "Number_2")
+
+ESTIMATED COMPLETION: ~13.5-16.9 hours at 80-100 MB/s HDD read speed
+  (well beyond 8-hour agent limit — job left running in tmux)
+
+RATE (first 20 minutes):
+  - Small files: ~15-20 files/min
+  - Large files (GoPro 1-4GB): ~3-6 files/min
+  - Mixed average: ~8-10 files/min
+
+ROOT CAUSE OF PREVIOUS STALL:
+  Original hash_chunked.py committed only after processing an entire batch
+  of 1000 files. The first unhashed batch contained 151 files >1GB (GoPro
+  videos, up to 4GB each) totaling ~597 GB. At HDD read speed, this batch
+  would take ~2+ hours, but the script was being killed/restarted every ~30
+  minutes by external monitor, losing all progress each time.
+
+FIX APPLIED:
+  Rewrote hash_chunked.py (v2) with:
+  - Per-file commit (progress saved after every single file)
+  - Per-file timeout (5 min base + 1 min/GB dynamic)
+  - WAL journal mode for better concurrent read performance
+  - 64KB read chunks (vs original 8KB) for faster large file hashing
+  - Progress logging every 50 files
+  - Original backed up as hash_chunked.py.bak
+
+ACTIONS TAKEN:
+  1. Verified index.db integrity (PRAGMA integrity_check: ok)
+  2. Diagnosed root cause: batch-commit + large files + repeated restarts
+  3. Killed stale monitor_and_copy.sh (PID 95902)
+  4. Backed up original script as hash_chunked.py.bak
+  5. Wrote improved hash_chunked.py with per-file commits
+  6. Started job in tmux session "hdd-hash"
+  7. Confirmed steady progress over 20 minutes of monitoring
+
+TO MONITOR:
+  tmux attach -t hdd-hash
+  # or check remaining:
+  python3 -c "import sqlite3; c=sqlite3.connect('index.db'); print(c.execute('SELECT COUNT(*) FROM files WHERE hash IS NULL').fetchone()[0]); c.close()"
+
+TO CHECK COMPLETION:
+  tail -n 50 hash_progress.log
+
+===============================================================================
+MONITORING DATA (first 20 minutes)
+===============================================================================
+
+[06:42:54] Monitor started. remaining=57209
+[06:43:54] remaining=57202 delta=-7 rate=7.0/min
+[06:44:54] remaining=57187 delta=-15 rate=15.0/min
+[06:45:54] remaining=57175 delta=-12 rate=12.0/min
+[06:46:54] remaining=57165 delta=-10 rate=10.0/min
+[06:47:54] remaining=57155 delta=-10 rate=10.0/min
+[06:48:54] remaining=57149 delta=-6 rate=6.0/min
+[06:49:54] remaining=57139 delta=-10 rate=10.0/min
+[06:50:54] remaining=57131 delta=-8 rate=8.0/min
+[06:51:54] remaining=57128 delta=-3 rate=3.0/min
+[06:52:54] remaining=57122 delta=-6 rate=6.0/min
+[06:53:54] remaining=57111 delta=-11 rate=11.0/min
+[06:54:54] remaining=57098 delta=-13 rate=13.0/min
+[06:55:54] remaining=57078 delta=-20 rate=20.0/min
+[06:56:54] remaining=57073 delta=-5 rate=5.0/min
+
+===============================================================================
+HASH PROGRESS LOG (last entries)
+===============================================================================
+
+[2026-02-17 06:36:44] === Starting chunked hash processing (v2 - per-file commit) ===
+[2026-02-17 06:36:44] Total files: 566,989
+[2026-02-17 06:36:44] Remaining: 57,527
+[2026-02-17 06:36:44] Batch query size: 500, commit: per-file
+[2026-02-17 06:36:51] Progress: 89.9% (509,512/566,989) | remaining=57,477 errors=0
+[2026-02-17 06:36:59] Progress: 89.9% (509,562/566,989) | remaining=57,427 errors=0
+[2026-02-17 06:37:06] Progress: 89.9% (509,612/566,989) | remaining=57,377 errors=0
+[2026-02-17 06:37:12] Progress: 89.9% (509,662/566,989) | remaining=57,327 errors=0
+[2026-02-17 06:37:15] Progress: 89.9% (509,712/566,989) | remaining=57,277 errors=0
+[2026-02-17 06:40:11] Progress: 89.9% (509,762/566,989) | remaining=57,227 errors=0
+[2026-02-17 06:45:33] Progress: 89.9% (509,812/566,989) | remaining=57,177 errors=0
+[2026-02-17 06:52:20] Progress: 89.9% (509,862/566,989) | remaining=57,127 errors=0
+[2026-02-17 06:56:09] Progress: 89.9% (509,912/566,989) | remaining=57,077 errors=0
+
+===============================================================================
+SYSTEM INFO
+===============================================================================
+
+Disks:
+  sda  5.5T /media/ungouge/Number_2  (source - unhashed files here)
+  sdb  4.5T /media/ungouge/BOH 2
+  sdc  3.6T /media/ungouge/Blackhole01
+  nvme1n1 953.9G / (system + index.db)
+
+Filesystem for index.db:
+  /dev/mapper/ubuntu--vg-ubuntu--lv  935G  42G used  846G avail  5%
+
+===============================================================================
+END OF REPORT
+===============================================================================

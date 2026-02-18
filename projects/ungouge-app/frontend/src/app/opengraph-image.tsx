@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
-export const alt = 'UnGouge.ai — Independent Contractor Quote Verification';
+export const alt = 'Ungouge.ai — Stop overpaying for home improvements — Know Before You Sign';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -11,102 +11,110 @@ export default async function Image() {
     (
       <div
         style={{
-          background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+          background: 'linear-gradient(135deg, #1e3a5f 0%, #1a2e4a 50%, #0f1d30 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           justifyContent: 'center',
-          padding: '60px',
+          padding: '80px',
+          position: 'relative',
         }}
       >
-        {/* Logo / brand area */}
+        {/* Logo + brand + tagline at top */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            marginBottom: '30px',
+            marginBottom: '16px',
           }}
         >
+          {/* Shield logo */}
           <div
             style={{
-              width: '60px',
-              height: '60px',
-              borderRadius: '12px',
-              background: 'rgba(255,255,255,0.2)',
+              width: '72px',
+              height: '72px',
+              borderRadius: '16px',
+              background: 'rgba(16,185,129,0.15)',
+              border: '3px solid #10b981',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginRight: '16px',
-              fontSize: '32px',
+              marginRight: '20px',
             }}
           >
-            🛡️
+            <svg
+              width="42"
+              height="42"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                stroke="#10b981"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
-          <span
-            style={{
-              fontSize: '36px',
-              fontWeight: 700,
-              color: 'white',
-              letterSpacing: '-0.5px',
-            }}
-          >
-            UnGouge.ai
-          </span>
+          
+          {/* Brand name + tagline */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span
+              style={{
+                fontSize: '48px',
+                fontWeight: 800,
+                color: '#10b981',
+                letterSpacing: '-1px',
+                lineHeight: 1,
+              }}
+            >
+              Ungouge.ai
+            </span>
+            <span
+              style={{
+                fontSize: '20px',
+                color: 'rgba(255,255,255,0.7)',
+                marginTop: '6px',
+                letterSpacing: '0.5px',
+              }}
+            >
+              Know Before You Sign
+            </span>
+          </div>
         </div>
 
-        {/* Headline */}
+        {/* Main headline with accent */}
         <div
           style={{
-            fontSize: '56px',
+            fontSize: '68px',
             fontWeight: 800,
-            color: 'white',
-            textAlign: 'center',
-            lineHeight: 1.15,
-            maxWidth: '900px',
-            marginBottom: '24px',
+            lineHeight: 1.1,
+            marginTop: '40px',
+            marginBottom: '28px',
+            maxWidth: '1000px',
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
-          Stop Getting Gouged on Contractor Quotes
+          <span style={{ color: 'white' }}>Stop overpaying for</span>
+          <span style={{ color: '#10b981' }}>home improvements</span>
         </div>
 
-        {/* Subline */}
+        {/* Subheadline */}
         <div
           style={{
             fontSize: '24px',
-            color: 'rgba(255,255,255,0.85)',
-            textAlign: 'center',
-            maxWidth: '700px',
+            color: 'rgba(255,255,255,0.75)',
+            maxWidth: '850px',
             lineHeight: 1.4,
-            marginBottom: '40px',
+            marginBottom: '20px',
           }}
         >
-          Instant, BLS-backed price verification for homeowners. No lead gen. No contractor kickbacks.
-        </div>
-
-        {/* Stats bar */}
-        <div
-          style={{
-            display: 'flex',
-            gap: '40px',
-            background: 'rgba(255,255,255,0.15)',
-            borderRadius: '16px',
-            padding: '20px 40px',
-          }}
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span style={{ fontSize: '28px', fontWeight: 700, color: 'white' }}>$4,127</span>
-            <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Avg. Savings</span>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span style={{ fontSize: '28px', fontWeight: 700, color: 'white' }}>10,000+</span>
-            <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Homeowners</span>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span style={{ fontSize: '28px', fontWeight: 700, color: 'white' }}>$19.99</span>
-            <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Per Report</span>
-          </div>
+          Data-driven quote verification · $19.99 per report · 0% lead generation
         </div>
       </div>
     ),

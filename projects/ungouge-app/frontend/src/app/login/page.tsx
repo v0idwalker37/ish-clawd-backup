@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Mail, Lock, AlertCircle, Shield, ArrowLeft, RefreshCw } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get('redirect') || '/dashboard';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -45,7 +47,7 @@ export default function LoginPage() {
       }
 
       // Success - cookies are set automatically
-      router.push('/dashboard');
+      router.push(redirectTo);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'An error occurred during login');
     } finally {
@@ -73,7 +75,7 @@ export default function LoginPage() {
       }
 
       // Success - cookies are set automatically
-      router.push('/dashboard');
+      router.push(redirectTo);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'An error occurred during verification');
     } finally {
@@ -278,7 +280,7 @@ export default function LoginPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Don&apos;t have an account?{' '}
-              <Link href="/register" className="text-primary-600 hover:text-primary-700 font-semibold">
+              <Link href={`/register${redirectTo !== '/dashboard' ? `?redirect=${encodeURIComponent(redirectTo)}` : ''}`} className="text-primary-600 hover:text-primary-700 font-semibold">
                 Create one now
               </Link>
             </p>

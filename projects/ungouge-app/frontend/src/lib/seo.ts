@@ -18,7 +18,7 @@ export interface PageMetadata {
 export const SITE_CONFIG = {
   name: 'Ungouge.ai',
   url: 'https://ungouge.ai',
-  ogImage: 'https://ungouge.ai/og-image.png',
+  ogImage: 'https://ungouge.ai/opengraph-image', // Next.js dynamic OG image
   twitterHandle: '@ungougeai',
   brandColors: {
     primary: '#2563eb', // Blue

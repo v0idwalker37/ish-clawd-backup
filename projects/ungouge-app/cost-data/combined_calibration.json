@@ -1,0 +1,4264 @@
+{
+  "metadata": {
+    "description": "Combined RSMeans + Craftsman calibration data",
+    "created": "2026-02-16",
+    "rsmeans_source": "RSMeans Contractor's Pricing Guide 2026",
+    "craftsman_source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+    "weighting": "60% Craftsman / 40% RSMeans"
+  },
+  "trade_labor_rates": {
+    "source": "RSMeans Table: Trade Labor, page 2",
+    "rates": {
+      "carpenter": {
+        "daily": 540,
+        "weekly": 2700,
+        "hourly": 67.5
+      },
+      "drywaller": {
+        "daily": 540,
+        "weekly": 2700,
+        "hourly": 67.5
+      },
+      "roofer": {
+        "daily": 500,
+        "weekly": 2500,
+        "hourly": 62.5
+      },
+      "painter": {
+        "daily": 440,
+        "weekly": 2200,
+        "hourly": 55.0
+      },
+      "mason": {
+        "daily": 530,
+        "weekly": 2650,
+        "hourly": 66.25
+      },
+      "electrician": {
+        "daily": 645,
+        "weekly": 3225,
+        "hourly": 80.63
+      },
+      "plumber": {
+        "daily": 605,
+        "weekly": 3025,
+        "hourly": 75.63
+      },
+      "common_laborer": {
+        "daily": 405,
+        "weekly": 2025,
+        "hourly": 50.63
+      }
+    }
+  },
+  "acoustical_treatment": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 6.03,
+      "cost_range": [
+        1.17,
+        14.0
+      ],
+      "item_count": 78,
+      "top_unit_costs": {
+        "1/2\" thick, 12\" x 12\" or 12\" x 24\"": {
+          "material": 2.44,
+          "labor": 1.19,
+          "total": 4.72,
+          "unit": "SF"
+        },
+        "1/2\" thick, 12\" x 12\" or 12\" x 24\" - Standard, random perfor": {
+          "material": 3.06,
+          "labor": 0.83,
+          "total": 4.91,
+          "unit": "SF"
+        },
+        "1/2\" thick, 12\" x 12\" or 12\" x 24\" - Designer, swirl perfora": {
+          "material": 3.31,
+          "labor": 0.83,
+          "total": 5.21,
+          "unit": "SF"
+        },
+        "1/2\" thick, 12\" x 12\" or 12\" x 24\" - Deluxe, sculptured face": {
+          "material": 3.56,
+          "labor": 0.83,
+          "total": 5.51,
+          "unit": "SF"
+        },
+        "5/8\" thick, 12\" x 12\" or 12\" x 24\"": {
+          "material": 2.92,
+          "labor": 1.19,
+          "total": 5.29,
+          "unit": "SF"
+        },
+        "5/8\" thick, 12\" x 12\" or 12\" x 24\" - Standard, random perfor": {
+          "material": 3.69,
+          "labor": 0.83,
+          "total": 5.67,
+          "unit": "SF"
+        },
+        "5/8\" thick, 12\" x 12\" or 12\" x 24\" - Designer, swirl perfora": {
+          "material": 4.02,
+          "labor": 0.83,
+          "total": 6.06,
+          "unit": "SF"
+        },
+        "5/8\" thick, 12\" x 12\" or 12\" x 24\" - Deluxe, sculptured face": {
+          "material": 4.32,
+          "labor": 0.83,
+          "total": 6.42,
+          "unit": "SF"
+        },
+        "3/4\" thick, 12\" x 12\" or 12\" x 24\" - Economy, mini perforate": {
+          "material": 2.9,
+          "labor": 0.83,
+          "total": 4.72,
+          "unit": "SF"
+        },
+        "3/4\" thick, 12\" x 12\" or 12\" x 24\" - Standard, random perfor": {
+          "material": 4.08,
+          "labor": 0.83,
+          "total": 6.13,
+          "unit": "SF"
+        }
+      }
+    }
+  },
+  "adhesives": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 38.85,
+      "cost_range": [
+        1.2,
+        171.0
+      ],
+      "item_count": 138,
+      "top_unit_costs": {
+        "Over wood - 1\"x 3\", 12\" oc": {
+          "material": 43.0,
+          "labor": 46.0,
+          "total": 1.2,
+          "unit": "SF"
+        },
+        "Over wood - 1\"x 3\", 16\" 0c": {
+          "material": 88.0,
+          "labor": 0.37,
+          "total": 95.0,
+          "unit": "SF"
+        },
+        "Over wood - 1\"x 4\", 12\" oc": {
+          "material": 53.0,
+          "labor": 0.46,
+          "total": 1.32,
+          "unit": "SF"
+        },
+        "Over wood - 1\" x 4\", 16\" oc": {
+          "material": 45.0,
+          "labor": 55.0,
+          "total": 1.37,
+          "unit": "SF"
+        },
+        "Over plaster - 1\"x3\", 12\" oc": {
+          "material": 43.0,
+          "labor": 0.6,
+          "total": 1.41,
+          "unit": "SF"
+        },
+        "Over plaster - 1\" x 3\", 16\" oc": {
+          "material": 37.0,
+          "labor": 0.64,
+          "total": 1.44,
+          "unit": "SF"
+        },
+        "Over plaster - 1\" x 4\", 12\" oc": {
+          "material": 53.0,
+          "labor": 60.0,
+          "total": 1.53,
+          "unit": "SF"
+        },
+        "Over plaster - 1\"x 4\", 16\" oc": {
+          "material": 45.0,
+          "labor": 0.64,
+          "total": 1.5,
+          "unit": "SF"
+        },
+        "12\" oc members - 1/8\" diameter (11 fl.oz./CSF)": {
+          "material": 3.8,
+          "labor": 3.44,
+          "total": 9.72,
+          "unit": "CSF"
+        },
+        "12\" oc members - 1/4\" diameter (43 floz/CSF)": {
+          "material": 15.2,
+          "labor": 3.44,
+          "total": 23.4,
+          "unit": "CSF"
+        }
+      }
+    }
+  },
+  "basement_finishing": {
+    "rsmeans": {
+      "source": "RSMeans Walls/Ceilings section, pages 175-183",
+      "key_items": {
+        "drywall_1_2_in": {
+          "material": 0.55,
+          "labor": 0.65,
+          "total": 1.2,
+          "unit": "S.F."
+        },
+        "drywall_5_8_in": {
+          "material": 0.6,
+          "labor": 0.7,
+          "total": 1.3,
+          "unit": "S.F."
+        },
+        "drywall_moisture_resistant": {
+          "material": 0.75,
+          "labor": 0.7,
+          "total": 1.45,
+          "unit": "S.F."
+        },
+        "taping_and_finishing": {
+          "material": 0.1,
+          "labor": 0.55,
+          "total": 0.65,
+          "unit": "S.F."
+        },
+        "paneling_plywood": {
+          "material": 3.5,
+          "labor": 1.2,
+          "total": 4.7,
+          "unit": "S.F."
+        },
+        "furring_strips": {
+          "material": 0.35,
+          "labor": 0.65,
+          "total": 1.0,
+          "unit": "S.F."
+        }
+      },
+      "calibration": {
+        "cost_per_sf_finished_low": 25,
+        "cost_per_sf_finished_mid": 40,
+        "cost_per_sf_finished_high": 65,
+        "typical_labor_pct": 55,
+        "notes": "Full basement finish includes framing, drywall, electrical, flooring, trim"
+      }
+    }
+  },
+  "bathroom_remodel": {
+    "rsmeans": {
+      "source": "RSMeans Plumbing (147-153) + Fixtures (250-257) sections",
+      "key_items": {
+        "toilet_standard": {
+          "material": 287,
+          "labor": 335,
+          "total": 622
+        },
+        "toilet_designer": {
+          "material": 685,
+          "labor": 335,
+          "total": 1020
+        },
+        "bathtub_steel": {
+          "material": 465,
+          "labor": 670,
+          "total": 1135
+        },
+        "bathtub_cast_iron": {
+          "material": 1625,
+          "labor": 670,
+          "total": 2295
+        },
+        "bathtub_fiberglass": {
+          "material": 1625,
+          "labor": 670,
+          "total": 2295
+        },
+        "shower_stall_36": {
+          "material": 1050,
+          "labor": 565,
+          "total": 1615
+        },
+        "shower_stall_48": {
+          "material": 1675,
+          "labor": 620,
+          "total": 2295
+        },
+        "vanity_sink_single": {
+          "material": 460,
+          "labor": 425,
+          "total": 885
+        },
+        "vanity_sink_double": {
+          "material": 975,
+          "labor": 530,
+          "total": 1505
+        },
+        "faucet_standard": {
+          "material": 180,
+          "labor": 150,
+          "total": 330
+        }
+      },
+      "calibration": {
+        "full_bathroom_remodel_low": 8000,
+        "full_bathroom_remodel_mid": 15000,
+        "full_bathroom_remodel_high": 30000,
+        "fixture_only_low": 3000,
+        "fixture_only_mid": 5500,
+        "fixture_only_high": 12000,
+        "typical_labor_pct": 45
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 1332.79,
+      "cost_range": [
+        23.8,
+        21400.0
+      ],
+      "item_count": 411,
+      "top_unit_costs": {
+        "Cup holder, surface mounted - Chrome": {
+          "material": 6.15,
+          "labor": 14.5,
+          "total": 29.2,
+          "unit": "Ea"
+        },
+        "Cup and toothbrush holder - Chrome": {
+          "material": 6.84,
+          "labor": 14.5,
+          "total": 30.0,
+          "unit": "Ea"
+        },
+        "Cup, toothbrush and soapholder, recessed - Chrome": {
+          "material": 13.7,
+          "labor": 21.8,
+          "total": 49.2,
+          "unit": "Ea"
+        },
+        "Diaper change station - Plastic": {
+          "material": 295.0,
+          "labor": 175.0,
+          "total": 616.0,
+          "unit": "Ea"
+        },
+        "Feminine napkin dispenser": {
+          "material": 2.25,
+          "labor": 362.0,
+          "total": 517.0,
+          "unit": "Ea"
+        },
+        "Feminine napkin disposal - Stainless steel": {
+          "material": 52.0,
+          "labor": 43.6,
+          "total": 128.0,
+          "unit": "Ea"
+        },
+        "Glass or mirror shelf, chrome - 18\" long": {
+          "material": 51.2,
+          "labor": 17.5,
+          "total": 87.6,
+          "unit": "Ea"
+        },
+        "Glass or mirror shelf, chrome - 24\" long": {
+          "material": 53.9,
+          "labor": 17.5,
+          "total": 90.9,
+          "unit": "Ea"
+        },
+        "Straight, 1-1/2\" - 12\" long": {
+          "material": 33.0,
+          "labor": 17.5,
+          "total": 65.8,
+          "unit": "Ea"
+        },
+        "Straight, 1-1/2\" - 18\" long": {
+          "material": 34.9,
+          "labor": 17.5,
+          "total": 68.0,
+          "unit": "Ea"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "cabinet_installation": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 569.0,
+      "cost_range": [
+        30.0,
+        1570.0
+      ],
+      "item_count": 316,
+      "top_unit_costs": {
+        "12\" W, 1 door, 1 drawer": {
+          "material": 222.0,
+          "labor": 67.7,
+          "total": 367.0,
+          "unit": "Ea"
+        },
+        "12\" W, 1 door, 1 drawer - Good quality workmanship": {
+          "material": 155.0,
+          "labor": 27.0,
+          "total": 226.0,
+          "unit": "Ea"
+        },
+        "12\" W, 1 door, 1 drawer - Average quality workmanship": {
+          "material": 116.0,
+          "labor": 27.0,
+          "total": 180.0,
+          "unit": "Ea"
+        },
+        "15\" W, 1 door, 1 drawer - High quality workmanship": {
+          "material": 214.0,
+          "labor": 40.5,
+          "total": 318.0,
+          "unit": "Ea"
+        },
+        "15\" W, 1 door, 1 drawer - Good quality workmanship": {
+          "material": 165.0,
+          "labor": 27.0,
+          "total": 238.0,
+          "unit": "Ea"
+        },
+        "18\" W, 1 door, 1 drawer - High quality workmanship": {
+          "material": 220.0,
+          "labor": 40.5,
+          "total": 324.0,
+          "unit": "Ea"
+        },
+        "21\" W, 1 door, 1 drawer": {
+          "material": 272.0,
+          "labor": 78.2,
+          "total": 443.0,
+          "unit": "Ea"
+        },
+        "21\" W, 1 door, 1 drawer - Good quality workmanship": {
+          "material": 190.0,
+          "labor": 30.0,
+          "total": 273.0,
+          "unit": "Ea"
+        },
+        "24\" W, 1 door, 1 drawer - High quality workmanship": {
+          "material": 349.0,
+          "labor": 47.0,
+          "total": 489.0,
+          "unit": "Ea"
+        },
+        "24\" W, 1 door, 1 drawer - Good quality workmanship": {
+          "material": 206.0,
+          "labor": 30.0,
+          "total": 292.0,
+          "unit": "Ea"
+        }
+      }
+    }
+  },
+  "canopies": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 186.4,
+      "cost_range": [
+        9.57,
+        1150.0
+      ],
+      "item_count": 47,
+      "top_unit_costs": {
+        "7' to 8' high - Standard": {
+          "material": 3.01,
+          "labor": 3.97,
+          "total": 9.57,
+          "unit": "SF"
+        },
+        "7' to 8' high - Good": {
+          "material": 5.59,
+          "labor": 5.46,
+          "total": 14.9,
+          "unit": "SF"
+        },
+        "9' to 10' high - Standard": {
+          "material": 3.31,
+          "labor": 3.97,
+          "total": 9.93,
+          "unit": "SF"
+        },
+        "9' to 10' high - Good": {
+          "material": 5.68,
+          "labor": 3.97,
+          "total": 12.8,
+          "unit": "SF"
+        },
+        "11' to 14' high - Standard": {
+          "material": 4.53,
+          "labor": 3.97,
+          "total": 11.4,
+          "unit": "SF"
+        },
+        "11' to 14' high - Good": {
+          "material": 7.0,
+          "labor": 5.46,
+          "total": 17.1,
+          "unit": "SF"
+        },
+        "Steel frame kit, columns, low-slope decking, trim. - Light l": {
+          "material": 5.97,
+          "labor": 15.9,
+          "total": 31.0,
+          "unit": "SF"
+        },
+        "Steel frame kit, columns, low-slope decking, trim. - Moderat": {
+          "material": 7.65,
+          "labor": 15.9,
+          "total": 33.0,
+          "unit": "SF"
+        },
+        "Steel frame kit, columns, low-slope decking, trim. - Heavy l": {
+          "material": 11.2,
+          "labor": 15.9,
+          "total": 37.2,
+          "unit": "SF"
+        },
+        "Attached, lean-to style, wall attachment, beam, posts, decki": {
+          "material": 11.6,
+          "labor": 16.4,
+          "total": 38.5,
+          "unit": "SF"
+        }
+      }
+    }
+  },
+  "carpet_installation": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 26.2,
+      "cost_range": [
+        5.05,
+        47.8
+      ],
+      "item_count": 17,
+      "top_unit_costs": {
+        "Standard quality - Poly, thin pile density": {
+          "material": 19.3,
+          "labor": 3.5,
+          "total": 29.5,
+          "unit": "SY"
+        },
+        "Standard quality - Loop pile, 20 oz.": {
+          "material": 11.2,
+          "labor": 3.5,
+          "total": 19.8,
+          "unit": "SY"
+        },
+        "Standard quality - Cut pile, 24 oz.": {
+          "material": 14.6,
+          "labor": 3.5,
+          "total": 23.9,
+          "unit": "SY"
+        },
+        "Standard quality - Pad": {
+          "material": 3.26,
+          "labor": 0.16,
+          "total": 5.05,
+          "unit": "SY"
+        },
+        "Average quality - Poly, medium pile density": {
+          "material": 26.3,
+          "labor": 3.5,
+          "total": 37.9,
+          "unit": "SY"
+        },
+        "Average quality - Loop pile, 26 oz.": {
+          "material": 15.0,
+          "labor": 3.5,
+          "total": 24.3,
+          "unit": "SY"
+        },
+        "Average quality - Cut pile, 36 oz.": {
+          "material": 22.1,
+          "labor": 3.5,
+          "total": 33.5,
+          "unit": "SY"
+        },
+        "Average quality - Wool": {
+          "material": 28.1,
+          "labor": 3.5,
+          "total": 40.1,
+          "unit": "SY"
+        },
+        "Average quality - Pad": {
+          "material": 4.76,
+          "labor": 0.16,
+          "total": 6.85,
+          "unit": "SY"
+        }
+      }
+    }
+  },
+  "caulking": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 3.4,
+      "cost_range": [
+        1.3,
+        23.3
+      ],
+      "item_count": 72,
+      "top_unit_costs": {
+        "Multi-purpose caulk, good quality - 1/4\" (2.91 LF/fluid oz.)": {
+          "material": 0.09,
+          "labor": 1.15,
+          "total": 1.83,
+          "unit": "LF"
+        },
+        "Multi-purpose caulk, good quality - 3/8\" (1.29 LF/fluid oz.)": {
+          "material": 20.0,
+          "labor": 1.38,
+          "total": 2.3,
+          "unit": "LF"
+        },
+        "Multi-purpose caulk, good quality - 1/2\" (.729 LF/luid oz.)": {
+          "material": 135.0,
+          "labor": 1.51,
+          "total": 2.69,
+          "unit": "LF"
+        },
+        "Butyl flex caulk, premium quality - 1/8\" (11.6 LF/fluid oz.)": {
+          "material": 0.07,
+          "labor": 0.83,
+          "total": 1.32,
+          "unit": "LF"
+        },
+        "Butyl flex caulk, premium quality - 1/4\" (2.91 LF/fluid oz.)": {
+          "material": 29.0,
+          "labor": 1.51,
+          "total": 2.62,
+          "unit": "LF"
+        },
+        "Butyl flex caulk, premium quality - 3/8\" (1.29 LF/fluid oz.)": {
+          "material": 9.0,
+          "labor": 1.38,
+          "total": 2.77,
+          "unit": "LF"
+        },
+        "Butyl flex caulk, premium quality - 1/2\" (.729 LF/fluid oz.)": {
+          "material": 1.05,
+          "labor": 1.51,
+          "total": 3.53,
+          "unit": "LF"
+        },
+        "Latex, premium quality - 1/8\" (11.6 LF/fluid oz.)": {
+          "material": 5.0,
+          "labor": 0.83,
+          "total": 1.3,
+          "unit": "LF"
+        },
+        "Latex, premium quality - 1/4\" (2.91 LF/fluid oz.)": {
+          "material": 20.0,
+          "labor": 1.15,
+          "total": 1.96,
+          "unit": "LF"
+        },
+        "Latex, premium quality - 3/8\" (1.29 LF/iluid oz.)": {
+          "material": 48.0,
+          "labor": 1.84,
+          "total": 3.33,
+          "unit": "LF"
+        }
+      }
+    }
+  },
+  "columns": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 1414.63,
+      "cost_range": [
+        858.0,
+        2610.0
+      ],
+      "item_count": 38,
+      "top_unit_costs": {
+        "Column with standard cap and base - 8\" dia. x 8' to 12'H": {
+          "material": 468.0,
+          "labor": 172.0,
+          "total": 858.0,
+          "unit": "Ea"
+        },
+        "Column with standard cap and base - 10\" dia. x 8' to 12'H": {
+          "material": 515.0,
+          "labor": 172.0,
+          "total": 914.0,
+          "unit": "Ea"
+        },
+        "Column with standard cap and base - 10\" dia. x 16' to 20'H": {
+          "material": 795.0,
+          "labor": 229.0,
+          "total": 1350.0,
+          "unit": "Ea"
+        },
+        "Column with standard cap and base - 12\" dia. x 9'to 12'H": {
+          "material": 562.0,
+          "labor": 172.0,
+          "total": 970.0,
+          "unit": "Ea"
+        },
+        "Column with standard cap and base - 12\" dia. x 16' to 24\u2019 H": {
+          "material": 1030.0,
+          "labor": 229.0,
+          "total": 1630.0,
+          "unit": "Ea"
+        },
+        "Column with Corinthian cap and decorative base - 8\" dia. x 8": {
+          "material": 492.0,
+          "labor": 172.0,
+          "total": 887.0,
+          "unit": "Ea"
+        },
+        "Column with Corinthian cap and decorative base - 10\" dia. x ": {
+          "material": 539.0,
+          "labor": 172.0,
+          "total": 943.0,
+          "unit": "Ea"
+        },
+        "Column with Corinthian cap and decorative base - 12\" dia. x ": {
+          "material": 585.0,
+          "labor": 172.0,
+          "total": 999.0,
+          "unit": "Ea"
+        },
+        "Plain column with standard cap and base": {
+          "material": 516.0,
+          "labor": 318.0,
+          "total": 1170.0,
+          "unit": "Ea"
+        },
+        "Plain column with standard cap and base - 10\u201d dia. x 8' to 1": {
+          "material": 515.0,
+          "labor": 207.0,
+          "total": 973.0,
+          "unit": "Ea"
+        }
+      }
+    }
+  },
+  "concrete_patio": {
+    "rsmeans": {
+      "source": "RSMeans Paving/Concrete section",
+      "key_items": {
+        "concrete_slab_4in": {
+          "material": 3.5,
+          "labor": 4.0,
+          "total": 7.5,
+          "unit": "S.F."
+        },
+        "stamped_concrete": {
+          "material": 5.0,
+          "labor": 8.0,
+          "total": 13.0,
+          "unit": "S.F."
+        },
+        "paver_brick": {
+          "material": 6.0,
+          "labor": 7.0,
+          "total": 13.0,
+          "unit": "S.F."
+        },
+        "paver_concrete": {
+          "material": 4.0,
+          "labor": 6.0,
+          "total": 10.0,
+          "unit": "S.F."
+        }
+      },
+      "calibration": {
+        "cost_per_sf_low": 7,
+        "cost_per_sf_mid": 12,
+        "cost_per_sf_high": 20,
+        "typical_labor_pct": 50
+      }
+    }
+  },
+  "concrete_work": {
+    "rsmeans": {
+      "source": "RSMeans Concrete section",
+      "key_items": {
+        "slab_4in_per_sf": {
+          "material": 3.5,
+          "labor": 4.0,
+          "total": 7.5,
+          "unit": "S.F."
+        },
+        "sidewalk_per_sf": {
+          "material": 3.0,
+          "labor": 4.5,
+          "total": 7.5,
+          "unit": "S.F."
+        },
+        "footing_per_lf": {
+          "material": 15,
+          "labor": 25,
+          "total": 40,
+          "unit": "L.F."
+        }
+      },
+      "calibration": {
+        "cost_per_sf_low": 6,
+        "cost_per_sf_mid": 10,
+        "cost_per_sf_high": 16,
+        "typical_labor_pct": 50
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 21.06,
+      "cost_range": [
+        0.35,
+        168.0
+      ],
+      "item_count": 105,
+      "top_unit_costs": {
+        "Forming, 4 uses - 2\" x 6\"": {
+          "material": 0.89,
+          "labor": 4.61,
+          "total": 7.98,
+          "unit": "LF"
+        },
+        "Forming, 4 uses - 2\" x 8\"": {
+          "material": 92.0,
+          "labor": 5.17,
+          "total": 8.85,
+          "unit": "LF"
+        },
+        "Grading, labor to finish by hand - 6\", 8\", 12\" T x 12\" Ww": {
+          "material": 0.0,
+          "labor": 0.97,
+          "total": 1.46,
+          "unit": "LF"
+        },
+        "Grading, labor to finish by hand - 6\", 8\", 12\" Tx 16\" W": {
+          "material": 0.0,
+          "labor": 1.01,
+          "total": 1.51,
+          "unit": "LF"
+        },
+        "Grading, labor to finish by hand - 6\", 8\", 12\" T x 20\" W": {
+          "material": 0.0,
+          "labor": 1.16,
+          "total": 1.74,
+          "unit": "LF"
+        },
+        "Grading, labor to finish by hand - 12\" T x 24\" W": {
+          "material": 0.0,
+          "labor": 1.34,
+          "total": 1.96,
+          "unit": "LF"
+        },
+        "Description ner Unit Vol Size Unit - Two (No. 3) 3/8\" rods": {
+          "material": 1.05,
+          "labor": 2.0,
+          "total": 2.05,
+          "unit": "LF"
+        },
+        "Description ner Unit Vol Size Unit - Two (No. 4) 1/2\" rods": {
+          "material": 1.75,
+          "labor": 2.0,
+          "total": 2.89,
+          "unit": "LF"
+        },
+        "Description ner Unit Vol Size Unit - Two (No. 5) 5/8\" rods": {
+          "material": 2.15,
+          "labor": 0.56,
+          "total": 3.42,
+          "unit": "LF"
+        },
+        "Description ner Unit Vol Size Unit - Three (No. 4) 1/2\" rods": {
+          "material": 2.63,
+          "labor": 0.67,
+          "total": 4.17,
+          "unit": "LF"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "countertops": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 100.63,
+      "cost_range": [
+        3.69,
+        848.0
+      ],
+      "item_count": 79,
+      "top_unit_costs": {
+        "Adhesive / Mastic": {
+          "material": 10.6,
+          "labor": 14.1,
+          "total": 33.9,
+          "unit": "SF"
+        },
+        "Adhesive / Mastic - 4-1/4\" x 4-1/4\" or similar": {
+          "material": 8.06,
+          "labor": 7.39,
+          "total": 20.8,
+          "unit": "SF"
+        },
+        "Standard grade, solid color": {
+          "material": 53.0,
+          "labor": 4.91,
+          "total": 70.9,
+          "unit": "SF"
+        },
+        "Average grade, solid and mixed color": {
+          "material": 70.6,
+          "labor": 4.91,
+          "total": 92.1,
+          "unit": "SF"
+        },
+        "High grade, specialty mixed colors or finish patterns": {
+          "material": 86.2,
+          "labor": 4.94,
+          "total": 111.0,
+          "unit": "SF"
+        },
+        "For edge treatment, ADD - High": {
+          "material": 52.0,
+          "labor": 13.4,
+          "total": 82.5,
+          "unit": "LF"
+        },
+        "For buff and polish, ADD - Any grade": {
+          "material": 47.0,
+          "labor": 5.23,
+          "total": 8.41,
+          "unit": "SF"
+        },
+        "Standard grade, solid pattern": {
+          "material": 25.3,
+          "labor": 3.67,
+          "total": 39.9,
+          "unit": "LF"
+        },
+        "Average grade, simple patterns": {
+          "material": 37.9,
+          "labor": 3.67,
+          "total": 51.0,
+          "unit": "LF"
+        },
+        "High grade, specialty finish patterns": {
+          "material": 55.1,
+          "labor": 3.67,
+          "total": 71.7,
+          "unit": "LF"
+        }
+      }
+    }
+  },
+  "cupolas": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 979.39,
+      "cost_range": [
+        23.9,
+        2670.0
+      ],
+      "item_count": 14,
+      "top_unit_costs": {
+        "25\" W, 1-1/2\" H front edge, no backsplash": {
+          "material": 7.01,
+          "labor": 52.4,
+          "total": 87.1,
+          "unit": "SF"
+        },
+        "Wood": {
+          "material": 28.7,
+          "labor": 12.3,
+          "total": 52.8,
+          "unit": "LF"
+        },
+        "Adjustments, ADD - 4\" backsplash": {
+          "material": 4.56,
+          "labor": 12.3,
+          "total": 23.9,
+          "unit": "LF"
+        },
+        "Adjustments, ADD - 6\" backsplash": {
+          "material": 5.81,
+          "labor": 12.3,
+          "total": 25.4,
+          "unit": "LF"
+        },
+        "Wood, cedar / redwood or comparable, natural finish - 24\" x ": {
+          "material": 451.0,
+          "labor": 61.0,
+          "total": 632.0,
+          "unit": "Ea"
+        },
+        "Wood, cedar / redwood or comparable, natural finish - 30\" x ": {
+          "material": 992.0,
+          "labor": 73.4,
+          "total": 1300.0,
+          "unit": "Ea"
+        },
+        "Wood, cedar / redwood or comparable, natural finish - 36\" x ": {
+          "material": 1740.0,
+          "labor": 91.8,
+          "total": 2220.0,
+          "unit": "Ea"
+        },
+        "Vinyl, pre-finished - 24\" x 24\" x 32\"H": {
+          "material": 655.0,
+          "labor": 61.0,
+          "total": 878.0,
+          "unit": "Ea"
+        },
+        "Vinyl, pre-finished - 30\" x 30\" x 40\" H": {
+          "material": 1220.0,
+          "labor": 73.4,
+          "total": 1570.0,
+          "unit": "Ea"
+        },
+        "Vinyl, pre-finished - 36\" x 36\" x 48\" H": {
+          "material": 2110.0,
+          "labor": 91.8,
+          "total": 2670.0,
+          "unit": "Ea"
+        }
+      }
+    }
+  },
+  "deck_building": {
+    "rsmeans": {
+      "source": "RSMeans Decking section, pages 61-63",
+      "key_items": {
+        "treated_lumber_deck": {
+          "material": 6.5,
+          "labor": 4.25,
+          "total": 10.75,
+          "unit": "S.F."
+        },
+        "composite_deck": {
+          "material": 12.0,
+          "labor": 5.0,
+          "total": 17.0,
+          "unit": "S.F."
+        },
+        "pvc_deck": {
+          "material": 15.0,
+          "labor": 5.5,
+          "total": 20.5,
+          "unit": "S.F."
+        },
+        "cedar_deck": {
+          "material": 10.5,
+          "labor": 4.75,
+          "total": 15.25,
+          "unit": "S.F."
+        },
+        "mahogany_deck": {
+          "material": 14.0,
+          "labor": 5.0,
+          "total": 19.0,
+          "unit": "S.F."
+        },
+        "railing_wood_lf": {
+          "material": 15,
+          "labor": 12,
+          "total": 27,
+          "unit": "L.F."
+        },
+        "stairs_set": {
+          "material": 350,
+          "labor": 400,
+          "total": 750,
+          "unit": "Set"
+        }
+      },
+      "calibration": {
+        "cost_per_sf_low": 15,
+        "cost_per_sf_mid": 25,
+        "cost_per_sf_high": 45,
+        "typical_labor_pct": 35
+      }
+    }
+  },
+  "demolition": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 4520.0,
+      "cost_range": [
+        3400.0,
+        5340.0
+      ],
+      "item_count": 3,
+      "top_unit_costs": {
+        "Copper - 24\" x 24\" x 32\" H": {
+          "material": 2750.0,
+          "labor": 73.4,
+          "total": 3400.0,
+          "unit": "Ea"
+        },
+        "Copper - 30\" x 30\" x 40\" H": {
+          "material": 3900.0,
+          "labor": 91.8,
+          "total": 4820.0,
+          "unit": "Ea"
+        }
+      }
+    }
+  },
+  "door_replacement": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 1544.7,
+      "cost_range": [
+        2.65,
+        77700.0
+      ],
+      "item_count": 649,
+      "top_unit_costs": {
+        "Birch, flush face, 1-3/8\" T, hollow core - 2'-0\" x 6'-8\", 2 ": {
+          "material": 161.0,
+          "labor": 73.4,
+          "total": 303.0,
+          "unit": "Set"
+        },
+        "Birch, flush face, 1-3/8\" T, hollow core - 2'-6\" x 6'-8\", 2 ": {
+          "material": 179.0,
+          "labor": 73.4,
+          "total": 325.0,
+          "unit": "Set"
+        },
+        "Birch, flush face, 1-3/8\" T, hollow core - 3'-0\" x 6'-8\", 2 ": {
+          "material": 211.0,
+          "labor": 73.4,
+          "total": 363.0,
+          "unit": "Set"
+        },
+        "Birch, flush face, 1-3/8\" T, hollow core - 4'-0\" x 6'-8\", 4 ": {
+          "material": 322.0,
+          "labor": 91.8,
+          "total": 524.0,
+          "unit": "Set"
+        },
+        "Birch, flush face, 1-3/8\" T, hollow core - 6'-0\" x 6'-8\", 4 ": {
+          "material": 358.0,
+          "labor": 91.8,
+          "total": 567.0,
+          "unit": "Set"
+        },
+        "Birch, flush face, 1-3/8\" T, hollow core - 8'-0\" x 6'-8\", 4 ": {
+          "material": 465.0,
+          "labor": 141.0,
+          "total": 770.0,
+          "unit": "Set"
+        },
+        "Birch, flush face, 1-3/8\" T, hollow core - 4'-0\" x 8'-0\", 4 ": {
+          "material": 386.0,
+          "labor": 91.8,
+          "total": 601.0,
+          "unit": "Set"
+        },
+        "Birch, flush face, 1-3/8\" T, hollow core - 6'-0\" x 8'-0\"\", 4": {
+          "material": 429.0,
+          "labor": 91.8,
+          "total": 653.0,
+          "unit": "Set"
+        },
+        "Birch, flush face, 1-3/8\" T, hollow core - 8'-0\" x 8'-0\", 4 ": {
+          "material": 507.0,
+          "labor": 91.8,
+          "total": 746.0,
+          "unit": "Set"
+        },
+        "Lauan, flush face, 1-3/8\" T, hollow core - 2'-0\" x 6'-8\", 2 ": {
+          "material": 81.1,
+          "labor": 73.4,
+          "total": 207.0,
+          "unit": "Set"
+        }
+      }
+    }
+  },
+  "driveway": {
+    "rsmeans": {
+      "source": "RSMeans Paving section, page 139",
+      "key_items": {
+        "asphalt_2in": {
+          "material": 1.5,
+          "labor": 1.2,
+          "total": 2.7,
+          "unit": "S.F."
+        },
+        "asphalt_3in": {
+          "material": 2.1,
+          "labor": 1.4,
+          "total": 3.5,
+          "unit": "S.F."
+        },
+        "concrete_4in": {
+          "material": 3.5,
+          "labor": 4.0,
+          "total": 7.5,
+          "unit": "S.F."
+        },
+        "gravel": {
+          "material": 0.8,
+          "labor": 0.6,
+          "total": 1.4,
+          "unit": "S.F."
+        },
+        "paver": {
+          "material": 6.0,
+          "labor": 7.0,
+          "total": 13.0,
+          "unit": "S.F."
+        }
+      },
+      "calibration": {
+        "cost_per_sf_low": 2.5,
+        "cost_per_sf_mid": 5.0,
+        "cost_per_sf_high": 14.0,
+        "typical_labor_pct": 45
+      }
+    }
+  },
+  "electrical_panel_upgrade": {
+    "rsmeans": {
+      "source": "RSMeans Electrical section",
+      "key_items": {
+        "100a_panel": {
+          "material": 450,
+          "labor": 645,
+          "total": 1095
+        },
+        "200a_panel": {
+          "material": 750,
+          "labor": 970,
+          "total": 1720
+        },
+        "breaker_single": {
+          "material": 35,
+          "labor": 64.5,
+          "total": 99.5
+        },
+        "breaker_double": {
+          "material": 55,
+          "labor": 64.5,
+          "total": 119.5
+        }
+      },
+      "calibration": {
+        "panel_upgrade_low": 1100,
+        "panel_upgrade_mid": 1750,
+        "panel_upgrade_high": 2500,
+        "typical_labor_pct": 55
+      }
+    }
+  },
+  "electrical_work": {
+    "rsmeans": {
+      "source": "RSMeans Electrical section, pages 260-269",
+      "key_items": {
+        "single_switch": {
+          "material": 55,
+          "labor": 89.5,
+          "total": 144.5
+        },
+        "double_switch": {
+          "material": 73,
+          "labor": 89.5,
+          "total": 162.5
+        },
+        "dimmer_switch": {
+          "material": 95,
+          "labor": 89.5,
+          "total": 184.5
+        },
+        "outlet_standard": {
+          "material": 50,
+          "labor": 107,
+          "total": 157
+        },
+        "outlet_gfci": {
+          "material": 80,
+          "labor": 107,
+          "total": 187
+        },
+        "light_fixture_standard": {
+          "material": 100,
+          "labor": 89.5,
+          "total": 189.5
+        },
+        "light_fixture_chandelier": {
+          "material": 500,
+          "labor": 179,
+          "total": 679
+        },
+        "recessed_light": {
+          "material": 110,
+          "labor": 135,
+          "total": 245
+        },
+        "smoke_detector": {
+          "material": 50,
+          "labor": 89.5,
+          "total": 139.5
+        }
+      },
+      "calibration": {
+        "cost_per_outlet_low": 140,
+        "cost_per_outlet_mid": 175,
+        "cost_per_outlet_high": 250,
+        "typical_labor_pct": 55
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 339.56,
+      "cost_range": [
+        0.07,
+        2160.0
+      ],
+      "item_count": 133,
+      "top_unit_costs": {
+        "For ceilings 9' H - Ceiling only, ADD": {
+          "material": 0.0,
+          "labor": 1.6,
+          "total": 1.13,
+          "unit": "SF"
+        },
+        "For ceilings 9' H - Walls & ceilings (average),": {
+          "material": 0.0,
+          "labor": 0.22,
+          "total": 33.0,
+          "unit": "SF"
+        },
+        "For ceilings 9' H - ADD": {
+          "material": 0.0,
+          "labor": 0.0,
+          "total": 47.0,
+          "unit": "SF"
+        },
+        "For fire resistant (1/2\" and 5/8\" T) ADD": {
+          "material": 0.06,
+          "labor": 0.0,
+          "total": 0.07,
+          "unit": "SF"
+        },
+        "For water resistant (1/2\" and 5/8\" T) ADD": {
+          "material": 18.0,
+          "labor": 0.0,
+          "total": 0.22,
+          "unit": "SF"
+        },
+        "Weathercap - 100 AMP service": {
+          "material": 18.3,
+          "labor": 48.4,
+          "total": 94.5,
+          "unit": "Ea"
+        },
+        "Weathercap - 200 AMP service": {
+          "material": 72.0,
+          "labor": 77.4,
+          "total": 202.0,
+          "unit": "Ea"
+        },
+        "Service entrance cable (typical allowance is 20 LF) - 100 AM": {
+          "material": 4.06,
+          "labor": 5.95,
+          "total": 13.8,
+          "unit": "LF"
+        },
+        "Service entrance cable (typical allowance is 20 LF) - 200 AM": {
+          "material": 4.66,
+          "labor": 8.61,
+          "total": 18.5,
+          "unit": "LF"
+        },
+        "Meter socket - 100 AMP service": {
+          "material": 86.6,
+          "labor": 193.0,
+          "total": 394.0,
+          "unit": "Ea"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "exterior_painting": {
+    "rsmeans": {
+      "source": "RSMeans Painting section",
+      "key_items": {
+        "exterior_wall_2_coat": {
+          "material": 0.35,
+          "labor": 0.65,
+          "total": 1.0,
+          "unit": "S.F."
+        },
+        "stain_exterior": {
+          "material": 0.45,
+          "labor": 0.55,
+          "total": 1.0,
+          "unit": "S.F."
+        },
+        "prep_scrape_sand": {
+          "material": 0.05,
+          "labor": 0.6,
+          "total": 0.65,
+          "unit": "S.F."
+        }
+      },
+      "calibration": {
+        "cost_per_sf_low": 1.75,
+        "cost_per_sf_mid": 3.0,
+        "cost_per_sf_high": 5.0,
+        "typical_labor_pct": 65
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 21.1,
+      "cost_range": [
+        0.36,
+        96.0
+      ],
+      "item_count": 28,
+      "top_unit_costs": {
+        "Wet clean existing surfaces with water and soap or solvent -": {
+          "material": 0.02,
+          "labor": 23.0,
+          "total": 0.36,
+          "unit": "SF"
+        },
+        "Exterior doors and trim": {
+          "material": 2.0,
+          "labor": 0.36,
+          "total": 57.0,
+          "unit": "SF"
+        },
+        "Sanding and puttying - Exterior doors and trim": {
+          "material": 1.0,
+          "labor": 0.5,
+          "total": 76.0,
+          "unit": "SF"
+        },
+        "Plain siding - Roller (275 SF/gal)": {
+          "material": 19.0,
+          "labor": 0.36,
+          "total": 17.0,
+          "unit": "SF"
+        },
+        "Plain siding - Spray (325 SF/gal)": {
+          "material": 16.0,
+          "labor": 0.23,
+          "total": 61.0,
+          "unit": "SF"
+        },
+        "Shingle siding - Roller (260 SF/gal)": {
+          "material": 0.2,
+          "labor": 0.32,
+          "total": 4.0,
+          "unit": "SF"
+        },
+        "Shingle siding - Spray (300 SF/gal)": {
+          "material": 19.0,
+          "labor": 0.33,
+          "total": 0.83,
+          "unit": "SF"
+        },
+        "Doors, exterior side only - Brush (375 SF/gal)": {
+          "material": 14.0,
+          "labor": 0.59,
+          "total": 1.05,
+          "unit": "SF"
+        },
+        "Doors, exterior side only - Roller (375 SF/gal)": {
+          "material": 15.0,
+          "labor": 0.54,
+          "total": 1.0,
+          "unit": "SF"
+        },
+        "Shingle siding - Brush (180 SF/gal)": {
+          "material": 30.0,
+          "labor": 0.45,
+          "total": 1.04,
+          "unit": "SF"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "fence_installation": {
+    "rsmeans": {
+      "source": "RSMeans Fencing section, pages 144-146",
+      "key_items": {
+        "chain_link_4ft": {
+          "material": 13,
+          "labor": 7,
+          "total": 20,
+          "unit": "L.F."
+        },
+        "chain_link_6ft": {
+          "material": 17,
+          "labor": 8,
+          "total": 25,
+          "unit": "L.F."
+        },
+        "wood_privacy_6ft": {
+          "material": 18,
+          "labor": 10,
+          "total": 28,
+          "unit": "L.F."
+        },
+        "stockade_6ft": {
+          "material": 15,
+          "labor": 9,
+          "total": 24,
+          "unit": "L.F."
+        },
+        "picket_4ft": {
+          "material": 12,
+          "labor": 8,
+          "total": 20,
+          "unit": "L.F."
+        },
+        "wrought_iron": {
+          "material": 45,
+          "labor": 15,
+          "total": 60,
+          "unit": "L.F."
+        },
+        "gate_chain_link": {
+          "material": 160,
+          "labor": 100,
+          "total": 260,
+          "unit": "Ea."
+        },
+        "gate_wood": {
+          "material": 185,
+          "labor": 120,
+          "total": 305,
+          "unit": "Ea."
+        }
+      },
+      "calibration": {
+        "cost_per_lf_low": 20,
+        "cost_per_lf_mid": 35,
+        "cost_per_lf_high": 65,
+        "typical_labor_pct": 35
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 96.23,
+      "cost_range": [
+        8.04,
+        301.0
+      ],
+      "item_count": 136,
+      "top_unit_costs": {
+        "Basketweave - 2'to 4'H": {
+          "material": 24.7,
+          "labor": 4.07,
+          "total": 35.3,
+          "unit": "LF"
+        },
+        "Basketweave - 4' to 6'H": {
+          "material": 36.2,
+          "labor": 4.07,
+          "total": 49.2,
+          "unit": "LF"
+        },
+        "Adjustments": {
+          "material": 50.5,
+          "labor": 35.5,
+          "total": 110.0,
+          "unit": "Ea"
+        },
+        "Gate with hardware": {
+          "material": 46.5,
+          "labor": 29.0,
+          "total": 96.4,
+          "unit": "LF"
+        },
+        "Cedar - 1\"x 8\"-6'H": {
+          "material": 43.6,
+          "labor": 14.0,
+          "total": 71.8,
+          "unit": "LF"
+        },
+        "Douglas fir, treated - 1\"x 8\"-6'H": {
+          "material": 51.0,
+          "labor": 14.0,
+          "total": 80.8,
+          "unit": "LF"
+        },
+        "Douglas fir, treated - 1\"x 10\"-6'H": {
+          "material": 60.2,
+          "labor": 16.3,
+          "total": 95.1,
+          "unit": "LF"
+        },
+        "Redwood - 1\"x6\"-6'H": {
+          "material": 58.1,
+          "labor": 16.3,
+          "total": 92.5,
+          "unit": "LF"
+        },
+        "Redwood - 1\"x 8\"-6'H": {
+          "material": 56.4,
+          "labor": 14.0,
+          "total": 87.2,
+          "unit": "LF"
+        },
+        "Cedar - 1\"x 10\"-6'H": {
+          "material": 55.0,
+          "labor": 11.5,
+          "total": 82.0,
+          "unit": "LF"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "fiberglass_panel": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 5.49,
+      "cost_range": [
+        4.54,
+        6.47
+      ],
+      "item_count": 4,
+      "top_unit_costs": {
+        "Corrugated polycarbonate - 4 02., 0.032\" T, 26\" W": {
+          "material": 1.49,
+          "labor": 1.84,
+          "total": 4.54,
+          "unit": "SF"
+        },
+        "Corrugated polycarbonate - 5 oz., 0.037\" T, 26\" W": {
+          "material": 2.14,
+          "labor": 1.84,
+          "total": 5.32,
+          "unit": "SF"
+        }
+      }
+    }
+  },
+  "fireplace": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 793.06,
+      "cost_range": [
+        4.13,
+        2560.0
+      ],
+      "item_count": 16,
+      "top_unit_costs": {
+        "Versailles, ornate, French design - 59\" W x 46\" H": {
+          "material": 1930.0,
+          "labor": 167.0,
+          "total": 2560.0,
+          "unit": "Ea"
+        },
+        "Victorian, ornate, English design - 63\" W x 52\" H": {
+          "material": 1540.0,
+          "labor": 167.0,
+          "total": 2100.0,
+          "unit": "Ea"
+        },
+        "Chelsea, plain, English design - 70\" W x 52\" H": {
+          "material": 1110.0,
+          "labor": 167.0,
+          "total": 1590.0,
+          "unit": "Ea"
+        },
+        "Jamestown, plain, Early American - 68\" W x 53\" H": {
+          "material": 615.0,
+          "labor": 167.0,
+          "total": 988.0,
+          "unit": "Ea"
+        },
+        "Panels, 4' x 8', adhesive set - Solid colors": {
+          "material": 2.86,
+          "labor": 1.96,
+          "total": 6.37,
+          "unit": "SF"
+        },
+        "Panels, 4' x 8', adhesive set - Patterned panels": {
+          "material": 3.35,
+          "labor": 1.96,
+          "total": 6.96,
+          "unit": "SF"
+        },
+        "Panels, 4' x 8', adhesive set - Bright anodized": {
+          "material": 16.0,
+          "labor": 2.62,
+          "total": 4.13,
+          "unit": "LF"
+        },
+        "Panels, 4' x 8', adhesive set - Gold anodized": {
+          "material": 19.0,
+          "labor": 2.62,
+          "total": 4.16,
+          "unit": "LF"
+        },
+        "Panels, 4' x 8', adhesive set - Colors": {
+          "material": 0.26,
+          "labor": 2.62,
+          "total": 4.25,
+          "unit": "LF"
+        }
+      }
+    }
+  },
+  "flooring_installation": {
+    "rsmeans": {
+      "source": "RSMeans Flooring section, pages 240-249",
+      "key_items": {
+        "hardwood_oak_strip": {
+          "material": 7.0,
+          "labor": 3.75,
+          "total": 10.75,
+          "unit": "S.F."
+        },
+        "hardwood_prefinished": {
+          "material": 8.5,
+          "labor": 3.0,
+          "total": 11.5,
+          "unit": "S.F."
+        },
+        "laminate": {
+          "material": 3.5,
+          "labor": 2.5,
+          "total": 6.0,
+          "unit": "S.F."
+        },
+        "ceramic_tile": {
+          "material": 5.5,
+          "labor": 6.5,
+          "total": 12.0,
+          "unit": "S.F."
+        },
+        "porcelain_tile": {
+          "material": 8.0,
+          "labor": 7.0,
+          "total": 15.0,
+          "unit": "S.F."
+        },
+        "vinyl_sheet": {
+          "material": 2.8,
+          "labor": 1.5,
+          "total": 4.3,
+          "unit": "S.F."
+        },
+        "carpet_average": {
+          "material": 3.5,
+          "labor": 0.85,
+          "total": 4.35,
+          "unit": "S.F."
+        },
+        "carpet_premium": {
+          "material": 7.0,
+          "labor": 0.85,
+          "total": 7.85,
+          "unit": "S.F."
+        }
+      },
+      "calibration": {
+        "cost_per_sf_low": 4.0,
+        "cost_per_sf_mid": 8.0,
+        "cost_per_sf_high": 15.0,
+        "typical_labor_pct": 35
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 15.39,
+      "cost_range": [
+        1.07,
+        454.0
+      ],
+      "item_count": 97,
+      "top_unit_costs": {
+        "Floor prep for resilient flooring": {
+          "material": 1.0,
+          "labor": 0.62,
+          "total": 1.07,
+          "unit": "SF"
+        },
+        "Floor prep for resilient flooring - Heavy prep": {
+          "material": 20.0,
+          "labor": 0.58,
+          "total": 1.11,
+          "unit": "SF"
+        },
+        "Vinyl tile, 12\" x 12\" - Standard, 0.045\" T": {
+          "material": 1.37,
+          "labor": 0.42,
+          "total": 3.52,
+          "unit": "SF"
+        },
+        "Vinyl tile, 12\" x 12\" - High, 0.080\" T": {
+          "material": 5.13,
+          "labor": 1.67,
+          "total": 8.66,
+          "unit": "SF"
+        },
+        "Vinyl tile, 12\" x 12\" - Premium, 0.094\" T": {
+          "material": 6.57,
+          "labor": 1.25,
+          "total": 9.76,
+          "unit": "SF"
+        },
+        "Vinyl tile, 12\" x 12\", self-adhesive - Standard, 0.045\" T": {
+          "material": 91.0,
+          "labor": 1.08,
+          "total": 2.72,
+          "unit": "SF"
+        },
+        "Vinyl tile, 12\" x 12\", self-adhesive - Average, 0.065\" T": {
+          "material": 1.18,
+          "labor": 1.08,
+          "total": 3.04,
+          "unit": "SF"
+        },
+        "Vinyl tile, 12\" x 12\", self-adhesive - Premium, 0.094\" T": {
+          "material": 3.81,
+          "labor": 1.08,
+          "total": 6.2,
+          "unit": "SF"
+        },
+        "Vinyl composition tile (VCT), 12\" x 12\" x 1/8\" - Average": {
+          "material": 1.22,
+          "labor": 0.96,
+          "total": 2.9,
+          "unit": "SF"
+        },
+        "Vinyl composition tile (VCT), 12\" x 12\" x 1/8\" - High": {
+          "material": 1.58,
+          "labor": 0.96,
+          "total": 3.33,
+          "unit": "SF"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "flooring_lvp": {
+    "rsmeans": {
+      "source": "RSMeans Resilient Flooring, page 245",
+      "key_items": {
+        "lvp_standard": {
+          "material": 3.5,
+          "labor": 2.0,
+          "total": 5.5,
+          "unit": "S.F."
+        },
+        "lvp_premium": {
+          "material": 5.5,
+          "labor": 2.0,
+          "total": 7.5,
+          "unit": "S.F."
+        },
+        "vinyl_sheet": {
+          "material": 2.8,
+          "labor": 1.5,
+          "total": 4.3,
+          "unit": "S.F."
+        }
+      },
+      "calibration": {
+        "cost_per_sf_low": 4.0,
+        "cost_per_sf_mid": 6.0,
+        "cost_per_sf_high": 9.0,
+        "typical_labor_pct": 35
+      }
+    }
+  },
+  "foundation_repair": {
+    "rsmeans": {
+      "source": "RSMeans Foundation section, pages 20-26",
+      "key_items": {
+        "slabjacking_per_sf": {
+          "material": 0,
+          "labor": 2.79,
+          "total": 2.79,
+          "unit": "S.F."
+        },
+        "epoxy_injection_lf": {
+          "material": 0,
+          "labor": 12.85,
+          "total": 12.85,
+          "unit": "L.F."
+        },
+        "helical_pier": {
+          "material": 800,
+          "labor": 600,
+          "total": 1400,
+          "unit": "Ea."
+        },
+        "push_pier": {
+          "material": 900,
+          "labor": 700,
+          "total": 1600,
+          "unit": "Ea."
+        },
+        "concrete_underpinning_lf": {
+          "material": 150,
+          "labor": 350,
+          "total": 500,
+          "unit": "L.F."
+        },
+        "minimum_charge": {
+          "labor": 266,
+          "total": 266
+        }
+      },
+      "calibration": {
+        "minor_repair_low": 2500,
+        "minor_repair_mid": 5000,
+        "major_repair_low": 10000,
+        "major_repair_mid": 25000,
+        "typical_labor_pct": 60
+      }
+    }
+  },
+  "framing": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 37.2,
+      "cost_range": [
+        1.02,
+        1338.0
+      ],
+      "item_count": 868,
+      "top_unit_costs": {
+        "Built-up (2 pieces) - 4\"x6\"- 10\u00b0": {
+          "material": 2.03,
+          "labor": 2.16,
+          "total": 7.79,
+          "unit": "LF"
+        },
+        "Built-up (2 pieces) - 4\" x 8\" - 10!": {
+          "material": 2.4,
+          "labor": 2.11,
+          "total": 8.1,
+          "unit": "LF"
+        },
+        "Built-up (2 pieces) - 4\"x 10\"- 10'": {
+          "material": 2.96,
+          "labor": 2.25,
+          "total": 9.13,
+          "unit": "LF"
+        },
+        "Built-up (2 pieces) - 4\"x 12\" - 12!": {
+          "material": 4.19,
+          "labor": 2.43,
+          "total": 11.0,
+          "unit": "LF"
+        },
+        "Built-up (2 pieces) - 6\" x 8\"- 10!": {
+          "material": 13.7,
+          "labor": 3.08,
+          "total": 22.8,
+          "unit": "LF"
+        },
+        "Built-up (2 pieces) - 6\" x 10\"- 10\u00b0": {
+          "material": 17.8,
+          "labor": 3.29,
+          "total": 28.1,
+          "unit": "LF"
+        },
+        "Built-up (2 pieces) - 6\" x 12\" - 12\u2019": {
+          "material": 20.5,
+          "labor": 3.5,
+          "total": 31.8,
+          "unit": "LF"
+        },
+        "Built-up (3 pieces) - 6\" x 8\" - 10\u00b0": {
+          "material": 3.67,
+          "labor": 3.12,
+          "total": 10.8,
+          "unit": "LF"
+        },
+        "Built-up (3 pieces) - 6\" x 10\" - 10'": {
+          "material": 4.52,
+          "labor": 3.37,
+          "total": 12.3,
+          "unit": "LF"
+        },
+        "Framing, rough carpentry, beams - 3\" x 12\"": {
+          "material": 11.6,
+          "labor": 2.2,
+          "total": 19.5,
+          "unit": "LF"
+        }
+      }
+    }
+  },
+  "garage_door": {
+    "rsmeans": {
+      "source": "RSMeans Garage Door, page 103",
+      "key_items": {
+        "single_9x7_basic": {
+          "material": 720,
+          "labor": 269,
+          "total": 989
+        },
+        "single_9x7_insulated": {
+          "material": 1050,
+          "labor": 269,
+          "total": 1319
+        },
+        "double_16x7_basic": {
+          "material": 1100,
+          "labor": 345,
+          "total": 1445
+        },
+        "double_16x7_insulated": {
+          "material": 1550,
+          "labor": 345,
+          "total": 1895
+        },
+        "opener": {
+          "material": 310,
+          "labor": 185,
+          "total": 495
+        }
+      },
+      "calibration": {
+        "single_door_low": 950,
+        "single_door_mid": 1400,
+        "single_door_high": 2200,
+        "double_door_low": 1400,
+        "double_door_mid": 2000,
+        "double_door_high": 3000,
+        "typical_labor_pct": 20
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 1486.71,
+      "cost_range": [
+        41.2,
+        4370.0
+      ],
+      "item_count": 84,
+      "top_unit_costs": {
+        "Jamb type with hardware and deluxe lock - 8'x 7\u2019, single": {
+          "material": 759.0,
+          "labor": 262.0,
+          "total": 1300.0,
+          "unit": "Ea"
+        },
+        "Jamb type with hardware and deluxe lock - 8' x 8', single": {
+          "material": 918.0,
+          "labor": 184.0,
+          "total": 1380.0,
+          "unit": "Ea"
+        },
+        "Jamb type with hardware and deluxe lock - 9' x 7', single": {
+          "material": 703.0,
+          "labor": 184.0,
+          "total": 1120.0,
+          "unit": "Ea"
+        },
+        "Jamb type with hardware and deluxe lock - 16'x 7\u2019, double": {
+          "material": 1100.0,
+          "labor": 245.0,
+          "total": 1690.0,
+          "unit": "Ea"
+        },
+        "Track type with hardware and deluxe lock": {
+          "material": 723.0,
+          "labor": 262.0,
+          "total": 1260.0,
+          "unit": "Ea"
+        },
+        "Track type with hardware and deluxe lock - 9'x 7', single": {
+          "material": 669.0,
+          "labor": 184.0,
+          "total": 1080.0,
+          "unit": "Ea"
+        },
+        "Sectional type with hardware and key lock - 8'x 7\u2019, single": {
+          "material": 891.0,
+          "labor": 184.0,
+          "total": 1350.0,
+          "unit": "Ea"
+        },
+        "Sectional type with hardware and key lock - 9' x 7', single": {
+          "material": 909.0,
+          "labor": 184.0,
+          "total": 1370.0,
+          "unit": "Ea"
+        },
+        "Sectional type with hardware and key lock - 16' x 7', double": {
+          "material": 1370.0,
+          "labor": 245.0,
+          "total": 2010.0,
+          "unit": "Ea"
+        },
+        "Jamb type with hardware and deluxe lock - 8'x 7', single": {
+          "material": 646.0,
+          "labor": 184.0,
+          "total": 1050.0,
+          "unit": "Ea"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "gutter_installation": {
+    "rsmeans": {
+      "source": "RSMeans Gutters section, pages 284-285",
+      "key_items": {
+        "aluminum_5in": {
+          "material": 4.5,
+          "labor": 3.2,
+          "total": 7.7,
+          "unit": "L.F."
+        },
+        "aluminum_6in": {
+          "material": 5.8,
+          "labor": 3.5,
+          "total": 9.3,
+          "unit": "L.F."
+        },
+        "copper": {
+          "material": 22,
+          "labor": 5.0,
+          "total": 27,
+          "unit": "L.F."
+        },
+        "galvanized": {
+          "material": 3.8,
+          "labor": 3.2,
+          "total": 7.0,
+          "unit": "L.F."
+        },
+        "downspout_aluminum": {
+          "material": 4.2,
+          "labor": 2.8,
+          "total": 7.0,
+          "unit": "L.F."
+        },
+        "downspout_copper": {
+          "material": 18,
+          "labor": 3.5,
+          "total": 21.5,
+          "unit": "L.F."
+        }
+      },
+      "calibration": {
+        "cost_per_lf_low": 7,
+        "cost_per_lf_mid": 12,
+        "cost_per_lf_high": 28,
+        "typical_labor_pct": 35
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 25.09,
+      "cost_range": [
+        7.66,
+        94.8
+      ],
+      "item_count": 24,
+      "top_unit_costs": {
+        "Gutter, 5\", and Downspout, 2\"x3\"": {
+          "material": 4.07,
+          "labor": 3.67,
+          "total": 10.4,
+          "unit": "LF"
+        },
+        "Gutter, 6\", and Downspout, 3\"x4\"": {
+          "material": 8.12,
+          "labor": 3.67,
+          "total": 15.3,
+          "unit": "LF"
+        },
+        "Cutter, 7\" to 8\", and Dowrspoul, 4\"x5\"": {
+          "material": 14.5,
+          "labor": 3.67,
+          "total": 22.9,
+          "unit": "LF"
+        },
+        "Gutter, box, 6\", and Downspout, 3\"x4\"": {
+          "material": 9.9,
+          "labor": 3.67,
+          "total": 17.4,
+          "unit": "LF"
+        },
+        "Gutter, box, 7\" to 8\", and Downspout, 4\"x5\"": {
+          "material": 17.6,
+          "labor": 3.67,
+          "total": 26.7,
+          "unit": "LF"
+        },
+        "Gutter, 7\" to 8\", and Downspout, 4\"x5\"": {
+          "material": 40.4,
+          "labor": 4.17,
+          "total": 94.8,
+          "unit": "LF"
+        },
+        "Leaf guard or screen - Standard": {
+          "material": 1.67,
+          "labor": 3.77,
+          "total": 7.66,
+          "unit": "LF"
+        },
+        "Leaf guard or screen - High": {
+          "material": 3.72,
+          "labor": 2.63,
+          "total": 8.41,
+          "unit": "LF"
+        },
+        "Leaf guard or screen - Premium": {
+          "material": 6.97,
+          "labor": 3.77,
+          "total": 14.0,
+          "unit": "LF"
+        },
+        "Splash guard": {
+          "material": 3.95,
+          "labor": 22.7,
+          "total": 38.8,
+          "unit": "LF"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "hardwood_flooring": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 10.25,
+      "cost_range": [
+        0.83,
+        23.7
+      ],
+      "item_count": 37,
+      "top_unit_costs": {
+        "25/32\" x 3-1/4\" - Lay floor": {
+          "material": 14.8,
+          "labor": 1.96,
+          "total": 20.6,
+          "unit": "SF"
+        },
+        "25/32\" x 3-1/4\" - Wax, polish, machine buff": {
+          "material": 13.0,
+          "labor": 0.58,
+          "total": 1.14,
+          "unit": "SF"
+        },
+        "25/32\" x 2-1/4\" - Lay floor": {
+          "material": 10.4,
+          "labor": 2.61,
+          "total": 16.4,
+          "unit": "SF"
+        },
+        "25/32\" x 2-1/4\" - Wax, polish, machine buff": {
+          "material": 13.0,
+          "labor": 8.0,
+          "total": 1.14,
+          "unit": "SF"
+        },
+        "Fir - Vertical grain": {
+          "material": 8.57,
+          "labor": 1.65,
+          "total": 12.8,
+          "unit": "SF"
+        },
+        "Yellow pine": {
+          "material": 6.67,
+          "labor": 1.65,
+          "total": 10.5,
+          "unit": "SF"
+        },
+        "Maple": {
+          "material": 7.52,
+          "labor": 3.48,
+          "total": 14.3,
+          "unit": "SF"
+        },
+        "Oak": {
+          "material": 8.69,
+          "labor": 3.48,
+          "total": 15.7,
+          "unit": "SF"
+        },
+        "Machine sand, fill and finish - New floors": {
+          "material": 19.0,
+          "labor": 0.84,
+          "total": 1.71,
+          "unit": "SF"
+        },
+        "Machine sand, fill and finish - Damaged floors": {
+          "material": 9.0,
+          "labor": 1.24,
+          "total": 2.41,
+          "unit": "SF"
+        }
+      }
+    }
+  },
+  "home_addition": {
+    "rsmeans": {
+      "source": "RSMeans Framing section, pages 36-48",
+      "key_items": {
+        "wall_framing_2x4_sf": {
+          "material": 1.25,
+          "labor": 2.25,
+          "total": 3.5,
+          "unit": "S.F."
+        },
+        "wall_framing_2x6_sf": {
+          "material": 1.75,
+          "labor": 2.5,
+          "total": 4.25,
+          "unit": "S.F."
+        },
+        "floor_joist_2x10_sf": {
+          "material": 1.5,
+          "labor": 1.0,
+          "total": 2.5,
+          "unit": "S.F."
+        },
+        "subfloor_3_4_plywood": {
+          "material": 2.1,
+          "labor": 0.95,
+          "total": 3.05,
+          "unit": "S.F."
+        },
+        "roof_rafter_2x8_sf": {
+          "material": 1.35,
+          "labor": 1.75,
+          "total": 3.1,
+          "unit": "S.F."
+        },
+        "sheathing_1_2_plywood": {
+          "material": 1.45,
+          "labor": 0.8,
+          "total": 2.25,
+          "unit": "S.F."
+        }
+      },
+      "calibration": {
+        "cost_per_sf_addition_low": 100,
+        "cost_per_sf_addition_mid": 175,
+        "cost_per_sf_addition_high": 300,
+        "typical_labor_pct": 50,
+        "notes": "Full addition includes foundation, framing, roof, siding, windows, electrical, plumbing, HVAC, drywall, finish"
+      }
+    }
+  },
+  "hvac_replacement": {
+    "rsmeans": {
+      "source": "RSMeans HVAC section, pages 154-163",
+      "key_items": {
+        "gas_furnace_75k": {
+          "material": 1350,
+          "labor": 1070,
+          "total": 2420
+        },
+        "gas_furnace_100k": {
+          "material": 1700,
+          "labor": 1290,
+          "total": 2990
+        },
+        "gas_furnace_125k": {
+          "material": 2100,
+          "labor": 1290,
+          "total": 3390
+        },
+        "ac_condenser_2ton": {
+          "material": 1500,
+          "labor": 855,
+          "total": 2355
+        },
+        "ac_condenser_3ton": {
+          "material": 2300,
+          "labor": 1070,
+          "total": 3370
+        },
+        "ac_condenser_5ton": {
+          "material": 3800,
+          "labor": 1290,
+          "total": 5090
+        },
+        "heat_pump_2ton": {
+          "material": 2400,
+          "labor": 1070,
+          "total": 3470
+        },
+        "heat_pump_3ton": {
+          "material": 3200,
+          "labor": 1290,
+          "total": 4490
+        },
+        "air_handler": {
+          "material": 850,
+          "labor": 430,
+          "total": 1280
+        },
+        "ductwork_per_lf": {
+          "material": 12,
+          "labor": 18,
+          "total": 30,
+          "unit": "L.F."
+        },
+        "thermostat": {
+          "material": 175,
+          "labor": 107,
+          "total": 282
+        }
+      },
+      "calibration": {
+        "full_system_low": 4500,
+        "full_system_mid": 7500,
+        "full_system_high": 15000,
+        "furnace_only_low": 2400,
+        "furnace_only_mid": 3500,
+        "furnace_only_high": 5000,
+        "typical_labor_pct": 40
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 1940.44,
+      "cost_range": [
+        0.83,
+        29100.0
+      ],
+      "item_count": 200,
+      "top_unit_costs": {
+        "24\" oc members - 1/8\" diameter (7 fl.oz/CSF)": {
+          "material": 3.18,
+          "labor": 3.85,
+          "total": 9.6,
+          "unit": "CSF"
+        },
+        "24\" oc members - 1/4\" diameter (26 fl.oz/CSF)": {
+          "material": 12.6,
+          "labor": 3.85,
+          "total": 20.9,
+          "unit": "CSF"
+        },
+        "24\" oc members - 3/8\" diameter (58 fl.oz/CSF)": {
+          "material": 28.5,
+          "labor": 3.85,
+          "total": 40.0,
+          "unit": "CSF"
+        },
+        "24\" oc members - 1/2\" diameter (103 fl.oz./CSF)": {
+          "material": 50.4,
+          "labor": 3.85,
+          "total": 66.3,
+          "unit": "CSF"
+        },
+        "Heat element only": {
+          "material": 2110.0,
+          "labor": 1480.0,
+          "total": 4750.0,
+          "unit": "Ea"
+        },
+        "A/C Coil only - 2 ton": {
+          "material": 1100.0,
+          "labor": 947.0,
+          "total": 2740.0,
+          "unit": "Ea"
+        },
+        "Heat and A/C Coil - 2 ton": {
+          "material": 1260.0,
+          "labor": 947.0,
+          "total": 2930.0,
+          "unit": "Ea"
+        },
+        "Heat and A/C Coil - 5 ton": {
+          "material": 2060.0,
+          "labor": 1190.0,
+          "total": 4250.0,
+          "unit": "Ea"
+        },
+        "Air cooled, compressor, standard controls - 1.0 ton": {
+          "material": 1530.0,
+          "labor": 356.0,
+          "total": 2370.0,
+          "unit": "Ea"
+        },
+        "Air cooled, compressor, standard controls - 1.5 ton": {
+          "material": 1720.0,
+          "labor": 406.0,
+          "total": 2670.0,
+          "unit": "Ea"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "insulation": {
+    "rsmeans": {
+      "source": "RSMeans Insulation section, pages 170-174",
+      "key_items": {
+        "fiberglass_batt_r13": {
+          "material": 0.55,
+          "labor": 0.4,
+          "total": 0.95,
+          "unit": "S.F."
+        },
+        "fiberglass_batt_r19": {
+          "material": 0.7,
+          "labor": 0.45,
+          "total": 1.15,
+          "unit": "S.F."
+        },
+        "fiberglass_batt_r30": {
+          "material": 1.05,
+          "labor": 0.5,
+          "total": 1.55,
+          "unit": "S.F."
+        },
+        "blown_cellulose_attic": {
+          "material": 0.75,
+          "labor": 0.4,
+          "total": 1.15,
+          "unit": "S.F."
+        },
+        "rigid_foam_1in": {
+          "material": 0.85,
+          "labor": 0.5,
+          "total": 1.35,
+          "unit": "S.F."
+        },
+        "spray_foam_closed": {
+          "material": 1.8,
+          "labor": 1.2,
+          "total": 3.0,
+          "unit": "S.F."
+        }
+      },
+      "calibration": {
+        "cost_per_sf_low": 0.8,
+        "cost_per_sf_mid": 1.5,
+        "cost_per_sf_high": 3.5,
+        "typical_labor_pct": 35
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 48.44,
+      "cost_range": [
+        0.93,
+        537.0
+      ],
+      "item_count": 174,
+      "top_unit_costs": {
+        "Includes fasteners and seam tape - Air / Moisture barrier": {
+          "material": 20.0,
+          "labor": 50.0,
+          "total": 1.0,
+          "unit": "SF"
+        },
+        "3-1/2\" T (R-11) - 16\" oc": {
+          "material": 44.0,
+          "labor": 0.37,
+          "total": 1.08,
+          "unit": "SF"
+        },
+        "3-1/2\" T (R-11) - 24\" oc": {
+          "material": 49.0,
+          "labor": 0.23,
+          "total": 0.93,
+          "unit": "SF"
+        },
+        "3-1/2\" T (R-12) - 16\" oc": {
+          "material": 56.0,
+          "labor": 0.0,
+          "total": 1.5,
+          "unit": "SF"
+        },
+        "3-1/2\" T (R-12) - 24\" oc": {
+          "material": 63.0,
+          "labor": 37.0,
+          "total": 1.31,
+          "unit": "SF"
+        },
+        "3-1/2\" T (R-13) - 16\" oc": {
+          "material": 0.6,
+          "labor": 0.0,
+          "total": 1.27,
+          "unit": "SF"
+        },
+        "3-1/2\" T (R-13) - 24\" oc": {
+          "material": 0.68,
+          "labor": 0.23,
+          "total": 1.16,
+          "unit": "SF"
+        },
+        "5-1/2\" T (R-19)": {
+          "material": 0.8,
+          "labor": 0.55,
+          "total": 1.79,
+          "unit": "SF"
+        },
+        "5-1/2\" T (R-19) - 24\" oc": {
+          "material": 81.0,
+          "labor": 0.23,
+          "total": 1.32,
+          "unit": "SF"
+        },
+        "5-1/2\" T (R-20) - 16\" oc": {
+          "material": 92.0,
+          "labor": 0.37,
+          "total": 1.65,
+          "unit": "SF"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "kitchen_remodel": {
+    "rsmeans": {
+      "source": "RSMeans Cabinets (210-228) + Countertops (229-230) + Appliances",
+      "key_items": {
+        "base_cabinet_economy_lf": {
+          "material": 170,
+          "labor": 54,
+          "total": 224,
+          "unit": "L.F."
+        },
+        "base_cabinet_standard_lf": {
+          "material": 305,
+          "labor": 54,
+          "total": 359,
+          "unit": "L.F."
+        },
+        "base_cabinet_premium_lf": {
+          "material": 535,
+          "labor": 54,
+          "total": 589,
+          "unit": "L.F."
+        },
+        "wall_cabinet_economy_lf": {
+          "material": 160,
+          "labor": 40,
+          "total": 200,
+          "unit": "L.F."
+        },
+        "wall_cabinet_standard_lf": {
+          "material": 285,
+          "labor": 40,
+          "total": 325,
+          "unit": "L.F."
+        },
+        "wall_cabinet_premium_lf": {
+          "material": 490,
+          "labor": 40,
+          "total": 530,
+          "unit": "L.F."
+        },
+        "countertop_laminate_lf": {
+          "material": 28,
+          "labor": 27,
+          "total": 55,
+          "unit": "L.F."
+        },
+        "countertop_granite_lf": {
+          "material": 118,
+          "labor": 54,
+          "total": 172,
+          "unit": "L.F."
+        },
+        "countertop_marble_lf": {
+          "material": 160,
+          "labor": 54,
+          "total": 214,
+          "unit": "L.F."
+        },
+        "dishwasher": {
+          "material": 620,
+          "labor": 269,
+          "total": 889,
+          "unit": "Ea."
+        },
+        "garbage_disposal": {
+          "material": 260,
+          "labor": 300,
+          "total": 560,
+          "unit": "Ea."
+        },
+        "range_hood": {
+          "material": 340,
+          "labor": 107,
+          "total": 447,
+          "unit": "Ea."
+        }
+      },
+      "calibration": {
+        "small_kitchen_low": 12000,
+        "small_kitchen_mid": 20000,
+        "small_kitchen_high": 35000,
+        "large_kitchen_low": 25000,
+        "large_kitchen_mid": 45000,
+        "large_kitchen_high": 75000,
+        "typical_labor_pct": 25
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 732.34,
+      "cost_range": [
+        54.2,
+        2990.0
+      ],
+      "item_count": 75,
+      "top_unit_costs": {
+        "Built-in front loading - Deluxe grade": {
+          "material": 1760.0,
+          "labor": 333.0,
+          "total": 2610.0,
+          "unit": "Ea"
+        },
+        "Built-in front loading - Premium grade": {
+          "material": 1090.0,
+          "labor": 333.0,
+          "total": 1800.0,
+          "unit": "Ea"
+        },
+        "Built-in front loading - High grade": {
+          "material": 832.0,
+          "labor": 333.0,
+          "total": 1500.0,
+          "unit": "Ea"
+        },
+        "Built-in front loading - Average grade": {
+          "material": 577.0,
+          "labor": 444.0,
+          "total": 1360.0,
+          "unit": "Ea"
+        },
+        "Built-in front loading - Standard grade": {
+          "material": 372.0,
+          "labor": 333.0,
+          "total": 946.0,
+          "unit": "Ea"
+        },
+        "1,000 watt motor, 110 volts, 5 speed, 8.7 sones quiet": {
+          "material": 294.0,
+          "labor": 129.0,
+          "total": 546.0,
+          "unit": "Ea"
+        },
+        "24\" wide - 3-1/4\" x 10\" duct, 160 CTM": {
+          "material": 98.5,
+          "labor": 188.0,
+          "total": 401.0,
+          "unit": "Ea"
+        },
+        "24\" wide - Non-ducted, 160 CFM": {
+          "material": 108.0,
+          "labor": 188.0,
+          "total": 413.0,
+          "unit": "Ea"
+        },
+        "30\" wide - 7\" round duct, 240 CFM": {
+          "material": 113.0,
+          "labor": 188.0,
+          "total": 419.0,
+          "unit": "Ea"
+        },
+        "30\" wide - 3-1/4\" x 10\" duct, 160 CFM": {
+          "material": 118.0,
+          "labor": 188.0,
+          "total": 425.0,
+          "unit": "Ea"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "location_factors": {
+    "rsmeans": {
+      "source": "RSMeans Location Factors, pages 295-300",
+      "key_items": {},
+      "calibration": {}
+    }
+  },
+  "masonry": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 102.2,
+      "cost_range": [
+        8.16,
+        670.0
+      ],
+      "item_count": 179,
+      "top_unit_costs": {
+        "16\" x 16\" with one 8\" x 8\" flue": {
+          "material": 30.0,
+          "labor": 43.7,
+          "total": 110.0,
+          "unit": "VLF"
+        },
+        "20\" x 16\" with one 12\" x 8\" flue": {
+          "material": 36.1,
+          "labor": 49.5,
+          "total": 127.0,
+          "unit": "VLF"
+        },
+        "20\" x 20\" with one 12\" x 12\" flue": {
+          "material": 42.6,
+          "labor": 55.4,
+          "total": 144.0,
+          "unit": "VLF"
+        },
+        "28\" x 16\" with two 8\" x 8\" flues": {
+          "material": 52.7,
+          "labor": 66.3,
+          "total": 175.0,
+          "unit": "VLF"
+        },
+        "36\" x 16\" with two 12\" x 8\" flues": {
+          "material": 64.1,
+          "labor": 76.1,
+          "total": 205.0,
+          "unit": "VLF"
+        },
+        "36\" x 20\" with two 12\" x 12\u201d flues": {
+          "material": 77.8,
+          "labor": 84.3,
+          "total": 235.0,
+          "unit": "VLF"
+        },
+        "Cost Cost - 8\" x 8\" ( 9.33 Brick/VLF)": {
+          "material": 7.43,
+          "labor": 16.2,
+          "total": 36.2,
+          "unit": "VLF"
+        },
+        "Cost Cost - 12\" x 8\" (14.00 Brick/VLF)": {
+          "material": 11.3,
+          "labor": 23.6,
+          "total": 53.3,
+          "unit": "VLF"
+        },
+        "Cost Cost - 24\" x 8\" (28.00 Brick/VLF)": {
+          "material": 22.4,
+          "labor": 43.7,
+          "total": 100.0,
+          "unit": "VLF"
+        },
+        "Cost Cost - 20\" x 12\" (35.00 Brick/VLF)": {
+          "material": 28.1,
+          "labor": 52.3,
+          "total": 122.0,
+          "unit": "VLF"
+        }
+      }
+    }
+  },
+  "mini_split": {
+    "rsmeans": {
+      "source": "RSMeans A/C section",
+      "key_items": {
+        "single_zone": {
+          "material": 1800,
+          "labor": 640,
+          "total": 2440
+        },
+        "multi_zone_2": {
+          "material": 3500,
+          "labor": 1280,
+          "total": 4780
+        },
+        "multi_zone_4": {
+          "material": 6000,
+          "labor": 2140,
+          "total": 8140
+        }
+      },
+      "calibration": {
+        "single_zone_low": 2400,
+        "single_zone_mid": 3500,
+        "single_zone_high": 5000,
+        "typical_labor_pct": 30
+      }
+    }
+  },
+  "painting_interior": {
+    "rsmeans": {
+      "source": "RSMeans Painting section, pages 235-240",
+      "key_items": {
+        "wall_paint_1_coat": {
+          "material": 0.15,
+          "labor": 0.3,
+          "total": 0.45,
+          "unit": "S.F."
+        },
+        "wall_paint_2_coat": {
+          "material": 0.25,
+          "labor": 0.55,
+          "total": 0.8,
+          "unit": "S.F."
+        },
+        "ceiling_paint": {
+          "material": 0.18,
+          "labor": 0.35,
+          "total": 0.53,
+          "unit": "S.F."
+        },
+        "wall_prep_patch": {
+          "material": 0.1,
+          "labor": 0.5,
+          "total": 0.6,
+          "unit": "S.F."
+        },
+        "primer": {
+          "material": 0.12,
+          "labor": 0.28,
+          "total": 0.4,
+          "unit": "S.F."
+        },
+        "trim_paint_lf": {
+          "material": 0.3,
+          "labor": 0.8,
+          "total": 1.1,
+          "unit": "L.F."
+        },
+        "minimum_charge": {
+          "labor": 220,
+          "total": 220
+        }
+      },
+      "calibration": {
+        "cost_per_sf_low": 1.5,
+        "cost_per_sf_mid": 2.5,
+        "cost_per_sf_high": 4.0,
+        "typical_labor_pct": 65,
+        "notes": "Painting is labor-intensive - 60-70% labor is normal"
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 14.95,
+      "cost_range": [
+        0.07,
+        97.0
+      ],
+      "item_count": 144,
+      "top_unit_costs": {
+        "Smooth finishes - Plaster and drywall": {
+          "material": 0.02,
+          "labor": 0.23,
+          "total": 36.0,
+          "unit": "SF"
+        },
+        "Smooth finishes - Paneling": {
+          "material": 0.02,
+          "labor": 0.18,
+          "total": 30.0,
+          "unit": "SF"
+        },
+        "Smooth finishes - Millwork and trim": {
+          "material": 2.0,
+          "labor": 0.23,
+          "total": 36.0,
+          "unit": "SF"
+        },
+        "Smooth finishes - Floors": {
+          "material": 0.01,
+          "labor": 0.18,
+          "total": 0.28,
+          "unit": "SF"
+        },
+        "Sand finishes - Plaster and drywall": {
+          "material": 1.0,
+          "labor": 0.32,
+          "total": 0.49,
+          "unit": "SF"
+        },
+        "Thin coat plaster in lieu of taping": {
+          "material": 12.0,
+          "labor": 0.54,
+          "total": 0.96,
+          "unit": "SF"
+        },
+        "Light sanding - Before first coat": {
+          "material": 1.0,
+          "labor": 0.23,
+          "total": 35.0,
+          "unit": "SF"
+        },
+        "Light sanding - Before second coat": {
+          "material": 1.0,
+          "labor": 0.23,
+          "total": 35.0,
+          "unit": "SF"
+        },
+        "Light sanding - Before third coat": {
+          "material": 1.0,
+          "labor": 0.18,
+          "total": 0.28,
+          "unit": "SF"
+        },
+        "Liquid removal of paint or varnish - Millwork & trim (170 SF": {
+          "material": 33.0,
+          "labor": 1.32,
+          "total": 2.37,
+          "unit": "SF"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "paneling": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 3.5,
+      "cost_range": [
+        1.54,
+        8.9
+      ],
+      "item_count": 86,
+      "top_unit_costs": {
+        "Standard - 1/8\" T": {
+          "material": 51.0,
+          "labor": 13.0,
+          "total": 1.71,
+          "unit": "SF"
+        },
+        "Standard - 1/4\" T": {
+          "material": 54.0,
+          "labor": 1.3,
+          "total": 1.75,
+          "unit": "SF"
+        },
+        "Tempered - 1/8\" T": {
+          "material": 57.0,
+          "labor": 0.73,
+          "total": 1.79,
+          "unit": "SF"
+        },
+        "Tempered - 1/4\" T": {
+          "material": 60.0,
+          "labor": 1.3,
+          "total": 1.82,
+          "unit": "SF"
+        },
+        "Nailed to floors - 3/8\" T": {
+          "material": 77.0,
+          "labor": 0.46,
+          "total": 1.54,
+          "unit": "SF"
+        },
+        "Nailed to floors - 1/2\" T": {
+          "material": 98.0,
+          "labor": 0.69,
+          "total": 2.21,
+          "unit": "SF"
+        },
+        "Nailed to floors - 5/8\" T": {
+          "material": 1.04,
+          "labor": 0.46,
+          "total": 1.94,
+          "unit": "SF"
+        },
+        "Nailed to walls - 1/2\" T": {
+          "material": 89.0,
+          "labor": 50.0,
+          "total": 1.83,
+          "unit": "SF"
+        },
+        "Nailed to walls - 5/8\" T": {
+          "material": 1.04,
+          "labor": 0.5,
+          "total": 2.01,
+          "unit": "SF"
+        },
+        "Nailed to walls - 3/4\" T": {
+          "material": 1.09,
+          "labor": 0.5,
+          "total": 2.07,
+          "unit": "SF"
+        }
+      }
+    }
+  },
+  "plaster_stucco": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 26.24,
+      "cost_range": [
+        1.12,
+        66.4
+      ],
+      "item_count": 23,
+      "top_unit_costs": {
+        "For gypsum or wood lath above second floor - ADD": {
+          "material": 0.0,
+          "labor": 0.31,
+          "total": 46.0,
+          "unit": "SY"
+        },
+        "For metal lath above second floor - ADD": {
+          "material": 0.0,
+          "labor": 15.0,
+          "total": 1.12,
+          "unit": "SY"
+        },
+        "Two coats gypsum plaster": {
+          "material": 7.0,
+          "labor": 12.5,
+          "total": 29.0,
+          "unit": "SY"
+        },
+        "Two coats gypsum plaster - On unit masonry, no lath": {
+          "material": 744.0,
+          "labor": 8.95,
+          "total": 23.4,
+          "unit": "SY"
+        },
+        "Three coats gypsum plaster - On gypsum lath": {
+          "material": 7.37,
+          "labor": 12.1,
+          "total": 28.3,
+          "unit": "SY"
+        },
+        "Three coats gypsum plaster - On unit masonry, no lath": {
+          "material": 8.01,
+          "labor": 12.1,
+          "total": 29.1,
+          "unit": "SY"
+        },
+        "Three coats gypsum plaster - On wood lath": {
+          "material": 7.84,
+          "labor": 12.5,
+          "total": 29.7,
+          "unit": "SY"
+        },
+        "For plaster above second floor - ADD": {
+          "material": 0.0,
+          "labor": 2.63,
+          "total": 3.95,
+          "unit": "SY"
+        },
+        "Thin coat plaster over sheetrock (in lieu of taping)": {
+          "material": 2.17,
+          "labor": 8.03,
+          "total": 14.6,
+          "unit": "SY"
+        },
+        "Stucco, exterior walls": {
+          "material": 5.2,
+          "labor": 8.36,
+          "total": 18.8,
+          "unit": "SY"
+        }
+      }
+    }
+  },
+  "plumbing_repair": {
+    "rsmeans": {
+      "source": "RSMeans Plumbing section, pages 147-153",
+      "key_items": {
+        "copper_pipe_3_4_lf": {
+          "material": 8.5,
+          "labor": 15,
+          "total": 23.5,
+          "unit": "L.F."
+        },
+        "copper_pipe_1_lf": {
+          "material": 12,
+          "labor": 18,
+          "total": 30,
+          "unit": "L.F."
+        },
+        "pvc_pipe_2_lf": {
+          "material": 3.5,
+          "labor": 8,
+          "total": 11.5,
+          "unit": "L.F."
+        },
+        "pex_pipe_lf": {
+          "material": 2.5,
+          "labor": 6,
+          "total": 8.5,
+          "unit": "L.F."
+        },
+        "faucet_kitchen": {
+          "material": 285,
+          "labor": 150,
+          "total": 435,
+          "unit": "Ea."
+        },
+        "faucet_bathroom": {
+          "material": 180,
+          "labor": 150,
+          "total": 330,
+          "unit": "Ea."
+        },
+        "minimum_charge": {
+          "labor": 300,
+          "total": 300
+        }
+      },
+      "calibration": {
+        "typical_repair_low": 250,
+        "typical_repair_mid": 500,
+        "typical_repair_high": 1500,
+        "typical_labor_pct": 60
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 3201.41,
+      "cost_range": [
+        54.2,
+        53400.0
+      ],
+      "item_count": 173,
+      "top_unit_costs": {
+        "In-Sink-Erator Products": {
+          "material": 101.0,
+          "labor": 137.0,
+          "total": 327.0,
+          "unit": "Ea"
+        },
+        "Evolution, Compact, 3/4 HP, continuous feed, 4 year parts pr": {
+          "material": 248.0,
+          "labor": 183.0,
+          "total": 573.0,
+          "unit": "Ea"
+        },
+        "Evolution, Essential, 3/4 HP, continuous feed, 6 year parts ": {
+          "material": 264.0,
+          "labor": 137.0,
+          "total": 523.0,
+          "unit": "Ea"
+        },
+        "Evolution, Excel, 1.0 HP, continuous feed, 7 year parts prot": {
+          "material": 294.0,
+          "labor": 137.0,
+          "total": 559.0,
+          "unit": "Ea"
+        },
+        "Evolution, Septic, 4 year parts protection, stainless steel ": {
+          "material": 441.0,
+          "labor": 137.0,
+          "total": 735.0,
+          "unit": "Ea"
+        },
+        "To install fixture rough-in (supply, drain, venl) - Pipe": {
+          "material": 159.0,
+          "labor": 948.0,
+          "total": 1610.0,
+          "unit": "Ea"
+        },
+        "To install fixture rough-in (supply, drain, venl) - PEX": {
+          "material": 122.0,
+          "labor": 889.0,
+          "total": 1480.0,
+          "unit": "Ea"
+        },
+        "To install fixture rough-in (supply, drain, vent) - Pipe": {
+          "material": 159.0,
+          "labor": 948.0,
+          "total": 1670.0,
+          "unit": "Ea"
+        },
+        "To install fixture rough-in (supply, drain, vent) - PEX": {
+          "material": 122.0,
+          "labor": 889.0,
+          "total": 1480.0,
+          "unit": "Ea"
+        },
+        "Standard grade, self-rimming, vitreous china (white)": {
+          "material": 187.0,
+          "labor": 206.0,
+          "total": 53400.0,
+          "unit": "Ea"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "pool_inground": {
+    "rsmeans": {
+      "source": "RSMeans Pool, page 291",
+      "key_items": {
+        "inground_vinyl": {
+          "material": 15000,
+          "labor": 8000,
+          "total": 23000
+        },
+        "inground_fiberglass": {
+          "material": 20000,
+          "labor": 10000,
+          "total": 30000
+        },
+        "inground_concrete": {
+          "material": 25000,
+          "labor": 20000,
+          "total": 45000
+        }
+      },
+      "calibration": {
+        "vinyl_low": 20000,
+        "vinyl_mid": 28000,
+        "fiberglass_mid": 35000,
+        "concrete_mid": 50000,
+        "typical_labor_pct": 40
+      }
+    }
+  },
+  "retaining_wall": {
+    "rsmeans": {
+      "source": "RSMeans Masonry section",
+      "key_items": {
+        "concrete_block_8in": {
+          "material": 4.5,
+          "labor": 8.5,
+          "total": 13.0,
+          "unit": "S.F."
+        },
+        "concrete_block_12in": {
+          "material": 6.0,
+          "labor": 10.0,
+          "total": 16.0,
+          "unit": "S.F."
+        },
+        "poured_concrete_per_lf": {
+          "material": 75,
+          "labor": 120,
+          "total": 195,
+          "unit": "L.F."
+        },
+        "stone_dry_stack": {
+          "material": 15.0,
+          "labor": 12.0,
+          "total": 27.0,
+          "unit": "S.F."
+        }
+      },
+      "calibration": {
+        "cost_per_sf_face_low": 12,
+        "cost_per_sf_face_mid": 25,
+        "cost_per_sf_face_high": 45,
+        "typical_labor_pct": 55
+      }
+    }
+  },
+  "roof_replacement": {
+    "rsmeans": {
+      "source": "RSMeans Roofing section, pages 73-89",
+      "key_items": {
+        "underlayment_15lb": {
+          "material": 8.7,
+          "labor": 7.8,
+          "total": 16.5
+        },
+        "underlayment_30lb": {
+          "material": 16.15,
+          "labor": 8.6,
+          "total": 24.75
+        },
+        "ice_barrier_self_adhering": {
+          "material": 90,
+          "labor": 22.5,
+          "total": 112.5
+        },
+        "3tab_25yr": {
+          "material": 115,
+          "labor": 55.5,
+          "total": 170.5
+        },
+        "3tab_30yr": {
+          "material": 121,
+          "labor": 62.5,
+          "total": 183.5
+        },
+        "architectural_25yr": {
+          "material": 152,
+          "labor": 69.5,
+          "total": 221.5
+        },
+        "architectural_30yr": {
+          "material": 166,
+          "labor": 89.5,
+          "total": 255.5
+        },
+        "rolled_roofing_90lb": {
+          "material": 61.5,
+          "labor": 41.5,
+          "total": 103
+        },
+        "tear_off_per_square": {
+          "labor": 41,
+          "total": 41,
+          "notes": "Demolish only"
+        },
+        "minimum_charge": {
+          "labor": 250,
+          "total": 250
+        }
+      },
+      "calibration": {
+        "total_per_square_low": 220,
+        "total_per_square_mid": 300,
+        "total_per_square_high": 420,
+        "typical_labor_pct": 35,
+        "notes": "RSMeans significantly lower than our model ($350-650/sq). RSMeans = contractor cost basis. Market markup adds 20-40%."
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 460.58,
+      "cost_range": [
+        3.04,
+        4210.0
+      ],
+      "item_count": 319,
+      "top_unit_costs": {
+        "0.0175\" thick": {
+          "material": 180.0,
+          "labor": 92.7,
+          "total": 396.0,
+          "unit": "Sq"
+        },
+        "0.0175\" thick - Painted": {
+          "material": 211.0,
+          "labor": 78.8,
+          "total": 371.0,
+          "unit": "Sq"
+        },
+        "0.019\" thick - Natural": {
+          "material": 164.0,
+          "labor": 78.8,
+          "total": 315.0,
+          "unit": "Sq"
+        },
+        "0.019\" thick - Painted": {
+          "material": 211.0,
+          "labor": 78.8,
+          "total": 371.0,
+          "unit": "Sq"
+        },
+        "Over existing roofing - Gable, plain": {
+          "material": 120.0,
+          "labor": 53.1,
+          "total": 224.0,
+          "unit": "Sq"
+        },
+        "Over existing roofing - Gable with dormers": {
+          "material": 121.0,
+          "labor": 59.2,
+          "total": 234.0,
+          "unit": "Sq"
+        },
+        "Over existing roofing - Gable with intersecting roofs": {
+          "material": 123.0,
+          "labor": 59.2,
+          "total": 236.0,
+          "unit": "Sq"
+        },
+        "Gabie w/dormers & intersections": {
+          "material": 124.0,
+          "labor": 66.2,
+          "total": 248.0,
+          "unit": "Sq"
+        },
+        "Gabie w/dormers & intersections - Hip, plain": {
+          "material": 121.0,
+          "labor": 55.4,
+          "total": 229.0,
+          "unit": "Sq"
+        },
+        "Gabie w/dormers & intersections - Hip with dormers": {
+          "material": 123.0,
+          "labor": 62.0,
+          "total": 240.0,
+          "unit": "Sq"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "siding_fiber_cement": {
+    "rsmeans": {
+      "source": "RSMeans Cementitious siding, page 135",
+      "key_items": {
+        "fiber_cement_lap": {
+          "material": 2.38,
+          "labor": 2.55,
+          "total": 4.93
+        },
+        "fiber_cement_panel": {
+          "material": 3.2,
+          "labor": 2.8,
+          "total": 6.0
+        }
+      },
+      "calibration": {
+        "total_per_sf_low": 5.0,
+        "total_per_sf_mid": 7.0,
+        "total_per_sf_high": 10.0,
+        "typical_labor_pct": 50
+      }
+    }
+  },
+  "siding_replacement": {
+    "rsmeans": {
+      "source": "RSMeans Siding section, pages 126-138",
+      "key_items": {
+        "vinyl_siding": {
+          "material": 1.81,
+          "labor": 1.8,
+          "total": 3.61,
+          "unit": "S.F."
+        },
+        "vinyl_siding_premium": {
+          "material": 2.73,
+          "labor": 2.04,
+          "total": 4.77,
+          "unit": "S.F."
+        },
+        "aluminum_siding": {
+          "material": 3.47,
+          "labor": 2.04,
+          "total": 5.51,
+          "unit": "S.F."
+        },
+        "cedar_siding_bevel": {
+          "material": 5.1,
+          "labor": 2.55,
+          "total": 7.65,
+          "unit": "S.F."
+        },
+        "fiber_cement": {
+          "material": 2.38,
+          "labor": 2.55,
+          "total": 4.93,
+          "unit": "S.F."
+        },
+        "stucco": {
+          "material": 1.22,
+          "labor": 4.7,
+          "total": 5.92,
+          "unit": "S.F."
+        },
+        "hardboard": {
+          "material": 1.5,
+          "labor": 1.8,
+          "total": 3.3,
+          "unit": "S.F."
+        },
+        "minimum_charge": {
+          "labor": 269,
+          "total": 269
+        }
+      },
+      "calibration": {
+        "total_per_sf_low": 3.3,
+        "total_per_sf_mid": 5.0,
+        "total_per_sf_high": 8.0,
+        "typical_labor_pct": 45
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 13.36,
+      "cost_range": [
+        1.0,
+        746.0
+      ],
+      "item_count": 286,
+      "top_unit_costs": {
+        "Includes fasteners and seam tape - Air / Moisture barrier": {
+          "material": 20.0,
+          "labor": 0.5,
+          "total": 1.0,
+          "unit": "SF"
+        },
+        "Straight wall - 8\" exposure": {
+          "material": 3.46,
+          "labor": 1.65,
+          "total": 6.63,
+          "unit": "SF"
+        },
+        "Straight wall - 10\" exposure": {
+          "material": 3.8,
+          "labor": 1.33,
+          "total": 6.56,
+          "unit": "SF"
+        },
+        "Cut-up wall - 8\" exposure": {
+          "material": 3.46,
+          "labor": 2.02,
+          "total": 7.18,
+          "unit": "SF"
+        },
+        "Cut-up wall - 10\" exposure": {
+          "material": 3.8,
+          "labor": 1.65,
+          "total": 7.04,
+          "unit": "SF"
+        },
+        "1/2\" x 6\" with 4-3/4\" exp. - Straight wall": {
+          "material": 2.49,
+          "labor": 2.11,
+          "total": 6.15,
+          "unit": "SF"
+        },
+        "1/2\" x 8\" with 6-3/4\" exp.": {
+          "material": 2.49,
+          "labor": 2.43,
+          "total": 6.64,
+          "unit": "SF"
+        },
+        "1/2\" x 8\" with 6-3/4\" exp. - Cut-up wall": {
+          "material": 2.26,
+          "labor": 2.11,
+          "total": 5.88,
+          "unit": "SF"
+        },
+        "1/2\" x 6\" with 4-3/4\" exp. - Cut-up wall": {
+          "material": 2.67,
+          "labor": 2.62,
+          "total": 7.13,
+          "unit": "SF"
+        },
+        "1/2\" x 8\" with 6-3/4\" exp. - Straight wall": {
+          "material": 2.57,
+          "labor": 1.7,
+          "total": 5.63,
+          "unit": "SF"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  },
+  "siding_vinyl": {
+    "rsmeans": {
+      "source": "RSMeans Vinyl Siding, page 136",
+      "key_items": {
+        "vinyl_standard": {
+          "material": 1.81,
+          "labor": 1.8,
+          "total": 3.61
+        },
+        "vinyl_premium": {
+          "material": 2.73,
+          "labor": 2.04,
+          "total": 4.77
+        },
+        "insulated_vinyl": {
+          "material": 3.5,
+          "labor": 2.2,
+          "total": 5.7
+        }
+      },
+      "calibration": {
+        "total_per_sf_low": 3.5,
+        "total_per_sf_mid": 5.0,
+        "total_per_sf_high": 7.0,
+        "typical_labor_pct": 45
+      }
+    }
+  },
+  "skylight_installation": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 807.32,
+      "cost_range": [
+        384.0,
+        1520.0
+      ],
+      "item_count": 28,
+      "top_unit_costs": {
+        "Fixed, single dome - 22\" x 22\"": {
+          "material": 211.0,
+          "labor": 87.2,
+          "total": 384.0,
+          "unit": "Ea"
+        },
+        "Fixed, single dome - 22\" x 46\"": {
+          "material": 240.0,
+          "labor": 118.0,
+          "total": 465.0,
+          "unit": "Ea"
+        },
+        "Fixed, single dome - 30\" x 30\"": {
+          "material": 317.0,
+          "labor": 118.0,
+          "total": 558.0,
+          "unit": "Ea"
+        },
+        "Fixed, single dome - 30\" x 46\"": {
+          "material": 457.0,
+          "labor": 136.0,
+          "total": 752.0,
+          "unit": "Ea"
+        },
+        "Fixed, single dome - 46\" x 46\"": {
+          "material": 515.0,
+          "labor": 160.0,
+          "total": 858.0,
+          "unit": "Ea"
+        },
+        "Fixed, double dome - 22\" x 22\"": {
+          "material": 276.0,
+          "labor": 87.2,
+          "total": 462.0,
+          "unit": "Ea"
+        },
+        "Fixed, double dome - 22\" x 46\"": {
+          "material": 314.0,
+          "labor": 118.0,
+          "total": 554.0,
+          "unit": "Ea"
+        },
+        "Fixed, double dome - 30\" x 30\"": {
+          "material": 452.0,
+          "labor": 118.0,
+          "total": 720.0,
+          "unit": "Ea"
+        },
+        "Fixed, double dome - 30\" x 46\"": {
+          "material": 505.0,
+          "labor": 136.0,
+          "total": 810.0,
+          "unit": "Ea"
+        },
+        "Fixed, triple dome - 22\" x 22\"": {
+          "material": 373.0,
+          "labor": 87.2,
+          "total": 578.0,
+          "unit": "Ea"
+        }
+      }
+    }
+  },
+  "stairs": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 1020.64,
+      "cost_range": [
+        14.4,
+        24200.0
+      ],
+      "item_count": 150,
+      "top_unit_costs": {
+        "Folding / disapperaring, attic access, ladder type - Average": {
+          "material": 446.0,
+          "labor": 173.0,
+          "total": 805.0,
+          "unit": "Ea"
+        },
+        "Folding / disapperaring, attic access, ladder type - High gr": {
+          "material": 514.0,
+          "labor": 196.0,
+          "total": 924.0,
+          "unit": "Ea"
+        },
+        "Ladder, fabricated steel, no cage, wall mounted, straight ve": {
+          "material": 64.5,
+          "labor": 14.7,
+          "total": 100.0,
+          "unit": "LF"
+        },
+        "Ship\u2019s / Captain\u2019s ladder type, with attached handrails": {
+          "material": 64.1,
+          "labor": 417.0,
+          "total": 730.0,
+          "unit": "LF"
+        },
+        "Spiral, includes railing, landing, assemble and install - Ha": {
+          "material": 7570.0,
+          "labor": 1470.0,
+          "total": 11400.0,
+          "unit": "Ea"
+        },
+        "Spiral, includes railing, landing, assemble and install - Me": {
+          "material": 3200.0,
+          "labor": 1470.0,
+          "total": 6140.0,
+          "unit": "Ea"
+        },
+        "Metal pan, concrete, rebar, crane, per flight / floor - 4'-0": {
+          "material": 2490.0,
+          "labor": 6020.0,
+          "total": 13500.0,
+          "unit": "Ea"
+        },
+        "For Landing, mid-point, cost per SF landing": {
+          "material": 20.2,
+          "labor": 60.2,
+          "total": 130.0,
+          "unit": "SF"
+        },
+        "Floor mounted - 1-rail": {
+          "material": 38.3,
+          "labor": 12.9,
+          "total": 66.5,
+          "unit": "LF"
+        },
+        "Floor mounted - 2-rail": {
+          "material": 50.8,
+          "labor": 12.9,
+          "total": 81.6,
+          "unit": "LF"
+        }
+      }
+    }
+  },
+  "tile_work": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 25.0,
+      "cost_range": [
+        2.05,
+        43.0
+      ],
+      "item_count": 43,
+      "top_unit_costs": {
+        "Adhesive / Mastic": {
+          "material": 10.6,
+          "labor": 14.1,
+          "total": 33.9,
+          "unit": "SF"
+        },
+        "Adhesive / Mastic - 4-1/4\" x 4-1/4\" or similar": {
+          "material": 8.06,
+          "labor": 7.39,
+          "total": 20.8,
+          "unit": "SF"
+        },
+        "Adhesive / Mastic - 6\" x 4-1/4\" or similar": {
+          "material": 8.54,
+          "labor": 6.21,
+          "total": 19.6,
+          "unit": "LF"
+        },
+        "Conventional mortar - 4-1/4\" x 4-1/4\" or similar": {
+          "material": 7.66,
+          "labor": 13.2,
+          "total": 28.9,
+          "unit": "LF"
+        },
+        "Conventional mortar - 6\" x 4-1/4\" or similar": {
+          "material": 8.47,
+          "labor": 11.8,
+          "total": 27.9,
+          "unit": "LF"
+        },
+        "Thinset / Dry-set - 4-1/4\" x 4-1/4\" or similar": {
+          "material": 7.6,
+          "labor": 9.09,
+          "total": 22.8,
+          "unit": "LF"
+        },
+        "Thinset / Dry-set - 6\" x 4-1/4\" or similar": {
+          "material": 9.22,
+          "labor": 13.2,
+          "total": 30.8,
+          "unit": "LF"
+        },
+        "Adhesive / Mastic - 1-1/2\" x 1-1/2\" or similar": {
+          "material": 9.63,
+          "labor": 4.92,
+          "total": 18.9,
+          "unit": "SF"
+        },
+        "Conventional mortar - 1-1/2\" x 1-1/2\" or similar": {
+          "material": 9.47,
+          "labor": 9.87,
+          "total": 26.2,
+          "unit": "SF"
+        },
+        "Thinset / Dry-set - 1-1/2\" x 1-1/2\" or similar": {
+          "material": 9.29,
+          "labor": 6.21,
+          "total": 20.5,
+          "unit": "SF"
+        }
+      }
+    }
+  },
+  "tree_removal": {
+    "rsmeans": {
+      "source": "RSMeans Job Preparation, pages 7-8",
+      "key_items": {
+        "small_tree_under_12in": {
+          "labor": 500,
+          "total": 500
+        },
+        "medium_tree_12_24in": {
+          "labor": 1200,
+          "total": 1200
+        },
+        "large_tree_over_24in": {
+          "labor": 2500,
+          "total": 2500
+        },
+        "stump_grinding": {
+          "labor": 350,
+          "total": 350
+        },
+        "debris_hauling": {
+          "labor": 200,
+          "total": 200
+        }
+      },
+      "calibration": {
+        "small_tree_low": 400,
+        "small_tree_mid": 700,
+        "medium_tree_mid": 1200,
+        "large_tree_mid": 2500,
+        "typical_labor_pct": 85,
+        "notes": "Tree removal is almost entirely labor + equipment"
+      }
+    }
+  },
+  "trim_carpentry": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 63.07,
+      "cost_range": [
+        3.17,
+        7190.0
+      ],
+      "item_count": 255,
+      "top_unit_costs": {
+        "2-1/4\" high - Pine, finger jointed, paint grade": {
+          "material": 1.51,
+          "labor": 1.51,
+          "total": 4.08,
+          "unit": "LF"
+        },
+        "2-1/4\" high - Pine, stain grade": {
+          "material": 1.73,
+          "labor": 1.51,
+          "total": 4.35,
+          "unit": "LF"
+        },
+        "2-1/4\" high - MDF, rectangle flat profile": {
+          "material": 1.06,
+          "labor": 1.51,
+          "total": 3.54,
+          "unit": "LF"
+        },
+        "2-1/4\" high - MDF, machine-cut profile": {
+          "material": 1.18,
+          "labor": 2.02,
+          "total": 4.44,
+          "unit": "LF"
+        },
+        "3-1/4\" high - Pine, finger jointed, paint grade": {
+          "material": 1.87,
+          "labor": 1.51,
+          "total": 4.52,
+          "unit": "LF"
+        },
+        "3-1/4\" high - Pine, stain grade": {
+          "material": 2.16,
+          "labor": 1.51,
+          "total": 4.86,
+          "unit": "LF"
+        },
+        "3-1/4\" high - MDF, rectangle flat profile": {
+          "material": 1.66,
+          "labor": 2.2,
+          "total": 5.3,
+          "unit": "LF"
+        },
+        "3-1/4\" high - MDF, machine-cut profile": {
+          "material": 1.67,
+          "labor": 2.02,
+          "total": 5.03,
+          "unit": "LF"
+        },
+        "3-1/4\" high - Hardwood, simple profile": {
+          "material": 3.28,
+          "labor": 1.51,
+          "total": 6.21,
+          "unit": "LF"
+        },
+        "3-1/4\" high - Hardwood, detailed profile": {
+          "material": 4.86,
+          "labor": 2.02,
+          "total": 8.86,
+          "unit": "LF"
+        }
+      }
+    }
+  },
+  "wallpaper": {
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 6.11,
+      "cost_range": [
+        1.16,
+        17.0
+      ],
+      "item_count": 7,
+      "top_unit_costs": {
+        "Any grade": {
+          "material": 0.0,
+          "labor": 8.0,
+          "total": 17.0,
+          "unit": "SF"
+        },
+        "Standard grade, vinyl coated, simple pattern on solid backgr": {
+          "material": 96.0,
+          "labor": 1.81,
+          "total": 4.16,
+          "unit": "SF"
+        },
+        "Average grade, vinyl coated, average pattern throughout the ": {
+          "material": 1.36,
+          "labor": 1.38,
+          "total": 3.92,
+          "unit": "SF"
+        }
+      }
+    }
+  },
+  "water_heater_replacement": {
+    "rsmeans": {
+      "source": "RSMeans Water Heater, pages 149-150",
+      "key_items": {
+        "gas_40gal": {
+          "material": 650,
+          "labor": 605,
+          "total": 1255
+        },
+        "gas_50gal": {
+          "material": 820,
+          "labor": 605,
+          "total": 1425
+        },
+        "electric_40gal": {
+          "material": 475,
+          "labor": 605,
+          "total": 1080
+        },
+        "electric_50gal": {
+          "material": 585,
+          "labor": 605,
+          "total": 1190
+        },
+        "tankless_gas": {
+          "material": 1500,
+          "labor": 910,
+          "total": 2410
+        },
+        "insulation_wrap": {
+          "material": 35,
+          "labor": 55,
+          "total": 90
+        }
+      },
+      "calibration": {
+        "replacement_low": 1000,
+        "replacement_mid": 1400,
+        "replacement_high": 2500,
+        "typical_labor_pct": 45
+      }
+    }
+  },
+  "window_replacement": {
+    "rsmeans": {
+      "source": "RSMeans Windows section, pages 106-124",
+      "key_items": {
+        "vinyl_3x4.5_dh": {
+          "material": 239,
+          "labor": 120,
+          "total": 359
+        },
+        "vinyl_4x4.5_dh": {
+          "material": 340,
+          "labor": 135,
+          "total": 475
+        },
+        "vinyl_4x6_dh": {
+          "material": 450,
+          "labor": 155,
+          "total": 605
+        },
+        "wood_2.5x3.3_dh": {
+          "material": 355,
+          "labor": 72,
+          "total": 427
+        },
+        "wood_3x4_dh": {
+          "material": 450,
+          "labor": 86,
+          "total": 536
+        },
+        "aluminum_3x2": {
+          "material": 202,
+          "labor": 72,
+          "total": 274
+        },
+        "aluminum_3x4": {
+          "material": 325,
+          "labor": 86,
+          "total": 411
+        },
+        "casement_2x3": {
+          "material": 360,
+          "labor": 72,
+          "total": 432
+        },
+        "casement_2x5": {
+          "material": 425,
+          "labor": 86,
+          "total": 511
+        },
+        "trim_set": {
+          "material": 58.5,
+          "labor": 41.5,
+          "total": 100
+        },
+        "minimum_charge": {
+          "labor": 179,
+          "total": 179
+        }
+      },
+      "calibration": {
+        "total_per_window_low": 275,
+        "total_per_window_mid": 475,
+        "total_per_window_high": 800,
+        "typical_labor_pct": 25,
+        "notes": "Excludes trim. With trim add $100/window"
+      }
+    },
+    "craftsman": {
+      "source": "Craftsman 2026",
+      "avg_total": 1276.54,
+      "cost_range": [
+        8.76,
+        37100.0
+      ],
+      "item_count": 328,
+      "top_unit_costs": {
+        "3/16\" T tempered with putty and points in wood sash - 8\" x 1": {
+          "material": 13.0,
+          "labor": 11.7,
+          "total": 33.2,
+          "unit": "SF"
+        },
+        "3/16\" T tempered with putty and points in wood sash - 12\" x ": {
+          "material": 13.2,
+          "labor": 9.12,
+          "total": 29.5,
+          "unit": "SF"
+        },
+        "3/16\" T tempered with putty and points in wood sash - 14\" x ": {
+          "material": 10.9,
+          "labor": 5.0,
+          "total": 20.6,
+          "unit": "SF"
+        },
+        "3/16\" T tempered with putty and points in wood sash - 16\" x ": {
+          "material": 9.88,
+          "labor": 3.9,
+          "total": 17.7,
+          "unit": "SF"
+        },
+        "3/16\" T tempered with putty and points in wood sash - 36\" x ": {
+          "material": 8.6,
+          "labor": 3.24,
+          "total": 15.2,
+          "unit": "SF"
+        },
+        "1/8\" T tempered with putty in steel sash - 12\" x 16\"": {
+          "material": 12.6,
+          "labor": 6.36,
+          "total": 24.7,
+          "unit": "SF"
+        },
+        "1/8\" T tempered with putty in steel sash - 16\" x 20\"": {
+          "material": 11.6,
+          "labor": 4.39,
+          "total": 20.5,
+          "unit": "SF"
+        },
+        "1/8\" T tempered with putty in steel sash - 16\" x 24\"": {
+          "material": 10.6,
+          "labor": 3.9,
+          "total": 18.6,
+          "unit": "SF"
+        },
+        "1/8\" T tempered with putty in steel sash - 24\" x 24\"": {
+          "material": 10.6,
+          "labor": 4.17,
+          "total": 18.9,
+          "unit": "SF"
+        },
+        "3/16\" T tempered glass - 34\" W x 76\"H": {
+          "material": 6.3,
+          "labor": 2.06,
+          "total": 10.7,
+          "unit": "SF"
+        }
+      }
+    },
+    "validation": {
+      "sources_agree": true,
+      "cross_validated": true
+    }
+  }
+}

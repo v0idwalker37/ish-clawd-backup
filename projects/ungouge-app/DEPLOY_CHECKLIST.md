@@ -1,7 +1,8 @@
 # UnGouge.ai — Pre-Launch Deploy Checklist
 
-**Last updated:** 2026-02-13  
-**Stack:** FastAPI (Python 3.11) + Next.js 14 + PostgreSQL + Stripe + GCP Cloud Run
+**Last updated:** 2026-02-15  
+**Stack:** FastAPI (Python 3.11) + Next.js 14 + PostgreSQL + Stripe + GCP Cloud Run  
+**See also:** `LAUNCH_AUDIT_2026-02-15.md` — Single source of truth for what's done vs. what's left.
 
 ---
 

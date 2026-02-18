@@ -1,0 +1,38 @@
+High-level architecture (proposed)
+
+ASCII diagram:
+
+  [Browser/User]
+      |
+      v
+  [Next.js (Vercel) - UI + SSR/Edge]
+      |
+      v
+  [API Gateway - FastAPI on Cloud Run]  -- authentication, routing, lightweight orchestration
+      |\
+      | \__-> [Cost-model Service (Cloud Run)] -> Cloud SQL + Redis
+      | 
+      | \__-> [Quote Extractor Service (Cloud Run)] -> GCS (uploads) -> Pub/Sub -> Workers
+      |
+      | \__-> [Background Workers (Cloud Run jobs) - PDF gen, long running tasks]
+      |
+      v
+  [Cloud SQL (MySQL)]  [Redis cache]  [GCS (uploads & PDFs)]
+
+Observability: Cloud Monitoring (metrics), Sentry (errors), structured logs (Stackdriver)
+CI/CD: GitHub Actions -> container images -> Terraform apply (Cloud Run, Pub/Sub, Secrets)
+Secrets: Secret Manager (no secrets in repo)
+
+Notes / tradeoffs:
+- Queue choice: prefer Google Pub/Sub + Cloud Run workers (managed scaling, serverless). Alternative: Redis+Celery for dev parity and local testing.
+- DB pooling: use Cloud SQL Proxy + connection pooling (avoid connection exhaustion on serverless platforms).
+- Storage: GCS + signed URLs for uploads and serving PDFs.
+- Cost control: set per-service concurrency, CPU limits, and budgets/alerts.
+- Rapid dev: start with extracting cost model + cache (biggest business value) before splitting extractor.
+
+Implementation patterns:
+- Make services small and well-defined with OpenAPI contracts.
+- Use feature flags and dual‑write strategies for safe migration.
+- Keep legacy monolith in read mode during cutover; perform canary releases.
+
+(Short, actionable diagram for the meeting)

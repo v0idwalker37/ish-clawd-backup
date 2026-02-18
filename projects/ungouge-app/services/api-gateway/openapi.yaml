@@ -1,0 +1,491 @@
+openapi: 3.0.3
+info:
+  title: Ungouge.ai API Gateway
+  description: Entry point for all backend requests - handles auth, routing, rate limiting
+  version: 2.0.0
+  contact:
+    name: Ungouge.ai Support
+    email: support@ungouge.ai
+
+servers:
+  - url: https://api.ungouge.ai
+    description: Production
+  - url: https://api-staging.ungouge.ai
+    description: Staging
+  - url: http://localhost:8000
+    description: Local development
+
+tags:
+  - name: auth
+    description: Authentication & authorization
+  - name: quotes
+    description: Quote upload & analysis
+  - name: payments
+    description: Stripe payment integration
+  - name: health
+    description: Health checks
+
+paths:
+  /health/live:
+    get:
+      tags: [health]
+      summary: Liveness probe
+      description: Returns 200 if service is running (for Kubernetes)
+      responses:
+        '200':
+          description: Service is alive
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+
+  /health/ready:
+    get:
+      tags: [health]
+      summary: Readiness probe
+      description: Returns 200 if service is ready (DB, Redis connected)
+      responses:
+        '200':
+          description: Service is ready
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ready"
+                  checks:
+                    type: object
+                    properties:
+                      database:
+                        type: string
+                        example: "ok"
+                      redis:
+                        type: string
+                        example: "ok"
+        '503':
+          description: Service not ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/auth/register:
+    post:
+      tags: [auth]
+      summary: Register new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+                password:
+                  type: string
+                  format: password
+                  minLength: 8
+                  example: "SecurePass123!"
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: string
+                    format: uuid
+                    example: "550e8400-e29b-41d4-a716-446655440000"
+                  email:
+                    type: string
+                    example: user@example.com
+                  access_token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIs..."
+                  refresh_token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIs..."
+                  token_type:
+                    type: string
+                    example: "bearer"
+                  expires_in:
+                    type: integer
+                    example: 900
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Email already registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/auth/login:
+    post:
+      tags: [auth]
+      summary: Authenticate user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  refresh_token:
+                    type: string
+                  token_type:
+                    type: string
+                    example: "bearer"
+                  expires_in:
+                    type: integer
+                    example: 900
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded
+
+  /api/auth/refresh:
+    post:
+      tags: [auth]
+      summary: Refresh access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refresh_token]
+              properties:
+                refresh_token:
+                  type: string
+      responses:
+        '200':
+          description: Token refreshed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type: integer
+        '401':
+          description: Invalid or expired refresh token
+
+  /api/auth/logout:
+    post:
+      tags: [auth]
+      summary: Logout (revoke tokens)
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Logout successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Logged out successfully"
+        '401':
+          description: Unauthorized
+
+  /api/quotes/upload:
+    post:
+      tags: [quotes]
+      summary: Upload contractor quote (PDF or image)
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: PDF or image file (max 10MB)
+      responses:
+        '202':
+          description: Upload accepted, processing started
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quote_id:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    example: "processing"
+                  message:
+                    type: string
+                    example: "Quote uploaded successfully. Analysis in progress."
+        '400':
+          description: Invalid file
+        '401':
+          description: Unauthorized
+        '413':
+          description: File too large
+        '429':
+          description: Rate limit exceeded
+
+  /api/quotes/{quote_id}:
+    get:
+      tags: [quotes]
+      summary: Get quote analysis results
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: quote_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Quote details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+        '404':
+          description: Quote not found
+        '401':
+          description: Unauthorized
+
+  /api/quotes/{quote_id}/checkout:
+    post:
+      tags: [payments]
+      summary: Create Stripe Checkout session
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: quote_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Checkout session created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  checkout_session_id:
+                    type: string
+                  url:
+                    type: string
+                    format: uri
+                  amount_cents:
+                    type: integer
+                  currency:
+                    type: string
+                    example: "usd"
+        '400':
+          description: Invalid quote state
+        '404':
+          description: Quote not found
+        '401':
+          description: Unauthorized
+
+  /api/webhooks/stripe:
+    post:
+      tags: [payments]
+      summary: Stripe webhook endpoint
+      description: Receives Stripe events (checkout.session.completed, payment_intent.succeeded, etc.)
+      parameters:
+        - name: Stripe-Signature
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Stripe Event object
+      responses:
+        '200':
+          description: Event received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  received:
+                    type: boolean
+                    example: true
+        '400':
+          description: Invalid signature or payload
+        '409':
+          description: Event already processed (idempotency)
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        error_id:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+
+    Quote:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [uploaded, processing, analyzed, paid, failed]
+        file_url:
+          type: string
+          format: uri
+        uploaded_at:
+          type: string
+          format: date-time
+        processed_at:
+          type: string
+          format: date-time
+        extracted_data:
+          type: object
+          properties:
+            contractor:
+              type: object
+              properties:
+                name:
+                  type: string
+                license:
+                  type: string
+                contact:
+                  type: string
+            line_items:
+              type: array
+              items:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  quantity:
+                    type: number
+                  unit:
+                    type: string
+                  unit_price:
+                    type: number
+                  total:
+                    type: number
+            totals:
+              type: object
+              properties:
+                subtotal:
+                  type: number
+                tax:
+                  type: number
+                total:
+                  type: number
+        cost_analysis:
+          type: object
+          properties:
+            total_cost:
+              type: number
+            fair_price_range:
+              type: object
+              properties:
+                min:
+                  type: number
+                max:
+                  type: number
+            confidence_score:
+              type: number
+              minimum: 0
+              maximum: 1
+            breakdown:
+              type: array
+              items:
+                type: object
+                properties:
+                  category:
+                    type: string
+                  estimated_cost:
+                    type: number
+                  quoted_cost:
+                    type: number
+                  variance:
+                    type: number
+            recommendations:
+              type: array
+              items:
+                type: string

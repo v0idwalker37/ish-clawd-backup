@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import os
+import uuid
 
 # Load environment variables from .env file
 from dotenv import load_dotenv
@@ -28,7 +29,7 @@ limiter = Limiter(key_func=get_remote_address, default_limits=["100/minute"])
 
 # CSRF Protection Configuration
 class CsrfSettings(BaseModel):
-    secret_key: str = os.environ["CSRF_SECRET_KEY"] if "CSRF_SECRET_KEY" in os.environ else os.environ["JWT_SECRET_KEY"]  # Fail if not set
+    secret_key: str = os.environ["CSRF_SECRET_KEY"]  # Must be set separately from JWT_SECRET_KEY
     cookie_samesite: str = "strict"
     cookie_secure: bool = os.getenv("ENVIRONMENT") == "production"
     cookie_httponly: bool = True
@@ -121,6 +122,7 @@ async def global_exception_handler(request: Request, exc: Exception):
     from services.logger import log_error
     
     # Log full error details server-side
+    error_id = str(uuid.uuid4())
     log_error(
         error_type=type(exc).__name__,
         message=str(exc),
@@ -128,6 +130,7 @@ async def global_exception_handler(request: Request, exc: Exception):
             "path": request.url.path,
             "method": request.method,
             "client": request.client.host if request.client else None,
+            "error_id": error_id,
         }
     )
     
@@ -136,7 +139,7 @@ async def global_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={
             "detail": "An internal error occurred. Please try again later.",
-            "error_id": None  # In production, return a traceable error ID
+            "error_id": error_id,
         }
     )
 

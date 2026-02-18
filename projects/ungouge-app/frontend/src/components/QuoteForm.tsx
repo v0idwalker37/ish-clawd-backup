@@ -5,8 +5,10 @@ import { useRouter } from 'next/navigation';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Plus, Trash2, ArrowRight, ArrowLeft, FileText, AlertCircle } from 'lucide-react';
+import { Plus, Trash2, ArrowRight, ArrowLeft, FileText, AlertCircle, LogIn } from 'lucide-react';
 import FileUpload, { ParsedQuoteData } from './FileUpload';
+import { useAuth } from '@/providers/AuthProvider';
+import Link from 'next/link';
 
 const lineItemSchema = z.object({
   item_name: z.string().min(1, 'Item name is required'),
@@ -45,7 +47,9 @@ export default function QuoteForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
 
   const {
     register,
@@ -96,6 +100,12 @@ export default function QuoteForm() {
   };
 
   const onSubmit = async (data: QuoteFormData) => {
+    // Gate: require account before checkout (so users have historical reports)
+    if (!user) {
+      setShowAuthPrompt(true);
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -162,6 +172,43 @@ export default function QuoteForm() {
 
   return (
     <div className="card">
+      {/* Auth Prompt Modal */}
+      {showAuthPrompt && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <LogIn className="w-8 h-8 text-primary-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Create Your Account</h3>
+              <p className="text-gray-600">
+                Sign up to save your quote and access your report anytime. Your data stays private — we never sell it.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <Link
+                href="/register?redirect=/analyze"
+                className="block w-full text-center bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
+              >
+                Create Free Account
+              </Link>
+              <Link
+                href="/login?redirect=/analyze"
+                className="block w-full text-center bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+              >
+                Already have an account? Sign In
+              </Link>
+            </div>
+            <button
+              onClick={() => setShowAuthPrompt(false)}
+              className="mt-4 w-full text-center text-sm text-gray-500 hover:text-gray-700"
+            >
+              Go back to editing
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Progress Indicator */}
       <div className="mb-8">
         <div className="flex justify-between items-center mb-2">

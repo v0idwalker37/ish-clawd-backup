@@ -1,0 +1,636 @@
+HDD Duplicate Analysis Report
+======================================================================
+
+Total duplicate files: 392,350
+Total wasted space: 4724.96 GB
+Duplicate groups: 72,594
+
+Top 50 space wasters:
+----------------------------------------------------------------------
+
+1. Wasted: 108.215 GB
+   File size: 3821.10 MB × 30 copies
+   Hash: ca9cbc91c3e98bc0...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-03-18/HERO4 Black/GOPR0770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.24.16/GOPR0770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/2016-03-18/HERO4 Black/GOPR0770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-03-18/HERO4 Black/GOPR0770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.24.16/GOPR0770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GOPR0770.MP4
+   ... and 22 more
+
+2. Wasted: 101.677 GB
+   File size: 14873.96 MB × 8 copies
+   Hash: 60a8babffa8e059e...
+   - [BOH2] /media/ungouge/BOH 2/Jason's Filing Cabinet/4. The before times/1. 4th Dimension IT/2. Accounting/Outlook Backup PST/jasontraskpersonal.pst
+   - [BOH2] /media/ungouge/BOH 2/Jason's Filing Cabinet/4. The before times/1. 4th Dimension IT/temp 4th/Accounting/Outlook Backup PST/jasontraskpersonal.pst
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Filing Cabinet/4. The before times/1. 4th Dimension IT/2. Accounting/Outlook Backup PST/jasontraskpersonal.pst
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Filing Cabinet/4. The before times/1. 4th Dimension IT/temp 4th/Accounting/Outlook Backup PST/jasontraskpersonal.pst
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/4. The before times/1. 4th Dimension IT/2. Accounting/Outlook Backup PST/jasontraskpersonal.pst
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/4. The before times/1. 4th Dimension IT/temp 4th/Accounting/Outlook Backup PST/jasontraskpersonal.pst
+   - [Number_2] /media/ungouge/Number_2/Jason's Filing Cabinet/4. The before times/1. 4th Dimension IT/2. Accounting/Outlook Backup PST/jasontraskpersonal.pst
+   - [Number_2] /media/ungouge/Number_2/Jason's Filing Cabinet/4. The before times/1. 4th Dimension IT/temp 4th/Accounting/Outlook Backup PST/jasontraskpersonal.pst
+
+3. Wasted: 85.841 GB
+   File size: 3821.80 MB × 24 copies
+   Hash: 16c4234c825bab63...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.24.16/GOPR0774.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0774.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GOPR0774.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0774.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.24.16/GOPR0774.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GOPR0774.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.24.16/GOPR0774.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.26.26/GOPR0774.MP4
+   ... and 16 more
+
+4. Wasted: 85.836 GB
+   File size: 3821.57 MB × 24 copies
+   Hash: 46e4013e4807f0c8...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.24.16/GOPR0773.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0773.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GOPR0773.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0773.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.24.16/GOPR0773.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GOPR0773.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.24.16/GOPR0773.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.26.26/GOPR0773.MP4
+   ... and 16 more
+
+5. Wasted: 74.636 GB
+   File size: 15285.39 MB × 6 copies
+   Hash: c8f009b36064bbd5...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GP010774.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GP010774.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.26.26/GP010774.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.26.26/GP010774.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/4 Travel/5 GoPro/3.26.26/GP010774.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/5 GoPro/3.26.26/GP010774.MP4
+
+6. Wasted: 67.067 GB
+   File size: 2985.93 MB × 24 copies
+   Hash: 2cc7b2cda3a4bb2d...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.24.16/GOPR0793.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0793.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GOPR0793.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0793.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.24.16/GOPR0793.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GOPR0793.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.24.16/GOPR0793.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.26.26/GOPR0793.MP4
+   ... and 16 more
+
+7. Wasted: 59.875 GB
+   File size: 2665.72 MB × 24 copies
+   Hash: f32b0570452552bb...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-03-09/HERO4 Black/GOPR0769 (1).MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0769.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/2016-03-09/HERO4 Black/GOPR0769 (1).MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0769.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-03-09/HERO4 Black/GOPR0769 (1).MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GOPR0769.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/2016-03-09/HERO4 Black/GOPR0769 (1).MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.26.26/GOPR0769.MP4
+   ... and 16 more
+
+8. Wasted: 46.659 GB
+   File size: 2077.34 MB × 24 copies
+   Hash: 396c920977320878...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.24.16/GP010770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GP010770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GP010770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GP010770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.24.16/GP010770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GP010770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.24.16/GP010770.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.26.26/GP010770.MP4
+   ... and 16 more
+
+9. Wasted: 45.835 GB
+   File size: 2760.90 MB × 18 copies
+   Hash: e22d6164656b1a13...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0784.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GOPR0784.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0784.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GOPR0784.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.24.16/GOPR0784.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.26.26/GOPR0784.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.26.26/GOPR0784.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GOPR0784.MP4
+   ... and 10 more
+
+10. Wasted: 41.057 GB
+   File size: 3822.05 MB × 12 copies
+   Hash: 8becd1eb86da9006...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.3.16/GP020044.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP020044.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.3.16/GP020044.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.3.16/GP020044.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.3.16/GP020044.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP020044.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.3.16/GP020044.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP020044.MP4
+   ... and 4 more
+
+11. Wasted: 41.056 GB
+   File size: 3821.93 MB × 12 copies
+   Hash: 2a63606bd5a09ee2...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-14/GP010036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP010036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-14/GP010036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GP010036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-14/GP010036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/GP010036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-14/GP010036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP010036.MP4
+   ... and 4 more
+
+12. Wasted: 41.056 GB
+   File size: 3821.90 MB × 12 copies
+   Hash: 520670f29a5fd8d8...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-14/GOPR0038.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GOPR0038.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-14/GOPR0038.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GOPR0038.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-14/GOPR0038.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/GOPR0038.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-14/GOPR0038.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GOPR0038.MP4
+   ... and 4 more
+
+13. Wasted: 41.055 GB
+   File size: 3821.81 MB × 12 copies
+   Hash: e0d6303a62965ad7...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-14/GP050036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP050036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-14/GP050036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GP050036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-14/GP050036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/GP050036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-14/GP050036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP050036.MP4
+   ... and 4 more
+
+14. Wasted: 41.053 GB
+   File size: 3821.66 MB × 12 copies
+   Hash: 85963392531390d2...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-14/GOPR0037.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GOPR0037.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-14/GOPR0037.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GOPR0037.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-14/GOPR0037.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/GOPR0037.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-14/GOPR0037.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GOPR0037.MP4
+   ... and 4 more
+
+15. Wasted: 41.053 GB
+   File size: 3821.64 MB × 12 copies
+   Hash: 2486304a66b07efb...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/GOPR0829.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/GOPR0829.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/Ned/GOPR0829-050.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/to sort/GOPR0829-050.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/GOPR0829.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/Ned/GOPR0829-050.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/GOPR0829.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/Ned/GOPR0829-050.MP4
+   ... and 4 more
+
+16. Wasted: 41.052 GB
+   File size: 3821.58 MB × 12 copies
+   Hash: 25ef75a883562efc...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.3.16/GP020047.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP020047.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.3.16/GP020047.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.3.16/GP020047.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.3.16/GP020047.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP020047.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.3.16/GP020047.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP020047.MP4
+   ... and 4 more
+
+17. Wasted: 41.052 GB
+   File size: 3821.57 MB × 12 copies
+   Hash: 8d3f55c5bca74c1a...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-14/GP040036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP040036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-14/GP040036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GP040036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-14/GP040036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/GP040036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-14/GP040036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP040036.MP4
+   ... and 4 more
+
+18. Wasted: 41.052 GB
+   File size: 3821.53 MB × 12 copies
+   Hash: 4b5a11924cf14b0d...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-14/GP010037.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP010037.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-14/GP010037.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GP010037.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-14/GP010037.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/GP010037.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-14/GP010037.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP010037.MP4
+   ... and 4 more
+
+19. Wasted: 41.051 GB
+   File size: 3821.49 MB × 12 copies
+   Hash: 5b71a4ae12d2011d...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.24.16/GP010774.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GP010774.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.24.16/GP010774.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.24.16/GP010774.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.24.16/GP010774.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GP010774.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.24.16/GP010774.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GP010774.MP4
+   ... and 4 more
+
+20. Wasted: 41.050 GB
+   File size: 3821.41 MB × 12 copies
+   Hash: c4f6b220b52aa569...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-14/GOPR0036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GOPR0036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-14/GOPR0036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GOPR0036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-14/GOPR0036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/GOPR0036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-14/GOPR0036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GOPR0036.MP4
+   ... and 4 more
+
+21. Wasted: 41.050 GB
+   File size: 3821.39 MB × 12 copies
+   Hash: 82b18e00411ceae2...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/7.16.16/GP010828.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/GP010828.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/7.16.16/GP010828.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/GP010828.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/7.16.16/GP010828.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/GP010828.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/7.16.16/GP010828.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/GP010828.MP4
+   ... and 4 more
+
+22. Wasted: 41.049 GB
+   File size: 3821.32 MB × 12 copies
+   Hash: 7b81e9bd94a43497...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.3.16/GOPR0047.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GOPR0047.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.3.16/GOPR0047.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.3.16/GOPR0047.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.3.16/GOPR0047.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GOPR0047.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.3.16/GOPR0047.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GOPR0047.MP4
+   ... and 4 more
+
+23. Wasted: 41.049 GB
+   File size: 3821.26 MB × 12 copies
+   Hash: f91700265838a904...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.3.16/GP030044.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP030044.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.3.16/GP030044.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.3.16/GP030044.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.3.16/GP030044.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP030044.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.3.16/GP030044.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP030044.MP4
+   ... and 4 more
+
+24. Wasted: 41.048 GB
+   File size: 3821.22 MB × 12 copies
+   Hash: 66ab3dedcfa074ca...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-18/HERO4 Black/GP020043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GP020043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-18/HERO4 Black/GP020043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GP020043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-18/HERO4 Black/GP020043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GP020043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-18/HERO4 Black/GP020043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GP020043.MP4
+   ... and 4 more
+
+25. Wasted: 41.047 GB
+   File size: 3821.14 MB × 12 copies
+   Hash: 44e7b7c786df99a0...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0813.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0813.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GOPR0813.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.26.26/GOPR0813.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.26.26/GOPR0813.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0813.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0813.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0813.MP4
+   ... and 4 more
+
+26. Wasted: 41.047 GB
+   File size: 3821.08 MB × 12 copies
+   Hash: db81fea7a9b4da8b...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-03-09/HERO4 Black/GOPR0765.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.9.16/GOPR0765.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-03-09/HERO4 Black/GOPR0765.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.9.16/GOPR0765.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-03-09/HERO4 Black/GOPR0765.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.9.16/GOPR0765.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-03-09/HERO4 Black/GOPR0765.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.9.16/GOPR0765.MP4
+   ... and 4 more
+
+27. Wasted: 41.043 GB
+   File size: 3820.75 MB × 12 copies
+   Hash: 79150ef021ba22cd...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-18/HERO4 Black/GOPR0043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GOPR0043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-18/HERO4 Black/GOPR0043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GOPR0043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-18/HERO4 Black/GOPR0043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GOPR0043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-18/HERO4 Black/GOPR0043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GOPR0043.MP4
+   ... and 4 more
+
+28. Wasted: 41.042 GB
+   File size: 3820.64 MB × 12 copies
+   Hash: 9a1869f08d1010c0...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-18/HERO4 Black/GP010043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GP010043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-18/HERO4 Black/GP010043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GP010043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-18/HERO4 Black/GP010043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GP010043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-18/HERO4 Black/GP010043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GP010043.MP4
+   ... and 4 more
+
+29. Wasted: 41.041 GB
+   File size: 3820.51 MB × 12 copies
+   Hash: 1736b54b42cf7f06...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.3.16/GOPR0049.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GOPR0049.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.3.16/GOPR0049.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.3.16/GOPR0049.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.3.16/GOPR0049.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GOPR0049.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.3.16/GOPR0049.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GOPR0049.MP4
+   ... and 4 more
+
+30. Wasted: 40.795 GB
+   File size: 5967.76 MB × 8 copies
+   Hash: 71d85275bfe41fd7...
+   - [BOH2] /media/ungouge/BOH 2/Jason's Filing Cabinet/4. The before times/1. 4th Dimension IT/2. Accounting/Outlook Backup PST/jasonTMG.pst
+   - [BOH2] /media/ungouge/BOH 2/Jason's Filing Cabinet/4. The before times/1. 4th Dimension IT/temp 4th/Accounting/Outlook Backup PST/jasonTMG.pst
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Filing Cabinet/4. The before times/1. 4th Dimension IT/2. Accounting/Outlook Backup PST/jasonTMG.pst
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Filing Cabinet/4. The before times/1. 4th Dimension IT/temp 4th/Accounting/Outlook Backup PST/jasonTMG.pst
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/4. The before times/1. 4th Dimension IT/2. Accounting/Outlook Backup PST/jasonTMG.pst
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/4. The before times/1. 4th Dimension IT/temp 4th/Accounting/Outlook Backup PST/jasonTMG.pst
+   - [Number_2] /media/ungouge/Number_2/Jason's Filing Cabinet/4. The before times/1. 4th Dimension IT/2. Accounting/Outlook Backup PST/jasonTMG.pst
+   - [Number_2] /media/ungouge/Number_2/Jason's Filing Cabinet/4. The before times/1. 4th Dimension IT/temp 4th/Accounting/Outlook Backup PST/jasonTMG.pst
+
+31. Wasted: 35.774 GB
+   File size: 3330.22 MB × 12 copies
+   Hash: 71dbac989a3c37ad...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-14/GP010038.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP010038.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-14/GP010038.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GP010038.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-14/GP010038.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/GP010038.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-14/GP010038.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP010038.MP4
+   ... and 4 more
+
+32. Wasted: 35.534 GB
+   File size: 3307.92 MB × 12 copies
+   Hash: 01dc0333b1aae743...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-13/GOPR0033.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GOPR0033.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-13/GOPR0033.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GOPR0033.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-13/GOPR0033.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/GOPR0033.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-13/GOPR0033.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GOPR0033.MP4
+   ... and 4 more
+
+33. Wasted: 35.236 GB
+   File size: 3608.12 MB × 11 copies
+   Hash: b341a514389b876a...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GP010821.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/GP010821.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GP010821.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/GP010821.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/GP010821.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GP010821.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/GP010821.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/4 Travel/5 GoPro/GP010821.MP4
+   ... and 3 more
+
+34. Wasted: 33.549 GB
+   File size: 3435.38 MB × 11 copies
+   Hash: e9168320c077d226...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GP020824.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/GP020824.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GP020824.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/GP020824.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/GP020824.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GP020824.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/GP020824.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/4 Travel/5 GoPro/GP020824.MP4
+   ... and 3 more
+
+35. Wasted: 32.667 GB
+   File size: 1967.70 MB × 18 copies
+   Hash: 52e45d903623a30d...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-10/HERO4 Black/GOPR0028.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/2016-02-10/HERO4 Black/GOPR0028.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GOPR0028.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-10/HERO4 Black/GOPR0028.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/2016-02-10/HERO4 Black/GOPR0028.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GOPR0028.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-10/HERO4 Black/GOPR0028.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/2016-02-10/HERO4 Black/GOPR0028.MP4
+   ... and 10 more
+
+36. Wasted: 32.054 GB
+   File size: 2983.91 MB × 12 copies
+   Hash: d62ed213e155b421...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0817.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0817.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GOPR0817.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.26.26/GOPR0817.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.26.26/GOPR0817.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0817.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0817.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0817.MP4
+   ... and 4 more
+
+37. Wasted: 28.969 GB
+   File size: 2966.43 MB × 11 copies
+   Hash: b8f30017e3c8aae1...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GOPR0819.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/GOPR0819.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GOPR0819.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/GOPR0819.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/GOPR0819.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GOPR0819.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/GOPR0819.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/4 Travel/5 GoPro/GOPR0819.MP4
+   ... and 3 more
+
+38. Wasted: 28.241 GB
+   File size: 2629.01 MB × 12 copies
+   Hash: d09ceccf17d51dce...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.24.16/GP010773.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GP010773.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.24.16/GP010773.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.24.16/GP010773.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.24.16/GP010773.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GP010773.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.24.16/GP010773.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GP010773.MP4
+   ... and 4 more
+
+39. Wasted: 24.331 GB
+   File size: 2491.50 MB × 11 copies
+   Hash: 4d153b71293a2957...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GOPR0820.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/GOPR0820.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GOPR0820.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/GOPR0820.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/GOPR0820.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GOPR0820.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/GOPR0820.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/4 Travel/5 GoPro/GOPR0820.MP4
+   ... and 3 more
+
+40. Wasted: 22.559 GB
+   File size: 2100.06 MB × 12 copies
+   Hash: c329673c174e8be4...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.3.16/GP010049.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP010049.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.3.16/GP010049.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.3.16/GP010049.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.3.16/GP010049.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP010049.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.3.16/GP010049.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP010049.MP4
+   ... and 4 more
+
+41. Wasted: 20.435 GB
+   File size: 909.80 MB × 24 copies
+   Hash: 5b2a83fbfcdfde9e...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.24.16/GOPR0786.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0786.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.24.16/GOPR0786.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0786.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.24.16/GOPR0786.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GOPR0786.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.24.16/GOPR0786.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.26.26/GOPR0786.MP4
+   ... and 16 more
+
+42. Wasted: 20.066 GB
+   File size: 1208.65 MB × 18 copies
+   Hash: a7ca321326f57da7...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-18/HERO4 Black/GP030043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GP030043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-18/HERO4 Black/GP030043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GP030043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/Ned/GP030043.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/to sort/GP030043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-18/HERO4 Black/GP030043.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/2016-02-18/HERO4 Black/GP030043.MP4
+   ... and 10 more
+
+43. Wasted: 19.735 GB
+   File size: 1837.11 MB × 12 copies
+   Hash: f19f109664c8a9a9...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/Chile pics and vids/VID_20170405_212437.mp4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/Chile pics and vids/VID_20170405_212437.mp4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/Ned/VID_20170405_212437.mp4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/to sort/VID_20170405_212437.mp4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/Chile pics and vids/VID_20170405_212437.mp4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/Ned/VID_20170405_212437.mp4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/Chile pics and vids/VID_20170405_212437.mp4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/Ned/VID_20170405_212437.mp4
+   ... and 4 more
+
+44. Wasted: 19.189 GB
+   File size: 677.59 MB × 30 copies
+   Hash: 9faf35d622b4afc7...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-10/HERO4 Black/GOPR0030.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-13/GOPR0030.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/2016-02-10/HERO4 Black/GOPR0030.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GOPR0030.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-10/HERO4 Black/GOPR0030.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-13/GOPR0030.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/2016-02-10/HERO4 Black/GOPR0030.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GOPR0030.MP4
+   ... and 22 more
+
+45. Wasted: 18.662 GB
+   File size: 3821.95 MB × 6 copies
+   Hash: 5418c5687d7bbc55...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP010044.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.3.16/GP010044.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP010044.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP010044.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GP010044.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/5 GoPro/GoPro temp/1/3.3.16/GP010044.MP4
+
+46. Wasted: 18.661 GB
+   File size: 3821.74 MB × 6 copies
+   Hash: 7685e5e42d98d58b...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0815.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/3.26.26/GOPR0815.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/3.26.26/GOPR0815.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0815.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/4 Travel/5 GoPro/3.26.26/GOPR0815.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/5 GoPro/3.26.26/GOPR0815.MP4
+
+47. Wasted: 18.661 GB
+   File size: 3821.74 MB × 6 copies
+   Hash: 8e5f02d8b93036ff...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0815.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.26.26/GOPR0815.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0815.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0815.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.26.26/GOPR0815.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/5 GoPro/GoPro temp/1/3.26.26/GOPR0815.MP4
+
+48. Wasted: 18.661 GB
+   File size: 3821.70 MB × 6 copies
+   Hash: 20620a7df6fff093...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/2016-02-14/GP030036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/2016-02-14/GP030036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/2016-02-14/GP030036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/2016-02-14/GP030036.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/4 Travel/5 GoPro/2016-02-14/GP030036.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/5 GoPro/2016-02-14/GP030036.MP4
+
+49. Wasted: 18.661 GB
+   File size: 3821.70 MB × 6 copies
+   Hash: ed3058bee0c3f5eb...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP030036.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/GP030036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/GP030036.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP030036.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/GP030036.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/5 GoPro/GoPro temp/1/GP030036.MP4
+
+50. Wasted: 18.661 GB
+   File size: 3821.68 MB × 6 copies
+   Hash: 591b022ab0223246...
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GOPR0048.MP4
+   - [BOH2] /media/ungouge/BOH 2/Working pictures/5 GoPro/GoPro temp/1/3.3.16/GOPR0048.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/BOH 1  icloud/Jason/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GOPR0048.MP4
+   - [BOH2] /media/ungouge/BOH 2/recovery/found000_backup/10000000_dir.chk/backup final from desktop/Filing cabinet/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GOPR0048.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/4 Travel/5 GoPro/GoPro temp/1/3.3.16/GOPR0048.MP4
+   - [Number_2] /media/ungouge/Number_2/Working pictures/5 GoPro/GoPro temp/1/3.3.16/GOPR0048.MP4

@@ -396,7 +396,7 @@ async def refresh_token_endpoint(
         )
     
     # Verify refresh token (checks expiry, type, blacklist)
-    payload = verify_token(refresh_token_value, token_type="refresh")
+    payload = await verify_token(refresh_token_value, token_type="refresh")
     user_id = payload.get("sub")
     
     if not user_id:

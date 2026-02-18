@@ -166,6 +166,51 @@ async def submit_quote(
             }
         )
 
+@router.get("/quotes/my")
+async def get_my_quotes(
+    skip: int = 0,
+    limit: int = 10,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Get current user's quotes (requires authentication)
+    
+    Returns list of quotes submitted by the authenticated user
+    """
+    # Enforce pagination limits to prevent DoS
+    limit = min(limit, 100)  # Max 100 per page
+    skip = max(skip, 0)
+    
+    result = await db.execute(
+        select(Quote)
+        .where(Quote.user_id == current_user.id)
+        .offset(skip)
+        .limit(limit)
+        .order_by(Quote.created_at.desc())
+    )
+    quotes = result.scalars().all()
+    
+    return {
+        "quotes": [
+            {
+                "id": quote.id,
+                "project_type": quote.project_type,
+                "location": quote.location,
+                "contractor_name": quote.contractor_name,
+                "status": "completed" if quote.payment_status == "paid" else (
+                    "pending" if quote.payment_status == "pending" else "processing"
+                ),
+                "payment_status": quote.payment_status,
+                "created_at": quote.created_at.isoformat(),
+                "report_url": f"/api/quotes/{quote.id}/report",
+            }
+            for quote in quotes
+        ],
+        "total": len(quotes),
+    }
+
+
 @router.get("/quotes/{quote_id}", response_model=ReportModel)
 async def get_quote_report(
     quote_id: str,
@@ -257,47 +302,6 @@ async def get_quote_report(
         line_items=report_data.get("line_items", []),
         created_at=quote.created_at.isoformat(),
     )
-
-@router.get("/quotes/my")
-async def get_my_quotes(
-    skip: int = 0,
-    limit: int = 10,
-    current_user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
-):
-    """
-    Get current user's quotes (requires authentication)
-    
-    Returns list of quotes submitted by the authenticated user
-    """
-    # Enforce pagination limits to prevent DoS
-    limit = min(limit, 100)  # Max 100 per page
-    skip = max(skip, 0)
-    
-    result = await db.execute(
-        select(Quote)
-        .where(Quote.user_id == current_user.id)
-        .offset(skip)
-        .limit(limit)
-        .order_by(Quote.created_at.desc())
-    )
-    quotes = result.scalars().all()
-    
-    return {
-        "quotes": [
-            {
-                "id": quote.id,
-                "project_type": quote.project_type,
-                "location": quote.location,
-                "contractor_name": quote.contractor_name,
-                "created_at": quote.created_at.isoformat(),
-                "report_url": f"/api/quotes/{quote.id}/report",
-            }
-            for quote in quotes
-        ],
-        "total": len(quotes),
-    }
-
 
 @router.get("/quotes/{quote_id}/report", response_model=ReportModel)
 async def get_quote_full_report(
@@ -394,6 +398,10 @@ async def list_quotes(
                 "project_type": quote.project_type,
                 "location": quote.location,
                 "contractor_name": quote.contractor_name,
+                "status": "completed" if quote.payment_status == "paid" else (
+                    "pending" if quote.payment_status == "pending" else "processing"
+                ),
+                "payment_status": quote.payment_status,
                 "created_at": quote.created_at.isoformat(),
                 "report_url": f"/api/quotes/{quote.id}/report",
             }
@@ -408,6 +416,7 @@ async def list_quotes(
 async def parse_quote_upload(
     request: Request,
     file: UploadFile = File(...),
+    current_user: User = Depends(get_current_user),
 ):
     """
     Upload and parse a contractor quote (PDF or image)

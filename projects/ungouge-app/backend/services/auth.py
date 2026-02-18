@@ -72,7 +72,7 @@ def create_refresh_token(data: dict) -> str:
     return encoded_jwt
 
 
-def verify_token(token: str, token_type: str = "access") -> dict:
+async def verify_token(token: str, token_type: str = "access") -> dict:
     """
     Verify and decode a JWT token
     
@@ -87,8 +87,7 @@ def verify_token(token: str, token_type: str = "access") -> dict:
         HTTPException: If token is invalid, blacklisted, or wrong type
     """
     # SECURITY: Check if token is blacklisted (logged out)
-    # Uses sync shim because verify_token is a synchronous function
-    if TokenBlacklistSync.is_blacklisted(token):
+    if await TokenBlacklist.is_blacklisted(token):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token has been revoked",
@@ -149,7 +148,7 @@ async def get_current_user(
             headers={"WWW-Authenticate": "Bearer"},
         )
     
-    payload = verify_token(token, token_type="access")
+    payload = await verify_token(token, token_type="access")
     
     user_id: str = payload.get("sub")
     if user_id is None:

@@ -20,8 +20,11 @@ export interface BlogPostWithHTML extends BlogPost {
   contentHtml: string;
 }
 
-// Blog posts live in the content/blog directory at project root
-const BLOG_DIR = path.join(process.cwd(), '..', 'content', 'blog');
+// Blog posts live in the content/blog directory
+// Try local content first (inside frontend/), then parent directory
+const BLOG_DIR = fs.existsSync(path.join(process.cwd(), 'content', 'blog'))
+  ? path.join(process.cwd(), 'content', 'blog')
+  : path.join(process.cwd(), '..', 'content', 'blog');
 
 /**
  * Extract title from markdown content (first # heading)

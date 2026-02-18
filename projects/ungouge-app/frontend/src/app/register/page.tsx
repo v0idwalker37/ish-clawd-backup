@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { User, Mail, Lock, AlertCircle, CheckCircle } from 'lucide-react';
 
 export default function RegisterPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get('redirect') || '/dashboard';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -63,7 +65,7 @@ export default function RegisterPage() {
 
       // Cookies are set automatically by the browser (httpOnly)
       // No more localStorage token storage - more secure!
-      router.push('/dashboard');
+      router.push(redirectTo);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'An error occurred during registration');
     } finally {
@@ -200,7 +202,7 @@ export default function RegisterPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Already have an account?{' '}
-              <Link href="/login" className="text-primary-600 hover:text-primary-700 font-semibold">
+              <Link href={`/login${redirectTo !== '/dashboard' ? `?redirect=${encodeURIComponent(redirectTo)}` : ''}`} className="text-primary-600 hover:text-primary-700 font-semibold">
                 Sign in
               </Link>
             </p>
