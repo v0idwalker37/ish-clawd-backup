@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FileText, Clock, CheckCircle, AlertTriangle, ArrowRight, Search } from 'lucide-react';
+import { FileText, Clock, CheckCircle, AlertTriangle, ArrowRight, Search, Trash2 } from 'lucide-react';
 import api from '@/lib/api';
 
 interface Quote {
@@ -18,6 +18,24 @@ export default function QuotesPage() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [deleting, setDeleting] = useState<string | null>(null);
+
+  const handleDelete = async (quoteId: string) => {
+    if (!confirm('Delete this quote? This cannot be undone.')) return;
+    setDeleting(quoteId);
+    try {
+      await fetch(`/api/quotes/${quoteId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      setQuotes((prev) => prev.filter((q) => q.id !== quoteId));
+    } catch (error) {
+      console.error('Failed to delete quote:', error);
+      alert('Failed to delete quote. Please try again.');
+    } finally {
+      setDeleting(null);
+    }
+  };
 
   useEffect(() => {
     const fetchQuotes = async () => {
@@ -157,6 +175,18 @@ export default function QuotesPage() {
                     View
                     <ArrowRight className="w-4 h-4" />
                   </Link>
+                  <button
+                    onClick={() => handleDelete(quote.id)}
+                    disabled={deleting === quote.id}
+                    className="p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors disabled:opacity-50"
+                    title="Delete quote"
+                  >
+                    {deleting === quote.id ? (
+                      <div className="w-4 h-4 animate-spin rounded-full border-2 border-red-400 border-t-transparent" />
+                    ) : (
+                      <Trash2 className="w-4 h-4" />
+                    )}
+                  </button>
                 </div>
               </div>
             </div>

@@ -41,6 +41,7 @@ ASSESSMENT_COLORS = {
     "slightly_high": BRAND_WARNING,
     "high": BRAND_DANGER,
     "gouging": BRAND_DANGER,
+    "suspiciously_low": colors.HexColor("#2563EB"),
     "unknown": colors.HexColor("#6B7280"),
 }
 
@@ -49,6 +50,7 @@ ASSESSMENT_LABELS = {
     "slightly_high": "⚠ Slightly High",
     "high": "⚠ High",
     "gouging": "✗ Gouging",
+    "suspiciously_low": "⚡ Suspiciously Low",
     "unknown": "? Unknown",
 }
 

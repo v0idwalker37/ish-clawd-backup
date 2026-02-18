@@ -27,6 +27,23 @@ const quoteFormSchema = z.object({
 
 type QuoteFormData = z.infer<typeof quoteFormSchema>;
 
+const unitOptions = [
+  { value: 'item', label: 'Item (lump sum)' },
+  { value: 'sqft', label: 'Square Feet' },
+  { value: 'lnft', label: 'Linear Feet' },
+  { value: 'each', label: 'Each' },
+  { value: 'hour', label: 'Hours' },
+  { value: 'day', label: 'Days' },
+  { value: 'sqyd', label: 'Square Yards' },
+  { value: 'cuyd', label: 'Cubic Yards' },
+  { value: 'ton', label: 'Tons' },
+  { value: 'bundle', label: 'Bundles' },
+  { value: 'sheet', label: 'Sheets' },
+  { value: 'room', label: 'Rooms' },
+  { value: 'fixture', label: 'Fixtures' },
+  { value: 'other', label: 'Other' },
+];
+
 const projectTypes = [
   'Kitchen Remodel',
   'Bathroom Remodel',
@@ -480,6 +497,20 @@ export default function QuoteForm() {
                       className="input-field"
                     />
                   </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Unit
+                    </label>
+                    <select
+                      {...register(`line_items.${index}.unit`)}
+                      className="input-field"
+                    >
+                      {unitOptions.map((u) => (
+                        <option key={u.value} value={u.value}>{u.label}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
             ))}
@@ -569,16 +600,21 @@ export default function QuoteForm() {
             </div>
 
             {/* Promo Code */}
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                value={promoCode}
-                onChange={(e) => { setPromoCode(e.target.value.toUpperCase()); setPromoApplied(false); }}
-                placeholder="Promo code (optional)"
-                className="input-field flex-1 text-sm"
-              />
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+              <label className="block text-sm font-semibold text-amber-800 mb-2">
+                🎟️ Have a promo code?
+              </label>
+              <div className="flex items-center gap-3">
+                <input
+                  type="text"
+                  value={promoCode}
+                  onChange={(e) => { setPromoCode(e.target.value.toUpperCase()); setPromoApplied(false); }}
+                  placeholder="Enter promo code"
+                  className="input-field flex-1 text-base font-mono tracking-wider uppercase"
+                />
+              </div>
               {promoCode && (
-                <span className="text-xs text-gray-500">Code will be applied at checkout</span>
+                <p className="text-sm text-amber-700 mt-2">✓ Code &quot;{promoCode}&quot; will be applied at checkout</p>
               )}
             </div>
 

@@ -7,7 +7,7 @@ class LineItemAnalysis(BaseModel):
     quoted_price: float = Field(..., description="Price quoted by contractor")
     fair_price_low: float = Field(..., description="Low end of fair price range")
     fair_price_high: float = Field(..., description="High end of fair price range")
-    assessment: Literal["fair", "slightly_high", "high", "gouging", "unknown"] = Field(
+    assessment: Literal["fair", "slightly_high", "high", "gouging", "suspiciously_low", "unknown"] = Field(
         ..., description="Overall assessment of this line item"
     )
     explanation: str = Field(..., description="Detailed explanation of the analysis")

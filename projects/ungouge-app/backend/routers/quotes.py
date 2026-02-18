@@ -185,13 +185,19 @@ async def get_dashboard_stats(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Get dashboard overview stats for the current user
+    Get dashboard overview stats for the current user.
+    
+    Joins quotes with analysis_reports to get pricing data
+    (total_quoted lives on AnalysisReport, not Quote).
     """
     from sqlalchemy import func
+    from sqlalchemy.orm import selectinload
 
     # Get all user's quotes
     result = await db.execute(
-        select(Quote).where(Quote.user_id == current_user.id)
+        select(Quote)
+        .where(Quote.user_id == current_user.id)
+        .options(selectinload(Quote.analysis_report))
     )
     quotes = result.scalars().all()
 
@@ -201,9 +207,10 @@ async def get_dashboard_stats(
     # Calculate savings from analysis reports
     total_savings = 0
     for q in quotes:
-        if q.payment_status == "paid" and hasattr(q, 'total_quoted') and hasattr(q, 'total_fair_high'):
-            if q.total_quoted and q.total_fair_high and q.total_quoted > q.total_fair_high:
-                total_savings += q.total_quoted - q.total_fair_high
+        if q.payment_status == "paid" and q.analysis_report:
+            report = q.analysis_report
+            if report.total_quoted and report.total_fair_high and report.total_quoted > report.total_fair_high:
+                total_savings += report.total_quoted - report.total_fair_high
 
     average_savings = total_savings / total_reports if total_reports > 0 else 0
 
@@ -219,11 +226,11 @@ async def get_dashboard_stats(
                 "id": str(q.id),
                 "project_type": q.project_type or "Quote",
                 "contractor_name": q.contractor_name or "",
-                "total_quoted": float(q.total_quoted) if q.total_quoted else 0,
-                "total_fair_high": float(q.total_fair_high) if q.total_fair_high else 0,
+                "total_quoted": float(q.analysis_report.total_quoted) if q.analysis_report and q.analysis_report.total_quoted else 0,
+                "total_fair_high": float(q.analysis_report.total_fair_high) if q.analysis_report and q.analysis_report.total_fair_high else 0,
                 "status": "completed" if q.payment_status == "paid" else "pending",
                 "created_at": q.created_at.isoformat() if q.created_at else "",
-                "overall_rating": q.overall_rating if hasattr(q, 'overall_rating') else "fair",
+                "overall_rating": "fair",
             }
             for q in recent_quotes
         ],
@@ -273,6 +280,48 @@ async def get_my_quotes(
         ],
         "total": len(quotes),
     }
+
+
+@router.delete("/quotes/{quote_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_quote(
+    quote_id: str,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """
+    Delete a quote and all associated data (line items, payments, reports).
+    
+    Only the quote owner can delete. Works for both pending and completed quotes.
+    """
+    from services.logger import log_error
+
+    result = await db.execute(select(Quote).where(Quote.id == quote_id))
+    quote = result.scalar_one_or_none()
+
+    if not quote:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Quote not found")
+
+    if quote.user_id != current_user.id:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Access denied")
+
+    # Delete associated records (cascading from relationships should handle line_items and analysis_report)
+    # But explicitly clean up payments since they may not cascade
+    from models.database import Payment
+    await db.execute(select(Payment).where(Payment.quote_id == quote_id))
+    payment_result = await db.execute(select(Payment).where(Payment.quote_id == quote_id))
+    for payment in payment_result.scalars().all():
+        await db.delete(payment)
+
+    await db.delete(quote)
+
+    try:
+        await db.commit()
+    except Exception as e:
+        await db.rollback()
+        log_error("quote_delete_failed", str(e), {"quote_id": quote_id})
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to delete quote")
+
+    return None
 
 
 @router.get("/quotes/{quote_id}", response_model=ReportModel)
