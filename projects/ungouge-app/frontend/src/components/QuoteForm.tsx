@@ -99,6 +99,9 @@ export default function QuoteForm() {
     setStep(1);
   };
 
+  const [promoCode, setPromoCode] = useState('');
+  const [promoApplied, setPromoApplied] = useState(false);
+
   const onSubmit = async (data: QuoteFormData) => {
     // Gate: require account before checkout (so users have historical reports)
     if (!user) {
@@ -131,8 +134,32 @@ export default function QuoteForm() {
 
       const quoteData = await quoteRes.json();
       const quoteId = quoteData.id;
+
+      // Step 2: If promo code entered, try applying it first
+      if (promoCode.trim()) {
+        const promoRes = await fetch('/api/payments/apply-promo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ quote_id: quoteId, promo_code: promoCode.trim() }),
+        });
+
+        if (promoRes.ok) {
+          const promoData = await promoRes.json();
+          // Promo applied — redirect to report
+          window.location.href = promoData.report_url || `/report/${quoteId}?payment=success`;
+          return;
+        } else {
+          const promoErr = await promoRes.json().catch(() => ({}));
+          const errMsg = promoErr.detail?.error || promoErr.detail || 'Invalid promo code.';
+          // Don't fail — just warn and fall through to Stripe
+          setError(`Promo code error: ${errMsg} Proceeding to payment...`);
+          await new Promise(r => setTimeout(r, 2000));
+          setError(null);
+        }
+      }
       
-      // Step 2: Create a Stripe Checkout Session
+      // Step 3: Create a Stripe Checkout Session
       const checkoutRes = await fetch('/api/payments/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -147,7 +174,7 @@ export default function QuoteForm() {
 
       const checkoutData = await checkoutRes.json();
       
-      // Step 3: Redirect to Stripe Checkout (external hosted page)
+      // Step 4: Redirect to Stripe Checkout (external hosted page)
       // Stripe handles payment collection; on success it redirects to /report/{quoteId}?payment=success
       const checkoutUrl = checkoutData.checkout_url;
       if (checkoutUrl) {
@@ -539,6 +566,20 @@ export default function QuoteForm() {
                 <li>✓ Regional material cost comparison</li>
                 <li>✓ Instant PDF report</li>
               </ul>
+            </div>
+
+            {/* Promo Code */}
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={promoCode}
+                onChange={(e) => { setPromoCode(e.target.value.toUpperCase()); setPromoApplied(false); }}
+                placeholder="Promo code (optional)"
+                className="input-field flex-1 text-sm"
+              />
+              {promoCode && (
+                <span className="text-xs text-gray-500">Code will be applied at checkout</span>
+              )}
             </div>
 
             {error && (
