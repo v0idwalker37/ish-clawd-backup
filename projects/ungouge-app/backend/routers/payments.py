@@ -431,11 +431,14 @@ async def _generate_report_for_quote(db: AsyncSession, quote_id: str):
     """
     from models.quote import QuoteSubmission, LineItem
 
-    # V2 engine: uses QuoteAnalyzer (67.7% accuracy, 87% match rate)
+    # AI-powered analyzer: Gemini 2.5 Pro with Search Grounding
     try:
-        from services.analyzer_v2 import analyze_quote
+        from services.analyzer_ai import analyze_quote
     except ImportError:
-        from services.analyzer import analyze_quote
+        try:
+            from services.analyzer_v2 import analyze_quote
+        except ImportError:
+            from services.analyzer import analyze_quote
 
     # Load quote + line items from DB
     quote_result = await db.execute(select(Quote).where(Quote.id == quote_id))
