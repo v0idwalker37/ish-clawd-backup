@@ -54,3 +54,4 @@ cost-data/craftsman/ocr_text/
 *.pid
 projects/ungouge-app/cost-data/craftsman/pages/
 projects/ungouge-app/cost-data/craftsman/ocr_text/
+projects/hdd-consolidate/duplicate_report.json
