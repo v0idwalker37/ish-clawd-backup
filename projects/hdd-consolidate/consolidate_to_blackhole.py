@@ -19,6 +19,12 @@ SOURCE_DRIVES = ['BOH2', 'Number_2']
 LOG_FILE = 'consolidation.log'
 PROGRESS_FILE = 'consolidation_progress.log'
 
+# Map database drive names to actual mount points
+DRIVE_MOUNT_MAP = {
+    'BOH2': '/media/ungouge/BOH 2',
+    'Number_2': '/media/ungouge/Number_2'
+}
+
 def log(msg):
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     message = f"[{timestamp}] {msg}"
@@ -83,8 +89,18 @@ def main():
         source_drive, source_path, file_size = files[0]
         
         # Build destination path maintaining structure
-        # Remove /media/ungouge/DRIVE/ prefix, keep rest
-        rel_path = source_path.replace(f'/media/ungouge/{source_drive}/', '')
+        # Remove actual mount path prefix, keep rest
+        mount_path = DRIVE_MOUNT_MAP.get(source_drive)
+        if not mount_path:
+            log(f"ERROR: Unknown drive {source_drive}, skipping")
+            continue
+        
+        # Remove mount path prefix to get relative path
+        if not source_path.startswith(mount_path + '/'):
+            log(f"ERROR: Path {source_path} doesn't start with {mount_path}, skipping")
+            continue
+        
+        rel_path = source_path[len(mount_path) + 1:]  # +1 to remove leading /
         dest_path = os.path.join(DEST_BASE, rel_path)
         
         # Check if already copied

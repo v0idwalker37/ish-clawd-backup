@@ -46,8 +46,8 @@ export default function LoginPage() {
         return;
       }
 
-      // Success - cookies are set automatically
-      router.push(redirectTo);
+      // Success - full page navigation so browser sends new cookies
+      window.location.href = redirectTo;
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'An error occurred during login');
     } finally {
@@ -74,8 +74,8 @@ export default function LoginPage() {
         throw new Error(data.detail || 'Invalid verification code');
       }
 
-      // Success - cookies are set automatically
-      router.push(redirectTo);
+      // Success - full page navigation so browser sends new cookies
+      window.location.href = redirectTo;
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'An error occurred during verification');
     } finally {

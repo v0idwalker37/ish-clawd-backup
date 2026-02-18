@@ -64,8 +64,8 @@ export default function RegisterPage() {
       }
 
       // Cookies are set automatically by the browser (httpOnly)
-      // No more localStorage token storage - more secure!
-      router.push(redirectTo);
+      // Full page navigation so browser sends new cookies to middleware
+      window.location.href = redirectTo;
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'An error occurred during registration');
     } finally {

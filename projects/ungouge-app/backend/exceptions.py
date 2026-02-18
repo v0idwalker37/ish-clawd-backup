@@ -88,7 +88,7 @@ class EmptyFileError(FileValidationError):
                 "• Opens correctly on your device\n"
                 "• Was not corrupted during upload"
             ),
-            log_context={"filename": filename}
+            log_context={"upload_filename": filename}
         )
 
 
@@ -105,7 +105,7 @@ class UnsupportedFileTypeError(FileValidationError):
                 "\n"
                 "If you have a different format, try converting it or taking a clear photo/screenshot."
             ),
-            log_context={"content_type": content_type, "filename": filename}
+            log_context={"content_type": content_type, "upload_filename": filename}
         )
 
 
@@ -122,7 +122,7 @@ class CorruptFileError(FileValidationError):
                 "• Convert to a different format (PDF → image, or vice versa)\n"
                 "• Take a clear screenshot/photo of the document"
             ),
-            log_context={"filename": filename, "error": error_details}
+            log_context={"upload_filename": filename, "error": error_details}
         )
 
 
@@ -141,7 +141,7 @@ class TextExtractionError(FileValidationError):
                 "\n"
                 "If issues persist, try manually entering the quote details instead."
             ),
-            log_context={"filename": filename}
+            log_context={"upload_filename": filename}
         )
 
 
@@ -159,7 +159,7 @@ class NoLineItemsFoundError(FileValidationError):
                 "\n"
                 "You can also enter the quote details manually using the form."
             ),
-            log_context={"filename": filename}
+            log_context={"upload_filename": filename}
         )
 
 

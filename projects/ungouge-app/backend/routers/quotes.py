@@ -21,7 +21,13 @@ except ImportError:
 from services.payment import create_payment_intent, verify_payment
 from services.auth import get_current_user_optional, get_current_user
 from services.logger import log_quote_submission, log_access_denied
-from services.quote_parser import process_quote_file
+import os
+
+# Use Gemini parser if key available, fall back to OpenAI
+if os.getenv("GEMINI_API_KEY"):
+    from services.quote_parser_gemini import process_quote_file
+else:
+    from services.quote_parser import process_quote_file
 
 router = APIRouter()
 limiter = Limiter(key_func=get_remote_address)
@@ -165,6 +171,57 @@ async def submit_quote(
                 )
             }
         )
+
+@router.get("/dashboard/stats")
+async def get_dashboard_stats(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Get dashboard overview stats for the current user
+    """
+    from sqlalchemy import func
+
+    # Get all user's quotes
+    result = await db.execute(
+        select(Quote).where(Quote.user_id == current_user.id)
+    )
+    quotes = result.scalars().all()
+
+    total_reports = len([q for q in quotes if q.payment_status == "paid"])
+    pending_reports = len([q for q in quotes if q.payment_status == "pending"])
+
+    # Calculate savings from analysis reports
+    total_savings = 0
+    for q in quotes:
+        if q.payment_status == "paid" and hasattr(q, 'total_quoted') and hasattr(q, 'total_fair_high'):
+            if q.total_quoted and q.total_fair_high and q.total_quoted > q.total_fair_high:
+                total_savings += q.total_quoted - q.total_fair_high
+
+    average_savings = total_savings / total_reports if total_reports > 0 else 0
+
+    recent_quotes = sorted(quotes, key=lambda q: q.created_at, reverse=True)[:5]
+
+    return {
+        "total_reports": total_reports,
+        "total_savings": round(total_savings, 2),
+        "average_savings": round(average_savings, 2),
+        "pending_reports": pending_reports,
+        "recent_quotes": [
+            {
+                "id": str(q.id),
+                "project_type": q.project_type or "Quote",
+                "contractor_name": q.contractor_name or "",
+                "total_quoted": float(q.total_quoted) if q.total_quoted else 0,
+                "total_fair_high": float(q.total_fair_high) if q.total_fair_high else 0,
+                "status": "completed" if q.payment_status == "paid" else "pending",
+                "created_at": q.created_at.isoformat() if q.created_at else "",
+                "overall_rating": q.overall_rating if hasattr(q, 'overall_rating') else "fair",
+            }
+            for q in recent_quotes
+        ],
+    }
+
 
 @router.get("/quotes/my")
 async def get_my_quotes(
@@ -451,7 +508,7 @@ async def parse_quote_upload(
         logger.info(
             "quote_file_uploaded",
             extra={
-                "filename": file.filename,
+                "upload_filename": file.filename,
                 "file_type": content_type,
                 "file_size_kb": len(contents) / 1024,
                 "ip": request.client.host if request.client else None,
@@ -470,7 +527,7 @@ async def parse_quote_upload(
             "quote_upload_validation_failed",
             e.message,
             {
-                "filename": file.filename if file else None,
+                "upload_filename": file.filename if file else None,
                 "ip": request.client.host if request.client else None,
                 **e.log_context
             }
@@ -483,7 +540,7 @@ async def parse_quote_upload(
     except Exception as e:
         # Unexpected server error
         log_error("quote_upload_unexpected_error", str(e), {
-            "filename": file.filename if file else None,
+            "upload_filename": file.filename if file else None,
             "ip": request.client.host if request.client else None,
             "error_type": type(e).__name__
         })
