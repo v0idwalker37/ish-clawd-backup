@@ -22,12 +22,19 @@ from services.payment import create_payment_intent, verify_payment
 from services.auth import get_current_user_optional, get_current_user
 from services.logger import log_quote_submission, log_access_denied
 import os
+from services.quote_parser import process_quote_file as openai_process_quote
+from services.quote_parser_gemini import process_quote_file as gemini_process_quote
 
-# Use Gemini parser if key available, fall back to OpenAI
-if os.getenv("GEMINI_API_KEY"):
-    from services.quote_parser_gemini import process_quote_file
-else:
-    from services.quote_parser import process_quote_file
+
+async def process_quote_file(file_bytes: bytes, filename: str):
+    """Try Gemini first, fall back to OpenAI if it fails."""
+    if os.getenv("GEMINI_API_KEY"):
+        try:
+            return await gemini_process_quote(file_bytes, filename)
+        except Exception as e:
+            print(f"Gemini parser failed: {e}. Falling back to OpenAI...")
+    
+    return await openai_process_quote(file_bytes, filename)
 
 router = APIRouter()
 limiter = Limiter(key_func=get_remote_address)
@@ -469,7 +476,7 @@ async def list_quotes(
 
 
 @router.post("/quotes/parse-upload")
-@limiter.limit("5/hour")  # Max 5 uploads per hour
+@limiter.limit("20/hour")  # Relaxed for testing; tighten post-launch
 async def parse_quote_upload(
     request: Request,
     file: UploadFile = File(...),
