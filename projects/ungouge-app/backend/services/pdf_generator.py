@@ -446,7 +446,7 @@ def _build_line_items_table(report: Report, styles):
     for item in report.line_items:
         row_assessments.append(item.assessment)
 
-        # Full explanation — this is what customers paid for
+        # Full explanation — no truncation
         explanation = item.explanation or ""
 
         row = [
@@ -461,7 +461,7 @@ def _build_line_items_table(report: Report, styles):
         ]
         data.append(row)
 
-    # Column widths optimized for readability
+    # Wider explanation column for full text
     col_widths = [1.1 * inch, 0.8 * inch, 1.0 * inch, 1.0 * inch, 2.8 * inch]
     table = Table(data, colWidths=col_widths, repeatRows=1)
 
@@ -538,7 +538,7 @@ def generate_pdf(report: Report) -> bytes:
         rightMargin=0.6 * inch,
         title=f"UnGouge Report – {_title_case_project(report.project_type)}",
         author="UnGouge.ai",
-        compress=1,  # Enable PDF compression (reduces file size by ~50%)
+        compress=1,  # Enable PDF compression
     )
 
     elements = []
