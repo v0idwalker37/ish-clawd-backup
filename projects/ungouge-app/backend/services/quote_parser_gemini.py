@@ -86,7 +86,7 @@ Extract the following information:
 5. ALL line items with complete details:
    - Item name (what the work/material is)
    - Description (any additional details)
-   - Quoted price (dollar amount)
+   - **Quoted price (PRICE PER UNIT ONLY - e.g., $94.13/hour, $15.50/sqft, NOT the line total)**
    - Quantity (number of units - default 1 if not shown)
    - Unit (e.g., "square", "linear_foot", "item", "hour", "sqft")
 
@@ -95,6 +95,10 @@ CRITICAL RULES:
 - Pay close attention to quantities and units (squares, linear feet, etc.)
 - Convert all prices to numbers (remove $, commas)
 - Do NOT include totals, subtotals, grand totals, tax lines, or summary lines as line items — only actual work/material items
+- **CRITICAL: quoted_price MUST be the PRICE PER UNIT, NEVER the line total.**
+  - Example: "60 hours @ $94.13/hour = $5,647.80" → extract 94.13 as quoted_price, NOT 5647.80
+  - If you see "Carpenter - $5,647.80 for 60 hours" → calculate unit price: 5647.80 / 60 = 94.13
+  - If only a line total is shown with quantity, divide to get unit price
 - IMPORTANT: Some quotes embed the price in the description text (e.g., "Interior painting - $3,800" or "Fire mantle installation ($2,500)"). If a line item has $0 or no price column but the description mentions a dollar amount, extract that dollar amount as the quoted_price.
 - Every line item should have a non-zero price unless the work is explicitly bundled/included at no charge. If you see $0, double-check the description for an embedded price.
 - Be precise with numbers - accuracy is critical
@@ -277,6 +281,20 @@ async def process_quote_file(file_bytes: bytes, filename: str) -> Dict:
             item["quantity"] = int(item["quantity"]) if item["quantity"] else 1
         except:
             item["quantity"] = 1
+        
+        # FIX: Detect if quoted_price is actually a line total (quantity > 1 and price seems too high)
+        # Heuristic: if quantity > 1 and price * quantity would be absurdly high, assume price IS the line total
+        qty = item["quantity"]
+        price = item["quoted_price"]
+        if qty > 1 and price > 0:
+            # If the "unit price" times quantity would give a line total > $1M, it's probably wrong
+            calculated_total = price * qty
+            if calculated_total > 1_000_000:  # Unlikely to have million-dollar line items
+                # Price is probably the line total - divide to get unit price
+                unit_price = price / qty
+                if unit_price >= 0.01:  # Sanity check: unit price should be at least 1 cent
+                    item["quoted_price"] = round(unit_price, 2)
+                    print(f"Corrected {item['item_name']}: detected line total ${price:,.2f}, converted to unit price ${unit_price:,.2f}")
     
     # Calculate total if not present
     if "total" not in parsed_data or not parsed_data["total"]:
@@ -340,7 +358,7 @@ Extract ALL information from across ALL pages:
 5. ALL line items from ALL pages with complete details:
    - Item name (what the work/material is)
    - Description (any additional details)
-   - Quoted price (dollar amount)
+   - **Quoted price (PRICE PER UNIT ONLY - e.g., $94.13/hour, $15.50/sqft, NOT the line total)**
    - Quantity (number of units - default 1 if not shown)
    - Unit (e.g., "square", "linear_foot", "item", "hour", "sqft")
 
@@ -350,6 +368,10 @@ CRITICAL RULES:
 - Pay close attention to quantities and units (squares, linear feet, etc.)
 - Convert all prices to numbers (remove $, commas)
 - Do NOT include totals, subtotals, grand totals, tax lines, or summary lines as line items — only actual work/material items
+- **CRITICAL: quoted_price MUST be the PRICE PER UNIT, NEVER the line total.**
+  - Example: "60 hours @ $94.13/hour = $5,647.80" → extract 94.13 as quoted_price, NOT 5647.80
+  - If you see "Carpenter - $5,647.80 for 60 hours" → calculate unit price: 5647.80 / 60 = 94.13
+  - If only a line total is shown with quantity, divide to get unit price
 - IMPORTANT: Some quotes embed the price in the description text (e.g., "Interior painting - $3,800" or "Fire mantle installation ($2,500)"). If a line item has $0 or no price column but the description mentions a dollar amount, extract that dollar amount as the quoted_price.
 - Every line item should have a non-zero price unless the work is explicitly bundled/included at no charge
 - Be precise with numbers - accuracy is critical
@@ -444,6 +466,17 @@ Return ONLY valid JSON in this exact format:
             item["quantity"] = int(item["quantity"]) if item["quantity"] else 1
         except:
             item["quantity"] = 1
+        
+        # FIX: Detect if quoted_price is actually a line total (same as single-file parser)
+        qty = item["quantity"]
+        price = item["quoted_price"]
+        if qty > 1 and price > 0:
+            calculated_total = price * qty
+            if calculated_total > 1_000_000:  # Unlikely to have million-dollar line items
+                unit_price = price / qty
+                if unit_price >= 0.01:
+                    item["quoted_price"] = round(unit_price, 2)
+                    print(f"Multi-file corrected {item['item_name']}: detected line total ${price:,.2f}, converted to unit price ${unit_price:,.2f}")
     
     # Calculate total
     parsed_data["total"] = sum(

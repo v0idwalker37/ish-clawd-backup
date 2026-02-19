@@ -24,7 +24,7 @@ if "JWT_SECRET_KEY" not in os.environ:
     raise RuntimeError("CRITICAL: JWT_SECRET_KEY environment variable must be set!")
 SECRET_KEY = os.environ["JWT_SECRET_KEY"]
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 120  # 2 hours - prevents timeout during quote entry
 REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 # Password hashing context
