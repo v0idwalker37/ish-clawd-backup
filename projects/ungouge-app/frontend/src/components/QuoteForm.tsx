@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -60,7 +60,15 @@ const projectTypes = [
 ];
 
 export default function QuoteForm() {
-  const [step, setStep] = useState(0); // Start at 0 (upload step)
+  const [step, setStepRaw] = useState(0); // Start at 0 (upload step)
+  const formRef = useRef<HTMLDivElement>(null);
+  const setStep = useCallback((newStep: number) => {
+    setStepRaw(newStep);
+    // Scroll form into view so user sees the new step
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }, []);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -215,7 +223,7 @@ export default function QuoteForm() {
   const totalQuoted = lineItems.reduce((sum, item) => sum + (item.quoted_price || 0), 0);
 
   return (
-    <div className="card">
+    <div className="card" ref={formRef}>
       {/* Auth Prompt Modal */}
       {showAuthPrompt && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -538,16 +546,6 @@ export default function QuoteForm() {
               </div>
             )}
 
-            {/* Debug info (remove after testing) */}
-            {process.env.NODE_ENV === 'development' && (
-              <div className="bg-gray-100 p-3 rounded text-xs font-mono">
-                <div>Step: {step}</div>
-                <div>Fields: {fields.length}</div>
-                <div>Total: ${totalQuoted}</div>
-                <div>Promo: {promoCode || '(none)'} / Applied: {promoApplied ? 'Yes' : 'No'}</div>
-              </div>
-            )}
-
             {totalQuoted > 0 && (
               <div className="bg-gray-50 p-4 rounded-lg">
                 <div className="flex justify-between items-center">
@@ -568,11 +566,7 @@ export default function QuoteForm() {
                 <input
                   type="text"
                   value={promoCode}
-                  onChange={(e) => { 
-                    console.log('Promo code changed:', e.target.value);
-                    setPromoCode(e.target.value.toUpperCase()); 
-                    setPromoApplied(false); 
-                  }}
+                  onChange={(e) => { setPromoCode(e.target.value.toUpperCase()); setPromoApplied(false); }}
                   placeholder="Enter promo code"
                   disabled={promoApplied}
                   className="input-field flex-1 text-base font-mono tracking-wider uppercase disabled:bg-gray-100"
@@ -580,13 +574,7 @@ export default function QuoteForm() {
                 {promoCode && !promoApplied && (
                   <button
                     type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      console.log('Apply promo clicked:', promoCode);
-                      setPromoApplied(true);
-                      console.log('Promo applied state set to true');
-                    }}
+                    onClick={() => setPromoApplied(true)}}
                     className="px-5 py-2.5 bg-amber-600 text-white text-sm font-bold rounded-lg hover:bg-amber-700 active:scale-95 transition-all shadow-sm whitespace-nowrap"
                   >
                     Apply
@@ -595,13 +583,7 @@ export default function QuoteForm() {
                 {promoApplied && (
                   <button
                     type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      console.log('Remove promo clicked');
-                      setPromoCode(''); 
-                      setPromoApplied(false); 
-                    }}
+                    onClick={() => { setPromoCode(''); setPromoApplied(false); }}
                     className="px-4 py-2.5 bg-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-300 transition-all whitespace-nowrap"
                   >
                     Remove
@@ -616,10 +598,7 @@ export default function QuoteForm() {
             <div className="flex justify-between gap-4">
               <button
                 type="button"
-                onClick={() => {
-                  console.log('Back button clicked, going to step 1');
-                  setStep(1);
-                }}
+                onClick={() => setStep(1)}
                 className="btn-secondary flex items-center hover:shadow-lg active:scale-95 transition-all"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
@@ -627,17 +606,7 @@ export default function QuoteForm() {
               </button>
               <button
                 type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  console.log('Review & Pay button clicked');
-                  console.log('Current step:', step);
-                  console.log('Fields count:', fields.length);
-                  console.log('Promo code:', promoCode);
-                  console.log('Promo applied:', promoApplied);
-                  setStep(3);
-                  console.log('setStep(3) called');
-                }}
+                onClick={() => setStep(3)}}
                 disabled={fields.length === 0}
                 className="btn-primary flex items-center disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg active:scale-95 transition-all"
               >
