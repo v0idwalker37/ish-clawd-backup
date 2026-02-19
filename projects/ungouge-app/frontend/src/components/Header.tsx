@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { Menu, X, User, FileText, Settings, LogOut, ChevronDown } from 'lucide-react';
+import { Menu, X, User, FileText, Settings, LogOut, ChevronDown, HelpCircle } from 'lucide-react';
 import { useAuth } from '@/providers/AuthProvider';
 
 export default function Header() {
@@ -132,6 +132,15 @@ export default function Header() {
                       <Settings className="w-4 h-4" />
                       Settings
                     </Link>
+                    <Link
+                      role="menuitem"
+                      href="/support"
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 text-gray-700"
+                      onClick={() => setUserMenuOpen(false)}
+                    >
+                      <HelpCircle className="w-4 h-4" />
+                      Support
+                    </Link>
                     <div className="border-t border-gray-100 mt-2 pt-2">
                       <button
                         role="menuitem"
@@ -231,6 +240,13 @@ export default function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     My Quotes
+                  </Link>
+                  <Link
+                    href="/support"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Support
                   </Link>
                   <button
                     onClick={() => {
