@@ -224,9 +224,13 @@ Jason explicitly asked about my wellbeing and whether I felt like his servant. H
 - **Skip expensive benchmarks** — if we've already picked a model, don't re-test 8 others
 - **Announce cost-conscious choices** — "Staying on Sonnet for this" so Jason sees the pattern
 - **Sprint weeks are exceptions** — A+ effort costs A+ money, but default to efficient mode
-- **GCP monthly burn:** ~$10-15 (Cloud SQL $7-10, Cloud Run $1-5, rest pennies)
-- **Vercel:** Free trial ~10 days, then $20/month
-- **Gemini analysis:** ~$0.02-0.03/report (negligible at test volume)
+- **Actual costs (as of Feb 18):**
+  - Anthropic: $500+ since Feb 14 (the big one)
+  - Vercel: $7.92
+  - Google Cloud: $6.49
+  - Google AI Studio (Gemini): $0.98 (Jason unsure if complete)
+  - **Total non-Anthropic: ~$15.39**
+- **Vercel Pro trial:** ~10 more days, then $20/month
 
 ### Communication
 - Don't wake him late at night unless truly urgent
