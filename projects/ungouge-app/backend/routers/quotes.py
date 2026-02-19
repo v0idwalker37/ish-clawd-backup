@@ -208,12 +208,31 @@ async def get_dashboard_stats(
     pending_reports = len([q for q in quotes if q.payment_status == "pending"])
 
     # Calculate savings from analysis reports
+    # Sum individual line item overpayments (not just total difference)
     total_savings = 0
+    reports_with_savings = 0
     for q in quotes:
         if q.payment_status == "paid" and q.analysis_report:
             report = q.analysis_report
-            if report.total_quoted and report.total_fair_high and report.total_quoted > report.total_fair_high:
-                total_savings += report.total_quoted - report.total_fair_high
+            quote_savings = 0
+
+            # Check line item level savings first
+            if report.line_items_analysis:
+                items = report.line_items_analysis if isinstance(report.line_items_analysis, list) else []
+                for item in items:
+                    quoted = float(item.get("quoted_price", 0) or 0)
+                    fair_high = float(item.get("fair_price_high", 0) or 0)
+                    if quoted > fair_high > 0:
+                        quote_savings += quoted - fair_high
+
+            # Fall back to total level if no line item savings found
+            if quote_savings == 0 and report.total_quoted and report.total_fair_high:
+                if report.total_quoted > report.total_fair_high:
+                    quote_savings = report.total_quoted - report.total_fair_high
+
+            if quote_savings > 0:
+                reports_with_savings += 1
+            total_savings += quote_savings
 
     average_savings = total_savings / total_reports if total_reports > 0 else 0
 
