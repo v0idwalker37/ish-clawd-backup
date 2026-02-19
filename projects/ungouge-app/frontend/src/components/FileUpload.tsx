@@ -23,7 +23,7 @@ export interface ParsedQuoteData {
 
 export default function FileUpload({ onFileProcessed, onError }: FileUploadProps) {
   const [isDragging, setIsDragging] = useState(false)
-  const [file, setFile] = useState<File | null>(null)
+  const [files, setFiles] = useState<File[]>([])
   const [uploading, setUploading] = useState(false)
   const [uploadProgress, setUploadProgress] = useState<string>('')
   const [uploadStep, setUploadStep] = useState<number>(0) // 0: idle, 1: uploading, 2: extracting, 3: analyzing, 4: complete
@@ -42,46 +42,61 @@ export default function FileUpload({ onFileProcessed, onError }: FileUploadProps
     e.preventDefault()
     setIsDragging(false)
 
-    const droppedFile = e.dataTransfer.files[0]
-    if (droppedFile) {
-      handleFile(droppedFile)
+    const droppedFiles = Array.from(e.dataTransfer.files)
+    if (droppedFiles.length > 0) {
+      handleFiles(droppedFiles)
     }
   }, [])
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0]
-    if (selectedFile) {
-      handleFile(selectedFile)
+    const selectedFiles = e.target.files ? Array.from(e.target.files) : []
+    if (selectedFiles.length > 0) {
+      handleFiles(selectedFiles)
     }
   }
 
-  const handleFile = (file: File) => {
-    // Validate file type (must match backend validators.py ALLOWED_CONTENT_TYPES)
+  const handleFiles = (newFiles: File[]) => {
+    // Validate file types
     const validTypes = ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg']
-    if (!validTypes.includes(file.type)) {
-      onError('Please upload a PDF or image file (PNG, JPG)')
+    const invalidFiles = newFiles.filter(f => !validTypes.includes(f.type))
+    if (invalidFiles.length > 0) {
+      onError(`Invalid file type(s): ${invalidFiles.map(f => f.name).join(', ')}. Please upload PDF or image files only.`)
       return
     }
 
-    // Validate file size (max 10MB)
-    if (file.size > 10 * 1024 * 1024) {
-      onError('File size must be less than 10MB')
+    // Validate file sizes (max 10MB each)
+    const oversizedFiles = newFiles.filter(f => f.size > 10 * 1024 * 1024)
+    if (oversizedFiles.length > 0) {
+      onError(`File(s) too large: ${oversizedFiles.map(f => f.name).join(', ')}. Max 10MB per file.`)
       return
     }
 
-    setFile(file)
-    uploadAndParse(file)
+    // Limit to 10 files max
+    if (newFiles.length > 10) {
+      onError('Maximum 10 files allowed')
+      return
+    }
+
+    setFiles(newFiles)
+    uploadAndParse(newFiles)
   }
 
-  const uploadAndParse = async (file: File) => {
+  const removeFile = (index: number) => {
+    setFiles(prev => prev.filter((_, i) => i !== index))
+  }
+
+  const uploadAndParse = async (filesToUpload: File[]) => {
     setUploading(true)
     setUploadStep(1)
-    setUploadProgress('Uploading your quote...')
+    const fileCount = filesToUpload.length
+    setUploadProgress(fileCount === 1 ? 'Uploading your quote...' : `Uploading ${fileCount} files...`)
 
     try {
-      // Create form data
+      // Create form data with all files
       const formData = new FormData()
-      formData.append('file', file)
+      filesToUpload.forEach(file => {
+        formData.append('files', file)
+      })
 
       // Upload to backend (uses Next.js rewrite proxy)
       const response = await fetch('/api/quotes/parse-upload', {
@@ -132,18 +147,13 @@ export default function FileUpload({ onFileProcessed, onError }: FileUploadProps
       setUploading(false)
       setUploadProgress('')
       setUploadStep(0)
-      setFile(null)
+      setFiles([])
     }
-  }
-
-  const removeFile = () => {
-    setFile(null)
-    setUploadProgress('')
   }
 
   return (
     <div className="w-full">
-      {!file && !uploading && (
+      {files.length === 0 && !uploading && (
         <div
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
@@ -162,6 +172,7 @@ export default function FileUpload({ onFileProcessed, onError }: FileUploadProps
             id="file-upload"
             className="hidden"
             accept=".pdf,.png,.jpg,.jpeg"
+            multiple
             onChange={handleFileInput}
           />
           
@@ -180,43 +191,56 @@ export default function FileUpload({ onFileProcessed, onError }: FileUploadProps
               or <span className="text-blue-600 font-semibold">click to browse</span>
             </p>
             <p className="text-xs sm:text-sm text-gray-500">
-              Supports PDF, PNG, JPG • Max 10MB
+              Supports PDF, PNG, JPG • Max 10MB per file • Up to 10 files
+            </p>
+            <p className="text-xs text-blue-600 mt-2">
+              💡 Multi-page quote? Select all images at once
             </p>
           </label>
         </div>
       )}
 
-      {file && !uploading && (
-        <div className="border-2 border-green-300 bg-green-50 rounded-lg p-4 sm:p-6 flex items-center justify-between gap-4 transition-all duration-300">
-          <div className="flex items-center space-x-3 min-w-0 flex-1">
-            <div className="flex-shrink-0">
-              {file.type === 'application/pdf' ? (
-                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-red-100 rounded-lg flex items-center justify-center">
-                  <FileText className="w-6 h-6 sm:w-7 sm:h-7 text-red-600" />
-                </div>
-              ) : (
-                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Image className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600" />
-                </div>
-              )}
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <p className="font-semibold text-gray-800 truncate">{file.name}</p>
-                <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
-              </div>
-              <p className="text-sm text-gray-600">
-                {(file.size / 1024 / 1024).toFixed(2)} MB • Ready to process
-              </p>
-            </div>
+      {files.length > 0 && !uploading && (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-sm font-semibold text-gray-700">
+              {files.length} file{files.length > 1 ? 's' : ''} ready to process
+            </p>
+            <CheckCircle className="w-5 h-5 text-green-600" />
           </div>
-          <button
-            onClick={removeFile}
-            className="flex-shrink-0 p-2 rounded-lg text-gray-500 hover:text-red-600 hover:bg-red-100 transition-all duration-200"
-            aria-label="Remove file"
-          >
-            <X className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
+          {files.map((file, index) => (
+            <div
+              key={`${file.name}-${index}`}
+              className="border-2 border-green-300 bg-green-50 rounded-lg p-3 sm:p-4 flex items-center justify-between gap-3 transition-all duration-300"
+            >
+              <div className="flex items-center space-x-3 min-w-0 flex-1">
+                <div className="flex-shrink-0">
+                  {file.type === 'application/pdf' ? (
+                    <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                      <FileText className="w-5 h-5 text-red-600" />
+                    </div>
+                  ) : (
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <Image className="w-5 h-5 text-blue-600" />
+                    </div>
+                  )}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold text-gray-800 truncate text-sm">{file.name}</p>
+                  <p className="text-xs text-gray-600">
+                    {(file.size / 1024 / 1024).toFixed(2)} MB
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => removeFile(index)}
+                className="flex-shrink-0 p-2 rounded-lg text-gray-500 hover:text-red-600 hover:bg-red-100 transition-all duration-200"
+                aria-label={`Remove ${file.name}`}
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          ))}
         </div>
       )}
 

@@ -30,7 +30,7 @@ from services.quote_parser_gemini import process_quote_file as gemini_process_qu
 
 
 async def process_quote_file(file_bytes: bytes, filename: str):
-    """Try Gemini first, fall back to OpenAI if it fails."""
+    """Try Gemini first, fall back to OpenAI if it fails. Single file version."""
     if os.getenv("GEMINI_API_KEY"):
         try:
             return await gemini_process_quote(file_bytes, filename)
@@ -38,6 +38,17 @@ async def process_quote_file(file_bytes: bytes, filename: str):
             print(f"Gemini parser failed: {e}. Falling back to OpenAI...")
     
     return await openai_process_quote(file_bytes, filename)
+
+
+async def process_quote_files(files_data: list):
+    """Process multiple files as a single quote (multi-page quotes)."""
+    if os.getenv("GEMINI_API_KEY"):
+        try:
+            from services.quote_parser_gemini import process_multiple_files
+            return await process_multiple_files(files_data)
+        except Exception as e:
+            print(f"Gemini multi-file parser failed: {e}")
+            raise ValueError("Failed to process multiple files. Please try combining them into a single PDF.")
 
 router = APIRouter()
 limiter = Limiter(key_func=get_remote_address)
@@ -571,11 +582,14 @@ async def list_quotes(
 @limiter.limit("20/hour")  # Relaxed for testing; tighten post-launch
 async def parse_quote_upload(
     request: Request,
-    file: UploadFile = File(...),
+    files: List[UploadFile] = File(...),
     current_user: Optional[User] = Depends(get_current_user_optional),
 ):
     """
-    Upload and parse a contractor quote (PDF or image)
+    Upload and parse a contractor quote (PDF or image, supports multiple files)
+    
+    Supports multi-page quotes split across multiple files (common for homeowners).
+    All files are processed together as a single quote.
     
     Uses OCR + AI to automatically extract:
     - Project type
@@ -590,18 +604,39 @@ async def parse_quote_upload(
     from services.logger import logger, log_error
     
     try:
-        # Read file contents
-        contents = await file.read()
-        
-        # Comprehensive file validation (size, type, content, readability)
-        validated_bytes, content_type = validate_file_upload(
-            contents,
-            file.filename or "unknown",
-            file.content_type or "application/octet-stream"
-        )
-        
-        # Process file with AI
-        parsed_data = await process_quote_file(validated_bytes, file.filename)
+        # Handle single or multiple files
+        if len(files) == 1:
+            # Single file - use original flow
+            file = files[0]
+            contents = await file.read()
+            
+            # Comprehensive file validation (size, type, content, readability)
+            validated_bytes, content_type = validate_file_upload(
+                contents,
+                file.filename or "unknown",
+                file.content_type or "application/octet-stream"
+            )
+            
+            # Process file with AI
+            parsed_data = await process_quote_file(validated_bytes, file.filename)
+        else:
+            # Multiple files - validate and process together
+            files_data = []
+            for file in files:
+                contents = await file.read()
+                validated_bytes, content_type = validate_file_upload(
+                    contents,
+                    file.filename or "unknown",
+                    file.content_type or "application/octet-stream"
+                )
+                files_data.append({
+                    "bytes": validated_bytes,
+                    "filename": file.filename or "unknown",
+                    "content_type": content_type
+                })
+            
+            # Process all files together
+            parsed_data = await process_quote_files(files_data)
         
         # Log successful upload
         logger.info(
