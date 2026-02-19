@@ -26,7 +26,7 @@ export default function DashboardLayout({
 
   const handleLogout = async () => {
     await logout();
-    router.push('/');
+    window.location.href = '/';
   };
 
   const navItems = [

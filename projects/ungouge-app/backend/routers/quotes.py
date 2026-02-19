@@ -326,19 +326,26 @@ async def delete_quote(
     if quote.user_id != current_user.id:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Access denied")
 
-    # Explicitly delete associated records that don't have cascade configured
-    from models.database import Payment
+    # Explicitly delete associated records to avoid FK constraint issues
+    from models.database import Payment, AnalysisReport, QuoteLineItem
     
     # Delete payments
     payment_result = await db.execute(select(Payment).where(Payment.quote_id == quote_id))
     for payment in payment_result.scalars().all():
         await db.delete(payment)
 
-    # Delete analysis report (also has cascade now, but belt-and-suspenders)
-    if quote.analysis_report:
-        await db.delete(quote.analysis_report)
+    # Delete analysis report (explicit query - can't lazy-load in async context)
+    report_result = await db.execute(select(AnalysisReport).where(AnalysisReport.quote_id == quote_id))
+    report = report_result.scalar_one_or_none()
+    if report:
+        await db.delete(report)
 
-    # Delete the quote (line_items cascade automatically)
+    # Delete line items explicitly (avoid lazy-load cascade issues in async)
+    line_items_result = await db.execute(select(QuoteLineItem).where(QuoteLineItem.quote_id == quote_id))
+    for item in line_items_result.scalars().all():
+        await db.delete(item)
+
+    # Delete the quote itself
     await db.delete(quote)
 
     try:
