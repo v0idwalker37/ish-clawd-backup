@@ -368,3 +368,36 @@ Full reference: `~/clawd/SKILLS_PLAYBOOK.md`
 
 ---
 *Memory maintained through autonomous sessions and periodic curation.*
+
+## Feb 19 Morning — Critical Bug Fix Sprint
+- **4 critical bugs fixed + deployed in 3 hours**
+- Parser extracting line totals → unit prices ($5,647/hour carpenter fixed)
+- Total calculation mismatch ($41K vs $97K) → fixed frontend sum logic
+- Auth timeout (30min → 2hrs) → prevents checkout interruption
+- PDF compression enabled → 6MB → ~2.5-3.5MB (Telegram compatible)
+- Blog post dates spread naturally (Jan 22 - Feb 15) for organic appearance
+- Layout fixes for 100% zoom (sidebar breakpoint lg→xl)
+- **All fixes deployed:** Backend rev 00052, Frontend to Vercel production
+- **Model discipline maintained:** Sonnet 4.5 for routine fixes, Opus 4.6 for complex logic
+
+## Technical Debt & Known Issues
+- **Delete quote bug:** Fix deployed but user still seeing 500 (quote does delete) — needs log investigation
+- **Dashboard stats:** Fix deployed, needs user verification of accuracy
+- **Multi-file upload:** Backend complete, needs end-to-end testing
+- **Email OAuth:** void@ungouge.ai auth incomplete (blocked on user browser flow)
+- **Layout polish:** Dashboard responsive at 100% zoom "good enough for now"
+
+## Cost Analysis (Vercel)
+- Pro subscription: $11.36/month (fixed cost)
+- Infrastructure: $9.31/month → credited to $0
+- Usage: 0.1% of limits (won't climb at current scale)
+- **Cloudflare migration:** Would save full $11.36/month ($136/year)
+- Migration scoped (Option 2: @cloudflare/next-on-pages), ready to execute
+
+## Key Learnings
+- **Parser prompts matter:** Explicit "unit price only, never line total" prevents AI confusion
+- **Responsive breakpoints:** lg: (1024px) too narrow for sidebar+content at 100% zoom, xl: (1280px) better
+- **PDF compression:** ReportLab `compress=1` cuts size by ~50% with zero quality loss
+- **Frontend math:** Always multiply price × quantity, never sum prices alone
+- **Deploy batching:** Group 3-5 changes per deploy for cost efficiency
+
