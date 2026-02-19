@@ -175,66 +175,156 @@ export default function ReportPage() {
   const formatAssessment = (text: string) => {
     if (!text) return null;
 
-    // Split by markdown headers or double newlines
-    const sections = text.split(/(?=##\s)|(?=###\s)|(?=\*\*[A-Z])/g).filter(s => s.trim());
+    // Detect if the text has markdown structure
+    const hasMarkdown = /^#{2,3}\s|\*\*[A-Z]/m.test(text);
 
-    return sections.map((section, i) => {
-      const trimmed = section.trim();
+    if (hasMarkdown) {
+      // Split by markdown headers or bold titles
+      const sections = text.split(/(?=##\s)|(?=###\s)|(?=\*\*[A-Z])/g).filter(s => s.trim());
+      return sections.map((section, i) => renderSection(section.trim(), i));
+    }
 
-      // Check if it's a header line
-      const headerMatch = trimmed.match(/^(#{2,3})\s+(.+)/);
-      if (headerMatch) {
-        const level = headerMatch[1].length;
-        const title = headerMatch[2];
-        const body = trimmed.replace(/^#{2,3}\s+.+\n?/, '').trim();
+    // Plain text: split into sentences and group into logical paragraphs
+    // Look for numbered items like "1) " or "1. " or lettered items
+    const numberedPattern = /(?:^|\n)\s*\d+[\.\)]\s/;
+    const hasNumberedList = numberedPattern.test(text);
 
-        return (
-          <div key={i} className="mb-4">
-            {level === 2 ? (
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
-            ) : (
-              <h4 className="text-base font-semibold text-gray-800 mb-1">{title}</h4>
-            )}
-            {body && <div className="text-gray-700 leading-relaxed whitespace-pre-line">{body}</div>}
-          </div>
-        );
-      }
-
-      // Check for bold title lines like **Summary:**
-      const boldMatch = trimmed.match(/^\*\*(.+?)\*\*[:\s]*([\s\S]*)/);
-      if (boldMatch) {
-        return (
-          <div key={i} className="mb-4">
-            <h4 className="text-base font-semibold text-gray-800 mb-1">{boldMatch[1]}</h4>
-            {boldMatch[2] && <div className="text-gray-700 leading-relaxed whitespace-pre-line">{boldMatch[2].trim()}</div>}
-          </div>
-        );
-      }
-
-      // Bullet points
-      if (trimmed.includes('\n•') || trimmed.includes('\n-') || trimmed.startsWith('•') || trimmed.startsWith('-')) {
-        const lines = trimmed.split('\n');
-        return (
-          <ul key={i} className="mb-4 space-y-1.5">
-            {lines.map((line, j) => {
-              const cleaned = line.replace(/^[\s•\-*]+/, '').trim();
-              if (!cleaned) return null;
-              return (
-                <li key={j} className="flex items-start gap-2 text-gray-700">
-                  <span className="text-primary-500 mt-1.5 flex-shrink-0">•</span>
-                  <span className="leading-relaxed">{cleaned}</span>
-                </li>
-              );
-            })}
-          </ul>
-        );
-      }
-
-      // Regular paragraph
+    if (hasNumberedList) {
+      // Split on numbered items
+      const parts = text.split(/(?=\d+[\.\)]\s)/g).filter(s => s.trim());
+      const intro = parts[0]?.match(/^\d/) ? null : parts.shift();
       return (
-        <p key={i} className="mb-3 text-gray-700 leading-relaxed">{trimmed}</p>
+        <>
+          {intro && <p className="mb-4 text-gray-700 leading-relaxed">{intro.trim()}</p>}
+          <div className="space-y-3">
+            {parts.map((part, i) => {
+              const cleaned = part.trim();
+              // Extract the number prefix and content
+              const match = cleaned.match(/^(\d+[\.\)])\s*(.*)/s);
+              if (match) {
+                return (
+                  <div key={i} className="flex gap-3 p-3 bg-gray-50 rounded-lg">
+                    <span className="flex-shrink-0 w-7 h-7 bg-primary-100 text-primary-700 rounded-full flex items-center justify-center text-sm font-bold">
+                      {match[1].replace(/[\.\)]/, '')}
+                    </span>
+                    <p className="text-gray-700 leading-relaxed flex-1">{match[2].trim()}</p>
+                  </div>
+                );
+              }
+              return <p key={i} className="mb-3 text-gray-700 leading-relaxed">{cleaned}</p>;
+            })}
+          </div>
+        </>
       );
+    }
+
+    // Plain text without structure: split into sentences, group ~2-3 sentences per paragraph
+    const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+    const paragraphs: string[] = [];
+    let current = '';
+    for (const sentence of sentences) {
+      current += sentence;
+      // Break after 2-3 sentences or at natural topic shifts
+      const sentenceCount = (current.match(/[.!?]+/g) || []).length;
+      if (sentenceCount >= 2 && current.length > 150) {
+        paragraphs.push(current.trim());
+        current = '';
+      }
+    }
+    if (current.trim()) paragraphs.push(current.trim());
+
+    // Find key phrases to highlight
+    return paragraphs.map((para, i) => {
+      // Check for red flag / recommendation keywords
+      const isRedFlag = /red flag|goug|overpriced|significantly|warning|concern|caution/i.test(para);
+      const isRecommendation = /recommend|should|suggest|advise|obtain|consider|negotiate/i.test(para);
+      const isPositive = /fair|reasonable|competitive|well-priced|good value/i.test(para) && !isRedFlag;
+
+      if (isRedFlag) {
+        return (
+          <div key={i} className="mb-3 p-4 bg-red-50 border-l-4 border-red-400 rounded-r-lg">
+            <p className="text-gray-800 leading-relaxed">
+              <span className="font-semibold text-red-700">🚩 </span>
+              {para}
+            </p>
+          </div>
+        );
+      }
+      if (isRecommendation) {
+        return (
+          <div key={i} className="mb-3 p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
+            <p className="text-gray-800 leading-relaxed">
+              <span className="font-semibold text-blue-700">💡 </span>
+              {para}
+            </p>
+          </div>
+        );
+      }
+      if (isPositive && i === 0) {
+        return (
+          <div key={i} className="mb-3 p-4 bg-emerald-50 border-l-4 border-emerald-400 rounded-r-lg">
+            <p className="text-gray-800 leading-relaxed">
+              <span className="font-semibold text-emerald-700">✅ </span>
+              {para}
+            </p>
+          </div>
+        );
+      }
+      return <p key={i} className="mb-3 text-gray-700 leading-relaxed">{para}</p>;
     });
+  };
+
+  const renderSection = (trimmed: string, i: number) => {
+    // Check if it's a header line
+    const headerMatch = trimmed.match(/^(#{2,3})\s+(.+)/);
+    if (headerMatch) {
+      const level = headerMatch[1].length;
+      const title = headerMatch[2];
+      const body = trimmed.replace(/^#{2,3}\s+.+\n?/, '').trim();
+      return (
+        <div key={i} className="mb-4">
+          {level === 2 ? (
+            <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
+          ) : (
+            <h4 className="text-base font-semibold text-gray-800 mb-1">{title}</h4>
+          )}
+          {body && <div className="text-gray-700 leading-relaxed whitespace-pre-line">{body}</div>}
+        </div>
+      );
+    }
+
+    // Check for bold title lines like **Summary:**
+    const boldMatch = trimmed.match(/^\*\*(.+?)\*\*[:\s]*([\s\S]*)/);
+    if (boldMatch) {
+      return (
+        <div key={i} className="mb-4">
+          <h4 className="text-base font-semibold text-gray-800 mb-1">{boldMatch[1]}</h4>
+          {boldMatch[2] && <div className="text-gray-700 leading-relaxed whitespace-pre-line">{boldMatch[2].trim()}</div>}
+        </div>
+      );
+    }
+
+    // Bullet points
+    if (trimmed.includes('\n•') || trimmed.includes('\n-') || trimmed.startsWith('•') || trimmed.startsWith('-')) {
+      const lines = trimmed.split('\n');
+      return (
+        <ul key={i} className="mb-4 space-y-1.5">
+          {lines.map((line, j) => {
+            const cleaned = line.replace(/^[\s•\-*]+/, '').trim();
+            if (!cleaned) return null;
+            return (
+              <li key={j} className="flex items-start gap-2 text-gray-700">
+                <span className="text-primary-500 mt-1.5 flex-shrink-0">•</span>
+                <span className="leading-relaxed">{cleaned}</span>
+              </li>
+            );
+          })}
+        </ul>
+      );
+    }
+
+    // Regular paragraph
+    return <p key={i} className="mb-3 text-gray-700 leading-relaxed">{trimmed}</p>;
   };
 
   if (loading) {
