@@ -104,9 +104,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="mailto:support@ungouge.ai" className="hover:text-white transition-colors">
-                  Contact Support
-                </a>
+                <Link href="/support" className="hover:text-white transition-colors">
+                  Support
+                </Link>
               </li>
             </ul>
           </div>

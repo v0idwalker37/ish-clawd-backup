@@ -64,12 +64,19 @@ export default function ChatWidget() {
     scrollToBottom();
   }, [messages, isTyping]);
 
+  // Listen for external open event (from support page)
+  useEffect(() => {
+    const handleOpenScout = () => setIsOpen(true);
+    window.addEventListener('open-scout-chat', handleOpenScout);
+    return () => window.removeEventListener('open-scout-chat', handleOpenScout);
+  }, []);
+
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       // Send welcome message when first opened
       setTimeout(() => {
         addBotMessage(
-          "👋 Hi! I'm here to answer questions about Ungouge.ai. You can ask me anything, or try one of these common questions:\n\n• How does Ungouge work?\n• Is my data safe?\n• What does $19.99 get me?\n• Do you sell my info to contractors?"
+          "👋 Hey! I'm Scout, your UnGouge support assistant. I can help with report questions, account issues, pricing, and more.\n\nTry asking me something, or pick a quick question below!\n\nNeed a human? Email human@ungouge.ai — real people, real answers."
         );
       }, 300);
     }
@@ -140,7 +147,7 @@ export default function ChatWidget() {
     } else {
       // Default response for unmatched queries
       addBotMessage(
-        "I'm not sure about that specific question, but I can help with:\n\n• How Ungouge.ai works\n• Data security and privacy\n• Pricing and what you get\n• Our no-lead-gen guarantee\n• Refund policy\n• Report accuracy\n\nYou can also email us at support@ungouge.ai for personalized help!"
+        "Hmm, I'm not sure about that one. Here's what I can help with:\n\n• How UnGouge.ai works\n• Data security and privacy\n• Pricing and what you get\n• Understanding your report\n• Refund policy\n\nFor anything else, email human@ungouge.ai — a real person will get back to you within 24 hours."
       );
     }
   };
@@ -174,8 +181,8 @@ export default function ChatWidget() {
                 <Bot className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="font-semibold">Ungouge Support</h3>
-                <p className="text-xs text-primary-100">Always here to help</p>
+                <h3 className="font-semibold">Scout</h3>
+                <p className="text-xs text-primary-100">UnGouge Support Assistant</p>
               </div>
             </div>
             <button
@@ -272,7 +279,7 @@ export default function ChatWidget() {
               </button>
             </div>
             <p className="text-xs text-gray-500 mt-2 text-center">
-              Or email <a href="mailto:support@ungouge.ai" className="text-primary-600 hover:underline">support@ungouge.ai</a>
+              Need a human? <a href="mailto:human@ungouge.ai" className="text-primary-600 hover:underline">human@ungouge.ai</a>
             </p>
           </div>
         </div>
