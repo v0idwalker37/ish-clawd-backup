@@ -217,8 +217,16 @@ async def get_dashboard_stats(
             quote_savings = 0
 
             # Check line item level savings first
+            # line_items_analysis stores the full report dict (report.dict())
+            # Line items are under the "line_items" key within that dict
             if report.line_items_analysis:
-                items = report.line_items_analysis if isinstance(report.line_items_analysis, list) else []
+                raw = report.line_items_analysis
+                if isinstance(raw, dict):
+                    items = raw.get("line_items", [])
+                elif isinstance(raw, list):
+                    items = raw
+                else:
+                    items = []
                 for item in items:
                     quoted = float(item.get("quoted_price", 0) or 0)
                     fair_high = float(item.get("fair_price_high", 0) or 0)
