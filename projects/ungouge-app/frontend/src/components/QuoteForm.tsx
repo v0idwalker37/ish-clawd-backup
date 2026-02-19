@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 const lineItemSchema = z.object({
   item_name: z.string().min(1, 'Item name is required'),
-  description: z.string().optional(),
+  description: z.string().optional().default(''),
   quoted_price: z.number().min(0, 'Price must be positive'),
   quantity: z.number().min(1, 'Quantity must be at least 1').default(1),
   unit: z.string().min(1, 'Please select a unit type'),
