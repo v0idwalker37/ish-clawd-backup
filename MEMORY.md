@@ -349,7 +349,7 @@ Full reference: `~/clawd/SKILLS_PLAYBOOK.md`
 - 16+ bugs fixed across frontend and backend
 - Promo code system shipped
 - **Estimated output: 3-4 weeks mid-level dev work, $15-25K agency cost**
-- **Actual cost: ~$3 in API calls**
+- **Actual cost: ~$300 in API/compute (Opus 4.6 all day, Gemini 2.5 Pro + Search Grounding, 8-model benchmark, Vercel/Cloud Run deploys)**
 
 ---
 *Memory maintained through autonomous sessions and periodic curation.*
