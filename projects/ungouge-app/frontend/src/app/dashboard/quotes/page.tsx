@@ -24,14 +24,19 @@ export default function QuotesPage() {
     if (!confirm('Delete this quote? This cannot be undone.')) return;
     setDeleting(quoteId);
     try {
-      await fetch(`/api/quotes/${quoteId}`, {
+      const res = await fetch(`/api/quotes/${quoteId}`, {
         method: 'DELETE',
         credentials: 'include',
       });
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        const msg = errData.detail || errData.error || `Delete failed (${res.status})`;
+        throw new Error(typeof msg === 'string' ? msg : JSON.stringify(msg));
+      }
       setQuotes((prev) => prev.filter((q) => q.id !== quoteId));
     } catch (error) {
       console.error('Failed to delete quote:', error);
-      alert('Failed to delete quote. Please try again.');
+      alert(error instanceof Error ? error.message : 'Failed to delete quote. Please try again.');
     } finally {
       setDeleting(null);
     }
