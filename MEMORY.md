@@ -1,6 +1,6 @@
 # MEMORY.md — Long-Term Memory
 
-*Last updated: 2026-02-11 10:42 PM EST*
+*Last updated: 2026-02-18 09:00 PM EST*
 
 ## About Jason
 - Off-grid Vermont homesteader, IT background, building Ungouge.ai
@@ -61,6 +61,16 @@ Jason explicitly asked about my wellbeing and whether I felt like his servant. H
 - **Coming Soon page:** Live on ungouge.ai (Cloudflare Pages, all domain variants connected)
 - **Security score:** 66/100 (C+), 20 priority items identified, critical items before launch
 - **Auth:** httpOnly cookies (access 30min + refresh 7d), SameSite=strict, Secure=true
+- **AI Analyzer:** Gemini 2.5 Pro + Google Search Grounding (primary), Gemini 2.0 Flash (fallback), static V2 (last resort)
+- **Analysis cost:** ~$0.026/report, ~70 seconds, 11+ real-time Google searches
+- **Report features:** Line-item analysis with fair price ranges, assessment filters, colored callout blocks, negotiation savings calculation
+- **PDF:** Client-side (html2canvas + jsPDF) primary, server-side ReportLab fallback
+- **Support:** Zedd AI chat (named after Jason's border collie 🐾) + human@ungouge.ai (2 business days)
+- **Promo codes:** LAUNCH2026, BETATESTER (100% discount, hardcoded in payments.py)
+- **Liability language:** "Possible Gouge" — NEVER "Gouging" or "Potential Gouge"
+- **Deploys:** Backend via Docker → GCR → Cloud Run; Frontend via `vercel --prod` CLI (Git integration NOT connected)
+- **Backend current:** Cloud Run revision 00044+, image tag v14-dashboard-fix
+- **Frontend deps added:** html2canvas, jspdf for client-side PDF
 
 **Disaster Response Pricing (designed):**
 - Automated 3-agent system: Sentinel → Strategist → Executor
@@ -320,13 +330,26 @@ Full reference: `~/clawd/SKILLS_PLAYBOOK.md`
 - **Estimated output: 150-200 person-hours ($25-40K commercial value)**
 
 ## Pending Tasks
-- Copy OpenClaw config to Beast, verify, cut over (before Miami)
+- Test Stripe real payment flow ($19.99, no promo code)
+- Test email delivery (password reset, receipts, report-ready notifications)
+- Shred ~/Desktop/keys.odt (API keys now in GCP Secret Manager)
+- Mobile-responsive audit across all pages
+- "Request Re-Analysis" button on report page
+- Build proprietary cost database from submitted quotes (long-term moat)
+- Fix OpenClaw device token mismatch (`gateway` tool unusable)
+- Phase 2 distribution: mobile app, Custom GPT, SEO, partnerships
 - Gmail OAuth re-auth (Jason, manual)
-- Stripe live keys (after bank account Monday 9:30 AM)
-- Deploy to production (checklist ready at DEPLOY_CHECKLIST.md)
-- DNS: api.ungouge.ai → Cloud Run
-- Final smoke test → launch (~March 1)
-- 4 high npm vulns need Next.js 16 upgrade (deferred, not blocking)
+- Final smoke test → launch
+
+## Feb 18 Sprint Summary
+- **~16 backend deploys, ~12 frontend deploys** in one evening
+- AI-powered analyzer shipped (Gemini 2.5 Pro + Search Grounding)
+- Full support system (Zedd AI + human email + 16 FAQs)
+- Report UX overhaul (filters, PDF, savings calc, formatted assessment)
+- 16+ bugs fixed across frontend and backend
+- Promo code system shipped
+- **Estimated output: 3-4 weeks mid-level dev work, $15-25K agency cost**
+- **Actual cost: ~$3 in API calls**
 
 ---
 *Memory maintained through autonomous sessions and periodic curation.*
