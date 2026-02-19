@@ -600,8 +600,8 @@ export default function QuoteForm() {
             </div>
 
             {/* Promo Code */}
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-              <label className="block text-sm font-semibold text-amber-800 mb-2">
+            <div className={`rounded-lg p-4 border ${promoApplied ? 'bg-emerald-50 border-emerald-300' : 'bg-amber-50 border-amber-200'}`}>
+              <label className="block text-sm font-semibold mb-2" style={{ color: promoApplied ? '#065f46' : '#92400e' }}>
                 🎟️ Have a promo code?
               </label>
               <div className="flex items-center gap-3">
@@ -610,11 +610,30 @@ export default function QuoteForm() {
                   value={promoCode}
                   onChange={(e) => { setPromoCode(e.target.value.toUpperCase()); setPromoApplied(false); }}
                   placeholder="Enter promo code"
-                  className="input-field flex-1 text-base font-mono tracking-wider uppercase"
+                  disabled={promoApplied}
+                  className="input-field flex-1 text-base font-mono tracking-wider uppercase disabled:bg-gray-100"
                 />
+                {promoCode && !promoApplied && (
+                  <button
+                    type="button"
+                    onClick={() => setPromoApplied(true)}
+                    className="px-5 py-2.5 bg-amber-600 text-white text-sm font-bold rounded-lg hover:bg-amber-700 active:scale-95 transition-all shadow-sm whitespace-nowrap"
+                  >
+                    Apply
+                  </button>
+                )}
+                {promoApplied && (
+                  <button
+                    type="button"
+                    onClick={() => { setPromoCode(''); setPromoApplied(false); }}
+                    className="px-4 py-2.5 bg-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-300 transition-all whitespace-nowrap"
+                  >
+                    Remove
+                  </button>
+                )}
               </div>
-              {promoCode && (
-                <p className="text-sm text-amber-700 mt-2">✓ Code &quot;{promoCode}&quot; will be applied at checkout</p>
+              {promoApplied && (
+                <p className="text-sm text-emerald-700 font-semibold mt-2">✅ Code &quot;{promoCode}&quot; applied — discount will be applied at checkout</p>
               )}
             </div>
 

@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import ReportCard from '@/components/ReportCard';
 import PriceGauge from '@/components/PriceGauge';
-import { ArrowLeft, Download, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
+import { ArrowLeft, Download, AlertCircle, CheckCircle, Loader2, Filter, ArrowDown } from 'lucide-react';
 import Link from 'next/link';
 
 interface LineItemAnalysis {
@@ -12,7 +12,7 @@ interface LineItemAnalysis {
   quoted_price: number;
   fair_price_low: number;
   fair_price_high: number;
-  assessment: 'fair' | 'slightly_high' | 'high' | 'gouging';
+  assessment: 'fair' | 'slightly_high' | 'high' | 'gouging' | 'suspiciously_low' | 'unknown';
   explanation: string;
   bls_rate?: number;
   material_cost?: number;
@@ -30,6 +30,17 @@ interface Report {
   created_at: string;
 }
 
+type FilterType = 'all' | 'issues' | 'gouging' | 'high' | 'fair' | 'suspiciously_low';
+
+const ASSESSMENT_ORDER: Record<string, number> = {
+  gouging: 0,
+  high: 1,
+  slightly_high: 2,
+  suspiciously_low: 3,
+  unknown: 4,
+  fair: 5,
+};
+
 export default function ReportPage() {
   const params = useParams();
   const searchParams = useSearchParams();
@@ -39,6 +50,8 @@ export default function ReportPage() {
   const [error, setError] = useState<string | null>(null);
   const [pdfDownloading, setPdfDownloading] = useState(false);
   const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  const [sortByIssues, setSortByIssues] = useState(false);
 
   // Payment success banner
   useEffect(() => {
@@ -112,6 +125,118 @@ export default function ReportPage() {
     fetchReport();
   }, [reportId]);
 
+  // Compute issue counts for filter badges
+  const issueCounts = useMemo(() => {
+    if (!report) return { gouging: 0, high: 0, slightly_high: 0, fair: 0, suspiciously_low: 0, issues: 0 };
+    const counts = { gouging: 0, high: 0, slightly_high: 0, fair: 0, suspiciously_low: 0, unknown: 0, issues: 0 };
+    for (const item of report.line_items) {
+      const a = item.assessment;
+      if (a in counts) counts[a as keyof typeof counts]++;
+      if (a === 'gouging' || a === 'high' || a === 'slightly_high') counts.issues++;
+    }
+    return counts;
+  }, [report]);
+
+  // Filtered + sorted line items
+  const filteredItems = useMemo(() => {
+    if (!report) return [];
+    let items = [...report.line_items];
+
+    // Filter
+    if (activeFilter === 'issues') {
+      items = items.filter(i => ['gouging', 'high', 'slightly_high'].includes(i.assessment));
+    } else if (activeFilter === 'gouging') {
+      items = items.filter(i => i.assessment === 'gouging');
+    } else if (activeFilter === 'high') {
+      items = items.filter(i => ['high', 'slightly_high'].includes(i.assessment));
+    } else if (activeFilter === 'fair') {
+      items = items.filter(i => i.assessment === 'fair');
+    } else if (activeFilter === 'suspiciously_low') {
+      items = items.filter(i => i.assessment === 'suspiciously_low');
+    }
+
+    // Sort: worst issues first
+    if (sortByIssues || activeFilter !== 'all') {
+      items.sort((a, b) => {
+        const aOrder = ASSESSMENT_ORDER[a.assessment] ?? 4;
+        const bOrder = ASSESSMENT_ORDER[b.assessment] ?? 4;
+        if (aOrder !== bOrder) return aOrder - bOrder;
+        // Secondary: highest overpayment first
+        const aOver = a.quoted_price - a.fair_price_high;
+        const bOver = b.quoted_price - b.fair_price_high;
+        return bOver - aOver;
+      });
+    }
+
+    return items;
+  }, [report, activeFilter, sortByIssues]);
+
+  // Format overall assessment into structured sections
+  const formatAssessment = (text: string) => {
+    if (!text) return null;
+
+    // Split by markdown headers or double newlines
+    const sections = text.split(/(?=##\s)|(?=###\s)|(?=\*\*[A-Z])/g).filter(s => s.trim());
+
+    return sections.map((section, i) => {
+      const trimmed = section.trim();
+
+      // Check if it's a header line
+      const headerMatch = trimmed.match(/^(#{2,3})\s+(.+)/);
+      if (headerMatch) {
+        const level = headerMatch[1].length;
+        const title = headerMatch[2];
+        const body = trimmed.replace(/^#{2,3}\s+.+\n?/, '').trim();
+
+        return (
+          <div key={i} className="mb-4">
+            {level === 2 ? (
+              <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
+            ) : (
+              <h4 className="text-base font-semibold text-gray-800 mb-1">{title}</h4>
+            )}
+            {body && <div className="text-gray-700 leading-relaxed whitespace-pre-line">{body}</div>}
+          </div>
+        );
+      }
+
+      // Check for bold title lines like **Summary:**
+      const boldMatch = trimmed.match(/^\*\*(.+?)\*\*[:\s]*([\s\S]*)/);
+      if (boldMatch) {
+        return (
+          <div key={i} className="mb-4">
+            <h4 className="text-base font-semibold text-gray-800 mb-1">{boldMatch[1]}</h4>
+            {boldMatch[2] && <div className="text-gray-700 leading-relaxed whitespace-pre-line">{boldMatch[2].trim()}</div>}
+          </div>
+        );
+      }
+
+      // Bullet points
+      if (trimmed.includes('\n•') || trimmed.includes('\n-') || trimmed.startsWith('•') || trimmed.startsWith('-')) {
+        const lines = trimmed.split('\n');
+        return (
+          <ul key={i} className="mb-4 space-y-1.5">
+            {lines.map((line, j) => {
+              const cleaned = line.replace(/^[\s•\-*]+/, '').trim();
+              if (!cleaned) return null;
+              return (
+                <li key={j} className="flex items-start gap-2 text-gray-700">
+                  <span className="text-primary-500 mt-1.5 flex-shrink-0">•</span>
+                  <span className="leading-relaxed">{cleaned}</span>
+                </li>
+              );
+            })}
+          </ul>
+        );
+      }
+
+      // Regular paragraph
+      return (
+        <p key={i} className="mb-3 text-gray-700 leading-relaxed">{trimmed}</p>
+      );
+    });
+  };
+
   if (loading) {
     return (
       <div className="py-20 flex items-center justify-center">
@@ -184,25 +309,65 @@ export default function ReportPage() {
             </button>
           </div>
 
-          {/* Overall Summary */}
+          {/* Overall Summary — numbers */}
           <div className="grid md:grid-cols-3 gap-6 mb-6">
-            <div>
-              <p className="text-sm text-gray-600 mb-1">Total Quoted</p>
-              <p className="text-3xl font-bold">${report.total_quoted.toLocaleString()}</p>
+            <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <p className="text-sm text-gray-500 mb-1 uppercase tracking-wide font-medium">Total Quoted</p>
+              <p className="text-3xl font-bold text-gray-900">${report.total_quoted.toLocaleString()}</p>
             </div>
-            <div>
-              <p className="text-sm text-gray-600 mb-1">Fair Price Range</p>
-              <p className="text-3xl font-bold text-success">
-                ${report.total_fair_low.toLocaleString()} - ${report.total_fair_high.toLocaleString()}
+            <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-5 shadow-sm">
+              <p className="text-sm text-emerald-700 mb-1 uppercase tracking-wide font-medium">Fair Price Range</p>
+              <p className="text-3xl font-bold text-emerald-700">
+                ${report.total_fair_low.toLocaleString()} – ${report.total_fair_high.toLocaleString()}
               </p>
             </div>
-            <div>
-              <p className="text-sm text-gray-600 mb-1">Potential Savings</p>
-              <p className={`text-3xl font-bold ${savingsPotential > 0 ? 'text-danger' : 'text-success'}`}>
+            <div className={`rounded-xl p-5 shadow-sm border ${savingsPotential > 0 ? 'bg-red-50 border-red-200' : 'bg-emerald-50 border-emerald-200'}`}>
+              <p className={`text-sm mb-1 uppercase tracking-wide font-medium ${savingsPotential > 0 ? 'text-red-700' : 'text-emerald-700'}`}>
+                {savingsPotential > 0 ? 'Potential Overpayment' : 'Savings Potential'}
+              </p>
+              <p className={`text-3xl font-bold ${savingsPotential > 0 ? 'text-red-700' : 'text-emerald-700'}`}>
                 {savingsPotential > 0 ? `$${savingsPotential.toLocaleString()}` : '$0'}
               </p>
             </div>
           </div>
+
+          {/* Issue Quick-Jump Pills */}
+          {issueCounts.issues > 0 && (
+            <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-xl">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="text-sm font-bold text-red-800">
+                  ⚠️ {issueCounts.issues} item{issueCounts.issues > 1 ? 's' : ''} need attention:
+                </span>
+                {issueCounts.gouging > 0 && (
+                  <button
+                    onClick={() => { setActiveFilter('gouging'); setSortByIssues(true); document.getElementById('line-items')?.scrollIntoView({ behavior: 'smooth' }); }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-600 text-white text-sm font-semibold rounded-full hover:bg-red-700 transition-colors shadow-sm"
+                  >
+                    🚨 {issueCounts.gouging} Potential Gouge{issueCounts.gouging > 1 ? 's' : ''}
+                    <ArrowDown className="w-3 h-3" />
+                  </button>
+                )}
+                {issueCounts.high > 0 && (
+                  <button
+                    onClick={() => { setActiveFilter('high'); setSortByIssues(true); document.getElementById('line-items')?.scrollIntoView({ behavior: 'smooth' }); }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-orange-500 text-white text-sm font-semibold rounded-full hover:bg-orange-600 transition-colors shadow-sm"
+                  >
+                    🔶 {issueCounts.high} High
+                    <ArrowDown className="w-3 h-3" />
+                  </button>
+                )}
+                {issueCounts.slightly_high > 0 && (
+                  <button
+                    onClick={() => { setActiveFilter('high'); setSortByIssues(true); document.getElementById('line-items')?.scrollIntoView({ behavior: 'smooth' }); }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-500 text-white text-sm font-semibold rounded-full hover:bg-amber-600 transition-colors shadow-sm"
+                  >
+                    ⚠️ {issueCounts.slightly_high} Slightly High
+                    <ArrowDown className="w-3 h-3" />
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Overall Gauge */}
           <PriceGauge
@@ -211,23 +376,116 @@ export default function ReportPage() {
             fairHigh={report.total_fair_high}
           />
 
-          <div className="mt-6 p-4 bg-primary-50 rounded-lg">
-            <p className="font-semibold text-primary-900 mb-2">Overall Assessment:</p>
-            <p className="text-gray-700">{report.overall_assessment}</p>
+          {/* Formatted Overall Assessment */}
+          <div className="mt-6 bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+            <h3 className="text-xl font-bold text-gray-900 mb-4 pb-3 border-b border-gray-100">
+              📋 Overall Assessment
+            </h3>
+            <div className="prose prose-sm max-w-none">
+              {formatAssessment(report.overall_assessment)}
+            </div>
           </div>
         </div>
 
-        {/* Line Items */}
-        <h2 className="text-2xl font-bold mb-6">Line Item Breakdown</h2>
-        <div className="space-y-6">
-          {report.line_items.map((item, index) => (
-            <ReportCard key={index} lineItem={item} />
-          ))}
+        {/* Line Items Section */}
+        <div id="line-items" className="scroll-mt-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <h2 className="text-2xl font-bold">Line Item Breakdown</h2>
+
+            {/* Filter Controls */}
+            <div className="flex flex-wrap items-center gap-2">
+              <Filter className="w-4 h-4 text-gray-500" />
+              <button
+                onClick={() => { setActiveFilter('all'); setSortByIssues(false); }}
+                className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
+                  activeFilter === 'all'
+                    ? 'bg-gray-900 text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                All ({report.line_items.length})
+              </button>
+              {issueCounts.issues > 0 && (
+                <button
+                  onClick={() => { setActiveFilter('issues'); setSortByIssues(true); }}
+                  className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
+                    activeFilter === 'issues'
+                      ? 'bg-red-600 text-white'
+                      : 'bg-red-50 text-red-700 hover:bg-red-100'
+                  }`}
+                >
+                  ⚠️ Issues ({issueCounts.issues})
+                </button>
+              )}
+              {issueCounts.gouging > 0 && (
+                <button
+                  onClick={() => { setActiveFilter('gouging'); setSortByIssues(true); }}
+                  className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
+                    activeFilter === 'gouging'
+                      ? 'bg-red-600 text-white'
+                      : 'bg-red-50 text-red-700 hover:bg-red-100'
+                  }`}
+                >
+                  🚨 Gouging ({issueCounts.gouging})
+                </button>
+              )}
+              {issueCounts.fair > 0 && (
+                <button
+                  onClick={() => { setActiveFilter('fair'); setSortByIssues(false); }}
+                  className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
+                    activeFilter === 'fair'
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
+                  }`}
+                >
+                  ✅ Fair ({issueCounts.fair})
+                </button>
+              )}
+              {issueCounts.suspiciously_low > 0 && (
+                <button
+                  onClick={() => { setActiveFilter('suspiciously_low'); setSortByIssues(false); }}
+                  className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
+                    activeFilter === 'suspiciously_low'
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
+                  }`}
+                >
+                  ⚡ Suspiciously Low ({issueCounts.suspiciously_low})
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Filtered results count */}
+          {activeFilter !== 'all' && (
+            <p className="text-sm text-gray-500 mb-4">
+              Showing {filteredItems.length} of {report.line_items.length} items
+              {' '}
+              <button onClick={() => { setActiveFilter('all'); setSortByIssues(false); }} className="text-primary-600 hover:underline">
+                Show all
+              </button>
+            </p>
+          )}
+
+          <div className="space-y-6">
+            {filteredItems.map((item, index) => (
+              <ReportCard key={`${item.item_name}-${index}`} lineItem={item} />
+            ))}
+          </div>
+
+          {filteredItems.length === 0 && (
+            <div className="card text-center py-12">
+              <p className="text-gray-500 text-lg">No items match this filter.</p>
+              <button onClick={() => { setActiveFilter('all'); setSortByIssues(false); }} className="mt-4 text-primary-600 hover:underline font-medium">
+                Show all items
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Actions */}
         <div className="mt-12 card text-center">
-          <h3 className="text-2xl font-bold mb-4">What's Next?</h3>
+          <h3 className="text-2xl font-bold mb-4">What&apos;s Next?</h3>
           <p className="text-gray-600 mb-6">
             Use this report to negotiate with your contractor or get additional quotes for comparison.
           </p>
@@ -235,7 +493,10 @@ export default function ReportPage() {
             <Link href="/analyze" className="btn-primary">
               Analyze Another Quote
             </Link>
-            <button className="btn-secondary">Share Report</button>
+            <button onClick={handleDownloadPdf} className="btn-secondary flex items-center justify-center">
+              <Download className="w-4 h-4 mr-2" />
+              Download PDF
+            </button>
           </div>
         </div>
       </div>

@@ -1,11 +1,11 @@
-import { AlertTriangle, CheckCircle, AlertCircle, XCircle } from 'lucide-react';
+import { AlertTriangle, CheckCircle, AlertCircle, XCircle, Zap } from 'lucide-react';
 
 interface LineItemAnalysis {
   item_name: string;
   quoted_price: number;
   fair_price_low: number;
   fair_price_high: number;
-  assessment: 'fair' | 'slightly_high' | 'high' | 'gouging';
+  assessment: 'fair' | 'slightly_high' | 'high' | 'gouging' | 'suspiciously_low' | 'unknown';
   explanation: string;
   bls_rate?: number;
   material_cost?: number;
@@ -20,43 +20,57 @@ export default function ReportCard({ lineItem }: ReportCardProps) {
     switch (assessment) {
       case 'fair':
         return {
-          bg: 'bg-success/10',
-          border: 'border-success',
-          text: 'text-success',
+          bg: 'bg-emerald-50',
+          border: 'border-emerald-400',
+          text: 'text-emerald-700',
           icon: CheckCircle,
-          label: 'Fair Price',
+          label: '✅ Fair Price',
+          barColor: 'bg-emerald-500',
         };
       case 'slightly_high':
         return {
-          bg: 'bg-warning/10',
-          border: 'border-warning',
-          text: 'text-warning',
+          bg: 'bg-amber-50',
+          border: 'border-amber-400',
+          text: 'text-amber-700',
           icon: AlertCircle,
-          label: 'Slightly High',
+          label: '⚠️ Slightly High',
+          barColor: 'bg-amber-500',
         };
       case 'high':
         return {
-          bg: 'bg-orange-100',
+          bg: 'bg-orange-50',
           border: 'border-orange-500',
           text: 'text-orange-700',
           icon: AlertTriangle,
-          label: 'High',
+          label: '🔶 High',
+          barColor: 'bg-orange-500',
         };
       case 'gouging':
         return {
-          bg: 'bg-danger/10',
-          border: 'border-danger',
-          text: 'text-danger',
+          bg: 'bg-red-50',
+          border: 'border-red-500',
+          text: 'text-red-700',
           icon: XCircle,
-          label: 'Potential Gouge',
+          label: '🚨 Potential Gouge',
+          barColor: 'bg-red-600',
+        };
+      case 'suspiciously_low':
+        return {
+          bg: 'bg-blue-50',
+          border: 'border-blue-400',
+          text: 'text-blue-700',
+          icon: Zap,
+          label: '⚡ Suspiciously Low',
+          barColor: 'bg-blue-500',
         };
       default:
         return {
-          bg: 'bg-gray-100',
+          bg: 'bg-gray-50',
           border: 'border-gray-300',
           text: 'text-gray-700',
           icon: AlertCircle,
-          label: 'Unknown',
+          label: '❓ Unknown',
+          barColor: 'bg-gray-400',
         };
     }
   };
@@ -64,68 +78,70 @@ export default function ReportCard({ lineItem }: ReportCardProps) {
   const style = getAssessmentStyle(lineItem.assessment);
   const Icon = style.icon;
   const overpayment = lineItem.quoted_price - lineItem.fair_price_high;
-  const percentOver = ((overpayment / lineItem.fair_price_high) * 100).toFixed(0);
+  const percentOver = lineItem.fair_price_high > 0
+    ? ((overpayment / lineItem.fair_price_high) * 100).toFixed(0)
+    : '0';
+
+  // Mini bar visualization
+  const maxVal = Math.max(lineItem.quoted_price, lineItem.fair_price_high) * 1.2;
+  const quotedWidth = maxVal > 0 ? (lineItem.quoted_price / maxVal) * 100 : 0;
+  const fairHighWidth = maxVal > 0 ? (lineItem.fair_price_high / maxVal) * 100 : 0;
+  const fairLowWidth = maxVal > 0 ? (lineItem.fair_price_low / maxVal) * 100 : 0;
 
   return (
-    <div className={`card border-2 ${style.border}`}>
+    <div className={`card border-2 ${style.border} shadow-sm hover:shadow-md transition-shadow`}>
       <div className="flex justify-between items-start mb-4">
         <div className="flex-1">
-          <h3 className="text-xl font-bold mb-1">{lineItem.item_name}</h3>
-          <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold ${style.bg} ${style.text}`}>
-            <Icon className="w-4 h-4 mr-1" />
+          <h3 className="text-xl font-bold mb-2">{lineItem.item_name}</h3>
+          <div className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-bold ${style.bg} ${style.text}`}>
+            <Icon className="w-4 h-4 mr-1.5" />
             {style.label}
           </div>
         </div>
         <div className="text-right">
-          <p className="text-sm text-gray-600 mb-1">Quoted Price</p>
+          <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Quoted</p>
           <p className="text-2xl font-bold">${lineItem.quoted_price.toLocaleString()}</p>
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4 mb-4">
-        <div>
-          <p className="text-sm text-gray-600 mb-1">Fair Range (Low)</p>
-          <p className="text-lg font-semibold text-success">
-            ${lineItem.fair_price_low.toLocaleString()}
-          </p>
-        </div>
-        <div>
-          <p className="text-sm text-gray-600 mb-1">Fair Range (High)</p>
-          <p className="text-lg font-semibold text-success">
-            ${lineItem.fair_price_high.toLocaleString()}
-          </p>
-        </div>
-        {overpayment > 0 && (
-          <div>
-            <p className="text-sm text-gray-600 mb-1">Potential Overpayment</p>
-            <p className="text-lg font-semibold text-danger">
-              ${overpayment.toLocaleString()} ({percentOver}%)
-            </p>
+      {/* Mini price comparison bar */}
+      <div className="mb-4 p-3 bg-gray-50 rounded-lg">
+        <div className="space-y-2">
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-gray-500 w-16 text-right">Quoted</span>
+            <div className="flex-1 h-4 bg-gray-100 rounded-full overflow-hidden">
+              <div className={`h-full rounded-full ${style.barColor}`} style={{ width: `${quotedWidth}%` }} />
+            </div>
+            <span className="text-xs font-semibold w-24 text-right">${lineItem.quoted_price.toLocaleString()}</span>
           </div>
-        )}
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-gray-500 w-16 text-right">Fair</span>
+            <div className="flex-1 h-4 bg-gray-100 rounded-full overflow-hidden relative">
+              <div className="h-full rounded-full bg-emerald-300" style={{ width: `${fairHighWidth}%` }} />
+              <div className="absolute top-0 h-full rounded-full bg-emerald-500" style={{ width: `${fairLowWidth}%` }} />
+            </div>
+            <span className="text-xs font-semibold w-24 text-right text-emerald-700">
+              ${lineItem.fair_price_low.toLocaleString()} – ${lineItem.fair_price_high.toLocaleString()}
+            </span>
+          </div>
+        </div>
       </div>
 
-      <div className="p-4 bg-gray-50 rounded-lg mb-4">
-        <p className="text-sm font-semibold text-gray-700 mb-2">Analysis:</p>
-        <p className="text-gray-700">{lineItem.explanation}</p>
-      </div>
-
-      {(lineItem.bls_rate || lineItem.material_cost) && (
-        <div className="grid md:grid-cols-2 gap-4 text-sm">
-          {lineItem.bls_rate && (
-            <div className="flex justify-between p-3 bg-primary-50 rounded">
-              <span className="text-gray-700">BLS Labor Rate:</span>
-              <span className="font-semibold">${lineItem.bls_rate}/hr</span>
-            </div>
-          )}
-          {lineItem.material_cost && (
-            <div className="flex justify-between p-3 bg-primary-50 rounded">
-              <span className="text-gray-700">Material Cost (est):</span>
-              <span className="font-semibold">${lineItem.material_cost.toLocaleString()}</span>
-            </div>
-          )}
+      {/* Overpayment callout */}
+      {overpayment > 0 && (
+        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center justify-between">
+          <span className="text-sm font-semibold text-red-800">Potential Overpayment</span>
+          <span className="text-lg font-bold text-red-700">
+            ${overpayment.toLocaleString()} ({percentOver}% over)
+          </span>
         </div>
       )}
+
+      {/* Explanation */}
+      <div className="p-4 bg-gray-50 rounded-lg">
+        <p className="text-sm font-semibold text-gray-700 mb-2">💡 Analysis:</p>
+        <p className="text-gray-700 leading-relaxed">{lineItem.explanation}</p>
+      </div>
     </div>
   );
 }
