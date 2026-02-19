@@ -1,7 +1,7 @@
 ---
 title: "Pool Installation Cost Breakdown: Real Prices for Inground, Above Ground, and Ongoing Costs"
 description: "Complete swimming pool installation cost breakdown with actual prices for concrete, fiberglass, and vinyl liner pools. Includes equipment, landscaping, ongoing maintenance costs, and contractor red flags."
-date: 2026-02-11
+date: "2026-02-03"
 author: Ungouge Team
 keywords: ["pool installation cost", "inground pool cost", "above ground pool cost", "fiberglass pool cost", "concrete pool cost", "vinyl liner pool cost", "pool maintenance cost"]
 ---

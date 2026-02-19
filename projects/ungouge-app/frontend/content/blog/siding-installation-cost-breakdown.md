@@ -1,7 +1,7 @@
 ---
 title: "Siding Installation Cost Breakdown: What You Should Actually Pay in 2026"
 description: "Complete cost breakdown for vinyl, fiber cement, wood, and metal siding installation with real material and labor prices, red flags to watch for, and regional pricing differences."
-date: "2026-02-11"
+date: "2026-02-05"
 author: "UnGouge Team"
 category: "Cost Guides"
 tags: ["siding", "exterior", "home improvement", "cost breakdown", "contractor quotes"]

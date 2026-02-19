@@ -1,7 +1,7 @@
 ---
 title: "Solar Panel Installation Cost Breakdown: Real Prices for Panels, Inverters, Battery Storage & ROI"
 description: "Complete solar panel installation cost breakdown with actual prices for panels, inverters, batteries, and installation. Includes federal tax credits, ROI timeline, and contractor red flags."
-date: 2026-02-11
+date: "2026-02-07"
 author: Ungouge Team
 keywords: ["solar panel cost", "solar installation cost", "solar panel ROI", "solar battery cost", "solar tax credit", "solar panel installation", "home solar cost"]
 ---

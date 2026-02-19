@@ -1,7 +1,7 @@
 ---
 title: "Electrical Work Cost Breakdown: What Electricians Actually Charge in 2026"
 description: "Complete guide to electrical service costs including panel upgrades, outlet installation, rewiring, EV chargers, and how to verify your electrician's quote is fair."
-date: "2026-02-11"
+date: "2026-01-25"
 author: "UnGouge Team"
 category: "Cost Guides"
 tags: ["electrical", "electrician", "home improvement", "cost breakdown", "contractor quotes"]

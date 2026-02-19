@@ -1,7 +1,7 @@
 ---
 title: "Kitchen Remodel Cost in Central Vermont: Real 2026 Prices for Vermont Homes"
 description: "Central Vermont kitchen renovation costs with local labor rates, old house considerations, and energy efficiency requirements. Covers Montpelier, Barre, Northfield area."
-date: 2026-02-09
+date: "2026-02-15"
 author: Ungouge Team
 keywords: ["kitchen remodel cost Vermont", "Central Vermont kitchen renovation", "Vermont kitchen contractor", "Montpelier kitchen remodel", "Vermont farmhouse kitchen"]
 region: "Central Vermont"

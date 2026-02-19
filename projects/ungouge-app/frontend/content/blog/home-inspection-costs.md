@@ -1,7 +1,7 @@
 ---
 title: "Home Inspection Cost Breakdown: What You Should Actually Pay for Pre-Purchase and Specialized Inspections"
 description: "Complete home inspection cost breakdown with actual prices for general inspections, radon, mold, structural, sewer, and specialty inspections. Know what's worth it and what's a waste of money."
-date: 2026-02-11
+date: "2026-01-31"
 author: Ungouge Team
 keywords: ["home inspection cost", "pre-purchase inspection cost", "radon inspection cost", "mold inspection cost", "structural inspection cost", "sewer inspection cost", "home inspection checklist"]
 ---

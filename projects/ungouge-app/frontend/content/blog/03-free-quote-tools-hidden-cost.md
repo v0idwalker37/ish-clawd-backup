@@ -3,7 +3,7 @@ title: "The Hidden Cost of 'Free' Contractor Quote Tools"
 slug: free-quote-tools-hidden-cost
 description: "Free contractor quote comparison tools seem helpful, but many are lead generation funnels in disguise. Learn how to spot them and protect your data."
 author: "Ungouge Team"
-date: "2026-02-08"
+date: "2026-02-12"
 category: "Industry Insights"
 tags: ["contractor quotes", "lead generation", "privacy", "home improvement"]
 status: draft

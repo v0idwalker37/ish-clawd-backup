@@ -1,7 +1,7 @@
 ---
 title: "Tree Removal Cost Breakdown: Real Prices for Removal, Stump Grinding, and Emergency Service"
 description: "Complete tree removal cost breakdown with actual prices by tree size, stump grinding costs, emergency removal rates, permit requirements, and contractor red flags to watch for."
-date: 2026-02-11
+date: "2026-02-10"
 author: Ungouge Team
 keywords: ["tree removal cost", "stump grinding cost", "emergency tree removal", "tree cutting cost", "tree removal permit", "tree trimming cost", "stump removal cost"]
 ---

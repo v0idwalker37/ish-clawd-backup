@@ -1,7 +1,7 @@
 ---
 title: "Concrete & Foundation Cost Breakdown: Real Prices for Repairs, Pouring, and Waterproofing"
 description: "Complete cost breakdown for foundation repair, concrete driveways, patios, basement waterproofing, and slab work. Actual prices from $500 crack repairs to $30K+ full foundation replacement."
-date: 2026-02-11
+date: "2026-01-22"
 author: Ungouge Team
 keywords: ["foundation repair cost", "concrete driveway cost", "patio pouring cost", "basement waterproofing cost", "foundation crack repair", "concrete slab cost", "mudjacking cost"]
 ---
