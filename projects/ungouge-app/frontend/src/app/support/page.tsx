@@ -134,12 +134,12 @@ export default function SupportPage() {
                 <Zap className="w-7 h-7 text-primary-600" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-gray-900">Ask Scout</h2>
+                <h2 className="text-xl font-bold text-gray-900">Ask Zedd</h2>
                 <p className="text-sm text-gray-500">AI Support Assistant</p>
               </div>
             </div>
             <p className="text-gray-600 mb-4">
-              Scout can answer most questions instantly — how to read your report, what assessments mean, account issues, payment questions, and more. Available 24/7.
+              Zedd can answer most questions instantly — how to read your report, what assessments mean, account issues, payment questions, and more. Available 24/7.
             </p>
             <div className="flex items-center gap-2 text-sm text-emerald-600 font-medium mb-6">
               <Clock className="w-4 h-4" />
@@ -201,7 +201,7 @@ export default function SupportPage() {
             <div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">We&apos;re Real People</h3>
               <p className="text-gray-600 leading-relaxed">
-                UnGouge.ai is built by a small team who believes homeowners deserve pricing transparency. We use AI because it lets us deliver better analysis faster — not because we&apos;re trying to replace human judgment. When you email <strong>human@ungouge.ai</strong>, you&apos;re reaching the people who built this product and care about getting it right. We may be slower than Scout, but we&apos;re listening.
+                UnGouge.ai is built by a small team who believes homeowners deserve pricing transparency. We use AI because it lets us deliver better analysis faster — not because we&apos;re trying to replace human judgment. When you email <strong>human@ungouge.ai</strong>, you&apos;re reaching the people who built this product and care about getting it right. We may be slower than Zedd, but we&apos;re listening.
               </p>
             </div>
           </div>
@@ -213,7 +213,7 @@ export default function SupportPage() {
             Frequently Asked Questions
           </h2>
           <p className="text-gray-600 text-center mb-10">
-            Can&apos;t find your answer? Ask Scout or email us.
+            Can&apos;t find your answer? Ask Zedd or email us.
           </p>
 
           <div className="space-y-8">
@@ -251,7 +251,7 @@ export default function SupportPage() {
         <div className="text-center bg-primary-50 rounded-2xl p-8 border border-primary-100">
           <h3 className="text-2xl font-bold text-gray-900 mb-3">Still have questions?</h3>
           <p className="text-gray-600 mb-6 max-w-xl mx-auto">
-            Scout has answers to most questions — try asking before you go.
+            Zedd has answers to most questions — try asking before you go.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/analyze" className="btn-primary">

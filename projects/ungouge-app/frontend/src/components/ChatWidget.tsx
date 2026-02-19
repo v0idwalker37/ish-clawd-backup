@@ -76,7 +76,7 @@ export default function ChatWidget() {
       // Send welcome message when first opened
       setTimeout(() => {
         addBotMessage(
-          "👋 Hey! I'm Scout, your UnGouge support assistant. I can help with report questions, account issues, pricing, and more.\n\nTry asking me something, or pick a quick question below!\n\nNeed a human? Email human@ungouge.ai — real people, real answers."
+          "👋 Hey! I'm Zedd, your UnGouge support assistant. I can help with report questions, account issues, pricing, and more.\n\nTry asking me something, or pick a quick question below!\n\nNeed a human? Email human@ungouge.ai — real people, real answers."
         );
       }, 300);
     }
@@ -181,7 +181,7 @@ export default function ChatWidget() {
                 <Bot className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="font-semibold">Scout</h3>
+                <h3 className="font-semibold">Zedd</h3>
                 <p className="text-xs text-primary-100">UnGouge Support Assistant</p>
               </div>
             </div>

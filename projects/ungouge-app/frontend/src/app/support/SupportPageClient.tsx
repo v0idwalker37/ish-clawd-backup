@@ -14,7 +14,7 @@ export default function SupportPageClient({ variant = 'primary' }: { variant?: '
   return (
     <button onClick={openChat} className={styles}>
       <MessageCircle className="w-5 h-5" />
-      Ask Scout
+      Ask Zedd
     </button>
   );
 }
