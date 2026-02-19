@@ -538,6 +538,7 @@ def generate_pdf(report: Report) -> bytes:
         rightMargin=0.6 * inch,
         title=f"UnGouge Report – {_title_case_project(report.project_type)}",
         author="UnGouge.ai",
+        compress=1,  # Enable PDF compression (reduces file size by ~50%)
     )
 
     elements = []
