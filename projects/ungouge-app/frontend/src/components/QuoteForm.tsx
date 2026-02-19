@@ -97,6 +97,12 @@ export default function QuoteForm() {
   });
 
   const handleFileProcessed = (data: ParsedQuoteData) => {
+    // Check auth before allowing user to proceed
+    if (!user && !authLoading) {
+      setShowAuthPrompt(true);
+      return;
+    }
+    
     // Pre-fill form with parsed data
     if (data.project_type) {
       setValue('project_type', data.project_type);
@@ -121,6 +127,11 @@ export default function QuoteForm() {
   };
 
   const skipUpload = () => {
+    // Check auth before allowing user to start filling form
+    if (!user && !authLoading) {
+      setShowAuthPrompt(true);
+      return;
+    }
     setStep(1);
   };
 
@@ -285,6 +296,35 @@ export default function QuoteForm() {
           />
         </div>
       </div>
+
+      {/* Auth Status Banner */}
+      {!authLoading && !user && step > 0 && (
+        <div className="mb-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+          <div className="flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="text-amber-900 font-semibold mb-1">Account Required</p>
+              <p className="text-amber-800 text-sm mb-3">
+                You'll need to sign in before checkout to save your quote and access your report.
+              </p>
+              <div className="flex gap-3">
+                <Link
+                  href="/login?redirect=/analyze"
+                  className="text-sm font-semibold text-amber-900 hover:text-amber-950 underline"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/register?redirect=/analyze"
+                  className="text-sm font-semibold text-amber-900 hover:text-amber-950 underline"
+                >
+                  Create Account
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Step 0: Upload Quote */}
