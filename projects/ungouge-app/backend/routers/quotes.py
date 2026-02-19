@@ -312,7 +312,7 @@ async def get_my_quotes(
     }
 
 
-@router.delete("/quotes/{quote_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/quotes/{quote_id}")
 async def delete_quote(
     quote_id: str,
     db: AsyncSession = Depends(get_db),
@@ -364,7 +364,7 @@ async def delete_quote(
         log_error("quote_delete_failed", str(e), {"quote_id": quote_id})
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Failed to delete quote: {str(e)}")
 
-    return None
+    return {"status": "deleted", "quote_id": quote_id}
 
 
 @router.get("/quotes/{quote_id}", response_model=ReportModel)
