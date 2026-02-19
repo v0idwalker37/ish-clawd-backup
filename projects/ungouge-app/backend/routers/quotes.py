@@ -551,7 +551,7 @@ async def list_quotes(
 async def parse_quote_upload(
     request: Request,
     file: UploadFile = File(...),
-    current_user: User = Depends(get_current_user),
+    current_user: Optional[User] = Depends(get_current_user_optional),
 ):
     """
     Upload and parse a contractor quote (PDF or image)

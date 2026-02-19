@@ -265,22 +265,19 @@ export default function QuoteForm() {
       <div className="mb-8">
         <div className="flex justify-between items-center mb-2">
           <span className={`text-sm font-medium ${step >= 0 ? 'text-primary-600' : 'text-gray-400'}`}>
-            0. Upload Quote
+            1. Upload Quote
           </span>
           <span className={`text-sm font-medium ${step >= 1 ? 'text-primary-600' : 'text-gray-400'}`}>
-            1. Project Info
+            2. Project Info
           </span>
           <span className={`text-sm font-medium ${step >= 2 ? 'text-primary-600' : 'text-gray-400'}`}>
-            2. Quote Details
-          </span>
-          <span className={`text-sm font-medium ${step >= 3 ? 'text-primary-600' : 'text-gray-400'}`}>
-            3. Review & Pay
+            3. Quote Details & Pay
           </span>
         </div>
         <div className="h-2 bg-gray-200 rounded-full">
           <div
             className="h-2 bg-primary-600 rounded-full transition-all duration-300"
-            style={{ width: `${(step / 4) * 100}%` }}
+            style={{ width: `${((step + 1) / 3) * 100}%` }}
           />
         </div>
       </div>
@@ -595,83 +592,22 @@ export default function QuoteForm() {
               )}
             </div>
 
-            <div className="flex justify-between gap-4">
-              <button
-                type="button"
-                onClick={() => setStep(1)}
-                className="btn-secondary flex items-center hover:shadow-lg active:scale-95 transition-all"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back
-              </button>
-              <button
-                type="button"
-                onClick={() => setStep(3)}
-                disabled={fields.length === 0}
-                className="btn-primary flex items-center disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg active:scale-95 transition-all"
-              >
-                Review & Pay
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Step 3: Review & Payment */}
-        {step === 3 && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold mb-6">Review & Pay</h2>
-
-            <div className="bg-gray-50 p-6 rounded-lg space-y-4">
-              <div>
-                <p className="text-sm text-gray-600">Project Type</p>
-                <p className="font-semibold">{projectType}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Location</p>
-                <p className="font-semibold">{watch('location')}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Line Items</p>
-                <p className="font-semibold">{fields.length} items</p>
-              </div>
-              <div className="pt-4 border-t border-gray-300">
-                <p className="text-sm text-gray-600">Total Quoted</p>
-                <p className="text-3xl font-bold text-primary-600">
-                  ${totalQuoted.toLocaleString()}
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-primary-50 border border-primary-200 p-6 rounded-lg">
-              <div className="flex justify-between items-center mb-4">
+            {/* Payment summary */}
+            <div className="bg-primary-50 border border-primary-200 p-5 rounded-lg">
+              <div className="flex justify-between items-center mb-3">
                 <div>
-                  <h3 className="text-xl font-bold">Analysis Report</h3>
+                  <h3 className="text-lg font-bold">AI Analysis Report</h3>
                   <p className="text-sm text-gray-600">One-time payment</p>
                 </div>
-                <div className="text-3xl font-bold text-primary-600">$19.99</div>
+                <div className="text-2xl font-bold text-primary-600">$19.99</div>
               </div>
-              <ul className="text-sm space-y-2 text-gray-700">
+              <ul className="text-sm space-y-1 text-gray-700">
                 <li>✓ AI-powered line-item analysis</li>
                 <li>✓ Real-time market price verification</li>
                 <li>✓ Regional labor &amp; material cost comparison</li>
                 <li>✓ Instant PDF report with recommendations</li>
               </ul>
             </div>
-
-            {/* Promo code applied indicator (code entry is on Step 2) */}
-            {promoApplied && promoCode && (
-              <div className="bg-emerald-50 border border-emerald-300 rounded-lg p-4">
-                <p className="text-sm text-emerald-700 font-semibold">✅ Promo code &quot;{promoCode}&quot; applied — discount will be applied at checkout</p>
-                <button
-                  type="button"
-                  onClick={() => { setPromoCode(''); setPromoApplied(false); }}
-                  className="text-xs text-gray-500 hover:text-gray-700 mt-1 underline"
-                >
-                  Remove code
-                </button>
-              </div>
-            )}
 
             {error && (
               <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-4 animate-shake">
@@ -689,7 +625,7 @@ export default function QuoteForm() {
             <div className="flex flex-col sm:flex-row justify-between gap-4">
               <button
                 type="button"
-                onClick={() => setStep(2)}
+                onClick={() => setStep(1)}
                 disabled={loading}
                 className="btn-secondary flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg active:scale-95 transition-all"
               >
@@ -698,7 +634,7 @@ export default function QuoteForm() {
               </button>
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || fields.length === 0}
                 className="btn-primary flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed hover:shadow-xl active:scale-95 transition-all"
               >
                 {loading ? (
