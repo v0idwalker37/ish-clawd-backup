@@ -335,11 +335,11 @@ export default function DashboardPage() {
 
       {/* Help Section */}
       <div className="card bg-gradient-to-br from-primary-50 to-blue-50 border-primary-200">
-        <div className="flex items-start gap-4">
+        <div className="flex flex-col sm:flex-row items-start gap-4">
           <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center text-white flex-shrink-0">
             <FileText className="w-6 h-6" />
           </div>
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Need help understanding your reports?
             </h3>

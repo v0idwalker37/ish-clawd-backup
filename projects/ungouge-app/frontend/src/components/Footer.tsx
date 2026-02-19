@@ -14,31 +14,31 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-900 text-gray-300">
-      <div className="container mx-auto px-4 py-12 max-w-6xl">
+      <div className="container mx-auto px-4 py-12 max-w-6xl min-w-0">
         {/* Data Privacy Badge - Prominent */}
-        <div className="bg-gradient-to-r from-primary-900/30 to-primary-800/30 border-2 border-primary-700/50 rounded-xl p-6 mb-10">
+        <div className="bg-gradient-to-r from-primary-900/30 to-primary-800/30 border-2 border-primary-700/50 rounded-xl p-4 sm:p-6 mb-10">
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center gap-3 min-w-0">
               <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0">
                 <Shield className="w-6 h-6 text-white" />
               </div>
-              <div>
-                <p className="text-white font-bold text-lg">We NEVER Sell Your Data</p>
-                <p className="text-primary-200 text-sm">No lead generation. No contractor referrals. Zero data selling.</p>
+              <div className="min-w-0">
+                <p className="text-white font-bold text-base sm:text-lg">We NEVER Sell Your Data</p>
+                <p className="text-primary-200 text-xs sm:text-sm">No lead generation. No contractor referrals. Zero data selling.</p>
               </div>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-green-900/30 border border-green-700/50 rounded-lg">
-              <Lock className="w-4 h-4 text-green-400" />
-              <span className="text-green-200 text-sm font-semibold">Your privacy guaranteed</span>
+            <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-green-900/30 border border-green-700/50 rounded-lg flex-shrink-0">
+              <Lock className="w-4 h-4 text-green-400 flex-shrink-0" />
+              <span className="text-green-200 text-xs sm:text-sm font-semibold whitespace-nowrap">Your privacy guaranteed</span>
             </div>
           </div>
         </div>
 
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
-          <div>
+          <div className="min-w-0">
             <div className="flex items-center mb-4">
-              <div className="text-2xl font-bold text-white">
+              <div className="text-2xl font-bold text-white whitespace-nowrap">
                 Ungouge<span className="text-primary-400">.ai</span>
               </div>
             </div>
