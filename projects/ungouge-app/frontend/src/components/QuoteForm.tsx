@@ -538,6 +538,16 @@ export default function QuoteForm() {
               </div>
             )}
 
+            {/* Debug info (remove after testing) */}
+            {process.env.NODE_ENV === 'development' && (
+              <div className="bg-gray-100 p-3 rounded text-xs font-mono">
+                <div>Step: {step}</div>
+                <div>Fields: {fields.length}</div>
+                <div>Total: ${totalQuoted}</div>
+                <div>Promo: {promoCode || '(none)'} / Applied: {promoApplied ? 'Yes' : 'No'}</div>
+              </div>
+            )}
+
             {totalQuoted > 0 && (
               <div className="bg-gray-50 p-4 rounded-lg">
                 <div className="flex justify-between items-center">
@@ -558,7 +568,11 @@ export default function QuoteForm() {
                 <input
                   type="text"
                   value={promoCode}
-                  onChange={(e) => { setPromoCode(e.target.value.toUpperCase()); setPromoApplied(false); }}
+                  onChange={(e) => { 
+                    console.log('Promo code changed:', e.target.value);
+                    setPromoCode(e.target.value.toUpperCase()); 
+                    setPromoApplied(false); 
+                  }}
                   placeholder="Enter promo code"
                   disabled={promoApplied}
                   className="input-field flex-1 text-base font-mono tracking-wider uppercase disabled:bg-gray-100"
@@ -566,7 +580,13 @@ export default function QuoteForm() {
                 {promoCode && !promoApplied && (
                   <button
                     type="button"
-                    onClick={() => setPromoApplied(true)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log('Apply promo clicked:', promoCode);
+                      setPromoApplied(true);
+                      console.log('Promo applied state set to true');
+                    }}
                     className="px-5 py-2.5 bg-amber-600 text-white text-sm font-bold rounded-lg hover:bg-amber-700 active:scale-95 transition-all shadow-sm whitespace-nowrap"
                   >
                     Apply
@@ -575,7 +595,13 @@ export default function QuoteForm() {
                 {promoApplied && (
                   <button
                     type="button"
-                    onClick={() => { setPromoCode(''); setPromoApplied(false); }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log('Remove promo clicked');
+                      setPromoCode(''); 
+                      setPromoApplied(false); 
+                    }}
                     className="px-4 py-2.5 bg-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-300 transition-all whitespace-nowrap"
                   >
                     Remove
@@ -590,7 +616,10 @@ export default function QuoteForm() {
             <div className="flex justify-between gap-4">
               <button
                 type="button"
-                onClick={() => setStep(1)}
+                onClick={() => {
+                  console.log('Back button clicked, going to step 1');
+                  setStep(1);
+                }}
                 className="btn-secondary flex items-center hover:shadow-lg active:scale-95 transition-all"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
@@ -598,7 +627,17 @@ export default function QuoteForm() {
               </button>
               <button
                 type="button"
-                onClick={() => setStep(3)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log('Review & Pay button clicked');
+                  console.log('Current step:', step);
+                  console.log('Fields count:', fields.length);
+                  console.log('Promo code:', promoCode);
+                  console.log('Promo applied:', promoApplied);
+                  setStep(3);
+                  console.log('setStep(3) called');
+                }}
                 disabled={fields.length === 0}
                 className="btn-primary flex items-center disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg active:scale-95 transition-all"
               >
