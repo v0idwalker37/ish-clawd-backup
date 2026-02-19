@@ -10,10 +10,7 @@ export default function Footer() {
   const pathname = usePathname();
   const currentYear = new Date().getFullYear();
   
-  // Don't render footer on dashboard pages (cleaner app experience)
-  if (pathname?.startsWith('/dashboard')) {
-    return null;
-  }
+  // Footer now renders on all pages for consistent navigation
 
   return (
     <footer className="bg-gray-900 text-gray-300">
