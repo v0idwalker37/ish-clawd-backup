@@ -29,7 +29,7 @@ export default function PriceGauge({ quotedPrice, fairLow, fairHigh }: PriceGaug
     statusSubtext = `$${(quotedPrice - fairHigh).toLocaleString()} over fair market value`;
   } else {
     statusColor = 'bg-red-600';
-    statusText = '🚨 Potential Gouge';
+    statusText = '🚨 Possible Gouge';
     statusSubtext = `$${(quotedPrice - fairHigh).toLocaleString()} over fair market value`;
   }
 

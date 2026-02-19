@@ -51,7 +51,7 @@ export default function ReportCard({ lineItem }: ReportCardProps) {
           border: 'border-red-500',
           text: 'text-red-700',
           icon: XCircle,
-          label: '🚨 Potential Gouge',
+          label: '🚨 Possible Gouge',
           barColor: 'bg-red-600',
         };
       case 'suspiciously_low':

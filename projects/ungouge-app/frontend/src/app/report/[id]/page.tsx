@@ -175,23 +175,27 @@ export default function ReportPage() {
   const formatAssessment = (text: string) => {
     if (!text) return null;
 
+    // Clean up spacing artifacts from AI (e.g., "$204, 3 0 0" → "$204,300")
+    let cleaned = text.replace(/(\$[\d,]+),?\s+(\d)\s+(\d)\s+(\d)/g, (_, prefix, a, b, c) => `${prefix}${a}${b}${c}`);
+    cleaned = cleaned.replace(/(\$[\d,]+)\s+(\d{3})/g, '$1$2');
+
     // Detect if the text has markdown structure
-    const hasMarkdown = /^#{2,3}\s|\*\*[A-Z]/m.test(text);
+    const hasMarkdown = /^#{2,3}\s|\*\*[A-Z]/m.test(cleaned);
 
     if (hasMarkdown) {
       // Split by markdown headers or bold titles
-      const sections = text.split(/(?=##\s)|(?=###\s)|(?=\*\*[A-Z])/g).filter(s => s.trim());
+      const sections = cleaned.split(/(?=##\s)|(?=###\s)|(?=\*\*[A-Z])/g).filter(s => s.trim());
       return sections.map((section, i) => renderSection(section.trim(), i));
     }
 
     // Plain text: split into sentences and group into logical paragraphs
-    // Look for numbered items like "1) " or "1. " or lettered items
-    const numberedPattern = /(?:^|\n)\s*\d+[\.\)]\s/;
-    const hasNumberedList = numberedPattern.test(text);
+    // Look for numbered items like "1) " or "1. " or "1 " (just digit + space before capital)
+    const numberedPattern = /(?:^|\n)\s*\d+[\.\)]\s|(?:^|\.\s+)\d+\s+[A-Z]/;
+    const hasNumberedList = numberedPattern.test(cleaned);
 
     if (hasNumberedList) {
-      // Split on numbered items
-      const parts = text.split(/(?=\d+[\.\)]\s)/g).filter(s => s.trim());
+      // Split on numbered items (handles "1) ", "1. ", and "1 Direct..." patterns)
+      const parts = cleaned.split(/(?=\d+[\.\)]\s)|(?<=\.\s)(?=\d+\s+[A-Z])/g).filter(s => s.trim());
       const intro = parts[0]?.match(/^\d/) ? null : parts.shift();
       return (
         <>
@@ -200,7 +204,7 @@ export default function ReportPage() {
             {parts.map((part, i) => {
               const cleaned = part.trim();
               // Extract the number prefix and content
-              const match = cleaned.match(/^(\d+[\.\)])\s*(.*)/s);
+              const match = cleaned.match(/^(\d+[\.\):]?)\s*(.*)/s);
               if (match) {
                 return (
                   <div key={i} className="flex gap-3 p-3 bg-gray-50 rounded-lg">
@@ -219,7 +223,7 @@ export default function ReportPage() {
     }
 
     // Plain text without structure: split into sentences, group ~2-3 sentences per paragraph
-    const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+    const sentences = cleaned.match(/[^.!?]+[.!?]+/g) || [cleaned];
     const paragraphs: string[] = [];
     let current = '';
     for (const sentence of sentences) {
@@ -355,7 +359,14 @@ export default function ReportPage() {
     );
   }
 
-  const savingsPotential = report.total_quoted - report.total_fair_high;
+  // Sum individual line item overpayments (more useful than total difference)
+  const itemSavings = report.line_items.reduce((sum, item) => {
+    const over = item.quoted_price - item.fair_price_high;
+    return sum + (over > 0 ? over : 0);
+  }, 0);
+  // Use the larger of total overpay vs sum of item overpays
+  const totalOverpay = report.total_quoted - report.total_fair_high;
+  const savingsPotential = Math.max(itemSavings, totalOverpay > 0 ? totalOverpay : 0);
 
   return (
     <div className="py-12 bg-gray-50">
@@ -411,13 +422,16 @@ export default function ReportPage() {
                 ${report.total_fair_low.toLocaleString()} – ${report.total_fair_high.toLocaleString()}
               </p>
             </div>
-            <div className={`rounded-xl p-5 shadow-sm border ${savingsPotential > 0 ? 'bg-red-50 border-red-200' : 'bg-emerald-50 border-emerald-200'}`}>
-              <p className={`text-sm mb-1 uppercase tracking-wide font-medium ${savingsPotential > 0 ? 'text-red-700' : 'text-emerald-700'}`}>
-                {savingsPotential > 0 ? 'Potential Overpayment' : 'Savings Potential'}
+            <div className={`rounded-xl p-5 shadow-sm border ${savingsPotential > 0 ? 'bg-amber-50 border-amber-200' : 'bg-emerald-50 border-emerald-200'}`}>
+              <p className={`text-sm mb-1 uppercase tracking-wide font-medium ${savingsPotential > 0 ? 'text-amber-700' : 'text-emerald-700'}`}>
+                {savingsPotential > 0 ? 'Negotiation Savings' : 'Savings Potential'}
               </p>
-              <p className={`text-3xl font-bold ${savingsPotential > 0 ? 'text-red-700' : 'text-emerald-700'}`}>
-                {savingsPotential > 0 ? `$${savingsPotential.toLocaleString()}` : '$0'}
+              <p className={`text-3xl font-bold ${savingsPotential > 0 ? 'text-amber-700' : 'text-emerald-700'}`}>
+                {savingsPotential > 0 ? `$${savingsPotential.toLocaleString()}` : 'None found'}
               </p>
+              {savingsPotential > 0 && itemSavings > 0 && (
+                <p className="text-xs text-amber-600 mt-1">Based on {report.line_items.filter(i => i.quoted_price > i.fair_price_high).length} item{report.line_items.filter(i => i.quoted_price > i.fair_price_high).length > 1 ? 's' : ''} above fair range</p>
+              )}
             </div>
           </div>
 
@@ -433,7 +447,7 @@ export default function ReportPage() {
                     onClick={() => { setActiveFilter('gouging'); setSortByIssues(true); document.getElementById('line-items')?.scrollIntoView({ behavior: 'smooth' }); }}
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-600 text-white text-sm font-semibold rounded-full hover:bg-red-700 transition-colors shadow-sm"
                   >
-                    🚨 {issueCounts.gouging} Potential Gouge{issueCounts.gouging > 1 ? 's' : ''}
+                    🚨 {issueCounts.gouging} Possible Gouge{issueCounts.gouging > 1 ? 's' : ''}
                     <ArrowDown className="w-3 h-3" />
                   </button>
                 )}
@@ -516,7 +530,7 @@ export default function ReportPage() {
                       : 'bg-red-50 text-red-700 hover:bg-red-100'
                   }`}
                 >
-                  🚨 Gouging ({issueCounts.gouging})
+                  🚨 Possible Gouge ({issueCounts.gouging})
                 </button>
               )}
               {issueCounts.fair > 0 && (
@@ -582,6 +596,9 @@ export default function ReportPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/analyze" className="btn-primary">
               Analyze Another Quote
+            </Link>
+            <Link href="/dashboard/quotes" className="btn-secondary">
+              My Quotes
             </Link>
             <button onClick={handleDownloadPdf} className="btn-secondary flex items-center justify-center">
               <Download className="w-4 h-4 mr-2" />

@@ -58,7 +58,7 @@ ASSESSMENT_LABELS = {
     "fair": "✓ Fair Price",
     "slightly_high": "⚠ Slightly High",
     "high": "⚠ High",
-    "gouging": "✗ Potential Gouge",
+    "gouging": "✗ Possible Gouge",
     "suspiciously_low": "↓ Suspiciously Low",
     "unknown": "? Unknown",
 }
