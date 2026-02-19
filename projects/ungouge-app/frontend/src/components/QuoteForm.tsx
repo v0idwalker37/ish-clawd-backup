@@ -220,7 +220,11 @@ export default function QuoteForm() {
 
   const projectType = watch('project_type');
   const lineItems = watch('line_items');
-  const totalQuoted = lineItems.reduce((sum, item) => sum + (item.quoted_price || 0), 0);
+  const totalQuoted = lineItems.reduce((sum, item) => {
+    const price = item.quoted_price || 0;
+    const qty = item.quantity || 1;
+    return sum + (price * qty);
+  }, 0);
 
   return (
     <div className="card" ref={formRef}>
@@ -585,7 +589,7 @@ export default function QuoteForm() {
                 <div className="flex justify-between items-center">
                   <span className="font-semibold">Total Quoted:</span>
                   <span className="text-2xl font-bold text-primary-600">
-                    ${totalQuoted.toLocaleString()}
+                    ${totalQuoted.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </span>
                 </div>
               </div>

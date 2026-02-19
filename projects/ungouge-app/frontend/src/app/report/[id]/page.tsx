@@ -484,12 +484,12 @@ export default function ReportPage() {
           <div className="grid md:grid-cols-3 gap-6 mb-6">
             <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
               <p className="text-sm text-gray-500 mb-1 uppercase tracking-wide font-medium">Total Quoted</p>
-              <p className="text-3xl font-bold text-gray-900">${report.total_quoted.toLocaleString()}</p>
+              <p className="text-3xl font-bold text-gray-900">${report.total_quoted.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
             </div>
             <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-5 shadow-sm">
               <p className="text-sm text-emerald-700 mb-1 uppercase tracking-wide font-medium">Fair Price Range</p>
               <p className="text-3xl font-bold text-emerald-700">
-                ${report.total_fair_low.toLocaleString()} – ${report.total_fair_high.toLocaleString()}
+                ${report.total_fair_low.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} – ${report.total_fair_high.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </p>
             </div>
             <div className={`rounded-xl p-5 shadow-sm border ${savingsPotential > 0 ? 'bg-amber-50 border-amber-200' : 'bg-emerald-50 border-emerald-200'}`}>
@@ -497,7 +497,7 @@ export default function ReportPage() {
                 {savingsPotential > 0 ? 'Negotiation Savings' : 'Savings Potential'}
               </p>
               <p className={`text-3xl font-bold ${savingsPotential > 0 ? 'text-amber-700' : 'text-emerald-700'}`}>
-                {savingsPotential > 0 ? `$${savingsPotential.toLocaleString()}` : 'None found'}
+                {savingsPotential > 0 ? `$${savingsPotential.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : 'None found'}
               </p>
               {savingsPotential > 0 && itemSavings > 0 && (
                 <p className="text-xs text-amber-600 mt-1">Based on {report.line_items.filter(i => i.quoted_price > i.fair_price_high).length} item{report.line_items.filter(i => i.quoted_price > i.fair_price_high).length > 1 ? 's' : ''} above fair range</p>
