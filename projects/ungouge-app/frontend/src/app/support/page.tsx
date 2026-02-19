@@ -251,15 +251,13 @@ export default function SupportPage() {
         <div className="text-center bg-primary-50 rounded-2xl p-8 border border-primary-100">
           <h3 className="text-2xl font-bold text-gray-900 mb-3">Still have questions?</h3>
           <p className="text-gray-600 mb-6 max-w-xl mx-auto">
-            We&apos;re here to help. Ask Scout for an instant answer or reach out to our team directly.
+            Scout has answers to most questions — try asking before you go.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/analyze" className="btn-primary">
               Analyze a Quote
             </Link>
-            <a href="mailto:human@ungouge.ai" className="btn-secondary">
-              Email a Human
-            </a>
+            <SupportPageClient variant="secondary" />
           </div>
         </div>
       </div>
