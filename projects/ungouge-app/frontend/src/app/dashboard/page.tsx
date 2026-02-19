@@ -346,13 +346,13 @@ export default function DashboardPage() {
             <p className="text-gray-600 mb-4">
               Our team is here to help you interpret your quote analysis and negotiate with contractors effectively.
             </p>
-            <Link
-              href="/support"
+            <a
+              href="mailto:support@ungouge.ai"
               className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold"
             >
               Contact Support
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
