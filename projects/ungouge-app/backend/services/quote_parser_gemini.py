@@ -91,10 +91,10 @@ Extract the following information:
    - Unit (e.g., "square", "linear_foot", "item", "hour", "sqft")
 
 CRITICAL RULES:
-- Extract EVERY line item you can see, no matter how small
+- Extract EVERY individual work/material line item you can see
 - Pay close attention to quantities and units (squares, linear feet, etc.)
 - Convert all prices to numbers (remove $, commas)
-- If subtotals/taxes are shown separately, include them as line items
+- Do NOT include totals, subtotals, grand totals, tax lines, or summary lines as line items — only actual work/material items
 - Be precise with numbers - accuracy is critical
 - If something is unclear, make your best inference but note it in description
 - Look for fine print and detailed breakdowns
@@ -214,6 +214,18 @@ async def process_quote_file(file_bytes: bytes, filename: str) -> Dict:
     if not parsed_data.get("line_items"):
         raise ValueError("No line items found in quote. Please verify the file is a contractor quote.")
     
+    # Filter out total/subtotal/tax line items that the AI may have included
+    TOTAL_PATTERNS = re.compile(
+        r'^(total|subtotal|sub-total|sub total|grand total|balance due|amount due|'
+        r'invoice total|project total|estimate total|quote total|net total|'
+        r'sales tax|tax|vat|gst|hst)$',
+        re.IGNORECASE,
+    )
+    parsed_data["line_items"] = [
+        item for item in parsed_data["line_items"]
+        if not TOTAL_PATTERNS.match((item.get("item_name") or "").strip())
+    ]
+
     # Clean and validate line items
     for item in parsed_data["line_items"]:
         # Ensure required fields

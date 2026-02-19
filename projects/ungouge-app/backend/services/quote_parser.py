@@ -153,7 +153,8 @@ Important rules:
 - Convert all prices to numbers (remove $ and commas)
 - Be smart about inferring project type from line items
 - Group similar items together
-- Extract ALL line items you can find
+- Extract ALL individual work/material line items you can find
+- Do NOT include totals, subtotals, grand totals, tax lines, or summary lines as line items
 - If quantity is not specified, use 1
 - If unit is not specified, use "item"
 

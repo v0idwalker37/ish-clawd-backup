@@ -197,8 +197,8 @@ async def apply_promo_code(
         payment = Payment(
             id=str(uuid.uuid4()),
             quote_id=body.quote_id,
-            stripe_payment_intent_id=f"promo_{body.promo_code.upper()}",
-            stripe_session_id=f"promo_{body.promo_code.upper()}_{body.quote_id}",
+            stripe_payment_intent_id=f"promo_{body.promo_code.upper()}_{body.quote_id}",
+            stripe_session_id=f"promo_{body.promo_code.upper()}_{body.quote_id}_{uuid.uuid4().hex[:8]}",
             amount=0,
             currency="usd",
             status="paid",
