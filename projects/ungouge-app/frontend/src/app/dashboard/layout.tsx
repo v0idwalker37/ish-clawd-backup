@@ -59,13 +59,13 @@ export default function DashboardLayout({
 
       {/* Sidebar — offset by header height */}
       <aside
-        className={`fixed top-[73px] left-0 z-40 h-[calc(100vh-73px)] w-64 bg-white shadow-lg transform transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed top-[73px] left-0 z-40 h-[calc(100vh-73px)] w-64 bg-white shadow-lg transform transition-transform duration-300 xl:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex flex-col h-full">
           {/* Close Button (mobile only) */}
-          <div className="flex items-center justify-between p-4 border-b lg:hidden">
+          <div className="flex items-center justify-between p-4 border-b xl:hidden">
             <span className="font-semibold text-gray-700">Dashboard</span>
             <button
               onClick={() => setSidebarOpen(false)}
@@ -129,9 +129,9 @@ export default function DashboardLayout({
       </aside>
 
       {/* Main Content */}
-      <div className="lg:pl-64">
+      <div className="xl:pl-64">
         {/* Sidebar Toggle (Mobile) */}
-        <div className="lg:hidden bg-white border-b px-4 py-3 flex items-center sticky top-[73px] z-30">
+        <div className="xl:hidden bg-white border-b px-4 py-3 flex items-center sticky top-[73px] z-30">
           <button
             onClick={() => setSidebarOpen(true)}
             className="p-2 hover:bg-gray-100 rounded-lg active:scale-95 transition-all"
@@ -143,7 +143,7 @@ export default function DashboardLayout({
         </div>
 
         {/* Page Content */}
-        <main className="p-4 lg:p-8">{children}</main>
+        <main className="p-4 xl:p-8">{children}</main>
       </div>
     </div>
   );
