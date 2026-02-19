@@ -95,6 +95,8 @@ CRITICAL RULES:
 - Pay close attention to quantities and units (squares, linear feet, etc.)
 - Convert all prices to numbers (remove $, commas)
 - Do NOT include totals, subtotals, grand totals, tax lines, or summary lines as line items — only actual work/material items
+- IMPORTANT: Some quotes embed the price in the description text (e.g., "Interior painting - $3,800" or "Fire mantle installation ($2,500)"). If a line item has $0 or no price column but the description mentions a dollar amount, extract that dollar amount as the quoted_price.
+- Every line item should have a non-zero price unless the work is explicitly bundled/included at no charge. If you see $0, double-check the description for an embedded price.
 - Be precise with numbers - accuracy is critical
 - If something is unclear, make your best inference but note it in description
 - Look for fine print and detailed breakdowns
@@ -245,6 +247,31 @@ async def process_quote_file(file_bytes: bytes, filename: str) -> Dict:
             item["quoted_price"] = float(item["quoted_price"])
         except:
             item["quoted_price"] = 0.0
+        
+        # Safety net: if price is $0, check description for embedded dollar amounts
+        if item["quoted_price"] == 0 and item.get("description"):
+            price_match = re.search(r'\$\s*([\d,]+(?:\.\d{2})?)', item["description"])
+            if price_match:
+                try:
+                    extracted = float(price_match.group(1).replace(",", ""))
+                    if extracted > 0:
+                        item["quoted_price"] = extracted
+                except (ValueError, AttributeError):
+                    pass
+        
+        # Also check item_name for embedded prices (e.g., "Painting - $3,800")
+        if item["quoted_price"] == 0 and item.get("item_name"):
+            price_match = re.search(r'\$\s*([\d,]+(?:\.\d{2})?)', item["item_name"])
+            if price_match:
+                try:
+                    extracted = float(price_match.group(1).replace(",", ""))
+                    if extracted > 0:
+                        item["quoted_price"] = extracted
+                        # Clean the price out of the name
+                        item["item_name"] = re.sub(r'\s*[-–—]\s*\$[\d,]+(?:\.\d{2})?', '', item["item_name"]).strip()
+                        item["item_name"] = re.sub(r'\s*\(\$[\d,]+(?:\.\d{2})?\)', '', item["item_name"]).strip()
+                except (ValueError, AttributeError):
+                    pass
         
         try:
             item["quantity"] = int(item["quantity"]) if item["quantity"] else 1

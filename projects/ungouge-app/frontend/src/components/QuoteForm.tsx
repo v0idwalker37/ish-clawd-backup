@@ -524,6 +524,20 @@ export default function QuoteForm() {
               Add Another Line Item
             </button>
 
+            {/* Warn about $0 line items */}
+            {lineItems.some(item => item.quoted_price === 0) && (
+              <div className="bg-amber-50 border border-amber-300 rounded-lg p-4 flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-semibold text-amber-800 text-sm">Some items have $0 prices</h4>
+                  <p className="text-amber-700 text-sm mt-1">
+                    Please check: {lineItems.filter(i => i.quoted_price === 0).map(i => i.item_name || 'Unnamed').join(', ')}.
+                    If these have real costs, update the prices above for accurate analysis.
+                  </p>
+                </div>
+              </div>
+            )}
+
             {totalQuoted > 0 && (
               <div className="bg-gray-50 p-4 rounded-lg">
                 <div className="flex justify-between items-center">
@@ -534,6 +548,44 @@ export default function QuoteForm() {
                 </div>
               </div>
             )}
+
+            {/* Promo Code — shown before advancing to checkout */}
+            <div className={`rounded-lg p-4 border ${promoApplied ? 'bg-emerald-50 border-emerald-300' : 'bg-amber-50 border-amber-200'}`}>
+              <label className="block text-sm font-semibold mb-2" style={{ color: promoApplied ? '#065f46' : '#92400e' }}>
+                🎟️ Have a promo code?
+              </label>
+              <div className="flex items-center gap-3">
+                <input
+                  type="text"
+                  value={promoCode}
+                  onChange={(e) => { setPromoCode(e.target.value.toUpperCase()); setPromoApplied(false); }}
+                  placeholder="Enter promo code"
+                  disabled={promoApplied}
+                  className="input-field flex-1 text-base font-mono tracking-wider uppercase disabled:bg-gray-100"
+                />
+                {promoCode && !promoApplied && (
+                  <button
+                    type="button"
+                    onClick={() => setPromoApplied(true)}
+                    className="px-5 py-2.5 bg-amber-600 text-white text-sm font-bold rounded-lg hover:bg-amber-700 active:scale-95 transition-all shadow-sm whitespace-nowrap"
+                  >
+                    Apply
+                  </button>
+                )}
+                {promoApplied && (
+                  <button
+                    type="button"
+                    onClick={() => { setPromoCode(''); setPromoApplied(false); }}
+                    className="px-4 py-2.5 bg-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-300 transition-all whitespace-nowrap"
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+              {promoApplied && (
+                <p className="text-sm text-emerald-700 font-semibold mt-2">✅ Code &quot;{promoCode}&quot; applied — discount will be applied at checkout</p>
+              )}
+            </div>
 
             <div className="flex justify-between gap-4">
               <button
@@ -592,50 +644,26 @@ export default function QuoteForm() {
                 <div className="text-3xl font-bold text-primary-600">$19.99</div>
               </div>
               <ul className="text-sm space-y-2 text-gray-700">
-                <li>✓ Complete line-item analysis</li>
-                <li>✓ BLS labor rate verification</li>
-                <li>✓ Regional material cost comparison</li>
-                <li>✓ Instant PDF report</li>
+                <li>✓ AI-powered line-item analysis</li>
+                <li>✓ Real-time market price verification</li>
+                <li>✓ Regional labor &amp; material cost comparison</li>
+                <li>✓ Instant PDF report with recommendations</li>
               </ul>
             </div>
 
-            {/* Promo Code */}
-            <div className={`rounded-lg p-4 border ${promoApplied ? 'bg-emerald-50 border-emerald-300' : 'bg-amber-50 border-amber-200'}`}>
-              <label className="block text-sm font-semibold mb-2" style={{ color: promoApplied ? '#065f46' : '#92400e' }}>
-                🎟️ Have a promo code?
-              </label>
-              <div className="flex items-center gap-3">
-                <input
-                  type="text"
-                  value={promoCode}
-                  onChange={(e) => { setPromoCode(e.target.value.toUpperCase()); setPromoApplied(false); }}
-                  placeholder="Enter promo code"
-                  disabled={promoApplied}
-                  className="input-field flex-1 text-base font-mono tracking-wider uppercase disabled:bg-gray-100"
-                />
-                {promoCode && !promoApplied && (
-                  <button
-                    type="button"
-                    onClick={() => setPromoApplied(true)}
-                    className="px-5 py-2.5 bg-amber-600 text-white text-sm font-bold rounded-lg hover:bg-amber-700 active:scale-95 transition-all shadow-sm whitespace-nowrap"
-                  >
-                    Apply
-                  </button>
-                )}
-                {promoApplied && (
-                  <button
-                    type="button"
-                    onClick={() => { setPromoCode(''); setPromoApplied(false); }}
-                    className="px-4 py-2.5 bg-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-300 transition-all whitespace-nowrap"
-                  >
-                    Remove
-                  </button>
-                )}
+            {/* Promo code applied indicator (code entry is on Step 2) */}
+            {promoApplied && promoCode && (
+              <div className="bg-emerald-50 border border-emerald-300 rounded-lg p-4">
+                <p className="text-sm text-emerald-700 font-semibold">✅ Promo code &quot;{promoCode}&quot; applied — discount will be applied at checkout</p>
+                <button
+                  type="button"
+                  onClick={() => { setPromoCode(''); setPromoApplied(false); }}
+                  className="text-xs text-gray-500 hover:text-gray-700 mt-1 underline"
+                >
+                  Remove code
+                </button>
               </div>
-              {promoApplied && (
-                <p className="text-sm text-emerald-700 font-semibold mt-2">✅ Code &quot;{promoCode}&quot; applied — discount will be applied at checkout</p>
-              )}
-            </div>
+            )}
 
             {error && (
               <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-4 animate-shake">
