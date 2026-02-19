@@ -105,7 +105,7 @@ class Quote(Base):
     # Relationships
     user: Mapped[Optional["User"]] = relationship(back_populates="quotes")
     line_items: Mapped[List["QuoteLineItem"]] = relationship(back_populates="quote", cascade="all, delete-orphan")
-    analysis_report: Mapped[Optional["AnalysisReport"]] = relationship(back_populates="quote", uselist=False)
+    analysis_report: Mapped[Optional["AnalysisReport"]] = relationship(back_populates="quote", uselist=False, cascade="all, delete-orphan")
 
 class QuoteLineItem(Base):
     """Individual line items in a quote"""

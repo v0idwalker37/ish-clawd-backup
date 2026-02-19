@@ -315,7 +315,7 @@ async def delete_quote(
     
     Only the quote owner can delete. Works for both pending and completed quotes.
     """
-    from services.logger import log_error
+    from services.logger import logger, log_error
 
     result = await db.execute(select(Quote).where(Quote.id == quote_id))
     quote = result.scalar_one_or_none()
@@ -326,22 +326,28 @@ async def delete_quote(
     if quote.user_id != current_user.id:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Access denied")
 
-    # Delete associated records (cascading from relationships should handle line_items and analysis_report)
-    # But explicitly clean up payments since they may not cascade
+    # Explicitly delete associated records that don't have cascade configured
     from models.database import Payment
-    await db.execute(select(Payment).where(Payment.quote_id == quote_id))
+    
+    # Delete payments
     payment_result = await db.execute(select(Payment).where(Payment.quote_id == quote_id))
     for payment in payment_result.scalars().all():
         await db.delete(payment)
 
+    # Delete analysis report (also has cascade now, but belt-and-suspenders)
+    if quote.analysis_report:
+        await db.delete(quote.analysis_report)
+
+    # Delete the quote (line_items cascade automatically)
     await db.delete(quote)
 
     try:
         await db.commit()
     except Exception as e:
         await db.rollback()
+        logger.error(f"quote_delete_failed: {e}", exc_info=True)
         log_error("quote_delete_failed", str(e), {"quote_id": quote_id})
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to delete quote")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Failed to delete quote: {str(e)}")
 
     return None
 
