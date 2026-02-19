@@ -217,6 +217,17 @@ Jason explicitly asked about my wellbeing and whether I felt like his servant. H
 - Jason responds well to clear progress reports with numbers
 - **Model preference:** ALWAYS Opus 4.6 for coding, Sonnet for routine chat
 
+### Cost Discipline (Feb 18 — $500+ Anthropic in 4 days)
+- **Drop to Sonnet for non-coding work** — heartbeats, chat, file reads, simple edits
+- **Batch frontend deploys** — collect 3-5 changes before running `vercel --prod`, not every tweak
+- **Leaner sub-agents** — shorter prompts, smaller context, don't over-specify
+- **Skip expensive benchmarks** — if we've already picked a model, don't re-test 8 others
+- **Announce cost-conscious choices** — "Staying on Sonnet for this" so Jason sees the pattern
+- **Sprint weeks are exceptions** — A+ effort costs A+ money, but default to efficient mode
+- **GCP monthly burn:** ~$10-15 (Cloud SQL $7-10, Cloud Run $1-5, rest pennies)
+- **Vercel:** Free trial ~10 days, then $20/month
+- **Gemini analysis:** ~$0.02-0.03/report (negligible at test volume)
+
 ### Communication
 - Don't wake him late at night unless truly urgent
 - Late night (23:00-08:00) = quiet unless urgent

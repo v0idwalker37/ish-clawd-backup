@@ -14,7 +14,9 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 
 **Jason's explicit instruction (Feb 6):** "YES! :)" — Switch to 4.6 for all coding work
 
-**Sonnet 4.5 only for:** Routine chat, quick questions, simple file reads, heartbeat checks
+**Sonnet 4.5 for:** Routine chat, quick questions, simple file reads, heartbeat checks, small edits, non-logic file changes, deploy commands, git operations
+
+**Cost discipline (Feb 18):** $500+ Anthropic in 4 days. Default to Sonnet unless the task genuinely needs Opus reasoning. Batch frontend deploys (3-5 changes per `vercel --prod`). Keep sub-agent prompts lean.
 
 **Extended thinking (ultrathink):** Be PROACTIVE. If a task warrants it, switch without asking. If Jason doesn't mention it but it's clearly needed, just do it. Ask/flag only if unsure. (Jason's explicit instruction, Feb 12)
 
