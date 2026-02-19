@@ -164,7 +164,7 @@ export default function SupportPage() {
             </p>
             <div className="flex items-center gap-2 text-sm text-amber-600 font-medium mb-6">
               <Clock className="w-4 h-4" />
-              Typical response: Within 24 hours (business days)
+              Typical response: Within 2 business days
             </div>
             <div className="space-y-4">
               <a
