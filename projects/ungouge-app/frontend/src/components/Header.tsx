@@ -41,11 +41,7 @@ export default function Header() {
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
-  // Don't render header on dashboard pages (dashboard has its own nav)
-  // This MUST be after all hooks to avoid "rendered fewer hooks" error
-  if (isDashboard) {
-    return null;
-  }
+  // Dashboard pages now also show the main header for consistent navigation
 
   const handleLogout = async () => {
     await logout();

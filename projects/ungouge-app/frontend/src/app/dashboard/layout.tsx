@@ -57,27 +57,19 @@ export default function DashboardLayout({
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar — offset by header height */}
       <aside
-        className={`fixed top-0 left-0 z-50 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed top-[73px] left-0 z-40 h-[calc(100vh-73px)] w-64 bg-white shadow-lg transform transition-transform duration-300 lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex flex-col h-full">
-          {/* Logo & Close Button */}
-          <div className="flex items-center justify-between p-6 border-b">
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/images/logo-small.png"
-                alt="Ungouge.ai"
-                width={130}
-                height={41}
-                priority
-              />
-            </Link>
+          {/* Close Button (mobile only) */}
+          <div className="flex items-center justify-between p-4 border-b lg:hidden">
+            <span className="font-semibold text-gray-700">Dashboard</span>
             <button
               onClick={() => setSidebarOpen(false)}
-              className="lg:hidden p-2 hover:bg-gray-100 rounded-lg active:scale-95 transition-all"
+              className="p-2 hover:bg-gray-100 rounded-lg active:scale-95 transition-all"
               aria-label="Close sidebar"
             >
               <X className="w-5 h-5 text-gray-700" />
@@ -138,22 +130,16 @@ export default function DashboardLayout({
 
       {/* Main Content */}
       <div className="lg:pl-64">
-        {/* Top Bar (Mobile) */}
-        <div className="lg:hidden bg-white border-b px-4 py-3 flex items-center justify-between sticky top-0 z-30">
+        {/* Sidebar Toggle (Mobile) */}
+        <div className="lg:hidden bg-white border-b px-4 py-3 flex items-center sticky top-[73px] z-30">
           <button
             onClick={() => setSidebarOpen(true)}
             className="p-2 hover:bg-gray-100 rounded-lg active:scale-95 transition-all"
-            aria-label="Open menu"
+            aria-label="Open dashboard menu"
           >
-            <Menu className="w-6 h-6 text-gray-700" />
+            <Menu className="w-5 h-5 text-gray-700" />
           </button>
-          <Image
-            src="/images/logo-small.png"
-            alt="Ungouge.ai"
-            width={120}
-            height={38}
-          />
-          <div className="w-10" /> {/* Spacer for centering */}
+          <span className="ml-3 font-medium text-gray-700">Dashboard Menu</span>
         </div>
 
         {/* Page Content */}
