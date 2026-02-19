@@ -195,9 +195,9 @@ export default function HomePageContent() {
       {/* ============================================================ */}
       {/*  HOW IT WORKS                                                */}
       {/* ============================================================ */}
-      <section id="how-it-works" className="py-20 bg-white scroll-mt-20">
+      <section id="how-it-works" className="py-12 bg-white scroll-mt-20">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               How It Works
             </h2>
@@ -245,7 +245,7 @@ export default function HomePageContent() {
             </div>
           </div>
 
-          <div className="text-center mt-14">
+          <div className="text-center mt-10">
             <Link
               href="/analyze"
               className="btn-primary text-lg inline-flex items-center gap-2 px-8 py-4"
@@ -260,9 +260,9 @@ export default function HomePageContent() {
       {/* ============================================================ */}
       {/*  WHAT YOU GET (report features)                              */}
       {/* ============================================================ */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               What&apos;s in Your $19.99 Report
             </h2>
@@ -344,7 +344,7 @@ export default function HomePageContent() {
       {/* ============================================================ */}
       {/*  SIMPLE, HONEST PRICING                                      */}
       {/* ============================================================ */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -419,7 +419,7 @@ export default function HomePageContent() {
       {/* ============================================================ */}
       {/*  FAQ                                                         */}
       {/* ============================================================ */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -450,7 +450,7 @@ export default function HomePageContent() {
       {/* ============================================================ */}
       {/*  FINAL CTA                                                   */}
       {/* ============================================================ */}
-      <section className="py-20 bg-gradient-to-br from-primary-700 via-primary-800 to-primary-900 text-white">
+      <section className="py-12 bg-gradient-to-br from-primary-700 via-primary-800 to-primary-900 text-white">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
             Don&apos;t Sign Until You Know It&apos;s Fair
