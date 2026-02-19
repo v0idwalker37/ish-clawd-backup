@@ -180,9 +180,9 @@ def _build_styles():
         "CellExplanation",
         parent=styles["Normal"],
         fontName="Helvetica",
-        fontSize=7,
+        fontSize=8,
         textColor=colors.HexColor("#374151"),
-        leading=9,
+        leading=11,
     ))
     styles.add(ParagraphStyle(
         "FooterText",
@@ -446,16 +446,8 @@ def _build_line_items_table(report: Report, styles):
     for item in report.line_items:
         row_assessments.append(item.assessment)
 
-        # Truncate explanation to reduce PDF size (Telegram 5MB limit)
+        # Full explanation — this is what customers paid for
         explanation = item.explanation or ""
-        if len(explanation) > 250:
-            # Truncate at sentence boundary if possible
-            truncated = explanation[:250]
-            last_period = truncated.rfind('.')
-            if last_period > 150:  # At least 150 chars before truncating
-                explanation = truncated[:last_period + 1]
-            else:
-                explanation = truncated.rstrip() + "..."
 
         row = [
             Paragraph(f"<b>{item.item_name}</b>", styles["CellText"]),
@@ -469,8 +461,8 @@ def _build_line_items_table(report: Report, styles):
         ]
         data.append(row)
 
-    # Compact column widths to reduce page count
-    col_widths = [1.0 * inch, 0.7 * inch, 0.9 * inch, 0.9 * inch, 2.5 * inch]
+    # Column widths optimized for readability
+    col_widths = [1.1 * inch, 0.8 * inch, 1.0 * inch, 1.0 * inch, 2.8 * inch]
     table = Table(data, colWidths=col_widths, repeatRows=1)
 
     style_commands = [
@@ -478,14 +470,14 @@ def _build_line_items_table(report: Report, styles):
         ("BACKGROUND", (0, 0), (-1, 0), BRAND_TABLE_HEADER),
         ("TEXTCOLOR", (0, 0), (-1, 0), WHITE),
         ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
-        ("FONTSIZE", (0, 0), (-1, 0), 8),
+        ("FONTSIZE", (0, 0), (-1, 0), 9),
 
-        # All cells - reduced padding for compactness
+        # All cells
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("TOPPADDING", (0, 0), (-1, -1), 4),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
-        ("LEFTPADDING", (0, 0), (-1, -1), 4),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+        ("TOPPADDING", (0, 0), (-1, -1), 6),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+        ("LEFTPADDING", (0, 0), (-1, -1), 6),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
         ("INNERGRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#E5E7EB")),
         ("BOX", (0, 0), (-1, -1), 1, colors.HexColor("#D1D5DB")),
     ]

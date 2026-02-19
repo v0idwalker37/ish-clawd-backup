@@ -488,36 +488,25 @@ async def get_quote_full_report(
 @router.get("/quotes/{quote_id}/pdf")
 async def download_quote_pdf(
     quote_id: str,
-    lite: bool = True,  # Default to lite version (< 5MB for Telegram)
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
     """
-    Download a PDF report for a quote analysis.
-    
-    Query params:
-    - lite=true (default): Telegram-optimized version (< 5MB, compact)
-    - lite=false: Full version (detailed, larger file)
+    Download a branded PDF report for a quote analysis.
 
     SECURITY: Requires authentication, ownership check, and payment verification
     (enforced via get_quote_report).
     
     Returns a PDF file as an attachment.
     """
-    if lite:
-        from services.pdf_generator_lite import generate_lite_pdf
-    else:
-        from services.pdf_generator import generate_pdf
+    from services.pdf_generator import generate_pdf
 
     # Reuse the existing report retrieval (includes access control)
     report = await get_quote_report(quote_id, db, current_user)
 
     # Generate PDF
     try:
-        if lite:
-            pdf_bytes = generate_lite_pdf(report)
-        else:
-            pdf_bytes = generate_pdf(report)
+        pdf_bytes = generate_pdf(report)
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
