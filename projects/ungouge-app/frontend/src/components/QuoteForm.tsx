@@ -15,7 +15,7 @@ const lineItemSchema = z.object({
   description: z.string().optional(),
   quoted_price: z.number().min(0, 'Price must be positive'),
   quantity: z.number().min(1, 'Quantity must be at least 1').default(1),
-  unit: z.string().default('item'),
+  unit: z.string().min(1, 'Please select a unit type'),
 });
 
 const quoteFormSchema = z.object({
@@ -465,7 +465,7 @@ export default function QuoteForm() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Quoted Price *
+                      Price per Unit *
                     </label>
                     <div className="relative">
                       <span className="absolute left-3 top-2 text-gray-500">$</span>
@@ -487,11 +487,14 @@ export default function QuoteForm() {
                         </p>
                       </div>
                     )}
+                    <p className="text-xs text-gray-500 mt-1">
+                      Unit price (e.g., $50/hour, $1.50/sqft)
+                    </p>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Quantity
+                      Quantity *
                     </label>
                     <input
                       type="number"
@@ -501,22 +504,56 @@ export default function QuoteForm() {
                       placeholder="1"
                       className="input-field"
                     />
+                    <p className="text-xs text-gray-500 mt-1">
+                      Number of units
+                    </p>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Unit
+                      Unit *
                     </label>
                     <select
                       {...register(`line_items.${index}.unit`)}
-                      className="input-field"
+                      className={`input-field ${errors.line_items?.[index]?.unit ? 'border-red-500 ring-2 ring-red-200' : ''}`}
                     >
                       {unitOptions.map((u) => (
                         <option key={u.value} value={u.value}>{u.label}</option>
                       ))}
                     </select>
+                    {errors.line_items?.[index]?.unit && (
+                      <div className="flex items-center gap-2 mt-2 text-red-600">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                        <p className="text-sm">
+                          {errors.line_items[index]?.unit?.message}
+                        </p>
+                      </div>
+                    )}
+                    <p className="text-xs text-gray-500 mt-1">
+                      Required for accurate analysis
+                    </p>
                   </div>
                 </div>
+
+                {/* Line Total Calculator */}
+                {(() => {
+                  const price = watch(`line_items.${index}.quoted_price`) || 0;
+                  const qty = watch(`line_items.${index}.quantity`) || 1;
+                  const lineTotal = price * qty;
+                  return lineTotal > 0 ? (
+                    <div className="mt-3 pt-3 border-t border-gray-200">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium text-gray-600">Line Total:</span>
+                        <span className="text-lg font-bold text-primary-600">
+                          ${lineTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        ${price.toFixed(2)} × {qty} {watch(`line_items.${index}.unit`) || 'unit'}{qty !== 1 ? 's' : ''}
+                      </p>
+                    </div>
+                  ) : null;
+                })()}
               </div>
             ))}
 
