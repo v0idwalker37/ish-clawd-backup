@@ -574,7 +574,7 @@ export default function QuoteForm() {
                 {promoCode && !promoApplied && (
                   <button
                     type="button"
-                    onClick={() => setPromoApplied(true)}}
+                    onClick={() => setPromoApplied(true)}
                     className="px-5 py-2.5 bg-amber-600 text-white text-sm font-bold rounded-lg hover:bg-amber-700 active:scale-95 transition-all shadow-sm whitespace-nowrap"
                   >
                     Apply
@@ -606,7 +606,7 @@ export default function QuoteForm() {
               </button>
               <button
                 type="button"
-                onClick={() => setStep(3)}}
+                onClick={() => setStep(3)}
                 disabled={fields.length === 0}
                 className="btn-primary flex items-center disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg active:scale-95 transition-all"
               >
