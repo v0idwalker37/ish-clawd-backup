@@ -403,29 +403,72 @@ ElevenLabs has a full "Conversational AI" platform — not just TTS but full age
 - Can use custom voice clones (including Jason's existing Ungouge clone)
 - Available on Creator plan ($22/mo that Jason already pays)
 
-**Pricing (Conversational AI specifically):**
-- Minutes: separate meter from TTS quota (need to check exact $/min rate)
-- Text messages: additional meter
+**Pricing (Conversational AI specifically) — UPDATED FEB 20, 2026:**
+- **Creator/Pro plans:** $0.10/minute (~50% price cut announced Feb 11, 2026)
+- **Business (annual):** $0.08/minute
+- **Enterprise:** Custom (lower rates available)
+- **NOTE:** LLM costs currently absorbed by ElevenLabs (will eventually pass through)
+
+**10-minute call cost:**
+- Creator: $1.00 (no LLM markup... yet)
+- Business: $0.80
+- **~67% cheaper than OpenAI Realtime ($3.00/10-min)**
 
 **Ungouge widget angle:**
 - Use a custom voice clone for "UnGouge AI" (not Jason's voice — separate branded voice)
 - Integrate with report data via function calling
-- Already paying ElevenLabs Creator — check if Conversational AI is included
+- Already paying ElevenLabs Creator $22/mo — Conversational AI is INCLUDED
 
-### Revised Cost Comparison (Feb 19 Update)
+### Revised Cost Comparison (Feb 20, 2026 Update — ElevenLabs Price Cut)
 
-| Solution | Latency | Cost (10-min) | Notes |
-|----------|---------|---------------|-------|
-| **OpenAI Realtime (web)** | ~300ms | ~$3.00 | Best quality, WebSocket |
-| **ElevenLabs Conversational AI** | <1s | ~$1-2 (est) | May be included in existing Creator plan |
-| **Twilio + Pipeline** | 2-5s | ~$2.67 | Worse UX |
-| **VAPI.ai** | ~1s | ~$3-4 | Managed, faster dev |
+| Solution | Latency | Cost (10-min) | Quality | Notes |
+|----------|---------|---------------|---------|-------|
+| **ElevenLabs Conversational AI** ⭐ | <1s | **$1.00** | Excellent | 67% cheaper, Creator plan included |
+| **Twilio + Pipeline** | 2-5s | $2.67 | Fair | Budget option, worse UX |
+| **OpenAI Realtime (web)** | ~300ms | $3.00 | Best | Fastest latency, 3x more expensive |
+| **VAPI.ai** | ~1s | $3-4 | Good | Managed, fastest dev time |
 
-### Action Items (Feb 19)
-1. Check ElevenLabs Conversational AI pricing per minute (log into account)
-2. If affordable, test with Creator plan before spending on OpenAI Realtime
-3. Post-launch priority — don't build voice before core product ships
+### New Recommendation (Feb 20, 2026)
+
+**For Ungouge.ai voice widget:**
+- **Switch to ElevenLabs Conversational AI** (was planning OpenAI Realtime)
+- **Why:**
+  - $1.00/10-min vs $3.00/10-min (67% cheaper)
+  - Already paying $22/mo Creator plan (included)
+  - Sub-second latency (acceptable for customer support)
+  - Can use custom voice clone (branded "UnGouge AI" voice)
+  - LLM costs absorbed by ElevenLabs (for now) — huge savings
+- **When LLM pass-through pricing comes:** Re-evaluate vs OpenAI Realtime
+- **ROI:** $19.99 revenue - $0.50 analysis - $1.00 voice = $18.49 net (vs $15.49 with OpenAI)
+
+**Build priority:** Post-launch (2-3 weeks after revenue-positive)
+
+### Action Items (Updated Feb 20)
+1. ✅ Confirmed ElevenLabs pricing: $0.10/min Creator plan (Feb 11, 2026 price cut)
+2. ❌ DEFER: Build voice widget until post-launch (core product first)
+3. When building: Start with ElevenLabs, monitor LLM pass-through pricing announcement
 
 ---
 
-*Research date: 2026-02-14 | Updated: 2026-02-19 | Researcher: Ish | Focus: Voice communication for Ungouge + personal Ish interface*
+*Research date: 2026-02-14 | Updated: 2026-02-20 | Researcher: Ish | Focus: Voice communication for Ungouge + personal Ish interface*
+
+---
+
+## Feb 20, 2026 Update — ElevenLabs Price Cut Changes Everything
+
+ElevenLabs announced a ~50% price cut for Conversational AI on Feb 11, 2026. New pricing:
+- **$0.10/minute** (Creator/Pro) — down from $0.20/min
+- **$0.08/minute** (Business annual)
+- **LLM costs absorbed by ElevenLabs** (will pass through eventually, but NOT YET)
+
+**Impact on Ungouge.ai:**
+- Original plan: OpenAI Realtime ($3/10-min call)
+- New plan: ElevenLabs Conversational AI ($1/10-min call)
+- **Savings: 67% cheaper** + already paying $22/mo Creator plan
+
+**Impact on Personal Ish:**
+- Telegram voice memos remain best option for async ($0.30/min)
+- If Jason wants real-time: ElevenLabs now competitive with OpenAI Realtime ($1 vs $3)
+- Phone-based (Twilio): Still ~$2.67/10-min (not worth it vs ElevenLabs web)
+
+**Key takeaway:** ElevenLabs is now the clear winner for voice widgets. Monitor for LLM pass-through pricing announcement (could change math).
