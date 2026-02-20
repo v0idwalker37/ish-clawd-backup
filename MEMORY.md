@@ -488,16 +488,29 @@ Full reference: `~/clawd/SKILLS_PLAYBOOK.md`
 - HEARTBEAT.md set to always reply HEARTBEAT_OK
 - Will re-enable when Jason says so
 
+## Feb 19 Evening — 5 New Blog Posts
+Wrote 5 new SEO-targeted posts while documenting the day's work:
+
+1. **contractor-quote-vs-estimate.md** (1,189 words) — Legal differences, comparison table, example quote structure
+2. **do-i-need-3-contractor-quotes.md** (1,013 words) — When 3 quotes make sense vs 2 or 1
+3. **fair-contractor-markup-2026.md** (795 words) — Standard markup ranges, regional variations, how to calculate
+4. **roof-replacement-cost-guide-2026.md** (1,468 words) — Complete cost breakdown, regional pricing, red flags
+5. **when-to-walk-away-contractor-quote.md** (985 words) — 5 deal-breaker red flags, walk-away checklist
+
+**Total blog count:** 39 posts (was 34)
+**Quality:** 800-1,500 words each, matches existing medium-length posts, same tone and depth
+
 ## Tomorrow's Plan (Feb 20)
 1. **Testing matrix:** Handwritten quotes, different regions, different project types
-2. **Blog content refresh:** Update 34 existing posts with consistent branding matching PDF/website
-3. **Week 2 SEO:** Write new cost guide content targeting high-intent keywords
+2. **Blog content refresh:** Update 34 original posts with consistent branding matching PDF/website
+3. **Week 2 SEO:** More cost guides (HVAC, electrical, plumbing, siding, basement finishing)
 4. **Community distribution:** Reddit, Facebook groups (when ready)
 
 ## Current Production State
 - **Backend:** Cloud Run rev 00067 (v9-branded-pdf), 100% traffic
 - **Frontend:** Vercel production, all features live
+- **Blog count:** 39 posts (5 new today)
 - **Features complete:** Total-Only Quotes, branded PDFs, SEO foundation, Vercel Analytics, Google Search Console
-- **Sitemap:** Auto-generated, 40 URLs, submitted to Google
+- **Sitemap:** Auto-generated, 45 URLs (39 blog posts + 6 core pages), submitted to Google
 - **Next milestone:** Traffic generation (content + community engagement)
 
