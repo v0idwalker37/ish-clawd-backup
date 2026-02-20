@@ -1,6 +1,20 @@
 from pydantic import BaseModel, Field
 from typing import List, Optional, Literal
 
+
+class TypicalCostItem(BaseModel):
+    """Educational cost range for a work item — used for total-only quotes.
+    
+    These are NOT what the contractor is charging; they're typical market
+    ranges for each type of work in the project's area, provided as
+    educational guidance for homeowners.
+    """
+    item_name: str = Field(..., description="Name of the work item")
+    typical_low: float = Field(..., description="Low end of typical cost range in the area")
+    typical_high: float = Field(..., description="High end of typical cost range in the area")
+    description: str = Field(..., description="What this includes and factors that affect cost")
+
+
 class LineItemAnalysis(BaseModel):
     """Analysis result for a single line item"""
     item_name: str = Field(..., description="Name of the line item")
@@ -39,6 +53,12 @@ class Report(BaseModel):
     overall_assessment: str = Field(..., description="Overall assessment summary")
     line_items: List[LineItemAnalysis] = Field(..., description="Analysis of each line item")
     created_at: str = Field(..., description="Report creation timestamp")
+    
+    # Total-only quote estimation fields
+    is_estimated: bool = Field(default=False, description="Whether this is a total-only quote (no itemized costs)")
+    estimation_confidence: Optional[str] = Field(None, description="Confidence level: high, medium, or low")
+    estimation_methodology: Optional[str] = Field(None, description="How the estimation was performed")
+    typical_costs: Optional[List[TypicalCostItem]] = Field(None, description="Educational cost ranges for total-only quotes")
     
     class Config:
         json_schema_extra = {

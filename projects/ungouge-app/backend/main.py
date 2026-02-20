@@ -74,6 +74,31 @@ async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
+    # Run inline migrations for new columns (safe to re-run — catches duplicates)
+    async with engine.begin() as conn:
+        from sqlalchemy import text
+
+        migrations = [
+            # Migration 0002+0003: Total-only quote estimation fields
+            # PostgreSQL requires boolean defaults as 'false', not 0
+            "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS is_estimated BOOLEAN NOT NULL DEFAULT false",
+            "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS estimation_confidence VARCHAR(20)",
+            "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS estimation_methodology TEXT",
+            "ALTER TABLE analysis_reports ADD COLUMN IF NOT EXISTS is_estimated BOOLEAN NOT NULL DEFAULT false",
+            "ALTER TABLE analysis_reports ADD COLUMN IF NOT EXISTS estimation_confidence VARCHAR(20)",
+            "ALTER TABLE analysis_reports ADD COLUMN IF NOT EXISTS estimation_methodology TEXT",
+        ]
+        for sql in migrations:
+            try:
+                await conn.execute(text(sql))
+                print(f"Migration OK: {sql[:60]}...")
+            except Exception as e:
+                if "already exists" in str(e).lower() or "duplicate column" in str(e).lower():
+                    print(f"Migration skip (already exists): {sql[:60]}...")
+                else:
+                    print(f"Migration warning: {e}")
+                    # Don't crash on migration errors — columns may already exist
+
     # Initialize structured security logging
     setup_security_logging()
 

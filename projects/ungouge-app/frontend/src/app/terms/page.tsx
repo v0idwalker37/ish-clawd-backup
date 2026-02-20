@@ -33,7 +33,7 @@ export default function TermsPage() {
             Plain English Summary
           </h2>
           <div className="space-y-2 text-gray-700">
-            <p><strong>• You pay $19.99 per report.</strong> No subscriptions, no hidden fees.</p>
+            <p><strong>• You pay $9.99 per report.</strong> No subscriptions, no hidden fees.</p>
             <p><strong>• We analyze your quote honestly</strong> using real BLS data and material costs.</p>
             <p><strong>• Our reports are for your information,</strong> not legal or professional advice.</p>
             <p><strong>• We never guarantee specific outcomes</strong> in contractor negotiations.</p>
@@ -94,7 +94,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-3">4. Pricing & Payment</h2>
             <div className="space-y-3 text-gray-700">
-              <p><strong>Service Fee:</strong> Our quote analysis service costs $19.99 per report. This is a one-time fee per quote analyzed. There are no subscriptions, recurring charges, or hidden fees.</p>
+              <p><strong>Service Fee:</strong> Our quote analysis service costs $9.99 per report. This is a one-time fee per quote analyzed. There are no subscriptions, recurring charges, or hidden fees.</p>
               
               <p><strong>Payment Processing:</strong> Payments are processed securely through Stripe. By providing a payment method, you authorize us to charge you for the Service. All fees are in US dollars.</p>
               
@@ -172,7 +172,7 @@ export default function TermsPage() {
                 <li>Any damages arising from your use of or inability to use the Service</li>
               </ul>
               
-              <p className="mt-4"><strong>Maximum Liability:</strong> In no event shall our total liability to you for all damages exceed the amount you paid us for the specific report in question (i.e., $19.99).</p>
+              <p className="mt-4"><strong>Maximum Liability:</strong> In no event shall our total liability to you for all damages exceed the amount you paid us for the specific report in question (i.e., $9.99).</p>
               
               <p>Some jurisdictions do not allow the exclusion or limitation of liability for consequential or incidental damages, so the above limitations may not apply to you.</p>
             </div>

@@ -21,8 +21,8 @@ export const SITE_CONFIG = {
   ogImage: 'https://ungouge.ai/opengraph-image', // Next.js dynamic OG image
   twitterHandle: '@ungougeai',
   brandColors: {
-    primary: '#2563eb', // Blue
-    secondary: '#10b981', // Green
+    primary: '#0284c7', // Sky-600 (matches tailwind primary-600)
+    secondary: '#10b981', // Emerald-500
   },
 } as const;
 
@@ -62,7 +62,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   pricing: {
     title: 'Pricing – Ungouge.ai',
     description:
-      '$19.99 per quote analysis. No subscriptions, no hidden fees, no lead gen. One price, full report, 100% money-back guarantee.',
+      '$9.99 per quote analysis. No subscriptions, no hidden fees, no lead gen. One price, full report, 100% money-back guarantee.',
     canonical: `${SITE_CONFIG.url}/pricing`,
   },
 
@@ -194,9 +194,9 @@ export function generateSoftwareApplicationSchema() {
     operatingSystem: 'Web',
     offers: {
       '@type': 'Offer',
-      price: '19.99',
+      price: '9.99',
       priceCurrency: 'USD',
-      description: '$19.99 per quote analysis, 100% money-back guarantee',
+      description: '$9.99 per quote analysis, 100% money-back guarantee',
     },
     description:
       'Analyze contractor quotes against Bureau of Labor Statistics data. Find out if you are being overcharged before you sign.',

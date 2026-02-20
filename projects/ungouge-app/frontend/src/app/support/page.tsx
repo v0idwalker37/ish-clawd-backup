@@ -53,7 +53,7 @@ const faqCategories = [
     faqs: [
       {
         q: 'How much does an analysis cost?',
-        a: 'Each quote analysis is a one-time payment of $19.99. No subscriptions, no hidden fees. You get the full report with line-by-line analysis, fair price ranges, and a downloadable PDF.',
+        a: 'Each quote analysis is a one-time payment of $9.99. No subscriptions, no hidden fees. You get the full report with line-by-line analysis, fair price ranges, and a downloadable PDF.',
       },
       {
         q: 'What payment methods do you accept?',
@@ -97,7 +97,7 @@ const faqCategories = [
     faqs: [
       {
         q: 'Do you sell my data to contractors?',
-        a: 'Absolutely not. We will never sell your data, share your quote details with contractors, or send you contractor referrals. Our only revenue is the $19.99 analysis fee. Your trust is our business model.',
+        a: 'Absolutely not. We will never sell your data, share your quote details with contractors, or send you contractor referrals. Our only revenue is the $9.99 analysis fee. Your trust is our business model.',
       },
       {
         q: 'Is my contractor quote data secure?',

@@ -4,7 +4,7 @@ Payment Service (Stripe Integration)
 Handles payment processing for quote analysis reports using Stripe Checkout.
 
 ## Architecture
-  - create_checkout_session() — Stripe Checkout Session for $19.99 one-time payment
+  - create_checkout_session() — Stripe Checkout Session for $9.99 one-time payment (Early Adopter Pricing)
   - create_payment_intent() — lower-level PaymentIntent (kept for bundle/future use)
   - verify_payment() — retrieves intent and checks status
   - handle_webhook_event() — processes verified Stripe webhook events
@@ -33,7 +33,7 @@ from services.logger import logger, log_error
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY", "")
 
 # Constants
-REPORT_PRICE_CENTS = 1999  # $19.99
+REPORT_PRICE_CENTS = 999  # $9.99 (Early Adopter Pricing, normally $19.99)
 REPORT_PRODUCT_NAME = "UnGouge Quote Analysis Report"
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
 
@@ -43,7 +43,9 @@ async def create_checkout_session(
     user_email: Optional[str] = None,
 ) -> dict:
     """
-    Create a Stripe Checkout Session for a quote analysis report ($19.99).
+    Create a Stripe Checkout Session for a quote analysis report ($9.99).
+    
+    Early Adopter Pricing: $9.99 (normally $19.99).
 
     Uses Stripe-hosted checkout page — no need to collect card details ourselves.
 

@@ -1,5 +1,0 @@
-# robots.txt for Ungouge.ai
-User-agent: *
-Allow: /
-
-Sitemap: https://ungouge.ai/sitemap.xml

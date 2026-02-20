@@ -73,6 +73,11 @@ export default function QuoteForm() {
   const [error, setError] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
+  const [estimationData, setEstimationData] = useState<{
+    is_estimated: boolean;
+    estimation_confidence?: string;
+    estimation_methodology?: string;
+  } | null>(null);
   const router = useRouter();
   const { user, loading: authLoading } = useAuth();
 
@@ -114,7 +119,21 @@ export default function QuoteForm() {
       setValue('contractor_name', data.contractor_name);
     }
     if (data.line_items && data.line_items.length > 0) {
-      setValue('line_items', data.line_items);
+      setValue('line_items', data.line_items.map(item => ({
+        ...item,
+        description: item.description || '',
+      })));
+    }
+    
+    // Store estimation data if present
+    if (data.is_estimated) {
+      setEstimationData({
+        is_estimated: true,
+        estimation_confidence: data.estimation_confidence,
+        estimation_methodology: data.estimation_methodology,
+      });
+    } else {
+      setEstimationData(null);
     }
     
     // Move to next step
@@ -154,7 +173,13 @@ export default function QuoteForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          // Include estimation metadata if present
+          is_estimated: estimationData?.is_estimated || false,
+          estimation_confidence: estimationData?.estimation_confidence,
+          estimation_methodology: estimationData?.estimation_methodology,
+        }),
       });
 
       if (!quoteRes.ok) {
@@ -377,6 +402,49 @@ export default function QuoteForm() {
           <div className="space-y-6">
             <h2 className="text-2xl font-bold mb-6">Project Information</h2>
 
+            {/* Total-Only Quote — honest expectations banner */}
+            {estimationData?.is_estimated && (
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 space-y-4">
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl flex-shrink-0">📋</span>
+                  <div>
+                    <h4 className="font-bold text-blue-900 text-base">
+                      Total-Only Quote Detected
+                    </h4>
+                    <p className="text-blue-800 text-sm mt-1">
+                      Your quote includes a total price but no per-item cost breakdown. 
+                      Here&apos;s what that means for your report:
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-2.5 pl-1">
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-emerald-500 font-bold text-sm mt-px">✅</span>
+                    <p className="text-sm text-gray-800">
+                      <strong>What you&apos;ll get:</strong> Total price fairness analysis against 
+                      current market rates, plus typical cost ranges for each work item in your area
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold text-sm mt-px">⚠️</span>
+                    <p className="text-sm text-gray-800">
+                      <strong>What we can&apos;t do:</strong> Rate individual line items as 
+                      fair or overpriced — without your contractor&apos;s per-item pricing, there&apos;s 
+                      no way to know what they&apos;re charging for each piece
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-blue-500 font-bold text-sm mt-px">💡</span>
+                    <p className="text-sm text-gray-800">
+                      <strong>Want the full analysis?</strong> Ask your contractor for an 
+                      itemized breakdown and re-submit for detailed fair-price ratings on every line item
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Project Type *
@@ -453,175 +521,213 @@ export default function QuoteForm() {
         {/* Step 2: Line Items */}
         {step === 2 && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold mb-6">Quote Line Items</h2>
-            <p className="text-gray-600 mb-4">
-              Break down your contractor's quote into individual line items for detailed analysis.
-            </p>
+            {estimationData?.is_estimated ? (
+              /* ── Total-Only Quote: Simplified View (no fake per-item prices) ── */
+              <>
+                <h2 className="text-2xl font-bold mb-2">Work Items From Your Quote</h2>
+                <p className="text-gray-600 mb-4">
+                  Your contractor provided a total price without per-item costs.
+                  We identified {fields.length} work item{fields.length !== 1 ? 's' : ''} from your quote.
+                  We&apos;ll analyze the <strong>total price</strong> against market rates and provide
+                  typical cost ranges for each item in your area.
+                </p>
 
-            {fields.map((field, index) => (
-              <div key={field.id} className="p-4 border border-gray-200 rounded-lg">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-semibold text-gray-700">Item {index + 1}</h3>
-                  {fields.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => remove(index)}
-                      className="p-2 rounded-lg text-red-500 hover:text-red-700 hover:bg-red-50 active:scale-95 transition-all"
-                      aria-label="Remove line item"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  )}
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Item Name *
-                    </label>
-                    <input
-                      type="text"
-                      {...register(`line_items.${index}.item_name`)}
-                      placeholder="e.g., Cabinet Installation"
-                      className={`input-field ${errors.line_items?.[index]?.item_name ? 'border-red-500 ring-2 ring-red-200' : ''}`}
-                    />
-                    {errors.line_items?.[index]?.item_name && (
-                      <div className="flex items-center gap-2 mt-2 text-red-600">
-                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                        <p className="text-sm">
-                          {errors.line_items[index]?.item_name?.message}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Description <span className="text-gray-400 font-normal">(Optional)</span>
-                    </label>
-                    <input
-                      type="text"
-                      {...register(`line_items.${index}.description`)}
-                      placeholder="Optional - additional details about this item..."
-                      className="input-field"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Price per Unit *
-                    </label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-2 text-gray-500">$</span>
-                      <input
-                        type="number"
-                        step="0.01"
-                        {...register(`line_items.${index}.quoted_price`, {
-                          valueAsNumber: true,
-                        })}
-                        placeholder="0.00"
-                        className={`input-field pl-7 ${errors.line_items?.[index]?.quoted_price ? 'border-red-500 ring-2 ring-red-200' : ''}`}
-                      />
-                    </div>
-                    {errors.line_items?.[index]?.quoted_price && (
-                      <div className="flex items-center gap-2 mt-2 text-red-600">
-                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                        <p className="text-sm">
-                          {errors.line_items[index]?.quoted_price?.message}
-                        </p>
-                      </div>
-                    )}
-                    <p className="text-xs text-gray-500 mt-1">
-                      Unit price (e.g., $50/hour, $1.50/sqft)
-                    </p>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Quantity *
-                    </label>
-                    <input
-                      type="number"
-                      {...register(`line_items.${index}.quantity`, {
-                        valueAsNumber: true,
-                      })}
-                      placeholder="1"
-                      className="input-field"
-                    />
-                    <p className="text-xs text-gray-500 mt-1">
-                      Number of units
-                    </p>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Unit *
-                    </label>
-                    <select
-                      {...register(`line_items.${index}.unit`)}
-                      className={`input-field ${errors.line_items?.[index]?.unit ? 'border-red-500 ring-2 ring-red-200' : ''}`}
-                    >
-                      {unitOptions.map((u) => (
-                        <option key={u.value} value={u.value}>{u.label}</option>
-                      ))}
-                    </select>
-                    {errors.line_items?.[index]?.unit && (
-                      <div className="flex items-center gap-2 mt-2 text-red-600">
-                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                        <p className="text-sm">
-                          {errors.line_items[index]?.unit?.message}
-                        </p>
-                      </div>
-                    )}
-                    <p className="text-xs text-gray-500 mt-1">
-                      Required for accurate analysis
-                    </p>
-                  </div>
-                </div>
-
-                {/* Line Total Calculator */}
-                {(() => {
-                  const price = watch(`line_items.${index}.quoted_price`) || 0;
-                  const qty = watch(`line_items.${index}.quantity`) || 1;
-                  const lineTotal = price * qty;
-                  return lineTotal > 0 ? (
-                    <div className="mt-3 pt-3 border-t border-gray-200">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-gray-600">Line Total:</span>
-                        <span className="text-lg font-bold text-primary-600">
-                          ${lineTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                <div className="space-y-3">
+                  {fields.map((field, index) => (
+                    <div key={field.id} className="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                      <div className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-7 h-7 bg-primary-100 text-primary-700 rounded-full flex items-center justify-center text-sm font-bold mt-0.5">
+                          {index + 1}
                         </span>
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-gray-900">
+                            {watch(`line_items.${index}.item_name`) || `Item ${index + 1}`}
+                          </h3>
+                          {watch(`line_items.${index}.description`) && (
+                            <p className="text-sm text-gray-600 mt-1">
+                              {watch(`line_items.${index}.description`)}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">
-                        ${price.toFixed(2)} × {qty} {watch(`line_items.${index}.unit`) || 'unit'}{qty !== 1 ? 's' : ''}
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              /* ── Itemized Quote: Full Editable View ── */
+              <>
+                <h2 className="text-2xl font-bold mb-6">Quote Line Items</h2>
+                <p className="text-gray-600 mb-4">
+                  Break down your contractor's quote into individual line items for detailed analysis.
+                </p>
+
+                {fields.map((field, index) => (
+                  <div key={field.id} className="p-4 border border-gray-200 rounded-lg">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="font-semibold text-gray-700">Item {index + 1}</h3>
+                      {fields.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => remove(index)}
+                          className="p-2 rounded-lg text-red-500 hover:text-red-700 hover:bg-red-50 active:scale-95 transition-all"
+                          aria-label="Remove line item"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Item Name *
+                        </label>
+                        <input
+                          type="text"
+                          {...register(`line_items.${index}.item_name`)}
+                          placeholder="e.g., Cabinet Installation"
+                          className={`input-field ${errors.line_items?.[index]?.item_name ? 'border-red-500 ring-2 ring-red-200' : ''}`}
+                        />
+                        {errors.line_items?.[index]?.item_name && (
+                          <div className="flex items-center gap-2 mt-2 text-red-600">
+                            <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                            <p className="text-sm">
+                              {errors.line_items[index]?.item_name?.message}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Description <span className="text-gray-400 font-normal">(Optional)</span>
+                        </label>
+                        <input
+                          type="text"
+                          {...register(`line_items.${index}.description`)}
+                          placeholder="Optional - additional details about this item..."
+                          className="input-field"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Price per Unit *
+                        </label>
+                        <div className="relative">
+                          <span className="absolute left-3 top-2 text-gray-500">$</span>
+                          <input
+                            type="number"
+                            step="0.01"
+                            {...register(`line_items.${index}.quoted_price`, {
+                              valueAsNumber: true,
+                            })}
+                            placeholder="0.00"
+                            className={`input-field pl-7 ${errors.line_items?.[index]?.quoted_price ? 'border-red-500 ring-2 ring-red-200' : ''}`}
+                          />
+                        </div>
+                        {errors.line_items?.[index]?.quoted_price && (
+                          <div className="flex items-center gap-2 mt-2 text-red-600">
+                            <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                            <p className="text-sm">
+                              {errors.line_items[index]?.quoted_price?.message}
+                            </p>
+                          </div>
+                        )}
+                        <p className="text-xs text-gray-500 mt-1">
+                          Unit price (e.g., $50/hour, $1.50/sqft)
+                        </p>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Quantity *
+                        </label>
+                        <input
+                          type="number"
+                          {...register(`line_items.${index}.quantity`, {
+                            valueAsNumber: true,
+                          })}
+                          placeholder="1"
+                          className="input-field"
+                        />
+                        <p className="text-xs text-gray-500 mt-1">
+                          Number of units
+                        </p>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Unit *
+                        </label>
+                        <select
+                          {...register(`line_items.${index}.unit`)}
+                          className={`input-field ${errors.line_items?.[index]?.unit ? 'border-red-500 ring-2 ring-red-200' : ''}`}
+                        >
+                          {unitOptions.map((u) => (
+                            <option key={u.value} value={u.value}>{u.label}</option>
+                          ))}
+                        </select>
+                        {errors.line_items?.[index]?.unit && (
+                          <div className="flex items-center gap-2 mt-2 text-red-600">
+                            <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                            <p className="text-sm">
+                              {errors.line_items[index]?.unit?.message}
+                            </p>
+                          </div>
+                        )}
+                        <p className="text-xs text-gray-500 mt-1">
+                          Required for accurate analysis
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Line Total Calculator */}
+                    {(() => {
+                      const price = watch(`line_items.${index}.quoted_price`) || 0;
+                      const qty = watch(`line_items.${index}.quantity`) || 1;
+                      const lineTotal = price * qty;
+                      return lineTotal > 0 ? (
+                        <div className="mt-3 pt-3 border-t border-gray-200">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm font-medium text-gray-600">Line Total:</span>
+                            <span className="text-lg font-bold text-primary-600">
+                              ${lineTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1">
+                            ${price.toFixed(2)} × {qty} {watch(`line_items.${index}.unit`) || 'unit'}{qty !== 1 ? 's' : ''}
+                          </p>
+                        </div>
+                      ) : null;
+                    })()}
+                  </div>
+                ))}
+
+                <button
+                  type="button"
+                  onClick={() => append({ item_name: '', description: '', quoted_price: 0, quantity: 1, unit: 'item' })}
+                  className="btn-secondary flex items-center w-full justify-center hover:shadow-lg active:scale-[0.98] transition-all"
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Another Line Item
+                </button>
+
+                {/* Warn about $0 line items */}
+                {lineItems.some(item => item.quoted_price === 0) && (
+                  <div className="bg-amber-50 border border-amber-300 rounded-lg p-4 flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-semibold text-amber-800 text-sm">Some items have $0 prices</h4>
+                      <p className="text-amber-700 text-sm mt-1">
+                        Please check: {lineItems.filter(i => i.quoted_price === 0).map(i => i.item_name || 'Unnamed').join(', ')}.
+                        If these have real costs, update the prices above for accurate analysis.
                       </p>
                     </div>
-                  ) : null;
-                })()}
-              </div>
-            ))}
-
-            <button
-              type="button"
-              onClick={() => append({ item_name: '', description: '', quoted_price: 0, quantity: 1, unit: 'item' })}
-              className="btn-secondary flex items-center w-full justify-center hover:shadow-lg active:scale-[0.98] transition-all"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Add Another Line Item
-            </button>
-
-            {/* Warn about $0 line items */}
-            {lineItems.some(item => item.quoted_price === 0) && (
-              <div className="bg-amber-50 border border-amber-300 rounded-lg p-4 flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-semibold text-amber-800 text-sm">Some items have $0 prices</h4>
-                  <p className="text-amber-700 text-sm mt-1">
-                    Please check: {lineItems.filter(i => i.quoted_price === 0).map(i => i.item_name || 'Unnamed').join(', ')}.
-                    If these have real costs, update the prices above for accurate analysis.
-                  </p>
-                </div>
-              </div>
+                  </div>
+                )}
+              </>
             )}
 
             {totalQuoted > 0 && (
@@ -678,9 +784,12 @@ export default function QuoteForm() {
               <div className="flex justify-between items-center mb-3">
                 <div>
                   <h3 className="text-lg font-bold">AI Analysis Report</h3>
-                  <p className="text-sm text-gray-600">One-time payment</p>
+                  <p className="text-sm text-gray-600">One-time payment · <span className="text-primary-600 font-semibold">Early Adopter Pricing</span></p>
                 </div>
-                <div className="text-2xl font-bold text-primary-600">$19.99</div>
+                <div className="flex flex-col items-end">
+                  <div className="text-2xl font-bold text-primary-600">$9.99</div>
+                  <div className="text-xs text-gray-500 line-through">$19.99</div>
+                </div>
               </div>
               <ul className="text-sm space-y-1 text-gray-700">
                 <li>✓ AI-powered line-item analysis</li>
@@ -725,7 +834,7 @@ export default function QuoteForm() {
                   </>
                 ) : (
                   <>
-                    Pay $19.99 & Get Report
+                    Pay $9.99 & Get Report
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </>
                 )}

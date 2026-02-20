@@ -114,7 +114,7 @@ export default async function Image() {
             marginBottom: '20px',
           }}
         >
-          Data-driven quote verification · $19.99 per report · 0% lead generation
+          Data-driven quote verification · $9.99 per report · 0% lead generation
         </div>
       </div>
     ),

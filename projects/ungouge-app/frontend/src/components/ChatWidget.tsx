@@ -33,9 +33,9 @@ const faqs: FAQ[] = [
     answer: "Our analysis uses official BLS occupational wage data updated quarterly, combined with real-time material cost databases from major suppliers. We account for regional variations, project complexity, and seasonal pricing. While contractor quotes can vary based on their overhead and specialization, our reports provide statistically sound benchmarks. In our testing, we've identified overcharges in 73% of quotes analyzed, with an average markup of 28% above fair market rates.",
   },
   {
-    keywords: ['price', 'cost', '$19.99', 'pay', 'get', 'include'],
-    question: 'What does $19.99 get me?',
-    answer: "For $19.99, you get a comprehensive analysis report including: (1) Line-by-line breakdown of every quote item, (2) Fair price range based on BLS data for your region, (3) Percentage markup on each item, (4) Overall gouge rating (Fair/High/Gouged), (5) Negotiation tips specific to your quote, and (6) Alternative pricing suggestions. One report, one payment. No subscriptions, no hidden fees, no upsells. The report is yours to keep and use in negotiations.",
+    keywords: ['price', 'cost', '$9.99 (Early Adopter Pricing)', 'pay', 'get', 'include'],
+    question: 'What does $9.99 (Early Adopter Pricing) get me?',
+    answer: "For $9.99 (Early Adopter Pricing, normally $19.99), you get a comprehensive analysis report including: (1) Line-by-line breakdown of every quote item, (2) Fair price range based on BLS data for your region, (3) Percentage markup on each item, (4) Overall gouge rating (Fair/High/Gouged), (5) Negotiation tips specific to your quote, and (6) Alternative pricing suggestions. One report, one payment. No subscriptions, no hidden fees, no upsells. The report is yours to keep and use in negotiations.",
   },
   {
     keywords: ['sell', 'share', 'contractor', 'lead', 'referral'],

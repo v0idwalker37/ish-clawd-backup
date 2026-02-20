@@ -100,7 +100,8 @@ CRITICAL RULES:
   - If you see "Carpenter - $5,647.80 for 60 hours" → calculate unit price: 5647.80 / 60 = 94.13
   - If only a line total is shown with quantity, divide to get unit price
 - IMPORTANT: Some quotes embed the price in the description text (e.g., "Interior painting - $3,800" or "Fire mantle installation ($2,500)"). If a line item has $0 or no price column but the description mentions a dollar amount, extract that dollar amount as the quoted_price.
-- Every line item should have a non-zero price unless the work is explicitly bundled/included at no charge. If you see $0, double-check the description for an embedded price.
+- If a line item has NO price shown anywhere (not in a column, not in the description text, nowhere), set quoted_price to 0. Do NOT invent or estimate prices. Only extract prices that are explicitly stated in the document.
+- Some quotes only provide a grand total with no per-item pricing. In that case, extract all work items with quoted_price: 0 and set the total to the stated grand total.
 - Be precise with numbers - accuracy is critical
 - If something is unclear, make your best inference but note it in description
 - Look for fine print and detailed breakdowns
@@ -194,6 +195,160 @@ Return ONLY valid JSON with: project_type, location, contractor_name, date, line
     
     except Exception as e:
         raise ValueError(f"Gemini text parsing failed: {str(e)}")
+
+
+def detect_total_only_quote(parsed_data: Dict) -> bool:
+    """
+    Detect if a quote is total-only (no itemized costs).
+    
+    Returns True if:
+    - Only 1-2 line items
+    - All/most line items have $0 prices
+    - One item matches the total exactly (probably "Project Total" line)
+    - Sum of line items is far from total (Gemini may have estimated prices)
+    """
+    items = parsed_data.get("line_items", [])
+    total = parsed_data.get("total", 0)
+    
+    if not items or total <= 0:
+        return False
+    
+    # Very few items - likely total-only
+    if len(items) <= 2:
+        return True
+    
+    # Check if all/most items are $0
+    non_zero_items = [i for i in items if i.get("quoted_price", 0) > 0]
+    if len(non_zero_items) <= 1:
+        return True
+    
+    # Check if one item matches total (probably "Project Total" line)
+    for item in items:
+        item_total = item.get("quoted_price", 0) * item.get("quantity", 1)
+        if abs(item_total - total) < 1:
+            return True
+    
+    # NEW: Check if many items exist but their sum is way off from total
+    # This catches cases where Gemini invented prices despite instructions
+    calculated_sum = sum(
+        item.get("quoted_price", 0) * item.get("quantity", 1)
+        for item in items
+    )
+    if calculated_sum > 0 and total > 0:
+        ratio = calculated_sum / total
+        # If sum of items is very different from total (off by >50%), likely total-only
+        # with Gemini having made up numbers
+        if ratio < 0.5 or ratio > 1.5:
+            print(f"Total-only detected by sum mismatch: items sum ${calculated_sum:,.2f} vs total ${total:,.2f} (ratio {ratio:.2f})")
+            return True
+    
+    # NEW: Check if all prices look suspiciously round (Gemini estimation artifacts)
+    # Real quotes have varied prices; AI-estimated ones tend to be round numbers
+    if len(non_zero_items) >= 5:
+        round_count = sum(
+            1 for i in non_zero_items
+            if i.get("quoted_price", 0) % 100 == 0 or i.get("quoted_price", 0) % 50 == 0
+        )
+        if round_count / len(non_zero_items) > 0.8:
+            print(f"Total-only detected by round-number heuristic: {round_count}/{len(non_zero_items)} items have round prices")
+            return True
+    
+    return False
+
+
+async def generate_estimated_breakdown(
+    project_type: str,
+    location: str,
+    descriptions: List[str],
+    total: float,
+) -> Dict:
+    """
+    Use Gemini to estimate line item costs for total-only quotes.
+    
+    Based on:
+    - Project type and location (regional pricing)
+    - Description text from the quote
+    - Industry standard percentages
+    - Total budget
+    
+    Returns estimated line items with confidence levels.
+    """
+    
+    model = init_gemini()
+    
+    # Build the estimation prompt
+    prompt = f"""You are a construction cost estimator. A contractor provided a quote with ONLY a total price and no itemized costs.
+
+Project: {project_type}
+Location: {location}
+Total Budget: ${total:,.2f}
+
+Work items mentioned in the quote:
+{chr(10).join(f"- {desc}" for desc in descriptions if desc)}
+
+Your task: Estimate what each item likely costs, based on:
+1. Typical cost percentages for {project_type} projects
+2. Regional pricing in {location}
+3. Industry standards and Bureau of Labor Statistics data
+4. Typical material/labor splits
+
+General guidelines for {project_type}:
+- Materials: Usually 40-50% of total
+- Labor: Usually 35-45% of total  
+- Overhead/profit: Usually 10-20% of total
+
+Provide conservative estimates. If uncertain, mark confidence as "low".
+
+Return JSON with estimated line items that sum to the total:
+{{
+  "line_items": [
+    {{
+      "item_name": "...",
+      "description": "...",
+      "quoted_price": 0.00,
+      "quantity": 1,
+      "unit": "item",
+      "estimated_total": 0.00,
+      "confidence": "high|medium|low",
+      "reasoning": "Based on typical X% of total for this item type in {location}"
+    }}
+  ],
+  "methodology": "Brief explanation of estimation approach",
+  "overall_confidence": "high|medium|low"
+}}
+
+IMPORTANT RULES:
+- All estimated_total values MUST sum exactly to ${total:,.2f}
+- quoted_price should be the per-unit price (estimated_total / quantity)
+- Show at most 15 line items (combine similar items if needed)
+- Sort by estimated_total descending (most expensive items first)
+- Be realistic - don't wildly over-estimate or under-estimate
+- Mark confidence honestly (high/medium/low) based on how standard the item is"""
+
+    try:
+        response = model.generate_content(prompt)
+        result_text = response.text.strip()
+        
+        # Clean up markdown code blocks if present
+        if result_text.startswith("```"):
+            result_text = re.sub(r'```json\n|```\n|```', '', result_text).strip()
+        
+        # Parse JSON
+        estimation_data = json.loads(result_text)
+        
+        # Validate that totals sum correctly (within $1 tolerance)
+        estimated_sum = sum(item.get("estimated_total", 0) for item in estimation_data.get("line_items", []))
+        if abs(estimated_sum - total) > 1:
+            # Adjust proportionally to match total exactly
+            ratio = total / estimated_sum if estimated_sum > 0 else 1
+            for item in estimation_data["line_items"]:
+                item["estimated_total"] = round(item["estimated_total"] * ratio, 2)
+                item["quoted_price"] = round(item["estimated_total"] / item.get("quantity", 1), 2)
+        
+        return estimation_data
+    
+    except Exception as e:
+        raise ValueError(f"Estimation generation failed: {str(e)}")
 
 
 async def process_quote_file(file_bytes: bytes, filename: str) -> Dict:
@@ -303,6 +458,46 @@ async def process_quote_file(file_bytes: bytes, filename: str) -> Dict:
             for item in parsed_data["line_items"]
         )
     
+    # Check if this is a total-only quote (no itemized costs)
+    if detect_total_only_quote(parsed_data):
+        print("Detected total-only quote - generating estimated breakdown...")
+        
+        # Collect descriptions for estimation
+        descriptions = [
+            f"{item.get('item_name', '')} - {item.get('description', '')}"
+            for item in parsed_data.get("line_items", [])
+            if item.get("item_name") or item.get("description")
+        ]
+        
+        # Generate AI estimation
+        try:
+            estimation = await generate_estimated_breakdown(
+                project_type=parsed_data.get("project_type", "general_contracting"),
+                location=parsed_data.get("location", "United States"),
+                descriptions=descriptions,
+                total=parsed_data.get("total", 0),
+            )
+            
+            # Replace line items with estimated breakdown
+            parsed_data["line_items"] = estimation["line_items"]
+            parsed_data["is_estimated"] = True
+            parsed_data["estimation_confidence"] = estimation.get("overall_confidence", "medium")
+            parsed_data["estimation_methodology"] = estimation.get("methodology", "AI-estimated based on industry standards")
+            
+            print(f"Generated {len(estimation['line_items'])} estimated line items")
+        
+        except Exception as e:
+            print(f"Estimation failed: {e}. Keeping original parse.")
+            # Mark as estimated but keep original data
+            parsed_data["is_estimated"] = True
+            parsed_data["estimation_confidence"] = "low"
+            parsed_data["estimation_methodology"] = f"Original parse retained (estimation failed: {str(e)})"
+    else:
+        # Not a total-only quote - standard itemized quote
+        parsed_data["is_estimated"] = False
+        parsed_data["estimation_confidence"] = None
+        parsed_data["estimation_methodology"] = None
+    
     return parsed_data
 
 
@@ -373,7 +568,8 @@ CRITICAL RULES:
   - If you see "Carpenter - $5,647.80 for 60 hours" → calculate unit price: 5647.80 / 60 = 94.13
   - If only a line total is shown with quantity, divide to get unit price
 - IMPORTANT: Some quotes embed the price in the description text (e.g., "Interior painting - $3,800" or "Fire mantle installation ($2,500)"). If a line item has $0 or no price column but the description mentions a dollar amount, extract that dollar amount as the quoted_price.
-- Every line item should have a non-zero price unless the work is explicitly bundled/included at no charge
+- If a line item has NO price shown anywhere (not in a column, not in the description text, nowhere), set quoted_price to 0. Do NOT invent or estimate prices. Only extract prices that are explicitly stated in the document.
+- Some quotes only provide a grand total with no per-item pricing. In that case, extract all work items with quoted_price: 0 and set the total to the stated grand total.
 - Be precise with numbers - accuracy is critical
 - Look for fine print and detailed breakdowns across all pages
 
@@ -485,5 +681,45 @@ Return ONLY valid JSON in this exact format:
     )
     
     print(f"Successfully parsed {len(all_images)} pages → {len(parsed_data['line_items'])} line items")
+    
+    # Check if this is a total-only quote (no itemized costs)
+    if detect_total_only_quote(parsed_data):
+        print("Detected total-only quote in multi-file upload - generating estimated breakdown...")
+        
+        # Collect descriptions for estimation
+        descriptions = [
+            f"{item.get('item_name', '')} - {item.get('description', '')}"
+            for item in parsed_data.get("line_items", [])
+            if item.get("item_name") or item.get("description")
+        ]
+        
+        # Generate AI estimation
+        try:
+            estimation = await generate_estimated_breakdown(
+                project_type=parsed_data.get("project_type", "general_contracting"),
+                location=parsed_data.get("location", "United States"),
+                descriptions=descriptions,
+                total=parsed_data.get("total", 0),
+            )
+            
+            # Replace line items with estimated breakdown
+            parsed_data["line_items"] = estimation["line_items"]
+            parsed_data["is_estimated"] = True
+            parsed_data["estimation_confidence"] = estimation.get("overall_confidence", "medium")
+            parsed_data["estimation_methodology"] = estimation.get("methodology", "AI-estimated based on industry standards")
+            
+            print(f"Generated {len(estimation['line_items'])} estimated line items")
+        
+        except Exception as e:
+            print(f"Estimation failed: {e}. Keeping original parse.")
+            # Mark as estimated but keep original data
+            parsed_data["is_estimated"] = True
+            parsed_data["estimation_confidence"] = "low"
+            parsed_data["estimation_methodology"] = f"Original parse retained (estimation failed: {str(e)})"
+    else:
+        # Not a total-only quote - standard itemized quote
+        parsed_data["is_estimated"] = False
+        parsed_data["estimation_confidence"] = None
+        parsed_data["estimation_methodology"] = None
     
     return parsed_data

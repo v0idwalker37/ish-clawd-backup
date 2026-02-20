@@ -3,16 +3,16 @@ import Link from 'next/link';
 import { Check, X } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Pricing — $19.99 Per Quote Analysis',
+  title: 'Pricing — $9.99 Per Quote Analysis',
   description:
-    '$19.99 per contractor quote analysis. No subscriptions, no hidden fees, no lead generation. Get a full BLS-backed pricing report with 100% money-back guarantee.',
+    '$9.99 per contractor quote analysis. No subscriptions, no hidden fees, no lead generation. Get a full BLS-backed pricing report with 100% money-back guarantee.',
   alternates: {
     canonical: 'https://ungouge.ai/pricing',
   },
   openGraph: {
     title: 'Simple, Honest Pricing — UnGouge.ai',
     description:
-      '$19.99 per quote. Full line-item analysis against BLS data. No subscriptions. 100% money-back guarantee.',
+      '$9.99 per quote. Full line-item analysis against BLS data. No subscriptions. 100% money-back guarantee.',
     url: 'https://ungouge.ai/pricing',
   },
 };
@@ -33,7 +33,9 @@ export default function PricingPage() {
           <div className="card border-2 border-gray-200">
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold mb-2">Single Report</h3>
-              <div className="text-5xl font-bold text-primary-600 mb-2">$19.99</div>
+              <div className="text-5xl font-bold text-primary-600 mb-2">$9.99</div>
+              <div className="text-lg text-gray-500 line-through mb-1">$19.99</div>
+              <p className="text-sm text-primary-600 font-semibold mb-2">Early Adopter Pricing</p>
               <p className="text-gray-600">Per quote analysis</p>
             </div>
             <ul className="space-y-3 mb-6">

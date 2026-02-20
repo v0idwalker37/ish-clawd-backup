@@ -54,7 +54,9 @@ async def create_checkout(
     current_user: User = Depends(get_current_user),
 ):
     """
-    Create a Stripe Checkout Session for a quote analysis report ($19.99).
+    Create a Stripe Checkout Session for a quote analysis report ($9.99).
+    
+    Early Adopter Pricing: $9.99 (normally $19.99).
 
     The frontend should redirect the user to the returned `checkout_url`.
     On successful payment, Stripe redirects to /report/{quote_id}?payment=success.
@@ -113,7 +115,7 @@ async def create_checkout(
         quote_id=body.quote_id,
         stripe_payment_intent_id=checkout_data["session_id"],  # Store session ID; updated to PI on webhook
         stripe_session_id=checkout_data["session_id"],  # CRIT-3: idempotency key
-        amount=1999,
+        amount=999,  # Early Adopter Pricing: $9.99
         currency="usd",
         status="pending",
         created_at=datetime.utcnow(),
@@ -366,7 +368,7 @@ async def _handle_successful_payment(
             quote_id=quote_id,
             stripe_payment_intent_id=session_obj.payment_intent or session_obj.id,
             stripe_session_id=stripe_session_id,
-            amount=session_obj.amount_total or 1999,
+            amount=session_obj.amount_total or 999,
             currency=session_obj.currency or "usd",
             status="paid",
             created_at=datetime.utcnow(),
@@ -396,7 +398,7 @@ async def _handle_successful_payment(
         _user_result = await db.execute(select(User).where(User.id == _quote_obj.user_id))
         _user_obj = _user_result.scalar_one_or_none()
         if _user_obj:
-            _amount_str = f"${(payment.amount or 1999) / 100:.2f}"
+            _amount_str = f"${(payment.amount or 999) / 100:.2f}"
             _date_str = datetime.utcnow().strftime("%B %d, %Y")
             _asyncio.create_task(
                 send_receipt_email(
@@ -467,6 +469,10 @@ async def _generate_report_for_quote(db: AsyncSession, quote_id: str):
             )
             for item in line_items
         ],
+        # Include estimation metadata if this is a total-only quote
+        is_estimated=quote.is_estimated,
+        estimation_confidence=quote.estimation_confidence,
+        estimation_methodology=quote.estimation_methodology,
     )
 
     try:
@@ -481,6 +487,10 @@ async def _generate_report_for_quote(db: AsyncSession, quote_id: str):
             overall_assessment=report.overall_assessment,
             line_items_analysis=report.dict(),
             created_at=datetime.utcnow(),
+            # Store estimation metadata
+            is_estimated=report.is_estimated,
+            estimation_confidence=report.estimation_confidence,
+            estimation_methodology=report.estimation_methodology,
         )
         db.add(analysis_report)
         await db.commit()

@@ -102,6 +102,15 @@ class Quote(Base):
     payment_status: Mapped[str] = mapped_column(String(20), default="pending", server_default="pending", index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)  # Indexed: for sorting/filtering by date
     
+    # Total-only quote estimation metadata
+    is_estimated: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")
+    estimation_confidence: Mapped[Optional[str]] = mapped_column(String(20), nullable=True)
+    estimation_methodology: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    
+    # Free resubmit tracking (total-only → itemized within 90 days)
+    original_quote_id: Mapped[Optional[str]] = mapped_column(String(36), ForeignKey("quotes.id"), nullable=True)
+    resubmit_eligible_until: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    
     # Relationships
     user: Mapped[Optional["User"]] = relationship(back_populates="quotes")
     line_items: Mapped[List["QuoteLineItem"]] = relationship(back_populates="quote", cascade="all, delete-orphan")
@@ -134,6 +143,11 @@ class AnalysisReport(Base):
     overall_assessment: Mapped[str] = mapped_column(Text)
     line_items_analysis: Mapped[dict] = mapped_column(JSON)  # Store full line item analysis
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)  # Indexed: for sorting reports
+    
+    # Total-only quote estimation fields
+    is_estimated: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")
+    estimation_confidence: Mapped[Optional[str]] = mapped_column(String(20), nullable=True)  # "high", "medium", "low"
+    estimation_methodology: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     
     # Relationships
     quote: Mapped["Quote"] = relationship(back_populates="analysis_report")

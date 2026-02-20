@@ -27,6 +27,11 @@ class QuoteSubmission(BaseModel):
     contractor_name: Optional[str] = Field(None, description="Contractor name (optional)")
     line_items: List[LineItem] = Field(..., min_items=1, description="List of quote line items")
     
+    # Total-only quote estimation metadata
+    is_estimated: bool = Field(default=False, description="Whether line items are AI-estimated")
+    estimation_confidence: Optional[str] = Field(None, description="Confidence: high, medium, or low")
+    estimation_methodology: Optional[str] = Field(None, description="How estimation was performed")
+    
     @validator('line_items')
     def validate_line_items(cls, v):
         if not v:

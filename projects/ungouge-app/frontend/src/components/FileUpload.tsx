@@ -19,6 +19,10 @@ export interface ParsedQuoteData {
     quantity: number
     unit: string
   }>
+  // Total-only quote estimation fields
+  is_estimated?: boolean
+  estimation_confidence?: string
+  estimation_methodology?: string
 }
 
 export default function FileUpload({ onFileProcessed, onError }: FileUploadProps) {

@@ -40,7 +40,7 @@ const faqs = [
   {
     question: 'Is my data private?',
     answer:
-      'Absolutely. We encrypt all your data with AES-256 and NEVER sell it to contractors, lead generation companies, or anyone else. Unlike other "quote comparison" sites, we make money from you (the homeowner paying $19.99), not from selling your information. Your quotes and contact details stay completely private.',
+      'Absolutely. We encrypt all your data with AES-256 and NEVER sell it to contractors, lead generation companies, or anyone else. Unlike other "quote comparison" sites, we make money from you (the homeowner paying $9.99), not from selling your information. Your quotes and contact details stay completely private.',
   },
   {
     question: 'Can I get a refund?',
@@ -118,7 +118,7 @@ export default function HomePageContent() {
 
             {/* Value prop bullets */}
             <p className="text-primary-200 text-base sm:text-lg mb-10">
-              <strong className="text-white">$19.99 per report</strong>
+              <strong className="text-white">$9.99 per report</strong>
               {' · '}Instant results{' · '}No subscriptions{' · '}
               <strong className="text-white">100% money-back guarantee</strong>
             </p>
@@ -184,7 +184,7 @@ export default function HomePageContent() {
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <p className="text-base sm:text-lg font-semibold inline-flex items-center justify-center gap-2 flex-wrap">
             <Shield className="w-5 h-5 text-primary-300 flex-shrink-0" />
-            We make $19.99 when you pay us. That&apos;s it.
+            We make $9.99 when you pay us. That&apos;s it.
             <span className="text-primary-200 font-normal">
               No lead gen. No contractor kickbacks. We work for <em>you</em>.
             </span>
@@ -264,7 +264,7 @@ export default function HomePageContent() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              What&apos;s in Your $19.99 Report
+              What&apos;s in Your $9.99 Report
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Everything you need to negotiate with confidence — or walk away knowing why.
@@ -457,7 +457,7 @@ export default function HomePageContent() {
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl mb-10 text-primary-100 max-w-2xl mx-auto leading-relaxed">
             Homeowners routinely overpay 20–40% on contractor quotes. For{' '}
-            <strong className="text-white">$19.99</strong>, find out exactly where
+            <strong className="text-white">$9.99</strong>, find out exactly where
             you stand — in under 60&nbsp;seconds.
           </p>
           <Link
@@ -468,7 +468,7 @@ export default function HomePageContent() {
             <span aria-hidden="true">→</span>
           </Link>
           <p className="mt-6 text-primary-200 text-base">
-            <strong className="text-white">$19.99</strong> · Instant results ·
+            <strong className="text-white">$9.99</strong> · Instant results ·
             100% money-back guarantee
           </p>
         </div>

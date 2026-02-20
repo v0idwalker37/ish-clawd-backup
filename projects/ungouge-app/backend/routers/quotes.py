@@ -118,6 +118,10 @@ async def submit_quote(
             contractor_name=sanitized_contractor,
             payment_status="pending",
             created_at=datetime.utcnow(),
+            # Store estimation metadata if this is a total-only quote
+            is_estimated=quote_data.is_estimated,
+            estimation_confidence=quote_data.estimation_confidence,
+            estimation_methodology=quote_data.estimation_methodology,
         )
         db.add(quote)
         
@@ -468,6 +472,11 @@ async def get_quote_report(
         overall_assessment=report.overall_assessment,
         line_items=report_data.get("line_items", []),
         created_at=quote.created_at.isoformat(),
+        # Total-only quote estimation metadata
+        is_estimated=report.is_estimated or False,
+        estimation_confidence=report.estimation_confidence,
+        estimation_methodology=report.estimation_methodology,
+        typical_costs=report_data.get("typical_costs"),
     )
 
 @router.get("/quotes/{quote_id}/report", response_model=ReportModel)

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -66,7 +67,7 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     title: 'Is Your Contractor Quote Fair?',
     description:
-      'Upload your quote and find out in 60 seconds. 9,000+ cost data points, 45+ project types, zero lead generation. $19.99 per report.',
+      'Upload your quote and find out in 60 seconds. 9,000+ cost data points, 45+ project types, zero lead generation. $9.99 per report.',
   },
   twitter: {
     card: 'summary_large_image',
@@ -82,12 +83,10 @@ export const metadata: Metadata = {
     canonical: DEFAULT_METADATA.canonical,
   },
   other: {
-    'theme-color': '#2563eb',
+    'theme-color': '#0284c7',
   },
   verification: {
-    // Add verification codes when available
-    // google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
+    google: 'qhv0mjKYhySyuQ2DH1gMdZz5ONbzwvgJThWxtPHurqo',
   },
 };
 
@@ -136,6 +135,7 @@ export default function RootLayout({
             <Suspense fallback={null}>
               <PlausibleAnalytics />
             </Suspense>
+            <Analytics />
           </div>
         </AuthProvider>
       </body>
