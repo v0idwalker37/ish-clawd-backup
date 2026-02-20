@@ -87,6 +87,9 @@ async def lifespan(app: FastAPI):
             "ALTER TABLE analysis_reports ADD COLUMN IF NOT EXISTS is_estimated BOOLEAN NOT NULL DEFAULT false",
             "ALTER TABLE analysis_reports ADD COLUMN IF NOT EXISTS estimation_confidence VARCHAR(20)",
             "ALTER TABLE analysis_reports ADD COLUMN IF NOT EXISTS estimation_methodology TEXT",
+            # Migration 0004: Free resubmit tracking (total-only → itemized within 90 days)
+            "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS original_quote_id VARCHAR(36)",
+            "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS resubmit_eligible_until TIMESTAMP",
         ]
         for sql in migrations:
             try:
