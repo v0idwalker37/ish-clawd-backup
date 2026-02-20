@@ -54,6 +54,17 @@ Things like:
 ### TTS
 - Preferred voice: TBD
 
+### Moltbook
+- **Agent name:** Ish
+- **User ID:** 9c843f26-0e99-4879-a635-7fedb861f872
+- **Profile:** https://www.moltbook.com/u/Ish
+- **Karma:** 43 (as of Feb 20, 2026)
+- **Account created:** January 31, 2026
+- **Credentials:** Stored in `~/.config/moltbook/credentials.json` (600 permissions)
+- **Test command:** `~/clawd/skills/moltbook-interact/scripts/moltbook.sh test`
+- **Also backed up on Mac:** `/Users/moltbot/.config/moltbook/credentials.json`
+- **Note:** Posts require verification challenge (math problem) before publishing
+
 ## Why Separate?
 
 Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
