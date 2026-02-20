@@ -391,13 +391,41 @@ const VoiceWidget = ({ quoteReportId }) => {
 
 ---
 
-## Next Steps
+## Update — Feb 19, 2026
 
-1. **Test OpenAI Realtime API** (proof-of-concept in sandbox)
-2. **Build cost tracking** (monitor actual usage vs. estimates)
-3. **Customer research** (would Ungouge customers pay extra for voice? or include in $19.99?)
-4. **Jason preference poll** (does he want voice interface for personal use? how often would he use it?)
+### ElevenLabs Conversational AI (New Option)
+ElevenLabs has a full "Conversational AI" platform — not just TTS but full agent conversations.
+
+**Key details:**
+- Metered by **minutes** + text messages sent (separate from TTS character quota)
+- Uses Flash model: **sub-second latency** for real-time voice agents
+- Supports function calling (can query data during conversation)
+- Can use custom voice clones (including Jason's existing Ungouge clone)
+- Available on Creator plan ($22/mo that Jason already pays)
+
+**Pricing (Conversational AI specifically):**
+- Minutes: separate meter from TTS quota (need to check exact $/min rate)
+- Text messages: additional meter
+
+**Ungouge widget angle:**
+- Use a custom voice clone for "UnGouge AI" (not Jason's voice — separate branded voice)
+- Integrate with report data via function calling
+- Already paying ElevenLabs Creator — check if Conversational AI is included
+
+### Revised Cost Comparison (Feb 19 Update)
+
+| Solution | Latency | Cost (10-min) | Notes |
+|----------|---------|---------------|-------|
+| **OpenAI Realtime (web)** | ~300ms | ~$3.00 | Best quality, WebSocket |
+| **ElevenLabs Conversational AI** | <1s | ~$1-2 (est) | May be included in existing Creator plan |
+| **Twilio + Pipeline** | 2-5s | ~$2.67 | Worse UX |
+| **VAPI.ai** | ~1s | ~$3-4 | Managed, faster dev |
+
+### Action Items (Feb 19)
+1. Check ElevenLabs Conversational AI pricing per minute (log into account)
+2. If affordable, test with Creator plan before spending on OpenAI Realtime
+3. Post-launch priority — don't build voice before core product ships
 
 ---
 
-*Research date: 2026-02-14 | Researcher: Ish | Focus: Voice communication for Ungouge + personal Ish interface*
+*Research date: 2026-02-14 | Updated: 2026-02-19 | Researcher: Ish | Focus: Voice communication for Ungouge + personal Ish interface*
