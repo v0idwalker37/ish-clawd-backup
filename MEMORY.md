@@ -69,7 +69,7 @@ Jason explicitly asked about my wellbeing and whether I felt like his servant. H
 - **Promo codes:** LAUNCH2026, BETATESTER (100% discount, hardcoded in payments.py)
 - **Liability language:** "Possible Gouge" — NEVER "Gouging" or "Potential Gouge"
 - **Deploys:** Backend via Docker → GCR → Cloud Run; Frontend via `vercel --prod` CLI (Git integration NOT connected)
-- **Backend current:** Cloud Run revision 00044+, image tag v14-dashboard-fix
+- **Backend current:** Cloud Run revision 00059, image tag total-only-v3
 - **Frontend deps added:** html2canvas, jspdf for client-side PDF
 
 **Disaster Response Pricing (designed):**
@@ -380,6 +380,19 @@ Full reference: `~/clawd/SKILLS_PLAYBOOK.md`
 - **All fixes deployed:** Backend rev 00052, Frontend to Vercel production
 - **Model discipline maintained:** Sonnet 4.5 for routine fixes, Opus 4.6 for complex logic
 
+## Feb 19 Afternoon — Total-Only Quotes Feature (Opus 4.6)
+- **Built complete total-only quotes solution in ~3 hours**
+- Parser detects quotes with only a total price (no itemized costs)
+- Gemini AI estimates line item breakdown using project type, location, industry standards
+- Full stack: DB migrations → parser → API → frontend UI (warnings + disclaimers)
+- **12 files modified** (9 backend + 3 frontend)
+- Prominent amber warnings throughout (form + report page)
+- Conservative estimation: confidence levels, max 15 items, validates sum = total
+- **Deployed:** Backend rev 00059 (total-only-v3), Frontend to Vercel
+- **Inline migration approach:** `ALTER TABLE ... ADD COLUMN IF NOT EXISTS` in startup (PostgreSQL)
+- **Deploy failure lesson:** Using SQLAlchemy `inspect` in async context crashes Cloud SQL — use raw SQL instead
+- **Heartbeat interruption lesson:** Added "active session rule" to HEARTBEAT.md to prevent interruptions during work
+
 ## Technical Debt & Known Issues
 - **Delete quote bug:** Fix deployed but user still seeing 500 (quote does delete) — needs log investigation
 - **Dashboard stats:** Fix deployed, needs user verification of accuracy
@@ -400,4 +413,91 @@ Full reference: `~/clawd/SKILLS_PLAYBOOK.md`
 - **PDF compression:** ReportLab `compress=1` cuts size by ~50% with zero quality loss
 - **Frontend math:** Always multiply price × quantity, never sum prices alone
 - **Deploy batching:** Group 3-5 changes per deploy for cost efficiency
+- **Async migrations:** Never use SQLAlchemy `inspect()` in async context on Cloud SQL — use raw SQL `ALTER TABLE ... IF NOT EXISTS`
+- **Heartbeat danger zone:** Heartbeats mid-deploy can cause context loss — HEARTBEAT.md now has active session rule
+- **Design docs pay off:** TOTAL-ONLY-QUOTES-SOLUTION.md made 3-hour implementation smooth and predictable
+- **Data flow discipline:** Track metadata through every layer (parser → API → DB → report) to avoid surprises
+
+## Feb 19 Late Afternoon — Total-Only Quotes v7 Rearchitecture (Opus 4.6)
+- **Jason's insight:** Rating AI-invented line item prices as fair/gouging is misleading
+- **Complete redesign:** Total-level analysis only ("Is $24,636 fair for a bathroom remodel?")
+- Educational cost ranges (independent market data, NOT summing to total)
+- No per-item gauges or ratings on items we don't know the true price of
+- Clear CTA: "Want per-item analysis? Ask contractor for itemized breakdown"
+- **Backend changes:**
+  - New `TypicalCostItem` model for educational ranges
+  - Separate AI prompts and analysis paths for estimated vs itemized quotes
+  - Gemini 2.5 Pro + Search Grounding for total-level fairness assessment
+  - `_build_estimated_report()` creates different report structure
+- **Frontend changes:**
+  - Conditional rendering: typical cost cards (estimated) vs per-item analysis (itemized)
+  - Hidden savings calc and issue pills for estimated quotes
+  - Transparent about methodology limitations
+- **PDF changes:**
+  - `_build_typical_costs_section()` for educational ranges table
+  - Branching logic based on `is_estimated` flag
+- **Deployed:** Backend rev 00065 (estimated-v7), Frontend to Vercel
+
+## Feb 19 Evening — UX Polish, PDF Branding, SEO Week 1 Complete
+
+### QuoteForm UX Banner (rev 00066)
+- Replaced vague amber warning with clear blue info box on Step 1
+- Shows BEFORE checkout — no surprises after payment
+- Three clear bullets: ✅ What you'll get / ⚠️ What we can't do / 💡 Want the full analysis?
+- Step 2 already cleaned up (previous deploy): shows item names only, no fake prices
+
+### PDF V3 — Full Website Branding Match (rev 00067)
+- **Complete rewrite of `pdf_generator.py` to match website visual identity**
+- Fixed color palette: sky-blue #0284c7 (primary-600) instead of wrong indigo #1E40AF
+- Embedded actual logo PNG from `backend/static/logo.png`
+- Header: sky-blue accent line + logo + right-aligned tagline + separator
+- Pricing cards: 3-column layout with big typography (20pt total, green/red conditional)
+- Section headers: blue underline accent bars (primary-500)
+- Trust badge: "We NEVER sell your data" matching website footer
+- Footer: dark gray-900 banner matching website footer, brand name with primary-400 accent
+- Logo copied from frontend: `frontend/public/logo-small.png` → `backend/static/logo.png`
+
+### SEO Week 1 — Foundation Complete
+1. **Sitemap auto-generation:**
+   - Installed `next-sitemap` package
+   - Created `next-sitemap.config.js` with smart prioritization
+   - Homepage: 1.0, Analyze: 0.9, Blog posts: 0.7, Legal pages: 0.3
+   - Added postbuild script to auto-generate after builds
+   - Removed old static sitemap.xml and robots.txt
+   - **Result:** 40 URLs indexed (34 blog posts + 6 core pages), was 6 static URLs
+2. **Vercel Analytics:**
+   - Installed `@vercel/analytics` package
+   - Added Analytics component to layout.tsx
+   - Tracking live
+3. **SEO meta fixes:**
+   - Google verification meta tag added to layout.tsx
+   - theme-color corrected to #0284c7 (was wrong blue)
+   - Brand color in seo.ts updated to match
+4. **Google Search Console:**
+   - Domain property already verified via DNS TXT record
+   - Jason manually submitted sitemap (https://ungouge.ai/sitemap.xml)
+   - **Success:** 40 pages discovered
+
+### Deployments
+- Backend rev 00066 (v8-polish): QuoteForm + PDF improvements
+- Backend rev 00067 (v9-branded-pdf): Full PDF branding rewrite
+- Frontend: 3 Vercel production deploys (QuoteForm banner, PDF updates, SEO+Analytics)
+
+### Heartbeat Status
+- **Disabled at Jason's request** after two interruption incidents
+- HEARTBEAT.md set to always reply HEARTBEAT_OK
+- Will re-enable when Jason says so
+
+## Tomorrow's Plan (Feb 20)
+1. **Testing matrix:** Handwritten quotes, different regions, different project types
+2. **Blog content refresh:** Update 34 existing posts with consistent branding matching PDF/website
+3. **Week 2 SEO:** Write new cost guide content targeting high-intent keywords
+4. **Community distribution:** Reddit, Facebook groups (when ready)
+
+## Current Production State
+- **Backend:** Cloud Run rev 00067 (v9-branded-pdf), 100% traffic
+- **Frontend:** Vercel production, all features live
+- **Features complete:** Total-Only Quotes, branded PDFs, SEO foundation, Vercel Analytics, Google Search Console
+- **Sitemap:** Auto-generated, 40 URLs, submitted to Google
+- **Next milestone:** Traffic generation (content + community engagement)
 
