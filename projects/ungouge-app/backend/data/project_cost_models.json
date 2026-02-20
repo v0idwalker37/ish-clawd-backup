@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.1",
-    "last_updated": "2024-12-15",
+    "last_updated": "2026-02-16",
     "base_region": "national_average",
     "currency": "USD",
     "notes": "All prices are national averages for 2024-2025. Labor costs reflect crew-level pricing with loaded rates (workers comp, insurance, overhead). Apply regional multipliers for accuracy.",
@@ -157,11 +157,24 @@
         "items_extracted": 191,
         "coverage": "31 of 34 project types",
         "added_date": "2026-02-12"
+      },
+      {
+        "name": "Craftsman National Repair & Remodeling Estimator 2026",
+        "type": "industry_reference",
+        "year": "2026",
+        "edition": "49th",
+        "items_extracted": 9202,
+        "coverage": "29 matched types",
+        "added_date": "2026-02-16"
       }
     ],
     "rsmeans_calibration_source": "RSMeans Contractor's Pricing Guide 2026",
     "rsmeans_types_calibrated": 31,
-    "rsmeans_high_confidence_types": 18
+    "rsmeans_high_confidence_types": 18,
+    "craftsman_integration_date": "2026-02-16",
+    "craftsman_source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+    "craftsman_items_extracted": 9202,
+    "craftsman_types_mapped": 29
   },
   "regional_multipliers": {
     "source": "RSMeans Location Factors (Residential)",
@@ -242,28 +255,32 @@
       },
       "materials": {
         "asphalt_shingles_architectural": {
-          "cost_per_square": 120,
+          "cost_per_square": 212,
           "range_low": 100,
           "range_high": 180,
-          "notes": "30-year architectural shingles, most common"
+          "notes": "30-year architectural shingles, most common",
+          "craftsman_ref": 272.66
         },
         "asphalt_shingles_3tab": {
-          "cost_per_square": 85,
+          "cost_per_square": 198,
           "range_low": 70,
           "range_high": 110,
-          "notes": "Basic 3-tab, lower quality"
+          "notes": "Basic 3-tab, lower quality",
+          "craftsman_ref": 272.66
         },
         "underlayment": {
-          "cost_per_square": 15,
+          "cost_per_square": 238,
           "range_low": 10,
           "range_high": 25,
-          "notes": "Synthetic or felt underlayment"
+          "notes": "Synthetic or felt underlayment",
+          "craftsman_ref": 272.66
         },
         "ice_and_water_shield": {
-          "cost_per_square": 35,
+          "cost_per_square": 178,
           "range_low": 25,
           "range_high": 50,
-          "notes": "For eaves and valleys, typically 3-5 squares per roof"
+          "notes": "For eaves and valleys, typically 3-5 squares per roof",
+          "craftsman_ref": 272.66
         },
         "ridge_caps": {
           "cost_per_linear_foot": 4,
@@ -272,9 +289,9 @@
           "notes": "Typical roof needs 30-50 linear feet"
         },
         "flashing": {
-          "cost_per_piece": 25,
-          "range_low": 15,
-          "range_high": 45,
+          "cost_per_piece": 17,
+          "range_low": 11,
+          "range_high": 29,
           "notes": "Pipe boots, step flashing, valleys"
         },
         "drip_edge": {
@@ -284,9 +301,10 @@
           "notes": "Perimeter protection"
         },
         "nails_and_misc": {
-          "cost_per_square": 10,
+          "cost_per_square": 168,
           "range_low": 8,
-          "range_high": 15
+          "range_high": 15,
+          "craftsman_ref": 272.66
         }
       },
       "labor": {
@@ -321,12 +339,16 @@
           "low": 185,
           "mid": 250,
           "high": 350
-        }
+        },
+        "craftsman_avg_labor_lg": 72.89,
+        "craftsman_avg_labor_sm": 101.18,
+        "craftsman_labor_pct": 28.8,
+        "craftsman_avg_labor_per_sq": 126.43
       },
       "typical_total_per_square": {
-        "low": 350,
-        "mid": 450,
-        "high": 650,
+        "low": 193,
+        "mid": 458,
+        "high": 1942,
         "notes": "All-in cost including materials, labor, disposal"
       },
       "typical_total_project_cost": {
@@ -831,6 +853,95 @@
           "roof_replacement total/unit (mid): RSMeans is 40% lower (model=450.00, RSMeans=270.38)"
         ],
         "calibration_advisory": "RSMeans data suggests potential discrepancies. Review flagged items and consider adjusting model ranges."
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "roof_replacement",
+        "total_items": 319,
+        "avg_unit_cost_lg": 432.75,
+        "avg_unit_cost_sm": 486.87,
+        "avg_unit_cost": 460.58,
+        "unit_cost_range": [
+          9.07,
+          1350.0
+        ],
+        "material_pct": 71.2,
+        "labor_pct": 28.8,
+        "by_unit": {
+          "Sq": {
+            "count": 190,
+            "avg_total": 725.82,
+            "range": [
+              16.5,
+              4210.0
+            ],
+            "avg_material": 442.54,
+            "avg_labor": 126.43
+          },
+          "LF": {
+            "count": 94,
+            "avg_total": 32.36,
+            "range": [
+              3.04,
+              269.0
+            ],
+            "avg_material": 17.89,
+            "avg_labor": 10.73
+          },
+          "Ea": {
+            "count": 35,
+            "avg_total": 170.76,
+            "range": [
+              11.5,
+              416.0
+            ],
+            "avg_material": 102.0,
+            "avg_labor": 81.71
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 319,
+        "avg_total_with_overhead": 460.58,
+        "cost_range": [
+          3.04,
+          4210.0
+        ],
+        "sample_unit_costs": {
+          "0.0175\" thick": {
+            "material": 180.0,
+            "labor": 92.7,
+            "total": 396.0,
+            "unit": "Sq"
+          },
+          "0.0175\" thick - Painted": {
+            "material": 211.0,
+            "labor": 78.8,
+            "total": 371.0,
+            "unit": "Sq"
+          },
+          "0.019\" thick - Natural": {
+            "material": 164.0,
+            "labor": 78.8,
+            "total": 315.0,
+            "unit": "Sq"
+          },
+          "0.019\" thick - Painted": {
+            "material": 211.0,
+            "labor": 78.8,
+            "total": 371.0,
+            "unit": "Sq"
+          },
+          "Over existing roofing - Gable, plain": {
+            "material": 120.0,
+            "labor": 53.1,
+            "total": 224.0,
+            "unit": "Sq"
+          }
+        }
       }
     },
     "kitchen_remodel": {
@@ -880,24 +991,24 @@
             "medium": 25,
             "large": 35
           },
-          "installation_per_linear_foot": 50,
+          "installation_per_linear_foot": 34,
           "notes": "Stock cabinets are off-the-shelf; semi-custom offers more options; custom is built to spec"
         },
         "countertops": {
           "laminate_per_sq_ft": {
-            "low": 20,
-            "mid": 30,
-            "high": 45
+            "low": 18,
+            "mid": 28,
+            "high": 39
           },
           "granite_per_sq_ft": {
-            "low": 50,
-            "mid": 75,
-            "high": 120
+            "low": 41,
+            "mid": 61,
+            "high": 90
           },
           "quartz_per_sq_ft": {
-            "low": 60,
-            "mid": 85,
-            "high": 150
+            "low": 49,
+            "mid": 71,
+            "high": 111
           },
           "marble_per_sq_ft": {
             "low": 75,
@@ -909,7 +1020,7 @@
             "medium": 50,
             "large": 75
           },
-          "fabrication_and_install_per_sq_ft": 35,
+          "fabrication_and_install_per_sq_ft": 18,
           "notes": "Includes template, fabrication, edge profile, install, sealing"
         },
         "backsplash": {
@@ -1955,6 +2066,75 @@
           "kitchen_remodel labor %: RSMeans is 49% lower (model=25.00, RSMeans=12.78)"
         ],
         "calibration_advisory": "RSMeans data suggests potential discrepancies. Review flagged items and consider adjusting model ranges."
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "kitchen_remodel",
+        "total_items": 75,
+        "avg_unit_cost_lg": 629.6,
+        "avg_unit_cost_sm": 827.18,
+        "avg_unit_cost": 732.34,
+        "unit_cost_range": [
+          161.0,
+          1280.0
+        ],
+        "material_pct": 65.5,
+        "labor_pct": 34.5,
+        "by_unit": {
+          "Ea": {
+            "count": 75,
+            "avg_total": 732.34,
+            "range": [
+              54.2,
+              2990.0
+            ],
+            "avg_material": 331.23,
+            "avg_labor": 221.08
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 75,
+        "avg_total_with_overhead": 732.34,
+        "cost_range": [
+          54.2,
+          2990.0
+        ],
+        "sample_unit_costs": {
+          "Built-in front loading - Deluxe grade": {
+            "material": 1760.0,
+            "labor": 333.0,
+            "total": 2610.0,
+            "unit": "Ea"
+          },
+          "Built-in front loading - Premium grade": {
+            "material": 1090.0,
+            "labor": 333.0,
+            "total": 1800.0,
+            "unit": "Ea"
+          },
+          "Built-in front loading - High grade": {
+            "material": 832.0,
+            "labor": 333.0,
+            "total": 1500.0,
+            "unit": "Ea"
+          },
+          "Built-in front loading - Average grade": {
+            "material": 577.0,
+            "labor": 444.0,
+            "total": 1360.0,
+            "unit": "Ea"
+          },
+          "Built-in front loading - Standard grade": {
+            "material": 372.0,
+            "labor": 333.0,
+            "total": 946.0,
+            "unit": "Ea"
+          }
+        }
       }
     },
     "bathroom_remodel": {
@@ -1993,10 +2173,10 @@
         "tile_work": {
           "floor_tile_material_per_sq_ft": {
             "ceramic_low": 3,
-            "ceramic_mid": 7,
+            "ceramic_mid": 8,
             "ceramic_high": 15,
             "porcelain_low": 6,
-            "porcelain_mid": 12,
+            "porcelain_mid": 11,
             "porcelain_high": 25,
             "natural_stone_low": 10,
             "natural_stone_mid": 20,
@@ -2011,8 +2191,8 @@
             "glass_high": 50
           },
           "installation_per_sq_ft": {
-            "floor": 8,
-            "wall": 10,
+            "floor": 9,
+            "wall": 11,
             "shower_floor": 15,
             "shower_walls": 12
           },
@@ -2040,9 +2220,9 @@
           },
           "toilet": {
             "budget": 150,
-            "mid_range": 350,
+            "mid_range": 183,
             "comfort_height": 450,
-            "high_end": 800,
+            "high_end": 368,
             "installation_labor_hours": 3,
             "installation_rate_per_hour": 95
           },
@@ -2093,9 +2273,9 @@
           "water_supply_per_linear_foot": 25
         },
         "electrical": {
-          "gfci_outlet": 150,
-          "vanity_light_fixture_install": 225,
-          "exhaust_fan_standard": 350,
+          "gfci_outlet": 173,
+          "vanity_light_fixture_install": 220,
+          "exhaust_fan_standard": 270,
           "exhaust_fan_with_heater": 550,
           "recessed_lighting_per_fixture": 200
         },
@@ -2965,6 +3145,95 @@
           "bathroom_remodel labor %: RSMeans is 57% lower (model=45.00, RSMeans=19.15)"
         ],
         "calibration_advisory": "RSMeans data suggests potential discrepancies. Review flagged items and consider adjusting model ranges."
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "bathroom_remodel",
+        "total_items": 411,
+        "avg_unit_cost_lg": 1168.36,
+        "avg_unit_cost_sm": 1514.93,
+        "avg_unit_cost": 1332.79,
+        "unit_cost_range": [
+          68.9,
+          2940.0
+        ],
+        "material_pct": 75.4,
+        "labor_pct": 24.6,
+        "by_unit": {
+          "Ea": {
+            "count": 329,
+            "avg_total": 1574.92,
+            "range": [
+              23.8,
+              21400.0
+            ],
+            "avg_material": 960.34,
+            "avg_labor": 289.08
+          },
+          "SF": {
+            "count": 11,
+            "avg_total": 65.9,
+            "range": [
+              33.4,
+              147.0
+            ],
+            "avg_material": 32.42,
+            "avg_labor": 20.29
+          },
+          "Pr": {
+            "count": 71,
+            "avg_total": 407.1,
+            "range": [
+              119.0,
+              1080.0
+            ],
+            "avg_material": 278.2,
+            "avg_labor": 52.71
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 411,
+        "avg_total_with_overhead": 1332.79,
+        "cost_range": [
+          23.8,
+          21400.0
+        ],
+        "sample_unit_costs": {
+          "Cup holder, surface mounted - Chrome": {
+            "material": 6.15,
+            "labor": 14.5,
+            "total": 29.2,
+            "unit": "Ea"
+          },
+          "Cup and toothbrush holder - Chrome": {
+            "material": 6.84,
+            "labor": 14.5,
+            "total": 30.0,
+            "unit": "Ea"
+          },
+          "Cup, toothbrush and soapholder, recessed - Chrome": {
+            "material": 13.7,
+            "labor": 21.8,
+            "total": 49.2,
+            "unit": "Ea"
+          },
+          "Diaper change station - Plastic": {
+            "material": 295.0,
+            "labor": 175.0,
+            "total": 616.0,
+            "unit": "Ea"
+          },
+          "Feminine napkin dispenser": {
+            "material": 2.25,
+            "labor": 362.0,
+            "total": 517.0,
+            "unit": "Ea"
+          }
+        }
       }
     },
     "hvac_replacement": {
@@ -2984,8 +3253,8 @@
             "2_ton": {
               "equipment": 2200,
               "installation": 1800,
-              "total_low": 3500,
-              "total_high": 5000
+              "total_low": 1454,
+              "total_high": 3510
             },
             "2.5_ton": {
               "equipment": 2600,
@@ -2996,8 +3265,8 @@
             "3_ton": {
               "equipment": 3000,
               "installation": 2200,
-              "total_low": 4500,
-              "total_high": 6500
+              "total_low": 1877,
+              "total_high": 4757
             },
             "3.5_ton": {
               "equipment": 3400,
@@ -3008,14 +3277,14 @@
             "4_ton": {
               "equipment": 3800,
               "installation": 2600,
-              "total_low": 5800,
-              "total_high": 8500
+              "total_low": 2420,
+              "total_high": 6204
             },
             "5_ton": {
               "equipment": 4500,
               "installation": 3000,
-              "total_low": 6800,
-              "total_high": 10000
+              "total_low": 2843,
+              "total_high": 7451
             }
           },
           "high_efficiency_seer_18_21_premium": 1500
@@ -3757,6 +4026,135 @@
           "hvac_replacement labor %: RSMeans is 60% lower (model=40.00, RSMeans=15.85)"
         ],
         "calibration_advisory": "RSMeans data suggests potential discrepancies. Review flagged items and consider adjusting model ranges."
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "hvac_replacement",
+        "total_items": 200,
+        "avg_unit_cost_lg": 1481.51,
+        "avg_unit_cost_sm": 2355.66,
+        "avg_unit_cost": 1940.44,
+        "unit_cost_range": [
+          10.8,
+          5300.0
+        ],
+        "material_pct": 67.4,
+        "labor_pct": 32.6,
+        "by_unit": {
+          "CSF": {
+            "count": 6,
+            "avg_total": 36.1,
+            "range": [
+              9.6,
+              66.3
+            ],
+            "avg_material": 39.53,
+            "avg_labor": 14.15
+          },
+          "Ea": {
+            "count": 137,
+            "avg_total": 2803.73,
+            "range": [
+              40.3,
+              29100.0
+            ],
+            "avg_material": 1423.08,
+            "avg_labor": 714.05
+          },
+          "Job": {
+            "count": 8,
+            "avg_total": 387.62,
+            "range": [
+              171.0,
+              760.0
+            ],
+            "avg_material": 2.0,
+            "avg_labor": 261.57
+          },
+          "LB": {
+            "count": 2,
+            "avg_total": 24.2,
+            "range": [
+              14.9,
+              33.5
+            ],
+            "avg_material": 3.67,
+            "avg_labor": 13.21
+          },
+          "Lb": {
+            "count": 13,
+            "avg_total": 14.87,
+            "range": [
+              7.4,
+              26.1
+            ],
+            "avg_material": 2.87,
+            "avg_labor": 8.18
+          },
+          "LF": {
+            "count": 28,
+            "avg_total": 14.27,
+            "range": [
+              6.28,
+              38.8
+            ],
+            "avg_material": 12.83,
+            "avg_labor": 5.88
+          },
+          "SF": {
+            "count": 6,
+            "avg_total": 2.95,
+            "range": [
+              0.83,
+              9.23
+            ],
+            "avg_material": 16.15,
+            "avg_labor": 1.07
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 200,
+        "avg_total_with_overhead": 1940.44,
+        "cost_range": [
+          0.83,
+          29100.0
+        ],
+        "sample_unit_costs": {
+          "24\" oc members - 1/8\" diameter (7 fl.oz/CSF)": {
+            "material": 3.18,
+            "labor": 3.85,
+            "total": 9.6,
+            "unit": "CSF"
+          },
+          "24\" oc members - 1/4\" diameter (26 fl.oz/CSF)": {
+            "material": 12.6,
+            "labor": 3.85,
+            "total": 20.9,
+            "unit": "CSF"
+          },
+          "24\" oc members - 3/8\" diameter (58 fl.oz/CSF)": {
+            "material": 28.5,
+            "labor": 3.85,
+            "total": 40.0,
+            "unit": "CSF"
+          },
+          "24\" oc members - 1/2\" diameter (103 fl.oz./CSF)": {
+            "material": 50.4,
+            "labor": 3.85,
+            "total": 66.3,
+            "unit": "CSF"
+          },
+          "Heat element only": {
+            "material": 2110.0,
+            "labor": 1480.0,
+            "total": 4750.0,
+            "unit": "Ea"
+          }
+        }
       }
     },
     "plumbing_repair": {
@@ -4545,6 +4943,85 @@
         ],
         "confidence": "high",
         "confidence_note": "Labor percentage within expected range (10-70%); data suitable for calibration"
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "plumbing_repair",
+        "total_items": 173,
+        "avg_unit_cost_lg": 3232.22,
+        "avg_unit_cost_sm": 3167.99,
+        "avg_unit_cost": 3201.41,
+        "unit_cost_range": [
+          204.0,
+          3520.0
+        ],
+        "material_pct": 69.0,
+        "labor_pct": 31.0,
+        "by_unit": {
+          "Ea": {
+            "count": 164,
+            "avg_total": 1766.73,
+            "range": [
+              54.2,
+              53400.0
+            ],
+            "avg_material": 721.41,
+            "avg_labor": 398.15
+          },
+          "LS": {
+            "count": 9,
+            "avg_total": 29344.44,
+            "range": [
+              16900.0,
+              37800.0
+            ],
+            "avg_material": 18633.33,
+            "avg_labor": 4652.22
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 173,
+        "avg_total_with_overhead": 3201.41,
+        "cost_range": [
+          54.2,
+          53400.0
+        ],
+        "sample_unit_costs": {
+          "In-Sink-Erator Products": {
+            "material": 101.0,
+            "labor": 137.0,
+            "total": 327.0,
+            "unit": "Ea"
+          },
+          "Evolution, Compact, 3/4 HP, continuous feed, 4 year parts pr": {
+            "material": 248.0,
+            "labor": 183.0,
+            "total": 573.0,
+            "unit": "Ea"
+          },
+          "Evolution, Essential, 3/4 HP, continuous feed, 6 year parts ": {
+            "material": 264.0,
+            "labor": 137.0,
+            "total": 523.0,
+            "unit": "Ea"
+          },
+          "Evolution, Excel, 1.0 HP, continuous feed, 7 year parts prot": {
+            "material": 294.0,
+            "labor": 137.0,
+            "total": 559.0,
+            "unit": "Ea"
+          },
+          "Evolution, Septic, 4 year parts protection, stainless steel ": {
+            "material": 441.0,
+            "labor": 137.0,
+            "total": 735.0,
+            "unit": "Ea"
+          }
+        }
       }
     },
     "electrical_work": {
@@ -5346,6 +5823,115 @@
           "electrical_work labor %: RSMeans is 47% lower (model=55.00, RSMeans=29.05)"
         ],
         "calibration_advisory": "RSMeans data suggests potential discrepancies. Review flagged items and consider adjusting model ranges."
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "electrical_work",
+        "total_items": 133,
+        "avg_unit_cost_lg": 300.33,
+        "avg_unit_cost_sm": 380.6,
+        "avg_unit_cost": 339.56,
+        "unit_cost_range": [
+          43.7,
+          982.0
+        ],
+        "material_pct": 56.2,
+        "labor_pct": 43.8,
+        "by_unit": {
+          "SF": {
+            "count": 8,
+            "avg_total": 11.11,
+            "range": [
+              0.07,
+              47.0
+            ],
+            "avg_material": 31.61,
+            "avg_labor": 1.42
+          },
+          "Ea": {
+            "count": 110,
+            "avg_total": 301.96,
+            "range": [
+              27.2,
+              2160.0
+            ],
+            "avg_material": 103.79,
+            "avg_labor": 137.67
+          },
+          "LF": {
+            "count": 3,
+            "avg_total": 16.8,
+            "range": [
+              13.8,
+              18.5
+            ],
+            "avg_material": 4.4,
+            "avg_labor": 7.69
+          },
+          "Set": {
+            "count": 10,
+            "avg_total": 1113.8,
+            "range": [
+              252.0,
+              1890.0
+            ],
+            "avg_material": 420.75,
+            "avg_labor": 406.9
+          },
+          "LS": {
+            "count": 2,
+            "avg_total": 334.5,
+            "range": [
+              288.0,
+              381.0
+            ],
+            "avg_material": 82.8,
+            "avg_labor": 156.5
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 133,
+        "avg_total_with_overhead": 339.56,
+        "cost_range": [
+          0.07,
+          2160.0
+        ],
+        "sample_unit_costs": {
+          "For ceilings 9' H - Ceiling only, ADD": {
+            "material": 0.0,
+            "labor": 1.6,
+            "total": 1.13,
+            "unit": "SF"
+          },
+          "For ceilings 9' H - Walls & ceilings (average),": {
+            "material": 0.0,
+            "labor": 0.22,
+            "total": 33.0,
+            "unit": "SF"
+          },
+          "For ceilings 9' H - ADD": {
+            "material": 0.0,
+            "labor": 0.0,
+            "total": 47.0,
+            "unit": "SF"
+          },
+          "For fire resistant (1/2\" and 5/8\" T) ADD": {
+            "material": 0.06,
+            "labor": 0.0,
+            "total": 0.07,
+            "unit": "SF"
+          },
+          "For water resistant (1/2\" and 5/8\" T) ADD": {
+            "material": 18.0,
+            "labor": 0.0,
+            "total": 0.22,
+            "unit": "SF"
+          }
+        }
       }
     },
     "deck_building": {
@@ -6158,8 +6744,8 @@
         "walls_and_ceiling": {
           "materials_per_sq_ft": 0.3,
           "labor_per_sq_ft": 2.0,
-          "total_per_sq_ft_low": 2.0,
-          "total_per_sq_ft_mid": 2.75,
+          "total_per_sq_ft_low": 1.41,
+          "total_per_sq_ft_mid": 2.1,
           "total_per_sq_ft_high": 4.0
         },
         "walls_ceiling_trim": {
@@ -6282,57 +6868,57 @@
         {
           "name": "prep_work",
           "unit": "sqft_wall",
-          "cost_low": 0.25,
-          "cost_mid": 0.5,
-          "cost_high": 1.0,
+          "cost_low": 0.24,
+          "cost_mid": 0.42,
+          "cost_high": 0.84,
           "notes": "Patching, sanding, taping, masking"
         },
         {
           "name": "primer_coat",
           "unit": "sqft_wall",
-          "cost_low": 0.25,
-          "cost_mid": 0.5,
-          "cost_high": 0.75,
+          "cost_low": 0.24,
+          "cost_mid": 0.42,
+          "cost_high": 0.74,
           "notes": "Primer application"
         },
         {
           "name": "paint_two_coats",
           "unit": "sqft_wall",
-          "cost_low": 0.75,
-          "cost_mid": 1.25,
-          "cost_high": 2.0,
+          "cost_low": 0.44,
+          "cost_mid": 0.72,
+          "cost_high": 1.24,
           "notes": "Two coats of paint on walls"
         },
         {
           "name": "ceiling_painting",
           "unit": "sqft_ceiling",
-          "cost_low": 1.0,
-          "cost_mid": 1.75,
-          "cost_high": 3.0,
+          "cost_low": 0.54,
+          "cost_mid": 0.92,
+          "cost_high": 1.64,
           "notes": "Ceiling paint application"
         },
         {
           "name": "trim_painting",
           "unit": "linear_foot",
-          "cost_low": 1.0,
-          "cost_mid": 2.0,
-          "cost_high": 4.0,
+          "cost_low": 0.54,
+          "cost_mid": 1.02,
+          "cost_high": 2.04,
           "notes": "Baseboard, crown, door/window trim"
         },
         {
           "name": "per_room_rate",
           "unit": "room",
-          "cost_low": 200,
-          "cost_mid": 450,
-          "cost_high": 800,
+          "cost_low": 80,
+          "cost_mid": 180,
+          "cost_high": 320,
           "notes": "Average per-room rate (walls + ceiling)"
         },
         {
           "name": "whole_house_interior",
           "unit": "house",
-          "cost_low": 2000,
-          "cost_mid": 4500,
-          "cost_high": 8000,
+          "cost_low": 800,
+          "cost_mid": 1800,
+          "cost_high": 3200,
           "notes": "Full interior paint (average 3-bed home)"
         }
       ],
@@ -6721,6 +7307,75 @@
         ],
         "confidence": "low",
         "confidence_note": "Labor percentage (73.7%) outside normal range; data included as reference only"
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "painting_interior",
+        "total_items": 144,
+        "avg_unit_cost_lg": 17.57,
+        "avg_unit_cost_sm": 11.67,
+        "avg_unit_cost": 14.95,
+        "unit_cost_range": [
+          0.58,
+          51.0
+        ],
+        "material_pct": 67.5,
+        "labor_pct": 32.5,
+        "by_unit": {
+          "SF": {
+            "count": 144,
+            "avg_total": 14.95,
+            "range": [
+              0.07,
+              97.0
+            ],
+            "avg_material": 29.63,
+            "avg_labor": 1.18
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 144,
+        "avg_total_with_overhead": 14.95,
+        "cost_range": [
+          0.07,
+          97.0
+        ],
+        "sample_unit_costs": {
+          "Smooth finishes - Plaster and drywall": {
+            "material": 0.02,
+            "labor": 0.23,
+            "total": 36.0,
+            "unit": "SF"
+          },
+          "Smooth finishes - Paneling": {
+            "material": 0.02,
+            "labor": 0.18,
+            "total": 30.0,
+            "unit": "SF"
+          },
+          "Smooth finishes - Millwork and trim": {
+            "material": 2.0,
+            "labor": 0.23,
+            "total": 36.0,
+            "unit": "SF"
+          },
+          "Smooth finishes - Floors": {
+            "material": 0.01,
+            "labor": 0.18,
+            "total": 0.28,
+            "unit": "SF"
+          },
+          "Sand finishes - Plaster and drywall": {
+            "material": 1.0,
+            "labor": 0.32,
+            "total": 0.49,
+            "unit": "SF"
+          }
+        }
       }
     },
     "siding_replacement": {
@@ -6742,8 +7397,8 @@
       "materials": {
         "vinyl": {
           "material_per_sq_ft": 3.5,
-          "range_low": 2.5,
-          "range_high": 6.0,
+          "range_low": 5.02,
+          "range_high": 9.27,
           "labor_per_sq_ft": 3.0,
           "total_per_sq_ft_low": 6.0,
           "total_per_sq_ft_mid": 7.5,
@@ -6753,8 +7408,8 @@
         },
         "fiber_cement": {
           "material_per_sq_ft": 6.0,
-          "range_low": 5.0,
-          "range_high": 9.0,
+          "range_low": 6.02,
+          "range_high": 10.47,
           "labor_per_sq_ft": 5.0,
           "total_per_sq_ft_low": 10.0,
           "total_per_sq_ft_mid": 12.5,
@@ -6764,8 +7419,8 @@
         },
         "wood_cedar": {
           "material_per_sq_ft": 8.0,
-          "range_low": 6.0,
-          "range_high": 12.0,
+          "range_low": 6.42,
+          "range_high": 11.67,
           "labor_per_sq_ft": 5.5,
           "total_per_sq_ft_low": 12.0,
           "total_per_sq_ft_mid": 15.0,
@@ -6775,8 +7430,8 @@
         },
         "engineered_wood": {
           "material_per_sq_ft": 4.5,
-          "range_low": 3.5,
-          "range_high": 7.0,
+          "range_low": 5.42,
+          "range_high": 9.67,
           "labor_per_sq_ft": 4.0,
           "total_per_sq_ft_low": 7.5,
           "total_per_sq_ft_mid": 9.5,
@@ -6786,8 +7441,8 @@
         },
         "brick_veneer": {
           "material_per_sq_ft": 12.0,
-          "range_low": 10.0,
-          "range_high": 18.0,
+          "range_low": 8.02,
+          "range_high": 14.07,
           "labor_per_sq_ft": 10.0,
           "total_per_sq_ft_low": 20.0,
           "total_per_sq_ft_mid": 25.0,
@@ -6812,7 +7467,10 @@
           "fiber_cement": 5.94,
           "wood_cedar": 6.66
         },
-        "notes": "3-4 worker crew, includes removal, house wrap, installation, trim"
+        "notes": "3-4 worker crew, includes removal, house wrap, installation, trim",
+        "craftsman_avg_labor_lg": 1.82,
+        "craftsman_avg_labor_sm": 2.82,
+        "craftsman_labor_pct": 27.0
       },
       "additional_components": {
         "house_wrap_vapor_barrier": {
@@ -7431,6 +8089,85 @@
           "siding_replacement avg material/unit: RSMeans is 185% higher (model=7.90, RSMeans=22.49)"
         ],
         "calibration_advisory": "RSMeans data suggests potential discrepancies. Review flagged items and consider adjusting model ranges."
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "siding_replacement",
+        "total_items": 286,
+        "avg_unit_cost_lg": 8.28,
+        "avg_unit_cost_sm": 18.36,
+        "avg_unit_cost": 13.36,
+        "unit_cost_range": [
+          5.13,
+          13.3
+        ],
+        "material_pct": 73.0,
+        "labor_pct": 27.0,
+        "by_unit": {
+          "SF": {
+            "count": 243,
+            "avg_total": 13.95,
+            "range": [
+              1.0,
+              746.0
+            ],
+            "avg_material": 23.85,
+            "avg_labor": 2.11
+          },
+          "LF": {
+            "count": 43,
+            "avg_total": 10.0,
+            "range": [
+              4.49,
+              21.8
+            ],
+            "avg_material": 17.63,
+            "avg_labor": 3.5
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 286,
+        "avg_total_with_overhead": 13.36,
+        "cost_range": [
+          1.0,
+          746.0
+        ],
+        "sample_unit_costs": {
+          "Includes fasteners and seam tape - Air / Moisture barrier": {
+            "material": 20.0,
+            "labor": 0.5,
+            "total": 1.0,
+            "unit": "SF"
+          },
+          "Straight wall - 8\" exposure": {
+            "material": 3.46,
+            "labor": 1.65,
+            "total": 6.63,
+            "unit": "SF"
+          },
+          "Straight wall - 10\" exposure": {
+            "material": 3.8,
+            "labor": 1.33,
+            "total": 6.56,
+            "unit": "SF"
+          },
+          "Cut-up wall - 8\" exposure": {
+            "material": 3.46,
+            "labor": 2.02,
+            "total": 7.18,
+            "unit": "SF"
+          },
+          "Cut-up wall - 10\" exposure": {
+            "material": 3.8,
+            "labor": 1.65,
+            "total": 7.04,
+            "unit": "SF"
+          }
+        }
       }
     },
     "window_replacement": {
@@ -7547,7 +8284,10 @@
           "standard": 195,
           "full_frame": 390,
           "bay_bow": 1040
-        }
+        },
+        "craftsman_avg_labor_lg": 204.57,
+        "craftsman_avg_labor_sm": 275.82,
+        "craftsman_labor_pct": 24.5
       },
       "additional_costs": {
         "trim_and_casing_interior": {
@@ -8229,6 +8969,85 @@
           "window_replacement labor %: RSMeans is 86% higher (model=25.00, RSMeans=46.53)"
         ],
         "calibration_advisory": "RSMeans data suggests potential discrepancies. Review flagged items and consider adjusting model ranges."
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "window_replacement",
+        "total_items": 328,
+        "avg_unit_cost_lg": 1088.13,
+        "avg_unit_cost_sm": 1469.6,
+        "avg_unit_cost": 1276.54,
+        "unit_cost_range": [
+          403.0,
+          2190.0
+        ],
+        "material_pct": 75.5,
+        "labor_pct": 24.5,
+        "by_unit": {
+          "SF": {
+            "count": 19,
+            "avg_total": 21.2,
+            "range": [
+              8.76,
+              42.3
+            ],
+            "avg_material": 10.89,
+            "avg_labor": 5.42
+          },
+          "Set": {
+            "count": 309,
+            "avg_total": 1353.73,
+            "range": [
+              175.0,
+              37100.0
+            ],
+            "avg_material": 716.82,
+            "avg_labor": 254.17
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 328,
+        "avg_total_with_overhead": 1276.54,
+        "cost_range": [
+          8.76,
+          37100.0
+        ],
+        "sample_unit_costs": {
+          "3/16\" T tempered with putty and points in wood sash - 8\" x 1": {
+            "material": 13.0,
+            "labor": 11.7,
+            "total": 33.2,
+            "unit": "SF"
+          },
+          "3/16\" T tempered with putty and points in wood sash - 12\" x ": {
+            "material": 13.2,
+            "labor": 9.12,
+            "total": 29.5,
+            "unit": "SF"
+          },
+          "3/16\" T tempered with putty and points in wood sash - 14\" x ": {
+            "material": 10.9,
+            "labor": 5.0,
+            "total": 20.6,
+            "unit": "SF"
+          },
+          "3/16\" T tempered with putty and points in wood sash - 16\" x ": {
+            "material": 9.88,
+            "labor": 3.9,
+            "total": 17.7,
+            "unit": "SF"
+          },
+          "3/16\" T tempered with putty and points in wood sash - 36\" x ": {
+            "material": 8.6,
+            "labor": 3.24,
+            "total": 15.2,
+            "unit": "SF"
+          }
+        }
       }
     },
     "flooring_installation": {
@@ -8255,128 +9074,128 @@
       "materials": {
         "carpet_budget": {
           "material_cost_per_sq_ft": 2.5,
-          "range_low": 1.5,
-          "range_high": 4.0,
+          "range_low": 2.57,
+          "range_high": 6.59,
           "notes": "Basic polyester carpet, includes padding",
           "quality_level": "budget",
           "lifespan": "5-7 years"
         },
         "carpet_mid_grade": {
           "material_cost_per_sq_ft": 4.5,
-          "range_low": 3.5,
-          "range_high": 6.5,
+          "range_low": 3.37,
+          "range_high": 7.59,
           "notes": "Nylon carpet with good padding, stain resistant",
           "quality_level": "standard",
           "lifespan": "10-15 years"
         },
         "carpet_premium": {
           "material_cost_per_sq_ft": 7.5,
-          "range_low": 6.0,
-          "range_high": 12.0,
+          "range_low": 4.37,
+          "range_high": 9.79,
           "notes": "High-end wool or premium nylon, thick padding",
           "quality_level": "premium",
           "lifespan": "15-20 years"
         },
         "vinyl_plank_basic": {
           "material_cost_per_sq_ft": 2.0,
-          "range_low": 1.5,
-          "range_high": 3.5,
+          "range_low": 2.57,
+          "range_high": 6.39,
           "notes": "Basic vinyl plank flooring (LVP), thin wear layer",
           "quality_level": "budget",
           "lifespan": "5-10 years"
         },
         "vinyl_plank_mid": {
           "material_cost_per_sq_ft": 3.5,
-          "range_low": 2.5,
-          "range_high": 5.0,
+          "range_low": 2.97,
+          "range_high": 6.99,
           "notes": "Mid-grade LVP with 12-20 mil wear layer, waterproof",
           "quality_level": "standard",
           "lifespan": "15-20 years"
         },
         "vinyl_plank_premium": {
           "material_cost_per_sq_ft": 5.5,
-          "range_low": 4.5,
-          "range_high": 8.0,
+          "range_low": 3.77,
+          "range_high": 8.19,
           "notes": "Premium LVP, 20+ mil wear layer, realistic wood grain",
           "quality_level": "premium",
           "lifespan": "20-25 years"
         },
         "laminate_basic": {
           "material_cost_per_sq_ft": 1.75,
-          "range_low": 1.0,
-          "range_high": 3.0,
+          "range_low": 2.37,
+          "range_high": 6.19,
           "notes": "Basic laminate, AC3 rating, click-lock",
           "quality_level": "budget",
           "lifespan": "10-15 years"
         },
         "laminate_premium": {
           "material_cost_per_sq_ft": 3.5,
-          "range_low": 2.5,
-          "range_high": 5.0,
+          "range_low": 2.97,
+          "range_high": 6.99,
           "notes": "High-quality laminate, AC4-AC5 rating, moisture resistant",
           "quality_level": "standard",
           "lifespan": "15-25 years"
         },
         "hardwood_oak_prefinished": {
           "material_cost_per_sq_ft": 6.5,
-          "range_low": 4.5,
-          "range_high": 9.0,
+          "range_low": 3.77,
+          "range_high": 8.59,
           "notes": "3/4 inch solid red oak, prefinished, standard grade",
           "quality_level": "standard",
           "lifespan": "50+ years with refinishing"
         },
         "hardwood_oak_unfinished": {
           "material_cost_per_sq_ft": 4.5,
-          "range_low": 3.5,
-          "range_high": 6.5,
+          "range_low": 3.37,
+          "range_high": 7.59,
           "notes": "3/4 inch solid oak, unfinished, requires site finishing",
           "quality_level": "standard",
           "lifespan": "50+ years"
         },
         "hardwood_exotic": {
           "material_cost_per_sq_ft": 12.0,
-          "range_low": 8.0,
-          "range_high": 18.0,
+          "range_low": 5.17,
+          "range_high": 12.19,
           "notes": "Brazilian cherry, teak, or other exotic species",
           "quality_level": "premium",
           "lifespan": "50+ years"
         },
         "engineered_hardwood_basic": {
           "material_cost_per_sq_ft": 4.0,
-          "range_low": 3.0,
-          "range_high": 6.0,
+          "range_low": 3.17,
+          "range_high": 7.39,
           "notes": "Thin veneer engineered wood, 3mm wear layer",
           "quality_level": "budget",
           "lifespan": "20-30 years"
         },
         "engineered_hardwood_premium": {
           "material_cost_per_sq_ft": 7.0,
-          "range_low": 5.5,
-          "range_high": 10.0,
+          "range_low": 4.17,
+          "range_high": 8.99,
           "notes": "Thick veneer engineered wood, 5-6mm wear layer, can be refinished",
           "quality_level": "premium",
           "lifespan": "40-50 years"
         },
         "tile_ceramic": {
           "material_cost_per_sq_ft": 3.0,
-          "range_low": 1.5,
-          "range_high": 5.0,
+          "range_low": 2.57,
+          "range_high": 6.99,
           "notes": "Standard ceramic tile, 12x12 or 12x24",
           "quality_level": "standard",
           "lifespan": "50+ years"
         },
         "tile_porcelain": {
           "material_cost_per_sq_ft": 5.0,
-          "range_low": 3.5,
-          "range_high": 8.0,
+          "range_low": 3.37,
+          "range_high": 8.19,
           "notes": "Porcelain tile, more durable than ceramic",
           "quality_level": "standard",
           "lifespan": "75+ years"
         },
         "tile_natural_stone": {
           "material_cost_per_sq_ft": 10.0,
-          "range_low": 6.0,
-          "range_high": 20.0,
+          "range_low": 4.37,
+          "range_high": 12.99,
           "notes": "Marble, granite, travertine, or slate",
           "quality_level": "premium",
           "lifespan": "100+ years"
@@ -8394,9 +9213,9 @@
           "notes": "Cork underlayment, better sound/moisture control"
         },
         "tile_mortar_and_grout": {
-          "cost_per_sq_ft": 1.5,
-          "range_low": 1.0,
-          "range_high": 2.5,
+          "cost_per_sq_ft": 3.48,
+          "range_low": 2.37,
+          "range_high": 5.99,
           "notes": "Thinset mortar, grout, sealer for tile installation"
         }
       },
@@ -8474,7 +9293,10 @@
           "range_low": 2.5,
           "range_high": 6.0,
           "notes": "Self-leveling compound for uneven concrete slabs"
-        }
+        },
+        "craftsman_avg_labor_lg": 1.84,
+        "craftsman_avg_labor_sm": 2.18,
+        "craftsman_labor_pct": 32.1
       },
       "common_jobs": {
         "master_bedroom_carpet": {
@@ -8986,6 +9808,85 @@
         ],
         "confidence": "low",
         "confidence_note": "Labor percentage (158.7%) outside normal range; data included as reference only"
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "flooring_installation",
+        "total_items": 97,
+        "avg_unit_cost_lg": 14.8,
+        "avg_unit_cost_sm": 15.99,
+        "avg_unit_cost": 15.39,
+        "unit_cost_range": [
+          2.28,
+          14.0
+        ],
+        "material_pct": 67.9,
+        "labor_pct": 32.1,
+        "by_unit": {
+          "SF": {
+            "count": 81,
+            "avg_total": 11.44,
+            "range": [
+              1.07,
+              450.0
+            ],
+            "avg_material": 8.0,
+            "avg_labor": 1.8
+          },
+          "LF": {
+            "count": 16,
+            "avg_total": 35.4,
+            "range": [
+              2.88,
+              454.0
+            ],
+            "avg_material": 13.17,
+            "avg_labor": 3.06
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 97,
+        "avg_total_with_overhead": 15.39,
+        "cost_range": [
+          1.07,
+          454.0
+        ],
+        "sample_unit_costs": {
+          "Floor prep for resilient flooring": {
+            "material": 1.0,
+            "labor": 0.62,
+            "total": 1.07,
+            "unit": "SF"
+          },
+          "Floor prep for resilient flooring - Heavy prep": {
+            "material": 20.0,
+            "labor": 0.58,
+            "total": 1.11,
+            "unit": "SF"
+          },
+          "Vinyl tile, 12\" x 12\" - Standard, 0.045\" T": {
+            "material": 1.37,
+            "labor": 0.42,
+            "total": 3.52,
+            "unit": "SF"
+          },
+          "Vinyl tile, 12\" x 12\" - High, 0.080\" T": {
+            "material": 5.13,
+            "labor": 1.67,
+            "total": 8.66,
+            "unit": "SF"
+          },
+          "Vinyl tile, 12\" x 12\" - Premium, 0.094\" T": {
+            "material": 6.57,
+            "labor": 1.25,
+            "total": 9.76,
+            "unit": "SF"
+          }
+        }
       }
     },
     "fence_installation": {
@@ -9012,7 +9913,7 @@
       "materials": {
         "wood_fence_pine_treated_6ft": {
           "material_cost_per_lf": 15.0,
-          "range_low": 12.0,
+          "range_low": 17.73,
           "range_high": 20.0,
           "notes": "Pressure-treated pine, 6ft privacy fence, includes posts, rails, pickets",
           "quality_level": "budget",
@@ -9020,7 +9921,7 @@
         },
         "wood_fence_cedar_6ft": {
           "material_cost_per_lf": 28.0,
-          "range_low": 22.0,
+          "range_low": 21.73,
           "range_high": 35.0,
           "notes": "Western red cedar, 6ft privacy fence, naturally rot-resistant",
           "quality_level": "premium",
@@ -9028,7 +9929,7 @@
         },
         "wood_fence_redwood_6ft": {
           "material_cost_per_lf": 32.0,
-          "range_low": 28.0,
+          "range_low": 24.13,
           "range_high": 40.0,
           "notes": "Redwood, 6ft privacy fence, premium appearance",
           "quality_level": "premium",
@@ -9036,7 +9937,7 @@
         },
         "wood_picket_fence_4ft": {
           "material_cost_per_lf": 12.0,
-          "range_low": 10.0,
+          "range_low": 16.93,
           "range_high": 18.0,
           "notes": "4ft picket fence, decorative front yard style",
           "quality_level": "standard",
@@ -9044,7 +9945,7 @@
         },
         "vinyl_fence_privacy_6ft": {
           "material_cost_per_lf": 28.0,
-          "range_low": 22.0,
+          "range_low": 21.73,
           "range_high": 38.0,
           "notes": "PVC privacy fence, no maintenance, white or tan",
           "quality_level": "premium",
@@ -9052,7 +9953,7 @@
         },
         "vinyl_fence_picket_4ft": {
           "material_cost_per_lf": 20.0,
-          "range_low": 15.0,
+          "range_low": 18.93,
           "range_high": 28.0,
           "notes": "PVC picket fence, decorative, maintenance-free",
           "quality_level": "premium",
@@ -9068,7 +9969,7 @@
         },
         "chain_link_6ft_residential": {
           "material_cost_per_lf": 12.0,
-          "range_low": 10.0,
+          "range_low": 16.93,
           "range_high": 16.0,
           "notes": "Galvanized chain link, 6ft height with privacy slats option",
           "quality_level": "budget",
@@ -9076,7 +9977,7 @@
         },
         "chain_link_commercial_grade": {
           "material_cost_per_lf": 18.0,
-          "range_low": 15.0,
+          "range_low": 18.93,
           "range_high": 25.0,
           "notes": "Heavy-duty commercial grade, thicker gauge wire",
           "quality_level": "commercial",
@@ -9084,7 +9985,7 @@
         },
         "aluminum_fence_ornamental_4ft": {
           "material_cost_per_lf": 30.0,
-          "range_low": 25.0,
+          "range_low": 22.93,
           "range_high": 40.0,
           "notes": "Powder-coated aluminum, ornamental style, no rust",
           "quality_level": "premium",
@@ -9092,16 +9993,16 @@
         },
         "aluminum_fence_ornamental_6ft": {
           "material_cost_per_lf": 40.0,
-          "range_low": 35.0,
-          "range_high": 55.0,
+          "range_low": 26.93,
+          "range_high": 124.0,
           "notes": "Powder-coated aluminum, 6ft ornamental, pool-code compliant",
           "quality_level": "premium",
           "lifespan": "30-50 years"
         },
         "wrought_iron_custom": {
           "material_cost_per_lf": 100.0,
-          "range_low": 80.0,
-          "range_high": 150.0,
+          "range_low": 44.93,
+          "range_high": 162.0,
           "notes": "True wrought iron, custom fabrication, requires ongoing rust prevention",
           "quality_level": "luxury",
           "lifespan": "50+ years with maintenance"
@@ -9116,7 +10017,7 @@
         },
         "split_rail_3_rail": {
           "material_cost_per_lf": 10.0,
-          "range_low": 8.0,
+          "range_low": 16.13,
           "range_high": 14.0,
           "notes": "3-rail split rail, more substantial appearance",
           "quality_level": "standard",
@@ -9124,8 +10025,8 @@
         },
         "composite_fence_6ft": {
           "material_cost_per_lf": 45.0,
-          "range_low": 38.0,
-          "range_high": 60.0,
+          "range_low": 28.13,
+          "range_high": 126.0,
           "notes": "Wood-plastic composite, Trex-style, very low maintenance",
           "quality_level": "premium",
           "lifespan": "25-35 years"
@@ -9231,7 +10132,10 @@
           "range_low": 1.5,
           "range_high": 4.0,
           "notes": "Stain and seal wood fence (materials separate)"
-        }
+        },
+        "craftsman_avg_labor_lg": 12.38,
+        "craftsman_avg_labor_sm": 23.8,
+        "craftsman_labor_pct": 22.3
       },
       "gates": {
         "single_walk_gate_wood_4ft": {
@@ -9790,6 +10694,85 @@
           "fence_installation avg material/unit: RSMeans is 2154% higher (model=27.03, RSMeans=609.30)"
         ],
         "calibration_advisory": "RSMeans data suggests potential discrepancies. Review flagged items and consider adjusting model ranges."
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "fence_installation",
+        "total_items": 136,
+        "avg_unit_cost_lg": 98.66,
+        "avg_unit_cost_sm": 93.41,
+        "avg_unit_cost": 96.23,
+        "unit_cost_range": [
+          15.5,
+          232.0
+        ],
+        "material_pct": 77.7,
+        "labor_pct": 22.3,
+        "by_unit": {
+          "LF": {
+            "count": 131,
+            "avg_total": 96.43,
+            "range": [
+              8.04,
+              301.0
+            ],
+            "avg_material": 67.25,
+            "avg_labor": 16.91
+          },
+          "Ea": {
+            "count": 5,
+            "avg_total": 91.02,
+            "range": [
+              57.4,
+              123.4
+            ],
+            "avg_material": 29.4,
+            "avg_labor": 37.58
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 136,
+        "avg_total_with_overhead": 96.23,
+        "cost_range": [
+          8.04,
+          301.0
+        ],
+        "sample_unit_costs": {
+          "Basketweave - 2'to 4'H": {
+            "material": 24.7,
+            "labor": 4.07,
+            "total": 35.3,
+            "unit": "LF"
+          },
+          "Basketweave - 4' to 6'H": {
+            "material": 36.2,
+            "labor": 4.07,
+            "total": 49.2,
+            "unit": "LF"
+          },
+          "Adjustments": {
+            "material": 50.5,
+            "labor": 35.5,
+            "total": 110.0,
+            "unit": "Ea"
+          },
+          "Gate with hardware": {
+            "material": 46.5,
+            "labor": 29.0,
+            "total": 96.4,
+            "unit": "LF"
+          },
+          "Cedar - 1\"x 8\"-6'H": {
+            "material": 43.6,
+            "labor": 14.0,
+            "total": 71.8,
+            "unit": "LF"
+          }
+        }
       }
     },
     "concrete_work": {
@@ -9820,36 +10803,36 @@
       "materials": {
         "concrete_3000psi": {
           "cost_per_cubic_yard": 125,
-          "range_low": 110,
-          "range_high": 145,
+          "range_low": 47,
+          "range_high": 64,
           "notes": "Standard 3000 PSI concrete mix, suitable for most residential slabs",
           "typical_use": "patios, walkways, garage floors"
         },
         "concrete_4000psi": {
           "cost_per_cubic_yard": 140,
-          "range_low": 125,
-          "range_high": 160,
+          "range_low": 53,
+          "range_high": 70,
           "notes": "4000 PSI concrete, more durable for driveways and high-traffic",
           "typical_use": "driveways, commercial slabs"
         },
         "concrete_5000psi": {
           "cost_per_cubic_yard": 160,
-          "range_low": 145,
-          "range_high": 185,
+          "range_low": 61,
+          "range_high": 80,
           "notes": "High-strength 5000 PSI, for heavy loads or freeze-thaw climates",
           "typical_use": "heavy equipment areas, northern climates"
         },
         "fiber_reinforced_concrete": {
           "cost_per_cubic_yard": 155,
-          "range_low": 140,
-          "range_high": 180,
+          "range_low": 59,
+          "range_high": 78,
           "notes": "Concrete with synthetic fibers, reduces cracking",
           "typical_use": "driveways, patios where cracking is concern"
         },
         "colored_concrete": {
           "additional_cost_per_sq_ft": 1.5,
           "range_low": 1.0,
-          "range_high": 3.0,
+          "range_high": 7.02,
           "notes": "Integral color mixed into concrete"
         },
         "rebar_reinforcement": {
@@ -9979,7 +10962,10 @@
           "range_low": 1.5,
           "range_high": 3.0,
           "notes": "Edging tool for clean borders, hand troweling"
-        }
+        },
+        "craftsman_avg_labor_lg": 4.63,
+        "craftsman_avg_labor_sm": 3.87,
+        "craftsman_labor_pct": 32.7
       },
       "common_jobs": {
         "basic_patio_12x16": {
@@ -10466,6 +11452,95 @@
           "concrete_work avg material/unit: RSMeans is 362% higher (model=35.73, RSMeans=164.95)"
         ],
         "calibration_advisory": "RSMeans data suggests potential discrepancies. Review flagged items and consider adjusting model ranges."
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "concrete_work",
+        "total_items": 105,
+        "avg_unit_cost_lg": 22.86,
+        "avg_unit_cost_sm": 19.29,
+        "avg_unit_cost": 21.06,
+        "unit_cost_range": [
+          1.74,
+          88.5
+        ],
+        "material_pct": 67.3,
+        "labor_pct": 32.7,
+        "by_unit": {
+          "LF": {
+            "count": 61,
+            "avg_total": 16.42,
+            "range": [
+              1.23,
+              117.0
+            ],
+            "avg_material": 33.06,
+            "avg_labor": 3.05
+          },
+          "SF": {
+            "count": 37,
+            "avg_total": 9.34,
+            "range": [
+              0.35,
+              48.0
+            ],
+            "avg_material": 18.46,
+            "avg_labor": 1.98
+          },
+          "CY": {
+            "count": 7,
+            "avg_total": 123.5,
+            "range": [
+              88.5,
+              168.0
+            ],
+            "avg_material": 30.83,
+            "avg_labor": 26.13
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 105,
+        "avg_total_with_overhead": 21.06,
+        "cost_range": [
+          0.35,
+          168.0
+        ],
+        "sample_unit_costs": {
+          "Forming, 4 uses - 2\" x 6\"": {
+            "material": 0.89,
+            "labor": 4.61,
+            "total": 7.98,
+            "unit": "LF"
+          },
+          "Forming, 4 uses - 2\" x 8\"": {
+            "material": 92.0,
+            "labor": 5.17,
+            "total": 8.85,
+            "unit": "LF"
+          },
+          "Grading, labor to finish by hand - 6\", 8\", 12\" T x 12\" Ww": {
+            "material": 0.0,
+            "labor": 0.97,
+            "total": 1.46,
+            "unit": "LF"
+          },
+          "Grading, labor to finish by hand - 6\", 8\", 12\" Tx 16\" W": {
+            "material": 0.0,
+            "labor": 1.01,
+            "total": 1.51,
+            "unit": "LF"
+          },
+          "Grading, labor to finish by hand - 6\", 8\", 12\" T x 20\" W": {
+            "material": 0.0,
+            "labor": 1.16,
+            "total": 1.74,
+            "unit": "LF"
+          }
+        }
       }
     },
     "gutter_installation": {
@@ -10496,7 +11571,7 @@
         },
         "aluminum_5inch_seamless": {
           "material_cost_per_lf": 4.5,
-          "range_low": 3.5,
+          "range_low": 8.43,
           "range_high": 6.0,
           "notes": "5 inch K-style seamless aluminum, custom-formed onsite, most popular",
           "quality_level": "standard",
@@ -10504,7 +11579,7 @@
         },
         "aluminum_6inch_seamless": {
           "material_cost_per_lf": 5.5,
-          "range_low": 4.5,
+          "range_low": 8.83,
           "range_high": 7.5,
           "notes": "6 inch K-style seamless, handles more water volume",
           "quality_level": "premium",
@@ -10512,7 +11587,7 @@
         },
         "aluminum_half_round_seamless": {
           "material_cost_per_lf": 6.0,
-          "range_low": 5.0,
+          "range_low": 9.03,
           "range_high": 8.0,
           "notes": "Half-round profile, decorative, less capacity than K-style",
           "quality_level": "premium",
@@ -10520,16 +11595,16 @@
         },
         "copper_5inch": {
           "material_cost_per_lf": 25.0,
-          "range_low": 20.0,
-          "range_high": 35.0,
+          "range_low": 15.03,
+          "range_high": 32.18,
           "notes": "Copper gutters, develops natural patina, premium appearance",
           "quality_level": "luxury",
           "lifespan": "50+ years"
         },
         "copper_half_round": {
           "material_cost_per_lf": 28.0,
-          "range_low": 22.0,
-          "range_high": 38.0,
+          "range_low": 15.83,
+          "range_high": 33.38,
           "notes": "Copper half-round, high-end decorative",
           "quality_level": "luxury",
           "lifespan": "50+ years"
@@ -10544,7 +11619,7 @@
         },
         "steel_galvanized_5inch": {
           "material_cost_per_lf": 5.0,
-          "range_low": 4.0,
+          "range_low": 8.63,
           "range_high": 7.0,
           "notes": "Galvanized steel, more durable than aluminum, heavier",
           "quality_level": "standard",
@@ -10558,20 +11633,20 @@
         },
         "downspout_copper": {
           "cost_per_linear_foot": 18.0,
-          "range_low": 15.0,
-          "range_high": 25.0,
+          "range_low": 13.03,
+          "range_high": 28.18,
           "notes": "Copper downspout to match copper gutters"
         },
         "downspout_extensions": {
           "cost_each": 15.0,
-          "range_low": 10.0,
-          "range_high": 25.0,
+          "range_low": 11.03,
+          "range_high": 28.18,
           "notes": "Plastic or metal extension to direct water away from foundation"
         },
         "elbows_and_fittings": {
           "cost_per_downspout": 20.0,
-          "range_low": 15.0,
-          "range_high": 30.0,
+          "range_low": 13.03,
+          "range_high": 30.18,
           "notes": "Elbows, adapters, and fittings per downspout"
         },
         "hangers_hidden": {
@@ -10586,8 +11661,8 @@
         },
         "inside_outside_corners": {
           "cost_each": 8.0,
-          "range_low": 6.0,
-          "range_high": 12.0,
+          "range_low": 9.43,
+          "range_high": 22.98,
           "notes": "Corner pieces for seamless gutters (mitered or box)"
         }
       },
@@ -10655,7 +11730,10 @@
           "range_low": 30.0,
           "range_high": 75.0,
           "notes": "Re-seal leaking joints, small repairs"
-        }
+        },
+        "craftsman_avg_labor_lg": 3.74,
+        "craftsman_avg_labor_sm": 6.48,
+        "craftsman_labor_pct": 26.5
       },
       "gutter_guards": {
         "screen_guards_basic": {
@@ -11200,6 +12278,75 @@
         ],
         "confidence": "low",
         "confidence_note": "Labor percentage (1.8%) outside normal range; data included as reference only"
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "gutter_installation",
+        "total_items": 24,
+        "avg_unit_cost_lg": 25.27,
+        "avg_unit_cost_sm": 24.91,
+        "avg_unit_cost": 25.09,
+        "unit_cost_range": [
+          9.29,
+          42.6
+        ],
+        "material_pct": 73.5,
+        "labor_pct": 26.5,
+        "by_unit": {
+          "LF": {
+            "count": 24,
+            "avg_total": 25.09,
+            "range": [
+              7.66,
+              94.8
+            ],
+            "avg_material": 13.12,
+            "avg_labor": 5.11
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 24,
+        "avg_total_with_overhead": 25.09,
+        "cost_range": [
+          7.66,
+          94.8
+        ],
+        "sample_unit_costs": {
+          "Gutter, 5\", and Downspout, 2\"x3\"": {
+            "material": 4.07,
+            "labor": 3.67,
+            "total": 10.4,
+            "unit": "LF"
+          },
+          "Gutter, 6\", and Downspout, 3\"x4\"": {
+            "material": 8.12,
+            "labor": 3.67,
+            "total": 15.3,
+            "unit": "LF"
+          },
+          "Cutter, 7\" to 8\", and Dowrspoul, 4\"x5\"": {
+            "material": 14.5,
+            "labor": 3.67,
+            "total": 22.9,
+            "unit": "LF"
+          },
+          "Gutter, box, 6\", and Downspout, 3\"x4\"": {
+            "material": 9.9,
+            "labor": 3.67,
+            "total": 17.4,
+            "unit": "LF"
+          },
+          "Gutter, box, 7\" to 8\", and Downspout, 4\"x5\"": {
+            "material": 17.6,
+            "labor": 3.67,
+            "total": 26.7,
+            "unit": "LF"
+          }
+        }
       }
     },
     "tree_removal": {
@@ -11476,7 +12623,10 @@
           "cost": 100,
           "range_low": 50,
           "range_high": 200
-        }
+        },
+        "craftsman_avg_labor_lg": 207.17,
+        "craftsman_avg_labor_sm": 285.48,
+        "craftsman_labor_pct": 20.2
       },
       "typical_total_project_cost": {
         "single_basic": {
@@ -11609,6 +12759,95 @@
         ],
         "confidence": "low",
         "confidence_note": "Labor percentage (3.3%) outside normal range; data included as reference only"
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "garage_door",
+        "total_items": 84,
+        "avg_unit_cost_lg": 1299.04,
+        "avg_unit_cost_sm": 1596.48,
+        "avg_unit_cost": 1486.71,
+        "unit_cost_range": [
+          721.0,
+          2270.0
+        ],
+        "material_pct": 79.8,
+        "labor_pct": 20.2,
+        "by_unit": {
+          "Ea": {
+            "count": 71,
+            "avg_total": 1639.23,
+            "range": [
+              41.2,
+              4370.0
+            ],
+            "avg_material": 1018.59,
+            "avg_labor": 256.77
+          },
+          "LS": {
+            "count": 12,
+            "avg_total": 698.5,
+            "range": [
+              184.0,
+              942.0
+            ],
+            "avg_material": 286.2,
+            "avg_labor": 275.0
+          },
+          "Pr": {
+            "count": 1,
+            "avg_total": 116.0,
+            "range": [
+              116.0,
+              116.0
+            ],
+            "avg_material": 43.2,
+            "avg_labor": 43.0
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 84,
+        "avg_total_with_overhead": 1486.71,
+        "cost_range": [
+          41.2,
+          4370.0
+        ],
+        "sample_unit_costs": {
+          "Jamb type with hardware and deluxe lock - 8'x 7\u2019, single": {
+            "material": 759.0,
+            "labor": 262.0,
+            "total": 1300.0,
+            "unit": "Ea"
+          },
+          "Jamb type with hardware and deluxe lock - 8' x 8', single": {
+            "material": 918.0,
+            "labor": 184.0,
+            "total": 1380.0,
+            "unit": "Ea"
+          },
+          "Jamb type with hardware and deluxe lock - 9' x 7', single": {
+            "material": 703.0,
+            "labor": 184.0,
+            "total": 1120.0,
+            "unit": "Ea"
+          },
+          "Jamb type with hardware and deluxe lock - 16'x 7\u2019, double": {
+            "material": 1100.0,
+            "labor": 245.0,
+            "total": 1690.0,
+            "unit": "Ea"
+          },
+          "Track type with hardware and deluxe lock": {
+            "material": 723.0,
+            "labor": 262.0,
+            "total": 1260.0,
+            "unit": "Ea"
+          }
+        }
       }
     },
     "home_addition": {
@@ -12965,7 +14204,10 @@
             "high": 65
           }
         },
-        "timeline": "3-7 days depending on size and condition"
+        "timeline": "3-7 days depending on size and condition",
+        "craftsman_avg_labor_lg": 3.0,
+        "craftsman_avg_labor_sm": 2.94,
+        "craftsman_labor_pct": 32.0
       },
       "typical_total_project_cost": {
         "per_sq_ft": {
@@ -13096,6 +14338,75 @@
         ],
         "confidence": "low",
         "confidence_note": "Labor percentage (73.7%) outside normal range; data included as reference only"
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "exterior_painting",
+        "total_items": 28,
+        "avg_unit_cost_lg": 27.2,
+        "avg_unit_cost_sm": 16.53,
+        "avg_unit_cost": 21.1,
+        "unit_cost_range": [
+          0.83,
+          86.0
+        ],
+        "material_pct": 68.0,
+        "labor_pct": 32.0,
+        "by_unit": {
+          "SF": {
+            "count": 28,
+            "avg_total": 21.1,
+            "range": [
+              0.36,
+              96.0
+            ],
+            "avg_material": 25.79,
+            "avg_labor": 2.97
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 28,
+        "avg_total_with_overhead": 21.1,
+        "cost_range": [
+          0.36,
+          96.0
+        ],
+        "sample_unit_costs": {
+          "Wet clean existing surfaces with water and soap or solvent -": {
+            "material": 0.02,
+            "labor": 23.0,
+            "total": 0.36,
+            "unit": "SF"
+          },
+          "Exterior doors and trim": {
+            "material": 2.0,
+            "labor": 0.36,
+            "total": 57.0,
+            "unit": "SF"
+          },
+          "Sanding and puttying - Exterior doors and trim": {
+            "material": 1.0,
+            "labor": 0.5,
+            "total": 76.0,
+            "unit": "SF"
+          },
+          "Plain siding - Roller (275 SF/gal)": {
+            "material": 19.0,
+            "labor": 0.36,
+            "total": 17.0,
+            "unit": "SF"
+          },
+          "Plain siding - Spray (325 SF/gal)": {
+            "material": 16.0,
+            "labor": 0.23,
+            "total": 61.0,
+            "unit": "SF"
+          }
+        }
       }
     },
     "retaining_wall": {
@@ -14322,7 +15633,10 @@
           "low": 1.0,
           "high": 3.0
         },
-        "timeline": "1-2 days for most projects"
+        "timeline": "1-2 days for most projects",
+        "craftsman_avg_labor_lg": 18.26,
+        "craftsman_avg_labor_sm": 24.99,
+        "craftsman_labor_pct": 25.0
       },
       "typical_total_project_cost": {
         "attic_blown_1500sqft": {
@@ -14476,6 +15790,85 @@
         ],
         "confidence": "low",
         "confidence_note": "Labor percentage (509.9%) outside normal range; data included as reference only"
+      },
+      "craftsman_calibration": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026 (49th Ed.)",
+        "data_year": "2026",
+        "craftsman_type": "insulation",
+        "total_items": 174,
+        "avg_unit_cost_lg": 40.9,
+        "avg_unit_cost_sm": 57.5,
+        "avg_unit_cost": 48.44,
+        "unit_cost_range": [
+          1.33,
+          239.0
+        ],
+        "material_pct": 75.0,
+        "labor_pct": 25.0,
+        "by_unit": {
+          "SF": {
+            "count": 150,
+            "avg_total": 3.08,
+            "range": [
+              0.93,
+              152.0
+            ],
+            "avg_material": 24.51,
+            "avg_labor": 1.49
+          },
+          "Sq": {
+            "count": 24,
+            "avg_total": 331.92,
+            "range": [
+              186.0,
+              537.0
+            ],
+            "avg_material": 103.95,
+            "avg_labor": 137.22
+          }
+        }
+      },
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 174,
+        "avg_total_with_overhead": 48.44,
+        "cost_range": [
+          0.93,
+          537.0
+        ],
+        "sample_unit_costs": {
+          "Includes fasteners and seam tape - Air / Moisture barrier": {
+            "material": 20.0,
+            "labor": 50.0,
+            "total": 1.0,
+            "unit": "SF"
+          },
+          "3-1/2\" T (R-11) - 16\" oc": {
+            "material": 44.0,
+            "labor": 0.37,
+            "total": 1.08,
+            "unit": "SF"
+          },
+          "3-1/2\" T (R-11) - 24\" oc": {
+            "material": 49.0,
+            "labor": 0.23,
+            "total": 0.93,
+            "unit": "SF"
+          },
+          "3-1/2\" T (R-12) - 16\" oc": {
+            "material": 56.0,
+            "labor": 0.0,
+            "total": 1.5,
+            "unit": "SF"
+          },
+          "3-1/2\" T (R-12) - 24\" oc": {
+            "material": 63.0,
+            "labor": 37.0,
+            "total": 1.31,
+            "unit": "SF"
+          }
+        }
       }
     },
     "foundation_repair": {
@@ -15231,6 +16624,1306 @@
           "siding_fiber_cement labor %: RSMeans is 52% lower (model=50.00, RSMeans=23.97)"
         ],
         "calibration_advisory": "RSMeans data suggests potential discrepancies. Review flagged items and consider adjusting model ranges."
+      }
+    },
+    "door_replacement": {
+      "unit": "per_door",
+      "unit_description": "Per door (including frame, hardware, installation)",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 649,
+        "avg_unit_cost": 1544.7,
+        "unit_cost_range": [
+          277.0,
+          3570.0
+        ],
+        "avg_material": 924.65,
+        "avg_labor": 135.69,
+        "labor_pct": 18.4,
+        "by_unit": {
+          "Set": {
+            "count": 417,
+            "avg_total": 1929.27,
+            "range": [
+              207.0,
+              77700.0
+            ],
+            "avg_material": 1511.07,
+            "avg_labor": 193.72
+          },
+          "LF": {
+            "count": 17,
+            "avg_total": 29.66,
+            "range": [
+              19.9,
+              45.6
+            ],
+            "avg_material": 13.33,
+            "avg_labor": 9.12
+          },
+          "Ea": {
+            "count": 206,
+            "avg_total": 901.06,
+            "range": [
+              38.8,
+              3570.0
+            ],
+            "avg_material": 573.36,
+            "avg_labor": 160.4
+          },
+          "LS": {
+            "count": 4,
+            "avg_total": 2955.0,
+            "range": [
+              1660.0,
+              4320.0
+            ],
+            "avg_material": 2057.5,
+            "avg_labor": 325.0
+          },
+          "SF": {
+            "count": 5,
+            "avg_total": 12.69,
+            "range": [
+              2.65,
+              25.1
+            ],
+            "avg_material": 10.59,
+            "avg_labor": 0
+          }
+        }
+      },
+      "typical_project_costs": {
+        "single_door": {
+          "low": 277,
+          "high": 3570,
+          "description": "Based on 649 Craftsman 2026 items"
+        },
+        "3_doors": {
+          "low": 831,
+          "high": 10710,
+          "description": "Based on 649 Craftsman 2026 items"
+        },
+        "full_house_10": {
+          "low": 2770,
+          "high": 35700,
+          "description": "Based on 649 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 649,
+        "avg_total_with_overhead": 1544.7,
+        "cost_range": [
+          2.65,
+          77700.0
+        ],
+        "sample_unit_costs": {
+          "Birch, flush face, 1-3/8\" T, hollow core - 2'-0\" x 6'-8\", 2 ": {
+            "material": 161.0,
+            "labor": 73.4,
+            "total": 303.0,
+            "unit": "Set"
+          },
+          "Birch, flush face, 1-3/8\" T, hollow core - 2'-6\" x 6'-8\", 2 ": {
+            "material": 179.0,
+            "labor": 73.4,
+            "total": 325.0,
+            "unit": "Set"
+          },
+          "Birch, flush face, 1-3/8\" T, hollow core - 3'-0\" x 6'-8\", 2 ": {
+            "material": 211.0,
+            "labor": 73.4,
+            "total": 363.0,
+            "unit": "Set"
+          },
+          "Birch, flush face, 1-3/8\" T, hollow core - 4'-0\" x 6'-8\", 4 ": {
+            "material": 322.0,
+            "labor": 91.8,
+            "total": 524.0,
+            "unit": "Set"
+          },
+          "Birch, flush face, 1-3/8\" T, hollow core - 6'-0\" x 6'-8\", 4 ": {
+            "material": 358.0,
+            "labor": 91.8,
+            "total": 567.0,
+            "unit": "Set"
+          }
+        }
+      }
+    },
+    "cabinet_installation": {
+      "unit": "per_cabinet_or_lf",
+      "unit_description": "Per cabinet or per linear foot of cabinets",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 316,
+        "avg_unit_cost": 569.0,
+        "unit_cost_range": [
+          261.0,
+          1000.0
+        ],
+        "avg_material": 522.92,
+        "avg_labor": 99.55,
+        "labor_pct": 22.1,
+        "by_unit": {
+          "Ea": {
+            "count": 316,
+            "avg_total": 569.0,
+            "range": [
+              30.0,
+              1570.0
+            ],
+            "avg_material": 439.05,
+            "avg_labor": 120.56
+          }
+        }
+      },
+      "typical_project_costs": {
+        "small_kitchen": {
+          "low": 2610,
+          "high": 10000,
+          "description": "Based on 316 Craftsman 2026 items"
+        },
+        "medium_kitchen": {
+          "low": 5220,
+          "high": 20000,
+          "description": "Based on 316 Craftsman 2026 items"
+        },
+        "large_kitchen": {
+          "low": 7830,
+          "high": 30000,
+          "description": "Based on 316 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 316,
+        "avg_total_with_overhead": 569.0,
+        "cost_range": [
+          30.0,
+          1570.0
+        ],
+        "sample_unit_costs": {
+          "12\" W, 1 door, 1 drawer": {
+            "material": 222.0,
+            "labor": 67.7,
+            "total": 367.0,
+            "unit": "Ea"
+          },
+          "12\" W, 1 door, 1 drawer - Good quality workmanship": {
+            "material": 155.0,
+            "labor": 27.0,
+            "total": 226.0,
+            "unit": "Ea"
+          },
+          "12\" W, 1 door, 1 drawer - Average quality workmanship": {
+            "material": 116.0,
+            "labor": 27.0,
+            "total": 180.0,
+            "unit": "Ea"
+          },
+          "15\" W, 1 door, 1 drawer - High quality workmanship": {
+            "material": 214.0,
+            "labor": 40.5,
+            "total": 318.0,
+            "unit": "Ea"
+          },
+          "15\" W, 1 door, 1 drawer - Good quality workmanship": {
+            "material": 165.0,
+            "labor": 27.0,
+            "total": 238.0,
+            "unit": "Ea"
+          }
+        }
+      }
+    },
+    "tile_work": {
+      "unit": "square_foot",
+      "unit_description": "Per square foot of tile installed",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 43,
+        "avg_unit_cost": 25.0,
+        "unit_cost_range": [
+          17.7,
+          35.1
+        ],
+        "avg_material": 84.84,
+        "avg_labor": 7.55,
+        "labor_pct": 37.4,
+        "by_unit": {
+          "SF": {
+            "count": 28,
+            "avg_total": 23.89,
+            "range": [
+              2.05,
+              42.1
+            ],
+            "avg_material": 38.72,
+            "avg_labor": 9.42
+          },
+          "LF": {
+            "count": 15,
+            "avg_total": 27.07,
+            "range": [
+              19.2,
+              43.0
+            ],
+            "avg_material": 59.94,
+            "avg_labor": 10.8
+          }
+        }
+      },
+      "typical_project_costs": {
+        "bathroom_floor_50sf": {
+          "low": 885,
+          "high": 1755,
+          "description": "Based on 43 Craftsman 2026 items"
+        },
+        "kitchen_backsplash_30sf": {
+          "low": 531,
+          "high": 1053,
+          "description": "Based on 43 Craftsman 2026 items"
+        },
+        "shower_80sf": {
+          "low": 1416,
+          "high": 2808,
+          "description": "Based on 43 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 43,
+        "avg_total_with_overhead": 25.0,
+        "cost_range": [
+          2.05,
+          43.0
+        ],
+        "sample_unit_costs": {
+          "Adhesive / Mastic": {
+            "material": 10.6,
+            "labor": 14.1,
+            "total": 33.9,
+            "unit": "SF"
+          },
+          "Adhesive / Mastic - 4-1/4\" x 4-1/4\" or similar": {
+            "material": 8.06,
+            "labor": 7.39,
+            "total": 20.8,
+            "unit": "SF"
+          },
+          "Adhesive / Mastic - 6\" x 4-1/4\" or similar": {
+            "material": 8.54,
+            "labor": 6.21,
+            "total": 19.6,
+            "unit": "LF"
+          },
+          "Conventional mortar - 4-1/4\" x 4-1/4\" or similar": {
+            "material": 7.66,
+            "labor": 13.2,
+            "total": 28.9,
+            "unit": "LF"
+          },
+          "Conventional mortar - 6\" x 4-1/4\" or similar": {
+            "material": 8.47,
+            "labor": 11.8,
+            "total": 27.9,
+            "unit": "LF"
+          }
+        }
+      }
+    },
+    "hardwood_flooring": {
+      "unit": "square_foot",
+      "unit_description": "Per square foot of hardwood installed",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 37,
+        "avg_unit_cost": 10.25,
+        "unit_cost_range": [
+          1.14,
+          19.4
+        ],
+        "avg_material": 10.54,
+        "avg_labor": 1.39,
+        "labor_pct": 26.3,
+        "by_unit": {
+          "SF": {
+            "count": 37,
+            "avg_total": 10.25,
+            "range": [
+              0.83,
+              23.7
+            ],
+            "avg_material": 12.17,
+            "avg_labor": 1.96
+          }
+        }
+      },
+      "typical_project_costs": {
+        "room_200sf": {
+          "low": 228,
+          "high": 3880,
+          "description": "Based on 37 Craftsman 2026 items"
+        },
+        "main_floor_800sf": {
+          "low": 912,
+          "high": 15520,
+          "description": "Based on 37 Craftsman 2026 items"
+        },
+        "full_house_1500sf": {
+          "low": 1710,
+          "high": 29100,
+          "description": "Based on 37 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 37,
+        "avg_total_with_overhead": 10.25,
+        "cost_range": [
+          0.83,
+          23.7
+        ],
+        "sample_unit_costs": {
+          "25/32\" x 3-1/4\" - Lay floor": {
+            "material": 14.8,
+            "labor": 1.96,
+            "total": 20.6,
+            "unit": "SF"
+          },
+          "25/32\" x 3-1/4\" - Wax, polish, machine buff": {
+            "material": 13.0,
+            "labor": 0.58,
+            "total": 1.14,
+            "unit": "SF"
+          },
+          "25/32\" x 2-1/4\" - Lay floor": {
+            "material": 10.4,
+            "labor": 2.61,
+            "total": 16.4,
+            "unit": "SF"
+          },
+          "25/32\" x 2-1/4\" - Wax, polish, machine buff": {
+            "material": 13.0,
+            "labor": 8.0,
+            "total": 1.14,
+            "unit": "SF"
+          },
+          "Fir - Vertical grain": {
+            "material": 8.57,
+            "labor": 1.65,
+            "total": 12.8,
+            "unit": "SF"
+          }
+        }
+      }
+    },
+    "carpet_installation": {
+      "unit": "square_foot",
+      "unit_description": "Per square foot of carpet installed",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 17,
+        "avg_unit_cost": 26.2,
+        "unit_cost_range": [
+          6.16,
+          40.6
+        ],
+        "avg_material": 16.07,
+        "avg_labor": 2.76,
+        "labor_pct": 13.7,
+        "by_unit": {
+          "SY": {
+            "count": 17,
+            "avg_total": 26.2,
+            "range": [
+              5.05,
+              47.8
+            ],
+            "avg_material": 16.22,
+            "avg_labor": 3.67
+          }
+        }
+      },
+      "typical_project_costs": {
+        "room_200sf": {
+          "low": 1232,
+          "high": 8120,
+          "description": "Based on 17 Craftsman 2026 items"
+        },
+        "full_house_1000sf": {
+          "low": 6160,
+          "high": 40600,
+          "description": "Based on 17 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 17,
+        "avg_total_with_overhead": 26.2,
+        "cost_range": [
+          5.05,
+          47.8
+        ],
+        "sample_unit_costs": {
+          "Standard quality - Poly, thin pile density": {
+            "material": 19.3,
+            "labor": 3.5,
+            "total": 29.5,
+            "unit": "SY"
+          },
+          "Standard quality - Loop pile, 20 oz.": {
+            "material": 11.2,
+            "labor": 3.5,
+            "total": 19.8,
+            "unit": "SY"
+          },
+          "Standard quality - Cut pile, 24 oz.": {
+            "material": 14.6,
+            "labor": 3.5,
+            "total": 23.9,
+            "unit": "SY"
+          },
+          "Standard quality - Pad": {
+            "material": 3.26,
+            "labor": 0.16,
+            "total": 5.05,
+            "unit": "SY"
+          },
+          "Average quality - Poly, medium pile density": {
+            "material": 26.3,
+            "labor": 3.5,
+            "total": 37.9,
+            "unit": "SY"
+          }
+        }
+      }
+    },
+    "countertops": {
+      "unit": "square_foot_or_lf",
+      "unit_description": "Per square foot or linear foot of countertop",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 79,
+        "avg_unit_cost": 100.63,
+        "unit_cost_range": [
+          14.4,
+          147.0
+        ],
+        "avg_material": 64.7,
+        "avg_labor": 11.56,
+        "labor_pct": 17.6,
+        "by_unit": {
+          "SF": {
+            "count": 24,
+            "avg_total": 64.79,
+            "range": [
+              8.41,
+              124.0
+            ],
+            "avg_material": 50.94,
+            "avg_labor": 7.65
+          },
+          "LF": {
+            "count": 49,
+            "avg_total": 55.75,
+            "range": [
+              3.69,
+              149.0
+            ],
+            "avg_material": 36.99,
+            "avg_labor": 8.11
+          },
+          "Ea": {
+            "count": 6,
+            "avg_total": 610.5,
+            "range": [
+              364.0,
+              848.0
+            ],
+            "avg_material": 413.83,
+            "avg_labor": 75.98
+          }
+        }
+      },
+      "typical_project_costs": {
+        "small_kitchen_20lf": {
+          "low": 288,
+          "high": 2940,
+          "description": "Based on 79 Craftsman 2026 items"
+        },
+        "large_kitchen_40lf": {
+          "low": 576,
+          "high": 5880,
+          "description": "Based on 79 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 79,
+        "avg_total_with_overhead": 100.63,
+        "cost_range": [
+          3.69,
+          848.0
+        ],
+        "sample_unit_costs": {
+          "Adhesive / Mastic": {
+            "material": 10.6,
+            "labor": 14.1,
+            "total": 33.9,
+            "unit": "SF"
+          },
+          "Adhesive / Mastic - 4-1/4\" x 4-1/4\" or similar": {
+            "material": 8.06,
+            "labor": 7.39,
+            "total": 20.8,
+            "unit": "SF"
+          },
+          "Standard grade, solid color": {
+            "material": 53.0,
+            "labor": 4.91,
+            "total": 70.9,
+            "unit": "SF"
+          },
+          "Average grade, solid and mixed color": {
+            "material": 70.6,
+            "labor": 4.91,
+            "total": 92.1,
+            "unit": "SF"
+          },
+          "High grade, specialty mixed colors or finish patterns": {
+            "material": 86.2,
+            "labor": 4.94,
+            "total": 111.0,
+            "unit": "SF"
+          }
+        }
+      }
+    },
+    "framing": {
+      "unit": "square_foot_or_lf",
+      "unit_description": "Per square foot or linear foot of framing",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 868,
+        "avg_unit_cost": 37.2,
+        "unit_cost_range": [
+          2.53,
+          153.0
+        ],
+        "avg_material": 39.43,
+        "avg_labor": 5.94,
+        "labor_pct": 25.3,
+        "by_unit": {
+          "LF": {
+            "count": 437,
+            "avg_total": 47.53,
+            "range": [
+              1.7,
+              536.43
+            ],
+            "avg_material": 49.33,
+            "avg_labor": 6.94
+          },
+          "Set": {
+            "count": 29,
+            "avg_total": 5.8,
+            "range": [
+              3.24,
+              9.09
+            ],
+            "avg_material": 5.0,
+            "avg_labor": 2.18
+          },
+          "SF": {
+            "count": 256,
+            "avg_total": 6.33,
+            "range": [
+              1.02,
+              78.0
+            ],
+            "avg_material": 20.21,
+            "avg_labor": 5.04
+          },
+          "Ea": {
+            "count": 45,
+            "avg_total": 201.42,
+            "range": [
+              129.0,
+              1338.0
+            ],
+            "avg_material": 73.66,
+            "avg_labor": 49.43
+          },
+          "BF": {
+            "count": 101,
+            "avg_total": 6.54,
+            "range": [
+              3.46,
+              11.1
+            ],
+            "avg_material": 99.18,
+            "avg_labor": 2.8
+          }
+        }
+      },
+      "typical_project_costs": {
+        "wall_50lf": {
+          "low": 126,
+          "high": 7650,
+          "description": "Based on 868 Craftsman 2026 items"
+        },
+        "addition_500sf": {
+          "low": 1265,
+          "high": 76500,
+          "description": "Based on 868 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 868,
+        "avg_total_with_overhead": 37.2,
+        "cost_range": [
+          1.02,
+          1338.0
+        ],
+        "sample_unit_costs": {
+          "Built-up (2 pieces) - 4\"x6\"- 10\u00b0": {
+            "material": 2.03,
+            "labor": 2.16,
+            "total": 7.79,
+            "unit": "LF"
+          },
+          "Built-up (2 pieces) - 4\" x 8\" - 10!": {
+            "material": 2.4,
+            "labor": 2.11,
+            "total": 8.1,
+            "unit": "LF"
+          },
+          "Built-up (2 pieces) - 4\"x 10\"- 10'": {
+            "material": 2.96,
+            "labor": 2.25,
+            "total": 9.13,
+            "unit": "LF"
+          },
+          "Built-up (2 pieces) - 4\"x 12\" - 12!": {
+            "material": 4.19,
+            "labor": 2.43,
+            "total": 11.0,
+            "unit": "LF"
+          },
+          "Built-up (2 pieces) - 6\" x 8\"- 10!": {
+            "material": 13.7,
+            "labor": 3.08,
+            "total": 22.8,
+            "unit": "LF"
+          }
+        }
+      }
+    },
+    "trim_carpentry": {
+      "unit": "linear_foot",
+      "unit_description": "Per linear foot of trim/molding",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 255,
+        "avg_unit_cost": 63.07,
+        "unit_cost_range": [
+          4.83,
+          31.8
+        ],
+        "avg_material": 10.73,
+        "avg_labor": 4.14,
+        "labor_pct": 30.9,
+        "by_unit": {
+          "LF": {
+            "count": 229,
+            "avg_total": 36.02,
+            "range": [
+              3.17,
+              4490.0
+            ],
+            "avg_material": 13.36,
+            "avg_labor": 3.9
+          },
+          "Ea": {
+            "count": 23,
+            "avg_total": 23.56,
+            "range": [
+              17.1,
+              30.3
+            ],
+            "avg_material": 25.12,
+            "avg_labor": 11.22
+          },
+          "SF": {
+            "count": 3,
+            "avg_total": 2431.22,
+            "range": [
+              6.46,
+              7190.0
+            ],
+            "avg_material": 10.61,
+            "avg_labor": 30.51
+          }
+        }
+      },
+      "typical_project_costs": {
+        "room_60lf": {
+          "low": 290,
+          "high": 1908,
+          "description": "Based on 255 Craftsman 2026 items"
+        },
+        "full_house_300lf": {
+          "low": 1449,
+          "high": 9540,
+          "description": "Based on 255 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 255,
+        "avg_total_with_overhead": 63.07,
+        "cost_range": [
+          3.17,
+          7190.0
+        ],
+        "sample_unit_costs": {
+          "2-1/4\" high - Pine, finger jointed, paint grade": {
+            "material": 1.51,
+            "labor": 1.51,
+            "total": 4.08,
+            "unit": "LF"
+          },
+          "2-1/4\" high - Pine, stain grade": {
+            "material": 1.73,
+            "labor": 1.51,
+            "total": 4.35,
+            "unit": "LF"
+          },
+          "2-1/4\" high - MDF, rectangle flat profile": {
+            "material": 1.06,
+            "labor": 1.51,
+            "total": 3.54,
+            "unit": "LF"
+          },
+          "2-1/4\" high - MDF, machine-cut profile": {
+            "material": 1.18,
+            "labor": 2.02,
+            "total": 4.44,
+            "unit": "LF"
+          },
+          "3-1/4\" high - Pine, finger jointed, paint grade": {
+            "material": 1.87,
+            "labor": 1.51,
+            "total": 4.52,
+            "unit": "LF"
+          }
+        }
+      }
+    },
+    "masonry": {
+      "unit": "square_foot_or_each",
+      "unit_description": "Per square foot of masonry or per unit",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 179,
+        "avg_unit_cost": 102.2,
+        "unit_cost_range": [
+          11.4,
+          306.0
+        ],
+        "avg_material": 42.85,
+        "avg_labor": 44.34,
+        "labor_pct": 40.5,
+        "by_unit": {
+          "VLF": {
+            "count": 64,
+            "avg_total": 254.27,
+            "range": [
+              36.2,
+              670.0
+            ],
+            "avg_material": 64.01,
+            "avg_labor": 103.87
+          },
+          "SF": {
+            "count": 115,
+            "avg_total": 17.56,
+            "range": [
+              8.16,
+              44.7
+            ],
+            "avg_material": 26.66,
+            "avg_labor": 15.07
+          }
+        }
+      },
+      "typical_project_costs": {
+        "repair_50sf": {
+          "low": 570,
+          "high": 15300,
+          "description": "Based on 179 Craftsman 2026 items"
+        },
+        "veneer_500sf": {
+          "low": 5700,
+          "high": 153000,
+          "description": "Based on 179 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 179,
+        "avg_total_with_overhead": 102.2,
+        "cost_range": [
+          8.16,
+          670.0
+        ],
+        "sample_unit_costs": {
+          "16\" x 16\" with one 8\" x 8\" flue": {
+            "material": 30.0,
+            "labor": 43.7,
+            "total": 110.0,
+            "unit": "VLF"
+          },
+          "20\" x 16\" with one 12\" x 8\" flue": {
+            "material": 36.1,
+            "labor": 49.5,
+            "total": 127.0,
+            "unit": "VLF"
+          },
+          "20\" x 20\" with one 12\" x 12\" flue": {
+            "material": 42.6,
+            "labor": 55.4,
+            "total": 144.0,
+            "unit": "VLF"
+          },
+          "28\" x 16\" with two 8\" x 8\" flues": {
+            "material": 52.7,
+            "labor": 66.3,
+            "total": 175.0,
+            "unit": "VLF"
+          },
+          "36\" x 16\" with two 12\" x 8\" flues": {
+            "material": 64.1,
+            "labor": 76.1,
+            "total": 205.0,
+            "unit": "VLF"
+          }
+        }
+      }
+    },
+    "demolition": {
+      "unit": "square_foot_or_job",
+      "unit_description": "Per square foot of demolition or per job",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 3,
+        "avg_unit_cost": 4520.0,
+        "unit_cost_range": [
+          3400.0,
+          5340.0
+        ],
+        "avg_material": 3325.0,
+        "avg_labor": 82.6,
+        "labor_pct": 2.1,
+        "by_unit": {
+          "Ea": {
+            "count": 3,
+            "avg_total": 4520.0,
+            "range": [
+              3400.0,
+              5340.0
+            ],
+            "avg_material": 3650.0,
+            "avg_labor": 96.07
+          }
+        }
+      },
+      "typical_project_costs": {
+        "room": {
+          "low": 3400,
+          "high": 5340,
+          "description": "Based on 3 Craftsman 2026 items"
+        },
+        "kitchen": {
+          "low": 3400,
+          "high": 5340,
+          "description": "Based on 3 Craftsman 2026 items"
+        },
+        "bathroom": {
+          "low": 3400,
+          "high": 5340,
+          "description": "Based on 3 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 3,
+        "avg_total_with_overhead": 4520.0,
+        "cost_range": [
+          3400.0,
+          5340.0
+        ],
+        "sample_unit_costs": {
+          "Copper - 24\" x 24\" x 32\" H": {
+            "material": 2750.0,
+            "labor": 73.4,
+            "total": 3400.0,
+            "unit": "Ea"
+          },
+          "Copper - 30\" x 30\" x 40\" H": {
+            "material": 3900.0,
+            "labor": 91.8,
+            "total": 4820.0,
+            "unit": "Ea"
+          }
+        }
+      }
+    },
+    "stairs": {
+      "unit": "per_stair_or_set",
+      "unit_description": "Per stair component or complete staircase",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 150,
+        "avg_unit_cost": 1020.64,
+        "unit_cost_range": [
+          39.6,
+          1240.0
+        ],
+        "avg_material": 571.52,
+        "avg_labor": 435.7,
+        "labor_pct": 41.1,
+        "by_unit": {
+          "Ea": {
+            "count": 72,
+            "avg_total": 1901.79,
+            "range": [
+              61.7,
+              24200.0
+            ],
+            "avg_material": 793.18,
+            "avg_labor": 597.63
+          },
+          "LF": {
+            "count": 73,
+            "avg_total": 216.0,
+            "range": [
+              14.4,
+              1060.0
+            ],
+            "avg_material": 54.96,
+            "avg_labor": 96.89
+          },
+          "SF": {
+            "count": 5,
+            "avg_total": 79.8,
+            "range": [
+              20.6,
+              189.0
+            ],
+            "avg_material": 11.04,
+            "avg_labor": 38.78
+          }
+        }
+      },
+      "typical_project_costs": {
+        "basic_straight": {
+          "low": 40,
+          "high": 1240,
+          "description": "Based on 150 Craftsman 2026 items"
+        },
+        "with_landing": {
+          "low": 40,
+          "high": 1240,
+          "description": "Based on 150 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 150,
+        "avg_total_with_overhead": 1020.64,
+        "cost_range": [
+          14.4,
+          24200.0
+        ],
+        "sample_unit_costs": {
+          "Folding / disapperaring, attic access, ladder type - Average": {
+            "material": 446.0,
+            "labor": 173.0,
+            "total": 805.0,
+            "unit": "Ea"
+          },
+          "Folding / disapperaring, attic access, ladder type - High gr": {
+            "material": 514.0,
+            "labor": 196.0,
+            "total": 924.0,
+            "unit": "Ea"
+          },
+          "Ladder, fabricated steel, no cage, wall mounted, straight ve": {
+            "material": 64.5,
+            "labor": 14.7,
+            "total": 100.0,
+            "unit": "LF"
+          },
+          "Ship\u2019s / Captain\u2019s ladder type, with attached handrails": {
+            "material": 64.1,
+            "labor": 417.0,
+            "total": 730.0,
+            "unit": "LF"
+          },
+          "Spiral, includes railing, landing, assemble and install - Ha": {
+            "material": 7570.0,
+            "labor": 1470.0,
+            "total": 11400.0,
+            "unit": "Ea"
+          }
+        }
+      }
+    },
+    "skylight_installation": {
+      "unit": "per_skylight",
+      "unit_description": "Per skylight installed",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 28,
+        "avg_unit_cost": 807.32,
+        "unit_cost_range": [
+          465.0,
+          1220.0
+        ],
+        "avg_material": 446.07,
+        "avg_labor": 121.26,
+        "labor_pct": 20.1,
+        "by_unit": {
+          "Ea": {
+            "count": 28,
+            "avg_total": 807.32,
+            "range": [
+              384.0,
+              1520.0
+            ],
+            "avg_material": 477.54,
+            "avg_labor": 156.13
+          }
+        }
+      },
+      "typical_project_costs": {
+        "single": {
+          "low": 465,
+          "high": 1220,
+          "description": "Based on 28 Craftsman 2026 items"
+        },
+        "pair": {
+          "low": 930,
+          "high": 2440,
+          "description": "Based on 28 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 28,
+        "avg_total_with_overhead": 807.32,
+        "cost_range": [
+          384.0,
+          1520.0
+        ],
+        "sample_unit_costs": {
+          "Fixed, single dome - 22\" x 22\"": {
+            "material": 211.0,
+            "labor": 87.2,
+            "total": 384.0,
+            "unit": "Ea"
+          },
+          "Fixed, single dome - 22\" x 46\"": {
+            "material": 240.0,
+            "labor": 118.0,
+            "total": 465.0,
+            "unit": "Ea"
+          },
+          "Fixed, single dome - 30\" x 30\"": {
+            "material": 317.0,
+            "labor": 118.0,
+            "total": 558.0,
+            "unit": "Ea"
+          },
+          "Fixed, single dome - 30\" x 46\"": {
+            "material": 457.0,
+            "labor": 136.0,
+            "total": 752.0,
+            "unit": "Ea"
+          },
+          "Fixed, single dome - 46\" x 46\"": {
+            "material": 515.0,
+            "labor": 160.0,
+            "total": 858.0,
+            "unit": "Ea"
+          }
+        }
+      }
+    },
+    "fireplace": {
+      "unit": "per_fireplace",
+      "unit_description": "Per fireplace installed or repaired",
+      "source": "Craftsman National Repair & Remodeling Estimator 2026",
+      "craftsman_calibration": {
+        "source": "Craftsman 2026 (49th Ed.)",
+        "data_year": "2026",
+        "total_items": 16,
+        "avg_unit_cost": 793.06,
+        "unit_cost_range": [
+          4.16,
+          2400.0
+        ],
+        "avg_material": 581.83,
+        "avg_labor": 75.53,
+        "labor_pct": 35.0,
+        "by_unit": {
+          "Ea": {
+            "count": 7,
+            "avg_total": 1805.43,
+            "range": [
+              988.0,
+              2560.0
+            ],
+            "avg_material": 1257.57,
+            "avg_labor": 197.43
+          },
+          "SF": {
+            "count": 3,
+            "avg_total": 6.93,
+            "range": [
+              6.37,
+              7.46
+            ],
+            "avg_material": 2.98,
+            "avg_labor": 2.24
+          },
+          "LF": {
+            "count": 6,
+            "avg_total": 5.03,
+            "range": [
+              4.13,
+              5.96
+            ],
+            "avg_material": 15.04,
+            "avg_labor": 3.19
+          }
+        }
+      },
+      "typical_project_costs": {
+        "single": {
+          "low": 4,
+          "high": 2400,
+          "description": "Based on 16 Craftsman 2026 items"
+        }
+      },
+      "common_upsells": [],
+      "red_flags": [],
+      "craftsman_benchmark": {
+        "source": "Craftsman National Repair & Remodeling Estimator 2026, 49th Ed.",
+        "calibration_date": "2026-02-16",
+        "items_in_section": 16,
+        "avg_total_with_overhead": 793.06,
+        "cost_range": [
+          4.13,
+          2560.0
+        ],
+        "sample_unit_costs": {
+          "Versailles, ornate, French design - 59\" W x 46\" H": {
+            "material": 1930.0,
+            "labor": 167.0,
+            "total": 2560.0,
+            "unit": "Ea"
+          },
+          "Victorian, ornate, English design - 63\" W x 52\" H": {
+            "material": 1540.0,
+            "labor": 167.0,
+            "total": 2100.0,
+            "unit": "Ea"
+          },
+          "Chelsea, plain, English design - 70\" W x 52\" H": {
+            "material": 1110.0,
+            "labor": 167.0,
+            "total": 1590.0,
+            "unit": "Ea"
+          },
+          "Jamestown, plain, Early American - 68\" W x 53\" H": {
+            "material": 615.0,
+            "labor": 167.0,
+            "total": 988.0,
+            "unit": "Ea"
+          },
+          "Panels, 4' x 8', adhesive set - Solid colors": {
+            "material": 2.86,
+            "labor": 1.96,
+            "total": 6.37,
+            "unit": "SF"
+          }
+        }
       }
     }
   },

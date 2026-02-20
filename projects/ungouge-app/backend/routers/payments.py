@@ -136,6 +136,107 @@ async def create_checkout(
     )
 
 
+# ── POST /api/payments/apply-promo ────────────────────────────────────────
+
+# Valid promo codes — in production, move to DB or config
+VALID_PROMO_CODES = {
+    "LAUNCH2026": {"discount": 100, "description": "Launch day free access"},
+    "BETATESTER": {"discount": 100, "description": "Beta tester free access"},
+}
+
+
+class ApplyPromoRequest(BaseModel):
+    quote_id: str
+    promo_code: str
+
+
+@router.post("/payments/apply-promo", status_code=status.HTTP_200_OK)
+async def apply_promo_code(
+    body: ApplyPromoRequest,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """
+    Apply a promo code to a quote, bypassing Stripe payment.
+    
+    100% discount promos mark the quote as paid and trigger report generation.
+    """
+    # Validate promo code
+    promo = VALID_PROMO_CODES.get(body.promo_code.upper())
+    if not promo:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={"error": "Invalid promo code.", "suggestion": "Check the code and try again."},
+        )
+
+    # Get the quote
+    result = await db.execute(select(Quote).where(Quote.id == body.quote_id))
+    quote = result.scalar_one_or_none()
+
+    if not quote:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"error": "Quote not found."},
+        )
+
+    if quote.user_id != current_user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={"error": "Access denied."},
+        )
+
+    if quote.payment_status == "paid":
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={"error": "This quote is already paid.", "suggestion": f"View your report at /report/{body.quote_id}"},
+        )
+
+    # 100% discount — mark as paid and trigger analysis
+    if promo["discount"] == 100:
+        # Create payment record
+        payment = Payment(
+            id=str(uuid.uuid4()),
+            quote_id=body.quote_id,
+            stripe_payment_intent_id=f"promo_{body.promo_code.upper()}",
+            stripe_session_id=f"promo_{body.promo_code.upper()}_{body.quote_id}",
+            amount=0,
+            currency="usd",
+            status="paid",
+            created_at=datetime.utcnow(),
+        )
+        db.add(payment)
+
+        # Mark quote as paid
+        await db.execute(
+            update(Quote).where(Quote.id == body.quote_id).values(payment_status="paid")
+        )
+        await db.commit()
+
+        logger.info(
+            "promo_code_applied",
+            extra={
+                "quote_id": body.quote_id,
+                "promo_code": body.promo_code.upper(),
+                "user_id": current_user.id,
+            },
+        )
+
+        # Trigger report generation
+        await _generate_report_for_quote(db, body.quote_id)
+
+        return JSONResponse(content={
+            "message": "Promo code applied! Your report is being generated.",
+            "report_url": f"/report/{body.quote_id}",
+            "discount": 100,
+        })
+
+    # Partial discounts — not implemented yet, would adjust Stripe amount
+    raise HTTPException(
+        status_code=status.HTTP_501_NOT_IMPLEMENTED,
+        detail={"error": "Partial discounts not yet supported."},
+    )
+
+
 # ── POST /api/payments/webhook ───────────────────────────────────────────
 
 @router.post("/payments/webhook", status_code=status.HTTP_200_OK)

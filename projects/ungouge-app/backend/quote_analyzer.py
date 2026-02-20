@@ -28,10 +28,10 @@ NEW_MODELS_DIR = os.path.join(DATA_DIR, "new_models")
 FUZZY_MATCH_THRESHOLD = 0.6
 
 # Scoring weights
-WEIGHT_LINE_ITEMS = 0.60       # How individual items compare to model
-WEIGHT_TOTAL_COST = 0.25       # How total compares to expected range
-WEIGHT_COMPLETENESS = 0.10     # Are standard items present?
-WEIGHT_RED_FLAGS = 0.05        # Penalty for red flags
+WEIGHT_LINE_ITEMS = 0.50       # How individual items compare to model
+WEIGHT_TOTAL_COST = 0.20       # How total compares to expected range
+WEIGHT_COMPLETENESS = 0.15     # Are standard items present?
+WEIGHT_RED_FLAGS = 0.15        # Penalty for red flags
 
 # Verdict thresholds (fairness score 0-100)
 # Note: Higher score = better deal for homeowner. Score reflects where the
@@ -45,6 +45,10 @@ VERDICT_HIGH_THRESHOLD = 80    # Above this → good deal (not overpriced)
 HIGH_FLAG_MULTIPLIER = 1.3     # 30% above range_high → flagged high
 LOW_FLAG_MULTIPLIER = 0.7      # 30% below range_low  → flagged low
 EXTREME_MULTIPLIER = 2.0       # 2x above range_high  → red flag
+
+# Confidence scoring thresholds
+CONFIDENCE_HIGH_MIN = 75
+CONFIDENCE_MEDIUM_MIN = 50
 
 
 # ---------------------------------------------------------------------------
@@ -1191,6 +1195,230 @@ class QuoteAnalyzer:
         except (FileNotFoundError, json.JSONDecodeError):
             pass  # Benchmarks are optional — analysis still works without them
 
+    def _detect_compound_project(self, project_type_input: str) -> list:
+        """Detect whether user input appears to include multiple project scopes."""
+        text = _normalize(project_type_input)
+        separators = [" and ", " & ", ",", "/", "+"]
+        if not any(sep in text for sep in separators):
+            return []
+
+        found = []
+        for alias, canonical in _PROJECT_TYPE_ALIASES.items():
+            if alias in text and canonical not in found:
+                found.append(canonical)
+        return found
+
+    def _build_regional_context(
+        self,
+        region_input: str,
+        resolved_region: str,
+        resolved_project_type: str,
+        total_analysis: dict,
+        used_national_fallback: bool,
+    ) -> str:
+        """Build a plain-English regional pricing context sentence."""
+        region_name = region_input.strip() if region_input and region_input.strip() else resolved_region.replace("_", " ").title()
+        project_name = resolved_project_type.replace("_", " ")
+        adj = total_analysis.get("adjusted_range") or {}
+        low = adj.get("low")
+        high = adj.get("high")
+
+        if low is not None and high is not None:
+            context = (
+                f"In {region_name}, {project_name} typically costs ${low:,.0f}-${high:,.0f} "
+                f"for a standard project."
+            )
+        else:
+            context = (
+                f"In {region_name}, typical {project_name} pricing varies by scope and finish level."
+            )
+
+        if used_national_fallback:
+            context += " Regional data is limited, so this estimate uses national-average adjustment."
+
+        return context
+
+    def _estimate_savings(self, total_analysis: dict) -> Optional[str]:
+        """Estimate potential savings if quote is above the fair range."""
+        assessment = total_analysis.get("assessment")
+        adj = total_analysis.get("adjusted_range") or {}
+        high = adj.get("high")
+        quote_total = total_analysis.get("quote_total", 0)
+
+        if assessment in ("high", "excessive") and isinstance(high, (int, float)) and quote_total > high:
+            savings = max(0, quote_total - high)
+            return f"${savings:,.0f}"
+        return None
+
+    def _calculate_confidence(
+        self,
+        project_type_input: str,
+        resolved_project_type: str,
+        line_items: list,
+        line_item_results: list,
+        total_analysis: dict,
+        multiplier: float,
+        missing_items: list,
+        red_flags: list,
+        used_national_fallback: bool,
+    ) -> tuple:
+        """
+        Build a 0-100 confidence score and label for reliability of analysis.
+
+        Confidence measures report quality, not quote fairness. It increases with
+        richer inputs and strong model/region matches, and decreases for vague
+        data, fallback assumptions, and unusual totals.
+        """
+        score = 70.0
+        notes = []
+
+        # Line item depth
+        num_items = len(line_items)
+        if num_items >= 8:
+            score += 12
+            notes.append("Many line items provided, improving estimate reliability")
+        elif num_items >= 5:
+            score += 8
+            notes.append("Good itemization depth")
+        elif num_items >= 3:
+            score += 2
+        elif num_items >= 1:
+            score -= 12
+            notes.append("Very few line items provided")
+        else:
+            score -= 25
+            notes.append("Detailed line items not provided — analysis is based on project total only")
+
+        # Project type matching quality
+        normalized_input = _normalize(project_type_input).replace(" ", "_")
+        if normalized_input == resolved_project_type:
+            score += 8
+        elif _normalize(project_type_input) in _PROJECT_TYPE_ALIASES:
+            score += 5
+        else:
+            score -= 6
+            notes.append("Project type required fuzzy matching")
+
+        # Regional data strength
+        if used_national_fallback or abs(multiplier - 1.0) < 0.001:
+            score -= 10
+            notes.append("Regional adjustment used national-average factor")
+        else:
+            score += 6
+
+        # Match quality across line items
+        if line_item_results:
+            matched = [r for r in line_item_results if r.get("assessment") != "unmatched"]
+            if matched:
+                avg_match = sum(r.get("match_confidence", 0) for r in matched) / len(matched)
+                if avg_match >= 0.8:
+                    score += 8
+                elif avg_match >= 0.65:
+                    score += 3
+                else:
+                    score -= 7
+                    notes.append("Several line items weakly matched to cost model categories")
+                unmatched_pct = (len(line_item_results) - len(matched)) / len(line_item_results)
+                if unmatched_pct > 0.4:
+                    score -= 8
+                    notes.append("Many line items could not be matched to specific model categories")
+            else:
+                score -= 15
+                notes.append("No line items confidently matched to project cost categories")
+
+        # Total plausibility
+        total_assessment = total_analysis.get("assessment")
+        if total_assessment in ("fair", "fair_to_high", "below_range"):
+            score += 4
+        elif total_assessment in ("high", "suspiciously_low"):
+            score -= 8
+            notes.append("Quote total is outside typical market range")
+        elif total_assessment == "excessive":
+            score -= 12
+            notes.append("Quote total is unusually high compared to model expectations")
+
+        # Completeness and risk indicators reduce confidence in precision
+        score -= min(12, len(missing_items) * 2)
+        serious_flags = [f for f in red_flags if f.get("severity") in ("high", "medium")]
+        score -= min(15, len(serious_flags) * 2)
+
+        # Vagueness reduces reliability
+        vague_count = self._count_vague_line_items(line_items)
+        if vague_count:
+            score -= min(15, vague_count * 4)
+            notes.append("Vague line-item descriptions reduce precision")
+
+        # Very small projects are inherently noisy per-unit pricing
+        if total_analysis.get("quote_total", 0) < 500:
+            score -= 8
+            notes.append("Very small projects have higher pricing variability")
+
+        score = int(max(0, min(100, round(score))))
+        if score >= CONFIDENCE_HIGH_MIN:
+            label = "high"
+        elif score >= CONFIDENCE_MEDIUM_MIN:
+            label = "medium"
+        else:
+            label = "low"
+
+        return score, label, notes
+
+    def _count_vague_line_items(self, line_items: list) -> int:
+        """Count line items with vague descriptions that weaken analytic precision."""
+        vague_terms = {
+            "misc", "miscellaneous", "labor", "general labor", "materials",
+            "general work", "allowance", "other", "unknown", "tbd",
+        }
+        count = 0
+        for item in line_items:
+            desc = _normalize(item.get("description", ""))
+            if not desc:
+                continue
+            if desc in vague_terms or any(term in desc for term in ("misc", "general", "allowance", "tbd")):
+                count += 1
+        return count
+
+    def _build_report_summary(
+        self,
+        resolved_type: str,
+        region: str,
+        total: float,
+        verdict: str,
+        red_flags: list,
+        missing_items: list,
+        confidence_label: str,
+        compound_projects: list,
+        total_only: bool,
+    ) -> str:
+        """Create a concise homeowner-friendly 2-3 sentence summary."""
+        pt = resolved_type.replace("_", " ")
+        region_text = region.replace("_", " ")
+        verdict_text = {
+            "below_market": "below typical market pricing",
+            "fair": "within the normal market range",
+            "high": "above the normal market range",
+            "very_high": "significantly above market",
+            "suspiciously_low": "unusually low for this scope",
+        }.get(verdict, "difficult to benchmark")
+
+        first = (
+            f"Your {pt} quote of ${total:,.0f} in {region_text} appears {verdict_text}."
+        )
+
+        details = []
+        if total_only:
+            details.append("Detailed line items were not provided, so this review is based on project total only")
+        if red_flags:
+            details.append(f"We identified {len(red_flags)} red flag(s) worth clarifying with the contractor")
+        if missing_items:
+            details.append(f"the quote is missing {len(missing_items)} common item(s) that often create change orders")
+        if compound_projects:
+            details.append("the project description appears to combine multiple scopes, which reduces precision")
+
+        second = " ".join(details[:2]) + "." if details else "No major structure issues were detected in the quote format."
+        third = f"Overall confidence in this analysis is {confidence_label}."
+        return f"{first} {second} {third}"
+
     # ------------------------------------------------------------------ #
     # Public API
     # ------------------------------------------------------------------ #
@@ -1218,9 +1446,12 @@ class QuoteAnalyzer:
             fairness_score, verdict, line_item_analysis, total_analysis,
             missing_items, red_flags, recommendations, summary.
         """
-        # Resolve project type
+        # Resolve project type, including compound input awareness.
         available = list(self._project_types.keys())
+        compound_projects = self._detect_compound_project(project_type)
         resolved_type = resolve_project_type(project_type, available)
+        if not resolved_type and compound_projects:
+            resolved_type = compound_projects[0]
         if not resolved_type:
             return self._error_report(f"Unknown project type: {project_type}")
 
@@ -1228,6 +1459,7 @@ class QuoteAnalyzer:
 
         # Resolve region
         region_key, multiplier = resolve_region(region, self._regional_multipliers)
+        used_national_fallback = region_key == "national_average"
 
         # Calculate total
         if total is None:
@@ -1259,9 +1491,9 @@ class QuoteAnalyzer:
             resolved_type, project_data, matched_categories, line_items
         )
 
-        # Detect red flags
+        # Detect red flags, including missing permits/spec detail and vague quote structure.
         red_flags = self._detect_red_flags(
-            resolved_type, project_data, line_items, total, multiplier, line_item_results
+            resolved_type, project_data, line_items, total, multiplier, line_item_results, missing_items
         )
 
         # Cross-validate against RSMeans benchmarks
@@ -1280,6 +1512,39 @@ class QuoteAnalyzer:
         # Build recommendations
         recommendations = self._build_recommendations(
             line_item_results, total_analysis, missing_items, red_flags, verdict
+        )
+
+        # New product-facing enhancements
+        confidence_score, confidence_label, confidence_notes = self._calculate_confidence(
+            project_type,
+            resolved_type,
+            line_items,
+            line_item_results,
+            total_analysis,
+            multiplier,
+            missing_items,
+            red_flags,
+            used_national_fallback,
+        )
+        regional_context = self._build_regional_context(
+            region,
+            region_key,
+            resolved_type,
+            total_analysis,
+            used_national_fallback,
+        )
+        savings_estimate = self._estimate_savings(total_analysis)
+        total_only = len(line_items) == 0
+        report_summary = self._build_report_summary(
+            resolved_type,
+            region_key,
+            total,
+            verdict,
+            red_flags,
+            missing_items,
+            confidence_label,
+            compound_projects,
+            total_only,
         )
 
         return {
@@ -1301,6 +1566,22 @@ class QuoteAnalyzer:
                 fairness_score, verdict, len(line_item_results),
                 len(red_flags), len(missing_items), total, resolved_type, region_key
             ),
+            "confidence_score": confidence_score,
+            "confidence_label": confidence_label,
+            "confidence_notes": confidence_notes,
+            "regional_context": regional_context,
+            "savings_estimate": savings_estimate,
+            "report_summary": report_summary,
+            "analysis_notes": [
+                note for note in [
+                    "Detailed line items not provided — analysis is based on project total only"
+                    if total_only else None,
+                    "Project description appears to include multiple scopes; matched to best-fit model"
+                    if compound_projects else None,
+                    "Small project total (<$500) can have higher per-unit pricing variability"
+                    if total < 500 else None,
+                ] if note
+            ],
         }
 
     # ------------------------------------------------------------------ #
@@ -1557,6 +1838,7 @@ class QuoteAnalyzer:
         total: float,
         multiplier: float,
         line_item_results: list[dict],
+        missing_items: list = None,
     ) -> list[dict]:
         """Detect red flags in the quote."""
         flags = []
@@ -1632,7 +1914,94 @@ class QuoteAnalyzer:
                         ),
                     })
 
-        # 5. Check model's built-in red flags (keyword-based)
+        # 5. Missing permit check for permit-heavy scopes.
+        permit_required_types = {
+            "roof_replacement", "electrical_work", "plumbing_repair",
+            "hvac_replacement", "concrete_work", "deck_building", "siding_replacement",
+        }
+        text_blob = " ".join(_normalize(item.get("description", "")) for item in line_items)
+        if project_type in permit_required_types and "permit" not in text_blob:
+            flags.append({
+                "type": "missing_permit",
+                "severity": "high",
+                "item": "Permit",
+                "detail": "No permit-related line item found for a project type that commonly requires permits.",
+            })
+
+        # 6. Below-market labor check (heuristic hourly estimate).
+        for item in line_items:
+            desc = _normalize(item.get("description", ""))
+            if "labor" in desc or "install" in desc or "installation" in desc:
+                cost = float(item.get("cost", 0) or 0)
+                # Conservative baseline: 8-hour minimum field-day equivalent.
+                implied_hourly = cost / 8 if cost > 0 else 0
+                if 0 < implied_hourly < 20:
+                    flags.append({
+                        "type": "below_market_labor",
+                        "severity": "high",
+                        "item": item.get("description", "Labor"),
+                        "detail": (
+                            f"Labor line '{item.get('description', 'Labor')}' implies about ${implied_hourly:,.0f}/hr. "
+                            "May indicate unlicensed or uninsured work."
+                        ),
+                    })
+
+        # 7. Missing material specs on costly categories.
+        spec_sensitive_terms = ("countertop", "floor", "tile", "roof", "shingle", "material")
+        spec_indicators = ("grade", "brand", "type", "model", "thickness", "premium", "standard")
+        for item in line_items:
+            desc = _normalize(item.get("description", ""))
+            cost = float(item.get("cost", 0) or 0)
+            if cost >= 1000 and any(term in desc for term in spec_sensitive_terms):
+                if not any(sig in desc for sig in spec_indicators):
+                    flags.append({
+                        "type": "missing_material_specs",
+                        "severity": "medium",
+                        "item": item.get("description", "Materials"),
+                        "detail": "Material specifications missing — ask contractor to specify grade and brand.",
+                    })
+
+        # 8. Suspicious round-number pricing prevalence.
+        if len(line_items) >= 3:
+            roundish = 0
+            for item in line_items:
+                c = float(item.get("cost", 0) or 0)
+                if c > 0 and (c % 1000 == 0 or c % 500 == 0):
+                    roundish += 1
+            if roundish / len(line_items) >= 0.6:
+                flags.append({
+                    "type": "round_number_pricing",
+                    "severity": "medium",
+                    "item": "Line item pricing",
+                    "detail": "Round-number pricing may indicate rough estimates rather than detailed pricing.",
+                })
+
+        # 9. Vague line item descriptions.
+        vague_count = self._count_vague_line_items(line_items)
+        if vague_count:
+            flags.append({
+                "type": "vague_line_items",
+                "severity": "medium",
+                "item": "Line item descriptions",
+                "detail": (
+                    f"Detected {vague_count} vague item(s) (e.g., 'miscellaneous' or 'general labor'). "
+                    "Ask for detailed scope and material specifics."
+                ),
+            })
+
+        # 10. Missing standard items for this project type.
+        if missing_items:
+            flags.append({
+                "type": "missing_standard_items",
+                "severity": "medium",
+                "item": "Scope completeness",
+                "detail": (
+                    "Common scope items appear missing: " + ", ".join(missing_items[:4])
+                    + ". This can lead to change orders later."
+                ),
+            })
+
+        # 11. Check model's built-in red flags (keyword-based)
         model_flags = project_data.get("red_flags", [])
         # We just include these as reference flags
         if model_flags:
@@ -1933,6 +2302,18 @@ class QuoteAnalyzer:
                 "and ask about materials quality. Low quotes can signal cut corners."
             )
 
+        # Red-flag-driven recommendations tied to specific risk types.
+        for flag in red_flags:
+            ftype = flag.get("type")
+            if ftype == "missing_permit":
+                recs.append("Ask who is pulling permits, include permit fees in writing, and verify inspection milestones.")
+            elif ftype == "missing_material_specs":
+                recs.append("Request exact material specs (brand, grade, model) for major material items before signing.")
+            elif ftype == "round_number_pricing":
+                recs.append("Request a detailed takeoff with quantities and unit pricing to replace round-number allowances.")
+            elif ftype == "below_market_labor":
+                recs.append("Verify contractor license, insurance certificates, and crew qualifications before accepting low labor pricing.")
+
         # General
         if verdict == "fair":
             recs.append(
@@ -1995,6 +2376,13 @@ class QuoteAnalyzer:
             "red_flags": [],
             "recommendations": [],
             "summary": f"Error: {message}",
+            "confidence_score": 0,
+            "confidence_label": "low",
+            "confidence_notes": [],
+            "regional_context": "",
+            "savings_estimate": None,
+            "report_summary": f"Unable to analyze quote: {message}",
+            "analysis_notes": [],
         }
 
 

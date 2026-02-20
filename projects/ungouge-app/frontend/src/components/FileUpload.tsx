@@ -91,8 +91,14 @@ export default function FileUpload({ onFileProcessed, onError }: FileUploadProps
       })
 
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.detail || 'Unable to process your file. Please ensure it\'s a clear image or PDF of your quote.')
+        const errorData = await response.json().catch(() => ({}))
+        const detail = errorData.detail
+        const message = typeof detail === 'string' 
+          ? detail 
+          : typeof detail === 'object' && detail !== null
+            ? (detail.error || detail.message || JSON.stringify(detail))
+            : errorData.error || 'Unable to process your file. Please ensure it\'s a clear image or PDF of your quote.'
+        throw new Error(message)
       }
 
       setUploadStep(2)

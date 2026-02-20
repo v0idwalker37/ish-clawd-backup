@@ -16,6 +16,10 @@ DATABASE_URL = os.getenv(
 engine = create_async_engine(
     DATABASE_URL,
     echo=os.getenv("DATABASE_ECHO", "false").lower() == "true",
+    pool_pre_ping=True,        # Verify connections before use (handles Cloud SQL proxy reconnects)
+    pool_recycle=300,           # Recycle connections every 5 minutes (prevents stale connections)
+    pool_size=5,               # Connection pool size
+    max_overflow=10,           # Allow up to 10 overflow connections
 )
 
 # Create session factory

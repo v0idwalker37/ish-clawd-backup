@@ -31,12 +31,13 @@ logger = logging.getLogger("ungouge.email")
 
 # ── Configuration ────────────────────────────────────────────────────────
 
-DEV_MODE = os.getenv("EMAIL_DEV_MODE", "true").lower() == "true"
+DEV_MODE = os.getenv("EMAIL_DEV_MODE", "false").lower() == "true"
 
-SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
-SMTP_USER = os.getenv("SMTP_USER", "")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
+# Resend SMTP defaults — override via env if needed
+SMTP_HOST = os.getenv("SMTP_HOST", "smtp.resend.com")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))
+SMTP_USER = os.getenv("SMTP_USER", "resend")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "") or os.getenv("RESEND_API_KEY", "")
 FROM_EMAIL = os.getenv("FROM_EMAIL", "noreply@ungouge.ai")
 FROM_NAME = os.getenv("FROM_NAME", "UnGouge.ai")
 
@@ -138,14 +139,26 @@ async def _send_email(to_email: str, subject: str, html_body: str) -> bool:
         msg["Reply-To"] = FROM_EMAIL
         msg.attach(MIMEText(html_body, "html", "utf-8"))
 
-        await aiosmtplib.send(
-            msg,
-            hostname=SMTP_HOST,
-            port=SMTP_PORT,
-            username=SMTP_USER,
-            password=SMTP_PASSWORD,
-            start_tls=True,
-        )
+        if SMTP_PORT == 465:
+            # SSL (Resend, etc.)
+            await aiosmtplib.send(
+                msg,
+                hostname=SMTP_HOST,
+                port=SMTP_PORT,
+                username=SMTP_USER,
+                password=SMTP_PASSWORD,
+                use_tls=True,
+            )
+        else:
+            # STARTTLS (Gmail, etc.)
+            await aiosmtplib.send(
+                msg,
+                hostname=SMTP_HOST,
+                port=SMTP_PORT,
+                username=SMTP_USER,
+                password=SMTP_PASSWORD,
+                start_tls=True,
+            )
 
         logger.info(f"Email sent to {to_email}: {subject}")
         return True
@@ -317,10 +330,19 @@ def send_mfa_code(
         msg["To"] = to_email
         msg.attach(MIMEText(html_body, "html", "utf-8"))
 
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-            server.starttls()
-            server.login(SMTP_USER, SMTP_PASSWORD)
-            server.send_message(msg)
+        if SMTP_PORT == 465:
+            # SSL (Resend, etc.)
+            import ssl
+            context = ssl.create_default_context()
+            with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context) as server:
+                server.login(SMTP_USER, SMTP_PASSWORD)
+                server.send_message(msg)
+        else:
+            # STARTTLS (Gmail, etc.)
+            with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+                server.starttls()
+                server.login(SMTP_USER, SMTP_PASSWORD)
+                server.send_message(msg)
 
         logger.info(f"MFA code sent to {to_email}")
         return True
@@ -384,10 +406,19 @@ def send_password_reset(
         msg["To"] = to_email
         msg.attach(MIMEText(html_body, "html", "utf-8"))
 
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-            server.starttls()
-            server.login(SMTP_USER, SMTP_PASSWORD)
-            server.send_message(msg)
+        if SMTP_PORT == 465:
+            # SSL (Resend, etc.)
+            import ssl
+            context = ssl.create_default_context()
+            with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context) as server:
+                server.login(SMTP_USER, SMTP_PASSWORD)
+                server.send_message(msg)
+        else:
+            # STARTTLS (Gmail, etc.)
+            with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+                server.starttls()
+                server.login(SMTP_USER, SMTP_PASSWORD)
+                server.send_message(msg)
 
         logger.info(f"Password reset email sent to {to_email}")
         return True

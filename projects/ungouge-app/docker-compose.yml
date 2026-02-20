@@ -1,0 +1,118 @@
+version: '3.9'
+
+services:
+  # PostgreSQL (for local dev - MySQL in production)
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ungouge
+      POSTGRES_USER: ungouge
+      POSTGRES_PASSWORD: devpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "ungouge"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=development
+      - DATABASE_URL=postgresql+asyncpg://ungouge:devpassword@postgres:5432/ungouge
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET_KEY=dev-secret-key-change-in-production
+      - CSRF_SECRET_KEY=dev-csrf-secret-change-in-production
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:3001
+      - COST_MODEL_SERVICE_URL=http://cost-model:8001
+      - QUOTE_EXTRACTOR_SERVICE_URL=http://quote-extractor:8002
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/live"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+  # Cost Model Service
+  cost-model:
+    build:
+      context: ./services/cost-model
+    ports:
+      - "8001:8001"
+    environment:
+      - ENVIRONMENT=development
+      - REDIS_URL=redis://redis:6379
+      - CORS_ORIGINS=http://localhost:3000
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health/live"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+  # Quote Extractor Service
+  quote-extractor:
+    build:
+      context: ./services/quote-extractor
+    ports:
+      - "8002:8002"
+    environment:
+      - ENVIRONMENT=development
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-key.json
+      - GCP_PROJECT_ID=gen-lang-client-0199462206
+    # Note: Mount GCP service account key for local dev
+    # volumes:
+    #   - ~/.config/gcloud/application_default_credentials.json:/app/gcp-key.json:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health/live"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+  # Webhook Handler
+  webhook-handler:
+    build:
+      context: ./services/webhook-handler
+    ports:
+      - "8003:8003"
+    environment:
+      - ENVIRONMENT=development
+      - DATABASE_URL=postgresql+asyncpg://ungouge:devpassword@postgres:5432/ungouge
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - GCP_PROJECT_ID=gen-lang-client-0199462206
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health/live"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+volumes:
+  postgres_data:

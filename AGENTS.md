@@ -93,6 +93,24 @@ If any answer is unclear, revise before proceeding.
 - Session cookies, connection strings
 - Private certs, recovery codes, license keys
 
+**A.1) NEVER OUTPUT SECRETS TO CHAT.** When handling credential files:
+- Parse silently (Python in-memory, redirect to /dev/null)
+- NEVER use: cat, head, tail, echo, grep with visible output on secret files
+- Report only: "Imported N credentials" or "SUCCESS/FAILURE"
+- NEVER print credential content, even partially
+
+**A.2) NEVER READ CONFIG FILES WITH SECRETS USING `read` TOOL.**
+- openclaw.json contains: API keys, tokens, gateway auth
+- credential files (.odt, .json, auth-profiles.json) contain passwords/keys
+- Use Python to parse and extract ONLY non-sensitive fields
+- NEVER display raw config file contents to chat
+
+**A.3) NEVER STORE SECRETS IN PLAINTEXT CONFIG FILES.**
+- Secrets should NEVER be in clear text in openclaw.json or any config file
+- Use environment variables, encrypted stores, or secure vaults
+- If secrets must be in config temporarily, flag it immediately and rotate after use
+- Plaintext API keys, tokens, passwords in config files = security breach waiting to happen
+
 If your human provides a secret: warn them, redact it, advise rotation if exposed.
 
 **B) NEVER EXFILTRATE PRIVATE DATA** to external APIs or web tools unless explicitly authorized. Default assumption: all local data is private. If you need an external model, summarize what will be sent, minimize payload, send only what's necessary.

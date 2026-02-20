@@ -21,7 +21,20 @@ except ImportError:
 from services.payment import create_payment_intent, verify_payment
 from services.auth import get_current_user_optional, get_current_user
 from services.logger import log_quote_submission, log_access_denied
-from services.quote_parser import process_quote_file
+import os
+from services.quote_parser import process_quote_file as openai_process_quote
+from services.quote_parser_gemini import process_quote_file as gemini_process_quote
+
+
+async def process_quote_file(file_bytes: bytes, filename: str):
+    """Try Gemini first, fall back to OpenAI if it fails."""
+    if os.getenv("GEMINI_API_KEY"):
+        try:
+            return await gemini_process_quote(file_bytes, filename)
+        except Exception as e:
+            print(f"Gemini parser failed: {e}. Falling back to OpenAI...")
+    
+    return await openai_process_quote(file_bytes, filename)
 
 router = APIRouter()
 limiter = Limiter(key_func=get_remote_address)
@@ -166,6 +179,102 @@ async def submit_quote(
             }
         )
 
+@router.get("/dashboard/stats")
+async def get_dashboard_stats(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Get dashboard overview stats for the current user
+    """
+    from sqlalchemy import func
+
+    # Get all user's quotes
+    result = await db.execute(
+        select(Quote).where(Quote.user_id == current_user.id)
+    )
+    quotes = result.scalars().all()
+
+    total_reports = len([q for q in quotes if q.payment_status == "paid"])
+    pending_reports = len([q for q in quotes if q.payment_status == "pending"])
+
+    # Calculate savings from analysis reports
+    total_savings = 0
+    for q in quotes:
+        if q.payment_status == "paid" and hasattr(q, 'total_quoted') and hasattr(q, 'total_fair_high'):
+            if q.total_quoted and q.total_fair_high and q.total_quoted > q.total_fair_high:
+                total_savings += q.total_quoted - q.total_fair_high
+
+    average_savings = total_savings / total_reports if total_reports > 0 else 0
+
+    recent_quotes = sorted(quotes, key=lambda q: q.created_at, reverse=True)[:5]
+
+    return {
+        "total_reports": total_reports,
+        "total_savings": round(total_savings, 2),
+        "average_savings": round(average_savings, 2),
+        "pending_reports": pending_reports,
+        "recent_quotes": [
+            {
+                "id": str(q.id),
+                "project_type": q.project_type or "Quote",
+                "contractor_name": q.contractor_name or "",
+                "total_quoted": float(q.total_quoted) if q.total_quoted else 0,
+                "total_fair_high": float(q.total_fair_high) if q.total_fair_high else 0,
+                "status": "completed" if q.payment_status == "paid" else "pending",
+                "created_at": q.created_at.isoformat() if q.created_at else "",
+                "overall_rating": q.overall_rating if hasattr(q, 'overall_rating') else "fair",
+            }
+            for q in recent_quotes
+        ],
+    }
+
+
+@router.get("/quotes/my")
+async def get_my_quotes(
+    skip: int = 0,
+    limit: int = 10,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Get current user's quotes (requires authentication)
+    
+    Returns list of quotes submitted by the authenticated user
+    """
+    # Enforce pagination limits to prevent DoS
+    limit = min(limit, 100)  # Max 100 per page
+    skip = max(skip, 0)
+    
+    result = await db.execute(
+        select(Quote)
+        .where(Quote.user_id == current_user.id)
+        .offset(skip)
+        .limit(limit)
+        .order_by(Quote.created_at.desc())
+    )
+    quotes = result.scalars().all()
+    
+    return {
+        "quotes": [
+            {
+                "id": quote.id,
+                "project_type": quote.project_type,
+                "location": quote.location,
+                "contractor_name": quote.contractor_name,
+                "status": "completed" if quote.payment_status == "paid" else (
+                    "pending" if quote.payment_status == "pending" else "processing"
+                ),
+                "payment_status": quote.payment_status,
+                "created_at": quote.created_at.isoformat(),
+                "report_url": f"/api/quotes/{quote.id}/report",
+            }
+            for quote in quotes
+        ],
+        "total": len(quotes),
+    }
+
+
 @router.get("/quotes/{quote_id}", response_model=ReportModel)
 async def get_quote_report(
     quote_id: str,
@@ -257,47 +366,6 @@ async def get_quote_report(
         line_items=report_data.get("line_items", []),
         created_at=quote.created_at.isoformat(),
     )
-
-@router.get("/quotes/my")
-async def get_my_quotes(
-    skip: int = 0,
-    limit: int = 10,
-    current_user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
-):
-    """
-    Get current user's quotes (requires authentication)
-    
-    Returns list of quotes submitted by the authenticated user
-    """
-    # Enforce pagination limits to prevent DoS
-    limit = min(limit, 100)  # Max 100 per page
-    skip = max(skip, 0)
-    
-    result = await db.execute(
-        select(Quote)
-        .where(Quote.user_id == current_user.id)
-        .offset(skip)
-        .limit(limit)
-        .order_by(Quote.created_at.desc())
-    )
-    quotes = result.scalars().all()
-    
-    return {
-        "quotes": [
-            {
-                "id": quote.id,
-                "project_type": quote.project_type,
-                "location": quote.location,
-                "contractor_name": quote.contractor_name,
-                "created_at": quote.created_at.isoformat(),
-                "report_url": f"/api/quotes/{quote.id}/report",
-            }
-            for quote in quotes
-        ],
-        "total": len(quotes),
-    }
-
 
 @router.get("/quotes/{quote_id}/report", response_model=ReportModel)
 async def get_quote_full_report(
@@ -394,6 +462,10 @@ async def list_quotes(
                 "project_type": quote.project_type,
                 "location": quote.location,
                 "contractor_name": quote.contractor_name,
+                "status": "completed" if quote.payment_status == "paid" else (
+                    "pending" if quote.payment_status == "pending" else "processing"
+                ),
+                "payment_status": quote.payment_status,
                 "created_at": quote.created_at.isoformat(),
                 "report_url": f"/api/quotes/{quote.id}/report",
             }
@@ -404,10 +476,11 @@ async def list_quotes(
 
 
 @router.post("/quotes/parse-upload")
-@limiter.limit("5/hour")  # Max 5 uploads per hour
+@limiter.limit("20/hour")  # Relaxed for testing; tighten post-launch
 async def parse_quote_upload(
     request: Request,
     file: UploadFile = File(...),
+    current_user: User = Depends(get_current_user),
 ):
     """
     Upload and parse a contractor quote (PDF or image)
@@ -442,7 +515,7 @@ async def parse_quote_upload(
         logger.info(
             "quote_file_uploaded",
             extra={
-                "filename": file.filename,
+                "upload_filename": file.filename,
                 "file_type": content_type,
                 "file_size_kb": len(contents) / 1024,
                 "ip": request.client.host if request.client else None,
@@ -461,7 +534,7 @@ async def parse_quote_upload(
             "quote_upload_validation_failed",
             e.message,
             {
-                "filename": file.filename if file else None,
+                "upload_filename": file.filename if file else None,
                 "ip": request.client.host if request.client else None,
                 **e.log_context
             }
@@ -474,7 +547,7 @@ async def parse_quote_upload(
     except Exception as e:
         # Unexpected server error
         log_error("quote_upload_unexpected_error", str(e), {
-            "filename": file.filename if file else None,
+            "upload_filename": file.filename if file else None,
             "ip": request.client.host if request.client else None,
             "error_type": type(e).__name__
         })

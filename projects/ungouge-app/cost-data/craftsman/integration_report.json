@@ -1,0 +1,1195 @@
+{
+  "integration_date": "2026-02-16",
+  "version": 2,
+  "types_processed": 29,
+  "types_with_value_changes": 10,
+  "total_field_changes": 144,
+  "types_affected": [
+    "bathroom_remodel",
+    "concrete_work",
+    "fence_installation",
+    "flooring_installation",
+    "gutter_installation",
+    "hvac_replacement",
+    "kitchen_remodel",
+    "painting_interior",
+    "roof_replacement",
+    "siding_replacement"
+  ],
+  "combined_calibration_types": 55,
+  "cross_references_added": 16,
+  "changes_by_type": {
+    "bathroom_remodel": [
+      {
+        "project_type": "bathroom_remodel",
+        "component": "toilet",
+        "field": "mid_range",
+        "old": 350,
+        "new": 183,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "bathroom_remodel",
+        "component": "toilet",
+        "field": "high_end",
+        "old": 800,
+        "new": 368,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "bathroom_remodel",
+        "component": "floor_tile",
+        "field": "ceramic_mid",
+        "old": 7,
+        "new": 8,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "bathroom_remodel",
+        "component": "floor_tile",
+        "field": "porcelain_mid",
+        "old": 12,
+        "new": 11,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "bathroom_remodel",
+        "component": "tile_install",
+        "field": "floor",
+        "old": 8,
+        "new": 9,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "bathroom_remodel",
+        "component": "tile_install",
+        "field": "wall",
+        "old": 10,
+        "new": 11,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "bathroom_remodel",
+        "component": "electrical",
+        "field": "gfci_outlet",
+        "old": 150,
+        "new": 173,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "bathroom_remodel",
+        "component": "electrical",
+        "field": "vanity_light_fixture_install",
+        "old": 225,
+        "new": 220,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "bathroom_remodel",
+        "component": "electrical",
+        "field": "exhaust_fan_standard",
+        "old": 350,
+        "new": 270,
+        "reason": "weighted_avg"
+      }
+    ],
+    "concrete_work": [
+      {
+        "project_type": "concrete_work",
+        "component": "concrete_3000psi",
+        "field": "range_low",
+        "old": 110,
+        "new": 47,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "concrete_work",
+        "component": "concrete_3000psi",
+        "field": "range_high",
+        "old": 145,
+        "new": 64,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "concrete_work",
+        "component": "concrete_4000psi",
+        "field": "range_low",
+        "old": 125,
+        "new": 53,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "concrete_work",
+        "component": "concrete_4000psi",
+        "field": "range_high",
+        "old": 160,
+        "new": 70,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "concrete_work",
+        "component": "concrete_5000psi",
+        "field": "range_low",
+        "old": 145,
+        "new": 61,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "concrete_work",
+        "component": "concrete_5000psi",
+        "field": "range_high",
+        "old": 185,
+        "new": 80,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "concrete_work",
+        "component": "fiber_reinforced_concrete",
+        "field": "range_low",
+        "old": 140,
+        "new": 59,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "concrete_work",
+        "component": "fiber_reinforced_concrete",
+        "field": "range_high",
+        "old": 180,
+        "new": 78,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "concrete_work",
+        "component": "colored_concrete",
+        "field": "range_high",
+        "old": 3.0,
+        "new": 7.02,
+        "reason": "weighted_avg"
+      }
+    ],
+    "fence_installation": [
+      {
+        "project_type": "fence_installation",
+        "component": "wood_fence_pine_treated_6ft",
+        "field": "range_low",
+        "old": 12.0,
+        "new": 17.73,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "wood_fence_cedar_6ft",
+        "field": "range_low",
+        "old": 22.0,
+        "new": 21.73,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "wood_fence_redwood_6ft",
+        "field": "range_low",
+        "old": 28.0,
+        "new": 24.13,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "wood_picket_fence_4ft",
+        "field": "range_low",
+        "old": 10.0,
+        "new": 16.93,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "vinyl_fence_privacy_6ft",
+        "field": "range_low",
+        "old": 22.0,
+        "new": 21.73,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "vinyl_fence_picket_4ft",
+        "field": "range_low",
+        "old": 15.0,
+        "new": 18.93,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "chain_link_6ft_residential",
+        "field": "range_low",
+        "old": 10.0,
+        "new": 16.93,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "chain_link_commercial_grade",
+        "field": "range_low",
+        "old": 15.0,
+        "new": 18.93,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "aluminum_fence_ornamental_4ft",
+        "field": "range_low",
+        "old": 25.0,
+        "new": 22.93,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "aluminum_fence_ornamental_6ft",
+        "field": "range_low",
+        "old": 35.0,
+        "new": 26.93,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "aluminum_fence_ornamental_6ft",
+        "field": "range_high",
+        "old": 55.0,
+        "new": 124.0,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "wrought_iron_custom",
+        "field": "range_low",
+        "old": 80.0,
+        "new": 44.93,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "wrought_iron_custom",
+        "field": "range_high",
+        "old": 150.0,
+        "new": 162.0,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "split_rail_3_rail",
+        "field": "range_low",
+        "old": 8.0,
+        "new": 16.13,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "composite_fence_6ft",
+        "field": "range_low",
+        "old": 38.0,
+        "new": 28.13,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "fence_installation",
+        "component": "composite_fence_6ft",
+        "field": "range_high",
+        "old": 60.0,
+        "new": 126.0,
+        "reason": "weighted_avg"
+      }
+    ],
+    "flooring_installation": [
+      {
+        "project_type": "flooring_installation",
+        "component": "carpet_budget",
+        "field": "range_low",
+        "old": 1.5,
+        "new": 2.57,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "carpet_budget",
+        "field": "range_high",
+        "old": 4.0,
+        "new": 6.59,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "carpet_mid_grade",
+        "field": "range_low",
+        "old": 3.5,
+        "new": 3.37,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "carpet_mid_grade",
+        "field": "range_high",
+        "old": 6.5,
+        "new": 7.59,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "carpet_premium",
+        "field": "range_low",
+        "old": 6.0,
+        "new": 4.37,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "carpet_premium",
+        "field": "range_high",
+        "old": 12.0,
+        "new": 9.79,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "vinyl_plank_basic",
+        "field": "range_low",
+        "old": 1.5,
+        "new": 2.57,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "vinyl_plank_basic",
+        "field": "range_high",
+        "old": 3.5,
+        "new": 6.39,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "vinyl_plank_mid",
+        "field": "range_low",
+        "old": 2.5,
+        "new": 2.97,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "vinyl_plank_mid",
+        "field": "range_high",
+        "old": 5.0,
+        "new": 6.99,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "vinyl_plank_premium",
+        "field": "range_low",
+        "old": 4.5,
+        "new": 3.77,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "vinyl_plank_premium",
+        "field": "range_high",
+        "old": 8.0,
+        "new": 8.19,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "laminate_basic",
+        "field": "range_low",
+        "old": 1.0,
+        "new": 2.37,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "laminate_basic",
+        "field": "range_high",
+        "old": 3.0,
+        "new": 6.19,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "laminate_premium",
+        "field": "range_low",
+        "old": 2.5,
+        "new": 2.97,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "laminate_premium",
+        "field": "range_high",
+        "old": 5.0,
+        "new": 6.99,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "hardwood_oak_prefinished",
+        "field": "range_low",
+        "old": 4.5,
+        "new": 3.77,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "hardwood_oak_prefinished",
+        "field": "range_high",
+        "old": 9.0,
+        "new": 8.59,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "hardwood_oak_unfinished",
+        "field": "range_low",
+        "old": 3.5,
+        "new": 3.37,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "hardwood_oak_unfinished",
+        "field": "range_high",
+        "old": 6.5,
+        "new": 7.59,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "hardwood_exotic",
+        "field": "range_low",
+        "old": 8.0,
+        "new": 5.17,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "hardwood_exotic",
+        "field": "range_high",
+        "old": 18.0,
+        "new": 12.19,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "engineered_hardwood_basic",
+        "field": "range_low",
+        "old": 3.0,
+        "new": 3.17,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "engineered_hardwood_basic",
+        "field": "range_high",
+        "old": 6.0,
+        "new": 7.39,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "engineered_hardwood_premium",
+        "field": "range_low",
+        "old": 5.5,
+        "new": 4.17,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "engineered_hardwood_premium",
+        "field": "range_high",
+        "old": 10.0,
+        "new": 8.99,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "tile_ceramic",
+        "field": "range_low",
+        "old": 1.5,
+        "new": 2.57,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "tile_ceramic",
+        "field": "range_high",
+        "old": 5.0,
+        "new": 6.99,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "tile_porcelain",
+        "field": "range_low",
+        "old": 3.5,
+        "new": 3.37,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "tile_porcelain",
+        "field": "range_high",
+        "old": 8.0,
+        "new": 8.19,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "tile_natural_stone",
+        "field": "range_low",
+        "old": 6.0,
+        "new": 4.37,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "tile_natural_stone",
+        "field": "range_high",
+        "old": 20.0,
+        "new": 12.99,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "tile_mortar_and_grout",
+        "field": "cost_per_sq_ft",
+        "old": 1.5,
+        "new": 3.48,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "tile_mortar_and_grout",
+        "field": "range_low",
+        "old": 1.0,
+        "new": 2.37,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "flooring_installation",
+        "component": "tile_mortar_and_grout",
+        "field": "range_high",
+        "old": 2.5,
+        "new": 5.99,
+        "reason": "weighted_avg"
+      }
+    ],
+    "gutter_installation": [
+      {
+        "project_type": "gutter_installation",
+        "component": "aluminum_5inch_seamless",
+        "field": "range_low",
+        "old": 3.5,
+        "new": 8.43,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "aluminum_6inch_seamless",
+        "field": "range_low",
+        "old": 4.5,
+        "new": 8.83,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "aluminum_half_round_seamless",
+        "field": "range_low",
+        "old": 5.0,
+        "new": 9.03,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "copper_5inch",
+        "field": "range_low",
+        "old": 20.0,
+        "new": 15.03,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "copper_5inch",
+        "field": "range_high",
+        "old": 35.0,
+        "new": 32.18,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "copper_half_round",
+        "field": "range_low",
+        "old": 22.0,
+        "new": 15.83,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "copper_half_round",
+        "field": "range_high",
+        "old": 38.0,
+        "new": 33.38,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "steel_galvanized_5inch",
+        "field": "range_low",
+        "old": 4.0,
+        "new": 8.63,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "downspout_copper",
+        "field": "range_low",
+        "old": 15.0,
+        "new": 13.03,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "downspout_copper",
+        "field": "range_high",
+        "old": 25.0,
+        "new": 28.18,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "downspout_extensions",
+        "field": "range_low",
+        "old": 10.0,
+        "new": 11.03,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "downspout_extensions",
+        "field": "range_high",
+        "old": 25.0,
+        "new": 28.18,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "elbows_and_fittings",
+        "field": "range_low",
+        "old": 15.0,
+        "new": 13.03,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "elbows_and_fittings",
+        "field": "range_high",
+        "old": 30.0,
+        "new": 30.18,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "inside_outside_corners",
+        "field": "range_low",
+        "old": 6.0,
+        "new": 9.43,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "gutter_installation",
+        "component": "inside_outside_corners",
+        "field": "range_high",
+        "old": 12.0,
+        "new": 22.98,
+        "reason": "weighted_avg"
+      }
+    ],
+    "hvac_replacement": [
+      {
+        "project_type": "hvac_replacement",
+        "component": "ac_2_ton",
+        "field": "total_low",
+        "old": 3500,
+        "new": 1454,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "hvac_replacement",
+        "component": "ac_2_ton",
+        "field": "total_high",
+        "old": 5000,
+        "new": 3510,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "hvac_replacement",
+        "component": "ac_3_ton",
+        "field": "total_low",
+        "old": 4500,
+        "new": 1877,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "hvac_replacement",
+        "component": "ac_3_ton",
+        "field": "total_high",
+        "old": 6500,
+        "new": 4757,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "hvac_replacement",
+        "component": "ac_4_ton",
+        "field": "total_low",
+        "old": 5800,
+        "new": 2420,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "hvac_replacement",
+        "component": "ac_4_ton",
+        "field": "total_high",
+        "old": 8500,
+        "new": 6204,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "hvac_replacement",
+        "component": "ac_5_ton",
+        "field": "total_low",
+        "old": 6800,
+        "new": 2843,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "hvac_replacement",
+        "component": "ac_5_ton",
+        "field": "total_high",
+        "old": 10000,
+        "new": 7451,
+        "reason": "weighted_avg"
+      }
+    ],
+    "kitchen_remodel": [
+      {
+        "project_type": "kitchen_remodel",
+        "component": "cabinet_install_labor",
+        "field": "installation_per_linear_foot",
+        "old": 50,
+        "new": 34,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "kitchen_remodel",
+        "component": "laminate_per_sq_ft",
+        "field": "low",
+        "old": 20,
+        "new": 18,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "kitchen_remodel",
+        "component": "laminate_per_sq_ft",
+        "field": "mid",
+        "old": 30,
+        "new": 28,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "kitchen_remodel",
+        "component": "laminate_per_sq_ft",
+        "field": "high",
+        "old": 45,
+        "new": 39,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "kitchen_remodel",
+        "component": "granite_per_sq_ft",
+        "field": "low",
+        "old": 50,
+        "new": 41,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "kitchen_remodel",
+        "component": "granite_per_sq_ft",
+        "field": "mid",
+        "old": 75,
+        "new": 61,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "kitchen_remodel",
+        "component": "granite_per_sq_ft",
+        "field": "high",
+        "old": 120,
+        "new": 90,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "kitchen_remodel",
+        "component": "quartz_per_sq_ft",
+        "field": "low",
+        "old": 60,
+        "new": 49,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "kitchen_remodel",
+        "component": "quartz_per_sq_ft",
+        "field": "mid",
+        "old": 85,
+        "new": 71,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "kitchen_remodel",
+        "component": "quartz_per_sq_ft",
+        "field": "high",
+        "old": 150,
+        "new": 111,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "kitchen_remodel",
+        "component": "counter_fab",
+        "field": "fabrication_and_install_per_sq_ft",
+        "old": 35,
+        "new": 18,
+        "reason": "weighted_avg"
+      }
+    ],
+    "painting_interior": [
+      {
+        "project_type": "painting_interior",
+        "component": "paint_per_sqft",
+        "field": "total_per_sq_ft_low",
+        "old": 2.0,
+        "new": 1.41,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "paint_per_sqft",
+        "field": "total_per_sq_ft_mid",
+        "old": 2.75,
+        "new": 2.1,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_prep_work",
+        "field": "cost_low",
+        "old": 0.25,
+        "new": 0.24,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_prep_work",
+        "field": "cost_mid",
+        "old": 0.5,
+        "new": 0.42,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_prep_work",
+        "field": "cost_high",
+        "old": 1.0,
+        "new": 0.84,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_primer_coat",
+        "field": "cost_low",
+        "old": 0.25,
+        "new": 0.24,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_primer_coat",
+        "field": "cost_mid",
+        "old": 0.5,
+        "new": 0.42,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_primer_coat",
+        "field": "cost_high",
+        "old": 0.75,
+        "new": 0.74,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_paint_two_coats",
+        "field": "cost_low",
+        "old": 0.75,
+        "new": 0.44,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_paint_two_coats",
+        "field": "cost_mid",
+        "old": 1.25,
+        "new": 0.72,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_paint_two_coats",
+        "field": "cost_high",
+        "old": 2.0,
+        "new": 1.24,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_ceiling_painting",
+        "field": "cost_low",
+        "old": 1.0,
+        "new": 0.54,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_ceiling_painting",
+        "field": "cost_mid",
+        "old": 1.75,
+        "new": 0.92,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_ceiling_painting",
+        "field": "cost_high",
+        "old": 3.0,
+        "new": 1.64,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_trim_painting",
+        "field": "cost_low",
+        "old": 1.0,
+        "new": 0.54,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_trim_painting",
+        "field": "cost_mid",
+        "old": 2.0,
+        "new": 1.02,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_trim_painting",
+        "field": "cost_high",
+        "old": 4.0,
+        "new": 2.04,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_per_room_rate",
+        "field": "cost_low",
+        "old": 200,
+        "new": 80,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_per_room_rate",
+        "field": "cost_mid",
+        "old": 450,
+        "new": 180,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_per_room_rate",
+        "field": "cost_high",
+        "old": 800,
+        "new": 320,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_whole_house_interior",
+        "field": "cost_low",
+        "old": 2000,
+        "new": 800,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_whole_house_interior",
+        "field": "cost_mid",
+        "old": 4500,
+        "new": 1800,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "painting_interior",
+        "component": "labor_whole_house_interior",
+        "field": "cost_high",
+        "old": 8000,
+        "new": 3200,
+        "reason": "weighted_avg"
+      }
+    ],
+    "roof_replacement": [
+      {
+        "project_type": "roof_replacement",
+        "component": "underlayment",
+        "field": "cost_per_square",
+        "old": 170,
+        "new": 238,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "roof_replacement",
+        "component": "flashing",
+        "field": "cost_per_piece",
+        "old": 25,
+        "new": 17,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "roof_replacement",
+        "component": "flashing",
+        "field": "range_low",
+        "old": 15,
+        "new": 11,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "roof_replacement",
+        "component": "flashing",
+        "field": "range_high",
+        "old": 45,
+        "new": 29,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "roof_replacement",
+        "component": "total_per_sq",
+        "field": "low",
+        "old": 150,
+        "new": 193,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "roof_replacement",
+        "component": "total_per_sq",
+        "field": "mid",
+        "old": 615,
+        "new": 458,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "roof_replacement",
+        "component": "total_per_sq",
+        "field": "high",
+        "old": 2786,
+        "new": 1942,
+        "reason": "weighted_avg"
+      }
+    ],
+    "siding_replacement": [
+      {
+        "project_type": "siding_replacement",
+        "component": "vinyl",
+        "field": "range_low",
+        "old": 2.5,
+        "new": 5.02,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "siding_replacement",
+        "component": "vinyl",
+        "field": "range_high",
+        "old": 6.0,
+        "new": 9.27,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "siding_replacement",
+        "component": "fiber_cement",
+        "field": "range_low",
+        "old": 5.0,
+        "new": 6.02,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "siding_replacement",
+        "component": "fiber_cement",
+        "field": "range_high",
+        "old": 9.0,
+        "new": 10.47,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "siding_replacement",
+        "component": "wood_cedar",
+        "field": "range_low",
+        "old": 6.0,
+        "new": 6.42,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "siding_replacement",
+        "component": "wood_cedar",
+        "field": "range_high",
+        "old": 12.0,
+        "new": 11.67,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "siding_replacement",
+        "component": "engineered_wood",
+        "field": "range_low",
+        "old": 3.5,
+        "new": 5.42,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "siding_replacement",
+        "component": "engineered_wood",
+        "field": "range_high",
+        "old": 7.0,
+        "new": 9.67,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "siding_replacement",
+        "component": "brick_veneer",
+        "field": "range_low",
+        "old": 10.0,
+        "new": 8.02,
+        "reason": "weighted_avg"
+      },
+      {
+        "project_type": "siding_replacement",
+        "component": "brick_veneer",
+        "field": "range_high",
+        "old": 18.0,
+        "new": 14.07,
+        "reason": "weighted_avg"
+      }
+    ]
+  }
+}

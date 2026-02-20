@@ -1,0 +1,127 @@
+#!/usr/bin/env python3
+"""
+Chunked file hashing - processes in batches with error handling
+Resumes from last successful batch automatically
+"""
+
+import sqlite3
+import hashlib
+import os
+import time
+from pathlib import Path
+
+DB_PATH = Path(__file__).parent / 'index.db'
+BATCH_SIZE = 1000
+LOG_PATH = Path(__file__).parent / 'hash_progress.log'
+
+def log(msg):
+    """Log to both console and file"""
+    timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+    line = f"[{timestamp}] {msg}"
+    print(line)
+    with open(LOG_PATH, 'a') as f:
+        f.write(line + '\n')
+
+def sha256_file(path, chunk_size=8192):
+    """Hash file in chunks to avoid memory issues"""
+    hasher = hashlib.sha256()
+    try:
+        with open(path, 'rb') as f:
+            while chunk := f.read(chunk_size):
+                hasher.update(chunk)
+        return hasher.hexdigest()
+    except Exception as e:
+        return None
+
+def hash_batch(conn, batch_start, batch_size):
+    """Hash one batch of files"""
+    c = conn.cursor()
+    
+    # Get next batch of unhashed files
+    c.execute("""
+        SELECT id, full_path FROM files 
+        WHERE hash IS NULL 
+        LIMIT ? OFFSET ?
+    """, (batch_size, batch_start))
+    
+    files = c.fetchall()
+    if not files:
+        return 0  # No more files
+    
+    success_count = 0
+    error_count = 0
+    
+    for file_id, path in files:
+        # Compute hash
+        file_hash = sha256_file(path)
+        
+        if file_hash:
+            # Update database
+            c.execute("UPDATE files SET hash = ? WHERE id = ?", (file_hash, file_id))
+            success_count += 1
+        else:
+            # Mark as error (hash = 'ERROR')
+            c.execute("UPDATE files SET hash = 'ERROR' WHERE id = ?", (file_id,))
+            error_count += 1
+            log(f"  ERROR: {path}")
+    
+    # Commit this batch
+    conn.commit()
+    
+    log(f"  Batch complete: {success_count} hashed, {error_count} errors")
+    return len(files)
+
+def main():
+    log("=== Starting chunked hash processing ===")
+    
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    
+    # Get stats
+    c.execute("SELECT COUNT(*) FROM files WHERE hash IS NULL")
+    remaining = c.fetchone()[0]
+    
+    c.execute("SELECT COUNT(*) FROM files")
+    total = c.fetchone()[0]
+    
+    log(f"Total files: {total:,}")
+    log(f"Remaining: {remaining:,}")
+    log(f"Batch size: {BATCH_SIZE}")
+    log("")
+    
+    batch_num = 0
+    processed = 0
+    
+    while remaining > 0:
+        batch_num += 1
+        log(f"Batch {batch_num}: Processing up to {BATCH_SIZE} files...")
+        
+        # Process one batch
+        batch_count = hash_batch(conn, 0, BATCH_SIZE)  # Always start at 0 since we're filtering WHERE hash IS NULL
+        
+        if batch_count == 0:
+            log("No more files to process")
+            break
+        
+        processed += batch_count
+        
+        # Get updated stats
+        c.execute("SELECT COUNT(*) FROM files WHERE hash IS NULL")
+        remaining = c.fetchone()[0]
+        
+        progress_pct = ((total - remaining) / total) * 100
+        log(f"  Progress: {progress_pct:.1f}% ({total - remaining:,}/{total:,})")
+        log(f"  Remaining: {remaining:,}")
+        log("")
+        
+        # Small pause to avoid hammering the drive
+        time.sleep(0.1)
+    
+    conn.close()
+    
+    log("=== Hash processing complete ===")
+    log(f"Total batches: {batch_num}")
+    log(f"Total processed: {processed:,}")
+
+if __name__ == '__main__':
+    main()

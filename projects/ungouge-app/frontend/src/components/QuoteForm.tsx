@@ -5,8 +5,10 @@ import { useRouter } from 'next/navigation';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Plus, Trash2, ArrowRight, ArrowLeft, FileText, AlertCircle } from 'lucide-react';
+import { Plus, Trash2, ArrowRight, ArrowLeft, FileText, AlertCircle, LogIn } from 'lucide-react';
 import FileUpload, { ParsedQuoteData } from './FileUpload';
+import { useAuth } from '@/providers/AuthProvider';
+import Link from 'next/link';
 
 const lineItemSchema = z.object({
   item_name: z.string().min(1, 'Item name is required'),
@@ -45,7 +47,9 @@ export default function QuoteForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
 
   const {
     register,
@@ -95,7 +99,16 @@ export default function QuoteForm() {
     setStep(1);
   };
 
+  const [promoCode, setPromoCode] = useState('');
+  const [promoApplied, setPromoApplied] = useState(false);
+
   const onSubmit = async (data: QuoteFormData) => {
+    // Gate: require account before checkout (so users have historical reports)
+    if (!user) {
+      setShowAuthPrompt(true);
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -121,8 +134,32 @@ export default function QuoteForm() {
 
       const quoteData = await quoteRes.json();
       const quoteId = quoteData.id;
+
+      // Step 2: If promo code entered, try applying it first
+      if (promoCode.trim()) {
+        const promoRes = await fetch('/api/payments/apply-promo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ quote_id: quoteId, promo_code: promoCode.trim() }),
+        });
+
+        if (promoRes.ok) {
+          const promoData = await promoRes.json();
+          // Promo applied — redirect to report
+          window.location.href = promoData.report_url || `/report/${quoteId}?payment=success`;
+          return;
+        } else {
+          const promoErr = await promoRes.json().catch(() => ({}));
+          const errMsg = promoErr.detail?.error || promoErr.detail || 'Invalid promo code.';
+          // Don't fail — just warn and fall through to Stripe
+          setError(`Promo code error: ${errMsg} Proceeding to payment...`);
+          await new Promise(r => setTimeout(r, 2000));
+          setError(null);
+        }
+      }
       
-      // Step 2: Create a Stripe Checkout Session
+      // Step 3: Create a Stripe Checkout Session
       const checkoutRes = await fetch('/api/payments/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -137,7 +174,7 @@ export default function QuoteForm() {
 
       const checkoutData = await checkoutRes.json();
       
-      // Step 3: Redirect to Stripe Checkout (external hosted page)
+      // Step 4: Redirect to Stripe Checkout (external hosted page)
       // Stripe handles payment collection; on success it redirects to /report/{quoteId}?payment=success
       const checkoutUrl = checkoutData.checkout_url;
       if (checkoutUrl) {
@@ -162,6 +199,43 @@ export default function QuoteForm() {
 
   return (
     <div className="card">
+      {/* Auth Prompt Modal */}
+      {showAuthPrompt && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <LogIn className="w-8 h-8 text-primary-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Create Your Account</h3>
+              <p className="text-gray-600">
+                Sign up to save your quote and access your report anytime. Your data stays private — we never sell it.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <Link
+                href="/register?redirect=/analyze"
+                className="block w-full text-center bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
+              >
+                Create Free Account
+              </Link>
+              <Link
+                href="/login?redirect=/analyze"
+                className="block w-full text-center bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+              >
+                Already have an account? Sign In
+              </Link>
+            </div>
+            <button
+              onClick={() => setShowAuthPrompt(false)}
+              className="mt-4 w-full text-center text-sm text-gray-500 hover:text-gray-700"
+            >
+              Go back to editing
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Progress Indicator */}
       <div className="mb-8">
         <div className="flex justify-between items-center mb-2">
@@ -492,6 +566,20 @@ export default function QuoteForm() {
                 <li>✓ Regional material cost comparison</li>
                 <li>✓ Instant PDF report</li>
               </ul>
+            </div>
+
+            {/* Promo Code */}
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={promoCode}
+                onChange={(e) => { setPromoCode(e.target.value.toUpperCase()); setPromoApplied(false); }}
+                placeholder="Promo code (optional)"
+                className="input-field flex-1 text-sm"
+              />
+              {promoCode && (
+                <span className="text-xs text-gray-500">Code will be applied at checkout</span>
+              )}
             </div>
 
             {error && (

@@ -32,7 +32,7 @@ def init_gemini():
         raise ValueError("google-generativeai package not installed")
     
     genai.configure(api_key=api_key)
-    return genai.GenerativeModel('gemini-2.0-flash-exp')
+    return genai.GenerativeModel('gemini-2.0-flash')
 
 
 def convert_pdf_to_images(file_bytes: bytes) -> List[Image.Image]:

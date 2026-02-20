@@ -30,14 +30,9 @@ const nextConfig = {
       },
     ];
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: `${process.env.API_URL || 'http://localhost:8000'}/api/:path*`,
-      },
-    ];
-  },
+  // API routes are handled by Next.js Route Handlers in src/app/api/
+  // which properly forward Set-Cookie headers from the backend.
+  // The old rewrite approach lost cookies across domains.
 };
 
 module.exports = nextConfig;

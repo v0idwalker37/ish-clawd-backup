@@ -1,10 +1,19 @@
 {
   "lastChecks": {
-    "email": 1771550998,
-    "calendar": 1771550998,
-    "weather": 1771550998,
-    "moltbook": 1739427600
+    "email": 1771382160,
+    "calendar": 1771264252,
+    "weather": 1771320351,
+    "moltbook": 1771255714
   },
-  "lastUpdated": 1771550998,
-  "notes": "Gmail OAuth still expired (needs re-auth). Beast Machine cutover incomplete (Telegram session path issue). Mac still primary. Miami trip was last weekend."
+  "lastUpdated": 1771389000,
+  "notes": "2026-02-17 23:30 EST: Nightly cleanup complete. All systems green. Backend healthy (rev 00014-9xm), frontend 200, git clean and pushed. Memory files updated. Launch day tomorrow — Jason's live E2E test in the morning.",
+  "suppress_notifications": {
+    "email": true,
+    "calendar": true,
+    "moltbook": true
+  },
+  "notify_only": [
+    "hdd",
+    "blocking_errors"
+  ]
 }

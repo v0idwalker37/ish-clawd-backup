@@ -97,11 +97,17 @@ def log_rate_limit_exceeded(endpoint: str, ip_address: str):
 
 def log_error(error_type: str, message: str, details: dict = None):
     """Log application error"""
+    # Filter out reserved LogRecord attribute names to prevent crashes
+    RESERVED = {'name', 'msg', 'args', 'levelname', 'levelno', 'pathname',
+                'filename', 'module', 'exc_info', 'exc_text', 'stack_info',
+                'lineno', 'funcName', 'created', 'msecs', 'relativeCreated',
+                'thread', 'threadName', 'process', 'processName', 'message'}
     extra = {
         "error_type": error_type,
         "event_type": "error"
     }
     if details:
-        extra.update(details)
+        safe_details = {k: v for k, v in details.items() if k not in RESERVED}
+        extra.update(safe_details)
     
     logger.error(message, extra=extra)

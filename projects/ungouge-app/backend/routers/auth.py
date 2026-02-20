@@ -53,7 +53,7 @@ limiter = Limiter(key_func=get_remote_address)
 
 
 @router.post("/auth/register", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
-@limiter.limit("3/hour")  # Max 3 registrations per hour per IP
+@limiter.limit("20/hour")  # Max 20 registrations per hour per IP (relaxed for launch testing)
 async def register(
     request: Request,
     user_data: UserRegister,
@@ -396,7 +396,7 @@ async def refresh_token_endpoint(
         )
     
     # Verify refresh token (checks expiry, type, blacklist)
-    payload = verify_token(refresh_token_value, token_type="refresh")
+    payload = await verify_token(refresh_token_value, token_type="refresh")
     user_id = payload.get("sub")
     
     if not user_id:
@@ -638,24 +638,27 @@ async def forgot_password(
         try:
             await db.commit()
             
-            # TODO: Send email with reset link
-            # In production, use email service (SendGrid, AWS SES, Mailgun)
-            # reset_url = f"{os.getenv('FRONTEND_URL')}/reset-password?token={reset_token}"
-            # await send_password_reset_email(user.email, user.name, reset_url)
-            
-            # Only log token in development (NEVER in production)
+            # Send password reset email
+            from services.email_service import send_password_reset
             from services.logger import logger
-            if os.getenv("ENVIRONMENT") != "production":
-                logger.info(
-                    "password_reset_requested",
-                    extra={
-                        "user_id": user.id,
-                        "token": reset_token,
-                        "note": "Dev only - token logged for testing"
-                    }
-                )
-            else:
-                logger.info("password_reset_requested", extra={"user_id": user.id})
+            
+            frontend_url = os.getenv("FRONTEND_URL", "https://ungouge.ai")
+            reset_url = f"{frontend_url}/reset-password?token={reset_token}"
+            
+            email_sent = send_password_reset(
+                to_email=user.email,
+                user_name=user.name or "there",
+                reset_url=reset_url,
+                expiry_hours=0.25,  # 15 minutes
+            )
+            
+            logger.info(
+                "password_reset_requested",
+                extra={
+                    "user_id": user.id,
+                    "email_sent": email_sent,
+                }
+            )
         except Exception as e:
             await db.rollback()
             # Don't reveal error to user for security
