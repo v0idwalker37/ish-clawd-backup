@@ -60,16 +60,28 @@ Early Adopter Pricing ← Label
 
 ### 6. Deployments
 
-**Backend (Cloud Run):**
-- Image tag: `early-adopter-pricing` (auto-generated from commit)
-- Status: Building → will auto-deploy on success
-- Migration will run on first startup (inline SQL)
-- Expected revision: 00068
+**Backend (Cloud Run):** ✅ **DEPLOYED SUCCESSFULLY**
+- Revision: **00068-thm** (deployed at 23:45 PM)
+- Image: `gcr.io/ungouge-app/ungouge-backend:fdb23c5`
+- Build time: 34 seconds
+- Push time: ~90 seconds
+- Deploy time: ~120 seconds
+- Migration status: ✅ All 8 migrations ran successfully:
+  - `is_estimated` fields (quotes + analysis_reports)
+  - `estimation_confidence` fields
+  - `estimation_methodology` fields
+  - `original_quote_id` field ✅ NEW
+  - `resubmit_eligible_until` field ✅ NEW
+- Health check: ✅ Passing
+- Service URL: https://ungouge-backend-1934459654.us-central1.run.app
+- Traffic: 100% on revision 00068
 
-**Frontend (Vercel):**
-- Branch: main
-- Status: Building → will auto-deploy on success
-- URL: https://ungouge.ai (production)
+**Frontend (Vercel):** ✅ **DEPLOYED SUCCESSFULLY**
+- Deployed at: 23:10 PM
+- Build time: 52 seconds
+- URL: https://ungouge.ai (production alias)
+- Sitemap: Auto-generated (45 URLs total)
+- Status: ✅ All pages live with $9.99 pricing
 
 ## 📋 What Still Needs to Be Done (Phase 2)
 
