@@ -3,6 +3,8 @@ PDF Report Generator for UnGouge
 Generates branded PDF reports from quote analysis data using ReportLab.
 """
 
+import html
+import re
 from io import BytesIO
 from datetime import datetime
 
@@ -136,6 +138,28 @@ def _build_styles():
     return styles
 
 
+def _sanitize(text: str, max_len: int = 500) -> str:
+    """Sanitize user/AI-controlled text for safe insertion into ReportLab Paragraph().
+
+    Strips any XML/HTML tags (which ReportLab would process), then HTML-escapes
+    remaining special characters. Prevents XML injection into PDF generation.
+
+    Security note: ReportLab's Paragraph() processes XML tags in text content.
+    User data and LLM output must be sanitized before insertion to prevent
+    layout corruption or injection attacks.
+    """
+    if not text:
+        return ""
+    # Strip any XML/HTML tags first (handles prompt-injected formatting)
+    clean = re.sub(r'<[^>]+>', '', str(text))
+    # Escape remaining XML special characters (& < > " ')
+    clean = html.escape(clean)
+    # Truncate if needed
+    if len(clean) > max_len:
+        clean = clean[:max_len] + "..."
+    return clean
+
+
 def _fmt_currency(value: float) -> str:
     """Format a number as USD currency."""
     return f"${value:,.2f}"
@@ -188,13 +212,13 @@ def _build_summary_table(report: Report, styles):
     data = [
         [
             Paragraph("<b>Project Type</b>", styles["CellText"]),
-            Paragraph(report.project_type, styles["CellText"]),
+            Paragraph(_sanitize(report.project_type), styles["CellText"]),
             Paragraph("<b>Total Quoted</b>", styles["CellText"]),
             Paragraph(f"<b>{_fmt_currency(report.total_quoted)}</b>", styles["CellTextBold"]),
         ],
         [
             Paragraph("<b>Location</b>", styles["CellText"]),
-            Paragraph(report.location, styles["CellText"]),
+            Paragraph(_sanitize(report.location), styles["CellText"]),
             Paragraph("<b>Fair Range</b>", styles["CellText"]),
             Paragraph(
                 f"{_fmt_currency(report.total_fair_low)} – {_fmt_currency(report.total_fair_high)}",
@@ -250,7 +274,7 @@ def _build_overall_assessment(report: Report, styles):
     """Build the overall assessment paragraph."""
     elements = []
     elements.append(Paragraph("Overall Assessment", styles["SectionHeader"]))
-    elements.append(Paragraph(report.overall_assessment, styles["BodyText_Custom"]))
+    elements.append(Paragraph(_sanitize(report.overall_assessment, max_len=1000), styles["BodyText_Custom"]))
     return elements
 
 
@@ -280,14 +304,14 @@ def _build_line_items_table(report: Report, styles):
         row_colors.append(assessment_color)
 
         row = [
-            Paragraph(f"<b>{item.item_name}</b>", styles["CellText"]),
+            Paragraph(f"<b>{_sanitize(item.item_name, max_len=100)}</b>", styles["CellText"]),
             Paragraph(_fmt_currency(item.quoted_price), styles["CellText"]),
             Paragraph(
                 f"{_fmt_currency(item.fair_price_low)} –\n{_fmt_currency(item.fair_price_high)}",
                 styles["CellText"],
             ),
             Paragraph(_assessment_badge(item.assessment), styles["CellText"]),
-            Paragraph(item.explanation[:200] + ("..." if len(item.explanation) > 200 else ""), styles["CellExplanation"]),
+            Paragraph(_sanitize(item.explanation, max_len=200), styles["CellExplanation"]),
         ]
         data.append(row)
 
@@ -362,7 +386,7 @@ def generate_pdf(report: Report) -> bytes:
         bottomMargin=0.6 * inch,
         leftMargin=0.6 * inch,
         rightMargin=0.6 * inch,
-        title=f"UnGouge Report – {report.project_type}",
+        title=f"UnGouge Report – {_sanitize(report.project_type, max_len=100)}",
         author="UnGouge.ai",
     )
 
