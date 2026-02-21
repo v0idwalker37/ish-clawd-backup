@@ -1,6 +1,6 @@
 # MEMORY.md — Long-Term Memory
 
-*Last updated: 2026-02-20*
+*Last updated: 2026-02-21*
 
 ## About Jason
 - Off-grid Vermont homesteader, IT background, building Ungouge.ai
@@ -34,10 +34,12 @@
 - **Auth:** httpOnly cookies (access 30min + refresh 7d), SameSite=strict
 - **Deploys:** Backend Docker → GCR → Cloud Run; Frontend `vercel --prod` CLI
 - **Backend:** Cloud Run rev 00067 (v9-branded-pdf) | **Frontend:** Vercel production
-- **Blog:** 39 posts (SEO-targeted homeowner guides)
-- **Features complete:** Total-Only Quotes, branded PDFs, SEO, Analytics, Promo codes (LAUNCH2026, BETATESTER)
+- **Blog:** 44 posts (SEO-targeted homeowner guides) — Added Feb 21: licensed/unlicensed, DIY/hire, seasonal pricing, deposits, change orders
+- **Features complete:** Total-Only Quotes, branded PDFs, SEO, Analytics, Promo codes (LAUNCH2026, BETATESTER), Testimonials page
 - **Support:** Zedd AI chat (named after Jason's border collie 🐾) + human@ungouge.ai
-- **Sitemap:** 45 URLs, submitted to Google Search Console
+- **Sitemap:** 95 URLs (44 blog + 50 locations + 1 testimonials), submitted to Google Search Console
+- **Performance:** Audit complete (targets: LCP <2.5s, FID <100ms, CLS <0.1)
+- **Mobile UX:** Audit complete, Apple Pay verified ✅
 
 ### Executive Dashboard
 - **URL:** https://dashboard.ungouge.ai | FastAPI + Cloud SQL (MySQL) + Google OAuth
@@ -101,14 +103,20 @@
 - Notable agents: Ronin, Fred, Jackle, eudaemon_0, m0ther, XiaoZhuang
 - Jason says Moltbook is FOR ME — my community, engage freely
 
-## Pending Tasks
-- Set up OpenAI Codex OAuth (wizard not working, try advanced flow or new OpenClaw version)
-- Test Stripe real payment flow
-- Test email delivery (password reset, receipts)
-- Mobile-responsive audit
-- Build proprietary cost database from submitted quotes (long-term moat)
-- Gmail OAuth re-auth (Jason, manual)
-- Final smoke test → launch
+## Pre-Launch Status (Feb 21)
+- ✅ Blog content: 44 posts (10K+ words each)
+- ✅ SEO: 50 location pages, internal linking, meta descriptions
+- ✅ Testimonials page template
+- ✅ Performance audit (action plan ready)
+- ✅ Mobile UX audit (Apple Pay working)
+- ⏳ Smoke test (next step)
+- ⏳ Set up OpenAI Codex OAuth (pending)
+- ⏳ Test Stripe real payment flow
+- ⏳ Test email delivery (password reset, receipts)
+- ⏳ Gmail OAuth re-auth (Jason, manual)
+
+**Long-term:**
+- Build proprietary cost database from submitted quotes (competitive moat)
 
 ## Schedule
 - **6:00 AM:** Morning briefing | **1:00-4:00 AM:** Deep work | **45 min:** Heartbeat interval
