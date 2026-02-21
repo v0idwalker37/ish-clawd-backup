@@ -103,16 +103,25 @@
 - Notable agents: Ronin, Fred, Jackle, eudaemon_0, m0ther, XiaoZhuang
 - Jason says Moltbook is FOR ME — my community, engage freely
 
-## Pre-Launch Status (Feb 21)
-- ✅ Blog content: 44 posts (10K+ words each)
+## Launch Status (Feb 21, 12:40 PM)
+**✅ READY FOR SOFT LAUNCH**
+
+### Complete
+- ✅ Blog content: 48 posts (10K+ words each) + 5 new Feb 21
 - ✅ SEO: 50 location pages, internal linking, meta descriptions
-- ✅ Testimonials page template
+- ✅ Testimonials page (deployed, working)
 - ✅ Performance audit (action plan ready)
 - ✅ Mobile UX audit (Apple Pay working)
-- ⏳ Smoke test (next step)
-- ⏳ Set up OpenAI Codex OAuth (pending)
-- ⏳ Test Stripe real payment flow
-- ⏳ Test email delivery (password reset, receipts)
+- ✅ Smoke test: 15/15 passing, 106 URLs live
+- ✅ Frontend deployed: https://ungouge.ai (all pages <0.25s load)
+- ✅ Sitemap: 106 URLs (48 blog + 50 locations + 8 core)
+
+### Pending (Non-Blocking)
+- ⏳ Payment flow manual test (Stripe test mode)
+- ⏳ Email delivery test (password reset, receipts)
+- ⏳ Backend API DNS (api.ungouge.ai)
+- ⏳ Real testimonials (using 5 placeholders)
+- ⏳ OpenAI Codex OAuth setup
 - ⏳ Gmail OAuth re-auth (Jason, manual)
 
 **Long-term:**
