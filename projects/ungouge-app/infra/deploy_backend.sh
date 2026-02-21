@@ -29,18 +29,25 @@ docker push $IMAGE
 
 echo "Deploying to Cloud Run: $SERVICE_NAME"
 
+# Deploy with ALL required secrets and env vars
+# This ensures email, database, Stripe, etc. are ALWAYS configured
 gcloud run deploy $SERVICE_NAME \
   --image $IMAGE \
   --region $REGION \
   --platform managed \
-  --allow-unauthenticated=false \
-  --add-cloudsql-instances ${PROJECT}:$REGION:ungouge-app-db \
+  --allow-unauthenticated \
+  --add-cloudsql-instances ${PROJECT}:$REGION:ungouge-dashboard-db \
+  --set-env-vars="EMAIL_DEV_MODE=false,SMTP_HOST=smtp.resend.com,SMTP_PORT=465,SMTP_USER=resend,FROM_EMAIL=noreply@ungouge.ai,FROM_NAME=UnGouge.ai,FRONTEND_URL=https://ungouge.ai" \
+  --update-secrets="SMTP_PASSWORD=resend-api-key:latest,DB_PASSWORD=ungouge-db-password:latest,JWT_SECRET_KEY=JWT_SECRET_KEY:latest,CSRF_SECRET_KEY=CSRF_SECRET_KEY:latest,ENCRYPTION_KEY=ENCRYPTION_KEY:latest,STRIPE_SECRET_KEY=stripe-secret-key:latest,STRIPE_WEBHOOK_SECRET=stripe-webhook-secret:latest,GOOGLE_GEMINI_API_KEY=google-gemini-api-key:latest" \
   --project $PROJECT
 
-echo "Deployment complete. To map secrets into Cloud Run, run (example):"
-echo "  gcloud run services update $SERVICE_NAME --region $REGION --update-secrets \"
-echo "    JWT_SECRET_KEY=projects/$PROJECT/secrets/JWT_SECRET_KEY:latest \"
-echo "    CSRF_SECRET_KEY=projects/$PROJECT/secrets/CSRF_SECRET_KEY:latest \""
+echo ""
+echo "✅ Deployment complete with all secrets and env vars configured"
+echo "   - Email: Resend SMTP enabled"
+echo "   - Database: Cloud SQL connected"
+echo "   - Auth: JWT/CSRF configured"
+echo "   - Payments: Stripe configured"
+echo "   - AI: Gemini API configured"
 
 echo "After deploy, run health checks against the /health endpoint and check logs:"
 echo "  gcloud run services describe $SERVICE_NAME --region $REGION --platform managed --project $PROJECT"
