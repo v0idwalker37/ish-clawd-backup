@@ -1,3 +1,11 @@
+---
+title: 'Why "Free" Contractor Quote Tools Actually Cost You More'
+description: "Free contractor quote comparison tools seem helpful—but they're lead generation funnels that drive up your final costs. Here's how they work and what to use instead."
+date: 2026-02-01
+author: Ungouge Team
+keywords: []
+---
+
 # Why "Free" Contractor Quote Tools Actually Cost You More
 
 *The hidden price of free bid comparison — and what to ask instead*
