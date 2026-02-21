@@ -28,7 +28,7 @@ const testimonials = [
     project: 'Bathroom Renovation',
     quote: 24000,
     saved: 6000,
-    text: 'I was about to accept a $24K bathroom quote. UnGouge showed it should be around $18K. I negotiated down to $19K and the contractor actually thanked me for being informed—said most customers just accept whatever number he gives them.',
+    text: "I was about to accept a $24K bathroom quote. UnGouge showed it should be around $18K. I negotiated down to $19K and the contractor actually thanked me for being informed—said most customers just accept whatever number he gives them.",
     rating: 5,
   },
   {
@@ -46,7 +46,7 @@ const testimonials = [
     project: 'Roof Replacement',
     quote: 16500,
     saved: 4200,
-    text: 'Found out my contractor was charging 80% markup on materials (should be 20-40%). Got a second quote and used UnGouge's analysis to negotiate. Final price: $12,300. Best $20 I ever spent.',
+    text: "Found out my contractor was charging 80% markup on materials (should be 20-40%). Got a second quote and used UnGouge's analysis to negotiate. Final price: $12,300. Best $20 I ever spent.",
     rating: 5,
   },
   {
