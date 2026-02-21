@@ -1,3 +1,11 @@
+---
+title: "Flooring Installation Cost Breakdown: What's Fair in 2026?"
+description: "Complete flooring installation cost breakdown with actual prices for hardwood, laminate, tile, vinyl, and carpet. Includes labor rates and contractor red flags."
+date: 2026-02-01
+author: Ungouge Team
+keywords: []
+---
+
 # Flooring Installation Cost Breakdown: What's Fair in 2026?
 
 *Updated February 2026 | 8-minute read*

@@ -159,3 +159,13 @@ You'll find a better contractor. And you'll know exactly what fair pricing looks
 - [What is Fair Contractor Markup in 2026?](/blog/fair-contractor-markup-2026)
 - [How to Read a Contractor Quote](/blog/how-to-read-contractor-quote)
 - [Red Flags in Contractor Quotes](/blog/03-contractor-quote-red-flags)
+
+---
+
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Tell If Your Quote Is Too High](/blog/01-is-contractor-quote-too-high)
+- [Contractor Quote Red Flags](/blog/contractor-quote-red-flags)
+- [10 Signs of Overcharging](/blog/signs-your-contractor-is-overcharging)
+

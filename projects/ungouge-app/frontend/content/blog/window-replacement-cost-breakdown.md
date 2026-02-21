@@ -1,3 +1,11 @@
+---
+title: "Window Replacement Cost Breakdown: What You Should Actually Pay in 2026"
+description: "Complete window replacement cost breakdown with actual prices for vinyl, wood, and fiberglass windows. Includes installation labor rates and contractor red flags."
+date: 2026-02-01
+author: Ungouge Team
+keywords: []
+---
+
 # Window Replacement Cost Breakdown: What You Should Actually Pay in 2026
 
 *Last updated: February 2026*

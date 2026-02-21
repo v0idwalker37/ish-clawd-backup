@@ -509,6 +509,22 @@ We don't sell contracting services. We don't connect you with contractors. We ju
 
 ---
 
+## Related Guides
+
+**Learn more about contractor pricing:**
+- [How to Tell If Your Contractor Quote Is Too High](/blog/01-is-contractor-quote-too-high) — The complete evaluation guide
+- [How to Read a Contractor Quote](/blog/how-to-read-contractor-quote) — Understand every line item
+- [Fair Contractor Markup Guide 2026](/blog/fair-contractor-markup-2026) — What's reasonable?
+- [How to Spot Quote Padding](/blog/how-to-spot-contractor-quote-padding) — Identify inflated costs
+
+**Project-specific cost guides:**
+- [Bathroom Remodel Costs](/blog/bathroom-remodel-cost-breakdown)
+- [Kitchen Remodel Costs](/blog/kitchen-remodel-cost-2026)
+- [Flooring Installation Costs](/blog/flooring-installation-cost-breakdown)
+- [Painting Cost Breakdown](/blog/painting-cost-breakdown)
+
+---
+
 ## Final Thoughts: Trust, But Verify
 
 Most contractors are honest, hardworking professionals. But the ones who aren't are counting on your confusion, your trust, and your reluctance to ask hard questions.

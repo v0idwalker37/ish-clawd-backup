@@ -256,6 +256,20 @@ Upload the quote to UnGouge.ai. We'll tell you:
 
 **Gray area (10-20 years old):** Get a professional inspection. If 30%+ of the roof needs work, replacement is usually more cost-effective than patching.
 
+---
+
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Tell If Your Quote Is Too High](/blog/01-is-contractor-quote-too-high)
+- [How to Read a Quote](/blog/how-to-read-contractor-quote)
+
+**Project-specific cost guides:**
+- [Siding Installation Costs](/blog/siding-installation-cost-breakdown)
+- [Gutter Installation Costs](/blog/gutter-installation)
+- [Window Replacement Costs](/blog/window-replacement-cost-breakdown)
+
+
 ## Bottom Line
 
 **2026 roof replacement pricing by region:**

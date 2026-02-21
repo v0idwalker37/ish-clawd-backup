@@ -198,6 +198,15 @@ Then you can go back to the contractor and say: "I need this as a fixed-price qu
 
 **[Analyze your quote or estimate for $19.99 →](/analyze)**
 
+---
+
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Tell If Your Quote Is Too High](/blog/01-is-contractor-quote-too-high)
+- [How to Read a Quote](/blog/how-to-read-contractor-quote)
+
+
 ## Bottom Line
 
 - **Quote = fixed price, low risk**

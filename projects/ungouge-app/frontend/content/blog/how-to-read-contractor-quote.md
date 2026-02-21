@@ -1,3 +1,11 @@
+---
+title: "How to Read a Contractor Quote (Without Getting Gouged)"
+description: "Learn to decode every line item in a contractor quote. Understand markup percentages, labor rates, material costs, and spot inflated pricing before you sign."
+date: 2026-02-01
+author: Ungouge Team
+keywords: []
+---
+
 # How to Read a Contractor Quote (Without Getting Gouged)
 
 *A line-by-line guide to understanding what you're actually paying for*
@@ -129,3 +137,18 @@ And if you want a second opinion on whether your quote is fair? That's exactly w
 **Publish date:** TBD
 **Author:** UnGouge Team
 **Category:** Homeowner Education
+
+---
+
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Tell If Your Quote Is Too High](/blog/01-is-contractor-quote-too-high)
+- [10 Signs of Overcharging](/blog/signs-your-contractor-is-overcharging)
+- [Fair Contractor Markup Guide](/blog/fair-contractor-markup-2026)
+- [Spot Quote Padding](/blog/how-to-spot-contractor-quote-padding)
+
+**Project-specific cost guides:**
+- [Kitchen Remodel Costs](/blog/kitchen-remodel-cost-2026)
+- [Roof Replacement Costs](/blog/roof-replacement-cost-guide-2026)
+

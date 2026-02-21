@@ -161,3 +161,12 @@ For $19.99, UnGouge.ai tells you if your first quote is fair. If it is, you're d
 - [What is Fair Contractor Markup?](/blog/fair-contractor-markup-2026)
 - [5 Signs to Walk Away From a Quote](/blog/when-to-walk-away-contractor-quote)
 - [How to Negotiate Contractor Quotes](/blog/how-to-negotiate-contractor-quotes)
+
+---
+
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Tell If Your Quote Is Too High](/blog/01-is-contractor-quote-too-high)
+- [How to Read a Quote](/blog/how-to-read-contractor-quote)
+

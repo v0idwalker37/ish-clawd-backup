@@ -1,3 +1,11 @@
+---
+title: "How to Spot Contractor Quote Padding (7 Common Tricks)"
+description: "Learn the specific tactics contractors use to pad quotes—from inflated labor hours to phantom expenses—and how to spot them line by line."
+date: 2026-02-01
+author: Ungouge Team
+keywords: []
+---
+
 # How to Spot Contractor Quote Padding (7 Common Tricks)
 
 *Published: February 13, 2026*  
@@ -153,3 +161,14 @@ Upload any contractor quote to **UnGouge.ai** and get:
 ---
 
 *UnGouge is an independent quote verification service. We don't sell your data, refer contractors, or take kickbacks. We make $19.99 when you pay us. That's it.*
+
+---
+
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Tell If Your Quote Is Too High](/blog/01-is-contractor-quote-too-high)
+- [10 Signs of Overcharging](/blog/signs-your-contractor-is-overcharging)
+- [How to Read a Quote](/blog/how-to-read-contractor-quote)
+- [Fair Markup Percentages](/blog/fair-contractor-markup-2026)
+

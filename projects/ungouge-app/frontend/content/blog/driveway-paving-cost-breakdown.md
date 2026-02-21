@@ -1,3 +1,11 @@
+---
+title: "Driveway Paving Cost Breakdown: What You Should Actually Pay in 2026"
+description: "Complete driveway paving cost breakdown with actual prices for asphalt, concrete, gravel, and pavers. Includes labor rates, regional pricing, and contractor red flags."
+date: 2026-02-01
+author: Ungouge Team
+keywords: []
+---
+
 # Driveway Paving Cost Breakdown: What You Should Actually Pay in 2026
 
 *Last updated: February 2026*

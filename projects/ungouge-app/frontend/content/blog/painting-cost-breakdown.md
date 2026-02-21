@@ -1,3 +1,11 @@
+---
+title: "Interior & Exterior Painting Cost Breakdown: What's Fair in 2026?"
+description: "Complete painting cost breakdown with actual prices for interior and exterior projects. Includes labor rates, material costs per square foot, and contractor red flags."
+date: 2026-02-01
+author: Ungouge Team
+keywords: []
+---
+
 # Interior & Exterior Painting Cost Breakdown: What's Fair in 2026?
 
 *Updated February 2026 | 7-minute read*

@@ -1,3 +1,11 @@
+---
+title: "Basement Finishing Cost Breakdown: What Should You Actually Pay in 2026?"
+description: "Complete basement finishing cost breakdown with actual material prices, labor rates, and contractor red flags. Budget from $10K to $50K+ based on square footage and finishes."
+date: 2026-02-01
+author: Ungouge Team
+keywords: []
+---
+
 # Basement Finishing Cost Breakdown: What Should You Actually Pay in 2026?
 
 *Last updated: February 2026*

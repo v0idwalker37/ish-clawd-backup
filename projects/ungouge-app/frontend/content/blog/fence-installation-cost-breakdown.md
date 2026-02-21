@@ -1,3 +1,11 @@
+---
+title: "Fence Installation Cost Breakdown: What You Should Actually Pay in 2026"
+description: "Complete fence installation cost breakdown with actual prices for wood, vinyl, chain link, and metal fencing. Includes labor rates, material costs, and contractor red flags."
+date: 2026-02-01
+author: Ungouge Team
+keywords: []
+---
+
 # Fence Installation Cost Breakdown: What You Should Actually Pay in 2026
 
 *Last updated: February 10, 2026 | Reading time: 8 minutes*

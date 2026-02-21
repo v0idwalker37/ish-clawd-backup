@@ -222,4 +222,15 @@ $19.99 is cheap insurance on a $20,000+ project.
 
 ---
 
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Tell If Your Quote Is Too High](/blog/01-is-contractor-quote-too-high)
+- [10 Signs of Overcharging](/blog/signs-your-contractor-is-overcharging)
+- [How to Read a Quote](/blog/how-to-read-contractor-quote)
+- [When to Walk Away](/blog/when-to-walk-away-contractor-quote)
+
+
+---
+
 *Last updated: February 2026*

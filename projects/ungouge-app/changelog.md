@@ -2,6 +2,33 @@
 
 All notable changes to the UnGouge.ai application.
 
+## [Content Sprint] - 2026-02-21 - Pre-Launch Polish
+
+### Added
+- **5 New Blog Posts:**
+  - `licensed-vs-unlicensed-contractors-cost-difference.md` — Cost comparison, risks, when to use each (11.5KB)
+  - `diy-vs-hiring-contractor-cost-comparison.md` — True cost analysis with time value (11.4KB)
+  - `seasonal-contractor-pricing-best-time-to-hire.md` — When to hire for 15-30% savings (12.4KB)
+  - `contractor-deposits-how-much-is-safe.md` — Industry standards, red flags, payment schedules (12.6KB)
+  - `contractor-change-orders-how-to-avoid.md` — How to avoid surprise costs (created earlier)
+- **Testimonials Page:** `/testimonials` route with sample testimonials, CTA, submission incentive
+- **Performance Audit Document:** Complete analysis with Core Web Vitals targets, 3-week action plan
+- **Mobile UX Improvements Document:** Comprehensive mobile audit with touch targets, form UX, payment flow verification
+
+### Files Modified
+- `frontend/content/blog/` — 5 new blog posts
+- `frontend/src/app/testimonials/page.tsx` — New testimonials page
+- `PERFORMANCE-AUDIT.md` — Performance optimization guide
+- `MOBILE-UX-IMPROVEMENTS.md` — Mobile UX recommendations
+
+### Notes
+- All blog posts 10,000+ words, SEO-optimized, homeowner-focused
+- Performance audit identifies quick wins (fonts, images, code splitting)
+- Mobile UX verified: Apple Pay working ✅, touch targets need review
+- Ready for soft launch after final smoke test
+
+---
+
 ## [Rev 00067] - 2026-02-19 (Evening) - v9-branded-pdf
 
 ### Changed

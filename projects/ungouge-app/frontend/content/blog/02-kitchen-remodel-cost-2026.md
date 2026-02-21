@@ -208,5 +208,19 @@ Add 10-20% contingency to any kitchen budget. Surprises happen.
 
 ---
 
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Tell If Your Quote Is Too High](/blog/01-is-contractor-quote-too-high)
+- [How to Read a Quote](/blog/how-to-read-contractor-quote)
+
+**Project-specific cost guides:**
+- [Bathroom Remodel Costs](/blog/bathroom-remodel-cost-breakdown)
+- [Flooring Installation Costs](/blog/flooring-installation-cost-breakdown)
+- [Painting Costs](/blog/painting-cost-breakdown)
+
+
+---
+
 *Last updated: February 2026*
 *Data sources: KBIS 2026, RSMeans 2026, Remodeling Magazine Cost vs. Value 2026*

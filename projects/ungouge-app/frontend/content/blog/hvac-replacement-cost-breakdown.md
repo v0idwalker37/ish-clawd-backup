@@ -630,6 +630,19 @@ That's why we built **Ungouge.ai**.
 
 ---
 
+---
+
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Tell If Your Quote Is Too High](/blog/01-is-contractor-quote-too-high)
+- [How to Read a Quote](/blog/how-to-read-contractor-quote)
+
+**Project-specific cost guides:**
+- [Electrical Work Costs](/blog/electrical-work-cost-breakdown)
+- [Solar Panel Installation](/blog/solar-panel-installation)
+
+
 ## Final Thoughts: Stay Cool (or Warm) Without Getting Burned
 
 HVAC replacement is one of the most significant home investments. The right system, properly installed, will serve you for 15-25 years.

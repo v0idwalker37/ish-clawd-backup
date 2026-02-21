@@ -361,3 +361,13 @@ Ungouge compares your contractor quote to real market data and highlights line i
 - [Signs Your Contractor Is Overcharging You](/blog/signs-your-contractor-is-overcharging)
 - [How Much Should a Roof Replacement Cost?](/blog/how-much-should-roof-replacement-cost)
 - [Why "Free" Contractor Quote Sites Cost You More](/blog/why-free-contractor-quote-sites-are-expensive)
+
+---
+
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Tell If Your Quote Is Too High](/blog/01-is-contractor-quote-too-high)
+- [How to Read a Quote](/blog/how-to-read-contractor-quote)
+- [Fair Markup Guide](/blog/fair-contractor-markup-2026)
+

@@ -1,3 +1,11 @@
+---
+title: "HVAC Quote Too High? Here's What Fair Pricing Looks Like in 2026"
+description: "Think your HVAC quote is too high? Compare your estimate against real 2026 market data for equipment, labor, and installation. Know what's fair before you pay."
+date: 2026-02-01
+author: Ungouge Team
+keywords: []
+---
+
 # HVAC Quote Too High? Here's What Fair Pricing Looks Like in 2026
 
 *Published: February 13, 2026*  

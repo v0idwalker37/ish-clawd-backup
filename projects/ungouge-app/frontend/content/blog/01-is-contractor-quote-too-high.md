@@ -30,6 +30,8 @@ A legitimate quote should break down costs by:
 
 **Red flag:** A single lump sum with no explanation of how they arrived at it.
 
+Learn more in our guide: [How to Read a Contractor Quote](/blog/how-to-read-contractor-quote)
+
 ### 2. Vague Material Descriptions
 
 Watch for generic descriptions like:
@@ -37,7 +39,7 @@ Watch for generic descriptions like:
 - "Quality flooring" (what type? what cost per sqft?)
 - "Premium paint" (which product exactly?)
 
-**What to do:** Ask for specific product names, model numbers, and quantities.
+**What to do:** Ask for specific product names, model numbers, and quantities. See more red flags in our guide: [10 Signs Your Contractor Is Overcharging](/blog/signs-your-contractor-is-overcharging)
 
 ### 3. The Quote Is 40%+ Above Others
 
@@ -73,6 +75,8 @@ Labor rates vary by region, but here are typical 2026 ranges:
 | HVAC | $75 | $110 | $160 |
 
 *Note: These are national averages. Add 15-25% for high-cost metros (NYC, SF, Boston).*
+
+**See project-specific pricing:** [Roof Replacement Costs](/blog/roof-replacement-cost-guide-2026) | [Kitchen Remodel Costs](/blog/kitchen-remodel-cost-2026) | [HVAC Replacement Costs](/blog/hvac-replacement-cost-breakdown)
 
 ### 6. No Mention of Permits
 
@@ -162,11 +166,27 @@ Check your state's contractor licensing board website. In most states, you can s
 
 ---
 
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Read a Contractor Quote](/blog/how-to-read-contractor-quote) — Decode every line item
+- [10 Signs Your Contractor Is Overcharging](/blog/signs-your-contractor-is-overcharging) — Spot the red flags
+- [How to Spot Quote Padding](/blog/how-to-spot-contractor-quote-padding) — Identify inflated costs
+- [Fair Contractor Markup Guide](/blog/fair-contractor-markup-2026) — What's reasonable?
+
+**Project-specific cost guides:**
+- [Roof Replacement Costs](/blog/roof-replacement-cost-guide-2026)
+- [Kitchen Remodel Costs](/blog/kitchen-remodel-cost-2026)
+- [Bathroom Remodel Costs](/blog/bathroom-remodel-cost-breakdown)
+- [HVAC Replacement Costs](/blog/hvac-replacement-cost-breakdown)
+
+---
+
 ## Bottom Line
 
 A fair contractor quote is transparent, itemized, and competitive with market rates. If your quote doesn't pass these tests, ask questions before you sign.
 
-**Need certainty?** [Upload your quote to Ungouge.ai](/pricing) and get a data-driven analysis in minutes. $19.99 could save you thousands.
+**Need certainty?** [Upload your quote to Ungouge.ai](/analyze) and get a data-driven analysis in 24 hours. $19.99 could save you thousands.
 
 ---
 

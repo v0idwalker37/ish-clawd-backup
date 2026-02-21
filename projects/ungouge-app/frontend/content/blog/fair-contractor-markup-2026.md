@@ -113,6 +113,20 @@ We compare every line item against real Bureau of Labor Statistics wage data and
 
 **[Analyze Your Quote Now →](/analyze)**
 
+---
+
+## Related Guides
+
+**Learn more about contractor quotes:**
+- [How to Tell If Your Quote Is Too High](/blog/01-is-contractor-quote-too-high)
+- [10 Signs of Overcharging](/blog/signs-your-contractor-is-overcharging)
+- [How to Read a Quote](/blog/how-to-read-contractor-quote)
+
+**Project-specific cost guides:**
+- [Bathroom Remodel Costs](/blog/bathroom-remodel-cost-breakdown)
+- [Deck Building Costs](/blog/deck-building-cost-breakdown)
+
+
 ## Bottom Line
 
 Fair markup in 2026 is 15-40% depending on the project and your location. If you're seeing numbers way outside that range, either ask for an itemized breakdown or get a second opinion.

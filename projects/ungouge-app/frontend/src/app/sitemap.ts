@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
+import { getAllLocations } from '@/lib/locations';
 
 const BASE_URL = 'https://ungouge.ai';
 
@@ -39,6 +40,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${BASE_URL}/locations`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${BASE_URL}/privacy`,
       lastModified: now,
       changeFrequency: 'monthly',
@@ -61,5 +68,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...blogPages];
+  // Location pages
+  const locations = getAllLocations();
+  const locationPages: MetadataRoute.Sitemap = locations.map((location) => ({
+    url: `${BASE_URL}/locations/${location.slug}`,
+    lastModified: new Date(location.date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
+  }));
+
+  return [...staticPages, ...blogPages, ...locationPages];
 }

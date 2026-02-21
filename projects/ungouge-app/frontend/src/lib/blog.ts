@@ -180,7 +180,57 @@ function parsePostFile(filename: string): BlogPost | null {
 }
 
 /**
- * Get all blog posts, sorted by date (newest first)
+ * Get post priority score for sorting (higher = more important)
+ */
+function getPostPriority(slug: string): number {
+  // Tier 1: Core evaluation guides (highest priority)
+  const tier1 = [
+    '01-is-contractor-quote-too-high',
+    'signs-your-contractor-is-overcharging',
+    'how-to-read-contractor-quote',
+    '03-contractor-quote-red-flags',
+  ];
+  if (tier1.includes(slug)) return 1000;
+
+  // Tier 2: High-traffic cost guides
+  const tier2 = [
+    'roof-replacement-cost-guide-2026',
+    '02-kitchen-remodel-cost-2026',
+    'bathroom-remodel-cost-breakdown',
+    'hvac-replacement-cost-breakdown',
+    'hvac-quote-too-high-fair-pricing-2026',
+  ];
+  if (tier2.includes(slug)) return 900;
+
+  // Tier 3: Supporting educational content
+  const tier3 = [
+    'fair-contractor-markup-2026',
+    'how-to-spot-contractor-quote-padding',
+    'when-to-walk-away-contractor-quote',
+    'how-to-negotiate-contractor-quotes',
+    'contractor-quote-vs-estimate',
+    'do-i-need-3-contractor-quotes',
+  ];
+  if (tier3.includes(slug)) return 800;
+
+  // Tier 4: Other cost breakdowns
+  const tier4 = [
+    'deck-building-cost-breakdown',
+    'flooring-installation-cost-breakdown',
+    'painting-cost-breakdown',
+    'siding-installation-cost-breakdown',
+    'window-replacement-cost-breakdown',
+    'electrical-work-cost-breakdown',
+    'basement-finishing-cost-breakdown',
+  ];
+  if (tier4.includes(slug)) return 700;
+
+  // Default: everything else
+  return 500;
+}
+
+/**
+ * Get all blog posts, sorted by priority (most useful first)
  */
 export function getAllPosts(): BlogPost[] {
   if (!fs.existsSync(BLOG_DIR)) {
@@ -194,7 +244,11 @@ export function getAllPosts(): BlogPost[] {
     .map(parsePostFile)
     .filter((post): post is BlogPost => post !== null)
     .sort((a, b) => {
-      // Sort by date descending
+      // Sort by priority first
+      const priorityDiff = getPostPriority(b.slug) - getPostPriority(a.slug);
+      if (priorityDiff !== 0) return priorityDiff;
+      
+      // If same priority, sort by date (newest first)
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
 

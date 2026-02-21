@@ -1,0 +1,34 @@
+# Meta Descriptions to Add
+
+basement-finishing-cost-breakdown.md:
+Complete basement finishing cost breakdown with actual material prices, labor rates, and contractor red flags. Budget from $10K to $50K+ based on square footage and finishes.
+
+driveway-paving-cost-breakdown.md:
+Complete driveway paving cost breakdown with actual prices for asphalt, concrete, gravel, and pavers. Includes labor rates, regional pricing, and contractor red flags.
+
+fence-installation-cost-breakdown.md:
+Complete fence installation cost breakdown with actual prices for wood, vinyl, chain link, and metal fencing. Includes labor rates, material costs, and contractor red flags.
+
+flooring-installation-cost-breakdown.md:
+Complete flooring installation cost breakdown with actual prices for hardwood, laminate, tile, vinyl, and carpet. Includes labor rates and contractor red flags.
+
+how-to-read-contractor-quote.md:
+Learn to decode every line item in a contractor quote. Understand markup percentages, labor rates, material costs, and spot inflated pricing before you sign.
+
+how-to-spot-contractor-quote-padding.md:
+Learn the specific tactics contractors use to pad quotes—from inflated labor hours to phantom expenses—and how to spot them line by line.
+
+hvac-quote-too-high-fair-pricing-2026.md:
+Think your HVAC quote is too high? Compare your estimate against real 2026 market data for equipment, labor, and installation. Know what's fair before you pay.
+
+landscaping-cost-breakdown.md:
+Complete landscaping cost breakdown with actual prices for design, installation, hardscaping, plantings, and maintenance. Includes labor rates and contractor red flags.
+
+painting-cost-breakdown.md:
+Complete painting cost breakdown with actual prices for interior and exterior projects. Includes labor rates, material costs per square foot, and contractor red flags.
+
+why-free-quote-tools-cost-more.md:
+Free contractor quote comparison tools seem helpful—but they're lead generation funnels that drive up your final costs. Here's how they work and what to use instead.
+
+window-replacement-cost-breakdown.md:
+Complete window replacement cost breakdown with actual prices for vinyl, wood, and fiberglass windows. Includes installation labor rates and contractor red flags.
