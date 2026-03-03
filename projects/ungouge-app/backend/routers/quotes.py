@@ -27,6 +27,12 @@ from services.logger import log_quote_submission, log_access_denied
 import os
 from services.quote_parser import process_quote_file as openai_process_quote
 from services.quote_parser_gemini import process_quote_file as gemini_process_quote
+from services.project_pass import (
+    find_active_pass,
+    normalize_address,
+    normalize_project_scope,
+    increment_pass_usage,
+)
 
 
 async def process_quote_file(file_bytes: bytes, filename: str):
@@ -65,16 +71,11 @@ async def submit_quote(
     """
     Submit a contractor quote for analysis.
     
-    SECURITY (CRIT-1): Saves raw quote data only — NO analysis is performed.
-    Analysis is triggered AFTER payment confirmation (via Stripe webhook).
-    
     SECURITY (CRIT-2): Authentication required — no anonymous quotes.
-    
-    Flow:
-    1. User submits quote → saved with payment_status="pending"
-    2. User pays via POST /api/payments/create-checkout
-    3. Stripe webhook confirms payment → triggers analysis
-    4. User views report via GET /api/quotes/{id}
+
+    Payment flow supports two modes:
+    1) Active 30-day Project Pass for same project+address → auto-unlocked (`payment_status=paid`)
+    2) No active pass → quote saved as pending and paid via Stripe checkout
     """
     from validators import validate_quote_submission, sanitize_string
     from exceptions import UngougeException, DatabaseError, ValidationError
@@ -105,18 +106,34 @@ async def submit_quote(
         sanitized_project_type = sanitize_string(quote_data.project_type, 100)
         sanitized_location = sanitize_string(quote_data.location, 200)
         sanitized_contractor = sanitize_string(quote_data.contractor_name or "", 200)
-        
+
+        # Deterministic normalized pass keys
+        location_normalized = normalize_address(sanitized_location)
+        project_scope_normalized = normalize_project_scope(sanitized_project_type)
+
+        # Check active 30-day Project Pass for same user+address+scope
+        active_pass = await find_active_pass(
+            db,
+            user_id=current_user.id,
+            address_raw=sanitized_location,
+            project_scope_raw=sanitized_project_type,
+        )
+
         # Generate unique ID
         quote_id = str(uuid.uuid4())
-        
-        # CRIT-1: Save quote with payment_status="pending" — NO analysis yet
+
+        payment_status = "paid" if active_pass else "pending"
+
         quote = Quote(
             id=quote_id,
             user_id=current_user.id,
             project_type=sanitized_project_type,
             location=sanitized_location,
             contractor_name=sanitized_contractor,
-            payment_status="pending",
+            payment_status=payment_status,
+            project_pass_id=active_pass.id if active_pass else None,
+            location_normalized=location_normalized,
+            project_scope_normalized=project_scope_normalized,
             created_at=datetime.utcnow(),
             # Store estimation metadata if this is a total-only quote
             is_estimated=quote_data.is_estimated,
@@ -124,7 +141,7 @@ async def submit_quote(
             estimation_methodology=quote_data.estimation_methodology,
         )
         db.add(quote)
-        
+
         # Create line items with validation
         for idx, item in enumerate(quote_data.line_items):
             try:
@@ -137,18 +154,21 @@ async def submit_quote(
                     unit=sanitize_string(item.unit or "item", 50),
                 )
                 db.add(line_item)
-            except (TypeError, ValueError) as e:
+            except (TypeError, ValueError):
                 raise ValidationError(
                     f"Invalid data in line item {idx + 1}: {item.item_name}",
                     suggestion=f"Please check the pricing and quantity for '{item.item_name}'."
                 )
-        
+
+        if active_pass:
+            await increment_pass_usage(db, active_pass)
+
         try:
             await db.commit()
         except Exception as db_error:
             await db.rollback()
             raise DatabaseError("quote_creation", str(db_error))
-        
+
         # Log quote submission
         log_quote_submission(
             quote_id,
@@ -156,10 +176,18 @@ async def submit_quote(
             sanitized_project_type,
             request.client.host if request.client else None
         )
-        
+
+        if active_pass:
+            message = (
+                "Quote saved under your active 30-day Project Pass. "
+                "Your report is unlocked and can be generated immediately."
+            )
+        else:
+            message = "Quote saved. Please complete payment to receive your analysis report."
+
         return QuoteResponse(
             id=quote_id,
-            message="Quote saved. Please complete payment to receive your analysis report.",
+            message=message,
             report_url=f"/report/{quote_id}",
         )
         

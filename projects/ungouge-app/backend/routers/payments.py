@@ -24,6 +24,13 @@ from models.database import get_db, User, Quote, Payment, AnalysisReport, QuoteL
 from services.auth import get_current_user, get_current_user_optional
 from services.payment import create_checkout_session, construct_webhook_event, handle_webhook_event
 from services.logger import logger, log_error
+from services.project_pass import (
+    create_project_pass,
+    find_active_pass,
+    increment_pass_usage,
+    normalize_address,
+    normalize_project_scope,
+)
 
 router = APIRouter()
 
@@ -80,7 +87,17 @@ async def create_checkout(
             detail={"error": "Access denied", "suggestion": "You can only pay for your own quotes."},
         )
 
-    # 3. CRIT-3: Check if already paid OR has a pending checkout (don't double-charge)
+    # 3. If already paid (e.g., active project pass), do not create checkout
+    if quote.payment_status == "paid":
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={
+                "error": "This quote is already covered by payment/pass.",
+                "suggestion": "View your report at /report/" + body.quote_id,
+            },
+        )
+
+    # 4. CRIT-3: Check if already paid OR has a pending checkout (don't double-charge)
     existing_payment = await db.execute(
         select(Payment).where(
             Payment.quote_id == body.quote_id,
@@ -212,6 +229,7 @@ async def apply_promo_code(
         await db.execute(
             update(Quote).where(Quote.id == body.quote_id).values(payment_status="paid")
         )
+        await _ensure_project_pass_for_quote(db, body.quote_id, source_payment_id=payment.id)
         await db.commit()
 
         logger.info(
@@ -380,6 +398,8 @@ async def _handle_successful_payment(
         update(Quote).where(Quote.id == quote_id).values(payment_status="paid")
     )
 
+    await _ensure_project_pass_for_quote(db, quote_id, source_payment_id=payment.id)
+
     await db.commit()
 
     logger.info(
@@ -423,6 +443,56 @@ async def _handle_successful_payment(
 
     # Trigger report generation
     await _generate_report_for_quote(db, quote_id)
+
+
+async def _ensure_project_pass_for_quote(
+    db: AsyncSession,
+    quote_id: str,
+    source_payment_id: Optional[str] = None,
+) -> None:
+    """Ensure a paid quote is attached to a valid project pass.
+
+    Rules:
+    - Reuse active pass if same user + normalized address + normalized scope.
+    - Otherwise create a new 30-day pass.
+    - Increment usage count when quote is attached post-payment.
+    """
+    result = await db.execute(select(Quote).where(Quote.id == quote_id))
+    quote = result.scalar_one_or_none()
+    if not quote or not quote.user_id:
+        return
+
+    if quote.project_pass_id:
+        return
+
+    address_raw = quote.location or ""
+    scope_raw = quote.project_type or ""
+
+    existing = await find_active_pass(
+        db,
+        user_id=quote.user_id,
+        address_raw=address_raw,
+        project_scope_raw=scope_raw,
+    )
+
+    if existing:
+        quote.project_pass_id = existing.id
+        quote.location_normalized = quote.location_normalized or normalize_address(address_raw)
+        quote.project_scope_normalized = quote.project_scope_normalized or normalize_project_scope(scope_raw)
+        await increment_pass_usage(db, existing)
+        return
+
+    new_pass = await create_project_pass(
+        db,
+        user_id=quote.user_id,
+        address_raw=address_raw,
+        project_scope_raw=scope_raw,
+        source_payment_id=source_payment_id,
+    )
+    quote.project_pass_id = new_pass.id
+    quote.location_normalized = quote.location_normalized or normalize_address(address_raw)
+    quote.project_scope_normalized = quote.project_scope_normalized or normalize_project_scope(scope_raw)
+    await increment_pass_usage(db, new_pass)
 
 
 async def _generate_report_for_quote(db: AsyncSession, quote_id: str):
@@ -478,6 +548,10 @@ async def _generate_report_for_quote(db: AsyncSession, quote_id: str):
     try:
         report = await analyze_quote(quote_data, db)
 
+        # Deterministic legal/compliance report gate (MVP-guarded mode)
+        from services.legal_gate import enforce_report_policy
+        report, legal_audit = enforce_report_policy(report)
+
         analysis_report = AnalysisReport(
             id=str(uuid.uuid4()),
             quote_id=quote_id,
@@ -497,7 +571,12 @@ async def _generate_report_for_quote(db: AsyncSession, quote_id: str):
 
         logger.info(
             "report_generated_after_payment",
-            extra={"quote_id": quote_id, "report_id": analysis_report.id},
+            extra={
+                "quote_id": quote_id,
+                "report_id": analysis_report.id,
+                "legal_gate_decision": legal_audit.get("decision"),
+                "legal_gate_reason_count": len(legal_audit.get("reasons", [])),
+            },
         )
 
         # Send report-ready email (non-blocking)

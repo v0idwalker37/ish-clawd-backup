@@ -8,7 +8,7 @@ import os
 # Database URL from environment variable
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "sqlite+aiosqlite:///./ungouge.db"  # Default to SQLite for development
+    "sqlite+aiosqlite:///./gougealert.db"  # Default to SQLite for development
 )
 
 # Create async engine
@@ -98,6 +98,33 @@ class User(Base):
     
     # Relationships
     quotes: Mapped[List["Quote"]] = relationship(back_populates="user")
+    project_passes: Mapped[List["ProjectPass"]] = relationship(back_populates="user")
+
+class ProjectPass(Base):
+    """30-day pass entitlement for a specific project at a specific address."""
+    __tablename__ = "project_passes"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    user_id: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), index=True)
+
+    # Deterministic matching keys
+    address_normalized: Mapped[str] = mapped_column(String(255), index=True)
+    project_scope_normalized: Mapped[str] = mapped_column(String(120), index=True)
+
+    starts_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    ends_at: Mapped[datetime] = mapped_column(DateTime, index=True)
+    status: Mapped[str] = mapped_column(String(20), default="active", index=True)  # active|expired|revoked
+
+    source_payment_id: Mapped[Optional[str]] = mapped_column(String(36), nullable=True)
+    origin_event_run_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    upload_count: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
+
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    user: Mapped["User"] = relationship(back_populates="project_passes")
+    quotes: Mapped[List["Quote"]] = relationship(back_populates="project_pass")
+
 
 class Quote(Base):
     """Contractor quote submission"""
@@ -120,9 +147,17 @@ class Quote(Base):
     # Free resubmit tracking (total-only → itemized within pass window)
     original_quote_id: Mapped[Optional[str]] = mapped_column(String(36), ForeignKey("quotes.id"), nullable=True)
     resubmit_eligible_until: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+
+    # 30-day project pass linkage
+    project_pass_id: Mapped[Optional[str]] = mapped_column(String(36), ForeignKey("project_passes.id"), nullable=True, index=True)
+
+    # Deterministic normalized keys captured at submission time
+    location_normalized: Mapped[Optional[str]] = mapped_column(String(255), nullable=True, index=True)
+    project_scope_normalized: Mapped[Optional[str]] = mapped_column(String(120), nullable=True, index=True)
     
     # Relationships
     user: Mapped[Optional["User"]] = relationship(back_populates="quotes")
+    project_pass: Mapped[Optional["ProjectPass"]] = relationship(back_populates="quotes")
     line_items: Mapped[List["QuoteLineItem"]] = relationship(back_populates="quote", cascade="all, delete-orphan")
     analysis_report: Mapped[Optional["AnalysisReport"]] = relationship(back_populates="quote", uselist=False, cascade="all, delete-orphan")
 
