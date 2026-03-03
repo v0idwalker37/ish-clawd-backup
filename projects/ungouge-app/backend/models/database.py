@@ -178,6 +178,34 @@ class EventRun(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
+class EventRunAction(Base):
+    """Queued/executed actions for event-run orchestration."""
+    __tablename__ = "event_run_actions"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    event_run_id: Mapped[str] = mapped_column(String(36), ForeignKey("event_runs.id"), index=True)
+
+    action_type: Mapped[str] = mapped_column(String(40), index=True)
+    status: Mapped[str] = mapped_column(String(20), default="queued", index=True)  # queued|running|succeeded|failed|cancelled|skipped
+
+    payload: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+    idempotency_key: Mapped[Optional[str]] = mapped_column(String(128), nullable=True, index=True)
+    error_message: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    executed_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+
+
+class OpsControl(Base):
+    """Global/operator control flags (kill switches, mode toggles)."""
+    __tablename__ = "ops_controls"
+
+    key: Mapped[str] = mapped_column(String(80), primary_key=True)
+    value_json: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
 class LegalGateAudit(Base):
     """Audit log for deterministic legal/compliance gate decisions."""
     __tablename__ = "legal_gate_audits"

@@ -20,3 +20,4 @@
 [2026-03-03 16:56 EST] ORCH — Shipped MVP-Guarded backend primitives: 30-day Project Pass model/service + deterministic legal report gate + tests (52 passing).
 [2026-03-03 17:08 EST] ORCH — WAVE 2 BLOCK COMPLETE: event-intel core tables + qualification service + compliance token service + legal gate audit persistence shipped and validated.
 [2026-03-03 17:17 EST] ORCH — WAVE 2 BLOCK 3 COMPLETE: event lifecycle service, publish gateway (compliance token enforced), NWS ingest worker script, and associated tests shipped.
+[2026-03-03 17:24 EST] ORCH — WAVE 2 BLOCK 4 COMPLETE: action queue foundation, kill-switch/rollback hooks, legal token issuance endpoint, and cron-ready weather ops cycle shipped.

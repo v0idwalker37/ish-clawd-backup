@@ -62,6 +62,31 @@ async def _daily_cleanup_loop():
         await asyncio.sleep(INTERVAL)
 
 
+async def _weather_ops_loop():
+    """Optional weather ops loop (ingest + stale expiry).
+
+    Disabled by default; enable with WEATHER_AUTO_INGEST=1.
+    """
+    import asyncio
+    import logging
+    from models.database import async_session_maker as AsyncSessionLocal
+    from services.weather_maintenance import run_weather_ops_cycle
+
+    logger = logging.getLogger("ungouge.weather_ops")
+    interval_min = int(os.getenv("WEATHER_OPS_INTERVAL_MIN", "15"))
+    interval_sec = max(60, interval_min * 60)
+
+    while True:
+        try:
+            async with AsyncSessionLocal() as db:
+                result = await run_weather_ops_cycle(db)
+                await db.commit()
+                logger.info(f"Weather ops cycle completed: {result}")
+        except Exception as e:
+            logger.error(f"Weather ops cycle failed: {e}")
+        await asyncio.sleep(interval_sec)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Startup and shutdown events"""
@@ -112,10 +137,18 @@ async def lifespan(app: FastAPI):
     # Schedule daily data retention cleanup (GDPR compliance)
     cleanup_task = asyncio.create_task(_daily_cleanup_loop())
 
+    # Optional weather ops loop (disabled unless explicitly enabled)
+    weather_task = None
+    if os.getenv("WEATHER_AUTO_INGEST", "0") == "1":
+        weather_task = asyncio.create_task(_weather_ops_loop())
+
     yield
 
-    # Cancel cleanup task on shutdown
+    # Cancel background tasks on shutdown
     cleanup_task.cancel()
+    if weather_task:
+        weather_task.cancel()
+
     # Cleanup on shutdown
     await engine.dispose()
 

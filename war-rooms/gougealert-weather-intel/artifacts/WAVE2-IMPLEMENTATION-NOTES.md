@@ -82,3 +82,38 @@ Date: 2026-03-03
 
 Validation update:
 - Backend test suite now **64 passed**.
+
+## Additional delivered block (Block 4)
+
+10. **Action executor foundation**
+- Added `services/event_actions.py`:
+  - action enqueue with idempotency key guard
+  - action execute primitive (queued -> running -> succeeded)
+
+11. **Kill-switch + rollback API hooks**
+- Added global kill-switch storage + helpers (`services/ops_control.py`, `ops_controls` table)
+- `publish-gateway` now hard-blocks when global kill-switch enabled
+- Added rollback endpoint:
+  - `POST /api/event-runs/{id}/rollback`
+
+12. **Legal token issuance endpoint**
+- Added `POST /api/legal/issue-publish-token`
+  - token issued only for PASS / PASS_WITH_EDIT
+  - persists legal gate audit row before issuing token
+
+13. **Cron-ready weather ops cycle**
+- Added `services/weather_maintenance.py`:
+  - `run_weather_ops_cycle` (ingest + stale expiry)
+  - stale weather event expiry + event-run sunsetting
+- Added script: `scripts/weather_ops_once.py`
+- Added optional background loop in `main.py`:
+  - enable with `WEATHER_AUTO_INGEST=1`
+  - cadence via `WEATHER_OPS_INTERVAL_MIN` (default 15)
+
+14. **Tests added**
+- `tests/test_event_ops.py`
+- `tests/test_weather_maintenance.py`
+
+Validation update:
+- Backend tests now **69 passed**.
+- Frontend build passes.
