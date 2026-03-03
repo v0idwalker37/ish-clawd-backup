@@ -43,7 +43,7 @@ function parseLocationFile(filename: string): LocationPage | null {
       avgLaborRate: frontmatter.avgLaborRate || '',
       majorCities: frontmatter.majorCities || [],
       date: frontmatter.date || '2026-02-21',
-      author: frontmatter.author || 'Ungouge Team',
+      author: frontmatter.author || 'GougeAlert Team',
       keywords: frontmatter.keywords || [],
       content,
     };

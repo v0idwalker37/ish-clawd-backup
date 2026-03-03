@@ -42,7 +42,7 @@ def generate_lite_pdf(report: Report) -> bytes:
         bottomMargin=0.4 * inch,
         leftMargin=0.4 * inch,
         rightMargin=0.4 * inch,
-        title=f"UnGouge Report",
+        title=f"GougeAlert Report",
         compress=1,
     )
     
@@ -79,7 +79,7 @@ def generate_lite_pdf(report: Report) -> bytes:
     elements = []
     
     # Header (minimal)
-    elements.append(Paragraph("UnGouge.ai Quote Analysis", title_style))
+    elements.append(Paragraph("GougeAlert Quote Analysis", title_style))
     elements.append(Paragraph(f"{report.project_type} • {report.location}", body_style))
     elements.append(Spacer(1, 8))
     
@@ -174,13 +174,13 @@ def generate_lite_pdf(report: Report) -> bytes:
     if len(report.line_items) > 15:
         elements.append(Spacer(1, 6))
         elements.append(Paragraph(
-            f"+ {len(report.line_items) - 15} more items. View full report at ungouge.ai",
+            f"+ {len(report.line_items) - 15} more items. View full report at gougealert.com",
             body_style
         ))
     
     # Footer
     elements.append(Spacer(1, 12))
-    elements.append(Paragraph("Full detailed report: ungouge.ai", body_style))
+    elements.append(Paragraph("Full detailed report: gougealert.com", body_style))
     
     doc.build(elements)
     return buffer.getvalue()

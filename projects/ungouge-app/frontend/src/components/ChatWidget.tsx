@@ -19,8 +19,8 @@ interface FAQ {
 const faqs: FAQ[] = [
   {
     keywords: ['how', 'work', 'process', 'does'],
-    question: 'How does Ungouge work?',
-    answer: "Ungouge.ai analyzes contractor quotes by comparing them against real Bureau of Labor Statistics (BLS) wage data and current material cost databases for your specific region. Our AI breaks down each line item, calculates fair price ranges based on actual labor rates and material costs, then flags anything that's significantly overpriced. You get a detailed report showing exactly where you might be getting gouged and by how much.",
+    question: 'How does GougeAlert work?',
+    answer: "GougeAlert analyzes contractor quotes by comparing them against real Bureau of Labor Statistics (BLS) wage data and current material cost databases for your specific region. Our AI breaks down each line item, calculates fair price ranges based on actual labor rates and material costs, then flags anything that's significantly overpriced. You get a detailed report showing exactly where you might be getting gouged and by how much.",
   },
   {
     keywords: ['safe', 'security', 'secure', 'privacy', 'data'],
@@ -45,7 +45,7 @@ const faqs: FAQ[] = [
   {
     keywords: ['refund', 'money back', 'guarantee', 'satisfied'],
     question: 'Can I get a refund?',
-    answer: "Yes! We offer a 100% money-back guarantee within 7 days of purchase. If you're not satisfied with your report for any reason, just email support@ungouge.ai with your report ID and we'll issue a full refund, no questions asked. We stand behind our analysis and want you to feel confident in your investment.",
+    answer: "Yes! We offer a 100% money-back guarantee within 7 days of purchase. If you're not satisfied with your report for any reason, just email support@gougealert.com with your report ID and we'll issue a full refund, no questions asked. We stand behind our analysis and want you to feel confident in your investment.",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function ChatWidget() {
       // Send welcome message when first opened
       setTimeout(() => {
         addBotMessage(
-          "👋 Hey! I'm Zedd, your UnGouge support assistant. I can help with report questions, account issues, pricing, and more.\n\nTry asking me something, or pick a quick question below!\n\nNeed a human? Email human@ungouge.ai — real people, real answers."
+          "👋 Hey! I'm Zedd, your GougeAlert support assistant. I can help with report questions, account issues, pricing, and more.\n\nTry asking me something, or pick a quick question below!\n\nNeed a human? Email human@gougealert.com — real people, real answers."
         );
       }, 300);
     }
@@ -147,7 +147,7 @@ export default function ChatWidget() {
     } else {
       // Default response for unmatched queries
       addBotMessage(
-        "Hmm, I'm not sure about that one. Here's what I can help with:\n\n• How UnGouge.ai works\n• Data security and privacy\n• Pricing and what you get\n• Understanding your report\n• Refund policy\n\nFor anything else, email human@ungouge.ai — a real person will get back to you within 24 hours."
+        "Hmm, I'm not sure about that one. Here's what I can help with:\n\n• How GougeAlert works\n• Data security and privacy\n• Pricing and what you get\n• Understanding your report\n• Refund policy\n\nFor anything else, email human@gougealert.com — a real person will get back to you within 24 hours."
       );
     }
   };
@@ -182,7 +182,7 @@ export default function ChatWidget() {
               </div>
               <div>
                 <h3 className="font-semibold">Zedd</h3>
-                <p className="text-xs text-primary-100">UnGouge Support Assistant</p>
+                <p className="text-xs text-primary-100">GougeAlert Support Assistant</p>
               </div>
             </div>
             <button
@@ -279,7 +279,7 @@ export default function ChatWidget() {
               </button>
             </div>
             <p className="text-xs text-gray-500 mt-2 text-center">
-              Need a human? <a href="mailto:human@ungouge.ai" className="text-primary-600 hover:underline">human@ungouge.ai</a>
+              Need a human? <a href="mailto:human@gougealert.com" className="text-primary-600 hover:underline">human@gougealert.com</a>
             </p>
           </div>
         </div>

@@ -1,5 +1,5 @@
 """
-Health check endpoints for UnGouge.ai API
+Health check endpoints for GougeAlert API
 
 Provides:
   GET /health           — Basic health + DB status + version + uptime

@@ -14,7 +14,7 @@ Handles payment processing for quote analysis reports using Stripe Checkout.
 ## Environment Variables Required
   - STRIPE_SECRET_KEY — sk_test_... (test) or sk_live_... (production)
   - STRIPE_WEBHOOK_SECRET — whsec_... (from Stripe dashboard → Webhooks)
-  - FRONTEND_URL — e.g. http://localhost:3000 (dev) or https://ungouge.ai (prod)
+  - FRONTEND_URL — e.g. http://localhost:3000 (dev) or https://gougealert.com (prod)
 
 ## Production Checklist
   - Swap STRIPE_SECRET_KEY to sk_live_...
@@ -34,7 +34,7 @@ stripe.api_key = os.getenv("STRIPE_SECRET_KEY", "")
 
 # Constants
 REPORT_PRICE_CENTS = 999  # $9.99 (Early Adopter Pricing, normally $19.99)
-REPORT_PRODUCT_NAME = "UnGouge Quote Analysis Report"
+REPORT_PRODUCT_NAME = "GougeAlert Quote Analysis Report"
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
 
 

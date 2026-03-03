@@ -642,7 +642,7 @@ async def forgot_password(
             from services.email_service import send_password_reset
             from services.logger import logger
             
-            frontend_url = os.getenv("FRONTEND_URL", "https://ungouge.ai")
+            frontend_url = os.getenv("FRONTEND_URL", "https://gougealert.com")
             reset_url = f"{frontend_url}/reset-password?token={reset_token}"
             
             email_sent = send_password_reset(
@@ -982,7 +982,7 @@ async def export_my_data(
     return JSONResponse(
         content=data,
         headers={
-            "Content-Disposition": f"attachment; filename=ungouge-data-export-{current_user.id[:8]}.json"
+            "Content-Disposition": f"attachment; filename=gougealert-data-export-{current_user.id[:8]}.json"
         }
     )
 

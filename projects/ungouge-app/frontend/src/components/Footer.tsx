@@ -39,17 +39,17 @@ export default function Footer() {
           <div className="min-w-0">
             <div className="flex items-center mb-4">
               <div className="text-2xl font-bold text-white whitespace-nowrap">
-                Ungouge<span className="text-primary-400">.ai</span>
+                GougeAlert<span className="text-primary-400">.com</span>
               </div>
             </div>
             <p className="text-sm text-gray-400 mb-4">
               Fair contractor quote analysis powered by real BLS data. Built to protect homeowners, not profit from their information.
             </p>
             <a 
-              href="mailto:support@ungouge.ai" 
+              href="mailto:support@gougealert.com" 
               className="text-sm text-primary-400 hover:text-primary-300 transition-colors"
             >
-              support@ungouge.ai
+              support@gougealert.com
             </a>
           </div>
 
@@ -136,13 +136,13 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-gray-400">
-              © {currentYear} Ungouge.ai. All rights reserved. Built to protect homeowners.
+              © {currentYear} GougeAlert. Operated by Ironwood Global Data Management LLC (WY).
             </p>
             
             {/* Social Links */}
             <div className="flex items-center gap-4">
               <a 
-                href="https://twitter.com/Ungouge" 
+                href="https://x.com/gougealert" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
@@ -153,7 +153,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a 
-                href="https://youtube.com/@ungouge" 
+                href="https://youtube.com/@gougealert" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-red-500 transition-colors"
@@ -164,7 +164,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a 
-                href="https://instagram.com/ungouge.ai" 
+                href="https://instagram.com/gougealert" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-pink-500 transition-colors"
@@ -175,7 +175,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a 
-                href="https://tiktok.com/@ungouge.ai" 
+                href="https://tiktok.com/@gougealert" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
@@ -196,7 +196,7 @@ export default function Footer() {
                 Terms
               </Link>
               <span>•</span>
-              <a href="mailto:support@ungouge.ai" className="hover:text-white transition-colors">
+              <a href="mailto:support@gougealert.com" className="hover:text-white transition-colors">
                 Support
               </a>
               <span>•</span>

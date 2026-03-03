@@ -26,7 +26,7 @@ gcloud run deploy $SERVICE \
   --region=$REGION \
   --platform=managed \
   --allow-unauthenticated \
-  --set-env-vars="EMAIL_DEV_MODE=false,SMTP_HOST=smtp.resend.com,SMTP_PORT=465,SMTP_USER=resend,FROM_EMAIL=noreply@ungouge.ai,FROM_NAME=UnGouge.ai" \
+  --set-env-vars="EMAIL_DEV_MODE=false,SMTP_HOST=smtp.resend.com,SMTP_PORT=465,SMTP_USER=resend,FROM_EMAIL=noreply@gougealert.com,FROM_NAME=GougeAlert" \
   --update-secrets="SMTP_PASSWORD=resend-api-key:latest"
 
 echo ""

@@ -16,11 +16,11 @@ import Link from 'next/link';
 import SupportPageClient from './SupportPageClient';
 
 export const metadata: Metadata = {
-  title: 'Support — Get Help with Your Quote Analysis | UnGouge.ai',
+  title: 'Support — Get Help with Your Quote Analysis | GougeAlert',
   description:
     'Get instant help from our AI support assistant or reach our human team. FAQs, chat support, and direct email — we\'re real people building real tools.',
   alternates: {
-    canonical: 'https://ungouge.ai/support',
+    canonical: 'https://gougealert.com/support',
   },
 };
 
@@ -30,7 +30,7 @@ const faqCategories = [
     icon: FileText,
     faqs: [
       {
-        q: 'How does UnGouge.ai work?',
+        q: 'How does GougeAlert work?',
         a: 'Upload your contractor quote (PDF, photo, or manual entry), and our AI analyzes every line item against current market data for your specific location. We use real-time pricing research to compare what you\'re being charged against what similar work actually costs in your area. You get a detailed report showing fair price ranges, potential overcharges, and negotiation recommendations.',
       },
       {
@@ -168,11 +168,11 @@ export default function SupportPage() {
             </div>
             <div className="space-y-4">
               <a
-                href="mailto:human@ungouge.ai"
+                href="mailto:human@gougealert.com"
                 className="flex items-center gap-3 w-full px-5 py-3.5 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 font-semibold hover:bg-amber-100 transition-colors"
               >
                 <Mail className="w-5 h-5" />
-                human@ungouge.ai
+                human@gougealert.com
               </a>
               <p className="text-xs text-gray-500">
                 Yes, that&apos;s a real email that goes to a real person. We&apos;re not hiding behind a chatbot — we&apos;re just honest that a human response takes longer than an AI one.
@@ -182,11 +182,11 @@ export default function SupportPage() {
             <div className="mt-6 pt-6 border-t border-gray-100">
               <p className="text-sm text-gray-500 mb-3">For general inquiries:</p>
               <a
-                href="mailto:support@ungouge.ai"
+                href="mailto:support@gougealert.com"
                 className="flex items-center gap-3 w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 font-medium hover:bg-gray-100 transition-colors"
               >
                 <Mail className="w-5 h-5 text-gray-400" />
-                support@ungouge.ai
+                support@gougealert.com
               </a>
             </div>
           </div>
@@ -201,7 +201,7 @@ export default function SupportPage() {
             <div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">We&apos;re Real People</h3>
               <p className="text-gray-600 leading-relaxed">
-                UnGouge.ai is built by a small team who believes homeowners deserve pricing transparency. We use AI because it lets us deliver better analysis faster — not because we&apos;re trying to replace human judgment. When you email <strong>human@ungouge.ai</strong>, you&apos;re reaching the people who built this product and care about getting it right. We may be slower than Zedd, but we&apos;re listening.
+                GougeAlert is built by a small team who believes homeowners deserve pricing transparency. We use AI because it lets us deliver better analysis faster — not because we&apos;re trying to replace human judgment. When you email <strong>human@gougealert.com</strong>, you&apos;re reaching the people who built this product and care about getting it right. We may be slower than Zedd, but we&apos;re listening.
               </p>
             </div>
           </div>

@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { SITE_CONFIG } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Frequently Asked Questions | UnGouge',
+  title: 'Frequently Asked Questions | GougeAlert',
   description:
-    'Common questions about UnGouge contractor quote verification: How it works, pricing, accuracy, privacy, and more.',
+    'Common questions about GougeAlert contractor quote verification: How it works, pricing, accuracy, privacy, and more.',
   alternates: {
     canonical: `${SITE_CONFIG.url}/faq`,
   },
@@ -16,7 +16,7 @@ const faqs = [
     category: 'How It Works',
     questions: [
       {
-        q: 'How does UnGouge verify my contractor quote?',
+        q: 'How does GougeAlert verify my contractor quote?',
         a: `We analyze your quote line-by-line against real market data:
         
 • **Material pricing:** We compare quoted material costs against retail pricing and verify markup percentages (20-40% is fair; 100%+ is excessive)
@@ -73,7 +73,7 @@ We occasionally offer promo codes (like LAUNCH2026 and BETATESTER) for early ado
         q: 'Do you offer refunds?',
         a: `**Yes, if our analysis doesn't help you.**
 
-If you're unsatisfied with the report quality or it doesn't provide useful insights, email us at human@ungouge.ai within 7 days and we'll refund you—no questions asked.
+If you're unsatisfied with the report quality or it doesn't provide useful insights, email us at human@gougealert.com within 7 days and we'll refund you—no questions asked.
 
 We stand behind our work.`,
       },
@@ -116,7 +116,7 @@ We're not a referral service. We're an independent analysis tool. Your quote sta
       },
       {
         q: 'Can I delete my data?',
-        a: `**Yes.** Email human@ungouge.ai and we'll delete your account and all associated data within 48 hours.
+        a: `**Yes.** Email human@gougealert.com and we'll delete your account and all associated data within 48 hours.
 
 You can also download your data before deletion if you want a copy.`,
       },
@@ -228,7 +228,7 @@ Then when you get quotes, you'll already have context for what's reasonable.`,
 • **LAUNCH2026** - Free analysis (limited time)
 • **BETATESTER** - Free analysis for beta testers
 
-Enter the code at checkout. If it's expired, email human@ungouge.ai—we'll hook you up.`,
+Enter the code at checkout. If it's expired, email human@gougealert.com—we'll hook you up.`,
       },
     ],
   },
@@ -237,7 +237,7 @@ Enter the code at checkout. If it's expired, email human@ungouge.ai—we'll hook
     questions: [
       {
         q: 'How do I contact support?',
-        a: `**Email:** human@ungouge.ai  
+        a: `**Email:** human@gougealert.com  
 **Response time:** Usually within 24 hours (often faster)
 
 We're a small team, but we read every email and respond personally—no bots, no canned responses.
@@ -258,7 +258,7 @@ export default function FAQPage() {
             Frequently Asked Questions
           </h1>
           <p className="text-xl text-gray-600 text-center max-w-2xl mx-auto">
-            Everything you need to know about UnGouge contractor quote
+            Everything you need to know about GougeAlert contractor quote
             verification.
           </p>
         </div>

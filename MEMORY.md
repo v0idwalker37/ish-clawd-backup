@@ -1,10 +1,11 @@
 # MEMORY.md — Long-Term Memory
 
-*Last updated: 2026-02-21*
+*Last updated: 2026-03-03*
 
 ## About Jason
 - Off-grid Vermont homesteader, IT background, building Ungouge.ai
-- **UnGouge LLC** filed and accepted with Vermont Secretary of State
+- **UnGouge LLC** filed and accepted with Vermont Secretary of State (legacy)
+- **Strategic pivot (Mar 3, 2026):** Ungouge brand being retired due to privacy/PII exposure concerns; new operating path is GougeAlert under Ironwood Global Data Management LLC (WY)
 - Daughter: Inara Moon; Wife: mentioned but name unknown
 - Timezone: EST, Northfield VT (GPS: 44.0566°N, -72.6525°W)
 - Telegram: Jason Trask (id:8521157607) | Phone: iPhone 15 Pro Max
@@ -12,7 +13,7 @@
 - **Personal emails:** jasontrask@gmail.com, jtsmooove@icloud.com — NEVER for Ungouge
 - **Ungouge emails:** jason@, admin@, billing@, support@, social@, partnerships@, media@, hello@, legal@, noreply@ (all @ungouge.ai)
 - Cloudflare: V0idwalker@icloud.com
-- **AI Subs:** Claude Max 5x ($125), ChatGPT Plus ($20), Gemini Pro ($20)
+- **AI Subs:** Claude Max 5x ($125), ChatGPT Business ($?/mo — subscription OAuth), Gemini Pro ($20)
 - Complete coding noob — tools help ME build, not require him to code
 - Prefers: TL;DR first, numbers over fluff, data-backed recommendations
 
@@ -25,7 +26,8 @@
 
 ## Key Projects
 
-### Ungouge.ai — The Product
+### Ungouge.ai — The Product (Legacy, being sunset)
+- **Status (Mar 3, 2026):** Transition planning in progress to GougeAlert + Ironwood WY structure; priority is de-publicizing Ungouge and eliminating PII exposure vectors.
 - **What:** Quote verification for homeowners — submit quote, get data-driven analysis
 - **Scope:** National from day 1 | **Pricing:** $19.99/report
 - **Core positioning:** Anti-lead-gen. NEVER sell data, NEVER refer contractors
@@ -59,20 +61,23 @@
 - ungouge-dashboard-db (MySQL 8.0), ~$7.50/mo
 - NEVER deploy without `--set-env-vars` (rev 55 wipeout lesson)
 
-### Model Routing (NEW — Feb 20)
-- **Anthropic blocked OAuth** for monthly plans — can't use cheaply
-- **OpenAI still allows OAuth** — need to set up Codex OAuth (pending)
-- **Goal:** Maximize OpenAI, minimize Anthropic usage
-- **Plan:** GPT-5.3-codex for coding, GPT-5.2 for medium tasks, GPT-5-mini for lightweight
-- **Anthropic reserve:** Only for truly complex architecture/strategy/judgment
-- OpenClaw updated to 2026.2.19-2 (Feb 20)
+### Model Routing (Updated Mar 3)
+- **Codex OAuth COMPLETE** — ChatGPT Business subscription connected
+- **Primary:** `openai-codex/gpt-5.3-codex` ($0/token, handles everything)
+- **Fallback 1:** `openai-codex/gpt-5.2` ($0/token, availability backup)
+- **Fallback 2:** `google/gemini-3.1-pro-preview` (per-token, cheap)
+- **Last resort:** `anthropic/claude-opus-4-6` (per-token, expensive)
+- GPT-5.3-Codex is best at BOTH general reasoning AND coding (merged model)
+- **Task routing:** If 5.3 fails at a complex task, skip to Gemini 3.1 (not 5.2)
+- Anthropic blocked OAuth for monthly plans — Opus only as emergency fallback
 
-### Beast Machine (Primary — Feb 20)
+### Beast Machine (Primary — Mar 3)
 - i9-9980XE (36 cores), 32GB DDR4, GTX 1080 Ti, 935GB NVMe, Ubuntu 24.04
 - Tailscale: ungouge@100.65.165.81 | passwordless sudo
 - Gateway watchdog cron: every 5min | systemd linger enabled
 - SSH accessible from Windows laptop via Tailscale web SSH
-- OpenClaw 2026.2.19-2, all Linux packages current (Feb 20)
+- OpenClaw 2026.3.1, update 2026.3.2 available
+- Config backup: `~/.openclaw/openclaw.json.known-good-2026-03-03`
 
 ### Email Monitoring
 - Gmail: jasontrask@gmail.com via OAuth | iCloud: jtsmooove@icloud.com via IMAP
@@ -89,7 +94,8 @@
 
 ## Lessons Learned
 - **SPENDING RULE:** State exact cost, get explicit "yes" before ANY billable action
-- **Cost discipline (Feb 18):** $500+ Anthropic in 4 days. Default Sonnet, batch deploys, lean sub-agents
+- **Cost discipline (Feb 18):** $500+ Anthropic in 4 days. Now using Codex OAuth ($0/token) as primary
+- **Config editing (Mar 3):** NEVER edit openclaw.json raw — use `openclaw config set`. Schema: `model.primary` + `model.fallbacks` ONLY. No `default`, no `aliases`. NEVER restart gateway from own session.
 - **Technical:** httpOnly+SameSite=strict, server-side OAuth > popup, `request.cookies.get()` not `Cookie()`, `credentials: 'include'` on all fetch, raw SQL for async migrations (not SQLAlchemy inspect)
 - **Working:** Ask "is there prior work?" first, write EVERYTHING to files, sub-agents are powerful (10+ per evening)
 - **Communication:** Don't wake him late (23:00-08:00) unless urgent
@@ -121,7 +127,7 @@
 - ⏳ Email delivery test (password reset, receipts)
 - ⏳ Backend API DNS (api.ungouge.ai)
 - ⏳ Real testimonials (using 5 placeholders)
-- ⏳ OpenAI Codex OAuth setup
+- ✅ OpenAI Codex OAuth setup (DONE Mar 3)
 - ⏳ Gmail OAuth re-auth (Jason, manual)
 
 **Long-term:**

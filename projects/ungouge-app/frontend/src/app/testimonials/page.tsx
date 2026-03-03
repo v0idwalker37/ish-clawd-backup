@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { SITE_CONFIG } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'What Homeowners Say | UnGouge Testimonials',
+  title: 'What Homeowners Say | GougeAlert Testimonials',
   description:
-    'Real stories from homeowners who used UnGouge to verify contractor quotes and save thousands on home improvement projects.',
+    'Real stories from homeowners who used GougeAlert to verify contractor quotes and save thousands on home improvement projects.',
   alternates: {
     canonical: `${SITE_CONFIG.url}/testimonials`,
   },
@@ -19,7 +19,7 @@ const testimonials = [
     project: 'Kitchen Remodel',
     quote: 42000,
     saved: 8000,
-    text: 'UnGouge saved me $8,000 on my kitchen remodel. They found material markups I never would have caught on my own. The report was clear, detailed, and gave me exactly what I needed to negotiate with my contractor.',
+    text: 'GougeAlert saved me $8,000 on my kitchen remodel. They found material markups I never would have caught on my own. The report was clear, detailed, and gave me exactly what I needed to negotiate with my contractor.',
     rating: 5,
   },
   {
@@ -28,7 +28,7 @@ const testimonials = [
     project: 'Bathroom Renovation',
     quote: 24000,
     saved: 6000,
-    text: "I was about to accept a $24K bathroom quote. UnGouge showed it should be around $18K. I negotiated down to $19K and the contractor actually thanked me for being informed—said most customers just accept whatever number he gives them.",
+    text: "I was about to accept a $24K bathroom quote. GougeAlert showed it should be around $18K. I negotiated down to $19K and the contractor actually thanked me for being informed—said most customers just accept whatever number he gives them.",
     rating: 5,
   },
   {
@@ -37,7 +37,7 @@ const testimonials = [
     project: 'Deck Build',
     quote: 18500,
     saved: 0,
-    text: 'My quote turned out to be fair! I was worried I was overpaying, but UnGouge confirmed the pricing was reasonable for my area. Worth $19.99 just for the peace of mind. Now I can proceed with confidence.',
+    text: 'My quote turned out to be fair! I was worried I was overpaying, but GougeAlert confirmed the pricing was reasonable for my area. Worth $19.99 just for the peace of mind. Now I can proceed with confidence.',
     rating: 5,
   },
   {
@@ -46,7 +46,7 @@ const testimonials = [
     project: 'Roof Replacement',
     quote: 16500,
     saved: 4200,
-    text: "Found out my contractor was charging 80% markup on materials (should be 20-40%). Got a second quote and used UnGouge's analysis to negotiate. Final price: $12,300. Best $20 I ever spent.",
+    text: "Found out my contractor was charging 80% markup on materials (should be 20-40%). Got a second quote and used GougeAlert's analysis to negotiate. Final price: $12,300. Best $20 I ever spent.",
     rating: 5,
   },
   {
@@ -74,7 +74,7 @@ export default function TestimonialsPage() {
             What Homeowners Are Saying
           </h1>
           <p className="text-xl text-gray-600 text-center max-w-2xl mx-auto mb-8">
-            Real stories from homeowners who used UnGouge to verify contractor
+            Real stories from homeowners who used GougeAlert to verify contractor
             quotes and make informed decisions.
           </p>
           <div className="flex justify-center gap-8 text-center">
@@ -168,19 +168,19 @@ export default function TestimonialsPage() {
             Want to share your experience?
           </h4>
           <p className="text-gray-700 mb-4">
-            If UnGouge helped you save money or make a better decision, we'd
+            If GougeAlert helped you save money or make a better decision, we'd
             love to hear from you.
           </p>
           <p className="text-sm text-gray-600">
             Email{' '}
             <a
-              href="mailto:human@ungouge.ai"
+              href="mailto:human@gougealert.com"
               className="text-primary-600 hover:underline"
             >
-              human@ungouge.ai
+              human@gougealert.com
             </a>{' '}
             with your story (2-3 sentences about what problem you had, how
-            UnGouge helped, and what the outcome was). We'll send you a $10
+            GougeAlert helped, and what the outcome was). We'll send you a $10
             credit toward your next analysis as a thank-you!
           </p>
         </div>

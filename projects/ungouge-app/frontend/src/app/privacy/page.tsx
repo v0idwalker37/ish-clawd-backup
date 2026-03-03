@@ -4,9 +4,9 @@ import { Shield, Lock, Eye, Database, UserX, FileText } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
-    'UnGouge.ai privacy policy. We never sell your data to contractors or lead generation companies. Your quotes and contact details stay completely private.',
+    'GougeAlert privacy policy. We never sell your data to contractors or lead generation companies. Your quotes and contact details stay completely private.',
   alternates: {
-    canonical: 'https://ungouge.ai/privacy',
+    canonical: 'https://gougealert.com/privacy',
   },
 };
 
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
           <p className="text-xl text-gray-600">
             We protect your data because that's literally our entire mission
           </p>
-          <p className="text-sm text-gray-500 mt-2">Last updated: February 13, 2026</p>
+          <p className="text-sm text-gray-500 mt-2">Last updated: March 3, 2026</p>
         </div>
 
         {/* Core Promise */}
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
             Our Core Promise: No Lead Generation. Ever.
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            Unlike other "contractor quote" websites that exist solely to harvest your information and sell it to contractors, <strong>Ungouge.ai will NEVER sell, share, or monetize your personal data</strong>. We make money only from you, by providing honest analysis. Not from contractors paying for your contact information.
+            Unlike other "contractor quote" websites that exist solely to harvest your information and sell it to contractors, <strong>GougeAlert will NEVER sell, share, or monetize your personal data</strong>. We make money only from you, by providing honest analysis. Not from contractors paying for your contact information.
           </p>
           <p className="text-gray-700 leading-relaxed font-semibold">
             We will NEVER share your quotes, project details, or contact information with contractors, lead generation companies, or marketing firms. This is fundamental to who we are.
@@ -101,7 +101,7 @@ export default function PrivacyPage() {
                     <li><strong>Encryption at rest:</strong> Your data is encrypted using AES-256 encryption in our databases</li>
                     <li><strong>Access controls:</strong> Only essential personnel have access to production systems, with full audit logging</li>
                     <li><strong>Regular security audits:</strong> We conduct quarterly security reviews and penetration testing</li>
-                    <li><strong>Secure infrastructure:</strong> We host on AWS with enterprise-grade security controls</li>
+                    <li><strong>Secure infrastructure:</strong> We host on Google Cloud with enterprise-grade security controls</li>
                     <li><strong>Password security:</strong> All passwords are hashed using bcrypt with work factor 12</li>
                   </ul>
                 </div>
@@ -120,8 +120,9 @@ export default function PrivacyPage() {
                   <p><strong>Service providers we use:</strong></p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
                     <li><strong>Stripe:</strong> Payment processing (they never share your credit card details with us)</li>
-                    <li><strong>AWS:</strong> Hosting and infrastructure (data stored in US-East region)</li>
-                    <li><strong>SendGrid:</strong> Transactional emails only (receipts, password resets, report notifications)</li>
+                    <li><strong>Google Cloud:</strong> Hosting and infrastructure</li>
+                    <li><strong>Cloudflare:</strong> CDN and security edge services</li>
+                    <li><strong>Resend:</strong> Transactional emails only (receipts, password resets, report notifications)</li>
                   </ul>
                   
                   <p className="font-semibold mt-4">We will NEVER share your data with:</p>
@@ -155,7 +156,7 @@ export default function PrivacyPage() {
                     <li><strong>Opt-out:</strong> You can opt out of any non-essential emails (we'll still send transactional emails like receipts)</li>
                   </ul>
                   
-                  <p className="mt-4">To exercise any of these rights, email us at <a href="mailto:legal@ungouge.ai" className="text-primary-600 hover:underline font-semibold">legal@ungouge.ai</a> or use your account settings.</p>
+                  <p className="mt-4">To exercise any of these rights, email us at <a href="mailto:legal@gougealert.com" className="text-primary-600 hover:underline font-semibold">legal@gougealert.com</a> or use your account settings.</p>
                 </div>
               </div>
             </div>
@@ -166,9 +167,9 @@ export default function PrivacyPage() {
             <div className="space-y-3 text-gray-700">
               <p>We retain your data only as long as necessary:</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li><strong>Active accounts:</strong> We keep your data while your account is active</li>
-                <li><strong>Deleted accounts:</strong> Data is permanently deleted within 30 days of account deletion</li>
-                <li><strong>Legal retention:</strong> Some data (invoices, payment records) must be kept for 7 years for tax purposes, but is encrypted and access-restricted</li>
+                <li><strong>Project workspaces:</strong> Quote documents and extracted project data are retained for up to <strong>30 days</strong> (your "Project Pass" window), then purged.</li>
+                <li><strong>Account deletion:</strong> If you delete your account, we delete remaining account data within 30 days (subject to the legal retention below).</li>
+                <li><strong>Legal retention:</strong> Limited transaction records (receipts/payment metadata) may be retained for up to 7 years for tax/compliance purposes. We do not retain full card numbers.</li>
               </ul>
             </div>
           </section>
@@ -188,7 +189,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-3">Children's Privacy</h2>
             <p className="text-gray-700">
-              Our service is not intended for anyone under 18. We do not knowingly collect information from children. If you believe we've accidentally collected data from a child, please contact us immediately at <a href="mailto:legal@ungouge.ai" className="text-primary-600 hover:underline">legal@ungouge.ai</a>.
+              Our service is not intended for anyone under 18. We do not knowingly collect information from children. If you believe we've accidentally collected data from a child, please contact us immediately at <a href="mailto:legal@gougealert.com" className="text-primary-600 hover:underline">legal@gougealert.com</a>.
             </p>
           </section>
 
@@ -210,8 +211,8 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-3">Contact Us</h2>
             <div className="text-gray-700">
               <p className="mb-2">Questions about privacy? We're here to help:</p>
-              <p><strong>Email:</strong> <a href="mailto:legal@ungouge.ai" className="text-primary-600 hover:underline">legal@ungouge.ai</a></p>
-              <p><strong>General support:</strong> <a href="mailto:support@ungouge.ai" className="text-primary-600 hover:underline">support@ungouge.ai</a></p>
+              <p><strong>Email:</strong> <a href="mailto:legal@gougealert.com" className="text-primary-600 hover:underline">legal@gougealert.com</a></p>
+              <p><strong>General support:</strong> <a href="mailto:support@gougealert.com" className="text-primary-600 hover:underline">support@gougealert.com</a></p>
             </div>
           </section>
         </div>

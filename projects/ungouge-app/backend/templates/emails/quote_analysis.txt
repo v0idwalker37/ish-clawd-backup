@@ -52,7 +52,7 @@ Questions about your report? Just reply to this email — we're here to help.
 Dashboard: {{dashboard_url}}
 Settings: {{settings_url}}
 
-© {{current_year}} Ungouge.ai · Fair pricing for everyone
+© {{current_year}} GougeAlert · Fair pricing for everyone
 
 ---
 

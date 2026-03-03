@@ -1,5 +1,5 @@
 """
-Structured logging configuration for Ungouge.ai
+Structured logging configuration for GougeAlert
 """
 import logging
 import sys

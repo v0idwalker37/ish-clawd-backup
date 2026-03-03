@@ -2,9 +2,14 @@ import type { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
 import { getAllLocations } from '@/lib/locations';
 
-const BASE_URL = 'https://ungouge.ai';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://gougealert.com';
+const SUNSET_MODE = process.env.NEXT_PUBLIC_SUNSET_MODE === '1';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  if (SUNSET_MODE) {
+    return [];
+  }
+
   const now = new Date();
 
   // Core public pages

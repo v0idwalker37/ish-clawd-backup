@@ -29,8 +29,8 @@ Every deployment includes these env vars and secrets:
 - `SMTP_HOST=smtp.resend.com`
 - `SMTP_PORT=465`
 - `SMTP_USER=resend`
-- `FROM_EMAIL=noreply@ungouge.ai`
-- `FRONTEND_URL=https://ungouge.ai`
+- `FROM_EMAIL=noreply@gougealert.com`
+- `FRONTEND_URL=https://gougealert.com`
 
 **Secrets (from Secret Manager):**
 - `SMTP_PASSWORD` → resend-api-key

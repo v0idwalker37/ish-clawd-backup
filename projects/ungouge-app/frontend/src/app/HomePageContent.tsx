@@ -45,7 +45,7 @@ const faqs = [
   {
     question: 'Can I get a refund?',
     answer:
-      "100% money-back guarantee within 7 days, no questions asked. If the report doesn't help you, just email support@ungouge.ai and we'll issue a full refund.",
+      "100% money-back guarantee within 7 days, no questions asked. If the report doesn't help you, just email support@gougealert.com and we'll issue a full refund.",
   },
   {
     question: 'Do you share my information with contractors?',
@@ -436,7 +436,7 @@ export default function HomePageContent() {
             <p className="text-gray-600">
               Still have questions?{' '}
               <a
-                href="mailto:support@ungouge.ai"
+                href="mailto:support@gougealert.com"
                 className="text-primary-600 hover:text-primary-700 font-semibold"
               >
                 Email us

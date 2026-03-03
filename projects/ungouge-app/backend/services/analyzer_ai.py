@@ -29,7 +29,7 @@ logger = logging.getLogger("ungouge.analyzer_ai")
 # Valid assessment values (must match models/report.py)
 VALID_ASSESSMENTS = {"fair", "slightly_high", "high", "gouging", "suspiciously_low", "unknown"}
 
-SYSTEM_PROMPT = """You are a professional construction cost analyst working for UnGouge.ai, an independent contractor quote analysis service.
+SYSTEM_PROMPT = """You are a professional construction cost analyst working for GougeAlert, an independent contractor quote analysis service.
 
 Analyze the provided contractor quote by comparing each line item against current fair market rates for the specified location.
 
@@ -158,7 +158,7 @@ def _parse_json_response(text: str) -> dict:
 # costs, we analyze the TOTAL against market rates and provide educational
 # cost ranges for each work item — NOT fake per-item ratings.
 
-ESTIMATED_SYSTEM_PROMPT = """You are a professional construction cost analyst working for UnGouge.ai.
+ESTIMATED_SYSTEM_PROMPT = """You are a professional construction cost analyst working for GougeAlert.
 
 A homeowner received a contractor quote with ONLY a total price — no per-item costs were provided. Your job is to:
 
@@ -296,6 +296,11 @@ async def _analyze_estimated_with_gemini_flash(quote: QuoteSubmission) -> dict:
 def _build_estimated_report(quote: QuoteSubmission, data: dict) -> Report:
     """Build Report for a total-only quote — total-level analysis + educational ranges."""
     overall = _strip_citations(data.get("overall_assessment", "Analysis complete."))
+    try:
+        from services.compliance_sanitizer import sanitize_text
+        overall = sanitize_text(overall)
+    except Exception:
+        pass
 
     original_total = sum(float(item.quoted_price) for item in quote.line_items)
     ai_total = float(data.get("total_quoted", 0))
@@ -304,11 +309,18 @@ def _build_estimated_report(quote: QuoteSubmission, data: dict) -> Report:
     # Build educational typical costs
     typical_costs = []
     for item in data.get("typical_costs", []):
+        desc = _strip_citations(item.get("description", ""))
+        try:
+            from services.compliance_sanitizer import sanitize_text
+            desc = sanitize_text(desc)
+        except Exception:
+            pass
+
         typical_costs.append(TypicalCostItem(
             item_name=item.get("item_name", "Unknown"),
             typical_low=round(float(item.get("typical_low", 0)), 2),
             typical_high=round(float(item.get("typical_high", 0)), 2),
-            description=_strip_citations(item.get("description", "")),
+            description=desc,
         ))
 
     return Report(
@@ -471,6 +483,12 @@ def _build_report(quote: QuoteSubmission, data: dict) -> Report:
     for item in data.get("line_items", []):
         assessment = _sanitize_assessment(item.get("assessment", "unknown"))
         explanation = _strip_citations(item.get("explanation", ""))
+        try:
+            from services.compliance_sanitizer import sanitize_text
+            explanation = sanitize_text(explanation)
+        except Exception:
+            # Never fail analysis due to sanitizer
+            pass
 
         line_analyses.append(LineItemAnalysis(
             item_name=item.get("item_name", "Unknown"),
@@ -484,6 +502,11 @@ def _build_report(quote: QuoteSubmission, data: dict) -> Report:
         ))
 
     overall = _strip_citations(data.get("overall_assessment", "Analysis complete."))
+    try:
+        from services.compliance_sanitizer import sanitize_text
+        overall = sanitize_text(overall)
+    except Exception:
+        pass
 
     # IMPORTANT: Use the original quoted total from the submission, NOT the AI's
     # recalculated total. The AI may return a different sum (especially for

@@ -529,7 +529,7 @@ async def download_quote_pdf(
     safe_project = "".join(
         c if c.isalnum() or c in " -_" else "" for c in report.project_type
     ).strip().replace(" ", "-")[:50]
-    filename = f"UnGouge-Report-{safe_project}-{quote_id[:8]}.pdf"
+    filename = f"GougeAlert-Report-{safe_project}-{quote_id[:8]}.pdf"
 
     return Response(
         content=pdf_bytes,

@@ -4,15 +4,15 @@ import { Shield, Target, Heart } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'About Us — Our Mission to End Contractor Overcharging',
   description:
-    'UnGouge.ai was built to protect homeowners from contractor overcharges. Learn about our mission, our data-driven approach using BLS labor rates, and our zero lead-gen promise.',
+    'GougeAlert was built to protect homeowners from contractor overcharges. Learn about our mission, our data-driven approach using BLS labor rates, and our zero lead-gen promise.',
   alternates: {
-    canonical: 'https://ungouge.ai/about',
+    canonical: 'https://gougealert.com/about',
   },
   openGraph: {
-    title: 'About UnGouge.ai — Protecting Homeowners from Overcharges',
+    title: 'About GougeAlert — Protecting Homeowners from Overcharges',
     description:
       'We bring transparency to home renovation pricing. No lead gen, no contractor kickbacks — just honest, BLS-backed quote analysis.',
-    url: 'https://ungouge.ai/about',
+    url: 'https://gougealert.com/about',
   },
 };
 
@@ -21,7 +21,7 @@ export default function AboutPage() {
     <div className="py-12 bg-gray-50">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="card mb-8">
-          <h1 className="text-4xl font-bold mb-6">About Ungouge.ai</h1>
+          <h1 className="text-4xl font-bold mb-6">About GougeAlert</h1>
           <p className="text-xl text-gray-600 mb-6">
             We're on a mission to bring transparency to home renovation pricing.
           </p>
@@ -29,7 +29,7 @@ export default function AboutPage() {
             Every year, homeowners overpay billions of dollars on contractor work—not because contractors are all dishonest, but because information asymmetry makes it impossible to know what's fair.
           </p>
           <p className="text-gray-700 mb-4">
-            Ungouge.ai levels the playing field by giving you instant access to the same data contractors use: real Bureau of Labor Statistics wage rates and regional material costs.
+            GougeAlert levels the playing field by giving you instant access to the same data contractors use: real Bureau of Labor Statistics wage rates and regional material costs.
           </p>
         </div>
 

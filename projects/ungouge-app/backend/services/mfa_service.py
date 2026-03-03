@@ -1,6 +1,6 @@
 """
 MFA (Multi-Factor Authentication) Service
-Email OTP implementation for Ungouge.ai
+Email OTP implementation for GougeAlert
 
 SECURITY FIXES:
   HIGH-2: MFA codes hashed with HMAC-SHA256 (server-side secret key) instead of plain SHA-256

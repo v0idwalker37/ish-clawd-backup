@@ -1,4 +1,4 @@
-# Database Migrations — UnGouge.ai
+# Database Migrations — GougeAlert
 
 This project uses [Alembic](https://alembic.sqlalchemy.org/) for database schema migrations.
 

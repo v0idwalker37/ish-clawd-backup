@@ -1,5 +1,5 @@
 /**
- * SEO Metadata for Ungouge.ai
+ * SEO Metadata for GougeAlert
  * Comprehensive metadata configuration for all pages including:
  * - OpenGraph tags
  * - Twitter cards
@@ -16,10 +16,10 @@ export interface PageMetadata {
 
 // Base configuration
 export const SITE_CONFIG = {
-  name: 'Ungouge.ai',
-  url: 'https://ungouge.ai',
-  ogImage: 'https://ungouge.ai/opengraph-image', // Next.js dynamic OG image
-  twitterHandle: '@ungougeai',
+  name: 'GougeAlert',
+  url: 'https://gougealert.com',
+  ogImage: 'https://gougealert.com/opengraph-image', // Next.js dynamic OG image
+  twitterHandle: '@gougealert',
   brandColors: {
     primary: '#0284c7', // Sky-600 (matches tailwind primary-600)
     secondary: '#10b981', // Emerald-500
@@ -28,7 +28,7 @@ export const SITE_CONFIG = {
 
 // Default metadata (used as fallback)
 export const DEFAULT_METADATA: PageMetadata = {
-  title: 'Ungouge.ai – Fair Contractor Quote Analysis',
+  title: 'GougeAlert – Fair Contractor Quote Analysis',
   description:
     'Stop getting gouged. Analyze contractor quotes against real BLS labor data. No lead gen, no contractor kickbacks – just honest pricing analysis.',
   canonical: SITE_CONFIG.url,
@@ -38,7 +38,7 @@ export const DEFAULT_METADATA: PageMetadata = {
 // Page-specific metadata
 export const PAGE_METADATA: Record<string, PageMetadata> = {
   home: {
-    title: 'Ungouge.ai – Fair Contractor Quote Analysis',
+    title: 'GougeAlert – Fair Contractor Quote Analysis',
     description:
       'Is your contractor quote fair? Analyze quotes against real Bureau of Labor Statistics data. No lead gen, no contractor referrals – we work for you, not them.',
     canonical: `${SITE_CONFIG.url}/`,
@@ -46,28 +46,28 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   },
 
   about: {
-    title: 'About Ungouge.ai – Our Mission',
+    title: 'About GougeAlert – Our Mission',
     description:
-      'Learn why we built Ungouge.ai: to protect homeowners from contractor overcharges. We never sell your data or refer contractors. Ever.',
+      'Learn why we built GougeAlert: to protect homeowners from contractor overcharges. We never sell your data or refer contractors. Ever.',
     canonical: `${SITE_CONFIG.url}/about`,
   },
 
   how_it_works: {
-    title: 'How Ungouge.ai Works – Quote Analysis Process',
+    title: 'How GougeAlert Works – Quote Analysis Process',
     description:
       'See how we analyze contractor quotes: BLS wage data, regional material costs, line-by-line breakdown. Our methodology explained in plain English.',
     canonical: `${SITE_CONFIG.url}/how-it-works`,
   },
 
   pricing: {
-    title: 'Pricing – Ungouge.ai',
+    title: 'Pricing – GougeAlert',
     description:
       '$9.99 per quote analysis. No subscriptions, no hidden fees, no lead gen. One price, full report, 100% money-back guarantee.',
     canonical: `${SITE_CONFIG.url}/pricing`,
   },
 
   search: {
-    title: 'Search – Ungouge.ai',
+    title: 'Search – GougeAlert',
     description:
       'Search your quote history and analysis reports.',
     canonical: `${SITE_CONFIG.url}/search`,
@@ -75,7 +75,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   },
 
   dashboard: {
-    title: 'Dashboard – Ungouge.ai',
+    title: 'Dashboard – GougeAlert',
     description:
       'Your quote analysis dashboard. View reports, track savings, and manage your contractor quotes.',
     canonical: `${SITE_CONFIG.url}/dashboard`,
@@ -83,7 +83,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   },
 
   new_report: {
-    title: 'Analyze Quote – Ungouge.ai',
+    title: 'Analyze Quote – GougeAlert',
     description:
       'Upload your contractor quote for analysis. Get a detailed breakdown of fair pricing based on real labor and material data.',
     canonical: `${SITE_CONFIG.url}/analyze`,
@@ -91,7 +91,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   },
 
   saved_reports: {
-    title: 'My Reports – Ungouge.ai',
+    title: 'My Reports – GougeAlert',
     description:
       'View all your quote analysis reports. Access your pricing breakdowns and negotiation tips anytime.',
     canonical: `${SITE_CONFIG.url}/reports`,
@@ -99,29 +99,29 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   },
 
   settings: {
-    title: 'Settings – Ungouge.ai',
+    title: 'Settings – GougeAlert',
     description: 'Manage your account settings, notification preferences, and privacy options.',
     canonical: `${SITE_CONFIG.url}/settings`,
     noindex: true, // Private user content
   },
 
   login: {
-    title: 'Log In – Ungouge.ai',
+    title: 'Log In – GougeAlert',
     description: 'Log in to access your research reports and saved products.',
     canonical: `${SITE_CONFIG.url}/login`,
     noindex: true, // Don't index auth pages
   },
 
   signup: {
-    title: 'Sign Up – Ungouge.ai',
+    title: 'Sign Up – GougeAlert',
     description:
-      'Create your free Ungouge.ai account. Start researching products the honest way – no credit card required.',
+      'Create your free GougeAlert account. Start researching products the honest way – no credit card required.',
     canonical: `${SITE_CONFIG.url}/signup`,
     noindex: true, // Don't index auth pages
   },
 
   blog: {
-    title: 'Blog – Ungouge.ai',
+    title: 'Blog – GougeAlert',
     description:
       'Product research insights, buying guides, and industry analysis. Learn how to make smarter purchasing decisions.',
     canonical: `${SITE_CONFIG.url}/blog`,
@@ -167,16 +167,16 @@ export function generateOrganizationSchema() {
     url: SITE_CONFIG.url,
     logo: `${SITE_CONFIG.url}/logo.png`,
     sameAs: [
-      'https://twitter.com/ungouge',
+      'https://x.com/gougealert',
       // Add more social profiles as needed
     ],
     description:
       'Contractor quote analysis powered by real BLS data. No lead gen, no contractor kickbacks – we protect homeowners from overcharges.',
-    foundingDate: '2025',
+    foundingDate: '2026',
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Support',
-      email: 'support@ungouge.ai',
+      email: 'support@gougealert.com',
       availableLanguage: ['English'],
     },
   };

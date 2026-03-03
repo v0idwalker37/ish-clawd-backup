@@ -18,16 +18,17 @@ import {
 } from '@/lib/seo';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const NOINDEX_MODE = process.env.NEXT_PUBLIC_SUNSET_MODE === '1';
 
 // Default metadata for all pages (can be overridden per page)
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
     default: DEFAULT_METADATA.title,
-    template: '%s | UnGouge — Independent Quote Verification',
+    template: '%s | GougeAlert — Independent Quote Verification',
   },
   description:
-    'Is your contractor quote fair? UnGouge.ai analyzes contractor quotes against real Bureau of Labor Statistics labor rates and regional material costs. Independent, data-backed price verification for homeowners — no lead gen, no contractor kickbacks.',
+    'Is your contractor quote fair? GougeAlert analyzes contractor quotes against real Bureau of Labor Statistics labor rates and regional material costs. Independent, data-backed price verification for homeowners — no lead gen, no contractor kickbacks.',
   keywords: [
     'contractor quote verification',
     'home improvement pricing',
@@ -46,15 +47,15 @@ export const metadata: Metadata = {
     'bathroom renovation pricing',
     'roofing quote check',
   ],
-  authors: [{ name: 'Ungouge.ai Team' }],
-  creator: 'Ungouge.ai',
-  publisher: 'Ungouge.ai',
+  authors: [{ name: 'GougeAlert Team' }],
+  creator: 'GougeAlert',
+  publisher: 'GougeAlert',
   robots: {
-    index: true,
-    follow: true,
+    index: !NOINDEX_MODE,
+    follow: !NOINDEX_MODE,
     googleBot: {
-      index: true,
-      follow: true,
+      index: !NOINDEX_MODE,
+      follow: !NOINDEX_MODE,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,

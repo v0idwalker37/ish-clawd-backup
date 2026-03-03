@@ -1,6 +1,6 @@
 """
 Data Retention Policy Implementation
-Auto-delete quotes after 90 days unless user saves them
+Auto-delete quote/report data after 30 days
 GDPR/CCPA compliant: right to deletion, data portability
 """
 
@@ -14,7 +14,7 @@ import logging
 logger = logging.getLogger("ungouge.retention")
 
 # Retention periods
-QUOTE_RETENTION_DAYS = 90
+QUOTE_RETENTION_DAYS = 30
 ANONYMOUS_QUOTE_RETENTION_DAYS = 30
 SESSION_RETENTION_DAYS = 7
 PASSWORD_RESET_TOKEN_RETENTION_DAYS = 1
@@ -26,7 +26,7 @@ async def cleanup_expired_quotes(db: AsyncSession) -> int:
     """
     Delete quotes older than retention period
     
-    - Authenticated quotes: 90 days
+    - Authenticated quotes: 30 days
     - Anonymous quotes: 30 days
     - Saved quotes: Never auto-delete
     
@@ -49,7 +49,7 @@ async def cleanup_expired_quotes(db: AsyncSession) -> int:
     )
     expired_anon_quotes = result.scalars().all()
     
-    # Find expired authenticated quotes (90 days)
+    # Find expired authenticated quotes (30 days)
     auth_cutoff = now - timedelta(days=QUOTE_RETENTION_DAYS)
     result = await db.execute(
         select(Quote).where(

@@ -56,7 +56,7 @@ We collect only what's necessary to analyze your contractor quote and deliver yo
 ## Your Rights
 
 You can:
-- **Request your data:** Email privacy@ungouge.ai
+- **Request your data:** Email privacy@gougealert.com
 - **Delete your account:** Contact us or use account settings
 - **Unsubscribe:** One-click unsubscribe in any email
 - **Opt out of analytics:** Browser "Do Not Track" is respected
@@ -77,7 +77,7 @@ We use minimal third-party services:
 
 ## Children's Privacy
 
-Ungouge is not intended for users under 18. We don't knowingly collect data from children.
+GougeAlert is not intended for users under 18. We don't knowingly collect data from children.
 
 ---
 
@@ -91,8 +91,8 @@ We'll notify you of significant changes via email. Minor updates will be reflect
 
 Questions about privacy?
 
-**Email:** privacy@ungouge.ai  
-**Address:** Ungouge.ai, Northfield, Vermont, USA
+**Email:** privacy@gougealert.com  
+**Address:** GougeAlert (operated by Ironwood Global Data Management LLC), Sheridan, Wyoming, USA
 
 ---
 

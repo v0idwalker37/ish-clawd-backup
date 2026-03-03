@@ -17,7 +17,7 @@ import { useState, useEffect } from 'react';
  *  - User rejected analytics → don't load
  *
  * The domain is configurable via NEXT_PUBLIC_PLAUSIBLE_DOMAIN (defaults to
- * "ungouge.ai").
+ * "gougealert.com").
  */
 
 const COOKIE_NAME = 'ug_cookie_consent';
@@ -43,7 +43,7 @@ function readConsentCookie(): ConsentPrefs | null {
 
 export default function PlausibleAnalytics() {
   const domain =
-    process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN || 'ungouge.ai';
+    process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN || 'gougealert.com';
 
   const [shouldLoad, setShouldLoad] = useState(false);
 

@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
-export const alt = 'Ungouge.ai — Stop overpaying for home improvements — Know Before You Sign';
+export const alt = 'GougeAlert — Stop overpaying for home improvements — Know Before You Sign';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -72,7 +72,7 @@ export default async function Image() {
                 lineHeight: 1,
               }}
             >
-              Ungouge.ai
+              GougeAlert
             </span>
             <span
               style={{

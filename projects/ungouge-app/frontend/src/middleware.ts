@@ -1,29 +1,34 @@
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
-const PROTECTED_PATHS = ['/dashboard', '/report'];
-const AUTH_PATHS = ['/login', '/register'];
+/**
+ * SUNSET_MODE
+ * When enabled, we serve the /sunset page for all routes.
+ * This is used to rapidly de-publicize the legacy domain without deleting infrastructure.
+ */
+export function middleware(req: NextRequest) {
+  const SUNSET_MODE = process.env.NEXT_PUBLIC_SUNSET_MODE === '1';
+  if (!SUNSET_MODE) return NextResponse.next();
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const hasAuthCookie = request.cookies.has('access_token');
+  const { pathname } = req.nextUrl;
 
-  // Protect dashboard/report routes — redirect to login if no auth cookie
-  const isProtected = PROTECTED_PATHS.some((path) => pathname.startsWith(path));
-  if (isProtected && !hasAuthCookie) {
-    const loginUrl = new URL('/login', request.url);
-    loginUrl.searchParams.set('return', pathname);
-    return NextResponse.redirect(loginUrl);
+  // Allow Next internals + the sunset page itself
+  if (
+    pathname.startsWith('/_next') ||
+    pathname === '/sunset' ||
+    pathname === '/robots.txt' ||
+    pathname === '/sitemap.xml' ||
+    pathname === '/favicon.ico'
+  ) {
+    return NextResponse.next();
   }
 
-  // Redirect logged-in users away from auth pages to dashboard
-  const isAuthPage = AUTH_PATHS.some((path) => pathname.startsWith(path));
-  if (isAuthPage && hasAuthCookie) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
-
-  return NextResponse.next();
+  const url = req.nextUrl.clone();
+  url.pathname = '/sunset';
+  url.search = '';
+  return NextResponse.rewrite(url);
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/report/:path*', '/login', '/register'],
+  matcher: ['/((?!_next/static|_next/image).*)'],
 };

@@ -13,14 +13,24 @@ DATABASE_URL = os.getenv(
 
 # Create async engine
 # SECURITY: Control SQL echo via environment variable (disable in production)
-engine = create_async_engine(
-    DATABASE_URL,
-    echo=os.getenv("DATABASE_ECHO", "false").lower() == "true",
-    pool_pre_ping=True,        # Verify connections before use (handles Cloud SQL proxy reconnects)
-    pool_recycle=300,           # Recycle connections every 5 minutes (prevents stale connections)
-    pool_size=5,               # Connection pool size
-    max_overflow=10,           # Allow up to 10 overflow connections
-)
+_engine_kwargs = {
+    "echo": os.getenv("DATABASE_ECHO", "false").lower() == "true",
+    # Verify connections before use (handles Cloud SQL proxy reconnects)
+    "pool_pre_ping": True,
+    # Recycle connections every 5 minutes (prevents stale connections)
+    "pool_recycle": 300,
+}
+
+# SQLite uses StaticPool under the hood; pool_size/max_overflow are invalid.
+if not DATABASE_URL.startswith("sqlite"):
+    _engine_kwargs.update(
+        {
+            "pool_size": 5,
+            "max_overflow": 10,
+        }
+    )
+
+engine = create_async_engine(DATABASE_URL, **_engine_kwargs)
 
 # Create session factory
 async_session_maker = async_sessionmaker(
@@ -107,7 +117,7 @@ class Quote(Base):
     estimation_confidence: Mapped[Optional[str]] = mapped_column(String(20), nullable=True)
     estimation_methodology: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     
-    # Free resubmit tracking (total-only → itemized within 90 days)
+    # Free resubmit tracking (total-only → itemized within pass window)
     original_quote_id: Mapped[Optional[str]] = mapped_column(String(36), ForeignKey("quotes.id"), nullable=True)
     resubmit_eligible_until: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
     

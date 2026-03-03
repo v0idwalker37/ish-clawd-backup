@@ -2,17 +2,42 @@
 
 Skills define *how* tools work. This file is for *your* specifics — the stuff that's unique to your setup.
 
+## ⛔ CRITICAL: Editing openclaw.json (DO NOT SKIP)
+
+**This has crashed Ish multiple times. Follow EVERY step.**
+
+1. **BACKUP FIRST:** `cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.bak`
+2. **USE THE CLI, NOT RAW JSON:** `openclaw config set/get/unset` validates schema automatically
+   - `openclaw config set agents.defaults.model.primary "model-name"` ✅
+   - Raw Python JSON editing ❌ (caused multiple crashes)
+3. **Schema rules for `agents.defaults.model`:**
+   - MUST be an object with ONLY `primary` and `fallbacks` keys
+   - ✅ `"model": { "primary": "openai/gpt-5.2", "fallbacks": [...] }`
+   - ❌ `"model": "string"` (must be object)
+   - ❌ `"model": { "default": "..." }` (wrong key — it's `primary`)
+   - ❌ `"model": { "aliases": {...} }` (not a valid key under model)
+   - ❌ `openai-codex/...` in fallbacks without a matching `models.providers.openai-codex` entry
+   - Codex OAuth models: use `openai/gpt-5.3-codex` prefix (existing provider), NOT `openai-codex/`
+   - When config is invalid, CLI `set/unset/get` won't work — must manually edit JSON
+4. **NEVER restart the gateway yourself.** It kills your own session.
+   - Instead: Make the change, validate it, then **ask Jason** to run `openclaw gateway restart`
+5. **If unsure about syntax:** Show Jason the proposed change and let him apply it
+
+**Why:** Editing your own config + restarting your own gateway = brain surgery on yourself while awake. Don't.
+
 ## Model Usage Preference
 
-**ALWAYS use Opus 4.6 for:**
-- ALL coding tasks (no exceptions)
-- ALL sub-agents that write code
-- Complex reasoning/architecture decisions
-- Multi-step research or deep analysis
+**Global default (Mar 3, 2026):** `openai-codex/gpt-5.3-codex` (ChatGPT Business subscription, $0/token)
+**Fallbacks:** openai-codex/gpt-5.2 → google/gemini-3.1-pro-preview → anthropic/claude-opus-4-6
+**Anthropic:** Last resort only (expensive, they blocked OAuth for monthly plans)
+
+**GPT-5.3-Codex handles EVERYTHING** — general reasoning + coding merged into one model.
+**Task routing:** If 5.3 can't handle a complex task, skip to Gemini 3.1 (not 5.2). 5.2 is availability fallback only.
+
+**For complex reasoning/architecture** where Opus is genuinely needed:
 - High-stakes tasks (financial, business decisions)
 - Anything ambiguous that needs careful judgment
-
-**Jason's explicit instruction (Feb 6):** "YES! :)" — Switch to 4.6 for all coding work
+- ONLY as last resort due to cost
 
 **Sonnet 4.5 for:** Routine chat, quick questions, simple file reads, heartbeat checks, small edits, non-logic file changes, deploy commands, git operations
 

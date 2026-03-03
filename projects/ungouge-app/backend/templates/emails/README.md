@@ -1,4 +1,4 @@
-# Email Templates - Ungouge.ai
+# Email Templates - GougeAlert
 
 Professional, mobile-responsive email templates for quote analysis delivery.
 
@@ -185,9 +185,9 @@ data = {
             'step_text': 'Request proof of insurance...'
         }
     ],
-    'report_url': 'https://ungouge.ai/reports/123456',
-    'dashboard_url': 'https://ungouge.ai/dashboard',
-    'settings_url': 'https://ungouge.ai/settings',
+    'report_url': 'https://gougealert.com/reports/123456',
+    'dashboard_url': 'https://gougealert.com/dashboard',
+    'settings_url': 'https://gougealert.com/settings',
     'current_year': datetime.datetime.now().year
 }
 

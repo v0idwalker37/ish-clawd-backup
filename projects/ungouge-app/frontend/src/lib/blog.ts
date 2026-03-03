@@ -152,7 +152,7 @@ function parsePostFile(filename: string): BlogPost | null {
       date = extractDateFromMarkdown(fileContent);
     }
 
-    const author = hasFrontmatter ? frontmatter.author || 'Ungouge Team' : 'Ungouge Team';
+    const author = hasFrontmatter ? frontmatter.author || 'GougeAlert Team' : 'GougeAlert Team';
 
     const keywords: string[] = hasFrontmatter
       ? (frontmatter.keywords || [])

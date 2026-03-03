@@ -57,7 +57,7 @@ export default function Header() {
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo-small.png"
-              alt="Ungouge.ai"
+              alt="GougeAlert"
               width={150}
               height={47}
               priority

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "postbuild": "echo 'postbuild: skipping next-sitemap (using app/sitemap.ts + app/robots.ts)'"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

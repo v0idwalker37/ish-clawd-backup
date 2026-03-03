@@ -4,9 +4,9 @@ import { Scale, FileText, Shield, AlertTriangle, CheckCircle } from 'lucide-reac
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description:
-    'UnGouge.ai terms of service. Read our terms for using our contractor quote analysis service, explained in plain English.',
+    'GougeAlert terms of service. Read our terms for using our contractor quote analysis service, explained in plain English.',
   alternates: {
-    canonical: 'https://ungouge.ai/terms',
+    canonical: 'https://gougealert.com/terms',
   },
 };
 
@@ -23,7 +23,7 @@ export default function TermsPage() {
           <p className="text-xl text-gray-600">
             The legal stuff, explained in plain English
           </p>
-          <p className="text-sm text-gray-500 mt-2">Last updated: February 3, 2024</p>
+          <p className="text-sm text-gray-500 mt-2">Last updated: March 3, 2026</p>
         </div>
 
         {/* Plain English Summary */}
@@ -48,7 +48,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-3">1. Acceptance of Terms</h2>
             <div className="space-y-3 text-gray-700">
-              <p>By accessing or using Ungouge.ai ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you may not access the Service.</p>
+              <p>By accessing or using GougeAlert ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you may not access the Service.</p>
               
               <p>These Terms apply to all visitors, users, and others who access or use the Service.</p>
             </div>
@@ -57,7 +57,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-3">2. Description of Service</h2>
             <div className="space-y-3 text-gray-700">
-              <p>Ungouge.ai provides contractor quote analysis services. Specifically, we:</p>
+              <p>GougeAlert provides contractor quote analysis services. Specifically, we:</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>Analyze contractor quotes you submit</li>
                 <li>Compare quote line items against Bureau of Labor Statistics (BLS) wage data and material cost databases</li>
@@ -112,7 +112,7 @@ export default function TermsPage() {
                 <div className="space-y-3 text-gray-700">
                   <p className="font-semibold">We offer a 100% money-back guarantee within 7 days of purchase.</p>
                   
-                  <p>If you're not satisfied with your report for any reason, email us at <a href="mailto:support@ungouge.ai" className="text-primary-600 hover:underline">support@ungouge.ai</a> with your report ID within 7 days of purchase, and we'll issue a full refund.</p>
+                  <p>If you're not satisfied with your report for any reason, email us at <a href="mailto:support@gougealert.com" className="text-primary-600 hover:underline">support@gougealert.com</a> with your report ID within 7 days of purchase, and we'll issue a full refund.</p>
                   
                   <p>After 7 days, all sales are final. We believe 7 days is ample time to review your report and determine if it meets your needs.</p>
                   
@@ -163,7 +163,7 @@ export default function TermsPage() {
             <div className="space-y-3 text-gray-700">
               <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</p>
               
-              <p>Ungouge.ai, its officers, directors, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:</p>
+              <p>GougeAlert, its officers, directors, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>Loss of profits or savings</li>
                 <li>Costs of obtaining substitute services</li>
@@ -201,13 +201,13 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-3">9. Intellectual Property</h2>
             <div className="space-y-3 text-gray-700">
-              <p><strong>Our Content:</strong> The Service and its original content, features, and functionality are owned by Ungouge.ai and are protected by copyright, trademark, and other intellectual property laws.</p>
+              <p><strong>Our Content:</strong> The Service and its original content, features, and functionality are owned by GougeAlert and are protected by copyright, trademark, and other intellectual property laws.</p>
               
               <p><strong>Your Content:</strong> You retain ownership of any content you submit (quotes, project details). By submitting content, you grant us a license to use it solely for providing the Service and generating your report.</p>
               
               <p><strong>Reports:</strong> The reports we generate for you are for your personal, non-commercial use. You may share them with contractors, lenders, or others as needed for your project, but you may not resell or republish them commercially.</p>
               
-              <p><strong>Trademarks:</strong> "Ungouge.ai" and related logos are trademarks of our company. You may not use them without prior written permission.</p>
+              <p><strong>Trademarks:</strong> "GougeAlert" and related logos are trademarks of our company. You may not use them without prior written permission.</p>
             </div>
           </section>
 
@@ -236,7 +236,7 @@ export default function TermsPage() {
                 <li>Violates applicable law</li>
               </ul>
               
-              <p className="mt-4">You may terminate your account at any time from your account settings or by emailing <a href="mailto:support@ungouge.ai" className="text-primary-600 hover:underline">support@ungouge.ai</a>. Upon termination, your right to use the Service will immediately cease.</p>
+              <p className="mt-4">You may terminate your account at any time from your account settings or by emailing <a href="mailto:support@gougealert.com" className="text-primary-600 hover:underline">support@gougealert.com</a>. Upon termination, your right to use the Service will immediately cease.</p>
             </div>
           </section>
 
@@ -257,9 +257,9 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-3">13. Governing Law & Disputes</h2>
             <div className="space-y-3 text-gray-700">
-              <p>These Terms shall be governed by and construed in accordance with the laws of the State of [Your State], United States, without regard to its conflict of law provisions.</p>
+              <p>These Terms shall be governed by and construed in accordance with the laws of the State of Wyoming, United States, without regard to its conflict of law provisions.</p>
               
-              <p><strong>Dispute Resolution:</strong> We prefer to resolve disputes amicably. If you have a concern, please contact us at <a href="mailto:support@ungouge.ai" className="text-primary-600 hover:underline">support@ungouge.ai</a> and we'll work with you to resolve it.</p>
+              <p><strong>Dispute Resolution:</strong> We prefer to resolve disputes amicably. If you have a concern, please contact us at <a href="mailto:support@gougealert.com" className="text-primary-600 hover:underline">support@gougealert.com</a> and we'll work with you to resolve it.</p>
               
               <p><strong>Arbitration:</strong> For disputes that cannot be resolved informally, both parties agree to submit to binding arbitration under the rules of the American Arbitration Association. Arbitration will take place in [Your City, State].</p>
               
@@ -270,7 +270,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-3">14. Miscellaneous</h2>
             <div className="space-y-3 text-gray-700">
-              <p><strong>Entire Agreement:</strong> These Terms, together with our Privacy Policy, constitute the entire agreement between you and Ungouge.ai.</p>
+              <p><strong>Entire Agreement:</strong> These Terms, together with our Privacy Policy, constitute the entire agreement between you and GougeAlert.</p>
               
               <p><strong>Severability:</strong> If any provision of these Terms is found to be unenforceable, the remaining provisions will remain in full effect.</p>
               
@@ -284,8 +284,8 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-3">15. Contact Information</h2>
             <div className="text-gray-700">
               <p className="mb-4">Questions about these Terms? Contact us:</p>
-              <p><strong>Email:</strong> <a href="mailto:legal@ungouge.ai" className="text-primary-600 hover:underline">legal@ungouge.ai</a></p>
-              <p><strong>Support:</strong> <a href="mailto:support@ungouge.ai" className="text-primary-600 hover:underline">support@ungouge.ai</a></p>
+              <p><strong>Email:</strong> <a href="mailto:legal@gougealert.com" className="text-primary-600 hover:underline">legal@gougealert.com</a></p>
+              <p><strong>Support:</strong> <a href="mailto:support@gougealert.com" className="text-primary-600 hover:underline">support@gougealert.com</a></p>
             </div>
           </section>
         </div>

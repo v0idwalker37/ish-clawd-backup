@@ -25,7 +25,7 @@ gcloud run deploy $SERVICE \
   --platform=managed \
   --allow-unauthenticated \
   --add-cloudsql-instances="$PROJECT_ID:$REGION:ungouge-dashboard-db" \
-  --set-env-vars="EMAIL_DEV_MODE=false,SMTP_HOST=smtp.resend.com,SMTP_PORT=465,SMTP_USER=resend,FROM_EMAIL=noreply@ungouge.ai,FROM_NAME=UnGouge.ai,FRONTEND_URL=https://ungouge.ai" \
+  --set-env-vars="EMAIL_DEV_MODE=false,SMTP_HOST=smtp.resend.com,SMTP_PORT=465,SMTP_USER=resend,FROM_EMAIL=noreply@gougealert.com,FROM_NAME=GougeAlert,FRONTEND_URL=https://gougealert.com" \
   --update-secrets="SMTP_PASSWORD=resend-api-key:latest,DB_PASSWORD=ungouge-db-password:latest,JWT_SECRET_KEY=JWT_SECRET_KEY:latest,CSRF_SECRET_KEY=CSRF_SECRET_KEY:latest,ENCRYPTION_KEY=ENCRYPTION_KEY:latest,STRIPE_SECRET_KEY=stripe-secret-key:latest,STRIPE_WEBHOOK_SECRET=stripe-webhook-secret:latest,GOOGLE_GEMINI_API_KEY=google-gemini-api-key:latest" \
   --project=$PROJECT_ID
 

@@ -3,9 +3,9 @@ import HomePageContent from './HomePageContent';
 import { SITE_CONFIG, renderJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'UnGouge.ai — Is Your Contractor Quote Fair? Find Out in Seconds',
+  title: 'GougeAlert — Is Your Contractor Quote Fair? Find Out in Seconds',
   description:
-    'Stop overpaying on contractor quotes. UnGouge.ai uses real Bureau of Labor Statistics labor rates and regional material costs to verify your home improvement quote is fair. $9.99 per report. No lead gen.',
+    'Stop overpaying on contractor quotes. GougeAlert uses real Bureau of Labor Statistics labor rates and regional material costs to verify your home improvement quote is fair. $9.99 per report. No lead gen.',
   alternates: {
     canonical: SITE_CONFIG.url,
   },
@@ -29,17 +29,17 @@ export const metadata: Metadata = {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'UnGouge.ai',
+  name: 'GougeAlert',
   url: SITE_CONFIG.url,
   logo: `${SITE_CONFIG.url}/logo.png`,
-  sameAs: ['https://twitter.com/ungougeai'],
+  sameAs: ['https://x.com/gougealert'],
   description:
     'Independent contractor quote verification powered by real BLS data. No lead gen, no contractor kickbacks — we protect homeowners from overcharges.',
-  foundingDate: '2025',
+  foundingDate: '2026',
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'Customer Support',
-    email: 'support@ungouge.ai',
+    email: 'support@gougealert.com',
     availableLanguage: ['English'],
   },
 };
@@ -47,7 +47,7 @@ const organizationSchema = {
 const softwareApplicationSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'UnGouge.ai',
+  name: 'GougeAlert',
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
   url: SITE_CONFIG.url,
@@ -62,7 +62,7 @@ const softwareApplicationSchema = {
   },
   author: {
     '@type': 'Organization',
-    name: 'UnGouge.ai',
+    name: 'GougeAlert',
   },
 };
 
@@ -72,7 +72,7 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'How does UnGouge.ai work?',
+      name: 'How does GougeAlert work?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Upload your contractor quote and project details. Our AI analyzes each line item against official Bureau of Labor Statistics wage data and real-time material cost databases for your region. You get a detailed report showing fair price ranges, percentage markups, and specific negotiation advice within seconds.',

@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://ungouge.ai',
+  siteUrl: process.env.SITE_URL || 'https://gougealert.com',
   generateRobotsTxt: true,
   changefreq: 'weekly',
   priority: 0.7,

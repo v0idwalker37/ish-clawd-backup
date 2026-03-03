@@ -1,5 +1,5 @@
 """
-Async email notification service for UnGouge.ai
+Async email notification service for GougeAlert
 
 Design choice: aiosmtplib + email.mime
   - aiosmtplib is the async counterpart to smtplib — battle-tested, zero vendor lock-in
@@ -38,8 +38,8 @@ SMTP_HOST = os.getenv("SMTP_HOST", "smtp.resend.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))
 SMTP_USER = os.getenv("SMTP_USER", "resend")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "") or os.getenv("RESEND_API_KEY", "")
-FROM_EMAIL = os.getenv("FROM_EMAIL", "noreply@ungouge.ai")
-FROM_NAME = os.getenv("FROM_NAME", "UnGouge.ai")
+FROM_EMAIL = os.getenv("FROM_EMAIL", "noreply@gougealert.com")
+FROM_NAME = os.getenv("FROM_NAME", "GougeAlert")
 
 # Template directory: <project>/email-templates/
 TEMPLATE_DIR = Path(__file__).parent.parent.parent / "email-templates"
@@ -187,7 +187,7 @@ async def send_welcome_email(user_email: str, user_name: str) -> bool:
 
     return await _send_email(
         to_email=user_email,
-        subject="Welcome to UnGouge.ai — Know Before You Pay",
+        subject="Welcome to GougeAlert — Know Before You Pay",
         html_body=html,
     )
 
@@ -216,7 +216,7 @@ async def send_receipt_email(
         logger.warning(f"Rate limited: receipt email to {user_email}")
         return False
 
-    frontend_url = os.getenv("FRONTEND_URL", "https://ungouge.ai")
+    frontend_url = os.getenv("FRONTEND_URL", "https://gougealert.com")
     if report_url is None:
         report_url = f"{frontend_url}/report/{quote_id}"
 
@@ -231,7 +231,7 @@ async def send_receipt_email(
 
     return await _send_email(
         to_email=user_email,
-        subject=f"Your UnGouge.ai Receipt — {amount}",
+        subject=f"Your GougeAlert Receipt — {amount}",
         html_body=html,
     )
 
@@ -254,7 +254,7 @@ async def send_report_ready_email(
         logger.warning(f"Rate limited: report-ready email to {user_email}")
         return False
 
-    frontend_url = os.getenv("FRONTEND_URL", "https://ungouge.ai")
+    frontend_url = os.getenv("FRONTEND_URL", "https://gougealert.com")
     if report_url is None:
         report_url = f"{frontend_url}/report/{quote_id}"
 
@@ -270,7 +270,7 @@ async def send_report_ready_email(
 
     return await _send_email(
         to_email=user_email,
-        subject="Your Quote Analysis is Ready — UnGouge.ai",
+        subject="Your Quote Analysis is Ready — GougeAlert",
         html_body=html,
     )
 
@@ -289,14 +289,14 @@ def send_mfa_code(
     Send MFA verification code (synchronous wrapper for existing callers).
     Uses inline HTML template — no external file needed.
     """
-    subject = f"Your UnGouge.ai verification code: {code}"
+    subject = f"Your GougeAlert verification code: {code}"
 
     html_body = f'''<!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px;">
   <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
     <div style="text-align: center; margin-bottom: 30px;">
-      <h1 style="color: #2563eb; font-size: 24px; margin: 0;">UnGouge.ai</h1>
+      <h1 style="color: #2563eb; font-size: 24px; margin: 0;">GougeAlert</h1>
     </div>
     <p style="color: #374151; font-size: 16px; line-height: 1.6;">Hi {user_name},</p>
     <p style="color: #374151; font-size: 16px; line-height: 1.6;">Your verification code is:</p>
@@ -308,7 +308,7 @@ def send_mfa_code(
     </p>
     <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
     <p style="color: #9ca3af; font-size: 12px; text-align: center; margin: 0;">
-      This is an automated security email from UnGouge.ai<br>We never sell your data. Ever.
+      This is an automated security email from GougeAlert<br>We never sell your data. Ever.
     </p>
   </div>
 </body></html>'''
@@ -361,14 +361,14 @@ def send_password_reset(
     """
     Send password reset email (synchronous wrapper — kept for existing callers).
     """
-    subject = "Reset your UnGouge.ai password"
+    subject = "Reset your GougeAlert password"
 
     html_body = f'''<!DOCTYPE html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px;">
   <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
     <div style="text-align: center; margin-bottom: 30px;">
-      <h1 style="color: #2563eb; font-size: 24px; margin: 0;">UnGouge.ai</h1>
+      <h1 style="color: #2563eb; font-size: 24px; margin: 0;">GougeAlert</h1>
     </div>
     <p style="color: #374151; font-size: 16px; line-height: 1.6;">Hi {user_name},</p>
     <p style="color: #374151; font-size: 16px; line-height: 1.6;">
@@ -384,7 +384,7 @@ def send_password_reset(
     </p>
     <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
     <p style="color: #9ca3af; font-size: 12px; text-align: center; margin: 0;">
-      This is an automated security email from UnGouge.ai
+      This is an automated security email from GougeAlert
     </p>
   </div>
 </body></html>'''

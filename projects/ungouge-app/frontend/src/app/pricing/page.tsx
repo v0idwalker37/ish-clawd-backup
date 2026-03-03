@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     '$9.99 per contractor quote analysis. No subscriptions, no hidden fees, no lead generation. Get a full BLS-backed pricing report with 100% money-back guarantee.',
   alternates: {
-    canonical: 'https://ungouge.ai/pricing',
+    canonical: 'https://gougealert.com/pricing',
   },
   openGraph: {
-    title: 'Simple, Honest Pricing — UnGouge.ai',
+    title: 'Simple, Honest Pricing — GougeAlert',
     description:
       '$9.99 per quote. Full line-item analysis against BLS data. No subscriptions. 100% money-back guarantee.',
-    url: 'https://ungouge.ai/pricing',
+    url: 'https://gougealert.com/pricing',
   },
 };
 
@@ -131,7 +131,7 @@ export default function PricingPage() {
                 <span>Dedicated support</span>
               </li>
             </ul>
-            <a href="mailto:enterprise@ungouge.ai" className="btn-secondary w-full text-center block">
+            <a href="mailto:enterprise@gougealert.com" className="btn-secondary w-full text-center block">
               Contact Sales
             </a>
           </div>

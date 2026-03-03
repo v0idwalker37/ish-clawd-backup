@@ -1,4 +1,4 @@
-# Ungouge.ai Backend
+# GougeAlert Backend
 
 FastAPI backend with PostgreSQL database and Stripe integration.
 

@@ -80,9 +80,9 @@ SAMPLE_DATA = {
         'verdict_title': 'Fair Price',
         'verdict_color': '#00B894',
         'verdict_summary': 'This quote is within the expected range for a roof replacement of this size in your area. The pricing breakdown looks reasonable and competitive.',
-        'report_url': 'https://ungouge.ai/reports/123456',
-        'dashboard_url': 'https://ungouge.ai/dashboard',
-        'settings_url': 'https://ungouge.ai/settings',
+        'report_url': 'https://gougealert.com/reports/123456',
+        'dashboard_url': 'https://gougealert.com/dashboard',
+        'settings_url': 'https://gougealert.com/settings',
         'current_year': datetime.now().year,
         'has_red_flags': False,
         'findings': [
@@ -127,9 +127,9 @@ SAMPLE_DATA = {
         'verdict_title': 'Above Market Rate',
         'verdict_color': '#f59e0b',
         'verdict_summary': 'This quote is 22% higher than the typical range for kitchen remodels of this scope in your area. Some line items appear inflated.',
-        'report_url': 'https://ungouge.ai/reports/123457',
-        'dashboard_url': 'https://ungouge.ai/dashboard',
-        'settings_url': 'https://ungouge.ai/settings',
+        'report_url': 'https://gougealert.com/reports/123457',
+        'dashboard_url': 'https://gougealert.com/dashboard',
+        'settings_url': 'https://gougealert.com/settings',
         'current_year': datetime.now().year,
         'has_red_flags': True,
         'red_flags': [
@@ -179,9 +179,9 @@ SAMPLE_DATA = {
         'verdict_title': 'Significantly Overpriced',
         'verdict_color': '#ef4444',
         'verdict_summary': 'This quote is 45% above fair market value for this project. Multiple red flags suggest potential price gouging.',
-        'report_url': 'https://ungouge.ai/reports/123458',
-        'dashboard_url': 'https://ungouge.ai/dashboard',
-        'settings_url': 'https://ungouge.ai/settings',
+        'report_url': 'https://gougealert.com/reports/123458',
+        'dashboard_url': 'https://gougealert.com/dashboard',
+        'settings_url': 'https://gougealert.com/settings',
         'current_year': datetime.now().year,
         'has_red_flags': True,
         'red_flags': [
@@ -314,7 +314,7 @@ def create_index_page():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Template Previews - Ungouge.ai</title>
+    <title>Email Template Previews - GougeAlert</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -355,7 +355,7 @@ def create_index_page():
 </head>
 <body>
     <h1>📧 Email Template Previews</h1>
-    <p>Test renders for Ungouge.ai quote analysis email templates.</p>
+    <p>Test renders for GougeAlert quote analysis email templates.</p>
     
     <div class="scenario">
         <h2>✅ Fair Quote Scenario <span class="badge fair">WITHIN RANGE</span></h2>

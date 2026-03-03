@@ -1,5 +1,5 @@
 """
-PDF Report Generator for UnGouge
+PDF Report Generator for GougeAlert
 Generates branded PDF reports matching the website's visual identity.
 
 V3 — Full website-matched branding:
@@ -258,7 +258,7 @@ def _build_header(report: Report, styles):
         logo_cell.append(Image(LOGO_PATH, width=1.5 * inch, height=0.47 * inch))
     else:
         logo_cell.append(Paragraph(
-            "Ungouge<font color='#0284c7'>.ai</font>",
+            "GougeAlert<font color='#0284c7'>.com</font>",
             ParagraphStyle("FallbackLogo", fontName="Helvetica-Bold", fontSize=22,
                            textColor=GRAY_900),
         ))
@@ -678,7 +678,7 @@ def _build_typical_costs_section(report: Report, styles):
     cta_inner = []
     cta_inner.append(Paragraph(
         "<b>Want per-item analysis?</b> Ask your contractor for an itemized breakdown "
-        "and submit it to UnGouge.ai for detailed fair-price ratings on every line item.",
+        "and submit it to GougeAlert for detailed fair-price ratings on every line item.",
         ParagraphStyle("CTAText", fontName="Helvetica", fontSize=9.5,
                         textColor=PRIMARY_800, leading=13),
     ))
@@ -730,7 +730,7 @@ def _build_footer(styles):
     # Dark footer banner
     footer_inner = []
     footer_inner.append(Paragraph(
-        "Ungouge<font color='#38bdf8'>.ai</font>",
+        "GougeAlert<font color='#38bdf8'>.com</font>",
         ParagraphStyle("FooterBrand", fontName="Helvetica-Bold", fontSize=12,
                         textColor=WHITE, alignment=TA_CENTER),
     ))
@@ -742,7 +742,7 @@ def _build_footer(styles):
     ))
     footer_inner.append(Spacer(1, 6))
     footer_inner.append(Paragraph(
-        "ungouge.ai  ·  support@ungouge.ai",
+        "gougealert.com  ·  support@gougealert.com",
         ParagraphStyle("FooterLinks", fontName="Helvetica", fontSize=8,
                         textColor=PRIMARY_400, alignment=TA_CENTER),
     ))
@@ -779,8 +779,8 @@ def generate_pdf(report: Report) -> bytes:
         bottomMargin=0.5 * inch,
         leftMargin=0.6 * inch,
         rightMargin=0.6 * inch,
-        title=f"UnGouge Report – {_title_case_project(report.project_type)}",
-        author="UnGouge.ai",
+        title=f"GougeAlert Report – {_title_case_project(report.project_type)}",
+        author="GougeAlert",
         compress=1,
     )
 

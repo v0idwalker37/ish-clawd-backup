@@ -78,10 +78,10 @@ export default class ErrorBoundary extends Component<Props, State> {
               We hit an unexpected error. Please try refreshing the page. If the
               problem persists, contact{' '}
               <a
-                href="mailto:support@ungouge.ai"
+                href="mailto:support@gougealert.com"
                 className="text-blue-600 hover:underline"
               >
-                support@ungouge.ai
+                support@gougealert.com
               </a>
               .
             </p>

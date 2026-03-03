@@ -87,7 +87,7 @@ async def lifespan(app: FastAPI):
             "ALTER TABLE analysis_reports ADD COLUMN IF NOT EXISTS is_estimated BOOLEAN NOT NULL DEFAULT false",
             "ALTER TABLE analysis_reports ADD COLUMN IF NOT EXISTS estimation_confidence VARCHAR(20)",
             "ALTER TABLE analysis_reports ADD COLUMN IF NOT EXISTS estimation_methodology TEXT",
-            # Migration 0004: Free resubmit tracking (total-only → itemized within 90 days)
+            # Migration 0004: Free resubmit tracking (total-only → itemized pass window)
             "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS original_quote_id VARCHAR(36)",
             "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS resubmit_eligible_until TIMESTAMP",
         ]
@@ -116,8 +116,8 @@ async def lifespan(app: FastAPI):
     await engine.dispose()
 
 app = FastAPI(
-    title="Ungouge.ai API",
-    description="Fair contractor quote analysis API",
+    title="GougeAlert API",
+    description="Independent contractor quote analysis API",
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -202,19 +202,30 @@ app.add_middleware(DNTMiddleware)
 app.add_middleware(SecurityAuditMiddleware)
 
 # CORS middleware (hardened for production)
-cors_origins = [
-    "http://localhost:3000",
-    "http://localhost:3001",
-]
+def _parse_cors_origins() -> list[str]:
+    origins = {
+        "http://localhost:3000",
+        "http://localhost:3001",
+    }
 
-# Add production origin if set
-production_url = os.getenv("FRONTEND_URL")
-if production_url and production_url not in cors_origins:
-    cors_origins.append(production_url)
+    # Primary frontend URL
+    frontend_url = os.getenv("FRONTEND_URL")
+    if frontend_url:
+        origins.add(frontend_url.strip())
+
+    # Optional comma-separated list
+    extra_origins = os.getenv("CORS_ORIGINS", "")
+    for origin in extra_origins.split(","):
+        origin = origin.strip()
+        if origin:
+            origins.add(origin)
+
+    return sorted(origins)
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=cors_origins,
+    allow_origins=_parse_cors_origins(),
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH"],  # Explicit list, no wildcards
     allow_headers=["Content-Type", "Authorization", "Accept", "X-CSRF-Token"],  # Explicit list, no wildcards
@@ -231,7 +242,7 @@ app.include_router(payments.router, prefix="/api", tags=["payments"])
 async def root():
     """Root endpoint"""
     return {
-        "message": "Ungouge.ai API",
+        "message": "GougeAlert API",
         "version": "1.0.0",
         "docs": "/docs",
     }
