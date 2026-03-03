@@ -2,7 +2,7 @@
 
 ## Overview
 
-Successfully implemented a complete user authentication and account management system for the Ungouge.ai FastAPI backend.
+Successfully implemented a complete user authentication and account management system for the GougeAlert FastAPI backend.
 
 ## ✅ Completed Tasks
 

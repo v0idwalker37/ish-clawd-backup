@@ -6,7 +6,7 @@ locationFactor: 1.09
 avgLaborRate: $60-98
 majorCities: ["Manchester", "Nashua", "Concord"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["New Hampshire contractor quotes", "New Hampshire home improvement costs", "contractor pricing New Hampshire", "New Hampshire renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in New Hampshire are close to the national average. Using
 
 - **Climate considerations:** Cold winters, short building season. Ice dam risk. Energy efficiency focus.
 
-## How UnGouge Analyzes New Hampshire Quotes
+## How GougeAlert Analyzes New Hampshire Quotes
 
 We compare your quote against:
 - New Hampshire-specific labor rates by trade

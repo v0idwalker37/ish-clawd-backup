@@ -2,7 +2,7 @@
 title: "Kitchen Remodel Cost Breakdown: Real Numbers for Cabinets, Countertops & Everything Else"
 description: "Complete kitchen renovation cost breakdown with actual material prices, labor rates, and where contractors inflate quotes. Budget from $15K to $75K+."
 date: 2024-01-17
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["kitchen remodel cost breakdown", "kitchen renovation cost", "kitchen remodel budget", "how much does kitchen remodel cost", "kitchen renovation prices"]
 ---
 
@@ -564,7 +564,7 @@ Understanding timeline helps you spot contractors who are padding hours or dragg
 
 You've got the numbers. You know what each component should cost. But analyzing a 15-page quote with dozens of line items is still overwhelming.
 
-That's exactly why we built **Ungouge.ai**.
+That's exactly why we built **GougeAlert**.
 
 **How it works:**
 1. **Upload your kitchen remodel quote** - Any format: PDF, spreadsheet, photo, email
@@ -572,7 +572,7 @@ That's exactly why we built **Ungouge.ai**.
 3. **Get a detailed breakdown** - See exactly what's fair, what's high, and where you're potentially being overcharged
 4. **No email required, no sales pitch** - We're not connecting you with contractors or generating leads. Just giving you the truth.
 
-**Try it now:** [ungouge.ai](https://ungouge.ai)
+**Try it now:** [gougealert.ai](https://gougealert.ai)
 
 ---
 

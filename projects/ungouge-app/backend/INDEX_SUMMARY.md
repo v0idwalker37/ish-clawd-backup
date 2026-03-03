@@ -1,7 +1,7 @@
 # Database Index Summary
 
 ## Overview
-This document summarizes all database indexes added to optimize query performance for the Ungouge.ai backend.
+This document summarizes all database indexes added to optimize query performance for the GougeAlert backend.
 
 ## Indexes Added (2024-02-02)
 

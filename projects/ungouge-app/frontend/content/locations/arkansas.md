@@ -6,7 +6,7 @@ locationFactor: 0.79
 avgLaborRate: $40-70
 majorCities: ["Little Rock", "Fayetteville", "Fort Smith"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Arkansas contractor quotes", "Arkansas home improvement costs", "contractor pricing Arkansas", "Arkansas renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Arkansas run about 20% below the national average. Usi
 
 - **Climate considerations:** Hot summers, mild winters. Tornado risk requires reinforced construction in some areas.
 
-## How UnGouge Analyzes Arkansas Quotes
+## How GougeAlert Analyzes Arkansas Quotes
 
 We compare your quote against:
 - Arkansas-specific labor rates by trade

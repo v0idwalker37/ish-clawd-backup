@@ -2,7 +2,7 @@
 title: "Driveway Paving Cost Breakdown: What You Should Actually Pay in 2026"
 description: "Complete driveway paving cost breakdown with actual prices for asphalt, concrete, gravel, and pavers. Includes labor rates, regional pricing, and contractor red flags."
 date: 2026-02-01
-author: Ungouge Team
+author: GougeAlert Team
 keywords: []
 ---
 
@@ -598,4 +598,4 @@ You got 3 quotes for 1,000 sq ft asphalt driveway over new 6" base:
 
 ---
 
-*Evaluating a driveway quote and want expert analysis? [Submit it to Ungouge.ai](#) for a detailed breakdown in minutes.*
+*Evaluating a driveway quote and want expert analysis? [Submit it to GougeAlert](#) for a detailed breakdown in minutes.*

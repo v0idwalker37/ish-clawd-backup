@@ -1,4 +1,4 @@
-# Landing Page Copy Variants - Ungouge.ai
+# Landing Page Copy Variants - GougeAlert
 
 ## Hero Section - 3 Variants (A/B/C Testing)
 
@@ -38,7 +38,7 @@
 ## Value Proposition Section - 3 Variations
 
 ### Variation 1: Feature-Focused
-**Headline:** How Ungouge Works
+**Headline:** How GougeAlert Works
 
 **Three Columns:**
 
@@ -101,7 +101,7 @@ Your quote data is encrypted and private. We analyze it, show you the results, a
 ---
 
 ### Block 2: How We're Different
-**Headline:** Why Ungouge Exists
+**Headline:** Why GougeAlert Exists
 
 We got tired of "free" quote sites that made money by selling homeowner info to contractors. You know the drill: fill out a form, then get bombarded with calls from salespeople.
 
@@ -130,7 +130,7 @@ We don't make up numbers. We show you what projects actually cost in your area b
 ---
 
 ### Block 4: What We're Not
-**Headline:** What Ungouge Doesn't Do
+**Headline:** What GougeAlert Doesn't Do
 
 ❌ We don't match you with contractors  
 ❌ We don't take commissions from referrals  
@@ -148,7 +148,7 @@ Think of us as market research for your renovation project.
 
 ## FAQ Section (10 Questions)
 
-### 1. How does Ungouge make money if you don't sell leads?
+### 1. How does GougeAlert make money if you don't sell leads?
 We charge homeowners a small fee for detailed analysis. Free tier available for basic comparison. No ads, no lead gen, no BS. You're the customer, not the product.
 
 ### 2. Is my quote data private?
@@ -163,10 +163,10 @@ Our benchmarks are based on real project data, public records, and material cost
 ### 5. What if my quote is higher than your benchmark?
 Higher doesn't automatically mean bad. Premium materials, complex logistics, or contractor experience can justify higher prices. We flag suspicious items and let you decide.
 
-### 6. Can I use Ungouge to negotiate with my contractor?
+### 6. Can I use GougeAlert to negotiate with my contractor?
 Absolutely. That's the point. Showing data (not just "I think this is high") gives you leverage to ask questions and negotiate fairly.
 
-### 7. Do contractors know about Ungouge?
+### 7. Do contractors know about GougeAlert?
 Some do. Good contractors don't mind because their pricing is fair. Shady ones... well, they're not fans. We're okay with that.
 
 ### 8. What if I don't have a quote yet?
@@ -235,7 +235,7 @@ Perfect for single projects. Get full analysis without subscription.
 ### Testimonial Template 1
 **"Saved me $5,500 on my roof"**
 
-"My roofer quoted $18K for asphalt shingles. Ungouge showed me the market rate was closer to $13K. I got a second quote for $12,500 and went with that contractor. Paid for itself 275 times over."
+"My roofer quoted $18K for asphalt shingles. GougeAlert showed me the market rate was closer to $13K. I got a second quote for $12,500 and went with that contractor. Paid for itself 275 times over."
 
 **— Sarah M., Denver, CO**  
 *Roofing Project*
@@ -245,7 +245,7 @@ Perfect for single projects. Get full analysis without subscription.
 ### Testimonial Template 2
 **"Caught the padding immediately"**
 
-"Line item said 'Miscellaneous materials: $4,200.' Ungouge flagged it as suspiciously vague. I asked the contractor to itemize it. He dropped it to $1,800. Wonder where that $2,400 was going..."
+"Line item said 'Miscellaneous materials: $4,200.' GougeAlert flagged it as suspiciously vague. I asked the contractor to itemize it. He dropped it to $1,800. Wonder where that $2,400 was going..."
 
 **— James T., Austin, TX**  
 *Kitchen Remodel*
@@ -265,7 +265,7 @@ Perfect for single projects. Get full analysis without subscription.
 ### Testimonial Template 4
 **"Confirmed my contractor was fair"**
 
-"Not every contractor is out to gouge you! Ungouge showed me my quote was right in line with market rates. I signed the contract with confidence instead of that nagging 'am I getting ripped off?' feeling."
+"Not every contractor is out to gouge you! GougeAlert showed me my quote was right in line with market rates. I signed the contract with confidence instead of that nagging 'am I getting ripped off?' feeling."
 
 **— Marcus R., Charlotte, NC**  
 *Siding Replacement*
@@ -275,7 +275,7 @@ Perfect for single projects. Get full analysis without subscription.
 ### Testimonial Template 5
 **"The anti-HomeAdvisor"**
 
-"Finally, a tool that's on MY side. I'm so tired of 'free' quote sites that exist just to sell my info. Ungouge is what I've been looking for: honest data, no spam, no games."
+"Finally, a tool that's on MY side. I'm so tired of 'free' quote sites that exist just to sell my info. GougeAlert is what I've been looking for: honest data, no spam, no games."
 
 **— Patricia L., Boston, MA**  
 *Full Kitchen & Bath Remodel*
@@ -285,13 +285,13 @@ Perfect for single projects. Get full analysis without subscription.
 ### Stats Block (To Be Updated With Real Data)
 
 **$X,XXX**  
-Average amount saved by users who negotiated after seeing Ungouge analysis
+Average amount saved by users who negotiated after seeing GougeAlert analysis
 
 **XX%**  
 Of analyzed quotes had at least one red flag worth questioning
 
 **X,XXX+**  
-Homeowners using Ungouge to stop getting gouged
+Homeowners using GougeAlert to stop getting gouged
 
 ---
 

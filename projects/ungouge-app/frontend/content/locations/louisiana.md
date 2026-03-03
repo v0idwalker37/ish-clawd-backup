@@ -6,7 +6,7 @@ locationFactor: 0.89
 avgLaborRate: $48-80
 majorCities: ["New Orleans", "Baton Rouge", "Shreveport"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Louisiana contractor quotes", "Louisiana home improvement costs", "contractor pricing Louisiana", "Louisiana renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Louisiana run about 10% below the national average. Us
 
 - **Climate considerations:** Hurricane risk, high humidity, flooding concerns. Elevated construction common.
 
-## How UnGouge Analyzes Louisiana Quotes
+## How GougeAlert Analyzes Louisiana Quotes
 
 We compare your quote against:
 - Louisiana-specific labor rates by trade

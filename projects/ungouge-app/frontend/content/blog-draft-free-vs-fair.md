@@ -38,7 +38,7 @@ Let's say you use a free bid comparison tool:
 | You hire one. Lead cost is in the price. | **+$75-150** |
 | Plus: spam calls from 3 contractors you didn't hire | Your time |
 
-Now let's say you use UnGouge:
+Now let's say you use GougeAlert:
 
 | What Happens | Cost to You |
 |---|---|
@@ -69,9 +69,9 @@ A tool that's actually on your side:
 - 🔒 Has no contractor network (no one to refer you to)
 - 🔒 Makes money when you pay. That's it.
 
-## The UnGouge Difference
+## The GougeAlert Difference
 
-We built UnGouge because we were tired of the same racket.
+We built GougeAlert because we were tired of the same racket.
 
 **We make $19.99 when you pay us. That's it.**
 
@@ -90,6 +90,6 @@ Because the only person who should profit from your renovation decisions is you.
 ## SEO Notes (for Jason)
 - **Target keyword:** "check contractor quote" / "contractor quote analysis" / "are contractor quotes fair"
 - **Word count:** ~500 (expand to 800-1000 for SEO)
-- **Internal links:** Link to UnGouge.ai analysis page
-- **Publish on:** ungouge.ai/blog + Medium + LinkedIn
+- **Internal links:** Link to GougeAlert analysis page
+- **Publish on:** gougealert.com/blog + Medium + LinkedIn
 - **YouTube crossover:** Episode "Why Free Contractor Quote Sites Are Expensive" (already in content calendar)

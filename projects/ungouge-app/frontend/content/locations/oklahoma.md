@@ -6,7 +6,7 @@ locationFactor: 0.87
 avgLaborRate: $47-77
 majorCities: ["Oklahoma City", "Tulsa", "Norman"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Oklahoma contractor quotes", "Oklahoma home improvement costs", "contractor pricing Oklahoma", "Oklahoma renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Oklahoma run about 13% below the national average. Usi
 
 - **Climate considerations:** Tornado Alley. Hot summers, variable winters. Hail damage common.
 
-## How UnGouge Analyzes Oklahoma Quotes
+## How GougeAlert Analyzes Oklahoma Quotes
 
 We compare your quote against:
 - Oklahoma-specific labor rates by trade

@@ -296,9 +296,9 @@ Unless explicitly stated, assume these are extra:
 
 ---
 
-## How Ungouge.ai Can Help
+## How GougeAlert Can Help
 
-Instead of guessing whether your deck quote is fair, **upload it to Ungouge.ai**.
+Instead of guessing whether your deck quote is fair, **upload it to GougeAlert**.
 
 Our analysis includes:
 - ✅ Material cost verification against regional pricing data

@@ -6,7 +6,7 @@ locationFactor: 1.09
 avgLaborRate: $60-98
 majorCities: ["Portland", "Eugene", "Salem", "Bend"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Oregon contractor quotes", "Oregon home improvement costs", "contractor pricing Oregon", "Oregon renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Oregon are close to the national average. Using nation
 
 - **Climate considerations:** Wet winters, dry summers. Seismic concerns. Mold/moisture issues west of Cascades.
 
-## How UnGouge Analyzes Oregon Quotes
+## How GougeAlert Analyzes Oregon Quotes
 
 We compare your quote against:
 - Oregon-specific labor rates by trade

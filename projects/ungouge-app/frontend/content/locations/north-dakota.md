@@ -6,7 +6,7 @@ locationFactor: 1.02
 avgLaborRate: $56-90
 majorCities: ["Fargo", "Bismarck", "Grand Forks"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["North Dakota contractor quotes", "North Dakota home improvement costs", "contractor pricing North Dakota", "North Dakota renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in North Dakota are close to the national average. Using 
 
 - **Climate considerations:** Extremely cold winters, short building season. Energy costs high.
 
-## How UnGouge Analyzes North Dakota Quotes
+## How GougeAlert Analyzes North Dakota Quotes
 
 We compare your quote against:
 - North Dakota-specific labor rates by trade

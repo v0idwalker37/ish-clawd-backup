@@ -2,7 +2,7 @@
 title: "10 Signs Your Contractor Is Overcharging (And What to Do About It)"
 description: "Learn to spot the specific red flags that reveal contractor overcharging—from inflated labor rates to phantom expenses—and how to confront it professionally."
 date: 2024-01-16
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["signs contractor overcharging", "contractor overcharging", "contractor fraud", "overpriced contractor quote", "how to spot contractor scams"]
 ---
 
@@ -495,7 +495,7 @@ The best defense is avoiding bad contractors in the first place.
 
 You've got the red flags. You know what to look for. But most homeowners don't have time to research every line item and compare it to industry benchmarks.
 
-That's why we built **Ungouge.ai**.
+That's why we built **GougeAlert**.
 
 **How it works:**
 1. **Upload your quote** - PDF, photo, email—any format
@@ -505,7 +505,7 @@ That's why we built **Ungouge.ai**.
 
 We don't sell contracting services. We don't connect you with contractors. We just give you the truth about your quote.
 
-**Try it now:** [ungouge.ai](https://ungouge.ai)
+**Try it now:** [gougealert.ai](https://gougealert.ai)
 
 ---
 

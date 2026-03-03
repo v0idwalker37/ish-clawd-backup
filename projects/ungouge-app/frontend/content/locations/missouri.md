@@ -6,7 +6,7 @@ locationFactor: 0.95
 avgLaborRate: $52-85
 majorCities: ["Kansas City", "St. Louis", "Springfield"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Missouri contractor quotes", "Missouri home improvement costs", "contractor pricing Missouri", "Missouri renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Missouri are close to the national average. Using nati
 
 - **Climate considerations:** Hot summers, cold winters. Tornado risk. Humidity.
 
-## How UnGouge Analyzes Missouri Quotes
+## How GougeAlert Analyzes Missouri Quotes
 
 We compare your quote against:
 - Missouri-specific labor rates by trade

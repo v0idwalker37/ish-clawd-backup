@@ -6,7 +6,7 @@ locationFactor: 1.28
 avgLaborRate: $75-120
 majorCities: ["Anchorage", "Fairbanks", "Juneau"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Alaska contractor quotes", "Alaska home improvement costs", "contractor pricing Alaska", "Alaska renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Alaska run about 28% above the national average. Using
 
 - **Climate considerations:** Extreme cold requires specialized insulation, heating systems, and cold-weather construction techniques. Short building season.
 
-## How UnGouge Analyzes Alaska Quotes
+## How GougeAlert Analyzes Alaska Quotes
 
 We compare your quote against:
 - Alaska-specific labor rates by trade

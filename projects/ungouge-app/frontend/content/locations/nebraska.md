@@ -6,7 +6,7 @@ locationFactor: 0.95
 avgLaborRate: $52-85
 majorCities: ["Omaha", "Lincoln", "Bellevue"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Nebraska contractor quotes", "Nebraska home improvement costs", "contractor pricing Nebraska", "Nebraska renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Nebraska are close to the national average. Using nati
 
 - **Climate considerations:** Cold winters, hot summers. Tornado risk.
 
-## How UnGouge Analyzes Nebraska Quotes
+## How GougeAlert Analyzes Nebraska Quotes
 
 We compare your quote against:
 - Nebraska-specific labor rates by trade

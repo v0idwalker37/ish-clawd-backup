@@ -6,7 +6,7 @@ locationFactor: 0.85
 avgLaborRate: $46-75
 majorCities: ["Charleston", "Columbia", "Greenville"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["South Carolina contractor quotes", "South Carolina home improvement costs", "contractor pricing South Carolina", "South Carolina renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in South Carolina run about 15% below the national averag
 
 - **Climate considerations:** Hurricane risk on coast. Hot, humid summers. Termite activity high.
 
-## How UnGouge Analyzes South Carolina Quotes
+## How GougeAlert Analyzes South Carolina Quotes
 
 We compare your quote against:
 - South Carolina-specific labor rates by trade

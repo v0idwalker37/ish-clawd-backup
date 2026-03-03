@@ -6,7 +6,7 @@ locationFactor: 0.87
 avgLaborRate: $48-78
 majorCities: ["Louisville", "Lexington", "Bowling Green"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Kentucky contractor quotes", "Kentucky home improvement costs", "contractor pricing Kentucky", "Kentucky renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Kentucky run about 13% below the national average. Usi
 
 - **Climate considerations:** Humid subtropical. Moderate seasons.
 
-## How UnGouge Analyzes Kentucky Quotes
+## How GougeAlert Analyzes Kentucky Quotes
 
 We compare your quote against:
 - Kentucky-specific labor rates by trade

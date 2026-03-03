@@ -2,7 +2,7 @@
 title: "Interior & Exterior Painting Cost Breakdown: What's Fair in 2026?"
 description: "Complete painting cost breakdown with actual prices for interior and exterior projects. Includes labor rates, material costs per square foot, and contractor red flags."
 date: 2026-02-01
-author: Ungouge Team
+author: GougeAlert Team
 keywords: []
 ---
 
@@ -422,9 +422,9 @@ Use tables in this guide. If quote is >40% above high end without obvious reason
 
 ---
 
-## The UnGouge.ai Difference
+## The GougeAlert Difference
 
-Stop second-guessing your painting quote. Upload it to **UnGouge.ai** and get:
+Stop second-guessing your painting quote. Upload it to **GougeAlert** and get:
 
 ✅ **Line-by-line cost analysis** (prep, materials, labor breakdown)  
 ✅ **Regional price benchmarking** (compare to local market rates)  
@@ -434,7 +434,7 @@ Stop second-guessing your painting quote. Upload it to **UnGouge.ai** and get:
 
 **$19.99 for confidence.** No contractor kickbacks. No upsells. Just honest analysis.
 
-[**→ Get Your Quote Analyzed**](https://ungouge.ai)
+[**→ Get Your Quote Analyzed**](https://gougealert.ai)
 
 ---
 
@@ -444,7 +444,7 @@ Painting is one of the **easiest contractor services to price-shop**. Fair contr
 
 If your quote feels high, it probably is. Get 3 competing bids, ask questions, and don't settle for vague "all-inclusive" pricing.
 
-**Questions about your painting quote?** Upload it to UnGouge.ai—we'll tell you exactly where the money's going and what's fair.
+**Questions about your painting quote?** Upload it to GougeAlert—we'll tell you exactly where the money's going and what's fair.
 
 ---
 

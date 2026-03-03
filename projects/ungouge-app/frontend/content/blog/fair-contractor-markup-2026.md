@@ -107,7 +107,7 @@ Give them a chance to justify. Sometimes there's a good reason (better materials
 
 ## The $20 Reality Check
 
-Here's the thing: you can spend hours researching typical markup, calling around for more quotes, and trying to decode what's fair — or you can upload your quote to UnGouge.ai and know in 60 seconds.
+Here's the thing: you can spend hours researching typical markup, calling around for more quotes, and trying to decode what's fair — or you can upload your quote to GougeAlert and know in 60 seconds.
 
 We compare every line item against real Bureau of Labor Statistics wage data and regional material costs. If your contractor is marking up materials 60% or charging $95/hour for labor that should cost $55, we flag it.
 

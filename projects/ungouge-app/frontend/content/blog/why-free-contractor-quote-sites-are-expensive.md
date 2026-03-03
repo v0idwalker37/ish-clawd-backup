@@ -2,7 +2,7 @@
 title: "Why 'Free' Contractor Quote Sites Cost You More Than You Think"
 description: "HomeAdvisor, Thumbtack, and Porch are free to use—but you pay in other ways. Here's how lead-gen sites affect your project costs and privacy."
 date: 2024-02-03
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["homeadvisor cost", "thumbtack pricing", "free contractor quotes", "lead generation sites", "contractor marketplace problems", "alternative to homeadvisor"]
 ---
 
@@ -169,7 +169,7 @@ Instead of using lead-gen platforms that sell your data and inflate costs, consi
 
 **2. Get quotes directly** (no middleman padding)
 
-**3. Use a quote analysis tool** (like Ungouge) to verify pricing
+**3. Use a quote analysis tool** (like GougeAlert) to verify pricing
 
 **Why this works:**
 - No lead costs baked into quotes
@@ -218,7 +218,7 @@ No middleman. No spam. No games.
 
 ---
 
-## How Ungouge Is Different
+## How GougeAlert Is Different
 
 We don't sell leads. We don't sell your data. We don't spam you.
 

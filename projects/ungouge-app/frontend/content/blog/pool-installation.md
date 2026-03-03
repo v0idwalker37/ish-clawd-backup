@@ -2,7 +2,7 @@
 title: "Pool Installation Cost Breakdown: Real Prices for Inground, Above Ground, and Ongoing Costs"
 description: "Complete swimming pool installation cost breakdown with actual prices for concrete, fiberglass, and vinyl liner pools. Includes equipment, landscaping, ongoing maintenance costs, and contractor red flags."
 date: "2026-02-03"
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["pool installation cost", "inground pool cost", "above ground pool cost", "fiberglass pool cost", "concrete pool cost", "vinyl liner pool cost", "pool maintenance cost"]
 ---
 
@@ -378,9 +378,9 @@ Inground pool installation involves:
 
 ---
 
-## What UnGouge Would Flag
+## What GougeAlert Would Flag
 
-Upload your pool quote to **UnGouge.ai** and our analysis catches:
+Upload your pool quote to **GougeAlert** and our analysis catches:
 
 - ✅ **"All-in" reality check** — We identify what's missing from the quoted price (fencing, electrical, permits, landscaping, deck)
 - ✅ **Equipment markup** — Pool equipment has known retail prices. We flag markups above 40-50%
@@ -390,7 +390,7 @@ Upload your pool quote to **UnGouge.ai** and our analysis catches:
 - ✅ **Regional pricing** — Is your quote in line with your metro area's market?
 - ✅ **Payment schedule review** — We flag front-heavy payment schedules that put you at risk
 
-**Upload your quote:** [ungouge.ai](https://ungouge.ai) — $19.99 for a detailed analysis. No lead gen. No contractor referrals. Just data.
+**Upload your quote:** [gougealert.ai](https://gougealert.ai) — $19.99 for a detailed analysis. No lead gen. No contractor referrals. Just data.
 
 ---
 
@@ -408,7 +408,7 @@ Pools are expensive. Not just to build — to own. Here's the honest framework:
 
 **The number to focus on:** Not the pool price — the **all-in project cost** plus **10-year ownership cost**. That's the real number you're committing to.
 
-Get multiple quotes. Insist on truly all-inclusive pricing. Read the contract line by line. And upload it to UnGouge before you sign.
+Get multiple quotes. Insist on truly all-inclusive pricing. Read the contract line by line. And upload it to GougeAlert before you sign.
 
 ---
 

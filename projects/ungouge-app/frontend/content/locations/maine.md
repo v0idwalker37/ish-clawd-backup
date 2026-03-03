@@ -6,7 +6,7 @@ locationFactor: 1.06
 avgLaborRate: $58-95
 majorCities: ["Portland", "Lewiston", "Bangor"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Maine contractor quotes", "Maine home improvement costs", "contractor pricing Maine", "Maine renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Maine are close to the national average. Using nationa
 
 - **Climate considerations:** Cold winters, short building season. Coastal salt damage. Ice dam risk.
 
-## How UnGouge Analyzes Maine Quotes
+## How GougeAlert Analyzes Maine Quotes
 
 We compare your quote against:
 - Maine-specific labor rates by trade

@@ -1,4 +1,4 @@
-# Google Ads Copy - Ungouge.ai Launch
+# Google Ads Copy - GougeAlert Launch
 
 ## Ad Variation 1: "Is My Contractor Quote Fair"
 **Target Keyword:** is my contractor quote fair

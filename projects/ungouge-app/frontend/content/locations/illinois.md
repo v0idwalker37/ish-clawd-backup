@@ -6,7 +6,7 @@ locationFactor: 1.12
 avgLaborRate: $62-100
 majorCities: ["Chicago", "Aurora", "Naperville", "Rockford"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Illinois contractor quotes", "Illinois home improvement costs", "contractor pricing Illinois", "Illinois renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Illinois run about 12% above the national average. Usi
 
 - **Climate considerations:** Cold winters, hot summers. Chicago wind affects exterior work. Freeze-thaw cycles damage concrete.
 
-## How UnGouge Analyzes Illinois Quotes
+## How GougeAlert Analyzes Illinois Quotes
 
 We compare your quote against:
 - Illinois-specific labor rates by trade

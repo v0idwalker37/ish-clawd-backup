@@ -6,7 +6,7 @@ locationFactor: 0.97
 avgLaborRate: $53-87
 majorCities: ["Salt Lake City", "Provo", "West Valley City"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Utah contractor quotes", "Utah home improvement costs", "contractor pricing Utah", "Utah renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Utah are close to the national average. Using national
 
 - **Climate considerations:** Cold winters, dry climate. Seismic concerns. High altitude.
 
-## How UnGouge Analyzes Utah Quotes
+## How GougeAlert Analyzes Utah Quotes
 
 We compare your quote against:
 - Utah-specific labor rates by trade

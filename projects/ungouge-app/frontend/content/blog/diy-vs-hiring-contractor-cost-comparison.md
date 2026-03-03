@@ -2,7 +2,7 @@
 title: "DIY vs Hiring a Contractor: True Cost Comparison (2026)"
 description: "DIY looks cheaper until you factor in time, tools, mistakes, and safety risks. Here's when to DIY and when to hire—with real cost breakdowns."
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["DIY vs contractor", "DIY home improvement", "contractor cost comparison", "DIY cost calculator", "when to hire contractor"]
 ---
 
@@ -424,7 +424,7 @@ Time: 30 hours
 
 Before deciding "I'll just do it myself because the contractor's price is too high," verify the contractor isn't overcharging.
 
-Upload the quote to UnGouge. If it's fair, pay the pro. If it's inflated, negotiate or DIY.
+Upload the quote to GougeAlert. If it's fair, pay the pro. If it's inflated, negotiate or DIY.
 
 [Analyze Contractor Quote →](/analyze)
 

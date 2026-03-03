@@ -6,7 +6,7 @@ locationFactor: {{LOCATION_FACTOR}}
 avgLaborRate: {{AVG_LABOR_RATE}}
 majorCities: {{MAJOR_CITIES_ARRAY}}
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["{{STATE_NAME}} contractor quotes", "{{STATE_NAME}} home improvement costs", "contractor pricing {{STATE_NAME}}", "{{STATE_NAME}} renovation costs"]
 ---
 
@@ -24,7 +24,7 @@ Home improvement costs in {{STATE_NAME}} {{COST_CONTEXT}}. Using national pricin
 - **Common projects:** {{COMMON_PROJECTS}}
 {{CLIMATE_SECTION}}
 
-## How UnGouge Analyzes {{STATE_NAME}} Quotes
+## How GougeAlert Analyzes {{STATE_NAME}} Quotes
 
 We compare your quote against:
 - {{STATE_NAME}}-specific labor rates by trade

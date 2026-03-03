@@ -2,7 +2,7 @@
 title: "Best Time to Hire a Contractor: Seasonal Pricing Guide (2026)"
 description: "Contractor prices fluctuate 15-30% by season. Learn when to hire for the lowest prices and fastest timelines—and when to avoid."
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["best time hire contractor", "contractor prices by season", "off-season contractor rates", "winter contractor discounts", "spring renovation season"]
 ---
 
@@ -336,7 +336,7 @@ If you wait until spring, you risk rain delays. Pay the shoulder-season rate for
 
 **Reality:** They jacked up prices 30% first, then "discounted" 50% to normal rate.
 
-**Verify:** Get quotes in multiple seasons. Compare to market averages (use UnGouge).
+**Verify:** Get quotes in multiple seasons. Compare to market averages (use GougeAlert).
 
 ---
 
@@ -406,7 +406,7 @@ If you wait until spring, you risk rain delays. Pay the shoulder-season rate for
 
 ## Verify Your Quote (Any Season)
 
-Upload your contractor quote to UnGouge. We'll tell you if you're paying seasonal premiums or if the price is fair year-round.
+Upload your contractor quote to GougeAlert. We'll tell you if you're paying seasonal premiums or if the price is fair year-round.
 
 Even off-season quotes can be inflated.
 

@@ -188,7 +188,7 @@ That's a quote. It's detailed. It's fixed. It has conditions. You know what you'
 
 ## What to Do If You're Not Sure
 
-Upload it to UnGouge.ai. We'll tell you:
+Upload it to GougeAlert. We'll tell you:
 
 - If the pricing is fair (whether it's a quote or estimate)
 - What's missing from the documentation

@@ -6,7 +6,7 @@ locationFactor: 0.91
 avgLaborRate: $50-82
 majorCities: ["Indianapolis", "Fort Wayne", "Evansville"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Indiana contractor quotes", "Indiana home improvement costs", "contractor pricing Indiana", "Indiana renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Indiana are close to the national average. Using natio
 
 - **Climate considerations:** Cold winters, hot summers. Tornado risk in some areas.
 
-## How UnGouge Analyzes Indiana Quotes
+## How GougeAlert Analyzes Indiana Quotes
 
 We compare your quote against:
 - Indiana-specific labor rates by trade

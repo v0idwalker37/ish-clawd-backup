@@ -231,7 +231,7 @@ Call your state contractor licensing board. Verify:
 
 ### Step 4: Check Fair Pricing
 
-Upload the quote to UnGouge.ai. We'll tell you:
+Upload the quote to GougeAlert. We'll tell you:
 - If labor rates are appropriate for your region
 - If material costs are marked up excessively
 - If any line items are missing (like underlayment)
@@ -282,7 +282,7 @@ Upload the quote to UnGouge.ai. We'll tell you:
 
 **Fair contractor markup:** 15-25% on materials, 20-35% on labor (covers overhead, insurance, warranty work).
 
-**Want to know if your quote is fair?** Upload it to UnGouge.ai. We compare against real regional pricing data for your zip code.
+**Want to know if your quote is fair?** Upload it to GougeAlert. We compare against real regional pricing data for your zip code.
 
 **[Get your $19.99 analysis now →](/analyze)**
 

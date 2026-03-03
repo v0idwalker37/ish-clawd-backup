@@ -6,7 +6,7 @@ locationFactor: 0.96
 avgLaborRate: $52-85
 majorCities: ["Des Moines", "Cedar Rapids", "Davenport"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Iowa contractor quotes", "Iowa home improvement costs", "contractor pricing Iowa", "Iowa renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Iowa are close to the national average. Using national
 
 - **Climate considerations:** Cold winters, hot summers. Tornado risk. Freeze-thaw cycles.
 
-## How UnGouge Analyzes Iowa Quotes
+## How GougeAlert Analyzes Iowa Quotes
 
 We compare your quote against:
 - Iowa-specific labor rates by trade

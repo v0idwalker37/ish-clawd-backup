@@ -6,7 +6,7 @@ locationFactor: 1.09
 avgLaborRate: $60-98
 majorCities: ["Baltimore", "Columbia", "Germantown", "Silver Spring"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Maryland contractor quotes", "Maryland home improvement costs", "contractor pricing Maryland", "Maryland renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Maryland are close to the national average. Using nati
 
 - **Climate considerations:** Humid subtropical. Coastal areas face salt damage and storm surge.
 
-## How UnGouge Analyzes Maryland Quotes
+## How GougeAlert Analyzes Maryland Quotes
 
 We compare your quote against:
 - Maryland-specific labor rates by trade

@@ -2,7 +2,7 @@
 title: "The Hidden Cost of 'Free' Contractor Quote Tools"
 slug: free-quote-tools-hidden-cost
 description: "Free contractor quote comparison tools seem helpful, but many are lead generation funnels in disguise. Learn how to spot them and protect your data."
-author: "Ungouge Team"
+author: "GougeAlert Team"
 date: "2026-02-12"
 category: "Industry Insights"
 tags: ["contractor quotes", "lead generation", "privacy", "home improvement"]
@@ -73,8 +73,8 @@ If the answer isn't clear, **you're the product**.
 
 ---
 
-*At Ungouge, we make money one way: you pay $19.99 for a report. That's it. We don't sell leads. We don't refer contractors. We don't share your data. Ever.*
+*At GougeAlert, we make money one way: you pay $19.99 for a report. That's it. We don't sell leads. We don't refer contractors. We don't share your data. Ever.*
 
 *Because the only way to give you honest analysis is to not have a financial stake in your decision.*
 
-[Check Your Quote →](https://ungouge.ai)
+[Check Your Quote →](https://gougealert.ai)

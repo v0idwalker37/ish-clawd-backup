@@ -6,7 +6,7 @@ locationFactor: 0.92
 avgLaborRate: $50-82
 majorCities: ["Wichita", "Overland Park", "Kansas City"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Kansas contractor quotes", "Kansas home improvement costs", "contractor pricing Kansas", "Kansas renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Kansas are close to the national average. Using nation
 
 - **Climate considerations:** Hot summers, cold winters. Tornado Alley—reinforced construction common.
 
-## How UnGouge Analyzes Kansas Quotes
+## How GougeAlert Analyzes Kansas Quotes
 
 We compare your quote against:
 - Kansas-specific labor rates by trade

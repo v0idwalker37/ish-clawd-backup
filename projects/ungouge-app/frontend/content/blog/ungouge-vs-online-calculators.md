@@ -1,12 +1,12 @@
 ---
-title: "UnGouge vs Free Online Cost Calculators: Why Generic Estimates Miss the Mark"
+title: "GougeAlert vs Free Online Cost Calculators: Why Generic Estimates Miss the Mark"
 description: "Free contractor cost calculators give you ballpark numbers—but they can't tell you if YOUR quote is fair. Here's why data beats estimates."
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["contractor cost calculator", "home improvement cost calculator", "estimate vs actual quote", "free cost estimator", "renovation calculator"]
 ---
 
-# UnGouge vs Free Online Cost Calculators: Why Generic Estimates Miss the Mark
+# GougeAlert vs Free Online Cost Calculators: Why Generic Estimates Miss the Mark
 
 You Google "how much should a kitchen remodel cost" and find a dozen free calculators.
 
@@ -72,9 +72,9 @@ But:
 
 **Your quote could be $12,000 overpriced and still fall within the calculator's range.**
 
-## UnGouge vs Online Calculators: What's Different?
+## GougeAlert vs Online Calculators: What's Different?
 
-| Feature | Free Online Calculators | UnGouge |
+| Feature | Free Online Calculators | GougeAlert |
 |---------|-------------------------|---------|
 | **Input** | Project type, ZIP, sqft | Your actual quote (PDF/photo) |
 | **Output** | Generic range ($X - $Y) | Line-by-line analysis of YOUR quote |
@@ -98,7 +98,7 @@ But:
 
 ✅ Falls in range. Seems fine?
 
-**UnGouge analysis reveals:**
+**GougeAlert analysis reveals:**
 - Trex materials: $6,800 (verified via Home Depot)
 - Contractor charging: $11,200 for materials (65% markup—fair range is 20-40%)
 - Labor: 80 hours @ $85/hour = $6,800 (fair for region)
@@ -118,9 +118,9 @@ Don't get us wrong—cost calculators have a place:
 
 They're great for **planning**. Terrible for **verification**.
 
-## When UnGouge Makes Sense
+## When GougeAlert Makes Sense
 
-You need UnGouge when you have an **actual quote in hand** and need to answer:
+You need GougeAlert when you have an **actual quote in hand** and need to answer:
 
 ✅ Is this price fair for what I'm getting?  
 ✅ Are the material costs reasonable or inflated?  
@@ -143,7 +143,7 @@ Project management: $4,000
 
 A calculator sees $42K and says "seems reasonable."
 
-**UnGouge sees:**
+**GougeAlert sees:**
 - Cabinets: IKEA Sektion retail = $7,200. Quote shows $18,000 (150% markup—excessive)
 - Countertops: Quartz at $65/sqft for 80 sqft = ~$5,200 retail. Quote shows $8,000 (54% markup—high but within range)
 - Installation labor: 140 hours @ $85/hour = $11,900 (fair)
@@ -164,14 +164,14 @@ Cool. So... $8K? $22K? $15K?
 
 **A $14,000 spread is not useful when you're trying to decide if $18,500 is fair.**
 
-UnGouge doesn't give you a range. We give you:
+GougeAlert doesn't give you a range. We give you:
 - **What's fair:** $16,200
 - **What you're quoted:** $18,500
 - **The difference:** $2,300 (14% high)
 - **Where it's inflated:** Material markup + "disposal fee" padding
 - **What to do:** Negotiate these two line items, proceed
 
-## Free Calculators + UnGouge = Smart Strategy
+## Free Calculators + GougeAlert = Smart Strategy
 
 Here's how to use both:
 
@@ -182,7 +182,7 @@ Here's how to use both:
 
 **Step 2:** Get contractor quotes
 
-**Step 3:** Run your actual quote through UnGouge
+**Step 3:** Run your actual quote through GougeAlert
 - Validate the numbers
 - Identify padding
 - Get negotiation leverage
@@ -193,7 +193,7 @@ Here's how to use both:
 
 **Free online calculators** = "What should this cost in theory?"
 
-**UnGouge** = "Is what I'm being charged fair in reality?"
+**GougeAlert** = "Is what I'm being charged fair in reality?"
 
 One is for planning. One is for protection.
 
@@ -221,7 +221,7 @@ Upload your contractor quote and get a line-by-line analysis against real market
 - [Fair Contractor Markup Guide 2026](/blog/fair-contractor-markup-2026)
 
 **Comparison guides:**
-- [UnGouge vs Getting 3 Quotes](/blog/ungouge-vs-getting-3-quotes)
+- [GougeAlert vs Getting 3 Quotes](/blog/gougealert-vs-getting-3-quotes)
 
 **Project-specific cost guides:**
 - [Kitchen Remodel Costs](/blog/02-kitchen-remodel-cost-2026)

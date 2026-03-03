@@ -6,7 +6,7 @@ locationFactor: 0.94
 avgLaborRate: $52-85
 majorCities: ["Boise", "Meridian", "Nampa"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Idaho contractor quotes", "Idaho home improvement costs", "contractor pricing Idaho", "Idaho renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Idaho are close to the national average. Using nationa
 
 - **Climate considerations:** Cold winters, dry climate. Growing season affects landscaping.
 
-## How UnGouge Analyzes Idaho Quotes
+## How GougeAlert Analyzes Idaho Quotes
 
 We compare your quote against:
 - Idaho-specific labor rates by trade

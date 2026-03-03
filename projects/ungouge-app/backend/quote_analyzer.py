@@ -1,5 +1,5 @@
 """
-Quote Analyzer Module for UnGouge.ai
+Quote Analyzer Module for GougeAlert
 
 Analyzes contractor quotes against cost model data to determine fairness,
 flag suspicious line items, and detect common upsells and red flags.

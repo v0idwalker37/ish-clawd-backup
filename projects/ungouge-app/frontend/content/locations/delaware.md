@@ -6,7 +6,7 @@ locationFactor: 1.08
 avgLaborRate: $60-95
 majorCities: ["Wilmington", "Dover", "Newark"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Delaware contractor quotes", "Delaware home improvement costs", "contractor pricing Delaware", "Delaware renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Delaware are close to the national average. Using nati
 
 - **Climate considerations:** Humid subtropical. Coastal flooding risk. Moderate winters.
 
-## How UnGouge Analyzes Delaware Quotes
+## How GougeAlert Analyzes Delaware Quotes
 
 We compare your quote against:
 - Delaware-specific labor rates by trade

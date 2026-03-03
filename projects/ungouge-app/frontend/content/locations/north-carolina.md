@@ -6,7 +6,7 @@ locationFactor: 0.89
 avgLaborRate: $48-80
 majorCities: ["Charlotte", "Raleigh", "Greensboro", "Durham"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["North Carolina contractor quotes", "North Carolina home improvement costs", "contractor pricing North Carolina", "North Carolina renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in North Carolina run about 10% below the national averag
 
 - **Climate considerations:** Humid subtropical. Hurricane risk on coast. Moderate winters.
 
-## How UnGouge Analyzes North Carolina Quotes
+## How GougeAlert Analyzes North Carolina Quotes
 
 We compare your quote against:
 - North Carolina-specific labor rates by trade

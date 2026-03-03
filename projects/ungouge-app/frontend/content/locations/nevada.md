@@ -6,7 +6,7 @@ locationFactor: 1.08
 avgLaborRate: $60-95
 majorCities: ["Las Vegas", "Henderson", "Reno"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Nevada contractor quotes", "Nevada home improvement costs", "contractor pricing Nevada", "Nevada renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Nevada are close to the national average. Using nation
 
 - **Climate considerations:** Desert heat requires efficient cooling. Water restrictions. UV damage to materials.
 
-## How UnGouge Analyzes Nevada Quotes
+## How GougeAlert Analyzes Nevada Quotes
 
 We compare your quote against:
 - Nevada-specific labor rates by trade

@@ -6,7 +6,7 @@ locationFactor: 1.01
 avgLaborRate: $55-90
 majorCities: ["Cheyenne", "Casper", "Laramie"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Wyoming contractor quotes", "Wyoming home improvement costs", "contractor pricing Wyoming", "Wyoming renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Wyoming are close to the national average. Using natio
 
 - **Climate considerations:** Cold, windy winters. Short building season. Rural—limited contractor availability.
 
-## How UnGouge Analyzes Wyoming Quotes
+## How GougeAlert Analyzes Wyoming Quotes
 
 We compare your quote against:
 - Wyoming-specific labor rates by trade

@@ -2,7 +2,7 @@
 title: "Tree Removal Cost Breakdown: Real Prices for Removal, Stump Grinding, and Emergency Service"
 description: "Complete tree removal cost breakdown with actual prices by tree size, stump grinding costs, emergency removal rates, permit requirements, and contractor red flags to watch for."
 date: "2026-02-10"
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["tree removal cost", "stump grinding cost", "emergency tree removal", "tree cutting cost", "tree removal permit", "tree trimming cost", "stump removal cost"]
 ---
 
@@ -339,9 +339,9 @@ This varies hugely by location:
 
 ---
 
-## What UnGouge Would Flag
+## What GougeAlert Would Flag
 
-Upload your tree removal quote to **UnGouge.ai** and our analysis catches:
+Upload your tree removal quote to **GougeAlert** and our analysis catches:
 
 - ✅ **Price vs. tree size** — Is the quoted price reasonable for the tree's height, diameter, and species?
 - ✅ **Complexity assessment** — Does the quote account for access issues, proximity to structures, and risk factors — without inflating them?
@@ -351,7 +351,7 @@ Upload your tree removal quote to **UnGouge.ai** and our analysis catches:
 - ✅ **Permit check** — Based on your location, we flag whether permits are likely required
 - ✅ **Regional price comparison** — Is your quote in line with your area's going rates?
 
-**Upload your quote:** [ungouge.ai](https://ungouge.ai) — $19.99 for a detailed analysis. No lead gen. No contractor referrals. Just data.
+**Upload your quote:** [gougealert.ai](https://gougealert.ai) — $19.99 for a detailed analysis. No lead gen. No contractor referrals. Just data.
 
 ---
 

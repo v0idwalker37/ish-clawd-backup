@@ -6,7 +6,7 @@ locationFactor: 1.22
 avgLaborRate: $68-112
 majorCities: ["Newark", "Jersey City", "Paterson", "Elizabeth"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["New Jersey contractor quotes", "New Jersey home improvement costs", "contractor pricing New Jersey", "New Jersey renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in New Jersey run about 21% above the national average. U
 
 - **Climate considerations:** Coastal storms, high property costs. Strict building codes.
 
-## How UnGouge Analyzes New Jersey Quotes
+## How GougeAlert Analyzes New Jersey Quotes
 
 We compare your quote against:
 - New Jersey-specific labor rates by trade

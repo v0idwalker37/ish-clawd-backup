@@ -6,7 +6,7 @@ locationFactor: 0.98
 avgLaborRate: $54-88
 majorCities: ["Burlington", "Montpelier", "Barre", "Northfield"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Vermont contractor quotes", "Vermont home improvement costs", "contractor pricing Vermont", "Vermont renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Vermont are close to the national average. Using natio
 
 - **Climate considerations:** Very cold winters, short building season. Heavy snow loads. Ice dam risk. Old housing stock.
 
-## How UnGouge Analyzes Vermont Quotes
+## How GougeAlert Analyzes Vermont Quotes
 
 We compare your quote against:
 - Vermont-specific labor rates by trade

@@ -1,8 +1,8 @@
-# Ungouge.ai - Fair Pricing for Home Improvement Projects
+# GougeAlert - Fair Pricing for Home Improvement Projects
 
 **Version 2.0 - Microservices Architecture**
 
-Ungouge helps homeowners avoid getting ripped off by analyzing contractor quotes with AI and providing fair market pricing comparisons.
+GougeAlert helps homeowners avoid getting ripped off by analyzing contractor quotes with AI and providing fair market pricing comparisons.
 
 ---
 
@@ -31,7 +31,7 @@ See `ARCHITECTURE_V2_HEROIC.md` for complete architecture documentation.
 ```bash
 # Clone the repo
 git clone https://github.com/v0idwalker37/ish-clawd-backup.git
-cd ungouge-app
+cd ungouge-app  # (repo directory name)
 
 # Set up environment
 cp .env.example .env

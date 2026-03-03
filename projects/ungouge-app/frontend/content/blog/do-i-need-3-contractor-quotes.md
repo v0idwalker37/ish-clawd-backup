@@ -34,7 +34,7 @@ Multiple quotes help you understand **what's included** and make apples-to-apple
 
 ### 2. You Already Know Fair Pricing
 
-If you've researched typical costs for your project (or used a tool like UnGouge.ai), you can spot which of the three quotes is closest to fair and which are outliers.
+If you've researched typical costs for your project (or used a tool like GougeAlert), you can spot which of the three quotes is closest to fair and which are outliers.
 
 ### 3. You're Testing Professionalism
 
@@ -70,7 +70,7 @@ Without baseline knowledge of fair pricing, three quotes just give you three dat
 
 For simple, well-defined projects (fence install, deck refinish, interior paint), pricing is fairly standardized. Getting five quotes won't reveal much beyond "this guy is expensive" or "this guy seems cheap."
 
-One good quote + a pricing tool like UnGouge.ai gets you the same outcome in 1/5 the time.
+One good quote + a pricing tool like GougeAlert gets you the same outcome in 1/5 the time.
 
 ## The Real Question Isn't "How Many Quotes?"
 
@@ -84,7 +84,7 @@ It's: **"How do I know if ANY of these quotes are fair?"**
 
 ### The Better Way:
 1. Get 1-2 quotes from licensed, insured contractors
-2. Upload them to UnGouge.ai
+2. Upload them to GougeAlert
 3. See exactly which line items are overpriced, by how much
 4. Negotiate or get more quotes if needed
 
@@ -105,7 +105,7 @@ One solid quote from a legit contractor is better than three half-assed quotes f
 
 **Don't compare it to other quotes. Compare it to actual cost data.**
 
-UnGouge.ai analyzes your quote against:
+GougeAlert analyzes your quote against:
 - Bureau of Labor Statistics wage data for your region
 - Material costs updated for 2026
 - 9,000+ line item cost benchmarks
@@ -126,7 +126,7 @@ You only need multiple quotes if the first one doesn't pass the fair-price test.
 
 **Quote from Contractor A:** $34,200
 
-**UnGouge.ai analysis showed:**
+**GougeAlert analysis showed:**
 - Labor: $13,500 (fair — $55-65/hr is typical for Phoenix)
 - Cabinets: $9,800 (15% high — should be $8,200-8,800)
 - Countertops: $4,200 (fair for quartz)
@@ -151,7 +151,7 @@ But in all these cases, **you still need a way to know what fair pricing looks l
 
 Here's the truth: most people get three quotes, average them, and hope for the best. That's gambling, not decision-making.
 
-For $19.99, UnGouge.ai tells you if your first quote is fair. If it is, you're done. If it's not, you know exactly what to negotiate or what to look for in Quote #2.
+For $19.99, GougeAlert tells you if your first quote is fair. If it is, you're done. If it's not, you know exactly what to negotiate or what to look for in Quote #2.
 
 **[Upload your quote now →](/analyze)**
 

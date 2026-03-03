@@ -2,7 +2,7 @@
 title: "Contractor Deposits: How Much Is Safe to Pay Upfront?"
 description: "Paying 50% upfront? You're at risk. Learn industry-standard deposit amounts, red flags, and how to protect yourself from contractor deposit scams."
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["contractor deposit", "how much deposit contractor", "contractor payment schedule", "contractor deposit scam", "contractor payment terms"]
 ---
 
@@ -415,7 +415,7 @@ Contractors who demand large deposits are either:
 
 Before paying a deposit, verify the quote is fair.
 
-Upload it to UnGouge—if the pricing is inflated by 30%, that "10% deposit" is actually 13% of what the project should cost.
+Upload it to GougeAlert—if the pricing is inflated by 30%, that "10% deposit" is actually 13% of what the project should cost.
 
 Know what you're paying for before you pay for it.
 

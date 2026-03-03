@@ -6,7 +6,7 @@ locationFactor: 0.92
 avgLaborRate: $50-85
 majorCities: ["Phoenix", "Tucson", "Mesa", "Scottsdale"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Arizona contractor quotes", "Arizona home improvement costs", "contractor pricing Arizona", "Arizona renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Arizona are close to the national average. Using natio
 
 - **Climate considerations:** Extreme heat requires efficient cooling, UV-resistant materials, and desert landscaping considerations.
 
-## How UnGouge Analyzes Arizona Quotes
+## How GougeAlert Analyzes Arizona Quotes
 
 We compare your quote against:
 - Arizona-specific labor rates by trade

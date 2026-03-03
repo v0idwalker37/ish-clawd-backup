@@ -2,7 +2,7 @@
 title: "Licensed vs Unlicensed Contractors: Is the Price Difference Worth It?"
 description: "Unlicensed contractors charge 20-40% less—but hidden costs can make them far more expensive. Here's what you're actually paying for with a licensed contractor."
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["licensed contractor", "unlicensed contractor", "contractor license", "handyman vs contractor", "contractor insurance"]
 ---
 
@@ -385,7 +385,7 @@ If they can't provide recent references → walk away.
 
 Whether you hire licensed or unlicensed, verify the pricing is fair.
 
-Upload your quote to UnGouge—we'll tell you if you're overpaying (licensed contractor gouging you) or underpricing (unlicensed contractor lowballing to win the job, then hitting you with change orders).
+Upload your quote to GougeAlert—we'll tell you if you're overpaying (licensed contractor gouging you) or underpricing (unlicensed contractor lowballing to win the job, then hitting you with change orders).
 
 [Analyze Your Quote →](/analyze)
 

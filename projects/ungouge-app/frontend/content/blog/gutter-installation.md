@@ -2,7 +2,7 @@
 title: "Gutter Installation Cost Breakdown: Real Prices for Seamless, Sectional, Guards & Replacement"
 description: "Complete gutter installation cost breakdown with actual prices for aluminum, copper, vinyl, and steel gutters. Compare seamless vs sectional, gutter guards, and installation labor rates."
 date: "2026-01-28"
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["gutter installation cost", "seamless gutter cost", "gutter guard cost", "gutter replacement cost", "rain gutter installation", "copper gutter cost", "gutter cleaning cost"]
 ---
 
@@ -399,9 +399,9 @@ Gutter guards reduce (but rarely eliminate) cleaning needs. Here's what they act
 
 ---
 
-## What UnGouge Would Flag
+## What GougeAlert Would Flag
 
-Upload your gutter quote to **UnGouge.ai** and our analysis catches:
+Upload your gutter quote to **GougeAlert** and our analysis catches:
 
 - ✅ **Material cost vs. market rates** — Aluminum coil stock has a known wholesale price; we know when material markup is excessive
 - ✅ **Labor hours vs. linear footage** — A 150-foot gutter job shouldn't quote 40 labor hours
@@ -410,7 +410,7 @@ Upload your gutter quote to **UnGouge.ai** and our analysis catches:
 - ✅ **Material mismatch** — Quoting copper prices for aluminum installation
 - ✅ **Regional pricing comparison** — Is your $4,000 gutter quote reasonable for Des Moines? For Manhattan? Context matters.
 
-**Upload your quote:** [ungouge.ai](https://ungouge.ai) — $19.99 for a detailed analysis. No lead gen. No contractor referrals. Just data.
+**Upload your quote:** [gougealert.ai](https://gougealert.ai) — $19.99 for a detailed analysis. No lead gen. No contractor referrals. Just data.
 
 ---
 

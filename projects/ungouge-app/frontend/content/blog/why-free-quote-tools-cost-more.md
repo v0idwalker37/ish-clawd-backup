@@ -2,7 +2,7 @@
 title: 'Why "Free" Contractor Quote Tools Actually Cost You More'
 description: "Free contractor quote comparison tools seem helpful—but they're lead generation funnels that drive up your final costs. Here's how they work and what to use instead."
 date: 2026-02-01
-author: Ungouge Team
+author: GougeAlert Team
 keywords: []
 ---
 
@@ -70,7 +70,7 @@ But if you want to know whether your quotes reflect fair market value — that r
 
 ---
 
-*UnGouge analyzes your contractor quote against independent market data — not just other bids. One quote. Real data. No lead generation. [Learn more →](/how-it-works)*
+*GougeAlert analyzes your contractor quote against independent market data — not just other bids. One quote. Real data. No lead generation. [Learn more →](/how-it-works)*
 
 ---
 
@@ -79,5 +79,5 @@ But if you want to know whether your quotes reflect fair market value — that r
 **Meta description:** Free contractor quote tools compare bids against each other — but what if all your bids are too high? Learn what these tools can't tell you.
 
 **Publish date:** TBD (after site launch)
-**Author:** UnGouge Team
+**Author:** GougeAlert Team
 **Category:** Homeowner Education

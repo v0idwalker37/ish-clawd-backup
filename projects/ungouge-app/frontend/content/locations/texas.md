@@ -6,7 +6,7 @@ locationFactor: 0.91
 avgLaborRate: $50-85
 majorCities: ["Houston", "Dallas", "Austin", "San Antonio", "Fort Worth"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Texas contractor quotes", "Texas home improvement costs", "contractor pricing Texas", "Texas renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Texas are close to the national average. Using nationa
 
 - **Climate considerations:** Varied by region—coastal hurricane risk, inland extreme heat. Foundation issues (clay soil).
 
-## How UnGouge Analyzes Texas Quotes
+## How GougeAlert Analyzes Texas Quotes
 
 We compare your quote against:
 - Texas-specific labor rates by trade

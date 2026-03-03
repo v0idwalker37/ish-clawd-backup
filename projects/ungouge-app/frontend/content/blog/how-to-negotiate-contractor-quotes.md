@@ -2,7 +2,7 @@
 title: "How to Negotiate Contractor Quotes Without Being 'That' Homeowner"
 description: "Learn professional negotiation tactics to lower contractor costs by 10-20% without damaging the relationship or compromising quality."
 date: 2024-02-03
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["negotiate contractor quote", "lower contractor price", "contractor negotiation tactics", "how to negotiate with contractors", "reduce renovation costs", "contractor pricing negotiation"]
 ---
 
@@ -351,7 +351,7 @@ Use data, ask smart questions, and negotiate with confidence.
 
 **Need help analyzing your quote before negotiating?**
 
-Ungouge compares your contractor quote to real market data and highlights line items worth questioning.
+GougeAlert compares your contractor quote to real market data and highlights line items worth questioning.
 
 **[Upload Your Quote Now →](#)**
 

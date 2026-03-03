@@ -2,7 +2,7 @@
 title: "Home Inspection Cost Breakdown: What You Should Actually Pay for Pre-Purchase and Specialized Inspections"
 description: "Complete home inspection cost breakdown with actual prices for general inspections, radon, mold, structural, sewer, and specialty inspections. Know what's worth it and what's a waste of money."
 date: "2026-01-31"
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["home inspection cost", "pre-purchase inspection cost", "radon inspection cost", "mold inspection cost", "structural inspection cost", "sewer inspection cost", "home inspection checklist"]
 ---
 
@@ -437,9 +437,9 @@ A comprehensive written report (30-80+ pages) with:
 
 ---
 
-## What UnGouge Would Flag
+## What GougeAlert Would Flag
 
-While UnGouge.ai is primarily designed for contractor quotes, here's how we help with the inspection-to-repair pipeline:
+While GougeAlert is primarily designed for contractor quotes, here's how we help with the inspection-to-repair pipeline:
 
 - ✅ **Repair quote verification** — Inspector found a $15,000 foundation issue? Upload the repair quotes and we'll tell you if the pricing is fair
 - ✅ **Priority assessment** — Multiple findings? Upload your inspection report and get a prioritized list of what matters most financially
@@ -447,7 +447,7 @@ While UnGouge.ai is primarily designed for contractor quotes, here's how we help
 - ✅ **Second opinion on repair scope** — Is the contractor's recommended fix appropriate, or are they upselling?
 - ✅ **Regional cost comparison** — Are the repair estimates you're getting in line with your market?
 
-**Upload your repair quotes:** [ungouge.ai](https://ungouge.ai) — $19.99 for a detailed analysis. Turn inspection findings into negotiation leverage.
+**Upload your repair quotes:** [gougealert.ai](https://gougealert.ai) — $19.99 for a detailed analysis. Turn inspection findings into negotiation leverage.
 
 ---
 

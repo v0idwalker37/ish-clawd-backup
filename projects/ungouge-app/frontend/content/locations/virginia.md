@@ -6,7 +6,7 @@ locationFactor: 1.02
 avgLaborRate: $56-90
 majorCities: ["Virginia Beach", "Norfolk", "Richmond", "Arlington"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Virginia contractor quotes", "Virginia home improvement costs", "contractor pricing Virginia", "Virginia renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Virginia are close to the national average. Using nati
 
 - **Climate considerations:** Humid subtropical. Coastal areas face storm surge. Moderate winters.
 
-## How UnGouge Analyzes Virginia Quotes
+## How GougeAlert Analyzes Virginia Quotes
 
 We compare your quote against:
 - Virginia-specific labor rates by trade

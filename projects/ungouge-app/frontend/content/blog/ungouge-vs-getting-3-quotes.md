@@ -1,12 +1,12 @@
 ---
-title: "UnGouge vs Getting 3 Quotes: Which Actually Saves You Money?"
+title: "GougeAlert vs Getting 3 Quotes: Which Actually Saves You Money?"
 description: "The 'get 3 quotes' advice is everywhere—but does it actually help you spot overpricing? We compare data-driven quote analysis vs the traditional approach."
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["get 3 quotes", "compare contractor quotes", "quote comparison", "contractor quote analysis", "how many quotes should I get"]
 ---
 
-# UnGouge vs Getting 3 Quotes: Which Actually Saves You Money?
+# GougeAlert vs Getting 3 Quotes: Which Actually Saves You Money?
 
 "Get at least three quotes."
 
@@ -89,7 +89,7 @@ If three contractors all know each other and all quote $40K for a project that s
 
 **Comparative pricing only works if the comparisons are independent and fair.**
 
-## The UnGouge Approach: Data-Driven Analysis
+## The GougeAlert Approach: Data-Driven Analysis
 
 **How it works:**
 1. Upload your quote (any format—PDF, photo, email)
@@ -117,7 +117,7 @@ If three contractors all know each other and all quote $40K for a project that s
 ✅ You're hiring for subjective quality (design, aesthetics)  
 ✅ You have time to spare (3-5 weeks minimum)
 
-### Use UnGouge When:
+### Use GougeAlert When:
 ✅ You already have a quote and need to know if it's fair  
 ✅ You don't have time to chase contractors for weeks  
 ✅ You want data-backed certainty, not guesswork  
@@ -129,7 +129,7 @@ If three contractors all know each other and all quote $40K for a project that s
 Here's the smart play:
 
 1. **Get your first quote**
-2. **Run it through UnGouge** ($19.99, 24-hour turnaround)
+2. **Run it through GougeAlert** ($19.99, 24-hour turnaround)
 3. **If it's fair:** Negotiate minor details, proceed
 4. **If it's high:** Use our analysis to negotiate or get competing quotes with better information
 
@@ -145,7 +145,7 @@ Here's the smart play:
 - Still overpays by $8,000 (fair price was $30K)
 - Wasted a month
 
-**UnGouge approach:**
+**GougeAlert approach:**
 - Uploads $42K quote
 - Gets analysis: "Materials marked up 180%, labor rate 40% above market, $12K padding identified"
 - Negotiates down to $32K using specific line items
@@ -164,7 +164,7 @@ Multiple quotes help you:
 
 But they **don't tell you if you're being overcharged** unless you have a way to benchmark those quotes against real data.
 
-**UnGouge gives you the benchmark.**
+**GougeAlert gives you the benchmark.**
 
 For $19.99, you get what three quotes can't provide: **certainty backed by data, not guesswork based on averages.**
 

@@ -2,7 +2,7 @@
 title: "HVAC Replacement Cost Breakdown: Real Prices for Furnaces, AC Units, Heat Pumps & Installation"
 description: "Complete HVAC system replacement cost breakdown with actual equipment prices, labor rates, and contractor red flags. Budget from $4K to $20K+ based on system type and size."
 date: 2024-01-22
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["hvac replacement cost", "furnace replacement cost", "air conditioner replacement cost", "heat pump cost", "hvac installation cost", "central air cost"]
 ---
 
@@ -618,7 +618,7 @@ Annual maintenance ($100-$200) extends lifespan by 5-10 years. Change filters ev
 
 HVAC quotes are complex—equipment specs, efficiency ratings, labor breakdowns, add-ons. Analyzing everything yourself is overwhelming.
 
-That's why we built **Ungouge.ai**.
+That's why we built **GougeAlert**.
 
 **How it works:**
 1. **Upload your HVAC quote** - PDF, email, photo—any format
@@ -626,7 +626,7 @@ That's why we built **Ungouge.ai**.
 3. **Get a detailed breakdown** - See what's fair, what's high, where you might be overpaying
 4. **No email, no sales pitch** - Just data-driven insights
 
-**Try it now:** [ungouge.ai](https://ungouge.ai)
+**Try it now:** [gougealert.ai](https://gougealert.ai)
 
 ---
 

@@ -6,7 +6,7 @@ locationFactor: 1.42
 avgLaborRate: $80-150
 majorCities: ["Honolulu", "Hilo", "Kailua"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Hawaii contractor quotes", "Hawaii home improvement costs", "contractor pricing Hawaii", "Hawaii renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Hawaii run about 41% above the national average. Using
 
 - **Climate considerations:** Tropical. Salt air corrosion, termite activity, lava zone restrictions. High shipping costs for materials.
 
-## How UnGouge Analyzes Hawaii Quotes
+## How GougeAlert Analyzes Hawaii Quotes
 
 We compare your quote against:
 - Hawaii-specific labor rates by trade

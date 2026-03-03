@@ -6,7 +6,7 @@ locationFactor: 1.01
 avgLaborRate: $55-90
 majorCities: ["Billings", "Missoula", "Great Falls"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Montana contractor quotes", "Montana home improvement costs", "contractor pricing Montana", "Montana renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Montana are close to the national average. Using natio
 
 - **Climate considerations:** Cold winters, short building season. Rural areas have limited contractor availability.
 
-## How UnGouge Analyzes Montana Quotes
+## How GougeAlert Analyzes Montana Quotes
 
 We compare your quote against:
 - Montana-specific labor rates by trade

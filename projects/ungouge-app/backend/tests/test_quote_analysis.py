@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Quote Analysis Validation Test Suite for UnGouge.ai
+Quote Analysis Validation Test Suite for GougeAlert
 
 Tests the QuoteAnalyzer against 20 realistic contractor quotes across
 different project types, regions, and price points. Each test verifies:
@@ -582,7 +582,7 @@ def run_test(analyzer: QuoteAnalyzer, test_case: dict) -> TestResult:
 def run_all_tests() -> list:
     """Run all test cases and return results."""
     print("=" * 80)
-    print("UnGouge.ai Quote Analysis Validation Test Suite")
+    print("GougeAlert Quote Analysis Validation Test Suite")
     print(f"Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 80)
     print()

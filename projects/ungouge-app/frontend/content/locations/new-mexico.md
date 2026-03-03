@@ -6,7 +6,7 @@ locationFactor: 0.93
 avgLaborRate: $51-83
 majorCities: ["Albuquerque", "Santa Fe", "Las Cruces"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["New Mexico contractor quotes", "New Mexico home improvement costs", "contractor pricing New Mexico", "New Mexico renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in New Mexico are close to the national average. Using na
 
 - **Climate considerations:** Desert climate, high altitude. Adobe/stucco construction common. Water conservation.
 
-## How UnGouge Analyzes New Mexico Quotes
+## How GougeAlert Analyzes New Mexico Quotes
 
 We compare your quote against:
 - New Mexico-specific labor rates by trade

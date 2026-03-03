@@ -6,7 +6,7 @@ locationFactor: 0.87
 avgLaborRate: $47-77
 majorCities: ["Nashville", "Memphis", "Knoxville", "Chattanooga"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Tennessee contractor quotes", "Tennessee home improvement costs", "contractor pricing Tennessee", "Tennessee renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Tennessee run about 13% below the national average. Us
 
 - **Climate considerations:** Hot, humid summers. Tornado risk. Moderate winters.
 
-## How UnGouge Analyzes Tennessee Quotes
+## How GougeAlert Analyzes Tennessee Quotes
 
 We compare your quote against:
 - Tennessee-specific labor rates by trade

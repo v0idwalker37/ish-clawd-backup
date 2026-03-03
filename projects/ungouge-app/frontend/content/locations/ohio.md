@@ -6,7 +6,7 @@ locationFactor: 0.98
 avgLaborRate: $54-88
 majorCities: ["Columbus", "Cleveland", "Cincinnati", "Toledo"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Ohio contractor quotes", "Ohio home improvement costs", "contractor pricing Ohio", "Ohio renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Ohio are close to the national average. Using national
 
 - **Climate considerations:** Cold winters, hot summers. Freeze-thaw cycles. Lake effect snow near Erie.
 
-## How UnGouge Analyzes Ohio Quotes
+## How GougeAlert Analyzes Ohio Quotes
 
 We compare your quote against:
 - Ohio-specific labor rates by trade

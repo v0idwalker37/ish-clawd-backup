@@ -12,7 +12,7 @@ from typing import Optional, Dict, Any
 
 
 class UngougeException(Exception):
-    """Base exception for all Ungouge.ai errors"""
+    """Base exception for all GougeAlert errors"""
     
     def __init__(
         self,

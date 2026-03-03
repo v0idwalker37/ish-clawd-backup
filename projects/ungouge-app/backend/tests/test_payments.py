@@ -1,5 +1,5 @@
 """
-Payment flow tests for UnGouge.ai API.
+Payment flow tests for GougeAlert API.
 
 Covers:
   POST /api/payments/create-checkout — creates session, returns URL

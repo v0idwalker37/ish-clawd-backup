@@ -6,7 +6,7 @@ locationFactor: 0.85
 avgLaborRate: $45-75
 majorCities: ["Birmingham", "Montgomery", "Mobile", "Huntsville"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Alabama contractor quotes", "Alabama home improvement costs", "contractor pricing Alabama", "Alabama renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Alabama run about 15% below the national average. Usin
 
 - **Climate considerations:** Hot, humid summers with high cooling costs. Hurricane risk near coast requires reinforced construction.
 
-## How UnGouge Analyzes Alabama Quotes
+## How GougeAlert Analyzes Alabama Quotes
 
 We compare your quote against:
 - Alabama-specific labor rates by trade

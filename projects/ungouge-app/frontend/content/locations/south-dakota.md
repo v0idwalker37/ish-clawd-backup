@@ -6,7 +6,7 @@ locationFactor: 0.96
 avgLaborRate: $52-85
 majorCities: ["Sioux Falls", "Rapid City", "Aberdeen"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["South Dakota contractor quotes", "South Dakota home improvement costs", "contractor pricing South Dakota", "South Dakota renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in South Dakota are close to the national average. Using 
 
 - **Climate considerations:** Cold winters, short building season. Rural areas have limited contractors.
 
-## How UnGouge Analyzes South Dakota Quotes
+## How GougeAlert Analyzes South Dakota Quotes
 
 We compare your quote against:
 - South Dakota-specific labor rates by trade

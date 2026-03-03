@@ -91,7 +91,7 @@ export default function ReportPage() {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = `ungouge-report-${reportId}.pdf`;
+      link.download = `gougealert-report-${reportId}.pdf`;
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -147,7 +147,7 @@ export default function ReportPage() {
           );
         }
 
-        pdf.save(`ungouge-report-${reportId}.pdf`);
+        pdf.save(`gougealert-report-${reportId}.pdf`);
         setActiveFilter(prevFilter);
         setSortByIssues(prevSort);
       } catch {

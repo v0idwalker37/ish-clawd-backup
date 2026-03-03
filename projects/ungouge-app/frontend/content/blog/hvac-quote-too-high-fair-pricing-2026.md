@@ -2,7 +2,7 @@
 title: "HVAC Quote Too High? Here's What Fair Pricing Looks Like in 2026"
 description: "Think your HVAC quote is too high? Compare your estimate against real 2026 market data for equipment, labor, and installation. Know what's fair before you pay."
 date: 2026-02-01
-author: Ungouge Team
+author: GougeAlert Team
 keywords: []
 ---
 
@@ -215,7 +215,7 @@ If your quote is $15,000+ for a standard 3-ton system with no obvious complicati
 
 ## **Verify Your HVAC Quote in 5 Minutes**
 
-Upload your contractor quote to **UnGouge.ai** and get:
+Upload your contractor quote to **GougeAlert** and get:
 - ✅ Fair market pricing for your region and system size
 - ✅ Equipment cost verification (model number lookup)
 - ✅ Labor hour reality check
@@ -223,8 +223,8 @@ Upload your contractor quote to **UnGouge.ai** and get:
 
 **$19.99 per report. No lead gen. No contractor referrals. Just data.**
 
-👉 [Verify Your HVAC Quote Now](https://ungouge.ai)
+👉 [Verify Your HVAC Quote Now](https://gougealert.ai)
 
 ---
 
-*UnGouge is an independent quote verification service. We don't sell your data, refer contractors, or take kickbacks. We make $19.99 when you pay us. That's it.*
+*GougeAlert is an independent quote verification service. We don't sell your data, refer contractors, or take kickbacks. We make $19.99 when you pay us. That's it.*

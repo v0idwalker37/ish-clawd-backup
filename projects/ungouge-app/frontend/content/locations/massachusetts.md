@@ -6,7 +6,7 @@ locationFactor: 1.25
 avgLaborRate: $70-115
 majorCities: ["Boston", "Worcester", "Springfield", "Cambridge"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Massachusetts contractor quotes", "Massachusetts home improvement costs", "contractor pricing Massachusetts", "Massachusetts renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Massachusetts run about 25% above the national average
 
 - **Climate considerations:** Cold winters, coastal storms. Old housing stock requires specialized work. Strict energy codes.
 
-## How UnGouge Analyzes Massachusetts Quotes
+## How GougeAlert Analyzes Massachusetts Quotes
 
 We compare your quote against:
 - Massachusetts-specific labor rates by trade

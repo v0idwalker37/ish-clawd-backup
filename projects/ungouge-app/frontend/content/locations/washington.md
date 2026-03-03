@@ -6,7 +6,7 @@ locationFactor: 1.15
 avgLaborRate: $64-105
 majorCities: ["Seattle", "Spokane", "Tacoma", "Bellevue"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Washington contractor quotes", "Washington home improvement costs", "contractor pricing Washington", "Washington renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Washington run about 14% above the national average. U
 
 - **Climate considerations:** Wet winters (west), dry summers. Seismic concerns. Mold/moisture issues west of Cascades.
 
-## How UnGouge Analyzes Washington Quotes
+## How GougeAlert Analyzes Washington Quotes
 
 We compare your quote against:
 - Washington-specific labor rates by trade

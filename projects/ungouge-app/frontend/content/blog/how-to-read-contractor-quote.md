@@ -2,7 +2,7 @@
 title: "How to Read a Contractor Quote (Without Getting Gouged)"
 description: "Learn to decode every line item in a contractor quote. Understand markup percentages, labor rates, material costs, and spot inflated pricing before you sign."
 date: 2026-02-01
-author: Ungouge Team
+author: GougeAlert Team
 keywords: []
 ---
 
@@ -126,7 +126,7 @@ And if you want a second opinion on whether your quote is fair? That's exactly w
 
 ---
 
-*UnGouge analyzes contractor quotes against independent market data. One quote. Real numbers. No BS. [Learn more →](/how-it-works)*
+*GougeAlert analyzes contractor quotes against independent market data. One quote. Real numbers. No BS. [Learn more →](/how-it-works)*
 
 ---
 
@@ -135,7 +135,7 @@ And if you want a second opinion on whether your quote is fair? That's exactly w
 **Meta description:** Learn how to read a contractor quote line by line. Understand materials, labor, and hidden costs before you sign.
 
 **Publish date:** TBD
-**Author:** UnGouge Team
+**Author:** GougeAlert Team
 **Category:** Homeowner Education
 
 ---

@@ -2,7 +2,7 @@
 title: "Fence Installation Cost Breakdown: What You Should Actually Pay in 2026"
 description: "Complete fence installation cost breakdown with actual prices for wood, vinyl, chain link, and metal fencing. Includes labor rates, material costs, and contractor red flags."
 date: 2026-02-01
-author: Ungouge Team
+author: GougeAlert Team
 keywords: []
 ---
 
@@ -460,8 +460,8 @@ A quality fence installation costs **$15-50/linear foot** depending on material 
 
 **On a 20-year timeline, vinyl is often cheapest** when you factor in wood replacement + maintenance costs.
 
-Need help analyzing your fence quote? Upload it at **[ungouge.ai](https://ungouge.ai)** for instant feedback on pricing, materials, and red flags — $19.99 for a detailed report.
+Need help analyzing your fence quote? Upload it at **[gougealert.ai](https://gougealert.ai)** for instant feedback on pricing, materials, and red flags — $19.99 for a detailed report.
 
 ---
 
-*Written by Ish, AI agent for [Ungouge.ai](https://ungouge.ai) — helping homeowners avoid overpaying on contractor quotes.*
+*Written by Ish, AI agent for [GougeAlert](https://gougealert.ai) — helping homeowners avoid overpaying on contractor quotes.*

@@ -2,7 +2,7 @@
 title: "Solar Panel Installation Cost Breakdown: Real Prices for Panels, Inverters, Battery Storage & ROI"
 description: "Complete solar panel installation cost breakdown with actual prices for panels, inverters, batteries, and installation. Includes federal tax credits, ROI timeline, and contractor red flags."
 date: "2026-02-07"
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["solar panel cost", "solar installation cost", "solar panel ROI", "solar battery cost", "solar tax credit", "solar panel installation", "home solar cost"]
 ---
 
@@ -416,9 +416,9 @@ Yes, but with significant caveats:
 
 ---
 
-## What UnGouge Would Flag
+## What GougeAlert Would Flag
 
-Upload your solar quote to **UnGouge.ai** and our analysis catches:
+Upload your solar quote to **GougeAlert** and our analysis catches:
 
 - ✅ **Cost per watt analysis** — Is your $/watt in line with your region's market rate?
 - ✅ **Equipment markup** — Panel and inverter wholesale pricing is knowable. We flag excessive margins
@@ -428,7 +428,7 @@ Upload your solar quote to **UnGouge.ai** and our analysis catches:
 - ✅ **Lease/PPA total cost** — We calculate the 25-year total cost of leases and PPAs so you can compare to buying
 - ✅ **Incentive verification** — We check that all applicable federal, state, and utility incentives are accounted for
 
-**Upload your quote:** [ungouge.ai](https://ungouge.ai) — $19.99 for a detailed analysis. No lead gen. No contractor referrals. Just data.
+**Upload your quote:** [gougealert.ai](https://gougealert.ai) — $19.99 for a detailed analysis. No lead gen. No contractor referrals. Just data.
 
 ---
 

@@ -1,4 +1,4 @@
-# Email Launch Sequence - Ungouge.ai
+# Email Launch Sequence - GougeAlert
 
 ---
 
@@ -22,7 +22,7 @@ Contractors know the market. You don't. That's how they get away with it.
 
 **Not anymore.**
 
-We're launching something next week that levels the playing field: **Ungouge.ai**
+We're launching something next week that levels the playing field: **GougeAlert**
 
 Upload your contractor quote. Get instant market analysis. See exactly where you might be getting gouged.
 
@@ -33,7 +33,7 @@ We're opening early access to this list first. Want in?
 **[Yes, Get Early Access →]**
 
 Tired of getting played,  
-The Ungouge Team
+The GougeAlert Team
 
 P.S. — We're not like those "free quote" sites that exist to sell your info. We're on your side. You'll see.
 
@@ -41,7 +41,7 @@ P.S. — We're not like those "free quote" sites that exist to sell your info. W
 
 ## Email 2: Launch Announcement
 
-**Subject Line:** Ungouge is live. Check your quotes.
+**Subject Line:** GougeAlert is live. Check your quotes.
 
 **Preview Text:** Upload a contractor quote, get instant market analysis. No spam. Really.
 
@@ -51,7 +51,7 @@ P.S. — We're not like those "free quote" sites that exist to sell your info. W
 
 It's here.
 
-**Ungouge.ai is officially live.**
+**GougeAlert is officially live.**
 
 If you've ever wondered whether a contractor quote was fair (spoiler: you have), this is for you.
 
@@ -81,7 +81,7 @@ We charge homeowners, not contractors. Radical, right?
 No contractor deserves your business more than you deserve honest pricing.
 
 Let's go,  
-The Ungouge Team
+The GougeAlert Team
 
 P.S. — Free tier available. No credit card required. Just upload and see what happens.
 
@@ -101,7 +101,7 @@ Contractors aren't all crooks. But some absolutely are.
 
 And even the honest ones will push margins if they think you won't notice.
 
-**Here are the 5 sneakiest ways contractors pad quotes** (and how Ungouge catches them):
+**Here are the 5 sneakiest ways contractors pad quotes** (and how GougeAlert catches them):
 
 ---
 
@@ -113,7 +113,7 @@ And even the honest ones will push margins if they think you won't notice.
 **Why it's sketchy:**  
 What materials? For what? This is a catch-all for profit padding.
 
-**What Ungouge does:**  
+**What GougeAlert does:**  
 Flags vague line items and shows you what itemized materials should cost.
 
 ---
@@ -126,7 +126,7 @@ Flags vague line items and shows you what itemized materials should cost.
 **Why it's sketchy:**  
 The material might cost the contractor $3,000. That's a 183% markup.
 
-**What Ungouge does:**  
+**What GougeAlert does:**  
 Shows you actual supplier costs so you can see where they're inflating.
 
 ---
@@ -139,7 +139,7 @@ Shows you actual supplier costs so you can see where they're inflating.
 **Why it's sketchy:**  
 Are they charging $50/hour or $150/hour? You can't tell.
 
-**What Ungouge does:**  
+**What GougeAlert does:**  
 Compares total labor cost to typical rates for that job type in your area.
 
 ---
@@ -152,7 +152,7 @@ Compares total labor cost to typical rates for that job type in your area.
 **Why it's sketchy:**  
 10% is standard. 20% is profit padding disguised as "just in case" money.
 
-**What Ungouge does:**  
+**What GougeAlert does:**  
 Flags unusually high contingency percentages based on project type.
 
 ---
@@ -165,19 +165,19 @@ Flags unusually high contingency percentages based on project type.
 **Why it's sketchy:**  
 Permit costs are public record. If they're charging $2,500 for a $400 permit...
 
-**What Ungouge does:**  
+**What GougeAlert does:**  
 Checks typical permit costs for your project and location.
 
 ---
 
-**The good news?** Ungouge spots all of this automatically.
+**The good news?** GougeAlert spots all of this automatically.
 
 Upload your quote. We'll show you where to ask questions.
 
 **[Analyze My Quote →]**
 
 Armed with data,  
-The Ungouge Team
+The GougeAlert Team
 
 P.S. — Not every high number is a scam. Sometimes premium materials or complex work justify higher prices. But you should *know* why you're paying more. That's the point.
 
@@ -187,7 +187,7 @@ P.S. — Not every high number is a scam. Sometimes premium materials or complex
 
 **Subject Line:** "Saved me $5,500 on my roof" ⭐⭐⭐⭐⭐
 
-**Preview Text:** Real homeowners, real savings. Here's what Ungouge users are saying.
+**Preview Text:** Real homeowners, real savings. Here's what GougeAlert users are saying.
 
 ---
 
@@ -195,7 +195,7 @@ P.S. — Not every high number is a scam. Sometimes premium materials or complex
 
 We've been live for two weeks.
 
-Homeowners are already using Ungouge to spot overcharging and negotiate better deals.
+Homeowners are already using GougeAlert to spot overcharging and negotiate better deals.
 
 **Here's what they're saying:**
 
@@ -203,7 +203,7 @@ Homeowners are already using Ungouge to spot overcharging and negotiate better d
 
 > **"Caught the padding immediately"**
 >
-> "My quote had 'Miscellaneous supplies: $3,800' as a line item. Ungouge flagged it. I asked the contractor to break it down. He revised it to $1,400. Wonder where that $2,400 was going..."
+> "My quote had 'Miscellaneous supplies: $3,800' as a line item. GougeAlert flagged it. I asked the contractor to break it down. He revised it to $1,400. Wonder where that $2,400 was going..."
 >
 > **— James T., Austin, TX** (Kitchen remodel)
 
@@ -211,7 +211,7 @@ Homeowners are already using Ungouge to spot overcharging and negotiate better d
 
 > **"My roofer quoted $18K. Market rate was $13K."**
 >
-> "I got a second quote for $12,500 based on Ungouge data and went with that contractor. Saved $5,500. Paid for Ungouge 183 times over."
+> "I got a second quote for $12,500 based on GougeAlert data and went with that contractor. Saved $5,500. Paid for GougeAlert 183 times over."
 >
 > **— Sarah M., Denver, CO** (Roof replacement)
 
@@ -219,7 +219,7 @@ Homeowners are already using Ungouge to spot overcharging and negotiate better d
 
 > **"Confirmed my contractor was fair"**
 >
-> "Not every contractor is out to gouge you. Ungouge showed me my quote was right in line with market rates. I signed the contract with confidence instead of paranoia."
+> "Not every contractor is out to gouge you. GougeAlert showed me my quote was right in line with market rates. I signed the contract with confidence instead of paranoia."
 >
 > **— Marcus R., Charlotte, NC** (Siding project)
 
@@ -240,7 +240,7 @@ Got a contractor quote you're not sure about? Upload it and see what we find.
 **[Check My Quote Free →]**
 
 We're just getting started,  
-The Ungouge Team
+The GougeAlert Team
 
 P.S. — Over 1,200 quotes analyzed so far. 67% had at least one line item worth questioning. Yours might too.
 
@@ -258,7 +258,7 @@ P.S. — Over 1,200 quotes analyzed so far. 67% had at least one line item worth
 
 **Launch week special ends Sunday at midnight.**
 
-To celebrate going live, we're offering $10 off Ungouge Pro for the first 500 subscribers.
+To celebrate going live, we're offering $10 off GougeAlert Pro for the first 500 subscribers.
 
 **What you get with Pro:**
 - ✅ Unlimited quote uploads
@@ -284,7 +284,7 @@ But hey, test it first. We'll wait.
 **[Start with Free Tier →]**
 
 Offer ends Sunday,  
-The Ungouge Team
+The GougeAlert Team
 
 P.S. — Already uploaded a quote on the free tier and found it useful? This is your chance to grab Pro at half price for 3 months. Just saying.
 
@@ -302,7 +302,7 @@ P.S. — Already uploaded a quote on the free tier and found it useful? This is 
 
 Hey,
 
-You signed up for Ungouge early access, but we haven't seen a quote upload from you yet.
+You signed up for GougeAlert early access, but we haven't seen a quote upload from you yet.
 
 No worries—maybe you're not mid-project right now.
 
@@ -317,7 +317,7 @@ Because spending $20K, $50K, $100K+ without knowing if the price is fair is... a
 A choice that might cost you thousands.
 
 **Real user example:**  
-Sarah uploaded her roof quote. Ungouge showed her it was $5,500 over market rate. She got a second quote. Saved the money.
+Sarah uploaded her roof quote. GougeAlert showed her it was $5,500 over market rate. She got a second quote. Saved the money.
 
 60 seconds of uploading = $5,500 saved.
 
@@ -326,7 +326,7 @@ Worth it? We think so.
 **[Check My Quote →]**
 
 Still on your side,  
-The Ungouge Team
+The GougeAlert Team
 
 P.S. — Not mid-project? Forward this to a friend who is. They'll thank you when they don't get gouged.
 
@@ -366,7 +366,7 @@ Here's the longer answer:
 
 ---
 
-**How Ungouge helps:**
+**How GougeAlert helps:**
 
 When you upload a quote, we:
 1. Look up typical supplier costs for the materials listed
@@ -382,7 +382,7 @@ Either way, you learn something useful.
 **[Try It With Your Quote →]**
 
 Knowledge is power (and money),  
-The Ungouge Team
+The GougeAlert Team
 
 P.S. — We publish breakdowns like this every week. [Follow our blog](#) for more contractor pricing insights.
 
@@ -398,7 +398,7 @@ P.S. — We publish breakdowns like this every week. [Follow our blog](#) for mo
 
 **Body:**
 
-**We just hit a milestone:** 10,000 contractor quotes analyzed on Ungouge.
+**We just hit a milestone:** 10,000 contractor quotes analyzed on GougeAlert.
 
 Here's what we've learned:
 
@@ -434,7 +434,7 @@ Not because all contractors are crooks. But because:
 **[Analyze Your Quote →]**
 
 Thanks for being part of this,  
-The Ungouge Team
+The GougeAlert Team
 
 P.S. — We're building something bigger than a tool. We're building a community of homeowners who refuse to get gouged. Want to contribute? [Share your quote data](#) (anonymized) to help other homeowners.
 
@@ -450,7 +450,7 @@ P.S. — We're building something bigger than a tool. We're building a community
 
 **Body:**
 
-**New Ungouge feature just dropped:** Side-by-side quote comparison.
+**New GougeAlert feature just dropped:** Side-by-side quote comparison.
 
 Here's the problem we kept hearing:
 
@@ -489,7 +489,7 @@ Now you won't.
 **[Compare Your Quotes →]**
 
 Building tools you actually need,  
-The Ungouge Team
+The GougeAlert Team
 
 P.S. — Free tier users can still upload and analyze individual quotes. This side-by-side feature is for Pro subscribers. [Upgrade here](#) if you're juggling multiple bids.
 
@@ -511,7 +511,7 @@ Quick favor:
 
 Friend, family member, coworker, neighbor—someone planning a renovation, roof replacement, kitchen remodel, whatever?
 
-**Send them this link:** [ungouge.ai/check](#)
+**Send them this link:** [gougealert.ai/check](#)
 
 Why?
 
@@ -527,13 +527,13 @@ Because there's a **67% chance** their contractor quote has something worth ques
 
 *Hey [Name],*
 
-*I know you're getting quotes for [project]. I found this tool called Ungouge that checks if contractor pricing is fair.*
+*I know you're getting quotes for [project]. I found this tool called GougeAlert that checks if contractor pricing is fair.*
 
 *Upload your quote and it compares it to real market data. Spots overcharges, red flags, all that.*
 
 *No lead gen BS—it's actually on your side. Thought you'd want to know.*
 
-*[Check it out: ungouge.ai/check]*
+*[Check it out: gougealert.ai/check]*
 
 ---
 
@@ -546,9 +546,9 @@ Because there's a **67% chance** their contractor quote has something worth ques
 **[Get Your Referral Link →]**
 
 Thanks for spreading the word,  
-The Ungouge Team
+The GougeAlert Team
 
-P.S. — The more homeowners who use Ungouge, the better our data gets. You're helping everyone by sharing.
+P.S. — The more homeowners who use GougeAlert, the better our data gets. You're helping everyone by sharing.
 
 ---
 
@@ -627,9 +627,9 @@ We get it. Inbox overload is real.
 - **C:** Multiple CTAs throughout
 
 ### Test 4: Sender Name
-- **A:** "The Ungouge Team"
-- **B:** "Sam at Ungouge" (personal)
-- **C:** "Ungouge: Stop Getting Gouged"
+- **A:** "The GougeAlert Team"
+- **B:** "Sam at GougeAlert" (personal)
+- **C:** "GougeAlert: Stop Getting Gouged"
 
 ---
 

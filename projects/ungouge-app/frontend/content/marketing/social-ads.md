@@ -1,4 +1,4 @@
-# Social Media Ads - Ungouge.ai Launch
+# Social Media Ads - GougeAlert Launch
 
 ## Platform Strategy
 - **Facebook:** Homeowner groups, home improvement interest targeting
@@ -22,7 +22,7 @@ Upload your quote. Get instant market analysis. We don't sell your info to contr
 Learn More
 
 ### Image Concept
-Split-screen visual: LEFT side shows a confused homeowner looking at a paper quote with question marks above their head; RIGHT side shows same person smiling while looking at phone with green checkmark on screen. Clean, modern illustration style with subtle yellow/orange accent colors (Ungouge brand). Include text overlay: "Stop Guessing. Start Knowing."
+Split-screen visual: LEFT side shows a confused homeowner looking at a paper quote with question marks above their head; RIGHT side shows same person smiling while looking at phone with green checkmark on screen. Clean, modern illustration style with subtle yellow/orange accent colors (GougeAlert brand). Include text overlay: "Stop Guessing. Start Knowing."
 
 ### Target Audiences
 - Homeowners 35-65
@@ -47,7 +47,7 @@ Upload quotes. Compare prices. That's it. We make money from homeowners, not con
 Get Started
 
 ### Image Concept
-Bold graphic with red "NO" symbol over images representing: contractor lead forms, spam emails, phone calls. Bottom third shows Ungouge.ai logo with tagline "Your Data. Your Privacy. Your Wallet." Minimal design, strong contrast, red and white color scheme with Ungouge yellow accent.
+Bold graphic with red "NO" symbol over images representing: contractor lead forms, spam emails, phone calls. Bottom third shows GougeAlert logo with tagline "Your Data. Your Privacy. Your Wallet." Minimal design, strong contrast, red and white color scheme with GougeAlert yellow accent.
 
 ### Target Audiences
 - Homeowners 30-60
@@ -85,7 +85,7 @@ Photo of an actual kitchen mid-renovation with two quotes side-by-side on a tabl
 ## Ad Concept 4: "Roof Story Testimonial Style"
 
 ### Primary Text (125 chars)
-"My roofer quoted $18K. Ungouge showed me market rate is $13K. Got a second quote for $12.5K. Saved $5,500." —Real user (122 chars)
+"My roofer quoted $18K. GougeAlert showed me market rate is $13K. Got a second quote for $12.5K. Saved $5,500." —Real user (122 chars)
 
 ### Headline
 Real Homeowners. Real Savings.
@@ -97,7 +97,7 @@ Upload your contractor quote and see if you're paying too much. Free analysis. Z
 Try It Free
 
 ### Image Concept
-Authentic-looking smartphone screenshot showing the Ungouge.ai analysis screen with highlighted "potential overcharge" section. Include 5-star rating graphic and quote snippet overlay. Background: soft gradient (yellow to white) that doesn't compete with screenshot. Feels real and user-generated, not overly polished.
+Authentic-looking smartphone screenshot showing the GougeAlert analysis screen with highlighted "potential overcharge" section. Include 5-star rating graphic and quote snippet overlay. Background: soft gradient (yellow to white) that doesn't compete with screenshot. Feels real and user-generated, not overly polished.
 
 ### Target Audiences
 - Homeowners 35-70
@@ -122,7 +122,7 @@ Real pricing data for roofs, kitchens, bathrooms, and more. Upload your quote an
 Upload Quote
 
 ### Image Concept
-Infographic-style visual showing: "Contractor knows: $13K is fair" vs "You think: $18K sounds reasonable?" with arrow pointing to "Gap = Profit Padding." Clean data visualization with charts/graphs aesthetic. Professional but accessible. Ungouge yellow highlights on key numbers. Text overlay: "Knowledge Is Money."
+Infographic-style visual showing: "Contractor knows: $13K is fair" vs "You think: $18K sounds reasonable?" with arrow pointing to "Gap = Profit Padding." Clean data visualization with charts/graphs aesthetic. Professional but accessible. GougeAlert yellow highlights on key numbers. Text overlay: "Knowledge Is Money."
 
 ### Target Audiences
 - Homeowners 30-65 (broad)
@@ -142,7 +142,7 @@ Infographic-style visual showing: "Contractor knows: $13K is fair" vs "You think
 2. **"No Material Details"** - "Windows: $8K" (what brand?!) | Image: generic vs branded window comparison
 3. **"Huge 'Contingency' Padding"** - "20% contingency = free profit" | Image: pie chart showing markup
 4. **"Labor Rate Mysteries"** - "$150/hr or $50/hr? They won't say" | Image: question mark over worker
-5. **"Ungouge Can Spot These"** - Upload your quote. We'll flag the BS. | Image: Ungouge app interface
+5. **"GougeAlert Can Spot These"** - Upload your quote. We'll flag the BS. | Image: GougeAlert app interface
 
 ### CTA Button
 Learn More
@@ -159,7 +159,7 @@ Learn More
 ### Story 1: Poll
 **Frame 1:** "Pop quiz: What's a fair markup on contractor materials?"
 - Poll options: 10% / 30% / 50%
-- Swipe up: "See what Ungouge data says →"
+- Swipe up: "See what GougeAlert data says →"
 
 ### Story 2: Slider
 **Frame 1:** "How confident are you that your contractor quote is fair?"
@@ -180,9 +180,9 @@ Learn More
 
 **VOICEOVER:** "Got a contractor quote? Wondering if it's fair?"
 
-**VISUAL:** Person picks up phone, opens Ungouge.ai, snaps photo of quote
+**VISUAL:** Person picks up phone, opens GougeAlert, snaps photo of quote
 
-**VOICEOVER:** "Upload it to Ungouge. We compare it to real market data."
+**VOICEOVER:** "Upload it to GougeAlert. We compare it to real market data."
 
 **VISUAL:** App shows analysis with green/yellow/red indicators on line items
 
@@ -192,9 +192,9 @@ Learn More
 
 **VOICEOVER:** "No spam. No lead gen tricks. Just honest pricing data."
 
-**VISUAL:** Ungouge.ai logo appears
+**VISUAL:** GougeAlert logo appears
 
-**TEXT OVERLAY:** "Ungouge.ai - Stop Getting Gouged"
+**TEXT OVERLAY:** "GougeAlert - Stop Getting Gouged"
 
 **CTA:** "Upload Your Quote Free"
 
@@ -206,7 +206,7 @@ Learn More
 **Message:** "You checked your quote. Want to save it? Create a free account and track all your quotes in one place."
 
 ### Audience Segment 2: Visited Pricing Page
-**Message:** "Questions about how Ungouge works? We're not like those other lead-gen sites. Here's why..."
+**Message:** "Questions about how GougeAlert works? We're not like those other lead-gen sites. Here's why..."
 
 ### Audience Segment 3: Read Blog, Didn't Upload
 **Message:** "You're doing research. Smart. Ready to check if your actual quote is fair? Takes 60 seconds."

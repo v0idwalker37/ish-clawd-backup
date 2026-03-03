@@ -2,7 +2,7 @@
 title: "Electrical Work Cost Breakdown: What Electricians Actually Charge in 2026"
 description: "Complete guide to electrical service costs including panel upgrades, outlet installation, rewiring, EV chargers, and how to verify your electrician's quote is fair."
 date: "2026-01-25"
-author: "UnGouge Team"
+author: "GougeAlert Team"
 category: "Cost Guides"
 tags: ["electrical", "electrician", "home improvement", "cost breakdown", "contractor quotes"]
 featured: false
@@ -547,4 +547,4 @@ Get 3-5 quotes. Middle cluster = market rate.
 
 ---
 
-**Need help analyzing an electrical quote?** Upload it at [ungouge.ai](https://ungouge.ai) — we'll verify the pricing, check for red flags, and tell you if you're being overcharged.
+**Need help analyzing an electrical quote?** Upload it at [gougealert.ai](https://gougealert.ai) — we'll verify the pricing, check for red flags, and tell you if you're being overcharged.

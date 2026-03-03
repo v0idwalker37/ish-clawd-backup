@@ -1,4 +1,4 @@
-# FAQ: Why isn't UnGouge free like other quote tools?
+# FAQ: Why isn't GougeAlert free like other quote tools?
 
 ## The short answer
 
@@ -32,7 +32,7 @@ We made $19.99. From you. Because you're our customer.
 
 ## Our promise
 
-UnGouge will never:
+GougeAlert will never:
 - Sell your data to contractors
 - Refer you to contractors for a fee
 - Share your information with third parties

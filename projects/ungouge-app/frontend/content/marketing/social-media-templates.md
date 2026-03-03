@@ -1,4 +1,4 @@
-# Social Media Templates - UnGouge
+# Social Media Templates - GougeAlert
 
 ## Strategy Overview
 
@@ -101,7 +101,7 @@ If you can't verify a line item, question it.
 Good contractors will explain.
 Bad contractors will get defensive.
 
-Want help analyzing your quote? 👉 ungouge.ai
+Want help analyzing your quote? 👉 gougealert.ai
 
 No spam. No lead gen. Just honest data.
 ```
@@ -192,9 +192,9 @@ THE ALTERNATIVE:
 
 No spam. No data sales. No BS.
 
-That's how we built @UnGougeAI.
+That's how we built @GougeAlert.
 
-ungouge.ai
+gougealert.ai
 ```
 
 ---
@@ -281,7 +281,7 @@ We normalize line items and show you:
 
 Side-by-side. Apples-to-apples.
 
-Try it → ungouge.ai/compare
+Try it → gougealert.ai/compare
 ```
 
 ```
@@ -295,7 +295,7 @@ Largest single savings: $14,500.
 
 You're probably overpaying too. Let's fix that.
 
-ungouge.ai
+gougealert.ai
 ```
 
 ---
@@ -309,7 +309,7 @@ ungouge.ai
 ```
 [Title]: I analyzed 10,000 contractor quotes. Here's what 67% of homeowners miss.
 
-I've been working on a tool that analyzes contractor quotes against market data (ungouge.ai—mods, happy to remove if this violates self-promo rules, just trying to share useful insights).
+I've been working on a tool that analyzes contractor quotes against market data (gougealert.ai—mods, happy to remove if this violates self-promo rules, just trying to share useful insights).
 
 After analyzing 10,000+ quotes, here are the most common overcharges homeowners miss:
 
@@ -467,7 +467,7 @@ In this video, I'll show you the 5 most common ways contractors pad quotes—and
 - Local permit cost verification: Call your building dept
 
 🔧 TOOL I USE:
-I built Ungouge (ungouge.ai) to automate this process—upload a quote, get instant analysis. But everything in this video you can do manually with research.
+I built GougeAlert (gougealert.ai) to automate this process—upload a quote, get instant analysis. But everything in this video you can do manually with research.
 
 💬 QUESTIONS?
 Drop them in the comments. I'll help you analyze your quote if you share the line items (anonymize contractor name).
@@ -479,7 +479,7 @@ Drop them in the comments. I'll help you analyze your quote if you share the lin
 
 ---
 
-#HomeImprovement #ContractorTips #HomeRenovation #Remodeling #DIY #ContractorQuotes #Ungouge
+#HomeImprovement #ContractorTips #HomeRenovation #Remodeling #DIY #ContractorQuotes #GougeAlert
 
 DISCLAIMER: I'm not a licensed contractor—just a homeowner who got tired of getting gouged and built a tool to fight back. Always verify info with licensed professionals in your area.
 ```
@@ -562,7 +562,7 @@ Slide 6:
 
 Slide 7 (CTA):
 "Want help analyzing YOUR quote?"
-ungouge.ai
+gougealert.ai
 [QR code]
 
 #HomeRenovation #ContractorTips #HomeImprovement #Remodeling #FrugalLiving
@@ -602,7 +602,7 @@ Went with that contractor. Roof looks great."
 
 Link in bio for quote analysis tool."
 
-[End screen]: ungouge.ai
+[End screen]: gougealert.ai
 ```
 
 ---
@@ -632,7 +632,7 @@ What if homeowners could:
 ✅ Understand standard markup ranges (not just accept them)
 ✅ Compare quotes on an apples-to-apples basis (not different formats)
 
-That's what we built at Ungouge.
+That's what we built at GougeAlert.
 
 Not to vilify contractors—but to empower homeowners with the same information contractors have.
 

@@ -1,12 +1,12 @@
 ---
-title: "UnGouge vs Asking Reddit: Why Crowdsourced Advice Can't Replace Data"
+title: "GougeAlert vs Asking Reddit: Why Crowdsourced Advice Can't Replace Data"
 description: "Reddit, forums, and Facebook groups are full of contractor pricing advice—but anecdotes aren't analysis. Here's why data beats 'I paid $X for mine.'"
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["reddit home improvement", "contractor advice reddit", "home improvement forum", "ask reddit contractor", "crowdsource contractor pricing"]
 ---
 
-# UnGouge vs Asking Reddit: Why Crowdsourced Advice Can't Replace Data
+# GougeAlert vs Asking Reddit: Why Crowdsourced Advice Can't Replace Data
 
 You get a $24,000 quote for a new roof.
 
@@ -117,9 +117,9 @@ To be fair, Reddit and forums are genuinely useful for:
 
 But for **validating a specific quote against actual market data?** Terrible.
 
-## UnGouge vs Reddit: What's the Difference?
+## GougeAlert vs Reddit: What's the Difference?
 
-| Factor | Asking Reddit | UnGouge |
+| Factor | Asking Reddit | GougeAlert |
 |--------|---------------|---------|
 | **Input needed** | Project description (guesswork) | Your actual quote (PDF, photo, email) |
 | **Analysis method** | Anecdotes from internet strangers | Line-by-line comparison to real market data |
@@ -152,7 +152,7 @@ But for **validating a specific quote against actual market data?** Terrible.
 
 ---
 
-**You run it through UnGouge:**
+**You run it through GougeAlert:**
 
 **Analysis:**
 - Materials: $7,200 (Trex Enhance @ $6/sqft + railing)
@@ -179,7 +179,7 @@ But:
 
 **More opinions ≠ better information.**
 
-## When to Use Reddit vs UnGouge
+## When to Use Reddit vs GougeAlert
 
 **Use Reddit when:**
 ✅ You need product recommendations  
@@ -188,7 +188,7 @@ But:
 ✅ You have a general "is this normal?" question  
 ✅ You want to learn about a project before quoting
 
-**Use UnGouge when:**
+**Use GougeAlert when:**
 ✅ You have a specific quote and need validation  
 ✅ You suspect overpricing but can't prove it  
 ✅ You want data-backed negotiation leverage  
@@ -199,7 +199,7 @@ But:
 
 1. **Browse Reddit/forums** to learn about your project type
 2. **Get your contractor quote**
-3. **Run it through UnGouge** for data-driven validation
+3. **Run it through GougeAlert** for data-driven validation
 4. **Use the analysis** to negotiate or walk away
 5. **Post a success story on Reddit** ("Saved $6K thanks to data!")
 
@@ -207,7 +207,7 @@ But:
 
 **Reddit and forums** = Crowdsourced opinions from well-meaning strangers
 
-**UnGouge** = Data-driven analysis of YOUR quote by professionals
+**GougeAlert** = Data-driven analysis of YOUR quote by professionals
 
 One is free entertainment. One is $19.99 for certainty.
 
@@ -235,8 +235,8 @@ Upload your contractor quote and get line-by-line analysis against real market d
 - [How to Read a Contractor Quote](/blog/how-to-read-contractor-quote)
 
 **Comparison guides:**
-- [UnGouge vs Getting 3 Quotes](/blog/ungouge-vs-getting-3-quotes)
-- [UnGouge vs Online Calculators](/blog/ungouge-vs-online-calculators)
+- [GougeAlert vs Getting 3 Quotes](/blog/gougealert-vs-getting-3-quotes)
+- [GougeAlert vs Online Calculators](/blog/gougealert-vs-online-calculators)
 
 **Project-specific cost guides:**
 - [Roof Replacement Costs](/blog/roof-replacement-cost-guide-2026)

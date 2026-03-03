@@ -6,7 +6,7 @@ locationFactor: 0.91
 avgLaborRate: $50-85
 majorCities: ["Miami", "Orlando", "Tampa", "Jacksonville", "Fort Lauderdale"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Florida contractor quotes", "Florida home improvement costs", "contractor pricing Florida", "Florida renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Florida are close to the national average. Using natio
 
 - **Climate considerations:** Hurricane-prone. Requires impact-resistant windows, reinforced roofing, flood-resistant construction. High humidity.
 
-## How UnGouge Analyzes Florida Quotes
+## How GougeAlert Analyzes Florida Quotes
 
 We compare your quote against:
 - Florida-specific labor rates by trade

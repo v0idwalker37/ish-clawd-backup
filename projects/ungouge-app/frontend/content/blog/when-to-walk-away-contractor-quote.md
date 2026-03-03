@@ -130,7 +130,7 @@ Your subconscious is processing body language, inconsistencies, and subtle cues 
 
 ## The $20 Safety Net
 
-Not sure if a quote is worth walking away from? Upload it to UnGouge.ai first.
+Not sure if a quote is worth walking away from? Upload it to GougeAlert first.
 
 We'll tell you:
 - Which line items are overpriced (and by how much)
@@ -147,7 +147,7 @@ Then you can decide: negotiate, or walk.
 1. **Get 2-3 more quotes** from contractors with verified licenses and insurance
 2. **Ask for itemized breakdowns** up front
 3. **Check references** (actually call them)
-4. **Compare quotes side-by-side** using a tool like UnGouge.ai
+4. **Compare quotes side-by-side** using a tool like GougeAlert
 
 You'll find a better contractor. And you'll know exactly what fair pricing looks like before you sign.
 

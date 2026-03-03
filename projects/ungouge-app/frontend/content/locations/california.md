@@ -6,7 +6,7 @@ locationFactor: 1.38
 avgLaborRate: $75-140
 majorCities: ["Los Angeles", "San Francisco", "San Diego", "Sacramento", "San Jose"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["California contractor quotes", "California home improvement costs", "contractor pricing California", "California renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in California run about 37% above the national average. U
 
 - **Climate considerations:** Varied by region—coastal moderate, inland hot. Seismic codes add cost. Water restrictions affect landscaping.
 
-## How UnGouge Analyzes California Quotes
+## How GougeAlert Analyzes California Quotes
 
 We compare your quote against:
 - California-specific labor rates by trade

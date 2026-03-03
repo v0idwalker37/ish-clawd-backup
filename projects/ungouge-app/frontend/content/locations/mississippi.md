@@ -6,7 +6,7 @@ locationFactor: 0.82
 avgLaborRate: $42-72
 majorCities: ["Jackson", "Gulfport", "Southaven"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Mississippi contractor quotes", "Mississippi home improvement costs", "contractor pricing Mississippi", "Mississippi renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Mississippi run about 18% below the national average. 
 
 - **Climate considerations:** Hot, humid. Hurricane risk near coast. Termite activity high.
 
-## How UnGouge Analyzes Mississippi Quotes
+## How GougeAlert Analyzes Mississippi Quotes
 
 We compare your quote against:
 - Mississippi-specific labor rates by trade

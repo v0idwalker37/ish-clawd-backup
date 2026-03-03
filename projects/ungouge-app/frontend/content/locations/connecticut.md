@@ -6,7 +6,7 @@ locationFactor: 1.18
 avgLaborRate: $65-110
 majorCities: ["Hartford", "New Haven", "Stamford", "Bridgeport"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Connecticut contractor quotes", "Connecticut home improvement costs", "contractor pricing Connecticut", "Connecticut renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Connecticut run about 17% above the national average. 
 
 - **Climate considerations:** Cold winters, humid summers. Coastal areas face salt damage and storm surge risk.
 
-## How UnGouge Analyzes Connecticut Quotes
+## How GougeAlert Analyzes Connecticut Quotes
 
 We compare your quote against:
 - Connecticut-specific labor rates by trade

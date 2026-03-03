@@ -1,5 +1,5 @@
 """
-Auth flow tests for UnGouge.ai API.
+Auth flow tests for GougeAlert API.
 
 Covers:
   POST /api/auth/register  — success, duplicate email, invalid email

@@ -1,5 +1,5 @@
 """
-Quote submission tests for UnGouge.ai API.
+Quote submission tests for GougeAlert API.
 
 Covers:
   POST /api/quotes           — valid submission, missing fields, invalid data

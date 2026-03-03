@@ -6,7 +6,7 @@ locationFactor: 1.05
 avgLaborRate: $60-95
 majorCities: ["Denver", "Colorado Springs", "Aurora", "Boulder"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Colorado contractor quotes", "Colorado home improvement costs", "contractor pricing Colorado", "Colorado renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Colorado are close to the national average. Using nati
 
 - **Climate considerations:** Cold winters, intense sun, low humidity. High altitude affects HVAC sizing and materials.
 
-## How UnGouge Analyzes Colorado Quotes
+## How GougeAlert Analyzes Colorado Quotes
 
 We compare your quote against:
 - Colorado-specific labor rates by trade

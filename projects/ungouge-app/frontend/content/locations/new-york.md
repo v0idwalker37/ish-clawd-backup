@@ -6,7 +6,7 @@ locationFactor: 1.38
 avgLaborRate: $75-140
 majorCities: ["New York City", "Buffalo", "Rochester", "Albany", "Syracuse"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["New York contractor quotes", "New York home improvement costs", "contractor pricing New York", "New York renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in New York run about 37% above the national average. Usi
 
 - **Climate considerations:** Cold winters (upstate snow belt). NYC has high labor costs and strict codes. Coastal storm risk.
 
-## How UnGouge Analyzes New York Quotes
+## How GougeAlert Analyzes New York Quotes
 
 We compare your quote against:
 - New York-specific labor rates by trade

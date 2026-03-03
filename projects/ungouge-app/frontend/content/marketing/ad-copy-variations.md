@@ -1,4 +1,4 @@
-# Ungouge.ai Ad Copy Variations
+# GougeAlert Ad Copy Variations
 
 *Created: 2026-02-08 | Status: Draft for review*
 
@@ -55,7 +55,7 @@ Description: Unlike "free" tools, we don't sell your data to contractors. You pa
 **Version A:**
 Got a contractor quote that feels too high? 🤔
 
-Upload it to Ungouge and we'll tell you if you're getting gouged — or getting a fair deal.
+Upload it to GougeAlert and we'll tell you if you're getting gouged — or getting a fair deal.
 
 ✅ Compare to real market data
 ✅ No lead gen (we hate that too)
@@ -66,7 +66,7 @@ Know before you sign. $19.99
 **Version B:**
 "Is $28,000 fair for a kitchen remodel?"
 
-Stop guessing. Ungouge analyzes your contractor quote against actual market data and tells you:
+Stop guessing. GougeAlert analyzes your contractor quote against actual market data and tells you:
 - Are line items priced fairly?
 - What's missing from the quote?
 - Red flags to watch for
@@ -96,7 +96,7 @@ Upload your contractor quote. Get honest analysis. Keep your phone from ringing 
 ## YouTube Pre-Roll (15 sec)
 
 **Script:**
-"Got a contractor quote and wondering if it's fair? Upload it to Ungouge. We compare it to real market data and tell you the truth — no lead gen, no contractor referrals. Just honest answers for $19.99. Know before you sign."
+"Got a contractor quote and wondering if it's fair? Upload it to GougeAlert. We compare it to real market data and tell you the truth — no lead gen, no contractor referrals. Just honest answers for $19.99. Know before you sign."
 
 ---
 

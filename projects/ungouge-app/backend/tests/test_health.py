@@ -1,5 +1,5 @@
 """
-Health endpoint tests for UnGouge.ai API.
+Health endpoint tests for GougeAlert API.
 
 Covers:
   GET /health       — basic health + DB status + version + uptime

@@ -117,7 +117,7 @@ Three quotes minimum. Same scope of work for each. Written, not verbal.
 - Compare to the quoted total
 
 ### Step 3: Use Data-Driven Analysis
-This is where tools like **Ungouge.ai** come in. Upload your quote and get:
+This is where tools like **GougeAlert** come in. Upload your quote and get:
 - Line-by-line comparison to market rates
 - Regional cost adjustments
 - Specific red flags identified
@@ -186,7 +186,7 @@ Check your state's contractor licensing board website. In most states, you can s
 
 A fair contractor quote is transparent, itemized, and competitive with market rates. If your quote doesn't pass these tests, ask questions before you sign.
 
-**Need certainty?** [Upload your quote to Ungouge.ai](/analyze) and get a data-driven analysis in 24 hours. $19.99 could save you thousands.
+**Need certainty?** [Upload your quote to GougeAlert](/analyze) and get a data-driven analysis in 24 hours. $19.99 could save you thousands.
 
 ---
 

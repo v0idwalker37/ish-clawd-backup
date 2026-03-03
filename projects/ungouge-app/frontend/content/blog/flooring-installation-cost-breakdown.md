@@ -2,7 +2,7 @@
 title: "Flooring Installation Cost Breakdown: What's Fair in 2026?"
 description: "Complete flooring installation cost breakdown with actual prices for hardwood, laminate, tile, vinyl, and carpet. Includes labor rates and contractor red flags."
 date: 2026-02-01
-author: Ungouge Team
+author: GougeAlert Team
 keywords: []
 ---
 
@@ -367,9 +367,9 @@ Always get 3 competing bids. The outlier (high or low) is usually suspect.
 
 ---
 
-## The UnGouge.ai Difference
+## The GougeAlert Difference
 
-Stop guessing if your flooring quote is fair. Upload it to **UnGouge.ai** and get:
+Stop guessing if your flooring quote is fair. Upload it to **GougeAlert** and get:
 
 ✅ **Line-by-line analysis** of materials, labor, and markup  
 ✅ **Regional cost comparison** based on your zip code  
@@ -379,7 +379,7 @@ Stop guessing if your flooring quote is fair. Upload it to **UnGouge.ai** and ge
 
 **$19.99 for peace of mind.** No contractor kickbacks. No lead gen. Just honest analysis.
 
-[**→ Get Your Quote Analyzed**](https://ungouge.ai)
+[**→ Get Your Quote Analyzed**](https://gougealert.ai)
 
 ---
 
@@ -389,7 +389,7 @@ Flooring installation is a **competitive market** with transparent pricing—if 
 
 If your quote feels high, it probably is. Get competing bids, ask questions, and don't be afraid to walk away.
 
-**Questions about your flooring quote?** Upload it to UnGouge.ai—we'll break down exactly where the money's going.
+**Questions about your flooring quote?** Upload it to GougeAlert—we'll break down exactly where the money's going.
 
 ---
 

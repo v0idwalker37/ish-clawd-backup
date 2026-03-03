@@ -1,12 +1,12 @@
 ---
-title: "UnGouge vs Contractor Reviews: Quality ≠ Fair Pricing"
+title: "GougeAlert vs Contractor Reviews: Quality ≠ Fair Pricing"
 description: "Five-star reviews tell you a contractor does good work—but they don't tell you if their pricing is fair. Here's why you need both."
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["contractor reviews", "yelp contractor", "google contractor reviews", "angie's list reviews", "how to check contractor reviews"]
 ---
 
-# UnGouge vs Contractor Reviews: Quality ≠ Fair Pricing
+# GougeAlert vs Contractor Reviews: Quality ≠ Fair Pricing
 
 You find a contractor with a 4.9-star rating on Google. 87 glowing reviews. Photos of beautiful work. Detailed responses to every review.
 
@@ -137,7 +137,7 @@ Don't get us wrong—**reviews are essential**. They tell you:
 
 **You should check reviews.** Just don't expect them to tell you if the price is fair.
 
-## UnGouge + Reviews = Complete Picture
+## GougeAlert + Reviews = Complete Picture
 
 Here's the smart strategy:
 
@@ -151,7 +151,7 @@ Here's the smart strategy:
 - They all do quality work
 - Their quotes are all different
 
-### Step 3: Run Quotes Through UnGouge
+### Step 3: Run Quotes Through GougeAlert
 - Identify which quote is fair market rate
 - Understand where prices differ
 - Make an informed choice
@@ -176,7 +176,7 @@ Here's the smart strategy:
 
 **Based on reviews alone:** Contractor A seems best (highest rating, most reviews).
 
-**UnGouge analysis reveals:**
+**GougeAlert analysis reveals:**
 
 **Contractor A ($52,000):**
 - Materials: $22,000 (180% markup—excessive)
@@ -201,7 +201,7 @@ Here's the smart strategy:
 - **Want fair market rate from a solid contractor?** → Contractor B
 - **Want middle ground?** → Contractor C
 
-**Reviews helped you eliminate bad contractors. UnGouge helped you understand the price difference.**
+**Reviews helped you eliminate bad contractors. GougeAlert helped you understand the price difference.**
 
 ## The "Premium Contractor" Trap
 
@@ -219,7 +219,7 @@ Some contractors deliberately position themselves as "premium":
 
 But many homeowners pay the premium without realizing they're paying a premium. They just think "quality costs more" and don't question *how much* more.
 
-**UnGouge shows you exactly how much of a premium you're paying—and whether it's worth it to you.**
+**GougeAlert shows you exactly how much of a premium you're paying—and whether it's worth it to you.**
 
 ## When Reviews + Pricing Data Diverge
 
@@ -244,11 +244,11 @@ But many homeowners pay the premium without realizing they're paying a premium. 
 
 **Reviews** = Quality, professionalism, reliability
 
-**UnGouge** = Fair pricing, cost validation, negotiation leverage
+**GougeAlert** = Fair pricing, cost validation, negotiation leverage
 
 **Reviews tell you WHO to trust.**
 
-**UnGouge tells you WHAT to pay.**
+**GougeAlert tells you WHAT to pay.**
 
 For $19.99, you get what reviews can never provide: **certainty that the price is fair, not just that the work is good.**
 
@@ -275,9 +275,9 @@ Upload your quote and get a data-driven analysis in 24 hours.
 - [When to Walk Away From a Quote](/blog/when-to-walk-away-contractor-quote)
 
 **Comparison guides:**
-- [UnGouge vs Getting 3 Quotes](/blog/ungouge-vs-getting-3-quotes)
-- [UnGouge vs Online Calculators](/blog/ungouge-vs-online-calculators)
-- [UnGouge vs Asking Reddit](/blog/ungouge-vs-asking-reddit)
+- [GougeAlert vs Getting 3 Quotes](/blog/gougealert-vs-getting-3-quotes)
+- [GougeAlert vs Online Calculators](/blog/gougealert-vs-online-calculators)
+- [GougeAlert vs Asking Reddit](/blog/gougealert-vs-asking-reddit)
 
 **Project-specific cost guides:**
 - [Kitchen Remodel Costs](/blog/02-kitchen-remodel-cost-2026)

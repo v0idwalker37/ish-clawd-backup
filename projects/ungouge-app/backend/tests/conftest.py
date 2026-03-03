@@ -1,5 +1,5 @@
 """
-Test fixtures for UnGouge.ai backend API tests.
+Test fixtures for GougeAlert backend API tests.
 
 Provides:
 - FastAPI TestClient with in-memory SQLite database

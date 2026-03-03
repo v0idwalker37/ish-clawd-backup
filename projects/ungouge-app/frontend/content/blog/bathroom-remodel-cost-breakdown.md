@@ -2,7 +2,7 @@
 title: "Bathroom Remodel Cost Breakdown: Real Prices for Tile, Vanities, Fixtures & Labor"
 description: "Complete bathroom renovation cost breakdown with actual material prices, labor rates, and contractor red flags. Budget from $6K to $40K+ based on scope."
 date: 2024-01-20
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["bathroom remodel cost breakdown", "bathroom renovation cost", "how much does bathroom remodel cost", "bathroom remodel budget", "bathroom renovation prices"]
 ---
 
@@ -601,7 +601,7 @@ Understanding realistic timelines helps you spot padding or overbooked contracto
 
 ## Verify Your Bathroom Remodel Quote
 
-Analyzing a multi-page quote with dozens of specialized line items is overwhelming. That's why we built **Ungouge.ai**.
+Analyzing a multi-page quote with dozens of specialized line items is overwhelming. That's why we built **GougeAlert**.
 
 **How it works:**
 1. **Upload your bathroom remodel quote** - PDF, photo, email—any format
@@ -609,7 +609,7 @@ Analyzing a multi-page quote with dozens of specialized line items is overwhelmi
 3. **Get a detailed breakdown** - See what's fair, what's high, and where you're being overcharged
 4. **No email, no sales pitch** - Just the truth about your quote
 
-**Try it now:** [ungouge.ai](https://ungouge.ai)
+**Try it now:** [gougealert.ai](https://gougealert.ai)
 
 ---
 

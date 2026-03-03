@@ -2,7 +2,7 @@
 
 ## Overview
 
-The authentication system provides user registration, login, and profile management for the Ungouge.ai backend.
+The authentication system provides user registration, login, and profile management for the GougeAlert backend.
 
 ## Features
 

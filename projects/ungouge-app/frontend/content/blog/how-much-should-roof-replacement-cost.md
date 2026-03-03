@@ -2,7 +2,7 @@
 title: "How Much Should a Roof Replacement Cost? Real Numbers & What to Expect in 2024"
 description: "Wondering if your roofing quote is fair? Get real data on roof replacement costs by size, material, and region—plus red flags that signal overcharging."
 date: 2024-01-15
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["how much should a roof replacement cost", "roof replacement cost", "roofing prices", "asphalt shingle cost", "metal roof cost", "roofing quote red flags"]
 ---
 
@@ -357,7 +357,7 @@ If you suspect fraud, document everything and report to:
 
 You've got the data. Now what?
 
-The roofing industry has a transparency problem, and most homeowners don't have time to become experts overnight. That's exactly why we built **Ungouge.ai**.
+The roofing industry has a transparency problem, and most homeowners don't have time to become experts overnight. That's exactly why we built **GougeAlert**.
 
 **Here's how it works:**
 1. Upload your roofing quote (any format: PDF, photo, email)
@@ -367,7 +367,7 @@ The roofing industry has a transparency problem, and most homeowners don't have 
 
 We're not here to sell you roofing services or connect you with contractors. We're here to give you the data to make an informed decision.
 
-**Try it now:** [ungouge.ai](https://ungouge.ai)
+**Try it now:** [gougealert.ai](https://gougealert.ai)
 
 ---
 

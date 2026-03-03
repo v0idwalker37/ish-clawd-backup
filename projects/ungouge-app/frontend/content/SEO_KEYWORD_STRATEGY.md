@@ -1,4 +1,4 @@
-# Ungouge.ai SEO Keyword Strategy
+# GougeAlert SEO Keyword Strategy
 
 *Generated: 2026-02-07 1:00 AM — Ish autonomous session*
 

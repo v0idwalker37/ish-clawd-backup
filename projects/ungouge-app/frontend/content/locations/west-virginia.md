@@ -6,7 +6,7 @@ locationFactor: 0.88
 avgLaborRate: $48-78
 majorCities: ["Charleston", "Huntington", "Morgantown"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["West Virginia contractor quotes", "West Virginia home improvement costs", "contractor pricing West Virginia", "West Virginia renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in West Virginia run about 12% below the national average
 
 - **Climate considerations:** Cold winters, humid summers. Mountainous terrain affects access/costs.
 
-## How UnGouge Analyzes West Virginia Quotes
+## How GougeAlert Analyzes West Virginia Quotes
 
 We compare your quote against:
 - West Virginia-specific labor rates by trade

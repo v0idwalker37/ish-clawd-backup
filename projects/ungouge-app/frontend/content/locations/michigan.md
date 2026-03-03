@@ -6,7 +6,7 @@ locationFactor: 1.02
 avgLaborRate: $56-90
 majorCities: ["Detroit", "Grand Rapids", "Ann Arbor", "Lansing"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Michigan contractor quotes", "Michigan home improvement costs", "contractor pricing Michigan", "Michigan renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Michigan are close to the national average. Using nati
 
 - **Climate considerations:** Cold winters, heavy snow. Great Lakes affect weather. Freeze-thaw cycles.
 
-## How UnGouge Analyzes Michigan Quotes
+## How GougeAlert Analyzes Michigan Quotes
 
 We compare your quote against:
 - Michigan-specific labor rates by trade

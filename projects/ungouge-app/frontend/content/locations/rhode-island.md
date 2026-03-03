@@ -6,7 +6,7 @@ locationFactor: 1.16
 avgLaborRate: $64-105
 majorCities: ["Providence", "Warwick", "Cranston"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Rhode Island contractor quotes", "Rhode Island home improvement costs", "contractor pricing Rhode Island", "Rhode Island renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Rhode Island run about 15% above the national average.
 
 - **Climate considerations:** Coastal storms, salt damage. Cold winters. Old housing stock.
 
-## How UnGouge Analyzes Rhode Island Quotes
+## How GougeAlert Analyzes Rhode Island Quotes
 
 We compare your quote against:
 - Rhode Island-specific labor rates by trade

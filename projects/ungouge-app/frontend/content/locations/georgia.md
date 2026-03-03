@@ -6,7 +6,7 @@ locationFactor: 0.88
 avgLaborRate: $48-80
 majorCities: ["Atlanta", "Augusta", "Savannah", "Columbus"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Georgia contractor quotes", "Georgia home improvement costs", "contractor pricing Georgia", "Georgia renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Georgia run about 12% below the national average. Usin
 
 - **Climate considerations:** Hot, humid summers. Termite activity high. Occasional ice storms.
 
-## How UnGouge Analyzes Georgia Quotes
+## How GougeAlert Analyzes Georgia Quotes
 
 We compare your quote against:
 - Georgia-specific labor rates by trade

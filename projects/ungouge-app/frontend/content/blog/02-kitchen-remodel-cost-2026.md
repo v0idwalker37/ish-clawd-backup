@@ -172,7 +172,7 @@ Watch for these warning signs:
 3. **Bundle projects** — Doing bathroom too? Package deals save money
 4. **Keep the layout** — Moving plumbing/electric adds $5,000-15,000
 5. **Choose stock cabinets** — Custom adds 50-100% cost for marginal benefit
-6. **Verify every quote** — Use tools like Ungouge.ai to catch overcharges
+6. **Verify every quote** — Use tools like GougeAlert to catch overcharges
 
 ---
 
@@ -186,7 +186,7 @@ Got a quote in hand? Here's how to check it:
 ✅ **No mystery line items** or unexplained lump sums
 ✅ **Permits included** if required
 
-**Still unsure?** [Upload your quote to Ungouge.ai](/pricing) for a line-by-line analysis against current market rates. $19.99 could save you thousands on a $40,000 project.
+**Still unsure?** [Upload your quote to GougeAlert](/pricing) for a line-by-line analysis against current market rates. $19.99 could save you thousands on a $40,000 project.
 
 ---
 

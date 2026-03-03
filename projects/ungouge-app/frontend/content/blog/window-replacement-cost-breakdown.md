@@ -2,7 +2,7 @@
 title: "Window Replacement Cost Breakdown: What You Should Actually Pay in 2026"
 description: "Complete window replacement cost breakdown with actual prices for vinyl, wood, and fiberglass windows. Includes installation labor rates and contractor red flags."
 date: 2026-02-01
-author: Ungouge Team
+author: GougeAlert Team
 keywords: []
 ---
 
@@ -523,7 +523,7 @@ Not all high quotes are rip-offs. Here are legitimate reasons for higher costs:
 
 ---
 
-## What Ungouge.ai Does
+## What GougeAlert Does
 
 We analyze contractor quotes and tell you:
 - Whether material costs are fair (wholesale + reasonable markup)
@@ -539,7 +539,7 @@ Upload your window replacement quote → Get answers in 24 hours.
 ---
 
 **Have a window replacement quote you want analyzed?**  
-👉 [Upload your quote to Ungouge.ai](https://ungouge.ai)
+👉 [Upload your quote to GougeAlert](https://gougealert.ai)
 
 ---
 

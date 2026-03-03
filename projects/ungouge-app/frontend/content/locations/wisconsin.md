@@ -6,7 +6,7 @@ locationFactor: 1.07
 avgLaborRate: $59-96
 majorCities: ["Milwaukee", "Madison", "Green Bay"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Wisconsin contractor quotes", "Wisconsin home improvement costs", "contractor pricing Wisconsin", "Wisconsin renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Wisconsin are close to the national average. Using nat
 
 - **Climate considerations:** Very cold winters, heavy snow. Short building season. Freeze-thaw cycles.
 
-## How UnGouge Analyzes Wisconsin Quotes
+## How GougeAlert Analyzes Wisconsin Quotes
 
 We compare your quote against:
 - Wisconsin-specific labor rates by trade

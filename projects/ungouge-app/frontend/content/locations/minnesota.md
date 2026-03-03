@@ -6,7 +6,7 @@ locationFactor: 1.15
 avgLaborRate: $64-105
 majorCities: ["Minneapolis", "St. Paul", "Rochester", "Duluth"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Minnesota contractor quotes", "Minnesota home improvement costs", "contractor pricing Minnesota", "Minnesota renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Minnesota run about 14% above the national average. Us
 
 - **Climate considerations:** Extremely cold winters require specialized construction. Short building season. Heavy snow loads.
 
-## How UnGouge Analyzes Minnesota Quotes
+## How GougeAlert Analyzes Minnesota Quotes
 
 We compare your quote against:
 - Minnesota-specific labor rates by trade

@@ -201,7 +201,7 @@ Before signing any contractor quote, verify:
 
 Reading a contractor quote takes experience. Even smart homeowners miss warning signs.
 
-**Ungouge.ai analyzes your quote against real market data:**
+**GougeAlert analyzes your quote against real market data:**
 - Line-by-line price comparison
 - Red flag identification
 - Regional cost adjustment

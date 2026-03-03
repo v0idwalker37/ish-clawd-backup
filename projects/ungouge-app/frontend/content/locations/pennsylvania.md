@@ -6,7 +6,7 @@ locationFactor: 1.05
 avgLaborRate: $58-94
 majorCities: ["Philadelphia", "Pittsburgh", "Allentown", "Erie"]
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["Pennsylvania contractor quotes", "Pennsylvania home improvement costs", "contractor pricing Pennsylvania", "Pennsylvania renovation costs"]
 ---
 
@@ -25,7 +25,7 @@ Home improvement costs in Pennsylvania are close to the national average. Using 
 
 - **Climate considerations:** Cold winters, humid summers. Old housing stock. Rust belt infrastructure.
 
-## How UnGouge Analyzes Pennsylvania Quotes
+## How GougeAlert Analyzes Pennsylvania Quotes
 
 We compare your quote against:
 - Pennsylvania-specific labor rates by trade

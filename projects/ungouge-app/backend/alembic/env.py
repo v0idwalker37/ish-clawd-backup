@@ -1,5 +1,5 @@
 """
-Alembic environment configuration for UnGouge.ai
+Alembic environment configuration for GougeAlert
 
 Supports both sync (SQLite) and async (asyncpg) engines.
 Reads DATABASE_URL from the environment (falls back to local SQLite).

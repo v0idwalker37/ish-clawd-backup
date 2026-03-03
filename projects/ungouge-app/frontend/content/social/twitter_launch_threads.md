@@ -1,5 +1,5 @@
-# UnGouge X/Twitter Launch Content
-*Pre-written threads ready for @Ungouge when website goes live*
+# GougeAlert X/Twitter Launch Content
+*Pre-written threads ready for @GougeAlert when website goes live*
 
 ---
 
@@ -24,7 +24,7 @@ You get 3 quotes. They're all different. Which one is fair?
 "Free" comparison tools just tell you which of YOUR quotes is cheapest. But what if they're ALL too high?
 
 **Tweet 3:**
-UnGouge works differently.
+GougeAlert works differently.
 
 You submit one quote. We compare it against independent market data:
 - What materials actually cost
@@ -53,7 +53,7 @@ We're starting with the 14 most common home projects:
 All backed by real market data. Updated regularly.
 
 **Tweet 6:**
-Coming soon at ungouge.ai
+Coming soon at gougealert.com
 
 Follow for homeowner tips, contractor BS detection, and updates on our launch.
 
@@ -114,7 +114,7 @@ Want to know if YOUR quote is fair?
 
 We're building a tool to check. One quote. Real data. No BS.
 
-ungouge.ai (coming soon)
+gougealert.com (coming soon)
 
 ---
 
@@ -164,7 +164,7 @@ $19.99 for a quote analysis. No phone number required. No contractor referrals. 
 
 You pay for the service. Period.
 
-ungouge.ai (coming soon)
+gougealert.com (coming soon)
 
 ---
 

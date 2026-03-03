@@ -2,7 +2,7 @@
 title: "Contractor Change Orders: How to Avoid Surprise Costs"
 description: "Change orders can double your project cost if you're not careful. Learn how to identify unnecessary change orders, negotiate fairly, and protect your budget."
 date: 2026-02-21
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["contractor change orders", "change order costs", "home improvement budget", "contractor extras", "renovation overruns"]
 ---
 
@@ -336,7 +336,7 @@ But contractors know homeowners are vulnerable mid-project. Switching contractor
 
 Avoid change orders by starting with an accurate, detailed quote.
 
-Upload your contractor quote to UnGouge—we'll identify vague line items, missing scope, and potential padding BEFORE you sign.
+Upload your contractor quote to GougeAlert—we'll identify vague line items, missing scope, and potential padding BEFORE you sign.
 
 [Verify Your Quote →](/analyze)
 

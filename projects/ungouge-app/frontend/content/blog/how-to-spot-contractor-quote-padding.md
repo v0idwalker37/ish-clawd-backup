@@ -2,7 +2,7 @@
 title: "How to Spot Contractor Quote Padding (7 Common Tricks)"
 description: "Learn the specific tactics contractors use to pad quotes—from inflated labor hours to phantom expenses—and how to spot them line by line."
 date: 2026-02-01
-author: Ungouge Team
+author: GougeAlert Team
 keywords: []
 ---
 
@@ -148,7 +148,7 @@ Ask questions. Compare quotes. Use data. And if a quote still feels wrong, trust
 
 ## **Verify Your Quote in 5 Minutes**
 
-Upload any contractor quote to **UnGouge.ai** and get:
+Upload any contractor quote to **GougeAlert** and get:
 - ✅ Fair market pricing for your region
 - ✅ Line-by-line breakdown of potential overcharges
 - ✅ Red flags you might have missed
@@ -156,11 +156,11 @@ Upload any contractor quote to **UnGouge.ai** and get:
 
 **$19.99 per report. No lead gen. No spam. Just honest analysis.**
 
-👉 [Verify Your Quote Now](https://ungouge.ai)
+👉 [Verify Your Quote Now](https://gougealert.ai)
 
 ---
 
-*UnGouge is an independent quote verification service. We don't sell your data, refer contractors, or take kickbacks. We make $19.99 when you pay us. That's it.*
+*GougeAlert is an independent quote verification service. We don't sell your data, refer contractors, or take kickbacks. We make $19.99 when you pay us. That's it.*
 
 ---
 

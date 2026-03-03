@@ -2,7 +2,7 @@
 title: "Concrete & Foundation Cost Breakdown: Real Prices for Repairs, Pouring, and Waterproofing"
 description: "Complete cost breakdown for foundation repair, concrete driveways, patios, basement waterproofing, and slab work. Actual prices from $500 crack repairs to $30K+ full foundation replacement."
 date: "2026-01-22"
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["foundation repair cost", "concrete driveway cost", "patio pouring cost", "basement waterproofing cost", "foundation crack repair", "concrete slab cost", "mudjacking cost"]
 ---
 
@@ -322,9 +322,9 @@ Settled concrete doesn't always need replacing. Lifting it back into place is ch
 
 ---
 
-## What UnGouge Would Flag
+## What GougeAlert Would Flag
 
-When you upload a concrete or foundation quote to **UnGouge.ai**, here's what our analysis catches:
+When you upload a concrete or foundation quote to **GougeAlert**, here's what our analysis catches:
 
 - ✅ **Concrete pricing vs. local batch plant rates** — We know what a yard of 4,000 PSI costs in your area
 - ✅ **Labor hours vs. scope** — A 600 sqft driveway shouldn't quote 80 labor hours
@@ -334,7 +334,7 @@ When you upload a concrete or foundation quote to **UnGouge.ai**, here's what ou
 - ✅ **Missing line items** — No control joints? No sealer? No rebar? We flag what's missing
 - ✅ **Regional price comparison** — Is your quote in line with your metro area's going rates?
 
-**Upload your quote:** [ungouge.ai](https://ungouge.ai) — $19.99 for a detailed analysis. No lead gen. No contractor referrals. Just data.
+**Upload your quote:** [gougealert.ai](https://gougealert.ai) — $19.99 for a detailed analysis. No lead gen. No contractor referrals. Just data.
 
 ---
 

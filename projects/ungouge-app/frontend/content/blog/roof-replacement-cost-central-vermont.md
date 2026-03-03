@@ -2,7 +2,7 @@
 title: "Roof Replacement Cost in Central Vermont: Real 2026 Prices for Snow Country"
 description: "Central Vermont roof replacement costs with local labor rates, snow load requirements, and ice dam prevention. Covers Montpelier, Barre, Northfield, and surrounding areas."
 date: "2026-02-13"
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["roof replacement cost Vermont", "Central Vermont roofing", "Vermont metal roof cost", "Montpelier roofing contractor", "snow load roof requirements Vermont"]
 region: "Central Vermont"
 ---
@@ -457,7 +457,7 @@ If your quote for comparable scope is $22,000, you're looking at 30%+ padding.
 
 Roofing in Vermont has real cost factors that differ from national guides. But some contractors use that complexity to hide overcharging.
 
-That's why we built **Ungouge.ai**.
+That's why we built **GougeAlert**.
 
 **How it works:**
 1. **Upload your roofing quote** — PDF, photo, email, any format
@@ -465,7 +465,7 @@ That's why we built **Ungouge.ai**.
 3. **Get a detailed breakdown** — What's fair Vermont pricing vs. what's padding
 4. **No email, no sales pitch** — Just the truth about your quote
 
-**Try it now:** [ungouge.ai](https://ungouge.ai)
+**Try it now:** [gougealert.ai](https://gougealert.ai)
 
 ---
 

@@ -2,7 +2,7 @@
 title: "Landscaping Cost Breakdown: What Should You Actually Pay in 2026?"
 description: "Complete landscaping cost breakdown with actual prices for design, installation, hardscaping, plantings, and maintenance. Includes labor rates and contractor red flags."
 date: 2026-02-01
-author: Ungouge Team
+author: GougeAlert Team
 keywords: []
 ---
 
@@ -562,4 +562,4 @@ Fair landscaping costs in 2026:
 
 ---
 
-*Need help evaluating a specific landscaping quote? [Submit your quote to Ungouge.ai](#) for a detailed, data-driven analysis in minutes.*
+*Need help evaluating a specific landscaping quote? [Submit your quote to GougeAlert](#) for a detailed, data-driven analysis in minutes.*

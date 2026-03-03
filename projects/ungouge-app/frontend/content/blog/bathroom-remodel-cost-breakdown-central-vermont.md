@@ -2,7 +2,7 @@
 title: "Bathroom Remodel Cost Breakdown for Central Vermont: Real Local Prices for 2026"
 description: "Central Vermont bathroom renovation costs with actual local labor rates, material prices, and contractor red flags. Covers Montpelier, Barre, Northfield, and surrounding areas."
 date: "2026-02-14"
-author: Ungouge Team
+author: GougeAlert Team
 keywords: ["bathroom remodel cost Vermont", "Central Vermont bathroom renovation", "Montpelier bathroom contractor", "Vermont bathroom remodel prices", "Barre bathroom renovation cost"]
 region: "Central Vermont"
 ---
@@ -469,7 +469,7 @@ Vermont doesn't require a general contractor license, but:
 
 ## Verify Your Central Vermont Quote
 
-Analyzing quotes with Vermont-specific pricing requires local knowledge. That's why we built **Ungouge.ai**.
+Analyzing quotes with Vermont-specific pricing requires local knowledge. That's why we built **GougeAlert**.
 
 **How it works:**
 1. **Upload your bathroom remodel quote** - PDF, photo, email—any format
@@ -477,7 +477,7 @@ Analyzing quotes with Vermont-specific pricing requires local knowledge. That's 
 3. **Get a detailed breakdown** - See what's fair Vermont pricing vs. padding
 4. **No email, no sales pitch** - Just the truth about your quote
 
-**Try it now:** [ungouge.ai](https://ungouge.ai)
+**Try it now:** [gougealert.ai](https://gougealert.ai)
 
 ---
 
