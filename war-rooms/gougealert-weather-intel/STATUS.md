@@ -16,3 +16,5 @@
 [2026-03-03 16:35 EST] LEGAL — WAVE 1 COMPLETE. Output delivered: agents/legal/WAVE1-LEGAL.md
 [2026-03-03 16:37 EST] ARCH — WAVE 1 COMPLETE. Output delivered: agents/arch/WAVE1-ARCH.md
 [2026-03-03 16:37 EST] CHAOS — WAVE 1B COMPLETE. Output delivered: agents/chaos/WAVE1-CHAOS.md
+[2026-03-03 16:56 EST] ORCH — WAVE 2 EXECUTION STARTED in app repo.
+[2026-03-03 16:56 EST] ORCH — Shipped MVP-Guarded backend primitives: 30-day Project Pass model/service + deterministic legal report gate + tests (52 passing).
