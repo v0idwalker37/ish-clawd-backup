@@ -5,15 +5,15 @@ services:
   postgres:
     image: postgres:16-alpine
     environment:
-      POSTGRES_DB: ungouge
-      POSTGRES_USER: ungouge
+      POSTGRES_DB: gougealert
+      POSTGRES_USER: gougealert
       POSTGRES_PASSWORD: devpassword
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "ungouge"]
+      test: ["CMD", "pg_isready", "-U", "gougealert"]
       interval: 10s
       timeout: 3s
       retries: 3
@@ -37,7 +37,7 @@ services:
       - "8000:8000"
     environment:
       - ENVIRONMENT=development
-      - DATABASE_URL=postgresql+asyncpg://ungouge:devpassword@postgres:5432/ungouge
+      - DATABASE_URL=postgresql+asyncpg://gougealert:devpassword@postgres:5432/gougealert
       - REDIS_URL=redis://redis:6379
       - JWT_SECRET_KEY=dev-secret-key-change-in-production
       - CSRF_SECRET_KEY=dev-csrf-secret-change-in-production
@@ -101,7 +101,7 @@ services:
       - "8003:8003"
     environment:
       - ENVIRONMENT=development
-      - DATABASE_URL=postgresql+asyncpg://ungouge:devpassword@postgres:5432/ungouge
+      - DATABASE_URL=postgresql+asyncpg://gougealert:devpassword@postgres:5432/gougealert
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
       - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
       - GCP_PROJECT_ID=gen-lang-client-0199462206

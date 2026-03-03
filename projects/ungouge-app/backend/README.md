@@ -64,7 +64,7 @@ backend/
 Uses SQLite by default for development. For production, configure PostgreSQL:
 
 ```bash
-DATABASE_URL=postgresql+asyncpg://user:pass@localhost/ungouge
+DATABASE_URL=postgresql+asyncpg://user:pass@localhost/gougealert
 ```
 
 Tables are created automatically on startup via SQLAlchemy.

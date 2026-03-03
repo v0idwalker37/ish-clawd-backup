@@ -23,7 +23,7 @@
 
 ### 1. Get Gemini API Key
 
-1. Sign into https://aistudio.google.com/app/apikey with **ungouge.ai** Google account
+1. Sign into https://aistudio.google.com/app/apikey with the project Google account
 2. Click "Create API Key"
 3. Copy the key
 

@@ -3,8 +3,8 @@
 # ==============================================================================
 # Multi-stage build: Python 3.11 slim, non-root user, health check
 #
-# Build:  docker build -t ungouge-api .
-# Run:    docker run -p 8000:8000 --env-file .env.production ungouge-api
+# Build:  docker build -t gougealert-api .
+# Run:    docker run -p 8000:8000 --env-file .env.production gougealert-api
 # ==============================================================================
 
 # ── Stage 1: Dependencies ────────────────────────────────────────────────────
@@ -50,7 +50,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=builder /install /usr/local
 
 # Create non-root user
-RUN groupadd -r ungouge && useradd -r -g ungouge -d /app -s /sbin/nologin ungouge
+RUN groupadd -r gougealert && useradd -r -g gougealert -d /app -s /sbin/nologin gougealert
 
 WORKDIR /app
 
@@ -58,10 +58,10 @@ WORKDIR /app
 COPY backend/ .
 
 # Set ownership
-RUN chown -R ungouge:ungouge /app
+RUN chown -R gougealert:gougealert /app
 
 # Switch to non-root user
-USER ungouge
+USER gougealert
 
 # Environment defaults (override at runtime)
 ENV ENVIRONMENT=production \
