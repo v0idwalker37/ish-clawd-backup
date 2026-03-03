@@ -53,3 +53,32 @@ Date: 2026-03-03
 2. Add NWS ingestion worker command + persistence to raw/canonical tables.
 3. Add internal publish gateway endpoint that requires compliance token.
 4. Add event-run kill switch + rollback paths.
+
+## Additional delivered block
+
+6. **Event lifecycle service + transition guards**
+- Added `services/event_lifecycle.py`:
+  - allowed transition matrix
+  - guarded transitions
+  - revoke helper
+
+7. **Internal event-ops router + publish gateway**
+- Added `routers/event_ops.py` endpoints:
+  - `POST /api/event-runs`
+  - `POST /api/event-runs/{id}/transition`
+  - `POST /api/event-runs/{id}/revoke`
+  - `POST /api/publish-gateway` (requires valid compliance token)
+- Added `models/publish.py` request schema.
+
+8. **Ingestion utility script**
+- Added `scripts/weather_ingest_once.py`
+  - creates tables in local/dev run
+  - ingests NWS active alerts
+
+9. **Test coverage added**
+- `tests/test_event_lifecycle.py`
+- `tests/test_publish_gateway.py`
+- `tests/test_weather_ingest.py`
+
+Validation update:
+- Backend test suite now **64 passed**.
