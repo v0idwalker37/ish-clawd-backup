@@ -10,15 +10,18 @@
 from __future__ import annotations
 
 from datetime import datetime, timedelta
+import os
 import re
-from typing import Optional
+from typing import Optional, Tuple
 
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models.database import ProjectPass
+from models.database import ProjectPass, Quote
 
 PASS_DURATION_DAYS = 30
+MAX_PASS_TOTAL_UPLOADS = int(os.getenv("PROJECT_PASS_MAX_UPLOADS", "25"))
+MAX_PASS_UPLOADS_PER_HOUR = int(os.getenv("PROJECT_PASS_HOURLY_UPLOAD_LIMIT", "8"))
 
 
 def normalize_address(raw: str) -> str:
@@ -104,6 +107,37 @@ async def increment_pass_usage(db: AsyncSession, project_pass: ProjectPass) -> N
     project_pass.upload_count = (project_pass.upload_count or 0) + 1
     project_pass.updated_at = datetime.utcnow()
     await db.flush()
+
+
+async def check_pass_usage_guard(
+    db: AsyncSession,
+    *,
+    project_pass: ProjectPass,
+    now: Optional[datetime] = None,
+) -> Tuple[bool, Optional[str]]:
+    """Return (allowed, reason) for anti-abuse gating.
+
+    Controls:
+    - total uploads cap per pass
+    - hourly uploads cap per pass
+    """
+    now = now or datetime.utcnow()
+
+    if (project_pass.upload_count or 0) >= MAX_PASS_TOTAL_UPLOADS:
+        return False, "pass_total_upload_limit_reached"
+
+    since = now - timedelta(hours=1)
+    count_hourly = await db.scalar(
+        select(func.count())
+        .select_from(Quote)
+        .where(Quote.project_pass_id == project_pass.id)
+        .where(Quote.created_at >= since)
+    )
+
+    if int(count_hourly or 0) >= MAX_PASS_UPLOADS_PER_HOUR:
+        return False, "pass_hourly_upload_limit_reached"
+
+    return True, None
 
 
 async def expire_stale_passes(db: AsyncSession, now: Optional[datetime] = None) -> int:

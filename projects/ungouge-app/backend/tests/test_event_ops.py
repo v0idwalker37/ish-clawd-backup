@@ -152,3 +152,17 @@ async def test_event_run_rollback_hook(client: AsyncClient, auth_headers: dict):
     )
     assert rb.status_code == 200
     assert rb.json()["status"] == "ROLLED_BACK"
+
+
+async def test_dashboard_and_requalify_weather_event(client: AsyncClient, auth_headers: dict):
+    wid = await _insert_weather_event(status="CANDIDATE")
+
+    rq = await client.post(f"/api/weather-events/{wid}/requalify", headers=auth_headers)
+    assert rq.status_code == 200
+    assert "qualification_score" in rq.json()
+
+    dash = await client.get("/api/event-ops/dashboard", headers=auth_headers)
+    assert dash.status_code == 200
+    body = dash.json()
+    assert "weather_events_total" in body
+    assert "run_status_breakdown" in body

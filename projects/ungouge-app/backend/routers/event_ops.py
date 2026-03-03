@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, func
 import uuid
 from datetime import datetime
 
@@ -10,6 +10,7 @@ from models.database import (
     EventRun,
     EventRunAction,
     WeatherEvent,
+    WeatherRawEvent,
     LegalGateAudit,
     User,
 )
@@ -28,6 +29,8 @@ from services.compliance_token import (
 from services.event_lifecycle import transition_event_run, revoke_event_run, TransitionError
 from services.event_actions import enqueue_action, run_action
 from services.ops_control import get_flag, set_flag, GLOBAL_AUTOMATION_PAUSE_KEY
+from services.weather_intel import qualify_event
+from services.weather_maintenance import run_weather_ops_cycle
 from services.logger import logger
 
 router = APIRouter()
@@ -42,6 +45,152 @@ class EventRunCreateRequest(BaseModel):
 class EventRunTransitionRequest(BaseModel):
     target_status: str
     reason: str | None = None
+
+
+class WeatherOpsCycleRequest(BaseModel):
+    run_now: bool = True
+
+
+@router.get("/weather-events")
+async def list_weather_events(
+    status_filter: str | None = None,
+    min_score: int | None = None,
+    limit: int = 50,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    limit = max(1, min(limit, 200))
+    q = select(WeatherEvent).order_by(WeatherEvent.detected_at.desc()).limit(limit)
+    if status_filter:
+        q = q.where(WeatherEvent.status == status_filter)
+    if min_score is not None:
+        q = q.where(WeatherEvent.qualification_score >= min_score)
+
+    rows = (await db.execute(q)).scalars().all()
+    return {
+        "count": len(rows),
+        "events": [
+            {
+                "id": e.id,
+                "hazard_family": e.hazard_family,
+                "hazard_type": e.hazard_type,
+                "status": e.status,
+                "qualification_score": e.qualification_score,
+                "geo_confidence": e.geo_confidence,
+                "detected_at": e.detected_at.isoformat() if e.detected_at else None,
+                "expires_at": e.expires_at.isoformat() if e.expires_at else None,
+            }
+            for e in rows
+        ],
+    }
+
+
+@router.get("/event-ops/dashboard")
+async def event_ops_dashboard(
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    weather_total = await db.scalar(select(func.count()).select_from(WeatherEvent))
+    runs_total = await db.scalar(select(func.count()).select_from(EventRun))
+    actions_total = await db.scalar(select(func.count()).select_from(EventRunAction))
+
+    status_rows = await db.execute(
+        select(WeatherEvent.status, func.count())
+        .group_by(WeatherEvent.status)
+    )
+    status_breakdown = {k: int(v) for k, v in status_rows.all()}
+
+    run_status_rows = await db.execute(
+        select(EventRun.status, func.count())
+        .group_by(EventRun.status)
+    )
+    run_status_breakdown = {k: int(v) for k, v in run_status_rows.all()}
+
+    paused = await get_flag(db, GLOBAL_AUTOMATION_PAUSE_KEY, default=False)
+
+    return {
+        "weather_events_total": int(weather_total or 0),
+        "event_runs_total": int(runs_total or 0),
+        "actions_total": int(actions_total or 0),
+        "weather_status_breakdown": status_breakdown,
+        "run_status_breakdown": run_status_breakdown,
+        "global_kill_switch": paused,
+    }
+
+
+@router.post("/weather-events/{weather_event_id}/requalify")
+async def requalify_weather_event(
+    weather_event_id: str,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    evt = await db.scalar(select(WeatherEvent).where(WeatherEvent.id == weather_event_id))
+    if not evt:
+        raise HTTPException(status_code=404, detail="Weather event not found")
+
+    source_ids = evt.source_ref_ids or {}
+    nws_id = source_ids.get("nws") if isinstance(source_ids, dict) else None
+
+    props = {
+        "event": evt.hazard_type,
+        "severity": "moderate",
+        "certainty": "possible",
+        "urgency": "expected",
+    }
+
+    if nws_id:
+        raw = await db.scalar(
+            select(WeatherRawEvent)
+            .where(WeatherRawEvent.provider == "nws")
+            .where(WeatherRawEvent.external_id == nws_id)
+            .order_by(WeatherRawEvent.fetched_at.desc())
+            .limit(1)
+        )
+        if raw and isinstance(raw.payload, dict):
+            props = (raw.payload.get("properties") or props)
+
+    county_count = 1
+    if isinstance(evt.county_fips, list):
+        county_count = max(1, len(evt.county_fips))
+
+    q = qualify_event(props, geo_confidence=float(evt.geo_confidence or 0.5), county_count=county_count)
+    evt.qualification_score = q.score
+    evt.score_breakdown = q.breakdown
+    evt.hazard_family = q.hazard_family
+
+    if q.suppressed:
+        evt.status = "SUPPRESSED"
+    elif q.band in {"AUTO", "REVIEW"}:
+        evt.status = "QUALIFIED"
+    elif q.band == "MONITOR":
+        evt.status = "CANDIDATE"
+    else:
+        evt.status = "REJECTED"
+
+    evt.last_seen_at = datetime.utcnow()
+    await db.commit()
+
+    return {
+        "id": evt.id,
+        "status": evt.status,
+        "qualification_score": evt.qualification_score,
+        "band": q.band,
+        "suppressed": q.suppressed,
+    }
+
+
+@router.post("/event-ops/run-cycle")
+async def run_event_ops_cycle(
+    body: WeatherOpsCycleRequest,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    if not body.run_now:
+        return {"status": "skipped"}
+
+    result = await run_weather_ops_cycle(db)
+    await db.commit()
+    return {"status": "ok", **result}
 
 
 @router.post("/event-runs", status_code=status.HTTP_201_CREATED)

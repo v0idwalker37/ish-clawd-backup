@@ -92,3 +92,23 @@ async def test_paid_quote_creates_project_pass_for_future_same_project_uploads(
         assert quote is not None
         assert quote.payment_status == "paid"
         assert quote.project_pass_id is not None
+
+
+async def test_active_pass_total_upload_limit_blocks_submission(
+    client: AsyncClient,
+    test_user: User,
+    auth_headers: dict,
+):
+    payload = make_quote_payload(project_type="kitchen_remodel", location="Denver, CO")
+    active_pass = await _create_active_pass(test_user, payload["location"], payload["project_type"])
+
+    # Force pass to a high usage count to trigger deterministic guardrail.
+    async with _TestSessionLocal() as session:
+        p = await session.get(ProjectPass, active_pass.id)
+        p.upload_count = 999
+        await session.commit()
+
+    resp = await client.post("/api/quotes", json=payload, headers=auth_headers)
+    assert resp.status_code == 429
+    detail = resp.json()["detail"]
+    assert detail["reason"] == "pass_total_upload_limit_reached"

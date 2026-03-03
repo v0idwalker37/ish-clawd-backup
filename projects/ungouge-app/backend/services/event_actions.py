@@ -67,7 +67,10 @@ async def run_action(db: AsyncSession, action_id: str) -> EventRunAction:
     await db.flush()
 
     try:
-        # Foundation implementation: mark success (real adapters come in later wave)
+        from services.event_action_adapters import execute_action_adapter
+
+        adapter_result = await execute_action_adapter(row.action_type, row.payload or {})
+        row.payload = {**(row.payload or {}), "adapter_result": adapter_result}
         row.status = "succeeded"
         row.executed_at = datetime.utcnow()
         row.updated_at = datetime.utcnow()

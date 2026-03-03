@@ -32,6 +32,7 @@ from services.project_pass import (
     normalize_address,
     normalize_project_scope,
     increment_pass_usage,
+    check_pass_usage_guard,
 )
 
 
@@ -119,6 +120,19 @@ async def submit_quote(
             project_scope_raw=sanitized_project_type,
         )
 
+        # Anti-abuse guardrails for active pass usage
+        if active_pass:
+            allowed, reason = await check_pass_usage_guard(db, project_pass=active_pass)
+            if not allowed:
+                raise HTTPException(
+                    status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                    detail={
+                        "error": "Project Pass usage limit reached for this time window.",
+                        "reason": reason,
+                        "suggestion": "Please wait and try again later, or contact support if this is incorrect.",
+                    },
+                )
+
         # Generate unique ID
         quote_id = str(uuid.uuid4())
 
@@ -191,6 +205,11 @@ async def submit_quote(
             report_url=f"/report/{quote_id}",
         )
         
+    except HTTPException:
+        # Preserve intended HTTP responses (e.g., rate limits / validation)
+        await db.rollback()
+        raise
+
     except UngougeException as e:
         # Our custom exceptions have user-friendly messages
         await db.rollback()
