@@ -126,6 +126,76 @@ class ProjectPass(Base):
     quotes: Mapped[List["Quote"]] = relationship(back_populates="project_pass")
 
 
+class WeatherRawEvent(Base):
+    """Immutable raw weather provider payloads."""
+    __tablename__ = "weather_raw_events"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    provider: Mapped[str] = mapped_column(String(40), index=True)  # e.g., nws
+    external_id: Mapped[str] = mapped_column(String(255), index=True)
+    event_name: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    payload: Mapped[dict] = mapped_column(JSON)
+    fetched_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+
+
+class WeatherEvent(Base):
+    """Canonical, deduped weather event."""
+    __tablename__ = "weather_events"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    hazard_family: Mapped[str] = mapped_column(String(40), index=True)
+    hazard_type: Mapped[str] = mapped_column(String(255))
+    status: Mapped[str] = mapped_column(String(24), default="CANDIDATE", index=True)
+
+    qualification_score: Mapped[int] = mapped_column(Integer, default=0, index=True)
+    score_breakdown: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+
+    county_fips: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+    geo_confidence: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
+
+    source_ref_ids: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+    detected_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    effective_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    expires_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True, index=True)
+    last_seen_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+
+
+class EventRun(Base):
+    """Operational run for a qualified weather event."""
+    __tablename__ = "event_runs"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    weather_event_id: Mapped[str] = mapped_column(String(36), ForeignKey("weather_events.id"), index=True)
+
+    # DETECTED|QUALIFIED|LEGAL_PENDING|READY|ACTIVE|SUNSETTING|ARCHIVED|REVOKED|FAILED|ROLLED_BACK
+    status: Mapped[str] = mapped_column(String(32), default="DETECTED", index=True)
+    geo_scope_key: Mapped[str] = mapped_column(String(120), index=True)
+
+    canonical_slug: Mapped[Optional[str]] = mapped_column(String(255), nullable=True, index=True)
+    run_version: Mapped[int] = mapped_column(Integer, default=1)
+
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class LegalGateAudit(Base):
+    """Audit log for deterministic legal/compliance gate decisions."""
+    __tablename__ = "legal_gate_audits"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    artifact_type: Mapped[str] = mapped_column(String(40), index=True)  # report|promo_page|pr|ad
+    artifact_id: Mapped[str] = mapped_column(String(64), index=True)
+
+    decision: Mapped[str] = mapped_column(String(24), index=True)  # PASS|PASS_WITH_EDIT|ESCALATE|REJECT
+    reasons: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+
+    policy_pack_version: Mapped[str] = mapped_column(String(40), default="legal-v1")
+    content_hash_before: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
+    content_hash_after: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
+
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+
+
 class Quote(Base):
     """Contractor quote submission"""
     __tablename__ = "quotes"

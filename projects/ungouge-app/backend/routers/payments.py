@@ -20,7 +20,7 @@ from typing import Optional
 import uuid
 from datetime import datetime
 
-from models.database import get_db, User, Quote, Payment, AnalysisReport, QuoteLineItem
+from models.database import get_db, User, Quote, Payment, AnalysisReport, QuoteLineItem, LegalGateAudit
 from services.auth import get_current_user, get_current_user_optional
 from services.payment import create_checkout_session, construct_webhook_event, handle_webhook_event
 from services.logger import logger, log_error
@@ -548,9 +548,22 @@ async def _generate_report_for_quote(db: AsyncSession, quote_id: str):
     try:
         report = await analyze_quote(quote_data, db)
 
+        import hashlib
+        import json as _json
+
+        report_pre = report.dict()
+        content_hash_before = hashlib.sha256(
+            _json.dumps(report_pre, sort_keys=True, default=str).encode()
+        ).hexdigest()
+
         # Deterministic legal/compliance report gate (MVP-guarded mode)
         from services.legal_gate import enforce_report_policy
         report, legal_audit = enforce_report_policy(report)
+
+        report_post = report.dict()
+        content_hash_after = hashlib.sha256(
+            _json.dumps(report_post, sort_keys=True, default=str).encode()
+        ).hexdigest()
 
         analysis_report = AnalysisReport(
             id=str(uuid.uuid4()),
@@ -567,6 +580,20 @@ async def _generate_report_for_quote(db: AsyncSession, quote_id: str):
             estimation_methodology=report.estimation_methodology,
         )
         db.add(analysis_report)
+
+        gate_audit = LegalGateAudit(
+            id=str(uuid.uuid4()),
+            artifact_type="report",
+            artifact_id=quote_id,
+            decision=str(legal_audit.get("decision", "PASS")),
+            reasons={"reasons": legal_audit.get("reasons", [])},
+            policy_pack_version="legal-v1",
+            content_hash_before=content_hash_before,
+            content_hash_after=content_hash_after,
+            created_at=datetime.utcnow(),
+        )
+        db.add(gate_audit)
+
         await db.commit()
 
         logger.info(

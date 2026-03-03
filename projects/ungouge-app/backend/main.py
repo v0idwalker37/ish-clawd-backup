@@ -90,6 +90,10 @@ async def lifespan(app: FastAPI):
             # Migration 0004: Free resubmit tracking (total-only → itemized pass window)
             "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS original_quote_id VARCHAR(36)",
             "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS resubmit_eligible_until TIMESTAMP",
+            # Migration 0005: 30-day project pass linkage fields
+            "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS project_pass_id VARCHAR(36)",
+            "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS location_normalized VARCHAR(255)",
+            "ALTER TABLE quotes ADD COLUMN IF NOT EXISTS project_scope_normalized VARCHAR(120)",
         ]
         for sql in migrations:
             try:
