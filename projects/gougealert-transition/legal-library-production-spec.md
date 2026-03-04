@@ -4,7 +4,7 @@
 Provide a citation-backed, machine-readable legal reference layer for legal gate decisions across reports, promo pages, PR copy, and ads.
 
 ## Delivered foundations
-- DB tables: `legal_documents`, `legal_rules`
+- DB tables: `legal_documents`, `legal_rules`, `legal_jurisdictions`
 - Service: `backend/services/legal_library.py`
   - bundle ingestion (upsert)
   - applicable rule retrieval by jurisdiction + artifact type
@@ -24,6 +24,11 @@ Provide a citation-backed, machine-readable legal reference layer for legal gate
   - `legal-library/bundles/state/us-vt-consumer-baseline.json`
 
 ## Data contract
+
+### legal_jurisdictions
+- full jurisdiction catalog (federal/state/county/city)
+- supports hierarchical fallback (city/county → state → US)
+
 ### legal_documents
 - jurisdiction, source metadata, citation text, temporal validity, checksum.
 
@@ -46,10 +51,11 @@ Provide a citation-backed, machine-readable legal reference layer for legal gate
 - jurisdiction-scoped retrieval enables multi-region operation
 
 ## Known limitations (next phase)
-1. Starter corpus is seed-level, not exhaustive all-city/county/federal coverage.
-2. Automated official-source synchronization not yet implemented.
+1. Starter **legal documents/rules corpus** is seed-level; not exhaustive for every state/county/city.
+2. Jurisdiction catalog sync is implemented (Census-based), but jurisdiction-specific law packs still require curation.
 3. No embedding/RAG retrieval yet for long-form statute passages.
 4. Legal library is integrated as service/API foundation; full hard-coupling into every outbound publish path is a planned next block.
+5. City/county ordinance sources often live on third-party code hosts (e.g., Municode) and may require ToS-safe ingestion strategy or paid licensing.
 
 ## Next expansion steps
 1. Add bulk jurisdiction bundles (state-first, then county/city hot zones).

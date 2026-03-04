@@ -108,19 +108,27 @@ async def test_legal_library_api_flow(client: AsyncClient, auth_headers: dict):
     )
     assert rules.status_code == 200
     assert "rules" in rules.json()
+    assert "jurisdiction_chain" in rules.json()
 
     evaluate = await client.post(
         "/api/legal-library/evaluate",
         json={
             "artifact_type": "report",
-            "jurisdiction_codes": ["US", "US-WY"],
+            "jurisdiction_codes": ["US-WY-CITY-12345"],
             "text": "Satellite confirms this storm caused damage.",
         },
         headers=auth_headers,
     )
     assert evaluate.status_code == 200
     assert evaluate.json()["decision"] in {"block", "rewrite", "escalate", "allow"}
+    assert "US-WY" in evaluate.json()["jurisdiction_chain"]
+
+    listing = await client.get("/api/legal-library/jurisdictions?level=state&limit=60", headers=auth_headers)
+    assert listing.status_code == 200
+    assert "count" in listing.json()
 
     coverage = await client.get("/api/legal-library/coverage", headers=auth_headers)
     assert coverage.status_code == 200
-    assert "documents" in coverage.json()
+    body = coverage.json()
+    assert "documents" in body
+    assert "jurisdiction_catalog_count" in body

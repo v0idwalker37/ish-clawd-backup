@@ -21,7 +21,7 @@ from typing import Any, Dict, Iterable, List, Optional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models.database import LegalDocument, LegalRule
+from models.database import LegalDocument, LegalRule, LegalJurisdiction
 
 
 LEGAL_LIBRARY_DIR = os.getenv(
@@ -223,6 +223,15 @@ async def get_applicable_rules(
     as_of = as_of or _now()
     artifact_type = (artifact_type or "").lower()
 
+    # Expand to hierarchical fallback chain (city/county -> state -> US)
+    from services.legal_jurisdictions import expand_jurisdiction_chain
+
+    expanded = []
+    for code in jurisdiction_codes or ["US"]:
+        expanded.extend(expand_jurisdiction_chain(code))
+    # stable unique
+    jurisdiction_codes = list(dict.fromkeys(expanded))
+
     docs = (
         await db.execute(
             select(LegalDocument).where(LegalDocument.active == True)  # noqa: E712
@@ -344,13 +353,20 @@ def evaluate_text_against_rules(text: str, rules: List[Dict[str, Any]]) -> Dict[
 async def coverage_summary(db: AsyncSession) -> Dict[str, Any]:
     docs = (await db.execute(select(LegalDocument))).scalars().all()
     rules = (await db.execute(select(LegalRule))).scalars().all()
+    jurs = (await db.execute(select(LegalJurisdiction))).scalars().all()
 
     by_jur = {}
     for d in docs:
         by_jur[d.jurisdiction_code] = by_jur.get(d.jurisdiction_code, 0) + 1
 
+    by_level = {}
+    for j in jurs:
+        by_level[j.level] = by_level.get(j.level, 0) + 1
+
     return {
         "documents": len(docs),
         "rules": len(rules),
         "jurisdictions": by_jur,
+        "jurisdiction_catalog_count": len(jurs),
+        "jurisdiction_levels": by_level,
     }

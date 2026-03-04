@@ -206,6 +206,25 @@ class OpsControl(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
+class LegalJurisdiction(Base):
+    """Jurisdiction catalog for legal-library scope resolution (federal/state/county/city)."""
+    __tablename__ = "legal_jurisdictions"
+
+    code: Mapped[str] = mapped_column(String(80), primary_key=True)  # e.g. US, US-VT, US-VT-COUNTY-023
+    level: Mapped[str] = mapped_column(String(20), index=True)       # federal|state|county|city
+    name: Mapped[str] = mapped_column(String(255))
+
+    parent_code: Mapped[Optional[str]] = mapped_column(String(80), nullable=True, index=True)
+    state_abbr: Mapped[Optional[str]] = mapped_column(String(2), nullable=True, index=True)
+    state_fp: Mapped[Optional[str]] = mapped_column(String(2), nullable=True, index=True)
+    county_fp: Mapped[Optional[str]] = mapped_column(String(3), nullable=True, index=True)
+    place_fp: Mapped[Optional[str]] = mapped_column(String(5), nullable=True, index=True)
+
+    source_url: Mapped[Optional[str]] = mapped_column(String(1024), nullable=True)
+    active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, index=True)
+
+
 class LegalDocument(Base):
     """Canonical legal source documents for rule-backed compliance decisions."""
     __tablename__ = "legal_documents"

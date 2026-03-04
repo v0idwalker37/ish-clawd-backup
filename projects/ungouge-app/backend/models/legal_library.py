@@ -15,3 +15,7 @@ class LegalEvaluateRequest(BaseModel):
     artifact_type: str
     jurisdiction_codes: List[str]
     text: str
+
+
+class JurisdictionSyncRequest(BaseModel):
+    include_places: bool = True
