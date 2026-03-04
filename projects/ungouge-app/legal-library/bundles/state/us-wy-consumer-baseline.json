@@ -1,0 +1,29 @@
+{
+  "jurisdiction_level": "state",
+  "jurisdiction_code": "US-WY",
+  "title": "Wyoming Consumer Protection Baseline (Reference Pack)",
+  "source_type": "policy",
+  "source_url": "https://attorneygeneral.wyo.gov/law-office-division/consumer-protection-and-antitrust-unit",
+  "citation_text": "State-level deceptive practice risk controls should avoid misleading representations.",
+  "effective_at": "2026-03-04T00:00:00Z",
+  "superseded_at": null,
+  "active": true,
+  "tags": ["wyoming", "consumer-protection"],
+  "rules": [
+    {
+      "rule_key": "wy-no-misleading-repair-claim",
+      "artifact_types": ["promo_page", "pr", "ad"],
+      "risk_level": "high",
+      "action": "rewrite",
+      "pattern_type": "regex",
+      "pattern_value": "\\b(guaranteed savings|definitive overcharge|proof of gouging)\\b",
+      "rationale": "Avoid misleading certainty in marketing claims.",
+      "required_disclaimer": "Analysis is informational and range-based.",
+      "examples": {
+        "good": ["Possible above-range pricing based on available market signals."],
+        "bad": ["Definitive proof of contractor gouging."]
+      },
+      "active": true
+    }
+  ]
+}

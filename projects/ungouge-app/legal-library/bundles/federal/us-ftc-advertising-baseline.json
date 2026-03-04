@@ -1,0 +1,29 @@
+{
+  "jurisdiction_level": "federal",
+  "jurisdiction_code": "US",
+  "title": "FTC Truth-in-Advertising Baseline",
+  "source_type": "guidance",
+  "source_url": "https://www.ftc.gov/business-guidance/advertising-marketing",
+  "citation_text": "Advertising claims should be truthful, not misleading, and substantiated.",
+  "effective_at": "2026-03-04T00:00:00Z",
+  "superseded_at": null,
+  "active": true,
+  "tags": ["federal", "advertising", "consumer-protection"],
+  "rules": [
+    {
+      "rule_key": "no-guarantee-superlative-without-substantiation",
+      "artifact_types": ["promo_page", "pr", "ad"],
+      "risk_level": "high",
+      "action": "rewrite",
+      "pattern_type": "regex",
+      "pattern_value": "\\b(guaranteed|always|never|100% accurate|best in america)\\b",
+      "rationale": "Absolute/superlative claims require robust substantiation.",
+      "required_disclaimer": "Results vary by project and market conditions.",
+      "examples": {
+        "good": ["Typical ranges shown with confidence context."],
+        "bad": ["100% accurate quote validation every time."]
+      },
+      "active": true
+    }
+  ]
+}

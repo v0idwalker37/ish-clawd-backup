@@ -14,7 +14,7 @@ from fastapi_csrf_protect import CsrfProtect
 from fastapi_csrf_protect.exceptions import CsrfProtectError
 from pydantic import BaseModel
 
-from routers import quotes, health, auth, payments, event_ops
+from routers import quotes, health, auth, payments, event_ops, legal_library
 from models.database import engine, Base
 from middleware.dnt import DNTMiddleware
 from middleware.security_logging import SecurityAuditMiddleware, setup_security_logging
@@ -275,6 +275,7 @@ app.include_router(auth.router, prefix="/api", tags=["auth"])
 app.include_router(quotes.router, prefix="/api", tags=["quotes"])
 app.include_router(payments.router, prefix="/api", tags=["payments"])
 app.include_router(event_ops.router, prefix="/api", tags=["event-ops"])
+app.include_router(legal_library.router, prefix="/api", tags=["legal-library"])
 
 @app.get("/")
 async def root():

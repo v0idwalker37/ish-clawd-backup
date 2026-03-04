@@ -1,0 +1,29 @@
+{
+  "jurisdiction_level": "state",
+  "jurisdiction_code": "US-VT",
+  "title": "Vermont Consumer Protection Baseline (Reference Pack)",
+  "source_type": "policy",
+  "source_url": "https://ago.vermont.gov/cap/consumer-assistance-program",
+  "citation_text": "Consumer communications should avoid deceptive or unsubstantiated claims.",
+  "effective_at": "2026-03-04T00:00:00Z",
+  "superseded_at": null,
+  "active": true,
+  "tags": ["vermont", "consumer-protection"],
+  "rules": [
+    {
+      "rule_key": "vt-no-definitive-liability-claim",
+      "artifact_types": ["report", "promo_page", "pr", "ad"],
+      "risk_level": "high",
+      "action": "rewrite",
+      "pattern_type": "regex",
+      "pattern_value": "\\b(definitive liability|certain legal violation|guaranteed legal win)\\b",
+      "rationale": "Avoid legal-liability certainty in informational outputs.",
+      "required_disclaimer": "This output is informational and not legal advice.",
+      "examples": {
+        "good": ["This quote may warrant a second opinion."],
+        "bad": ["This proves legal liability."]
+      },
+      "active": true
+    }
+  ]
+}

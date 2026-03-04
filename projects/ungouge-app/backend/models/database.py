@@ -206,6 +206,56 @@ class OpsControl(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
+class LegalDocument(Base):
+    """Canonical legal source documents for rule-backed compliance decisions."""
+    __tablename__ = "legal_documents"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+
+    jurisdiction_level: Mapped[str] = mapped_column(String(20), index=True)  # federal|state|county|city|platform
+    jurisdiction_code: Mapped[str] = mapped_column(String(80), index=True)   # US, US-VT, US-WY, US-VT-Washington
+
+    title: Mapped[str] = mapped_column(String(255))
+    source_type: Mapped[str] = mapped_column(String(40), index=True)  # statute|regulation|policy|guidance|case
+    source_url: Mapped[Optional[str]] = mapped_column(String(1024), nullable=True)
+    citation_text: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+
+    tags: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+    effective_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True, index=True)
+    superseded_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True, index=True)
+    active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
+
+    checksum: Mapped[Optional[str]] = mapped_column(String(128), nullable=True, index=True)
+
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class LegalRule(Base):
+    """Machine-evaluable legal/policy rules linked to legal documents."""
+    __tablename__ = "legal_rules"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    document_id: Mapped[str] = mapped_column(String(36), ForeignKey("legal_documents.id"), index=True)
+
+    rule_key: Mapped[str] = mapped_column(String(120), index=True)
+    artifact_types: Mapped[dict] = mapped_column(JSON)  # e.g. ["report","promo_page"]
+
+    risk_level: Mapped[str] = mapped_column(String(20), default="medium", index=True)  # low|medium|high|critical
+    action: Mapped[str] = mapped_column(String(20), default="escalate", index=True)      # allow|rewrite|block|escalate
+
+    pattern_type: Mapped[str] = mapped_column(String(20), default="regex")  # regex|keyword|manual
+    pattern_value: Mapped[str] = mapped_column(Text)
+
+    rationale: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    required_disclaimer: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    examples: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+
+    active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
 class LegalGateAudit(Base):
     """Audit log for deterministic legal/compliance gate decisions."""
     __tablename__ = "legal_gate_audits"

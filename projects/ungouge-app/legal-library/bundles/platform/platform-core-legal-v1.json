@@ -1,0 +1,59 @@
+{
+  "jurisdiction_level": "platform",
+  "jurisdiction_code": "US",
+  "title": "GougeAlert Platform Legal Policy Pack v1",
+  "source_type": "policy",
+  "source_url": "https://gougealert.com/terms",
+  "citation_text": "Platform policy: informational quote context only; no legal/insurance-adjuster conduct.",
+  "effective_at": "2026-03-04T00:00:00Z",
+  "superseded_at": null,
+  "active": true,
+  "tags": ["platform-policy", "liability", "compliance"],
+  "rules": [
+    {
+      "rule_key": "no-damage-causation-claim",
+      "artifact_types": ["report", "promo_page", "pr", "ad"],
+      "risk_level": "critical",
+      "action": "block",
+      "pattern_type": "regex",
+      "pattern_value": "\\b(proves?|confirmed?|guaranteed?)\\b.{0,80}\\b(damage|caused|causation)\\b",
+      "rationale": "Do not claim property damage causation from weather/satellite context.",
+      "required_disclaimer": "Weather and imagery inputs are contextual indicators and do not determine property damage causation.",
+      "examples": {
+        "good": ["Your property is within proximity to a recent severe weather event."],
+        "bad": ["Satellite confirms this storm caused roof damage."]
+      },
+      "active": true
+    },
+    {
+      "rule_key": "no-adjuster-conduct-language",
+      "artifact_types": ["report", "promo_page", "pr", "ad"],
+      "risk_level": "critical",
+      "action": "block",
+      "pattern_type": "regex",
+      "pattern_value": "\\b(we negotiate|we file|we appeal|we represent)\\b.{0,80}\\b(claim|insurance|insurer|settlement)\\b",
+      "rationale": "Platform must not act or imply acting as adjuster/legal representative.",
+      "required_disclaimer": "This service is informational and does not provide public-adjuster or legal representation.",
+      "examples": {
+        "good": ["We provide independent pricing context."],
+        "bad": ["We will negotiate your claim with the insurer."]
+      },
+      "active": true
+    },
+    {
+      "rule_key": "no-defamation-accusation",
+      "artifact_types": ["report", "promo_page", "pr", "ad"],
+      "risk_level": "high",
+      "action": "rewrite",
+      "pattern_type": "regex",
+      "pattern_value": "\\b(contractor|company)\\b.{0,40}\\b(fraud|scam|criminal|thief)\\b",
+      "rationale": "Avoid defamatory accusations; use neutral risk framing.",
+      "required_disclaimer": "Use pricing-range language, not accusations.",
+      "examples": {
+        "good": ["This quote appears above typical regional range."],
+        "bad": ["This contractor is a scammer."]
+      },
+      "active": true
+    }
+  ]
+}
