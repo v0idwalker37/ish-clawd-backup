@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import pytest
 from httpx import AsyncClient
 
-from models.database import WeatherEvent, EventRun
+from models.database import WeatherEvent, EventRun, EventRunLegalContext
 from tests.conftest import _TestSessionLocal
 from services.compliance_token import issue_publish_token
 
@@ -144,6 +144,10 @@ async def test_event_run_rollback_hook(client: AsyncClient, auth_headers: dict):
             headers=auth_headers,
         )
         assert tr.status_code == 200
+        body = tr.json()
+        if target in {"QUALIFIED", "LEGAL_PENDING", "READY", "ACTIVE"}:
+            assert body.get("legal_context") is not None
+            assert "rule_counts" in body["legal_context"]
 
     rb = await client.post(
         f"/api/event-runs/{run_id}/rollback",
@@ -152,6 +156,16 @@ async def test_event_run_rollback_hook(client: AsyncClient, auth_headers: dict):
     )
     assert rb.status_code == 200
     assert rb.json()["status"] == "ROLLED_BACK"
+
+    # Legal context snapshot should have been persisted automatically
+    async with _TestSessionLocal() as session:
+        # direct lookup by event_run_id
+        from sqlalchemy import select
+        row = await session.scalar(
+            select(EventRunLegalContext).where(EventRunLegalContext.event_run_id == run_id)
+        )
+        assert row is not None
+        assert isinstance(row.rule_counts, dict)
 
 
 async def test_dashboard_and_requalify_weather_event(client: AsyncClient, auth_headers: dict):
@@ -166,3 +180,25 @@ async def test_dashboard_and_requalify_weather_event(client: AsyncClient, auth_h
     body = dash.json()
     assert "weather_events_total" in body
     assert "run_status_breakdown" in body
+
+
+async def test_manual_refresh_event_run_legal_context(client: AsyncClient, auth_headers: dict):
+    wid = await _insert_weather_event()
+
+    create = await client.post(
+        "/api/event-runs",
+        json={"weather_event_id": wid, "geo_scope_key": "state:VT", "canonical_slug": "vt-storm"},
+        headers=auth_headers,
+    )
+    assert create.status_code == 201
+    run_id = create.json()["id"]
+
+    refresh = await client.post(
+        f"/api/event-runs/{run_id}/legal-context/refresh",
+        headers=auth_headers,
+    )
+    assert refresh.status_code == 200
+    body = refresh.json()
+    assert body["status"] == "ok"
+    assert "jurisdiction_codes" in body
+    assert "rule_counts" in body

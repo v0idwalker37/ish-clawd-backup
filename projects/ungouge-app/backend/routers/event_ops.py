@@ -31,6 +31,7 @@ from services.event_actions import enqueue_action, run_action
 from services.ops_control import get_flag, set_flag, GLOBAL_AUTOMATION_PAUSE_KEY
 from services.weather_intel import qualify_event
 from services.weather_maintenance import run_weather_ops_cycle
+from services.event_legal_context import refresh_event_run_legal_context
 from services.logger import logger
 
 router = APIRouter()
@@ -234,8 +235,13 @@ async def transition_run(
             target_status=body.target_status,
             reason=body.reason,
         )
+
+        legal_context = None
+        if run.status in {"QUALIFIED", "LEGAL_PENDING", "READY", "ACTIVE"}:
+            legal_context = await refresh_event_run_legal_context(db, run.id)
+
         await db.commit()
-        return {"id": run.id, "status": run.status}
+        return {"id": run.id, "status": run.status, "legal_context": legal_context}
     except TransitionError as e:
         await db.rollback()
         raise HTTPException(status_code=400, detail=str(e))
@@ -277,6 +283,21 @@ async def rollback_run(
     except TransitionError as e:
         await db.rollback()
         raise HTTPException(status_code=400, detail=str(e))
+
+
+@router.post("/event-runs/{event_run_id}/legal-context/refresh")
+async def refresh_event_run_legal(
+    event_run_id: str,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    run = await db.execute(select(EventRun).where(EventRun.id == event_run_id))
+    if not run.scalar_one_or_none():
+        raise HTTPException(status_code=404, detail="Event run not found")
+
+    result = await refresh_event_run_legal_context(db, event_run_id)
+    await db.commit()
+    return {"status": "ok", **result}
 
 
 @router.post("/event-runs/{event_run_id}/actions", status_code=status.HTTP_201_CREATED)

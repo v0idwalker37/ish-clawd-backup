@@ -67,3 +67,15 @@
   - Seed bundles: platform + federal + WY + VT
 - Validation: backend tests now **74 passed**; ingest run loaded 4 docs / 6 rules.
 - Commit: `1d88de5`.
+
+## 08:12 AM Addendum — Event-Triggered Legal Retrieval Wired
+- Added `event_run_legal_contexts` snapshot table + migration `20260304_0010`.
+- Added service: `backend/services/event_legal_context.py`.
+  - resolves event-run jurisdiction chain from geo scope / county FIPS
+  - auto-ingests seed legal bundles if absent
+  - pulls applicable rules for report/promo/pr/ad
+  - persists citation-backed legal context snapshot per event run
+- Event lifecycle hook updated:
+  - `/api/event-runs/{id}/transition` now auto-refreshes legal context on operational states.
+  - manual endpoint added: `POST /api/event-runs/{id}/legal-context/refresh`.
+- Validation: backend tests now **80 passed**.

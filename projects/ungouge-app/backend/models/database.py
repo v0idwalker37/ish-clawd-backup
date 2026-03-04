@@ -275,6 +275,21 @@ class LegalRule(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
+class EventRunLegalContext(Base):
+    """Snapshot of legal-library context resolved for a specific event run."""
+    __tablename__ = "event_run_legal_contexts"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    event_run_id: Mapped[str] = mapped_column(String(36), ForeignKey("event_runs.id"), index=True)
+
+    jurisdiction_codes: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+    rule_counts: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+    citation_document_ids: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
 class LegalGateAudit(Base):
     """Audit log for deterministic legal/compliance gate decisions."""
     __tablename__ = "legal_gate_audits"

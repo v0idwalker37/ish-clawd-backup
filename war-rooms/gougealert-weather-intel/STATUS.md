@@ -22,3 +22,4 @@
 [2026-03-03 17:17 EST] ORCH — WAVE 2 BLOCK 3 COMPLETE: event lifecycle service, publish gateway (compliance token enforced), NWS ingest worker script, and associated tests shipped.
 [2026-03-03 17:24 EST] ORCH — WAVE 2 BLOCK 4 COMPLETE: action queue foundation, kill-switch/rollback hooks, legal token issuance endpoint, and cron-ready weather ops cycle shipped.
 [2026-03-03 17:32 EST] ORCH — AUTO-PROGRESSED to next block per user instruction. Added execution tooling for cutover/containment preflight and domain/DNS command templates under projects/gougealert-transition.
+[2026-03-04 08:12 EST] ORCH — BLOCK COMPLETE: event-triggered legal retrieval wired into event lifecycle (auto refresh on transition + manual refresh endpoint + persisted legal context snapshots).
