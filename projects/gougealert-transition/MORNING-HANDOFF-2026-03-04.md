@@ -57,3 +57,13 @@
 - Status unchanged:
   - `gougealert.com` / `www` / `api.gougealert.com` not resolving yet.
   - `ungouge.ai` still live (HTTP 200), robots+sitemap still indexable.
+
+## 06:45 AM Addendum — Legal Library Block Delivered
+- Production-ready legal library foundation shipped:
+  - DB: `legal_documents`, `legal_rules`
+  - API: `/api/legal-library/*` ingest/query/evaluate/coverage
+  - Service: jurisdiction-scoped retrieval + deterministic evaluation
+  - Script: `backend/scripts/legal_library_ingest_once.py`
+  - Seed bundles: platform + federal + WY + VT
+- Validation: backend tests now **74 passed**; ingest run loaded 4 docs / 6 rules.
+- Commit: `1d88de5`.
