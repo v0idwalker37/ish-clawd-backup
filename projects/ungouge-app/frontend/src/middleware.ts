@@ -10,6 +10,14 @@ export function middleware(req: NextRequest) {
   const SUNSET_MODE = process.env.NEXT_PUBLIC_SUNSET_MODE === '1';
   if (!SUNSET_MODE) return NextResponse.next();
 
+  const addSunsetHeaders = (res: NextResponse) => {
+    res.headers.set('Cache-Control', 'no-store, no-cache, max-age=0, must-revalidate');
+    res.headers.set('Pragma', 'no-cache');
+    res.headers.set('Expires', '0');
+    res.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet');
+    return res;
+  };
+
   const { pathname } = req.nextUrl;
 
   // Allow Next internals + the sunset page itself
@@ -20,13 +28,13 @@ export function middleware(req: NextRequest) {
     pathname === '/sitemap.xml' ||
     pathname === '/favicon.ico'
   ) {
-    return NextResponse.next();
+    return addSunsetHeaders(NextResponse.next());
   }
 
   const url = req.nextUrl.clone();
   url.pathname = '/sunset';
   url.search = '';
-  return NextResponse.rewrite(url);
+  return addSunsetHeaders(NextResponse.rewrite(url));
 }
 
 export const config = {
