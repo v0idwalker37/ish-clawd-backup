@@ -192,6 +192,10 @@ class EventRunAction(Base):
     idempotency_key: Mapped[Optional[str]] = mapped_column(String(128), nullable=True, index=True)
     error_message: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
 
+    attempt_count: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
+    max_attempts: Mapped[int] = mapped_column(Integer, default=3, server_default="3")
+    dead_lettered: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false", index=True)
+
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, index=True)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     executed_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)

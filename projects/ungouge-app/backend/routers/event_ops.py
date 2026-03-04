@@ -27,7 +27,7 @@ from services.compliance_token import (
     ComplianceTokenError,
 )
 from services.event_lifecycle import transition_event_run, revoke_event_run, TransitionError
-from services.event_actions import enqueue_action, run_action
+from services.event_actions import enqueue_action, run_action, replay_action
 from services.ops_control import get_flag, set_flag, GLOBAL_AUTOMATION_PAUSE_KEY
 from services.weather_intel import qualify_event
 from services.weather_maintenance import run_weather_ops_cycle
@@ -326,13 +326,41 @@ async def enqueue_event_action(
 @router.post("/event-actions/{action_id}/execute")
 async def execute_event_action(
     action_id: str,
+    dry_run: bool = False,
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
     try:
-        row = await run_action(db, action_id)
+        row = await run_action(db, action_id, dry_run=dry_run)
         await db.commit()
-        return {"id": row.id, "status": row.status}
+        return {
+            "id": row.id,
+            "status": row.status,
+            "attempt_count": int(row.attempt_count or 0),
+            "max_attempts": int(row.max_attempts or 0),
+            "dead_lettered": bool(row.dead_lettered),
+        }
+    except ValueError as e:
+        await db.rollback()
+        raise HTTPException(status_code=404, detail=str(e))
+
+
+@router.post("/event-actions/{action_id}/replay")
+async def replay_event_action(
+    action_id: str,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    try:
+        row = await replay_action(db, action_id)
+        await db.commit()
+        return {
+            "id": row.id,
+            "status": row.status,
+            "attempt_count": int(row.attempt_count or 0),
+            "max_attempts": int(row.max_attempts or 0),
+            "dead_lettered": bool(row.dead_lettered),
+        }
     except ValueError as e:
         await db.rollback()
         raise HTTPException(status_code=404, detail=str(e))

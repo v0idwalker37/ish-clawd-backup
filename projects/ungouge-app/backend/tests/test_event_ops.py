@@ -124,6 +124,15 @@ async def test_enqueue_and_execute_action(client: AsyncClient, auth_headers: dic
     )
     assert execute.status_code == 200
     assert execute.json()["status"] == "succeeded"
+    assert execute.json()["attempt_count"] >= 1
+
+    replay = await client.post(
+        f"/api/event-actions/{action_id}/replay",
+        headers=auth_headers,
+    )
+    assert replay.status_code == 200
+    # replaying succeeded action is idempotent no-op
+    assert replay.json()["status"] == "succeeded"
 
 
 async def test_event_run_rollback_hook(client: AsyncClient, auth_headers: dict):
